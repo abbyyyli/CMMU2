@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Marketing · Study Notes</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap"><style>
+:root { color-scheme: light;
+  --bg: #FDF9F9; --paper: #FFFFFF; --tint: #FAE9ED; --line: #EFDDE2; --fg: #2F282B; --muted: #7E6F74;
+  --accent: #C06C84; --accent-ink: #9C4862; --demand: #3F5675; --sage: #A7CDB6; --blue: #B2C4E3;
+  --serif: "Noto Serif TC", "Songti TC", Georgia, serif; --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif; }
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.7; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.page { max-width: 980px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 96px; }
+.crumbs { font-size: .86rem; display: flex; gap: 8px; flex-wrap: wrap; color: var(--muted); margin-bottom: 36px; }
+.crumbs a { text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); }
+.kick { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px; font-weight: 500; }
+h1 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.2; margin: 0 0 12px; text-wrap: balance; }
+.lead { margin: 0; color: var(--muted); max-width: 60ch; font-size: 1.02rem; }
+.head { padding-bottom: 28px; border-bottom: 1px solid var(--line); margin-bottom: 32px; }
+
+.courses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.course { display: flex; flex-direction: column; gap: 10px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 20px; text-decoration: none; transition: border-color .15s, transform .15s; }
+.course:hover { border-color: var(--accent); transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) { .course { transition: none; } .course:hover { transform: none; } }
+.course svg { width: 100%; height: auto; display: block; background: var(--tint); border-radius: 10px; }
+.course .code { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.course h2 { font-family: var(--serif); font-size: 1.35rem; margin: 0; line-height: 1.3; }
+.course p { margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.55; }
+.course .meta { margin-top: auto; padding-top: 10px; border-top: 1px dashed var(--line); font-size: .8rem; color: var(--accent-ink); font-weight: 500; display: flex; justify-content: space-between; }
+
+.chapters { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.ch { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 16px; align-items: center; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; text-decoration: none; }
+a.ch:hover { border-color: var(--accent); }
+.ch .n { font-family: var(--serif); font-size: 1.5rem; color: var(--accent); text-align: center; line-height: 1; }
+.ch .n small { display: block; font-family: var(--sans); font-size: .62rem; letter-spacing: .14em; color: var(--muted); margin-top: 4px; }
+.ch h3 { margin: 0; font-size: 1.05rem; line-height: 1.4; }
+.ch p { margin: 2px 0 0; color: var(--muted); font-size: .85rem; line-height: 1.5; }
+.ch .st { font-size: .76rem; font-weight: 500; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.ch .st.ready { background: var(--accent); color: #fff; }
+.ch .st.soon { background: var(--tint); color: var(--muted); }
+.ch.off { opacity: .72; }
+.group { font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 32px 0 10px; }
+.empty { background: var(--paper); border: 1px dashed var(--line); border-radius: 12px; padding: 28px; color: var(--muted); text-align: center; }
+.foot { margin-top: 56px; font-size: .8rem; color: var(--muted); }
+@media (max-width: 760px) { .courses { grid-template-columns: minmax(0, 1fr); } .ch { grid-template-columns: 48px minmax(0, 1fr); } .ch .st { grid-column: 2; justify-self: start; } }
+</style></head><body><main class="page"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes</a><span>/</span><b>Marketing</b></nav><div class="head"><p class="kick">CMMU</p><h1>Marketing</h1><p class="lead">Marketing concepts and frameworks, chapter by chapter.</p></div><p class="group">Sessions</p><ol class="chapters"><li><a class="ch" href="marketing-s1.html"><span class="n">1<small>SESSION</small></span><span><h3>Customer Needs and Value</h3><p>Customer understanding, value creation and marketing decisions</p></span></a></li><li><a class="ch" href="marketing-s2.html"><span class="n">2<small>SESSION</small></span><span><h3>CRM, Customer Data and Metrics</h3><p>Relationships, loyalty, data, digital commerce and metrics</p></span></a></li><li><a class="ch" href="marketing-s3.html"><span class="n">3<small>SESSION</small></span><span><h3>Marketing Research</h3><p>Research questions, evidence, methods and causal inference</p></span></a></li><li><a class="ch" href="marketing-s4.html"><span class="n">4<small>SESSION</small></span><span><h3>Strategic Planning &amp; Consumer Behavior</h3><p>BCG, Ansoff, buying decisions, motives and brand choice</p></span></a></li><li><a class="ch" href="marketing-s5.html"><span class="n">5<small>SESSION</small></span><span><h3>Session 5</h3></span></a></li><li><a class="ch" href="marketing-s6.html"><span class="n">6<small>SESSION</small></span><span><h3>Session 6</h3></span></a></li></ol></main></body></html>
