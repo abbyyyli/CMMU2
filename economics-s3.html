@@ -29,7 +29,24 @@ a { color: var(--accent-ink); }
 .sessions { display: flex; gap: 4px; margin-left: auto; }
 .crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
 .crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
-.sessions a.pill { text-decoration: none; }
+.sessions a.pill {
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):hover,
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):focus-visible {
+  background: #fceef2;
+  border-color: #b86b7b;
+  color: #8e4357;
+}
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):focus-visible {
+  outline: 2px solid #b86b7b;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sessions a.pill { transition: none; }
+}
 .sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
 .sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #fff; }
 .sessions .pill.off { opacity: .5; cursor: not-allowed; }
@@ -203,328 +220,364 @@ table.oil td.hi { background: var(--tint); color: var(--accent-ink); font-weight
 
 
 
-.topswitch{font:500 .72rem var(--sans);color:var(--muted);white-space:nowrap;display:inline-flex;align-items:center;gap:5px;order:3;opacity:.78;margin-inline:4px}
-.topswitch input{appearance:none;width:27px;height:15px;flex:none;border:1px solid #d5c6ca;border-radius:999px;background:#eee6e8;position:relative;cursor:pointer;transition:background .15s}
-.topswitch input::after{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:#fff;left:2px;top:2px;box-shadow:0 1px 2px #7775;transition:left .15s}
+</style><style>
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid #d5c6ca;border-radius:999px;background:#eee6e8;position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:white;border-radius:50%;box-shadow:0 1px 2px #7775}
 .topswitch input:checked{background:var(--accent)}
-.topswitch input:checked::after{left:14px}
+.topswitch input:checked:after{left:14px}
 .topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.zh-translation{display:none!important}
-.show-zh .zh-translation{display:block!important;font-family:system-ui,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-size:.92em;font-weight:400;line-height:1.55;letter-spacing:0;color:var(--accent-ink);margin:.3em 0 .1em;padding-left:.65em;border-left:2px solid var(--accent)}
-.show-zh td>.zh-translation,.show-zh th>.zh-translation{font-size:.88em}
-.show-zh .legend .zh-translation,.show-zh .flow .zh-translation,.show-zh .method .zh-translation,.show-zh .matrix .zh-translation,.show-zh .spectrum .zh-translation,.show-zh .spec-l .zh-translation{font-size:.76em;padding-left:0;border:0;line-height:1.3}
-.show-zh .legend>span,.show-zh .steps li,.show-zh .six>div,.show-zh .qa summary,.show-zh .sl label,.show-zh .st dt,.show-zh .chip,.show-zh .chk{flex-wrap:wrap}
-.show-zh .legend>span>.zh-translation,.show-zh .steps li>.zh-translation,.show-zh .six>div>.zh-translation,.show-zh .qa summary>.zh-translation,.show-zh .sl label>.zh-translation,.show-zh .st dt>.zh-translation,.show-zh .chip>.zh-translation,.show-zh .chk>.zh-translation{flex:0 0 100%;min-width:0}
-.show-zh .steps li{display:list-item;list-style:none}
-.show-zh .steps li::before{display:inline-block;margin-right:10px;vertical-align:middle}
-.show-zh .qa summary>.zh-translation{margin-left:20px}
-.show-zh .six>div>.zh-translation{margin-left:34px;flex-basis:calc(100% - 34px)}
-.show-zh .legend>span{align-content:center}
-.show-zh .legend>span>.zh-translation{padding-left:17px}
-.show-zh .seg{max-width:100%;flex-wrap:wrap}
-.show-zh .seg button{min-width:0;white-space:normal}
-.show-zh .score .up b::after{content:'改善'}
-.show-zh .score .down b::after{content:'惡化'}
-.show-zh .spectrum{min-width:0}
-.show-zh .spectrum>span{min-width:0;overflow-wrap:anywhere}
-.show-zh .formula>.zh-translation{white-space:normal;font-family:var(--sans)}
-.show-zh .mw .tabs button,.show-zh .mw .qz-o,.show-zh .graph .g-btn{overflow-wrap:anywhere}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+
+/* Shared reading rhythm, with room for each chapter's own teaching tools. */
+.doc select{font-family:var(--sans);font-size:.88rem}
 html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 @media(max-width:900px){.rail.open{top:var(--header-height,64px);bottom:0;inset-inline:0;max-height:calc(100vh - var(--header-height,64px))}}
-
-@media(max-width:700px){.top-in{flex-wrap:wrap}.topswitch{font-size:.69rem;margin-inline:0}}
-@media(max-width:560px){.show-zh .spectrum{grid-template-columns:minmax(0,1fr)}.show-zh .spectrum .bar{min-width:0}}
-
-.show-zh .six .zh-translation {width:auto;height:auto;min-width:0;max-width:100%;background:transparent;border-radius:0;text-align:left;overflow-wrap:anywhere}
-.show-zh .six > div > .zh-translation {flex:0 0 calc(100% - 34px);margin-left:34px}
-</style></head><body>
+body.show-zh .legend>span,body.show-zh .steps li,body.show-zh .six>div,body.show-zh .qa summary,body.show-zh .chk{flex-wrap:wrap}
+body.show-zh .legend>span>.zh-full,body.show-zh .steps li>.zh-full,body.show-zh .six>div>.zh-full,body.show-zh .qa summary>.zh-full,body.show-zh .chk>.zh-full{flex:0 0 100%;min-width:0}
+body.show-zh .steps li{display:list-item;list-style:none}
+body.show-zh .steps li:before{display:inline-block;margin-right:10px;vertical-align:middle}
+body.show-zh .six>div>.zh-full{margin-left:34px;flex-basis:calc(100% - 34px)}
+body.show-zh .seg{flex-wrap:wrap;max-width:100%}
+body.show-zh .seg button{min-width:0;white-space:normal}
+body.show-zh .spectrum{min-width:0}
+body.show-zh .spectrum>span{min-width:0;overflow-wrap:anywhere}
+body.show-zh .formula>.zh-full{white-space:normal;font-family:var(--sans)}
+body.show-zh .mw .tabs button,body.show-zh .mw .qz-o,body.show-zh .graph .g-btn{overflow-wrap:anywhere}
+body.show-zh .funnel-level{height:auto;min-height:68px;flex-direction:column;gap:1px;white-space:normal;line-height:1.3}
+body.show-zh .funnel-level .zh-full{color:inherit;margin-top:0;font-size:.75em}
+body.show-zh .decision-step{height:auto;min-height:100px}
+body.show-zh .m-control label{flex-wrap:wrap}
+body.show-zh .m-control label .zh-full{flex-basis:100%;text-align:left}
+body.show-zh .decision-step>.zh-full{font-size:.8em;line-height:1.45}
+body.show-zh .score .up b:after{content:'改善'}
+body.show-zh .score .down b:after{content:'惡化'}
+@media(max-width:560px){body.show-zh .spectrum{grid-template-columns:minmax(0,1fr)}body.show-zh .m-choices button{min-height:65px}}
+</style><script>
+/* Bilingual content helpers: no text dictionary, observer or page-wide rescan. */
+(function(){
+  const scratch=document.createElement('div');
+  function read(s){scratch.innerHTML=String(s);const z=[...scratch.querySelectorAll('.zh-full,.zh-svg')].map(e=>e.textContent).join('');scratch.querySelectorAll('.zh-full,.zh-svg').forEach(e=>e.remove());return {en:scratch.textContent,zh:z};}
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  window.biPlain=s=>read(s).en;
+  window.biChinese=s=>read(s).zh;
+  window.biPair=(en,zh)=>esc(en)+'<span class="zh-full" lang="zh-Hant">'+esc(zh)+'</span>';
+  window.biEscape=s=>String(s).includes('class="zh-full"')?String(s):esc(s);
+  window.biSvgLabel=(s,x,zhX,below)=>{const a=read(s);return esc(a.en)+(a.zh?'<tspan class="zh-svg" lang="zh-Hant" text-anchor="end" x="'+zhX+'" dy="'+(below?12:0)+'">'+esc(a.zh)+'</tspan>':'')};
+  window.biSetSvg=(el,s)=>{const a=read(s);el.textContent=a.en;if(a.zh){const t=document.createElementNS('http://www.w3.org/2000/svg','tspan');t.setAttribute('class','zh-svg');t.setAttribute('lang','zh-Hant');t.setAttribute('x',el.getAttribute('x')||'0');t.setAttribute('dy','13');t.textContent=a.zh;el.appendChild(t);}};
+})();
+</script></head><body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <pattern id="dwlHatch" width="6" height="6" patternunits="userSpaceOnUse" patterntransform="rotate(45)">
 <rect width="6" height="6" style="fill:var(--dwl);fill-opacity:.12"></rect><rect width="2.2" height="6" style="fill:var(--dwl);fill-opacity:.75"></rect></pattern></defs></svg>
 
 <header class="top"><div class="top-in">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes</a><span>/</span><a href="economics.html">Economics</a><span>/</span><b>Session 3</b></nav>
-  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false">Contents</button>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="economics.html">Economics<span class="zh-full" lang="zh-Hant">經濟學</span></a><span>/</span><b>Session 3<span class="zh-full" lang="zh-Hant">第 3 堂</span></b></nav>
+  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
   <nav class="sessions" aria-label="Sessions"><a class="pill" href="economics-s1.html">S1</a>
 <a class="pill" href="economics-s2.html">S2</a>
 <span class="pill" aria-current="page">S3</span>
 <a class="pill" href="economics-s4.html">S4</a></nav>
-<label class="topswitch" for="zhToggle" title="加入完整繁體中文翻譯，保留所有英文原文"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示中文對照翻譯（保留英文）"> 中文 <span id="zhModeLabel">OFF</span></label></div></header>
+<label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label></div></header>
 
 <div class="wrap">
-  <aside class="rail" id="rail"><p class="lbl">Contents</p><ol id="toc"></ol></aside>
+  <aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
   <main><article class="doc"><div class="hero">
-  <p class="kick">MGMG515 · Session 3<span class="zh-translation" lang="zh-Hant">經濟學・第 3 堂</span></p>
-  <h1>Markets and Government<span class="zh-translation" lang="zh-Hant">市場與政府</span></h1>
-  <p class="lead">Prices coordinate markets well, but markets can fail. Government can help, yet every intervention changes incentives, so compare realistic options and their trade-offs.<span class="zh-translation" lang="zh-Hant">價格能有效協調市場，但市場也可能失靈。政府可以協助，然而每項干預都會改變誘因，因此必須比較現實可行的方案及其權衡。</span></p>
+  <p class="kick">MGMG515 · Session 3<span class="zh-full" lang="zh-Hant">MGMG515・第 3 堂</span></p>
+  <h1>Markets and Government<span class="zh-full" lang="zh-Hant">市場與政府</span></h1>
+  <p class="lead">Prices coordinate markets well, but markets can fail. Government can help, yet every intervention changes incentives, so compare realistic options and their trade-offs.<span class="zh-full" lang="zh-Hant">價格能有效協調市場，但市場也可能失靈。政府可以協助，然而每項干預都會改變誘因，因此必須比較現實可行的方案及其權衡。</span></p>
   <div class="legend">
-    <span><i class="sw ln" style="background:var(--demand)"></i>Demand<span class="zh-translation" lang="zh-Hant">需求</span></span>
-    <span><i class="sw ln" style="background:var(--supply)"></i>Supply<span class="zh-translation" lang="zh-Hant">供給</span></span>
-    <span><i class="sw a-cs"></i>Consumer surplus<span class="zh-translation" lang="zh-Hant">消費者剩餘</span></span>
-    <span><i class="sw a-ps"></i>Producer surplus<span class="zh-translation" lang="zh-Hant">生產者剩餘</span></span>
-    <span><i class="sw a-rev"></i>Tax / tariff revenue<span class="zh-translation" lang="zh-Hant">稅收／關稅收入</span></span>
-    <span><i class="sw a-dwl"></i>Deadweight loss<span class="zh-translation" lang="zh-Hant">無謂損失</span></span>
+    <span><i class="sw ln" style="background:var(--demand)"></i>Demand<span class="zh-full" lang="zh-Hant">需求</span></span>
+    <span><i class="sw ln" style="background:var(--supply)"></i>Supply<span class="zh-full" lang="zh-Hant">供給</span></span>
+    <span><i class="sw a-cs"></i>Consumer surplus<span class="zh-full" lang="zh-Hant">消費者剩餘</span></span>
+    <span><i class="sw a-ps"></i>Producer surplus<span class="zh-full" lang="zh-Hant">生產者剩餘</span></span>
+    <span><i class="sw a-rev"></i>Tax / tariff revenue<span class="zh-full" lang="zh-Hant">稅收／關稅收入</span></span>
+    <span><i class="sw a-dwl"></i>Deadweight loss<span class="zh-full" lang="zh-Hant">無謂損失</span></span>
   </div>
 </div>
 
-<h2 id="map">Chapter map<span class="zh-translation" lang="zh-Hant">章節地圖</span></h2>
+<h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
 <div class="map">
   <div class="mcol">
-    <div class="mbox good"><b>Markets work<span class="zh-translation" lang="zh-Hant">市場有效運作</span></b><span>Prices carry information and incentives. Equilibrium maximizes gains from trade.<span class="zh-translation" lang="zh-Hant">價格傳遞資訊與誘因；均衡使交易利益最大化。</span></span></div>
+    <div class="mbox good"><b>Markets work<span class="zh-full" lang="zh-Hant">市場有效運作</span></b><span>Prices carry information and incentives. Equilibrium maximizes gains from trade.<span class="zh-full" lang="zh-Hant">價格傳遞資訊與誘因；均衡使交易利益最大化。</span></span></div>
   </div>
   <div class="marrow">→</div>
   <div class="mcol">
-    <div class="mbox"><b>Government intervenes<span class="zh-translation" lang="zh-Hant">政府介入</span></b><span>Tariffs, price ceilings, price floors<span class="zh-translation" lang="zh-Hant">關稅、最高限價、最低限價</span></span><em>Result: less trade, DWL<span class="zh-translation" lang="zh-Hant">結果：交易減少，產生無謂損失。</span></em></div>
-    <div class="mbox"><b>Markets fail<span class="zh-translation" lang="zh-Hant">市場失靈</span></b><span>Externalities, public goods, common resources<span class="zh-translation" lang="zh-Hant">外部性、公共財、共有資源</span></span><em>Result: too much or too little<span class="zh-translation" lang="zh-Hant">結果：產量過多或過少。</span></em></div>
-    <div class="mbox"><b>Markets feel wrong<span class="zh-translation" lang="zh-Hant">市場引發道德反感</span></b><span>Moral economics, repugnance, paternalism<span class="zh-translation" lang="zh-Hant">道德經濟學、厭惡感、父愛主義</span></span><em>Result: restricted or redesigned<span class="zh-translation" lang="zh-Hant">結果：交易受限制，或市場規則重新設計。</span></em></div>
+    <div class="mbox"><b>Government intervenes<span class="zh-full" lang="zh-Hant">政府介入</span></b><span>Tariffs, price ceilings, price floors<span class="zh-full" lang="zh-Hant">關稅、最高限價、最低限價</span></span><em>Result: less trade, DWL<span class="zh-full" lang="zh-Hant">結果：交易減少，產生無謂損失。</span></em></div>
+    <div class="mbox"><b>Markets fail<span class="zh-full" lang="zh-Hant">市場失靈</span></b><span>Externalities, public goods, common resources<span class="zh-full" lang="zh-Hant">外部性、公共財、共有資源</span></span><em>Result: too much or too little<span class="zh-full" lang="zh-Hant">結果：產量過多或過少。</span></em></div>
+    <div class="mbox"><b>Markets feel wrong<span class="zh-full" lang="zh-Hant">市場引發道德反感</span></b><span>Moral economics, repugnance, paternalism<span class="zh-full" lang="zh-Hant">道德經濟學、厭惡感、父愛主義</span></span><em>Result: restricted or redesigned<span class="zh-full" lang="zh-Hant">結果：交易受限制，或市場規則重新設計。</span></em></div>
   </div>
   <div class="marrow">→</div>
   <div class="mcol">
-    <div class="mbox ask"><b>Always ask<span class="zh-translation" lang="zh-Hant">始終要問</span></b><span>Who responds, and how? What is the trade-off? Could the policy itself fail?<span class="zh-translation" lang="zh-Hant">誰會如何反應？有何權衡？政策本身會不會失靈？</span></span></div>
+    <div class="mbox ask"><b>Always ask<span class="zh-full" lang="zh-Hant">始終要問</span></b><span>Who responds, and how? What is the trade-off? Could the policy itself fail?<span class="zh-full" lang="zh-Hant">誰會如何反應？有何權衡？政策本身會不會失靈？</span></span></div>
   </div>
 </div>
 
 <!-- 1 -->
-<h2 id="price-system">1. The price system<span class="zh-translation" lang="zh-Hant">1. 價格制度</span></h2>
-<p class="sub">Prices solve two problems at once: who knows what, and who has a reason to act.<span class="zh-translation" lang="zh-Hant">價格同時解決兩個問題：誰掌握哪些資訊，以及誰有誘因採取行動。</span></p>
+<h2 id="price-system">1. The price system<span class="zh-full" lang="zh-Hant">1. 價格制度</span></h2>
+<p class="sub">Prices solve two problems at once: who knows what, and who has a reason to act.<span class="zh-full" lang="zh-Hant">價格同時解決兩個問題：誰掌握哪些資訊，以及誰有誘因採取行動。</span></p>
 
-<h3 id="signal">A price is a signal wrapped up in an incentive<span class="zh-translation" lang="zh-Hant">價格既是訊號，也是誘因</span></h3>
+<h3 id="signal">A price is a signal wrapped up in an incentive<span class="zh-full" lang="zh-Hant">價格既是訊號，也是誘因</span></h3>
 <div class="pair">
-  <div><b>Signal<span class="zh-translation" lang="zh-Hant">訊號</span></b><p>A rising price tells everyone the good has become scarcer. No one needs to know why.<span class="zh-translation" lang="zh-Hant">價格上漲告訴每個人商品變得更稀缺；不必人人都知道原因。</span></p></div>
-  <div><b>Incentive<span class="zh-translation" lang="zh-Hant">誘因</span></b><p>The same price change rewards the right response: buyers use less, sellers supply more.<span class="zh-translation" lang="zh-Hant">同一價格變化會獎勵合適的反應：買方減少使用，賣方增加供給。</span></p></div>
+  <div><b>Signal<span class="zh-full" lang="zh-Hant">訊號</span></b><p>A rising price tells everyone the good has become scarcer. No one needs to know why.<span class="zh-full" lang="zh-Hant">價格上漲告訴每個人商品變得更稀缺；不必人人都知道原因。</span></p></div>
+  <div><b>Incentive<span class="zh-full" lang="zh-Hant">誘因</span></b><p>The same price change rewards the right response: buyers use less, sellers supply more.<span class="zh-full" lang="zh-Hant">同一價格變化會獎勵合適的反應：買方減少使用，賣方增加供給。</span></p></div>
 </div>
 <ul>
-  <li><b>Dispersed knowledge</b> <span class="zh">分散的資訊</span>: information about costs, resources and wants is spread across millions of people. No planner holds it all.<span class="zh-translation" lang="zh-Hant">分散知識：成本、資源與需求的資訊分布在數百萬人手中，沒有任何規劃者能完全掌握。</span></li>
-  <li><b>Information problem</b>: knowing what to produce and where. <b>Incentive problem</b>: getting people to act on it. Prices address both.<span class="zh-translation" lang="zh-Hant">資訊問題是「生產什麼、在哪裡生產」；誘因問題是「如何使人據此行動」。價格同時回應兩者。</span></li>
-  <li><b>I, Rose</b>: farmers, air freight and florists each pursue their own income, and roses still reach a cold city on Valentine's Day. This is the <b>invisible hand</b>.<span class="zh-translation" lang="zh-Hant">《我，玫瑰》：農民、航空貨運業者和花店各自追求收入，玫瑰仍會在情人節送達寒冷城市。這就是「看不見的手」。</span></li>
+  <li><b>Dispersed knowledge</b> <span class="zh">分散的資訊</span>: information about costs, resources and wants is spread across millions of people. No planner holds it all.<span class="zh-full" lang="zh-Hant">分散知識：成本、資源與需求的資訊分布在數百萬人手中，沒有任何規劃者能完全掌握。</span></li>
+  <li><b>Information problem</b>: knowing what to produce and where. <b>Incentive problem</b>: getting people to act on it. Prices address both.<span class="zh-full" lang="zh-Hant">資訊問題是「生產什麼、在哪裡生產」；誘因問題是「如何使人據此行動」。價格同時回應兩者。</span></li>
+  <li><b>I, Rose</b>: farmers, air freight and florists each pursue their own income, and roses still reach a cold city on Valentine's Day. This is the <b>invisible hand</b>.<span class="zh-full" lang="zh-Hant">《我，玫瑰》：農民、航空貨運業者和花店各自追求收入，玫瑰仍會在情人節送達寒冷城市。這就是「看不見的手」。</span></li>
 </ul>
 
-<h3 id="intent">Outcome and intent are different questions<span class="zh-translation" lang="zh-Hant">結果與動機是兩個不同問題</span></h3>
-<p>The class frame separates intention from result. Markets sit in the unintentional-beneficial cell.<span class="zh-translation" lang="zh-Hant">課堂框架把意圖與結果分開；市場位於「無意但有益」的格子。</span></p>
+<h3 id="intent">Outcome and intent are different questions<span class="zh-full" lang="zh-Hant">結果與動機是兩個不同問題</span></h3>
+<p>The class frame separates intention from result. Markets sit in the unintentional-beneficial cell.<span class="zh-full" lang="zh-Hant">課堂框架把意圖與結果分開；市場位於「無意但有益」的格子。</span></p>
 <div class="matrix">
-  <div></div><div class="mh">Beneficial<span class="zh-translation" lang="zh-Hant">有益</span></div><div class="mh">Harmful<span class="zh-translation" lang="zh-Hant">有害</span></div>
-  <div class="mh side">Intentional<span class="zh-translation" lang="zh-Hant">有意</span></div><div class="cell">Virtue<span class="zh-translation" lang="zh-Hant">美德</span></div><div class="cell">Vice<span class="zh-translation" lang="zh-Hant">惡行</span></div>
-  <div class="mh side">Unintentional<span class="zh-translation" lang="zh-Hant">無意</span></div><div class="cell hi">Market coordination<span class="zh-translation" lang="zh-Hant">市場協調</span></div><div class="cell">Negligence<span class="zh-translation" lang="zh-Hant">疏忽</span></div>
+  <div></div><div class="mh">Beneficial<span class="zh-full" lang="zh-Hant">有益</span></div><div class="mh">Harmful<span class="zh-full" lang="zh-Hant">有害</span></div>
+  <div class="mh side">Intentional<span class="zh-full" lang="zh-Hant">有意</span></div><div class="cell">Virtue<span class="zh-full" lang="zh-Hant">美德</span></div><div class="cell">Vice<span class="zh-full" lang="zh-Hant">惡行</span></div>
+  <div class="mh side">Unintentional<span class="zh-full" lang="zh-Hant">無意</span></div><div class="cell hi">Market coordination<span class="zh-full" lang="zh-Hant">市場協調</span></div><div class="cell">Negligence<span class="zh-full" lang="zh-Hant">疏忽</span></div>
 </div>
 <ul>
-  <li><b>Adam Smith</b>: the butcher, brewer and baker serve us through self-interest, not benevolence <span class="zh">善意</span>.<span class="zh-translation" lang="zh-Hant">亞當・斯密：屠夫、釀酒者與麵包師服務我們，是出於自身利益，而非善意。</span></li>
-  <li><b>VHS on eBay</b>: an old player let an elderly buyer recover family videos. Value is subjective <span class="zh">主觀</span>; the seller does not need to know why the buyer values it.<span class="zh-translation" lang="zh-Hant">eBay 上的 VHS 錄放影機：舊機器讓年長買家找回家庭影像。價值具有主觀性；賣家無須知道買家珍惜它的原因。</span></li>
+  <li><b>Adam Smith</b>: the butcher, brewer and baker serve us through self-interest, not benevolence <span class="zh">善意</span>.<span class="zh-full" lang="zh-Hant">亞當・斯密：屠夫、釀酒者與麵包師服務我們，是出於自身利益，而非善意。</span></li>
+  <li><b>VHS on eBay</b>: an old player let an elderly buyer recover family videos. Value is subjective <span class="zh">主觀</span>; the seller does not need to know why the buyer values it.<span class="zh-full" lang="zh-Hant">eBay 上的 VHS 錄放影機：舊機器讓年長買家找回家庭影像。價值具有主觀性；賣家無須知道買家珍惜它的原因。</span></li>
 </ul>
 
-<h3 id="welfare">Equilibrium is a welfare benchmark<span class="zh-translation" lang="zh-Hant">均衡是福利分析的基準</span></h3>
-<p>Equilibrium matters for more than Qd = Qs. Up to the equilibrium quantity, willingness to pay (WTP) ≥ marginal cost (MC). Beyond it, MC &gt; WTP.<span class="zh-translation" lang="zh-Hant">均衡的意義不只是 Qd＝Qs。在均衡數量之前，支付意願（WTP）大於或等於邊際成本（MC）；超過後，MC 大於 WTP。</span></p>
+<h3 id="welfare">Equilibrium is a welfare benchmark<span class="zh-full" lang="zh-Hant">均衡是福利分析的基準</span></h3>
+<p>Equilibrium matters for more than Qd = Qs. Up to the equilibrium quantity, willingness to pay (WTP) ≥ marginal cost (MC). Beyond it, MC &gt; WTP.<span class="zh-full" lang="zh-Hant">均衡的意義不只是 Qd＝Qs。在均衡數量之前，支付意願（WTP）大於或等於邊際成本（MC）；超過後，MC 大於 WTP。</span></p>
 <div data-widget="welfare"></div>
 <p class="hint original-zh"><b>邏輯</b>後面每張政策圖都在比：政策下的數量 vs. efficient quantity。偏離越多，DWL 越大。</p>
 
 <!-- 2 -->
-<h2 id="trade">2. Trade and tariffs<span class="zh-translation" lang="zh-Hant">2. 貿易與關稅</span></h2>
-<p class="sub">A tariff <span class="zh">關稅</span> raises the domestic price. Producers gain, consumers lose more, and society loses the DWL.<span class="zh-translation" lang="zh-Hant">關稅使國內價格上漲。生產者得益，消費者損失更大，社會則承受無謂損失（DWL）。</span></p>
+<h2 id="trade">2. Trade and tariffs<span class="zh-full" lang="zh-Hant">2. 貿易與關稅</span></h2>
+<p class="sub">A tariff <span class="zh">關稅</span> raises the domestic price. Producers gain, consumers lose more, and society loses the DWL.<span class="zh-full" lang="zh-Hant">關稅使國內價格上漲。生產者得益，消費者損失更大，社會則承受無謂損失（DWL）。</span></p>
 <div data-widget="tariff"></div>
 
 <div class="tbl"><table>
-<thead><tr><th>Group<span class="zh-translation" lang="zh-Hant">群體</span></th><th>Effect of the tariff<span class="zh-translation" lang="zh-Hant">關稅的影響</span></th></tr></thead>
+<thead><tr><th>Group<span class="zh-full" lang="zh-Hant">群體</span></th><th>Effect of the tariff<span class="zh-full" lang="zh-Hant">關稅的影響</span></th></tr></thead>
 <tbody>
-<tr><td>Domestic consumers<span class="zh-translation" lang="zh-Hant">國內消費者</span></td><td>Pay more, buy less. CS falls.<span class="zh-translation" lang="zh-Hant">支付更高價格、購買更少；消費者剩餘下降。</span></td></tr>
-<tr><td>Domestic producers<span class="zh-translation" lang="zh-Hant">國內生產者</span></td><td>Sell more at a higher price. PS rises.<span class="zh-translation" lang="zh-Hant">以更高價格賣出更多；生產者剩餘上升。</span></td></tr>
-<tr><td>Government<span class="zh-translation" lang="zh-Hant">政府</span></td><td>Collects revenue on remaining imports.<span class="zh-translation" lang="zh-Hant">對仍然進口的商品徵收關稅。</span></td></tr>
-<tr><td>Society<span class="zh-translation" lang="zh-Hant">社會整體</span></td><td>Deadweight loss from two sources (below).<span class="zh-translation" lang="zh-Hant">承受來自以下兩種來源的無謂損失。</span></td></tr>
+<tr><td>Domestic consumers<span class="zh-full" lang="zh-Hant">國內消費者</span></td><td>Pay more, buy less. CS falls.<span class="zh-full" lang="zh-Hant">支付更高價格、購買更少；消費者剩餘下降。</span></td></tr>
+<tr><td>Domestic producers<span class="zh-full" lang="zh-Hant">國內生產者</span></td><td>Sell more at a higher price. PS rises.<span class="zh-full" lang="zh-Hant">以更高價格賣出更多；生產者剩餘上升。</span></td></tr>
+<tr><td>Government<span class="zh-full" lang="zh-Hant">政府</span></td><td>Collects revenue on remaining imports.<span class="zh-full" lang="zh-Hant">對仍然進口的商品徵收關稅。</span></td></tr>
+<tr><td>Society<span class="zh-full" lang="zh-Hant">社會整體</span></td><td>Deadweight loss from two sources (below).<span class="zh-full" lang="zh-Hant">承受來自以下兩種來源的無謂損失。</span></td></tr>
 </tbody></table></div>
 
-<h3 id="dwl-sources">Two sources of deadweight loss<span class="zh-translation" lang="zh-Hant">無謂損失的兩個來源</span></h3>
+<h3 id="dwl-sources">Two sources of deadweight loss<span class="zh-full" lang="zh-Hant">無謂損失的兩個來源</span></h3>
 <div class="pair">
-  <div><b>Wasted resources<span class="zh-translation" lang="zh-Hant">資源浪費</span></b><p>High-cost domestic producers replace imports that cost less. Production inefficiency.<span class="zh-translation" lang="zh-Hant">成本較高的國內生產者取代成本較低的進口品，造成生產無效率。</span></p></div>
-  <div><b>Lost gains from trade<span class="zh-translation" lang="zh-Hant">錯失的交易利益</span></b><p>Some buyers value the good above the world price but stop buying at the tariff price.<span class="zh-translation" lang="zh-Hant">部分買家的估值高於世界價格，卻因關稅後的價格而停止購買。</span></p></div>
+  <div><b>Wasted resources<span class="zh-full" lang="zh-Hant">資源浪費</span></b><p>High-cost domestic producers replace imports that cost less. Production inefficiency.<span class="zh-full" lang="zh-Hant">成本較高的國內生產者取代成本較低的進口品，造成生產無效率。</span></p></div>
+  <div><b>Lost gains from trade<span class="zh-full" lang="zh-Hant">錯失的交易利益</span></b><p>Some buyers value the good above the world price but stop buying at the tariff price.<span class="zh-full" lang="zh-Hant">部分買家的估值高於世界價格，卻因關稅後的價格而停止購買。</span></p></div>
 </div>
-<p class="key">Not all consumer loss is DWL. Part is a <b>transfer</b> <span class="zh">移轉</span> to producers and government. DWL is the part nobody receives.<span class="zh-translation" lang="zh-Hant">消費者損失並非全是無謂損失。其中一部分轉移給生產者和政府；無謂損失則是任何人都沒有得到的部分。</span></p>
+<p class="key">Not all consumer loss is DWL. Part is a <b>transfer</b> <span class="zh">移轉</span> to producers and government. DWL is the part nobody receives.<span class="zh-full" lang="zh-Hant">消費者損失並非全是無謂損失。其中一部分轉移給生產者和政府；無謂損失則是任何人都沒有得到的部分。</span></p>
 
-<h3 id="ev">Case: the $10,000 electric car<span class="zh-translation" lang="zh-Hant">個案：一萬美元的電動車</span></h3>
-<p>The US placed a 100% tariff on Chinese EVs in 2024. Analyze it on two levels and keep them separate:<span class="zh-translation" lang="zh-Hant">美國於 2024 年對中國電動車課徵 100% 關稅。分析時要區分兩個層次：</span></p>
+<h3 id="ev">Case: the $10,000 electric car<span class="zh-full" lang="zh-Hant">個案：一萬美元的電動車</span></h3>
+<p>The US placed a 100% tariff on Chinese EVs in 2024. Analyze it on two levels and keep them separate:<span class="zh-full" lang="zh-Hant">美國於 2024 年對中國電動車課徵 100% 關稅。分析時要區分兩個層次：</span></p>
 <div class="pair">
-  <div><b>Static view<span class="zh-translation" lang="zh-Hant">靜態視角</span></b><p>Today's costs: higher prices, lower consumption, wasted resources, DWL.<span class="zh-translation" lang="zh-Hant">當下的成本：價格上漲、消費減少、資源浪費與無謂損失。</span></p></div>
-  <div><b>Dynamic view<span class="zh-translation" lang="zh-Hant">動態視角</span></b><p>Protection may give domestic firms time to scale, learn and secure supply chains.<span class="zh-translation" lang="zh-Hant">保護措施可能給國內企業時間擴大規模、學習並鞏固供應鏈。</span></p></div>
+  <div><b>Static view<span class="zh-full" lang="zh-Hant">靜態視角</span></b><p>Today's costs: higher prices, lower consumption, wasted resources, DWL.<span class="zh-full" lang="zh-Hant">當下的成本：價格上漲、消費減少、資源浪費與無謂損失。</span></p></div>
+  <div><b>Dynamic view<span class="zh-full" lang="zh-Hant">動態視角</span></b><p>Protection may give domestic firms time to scale, learn and secure supply chains.<span class="zh-full" lang="zh-Hant">保護措施可能給國內企業時間擴大規模、學習並鞏固供應鏈。</span></p></div>
 </div>
-<p>The tariff model shows the short-run cost. Whether long-run benefits outweigh it is an <b>empirical question</b> <span class="zh">要看實證</span>, not something the graph can prove.<span class="zh-translation" lang="zh-Hant">關稅圖示呈現短期成本；長期利益是否超過成本，必須靠實證判斷，圖本身無法證明。</span></p>
+<p>The tariff model shows the short-run cost. Whether long-run benefits outweigh it is an <b>empirical question</b> <span class="zh">要看實證</span>, not something the graph can prove.<span class="zh-full" lang="zh-Hant">關稅圖示呈現短期成本；長期利益是否超過成本，必須靠實證判斷，圖本身無法證明。</span></p>
 
 <!-- 3 -->
-<h2 id="controls">3. Price controls<span class="zh-translation" lang="zh-Hant">3. 價格管制</span></h2>
-<p class="sub">A binding control stops the price from clearing the market, so scarcity shows up in other ways.<span class="zh-translation" lang="zh-Hant">有約束力的價格管制使價格無法使市場出清，稀缺因此以其他形式出現。</span></p>
+<h2 id="controls">3. Price controls<span class="zh-full" lang="zh-Hant">3. 價格管制</span></h2>
+<p class="sub">A binding control stops the price from clearing the market, so scarcity shows up in other ways.<span class="zh-full" lang="zh-Hant">有約束力的價格管制使價格無法使市場出清，稀缺因此以其他形式出現。</span></p>
 <div data-widget="control"></div>
 
 <div class="tbl"><table>
-<thead><tr><th></th><th>Price ceiling <span class="zh">最高限價</span><span class="zh-translation" lang="zh-Hant">最高限價</span></th><th>Price floor <span class="zh">最低限價</span><span class="zh-translation" lang="zh-Hant">最低限價</span></th></tr></thead>
+<thead><tr><th></th><th>Price ceiling <span class="zh">最高限價</span><span class="zh-full" lang="zh-Hant">最高限價</span></th><th>Price floor <span class="zh">最低限價</span><span class="zh-full" lang="zh-Hant">最低限價</span></th></tr></thead>
 <tbody>
-<tr><td>Rule<span class="zh-translation" lang="zh-Hant">規則</span></td><td>Legal maximum<span class="zh-translation" lang="zh-Hant">法律規定的最高價格</span></td><td>Legal minimum<span class="zh-translation" lang="zh-Hant">法律規定的最低價格</span></td></tr>
-<tr><td>Binding when<span class="zh-translation" lang="zh-Hant">何時有約束力</span></td><td>Below equilibrium<span class="zh-translation" lang="zh-Hant">低於均衡價格</span></td><td>Above equilibrium<span class="zh-translation" lang="zh-Hant">高於均衡價格</span></td></tr>
-<tr><td>Result<span class="zh-translation" lang="zh-Hant">結果</span></td><td>Shortage (Qd &gt; Qs)<span class="zh-translation" lang="zh-Hant">短缺（需求量大於供給量）</span></td><td>Surplus (Qs &gt; Qd)<span class="zh-translation" lang="zh-Hant">過剩（供給量大於需求量）</span></td></tr>
-<tr><td>Example<span class="zh-translation" lang="zh-Hant">例子</span></td><td>Rent control<span class="zh-translation" lang="zh-Hant">租金管制</span></td><td>Minimum wage<span class="zh-translation" lang="zh-Hant">最低工資</span></td></tr>
+<tr><td>Rule<span class="zh-full" lang="zh-Hant">規則</span></td><td>Legal maximum<span class="zh-full" lang="zh-Hant">法律規定的最高價格</span></td><td>Legal minimum<span class="zh-full" lang="zh-Hant">法律規定的最低價格</span></td></tr>
+<tr><td>Binding when<span class="zh-full" lang="zh-Hant">何時有約束力</span></td><td>Below equilibrium<span class="zh-full" lang="zh-Hant">低於均衡價格</span></td><td>Above equilibrium<span class="zh-full" lang="zh-Hant">高於均衡價格</span></td></tr>
+<tr><td>Result<span class="zh-full" lang="zh-Hant">結果</span></td><td>Shortage (Qd &gt; Qs)<span class="zh-full" lang="zh-Hant">短缺（需求量大於供給量）</span></td><td>Surplus (Qs &gt; Qd)<span class="zh-full" lang="zh-Hant">過剩（供給量大於需求量）</span></td></tr>
+<tr><td>Example<span class="zh-full" lang="zh-Hant">例子</span></td><td>Rent control<span class="zh-full" lang="zh-Hant">租金管制</span></td><td>Minimum wage<span class="zh-full" lang="zh-Hant">最低工資</span></td></tr>
 </tbody></table></div>
 
-<h3 id="ceiling-effects">Five effects of a binding ceiling<span class="zh-translation" lang="zh-Hant">有約束力的最高限價造成五種影響</span></h3>
+<h3 id="ceiling-effects">Five effects of a binding ceiling<span class="zh-full" lang="zh-Hant">有約束力的最高限價造成五種影響</span></h3>
 <ol class="steps">
-  <li><b>Shortage</b>: Qd &gt; Qs.<span class="zh-translation" lang="zh-Hant">短缺：Qd 大於 Qs。</span></li>
-  <li><b>Lower quality</b>: sellers cut costs they cannot pass on.<span class="zh-translation" lang="zh-Hant">品質下降：賣方削減無法轉嫁的成本。</span></li>
-  <li><b>Queues and search costs</b>: people pay with time instead of money.<span class="zh-translation" lang="zh-Hant">排隊與搜尋成本：人們以時間代替金錢支付。</span></li>
-  <li><b>Deadweight loss</b>: trades with WTP &gt; cost disappear.<span class="zh-translation" lang="zh-Hant">無謂損失：支付意願高於成本的交易消失。</span></li>
-  <li><b>Misallocation</b>: goods go to whoever queues or has connections, not to those who value them most.<span class="zh-translation" lang="zh-Hant">錯誤配置：商品流向會排隊或有人脈的人，而非最重視商品的人。</span></li>
+  <li><b>Shortage</b>: Qd &gt; Qs.<span class="zh-full" lang="zh-Hant">短缺：Qd 大於 Qs。</span></li>
+  <li><b>Lower quality</b>: sellers cut costs they cannot pass on.<span class="zh-full" lang="zh-Hant">品質下降：賣方削減無法轉嫁的成本。</span></li>
+  <li><b>Queues and search costs</b>: people pay with time instead of money.<span class="zh-full" lang="zh-Hant">排隊與搜尋成本：人們以時間代替金錢支付。</span></li>
+  <li><b>Deadweight loss</b>: trades with WTP &gt; cost disappear.<span class="zh-full" lang="zh-Hant">無謂損失：支付意願高於成本的交易消失。</span></li>
+  <li><b>Misallocation</b>: goods go to whoever queues or has connections, not to those who value them most.<span class="zh-full" lang="zh-Hant">錯誤配置：商品流向會排隊或有人脈的人，而非最重視商品的人。</span></li>
 </ol>
-<p class="key">A low posted price is not a low true cost. Full cost = money price + time + search + lower quality.<span class="zh-translation" lang="zh-Hant">標示價格低，不代表真實成本低。完整成本＝金錢價格＋時間＋搜尋成本＋品質下降。</span></p>
+<p class="key">A low posted price is not a low true cost. Full cost = money price + time + search + lower quality.<span class="zh-full" lang="zh-Hant">標示價格低，不代表真實成本低。完整成本＝金錢價格＋時間＋搜尋成本＋品質下降。</span></p>
 <p class="hint original-zh"><b>注意</b>投影片把兩種損失分開：wasted time（排隊搜尋）和 A + B（lost CS + lost PS = DWL）。不要混成同一塊。</p>
 
-<h3 id="mumbai">Case: rent control in Mumbai<span class="zh-translation" lang="zh-Hant">個案：孟買的租金管制</span></h3>
-<div class="flow"><span>Rent ceiling below equilibrium<span class="zh-translation" lang="zh-Hant">租金上限低於均衡水準</span></span><i>→</i><span>Landlord returns fall<span class="zh-translation" lang="zh-Hant">房東報酬降低</span></span><i>→</i><span>Less maintenance, units withdrawn<span class="zh-translation" lang="zh-Hant">維修減少、房源撤出</span></span><i>→</i><span>Shortage worsens<span class="zh-translation" lang="zh-Hant">短缺加劇</span></span></div>
-<p>The paradox: very cheap legal rent coexists with decaying buildings, vacant units and a housing shortage.<span class="zh-translation" lang="zh-Hant">悖論是：法定租金非常便宜，卻同時有老舊失修的建物、空置房屋和住房短缺。</span></p>
+<h3 id="mumbai">Case: rent control in Mumbai<span class="zh-full" lang="zh-Hant">個案：孟買的租金管制</span></h3>
+<div class="flow"><span>Rent ceiling below equilibrium<span class="zh-full" lang="zh-Hant">租金上限低於均衡水準</span></span><i>→</i><span>Landlord returns fall<span class="zh-full" lang="zh-Hant">房東報酬降低</span></span><i>→</i><span>Less maintenance, units withdrawn<span class="zh-full" lang="zh-Hant">維修減少、房源撤出</span></span><i>→</i><span>Shortage worsens<span class="zh-full" lang="zh-Hant">短缺加劇</span></span></div>
+<p>The paradox: very cheap legal rent coexists with decaying buildings, vacant units and a housing shortage.<span class="zh-full" lang="zh-Hant">悖論是：法定租金非常便宜，卻同時有老舊失修的建物、空置房屋和住房短缺。</span></p>
 
-<h3 id="plasma-outlawed">Blood plasma and outlawed markets<span class="zh-translation" lang="zh-Hant">血漿與非法市場</span></h3>
+<h3 id="plasma-outlawed">Blood plasma and outlawed markets<span class="zh-full" lang="zh-Hant">血漿與非法市場</span></h3>
 <ul>
-  <li><b>Blood plasma</b> <span class="zh">血漿</span>: banning donor pay acts like a price fixed at zero. Supply stays low, need stays high, so there is a shortage and DWL. This is an efficiency cost; the moral question needs separate analysis.<span class="zh-translation" lang="zh-Hant">血漿：禁止給付捐贈者，等同把價格固定在零。供給持續偏低、需求偏高，因此出現短缺與無謂損失。這是效率代價；道德問題須另外分析。</span></li>
-  <li><b>Outlawed markets</b>: the slide shows <b>both</b> demand and supply shifting inward. Legal risk lowers participation on both sides. Quantity falls; the price effect is <b>ambiguous</b> <span class="zh">不確定</span> because it depends on which curve shifts more.<span class="zh-translation" lang="zh-Hant">非法市場：投影片顯示需求與供給都向內移動。法律風險減少雙方參與，數量下降；價格變化則不確定，取決於哪條曲線移動較多。</span></li>
+  <li><b>Blood plasma</b> <span class="zh">血漿</span>: banning donor pay acts like a price fixed at zero. Supply stays low, need stays high, so there is a shortage and DWL. This is an efficiency cost; the moral question needs separate analysis.<span class="zh-full" lang="zh-Hant">血漿：禁止給付捐贈者，等同把價格固定在零。供給持續偏低、需求偏高，因此出現短缺與無謂損失。這是效率代價；道德問題須另外分析。</span></li>
+  <li><b>Outlawed markets</b>: the slide shows <b>both</b> demand and supply shifting inward. Legal risk lowers participation on both sides. Quantity falls; the price effect is <b>ambiguous</b> <span class="zh">不確定</span> because it depends on which curve shifts more.<span class="zh-full" lang="zh-Hant">非法市場：投影片顯示需求與供給都向內移動。法律風險減少雙方參與，數量下降；價格變化則不確定，取決於哪條曲線移動較多。</span></li>
 </ul>
 
 <!-- 4 -->
-<h2 id="externalities">4. Externalities<span class="zh-translation" lang="zh-Hant">4. 外部性</span></h2>
-<p class="sub">An externality <span class="zh">外部性</span> is a cost or benefit that falls on a third party outside the trade.<span class="zh-translation" lang="zh-Hant">外部性是交易之外的第三方承受的成本或享有的利益。</span></p>
-<div class="formula">Social cost = Private cost + External cost<br>Social benefit = Private benefit + External benefit<span class="zh-translation" lang="zh-Hant">社會成本＝私人成本＋外部成本；社會利益＝私人利益＋外部利益。</span></div>
+<h2 id="externalities">4. Externalities<span class="zh-full" lang="zh-Hant">4. 外部性</span></h2>
+<p class="sub">An externality <span class="zh">外部性</span> is a cost or benefit that falls on a third party outside the trade.<span class="zh-full" lang="zh-Hant">外部性是交易之外的第三方承受的成本或享有的利益。</span></p>
+<div class="formula">Social cost = Private cost + External cost<span class="zh-full" lang="zh-Hant">社會成本＝私人成本＋外部成本</span><br>Social benefit = Private benefit + External benefit</div>
 
-<h3 id="negative">Negative externality: the market produces too much<span class="zh-translation" lang="zh-Hant">負外部性：市場生產過多</span></h3>
+<h3 id="negative">Negative externality: the market produces too much<span class="zh-full" lang="zh-Hant">負外部性：市場生產過多</span></h3>
 <div data-widget="negext"></div>
-<div class="flow"><span>Decision-makers see only private cost<span class="zh-translation" lang="zh-Hant">決策者只看見私人成本</span></span><i>→</i><span>Cost looks too low<span class="zh-translation" lang="zh-Hant">成本看起來過低</span></span><i>→</i><span>Q market &gt; Q efficient<span class="zh-translation" lang="zh-Hant">市場數量大於效率數量</span></span><i>→</i><span>DWL from overuse<span class="zh-translation" lang="zh-Hant">過度使用導致無謂損失</span></span></div>
+<div class="flow"><span>Decision-makers see only private cost<span class="zh-full" lang="zh-Hant">決策者只看見私人成本</span></span><i>→</i><span>Cost looks too low<span class="zh-full" lang="zh-Hant">成本看起來過低</span></span><i>→</i><span>Q market &gt; Q efficient<span class="zh-full" lang="zh-Hant">市場數量大於效率數量</span></span><i>→</i><span>DWL from overuse<span class="zh-full" lang="zh-Hant">過度使用導致無謂損失</span></span></div>
 <ul>
-  <li><b>Antibiotics</b> (MRU): overuse breeds resistant bacteria, a cost borne by future patients.<span class="zh-translation" lang="zh-Hant">抗生素（MRU）：過度使用滋生抗藥性細菌，成本由未來的病患承受。</span></li>
-  <li><b>Thailand PM2.5</b>: private activity creates air-pollution costs for people outside the trade. The slide does not name one source, so treat it as an illustration.<span class="zh-translation" lang="zh-Hant">泰國 PM2.5：私人活動使交易外的人承受空污成本。投影片未指明單一來源，因此只能作為示例。</span></li>
-  <li><b>Sugar external-cost graph</b>: MSC above MPC, so the market overuses. A classic externality needs a <b>third-party</b> cost; harm to the consumer alone is not one.<span class="zh-translation" lang="zh-Hant">糖的外部成本圖：社會邊際成本（MSC）高於私人邊際成本（MPC），因此市場使用過多。典型外部性必須有第三方成本；僅傷害消費者本人不算外部性。</span></li>
+  <li><b>Antibiotics</b> (MRU): overuse breeds resistant bacteria, a cost borne by future patients.<span class="zh-full" lang="zh-Hant">抗生素（MRU）：過度使用滋生抗藥性細菌，成本由未來的病患承受。</span></li>
+  <li><b>Thailand PM2.5</b>: private activity creates air-pollution costs for people outside the trade. The slide does not name one source, so treat it as an illustration.<span class="zh-full" lang="zh-Hant">泰國 PM2.5：私人活動使交易外的人承受空污成本。投影片未指明單一來源，因此只能作為示例。</span></li>
+  <li><b>Sugar external-cost graph</b>: MSC above MPC, so the market overuses. A classic externality needs a <b>third-party</b> cost; harm to the consumer alone is not one.<span class="zh-full" lang="zh-Hant">糖的外部成本圖：社會邊際成本（MSC）高於私人邊際成本（MPC），因此市場使用過多。典型外部性必須有第三方成本；僅傷害消費者本人不算外部性。</span></li>
 </ul>
 
-<h3 id="tools">Policy tools for negative externalities<span class="zh-translation" lang="zh-Hant">處理負外部性的政策工具</span></h3>
+<h3 id="tools">Policy tools for negative externalities<span class="zh-full" lang="zh-Hant">處理負外部性的政策工具</span></h3>
 <div class="tbl"><table>
-<thead><tr><th>Tool<span class="zh-translation" lang="zh-Hant">工具</span></th><th>How it works<span class="zh-translation" lang="zh-Hant">運作方式</span></th><th>Trade-off<span class="zh-translation" lang="zh-Hant">權衡</span></th></tr></thead>
+<thead><tr><th>Tool<span class="zh-full" lang="zh-Hant">工具</span></th><th>How it works<span class="zh-full" lang="zh-Hant">運作方式</span></th><th>Trade-off<span class="zh-full" lang="zh-Hant">權衡</span></th></tr></thead>
 <tbody>
-<tr><td><b>Pigouvian tax</b> <span class="zh">庇古稅</span><span class="zh-translation" lang="zh-Hant">庇古稅</span></td><td>Tax equal to marginal external cost, so decision-makers face the full social cost.<span class="zh-translation" lang="zh-Hant">依邊際外部成本課稅，使決策者面對完整的社會成本。</span></td><td>Needs an estimate of the external cost.<span class="zh-translation" lang="zh-Hant">需要估算外部成本。</span></td></tr>
-<tr><td><b>Command and control</b><span class="zh-translation" lang="zh-Hant">命令與管制</span></td><td>Government sets rules directly, such as an emission limit or required technology.<span class="zh-translation" lang="zh-Hant">政府直接訂規則，例如排放上限或指定技術。</span></td><td>Simple but costly, because firms' reduction costs differ.<span class="zh-translation" lang="zh-Hant">做法簡單，但各企業的減排成本不同，可能代價高昂。</span></td></tr>
-<tr><td><b>Tradable permits</b><span class="zh-translation" lang="zh-Hant">可交易許可證</span></td><td>Government caps total pollution. Firms that can cut cheaply cut more and sell permits.<span class="zh-translation" lang="zh-Hant">政府設定總污染上限；能以低成本減排的企業多減排，並出售許可證。</span></td><td>Meets the cap at the lowest total cost. Permits do not mean more pollution; the cap is fixed.<span class="zh-translation" lang="zh-Hant">以最低總成本達到上限。許可證不代表污染量增加；總量上限固定。</span></td></tr>
-<tr><td><b>Coase bargaining</b><span class="zh-translation" lang="zh-Hant">科斯式協商</span></td><td>With clear property rights and cheap bargaining, the parties solve it themselves.<span class="zh-translation" lang="zh-Hant">若財產權明確且協商成本低，當事人可自行解決。</span></td><td>Fails when many people are affected (PM2.5 hits millions).<span class="zh-translation" lang="zh-Hant">影響人數龐大時難以適用，例如 PM2.5 影響數百萬人。</span></td></tr>
+<tr><td><b>Pigouvian tax</b> <span class="zh">庇古稅</span><span class="zh-full" lang="zh-Hant">庇古稅</span></td><td>Tax equal to marginal external cost, so decision-makers face the full social cost.<span class="zh-full" lang="zh-Hant">依邊際外部成本課稅，使決策者面對完整的社會成本。</span></td><td>Needs an estimate of the external cost.<span class="zh-full" lang="zh-Hant">需要估算外部成本。</span></td></tr>
+<tr><td><b>Command and control</b><span class="zh-full" lang="zh-Hant">命令與管制</span></td><td>Government sets rules directly, such as an emission limit or required technology.<span class="zh-full" lang="zh-Hant">政府直接訂規則，例如排放上限或指定技術。</span></td><td>Simple but costly, because firms' reduction costs differ.<span class="zh-full" lang="zh-Hant">做法簡單，但各企業的減排成本不同，可能代價高昂。</span></td></tr>
+<tr><td><b>Tradable permits</b><span class="zh-full" lang="zh-Hant">可交易許可證</span></td><td>Government caps total pollution. Firms that can cut cheaply cut more and sell permits.<span class="zh-full" lang="zh-Hant">政府設定總污染上限；能以低成本減排的企業多減排，並出售許可證。</span></td><td>Meets the cap at the lowest total cost. Permits do not mean more pollution; the cap is fixed.<span class="zh-full" lang="zh-Hant">以最低總成本達到上限。許可證不代表污染量增加；總量上限固定。</span></td></tr>
+<tr><td><b>Coase bargaining</b><span class="zh-full" lang="zh-Hant">科斯式協商</span></td><td>With clear property rights and cheap bargaining, the parties solve it themselves.<span class="zh-full" lang="zh-Hant">若財產權明確且協商成本低，當事人可自行解決。</span></td><td>Fails when many people are affected (PM2.5 hits millions).<span class="zh-full" lang="zh-Hant">影響人數龐大時難以適用，例如 PM2.5 影響數百萬人。</span></td></tr>
 </tbody></table></div>
 
-<h3 id="positive">Positive externality: the market produces too little<span class="zh-translation" lang="zh-Hant">正外部性：市場生產過少</span></h3>
+<h3 id="positive">Positive externality: the market produces too little<span class="zh-full" lang="zh-Hant">正外部性：市場生產過少</span></h3>
 <div data-widget="posext"></div>
 <ul>
-  <li><b>Vaccination</b>: protects the person and lowers infection risk for others.<span class="zh-translation" lang="zh-Hant">疫苗接種：保護接種者，也降低他人的感染風險。</span></li>
-  <li><b>COVID vaccine development</b>: the social value of fast vaccines far exceeded what firms could earn, so advance purchase commitments and R&amp;D support made sense.<span class="zh-translation" lang="zh-Hant">COVID 疫苗研發：迅速取得疫苗的社會價值遠高於企業可獲得的收益，因此預先採購承諾與研發支持有其理由。</span></li>
-  <li><b>Tools</b>: subsidies, public provision, prizes, purchase commitments.<span class="zh-translation" lang="zh-Hant">工具：補貼、公共供給、獎金、採購承諾。</span></li>
+  <li><b>Vaccination</b>: protects the person and lowers infection risk for others.<span class="zh-full" lang="zh-Hant">疫苗接種：保護接種者，也降低他人的感染風險。</span></li>
+  <li><b>COVID vaccine development</b>: the social value of fast vaccines far exceeded what firms could earn, so advance purchase commitments and R&amp;D support made sense.<span class="zh-full" lang="zh-Hant">COVID 疫苗研發：迅速取得疫苗的社會價值遠高於企業可獲得的收益，因此預先採購承諾與研發支持有其理由。</span></li>
+  <li><b>Tools</b>: subsidies, public provision, prizes, purchase commitments.<span class="zh-full" lang="zh-Hant">工具：補貼、公共供給、獎金、採購承諾。</span></li>
 </ul>
 
 <!-- 5 -->
-<h2 id="goods">5. Public goods and common resources<span class="zh-translation" lang="zh-Hant">5. 公共財與共有資源</span></h2>
-<p class="sub">Classify a good by two questions: can non-payers be excluded, and does one person's use reduce what others get?<span class="zh-translation" lang="zh-Hant">用兩個問題分類財貨：能否排除未付款者？一人使用會否減少他人可用的數量？</span></p>
+<h2 id="goods">5. Public goods and common resources<span class="zh-full" lang="zh-Hant">5. 公共財與共有資源</span></h2>
+<p class="sub">Classify a good by two questions: can non-payers be excluded, and does one person's use reduce what others get?<span class="zh-full" lang="zh-Hant">用兩個問題分類財貨：能否排除未付款者？一人使用會否減少他人可用的數量？</span></p>
 <div class="matrix goods">
-  <div></div><div class="mh">Rival <span class="zh">競爭性</span><span class="zh-translation" lang="zh-Hant">有競爭性</span></div><div class="mh">Nonrival<span class="zh-translation" lang="zh-Hant">無競爭性</span></div>
-  <div class="mh side">Excludable <span class="zh">排他性</span><span class="zh-translation" lang="zh-Hant">有排他性</span></div><div class="cell">Private good<small>Food, clothing<span class="zh-translation" lang="zh-Hant">食物、衣物</span></small><span class="zh-translation" lang="zh-Hant">私有財</span></div><div class="cell">Club good<small>Netflix, Spotify<span class="zh-translation" lang="zh-Hant">Netflix、Spotify</span></small><span class="zh-translation" lang="zh-Hant">俱樂部財</span></div>
-  <div class="mh side">Nonexcludable<span class="zh-translation" lang="zh-Hant">無排他性</span></div><div class="cell hi">Common resource<small>Ocean tuna. Problem: overuse<span class="zh-translation" lang="zh-Hant">海洋鮪魚；問題是過度使用。</span></small><span class="zh-translation" lang="zh-Hant">共有資源</span></div><div class="cell hi">Public good<small>Asteroid defense, national defense. Problem: free riders<span class="zh-translation" lang="zh-Hant">小行星防禦、國防；問題是搭便車。</span></small><span class="zh-translation" lang="zh-Hant">公共財</span></div>
+  <div></div><div class="mh">Rival <span class="zh-full" lang="zh-Hant">有競爭性</span><span class="zh">競爭性</span></div><div class="mh">Nonrival<span class="zh-full" lang="zh-Hant">無競爭性</span></div>
+  <div class="mh side">Excludable <span class="zh-full" lang="zh-Hant">有排他性</span><span class="zh">排他性</span></div><div class="cell">Private good<span class="zh-full" lang="zh-Hant">私有財</span><small>Food, clothing<span class="zh-full" lang="zh-Hant">食物、衣物</span></small></div><div class="cell">Club good<span class="zh-full" lang="zh-Hant">俱樂部財</span><small>Netflix, Spotify<span class="zh-full" lang="zh-Hant">Netflix、Spotify</span></small></div>
+  <div class="mh side">Nonexcludable<span class="zh-full" lang="zh-Hant">無排他性</span></div><div class="cell hi">Common resource<span class="zh-full" lang="zh-Hant">共有資源</span><small>Ocean tuna. Problem: overuse<span class="zh-full" lang="zh-Hant">海洋鮪魚；問題是過度使用。</span></small></div><div class="cell hi">Public good<span class="zh-full" lang="zh-Hant">公共財</span><small>Asteroid defense, national defense. Problem: free riders<span class="zh-full" lang="zh-Hant">小行星防禦、國防；問題是搭便車。</span></small></div>
 </div>
 <ul>
-  <li><b>Free rider</b> <span class="zh">搭便車</span>: people enjoy a public good without paying, so voluntary funding falls short.<span class="zh-translation" lang="zh-Hant">搭便車者：人們未付費卻享用公共財，自願出資因此不足。</span></li>
-  <li><b>Forced rider</b>: tax funding makes some people pay for things they value below their cost.<span class="zh-translation" lang="zh-Hant">被迫搭便車者：稅收使部分人為自己估值低於成本的項目付費。</span></li>
-  <li>A public good is defined by its traits, not by who provides it.<span class="zh-translation" lang="zh-Hant">公共財由其特性定義，而非由提供者身分決定。</span></li>
+  <li><b>Free rider</b> <span class="zh">搭便車</span>: people enjoy a public good without paying, so voluntary funding falls short.<span class="zh-full" lang="zh-Hant">搭便車者：人們未付費卻享用公共財，自願出資因此不足。</span></li>
+  <li><b>Forced rider</b>: tax funding makes some people pay for things they value below their cost.<span class="zh-full" lang="zh-Hant">被迫搭便車者：稅收使部分人為自己估值低於成本的項目付費。</span></li>
+  <li>A public good is defined by its traits, not by who provides it.<span class="zh-full" lang="zh-Hant">公共財由其特性定義，而非由提供者身分決定。</span></li>
 </ul>
 
-<h3 id="commons">Tragedy of the commons<span class="zh-translation" lang="zh-Hant">共有地悲劇</span></h3>
-<p>Each fisher keeps the full gain from one more fish but shares the cost of a smaller stock with everyone. Each choice is rational; the total is overuse.<span class="zh-translation" lang="zh-Hant">每位漁民多捕一條魚可獨享收益，魚群減少的成本卻由所有人分攤。個別選擇合理，合起來卻造成過度捕撈。</span></p>
-<p><b>Elinor Ostrom</b> showed that communities can manage commons with their own rules, monitoring and sanctions. The choice is not only market versus government.<span class="zh-translation" lang="zh-Hant">Elinor Ostrom 指出，社群能用自己的規則、監督與制裁管理共有資源；選項並非只有市場與政府二選一。</span></p>
-<p>Other fixes: property rights, quotas, tradable fishing permits.<span class="zh-translation" lang="zh-Hant">其他方法：財產權、配額、可交易捕魚許可證。</span></p>
+<h3 id="commons">Tragedy of the commons<span class="zh-full" lang="zh-Hant">共有地悲劇</span></h3>
+<p>Each fisher keeps the full gain from one more fish but shares the cost of a smaller stock with everyone. Each choice is rational; the total is overuse.<span class="zh-full" lang="zh-Hant">每位漁民多捕一條魚可獨享收益，魚群減少的成本卻由所有人分攤。個別選擇合理，合起來卻造成過度捕撈。</span></p>
+<p><b>Elinor Ostrom</b> showed that communities can manage commons with their own rules, monitoring and sanctions. The choice is not only market versus government.<span class="zh-full" lang="zh-Hant">Elinor Ostrom 指出，社群能用自己的規則、監督與制裁管理共有資源；選項並非只有市場與政府二選一。</span></p>
+<p>Other fixes: property rights, quotas, tradable fishing permits.<span class="zh-full" lang="zh-Hant">其他方法：財產權、配額、可交易捕魚許可證。</span></p>
 
 <!-- 6 -->
-<h2 id="moral">6. Moral economics<span class="zh-translation" lang="zh-Hant">6. 道德經濟學</span></h2>
-<p class="sub">A voluntary, mutually beneficial trade can still be socially unacceptable. Efficiency is one criterion, not the only one.<span class="zh-translation" lang="zh-Hant">自願且對雙方有利的交易仍可能不被社會接受。效率是評估標準之一，並非唯一標準。</span></p>
+<h2 id="moral">6. Moral economics<span class="zh-full" lang="zh-Hant">6. 道德經濟學</span></h2>
+<p class="sub">A voluntary, mutually beneficial trade can still be socially unacceptable. Efficiency is one criterion, not the only one.<span class="zh-full" lang="zh-Hant">自願且對雙方有利的交易仍可能不被社會接受。效率是評估標準之一，並非唯一標準。</span></p>
 
 <div class="tbl"><table>
-<thead><tr><th>Concept<span class="zh-translation" lang="zh-Hant">概念</span></th><th>Meaning<span class="zh-translation" lang="zh-Hant">意義</span></th><th>Example<span class="zh-translation" lang="zh-Hant">例子</span></th></tr></thead>
+<thead><tr><th>Concept<span class="zh-full" lang="zh-Hant">概念</span></th><th>Meaning<span class="zh-full" lang="zh-Hant">意義</span></th><th>Example<span class="zh-full" lang="zh-Hant">例子</span></th></tr></thead>
 <tbody>
-<tr><td><b>Repugnance</b> <span class="zh">反感</span><span class="zh-translation" lang="zh-Hant">道德反感</span></td><td>People reject a trade because paying for it feels wrong, even if both sides agree.<span class="zh-translation" lang="zh-Hant">即使雙方同意，人們仍因「付錢買賣這件事不對」而拒絕該交易。</span></td><td>Kidney sales<span class="zh-translation" lang="zh-Hant">買賣腎臟</span></td></tr>
-<tr><td><b>Framing</b><span class="zh-translation" lang="zh-Hant">框架呈現</span></td><td>The same exchange is accepted or rejected depending on how it is structured.<span class="zh-translation" lang="zh-Hant">同一交換行為可能因制度安排或說法不同而被接受或拒絕。</span></td><td>Tax credit for donors instead of cash; life insurance framed as protecting family<span class="zh-translation" lang="zh-Hant">以捐贈者稅額抵免代替現金；將壽險描述為保護家人。</span></td></tr>
-<tr><td><b>Domestic ban, foreign supply</b><span class="zh-translation" lang="zh-Hant">國內禁止、依賴國外供應</span></td><td>Banning a market at home does not end reliance on it.<span class="zh-translation" lang="zh-Hant">在本國禁止一個市場，不代表不再依賴它。</span></td><td>Countries that ban paid plasma import it from paid donors abroad<span class="zh-translation" lang="zh-Hant">禁止有償血漿的國家，仍可能從國外的有償捐贈者進口血漿。</span></td></tr>
-<tr><td><b>Hidden economics</b><span class="zh-translation" lang="zh-Hant">隱含的經濟問題</span></td><td>Some "moral" objections are also economic problems.<span class="zh-translation" lang="zh-Hant">部分看似「道德」的反對，其實也涉及經濟問題。</span></td><td>Subscription firefighting: fire spreads (externality) and people expect rescue anyway (free rider)<span class="zh-translation" lang="zh-Hant">訂閱制消防：火會蔓延（外部性），人們也預期無論是否付費都會獲救（搭便車）。</span></td></tr>
-<tr><td><b>Viatical contract</b><span class="zh-translation" lang="zh-Hant">末期病患壽險保單買賣契約</span></td><td>Selling a life insurance policy early for cash. The buyer profits if the seller dies sooner.<span class="zh-translation" lang="zh-Hant">提前出售壽險保單換取現金；若賣方較早死亡，買方可獲利。</span></td><td>Patients during the AIDS crisis<span class="zh-translation" lang="zh-Hant">愛滋病危機期間的病患。</span></td></tr>
-<tr><td><b>Paternalism</b> <span class="zh">父愛主義</span><span class="zh-translation" lang="zh-Hant">父愛主義</span></td><td>Limiting choices to protect people from harming themselves.<span class="zh-translation" lang="zh-Hant">限制選擇，避免人們傷害自己。</span></td><td>Prescriptions; self-set loss limits on betting apps<span class="zh-translation" lang="zh-Hant">處方箋制度；賭博應用程式中自設虧損上限。</span></td></tr>
+<tr><td><b>Repugnance</b> <span class="zh">反感</span><span class="zh-full" lang="zh-Hant">道德反感</span></td><td>People reject a trade because paying for it feels wrong, even if both sides agree.<span class="zh-full" lang="zh-Hant">即使雙方同意，人們仍因「付錢買賣這件事不對」而拒絕該交易。</span></td><td>Kidney sales<span class="zh-full" lang="zh-Hant">買賣腎臟</span></td></tr>
+<tr><td><b>Framing</b><span class="zh-full" lang="zh-Hant">框架呈現</span></td><td>The same exchange is accepted or rejected depending on how it is structured.<span class="zh-full" lang="zh-Hant">同一交換行為可能因制度安排或說法不同而被接受或拒絕。</span></td><td>Tax credit for donors instead of cash; life insurance framed as protecting family<span class="zh-full" lang="zh-Hant">以捐贈者稅額抵免代替現金；將壽險描述為保護家人。</span></td></tr>
+<tr><td><b>Domestic ban, foreign supply</b><span class="zh-full" lang="zh-Hant">國內禁止、依賴國外供應</span></td><td>Banning a market at home does not end reliance on it.<span class="zh-full" lang="zh-Hant">在本國禁止一個市場，不代表不再依賴它。</span></td><td>Countries that ban paid plasma import it from paid donors abroad<span class="zh-full" lang="zh-Hant">禁止有償血漿的國家，仍可能從國外的有償捐贈者進口血漿。</span></td></tr>
+<tr><td><b>Hidden economics</b><span class="zh-full" lang="zh-Hant">隱含的經濟問題</span></td><td>Some "moral" objections are also economic problems.<span class="zh-full" lang="zh-Hant">部分看似「道德」的反對，其實也涉及經濟問題。</span></td><td>Subscription firefighting: fire spreads (externality) and people expect rescue anyway (free rider)<span class="zh-full" lang="zh-Hant">訂閱制消防：火會蔓延（外部性），人們也預期無論是否付費都會獲救（搭便車）。</span></td></tr>
+<tr><td><b>Viatical contract</b><span class="zh-full" lang="zh-Hant">末期病患壽險保單買賣契約</span></td><td>Selling a life insurance policy early for cash. The buyer profits if the seller dies sooner.<span class="zh-full" lang="zh-Hant">提前出售壽險保單換取現金；若賣方較早死亡，買方可獲利。</span></td><td>Patients during the AIDS crisis<span class="zh-full" lang="zh-Hant">愛滋病危機期間的病患。</span></td></tr>
+<tr><td><b>Paternalism</b> <span class="zh">父愛主義</span><span class="zh-full" lang="zh-Hant">父愛主義</span></td><td>Limiting choices to protect people from harming themselves.<span class="zh-full" lang="zh-Hant">限制選擇，避免人們傷害自己。</span></td><td>Prescriptions; self-set loss limits on betting apps<span class="zh-full" lang="zh-Hant">處方箋制度；賭博應用程式中自設虧損上限。</span></td></tr>
 </tbody></table></div>
-<p class="key">Externality: does my choice hurt others? Paternalism: will I hurt myself?<span class="zh-translation" lang="zh-Hant">外部性問：我的選擇會傷害別人嗎？父愛主義問：我會傷害自己嗎？</span></p>
+<p class="key">Externality: does my choice hurt others? Paternalism: will I hurt myself?<span class="zh-full" lang="zh-Hant">外部性問：我的選擇會傷害別人嗎？父愛主義問：我會傷害自己嗎？</span></p>
 
-<h3 id="design">Beyond allow or ban: market design<span class="zh-translation" lang="zh-Hant">超越准許或禁止：市場設計</span></h3>
-<p>Change the form of payment, who may participate, or set limits. Examples: kidney exchange matching, rules on who may hold a life policy, loss caps on gambling.<span class="zh-translation" lang="zh-Hant">可以改變付款形式、參與資格或設定限制，例如腎臟交換配對、限制壽險保單持有人資格、設定賭博虧損上限。</span></p>
+<h3 id="design">Beyond allow or ban: market design<span class="zh-full" lang="zh-Hant">超越准許或禁止：市場設計</span></h3>
+<p>Change the form of payment, who may participate, or set limits. Examples: kidney exchange matching, rules on who may hold a life policy, loss caps on gambling.<span class="zh-full" lang="zh-Hant">可以改變付款形式、參與資格或設定限制，例如腎臟交換配對、限制壽險保單持有人資格、設定賭博虧損上限。</span></p>
 <ol class="steps">
-  <li>Is there a potential gain from trade?<span class="zh-translation" lang="zh-Hant">是否存在潛在的交易利益？</span></li>
-  <li>Why is the market contested?<span class="zh-translation" lang="zh-Hant">市場為何受到爭議？</span></li>
-  <li>What happens if it is banned or restricted? (Demand moves abroad or underground.)<span class="zh-translation" lang="zh-Hant">禁止或限制後會怎樣？（需求可能轉移至國外或地下市場。）</span></li>
-  <li>Can the institution be redesigned?<span class="zh-translation" lang="zh-Hant">能否重新設計制度？</span></li>
-  <li>Evaluate more than efficiency.<span class="zh-translation" lang="zh-Hant">評估不能只看效率。</span></li>
+  <li>Is there a potential gain from trade?<span class="zh-full" lang="zh-Hant">是否存在潛在的交易利益？</span></li>
+  <li>Why is the market contested?<span class="zh-full" lang="zh-Hant">市場為何受到爭議？</span></li>
+  <li>What happens if it is banned or restricted? (Demand moves abroad or underground.)<span class="zh-full" lang="zh-Hant">禁止或限制後會怎樣？（需求可能轉移至國外或地下市場。）</span></li>
+  <li>Can the institution be redesigned?<span class="zh-full" lang="zh-Hant">能否重新設計制度？</span></li>
+  <li>Evaluate more than efficiency.<span class="zh-full" lang="zh-Hant">評估不能只看效率。</span></li>
 </ol>
 
 <div class="assign">
-  <b>Moral Economics assignment<span class="zh-translation" lang="zh-Hant">道德經濟學作業</span></b>
-  <p>Watch the first two speakers of the panel clip (about 35 minutes). Choose a market that triggers public repugnance, explain the objection, analyze it with supply and demand, welfare, externalities and information problems, compare ban, regulate and legalize using theory and evidence, then propose a policy that raises welfare and addresses the moral concern. The slides list Dec 5 / Dec 7 as due dates.<span class="zh-translation" lang="zh-Hant">觀看座談影片前兩位講者（約 35 分鐘）。選擇一個引發大眾道德反感的市場，說明反對理由；用供需、福利、外部性與資訊問題分析；根據理論及證據比較禁止、管制與合法化；最後提出兼顧社會福利及道德顧慮的政策。投影片列出 12 月 5 日／7 日兩個截止日期。</span></p>
+  <b>Moral Economics assignment<span class="zh-full" lang="zh-Hant">道德經濟學作業</span></b>
+  <p>Watch the first two speakers of the panel clip (about 35 minutes). Choose a market that triggers public repugnance, explain the objection, analyze it with supply and demand, welfare, externalities and information problems, compare ban, regulate and legalize using theory and evidence, then propose a policy that raises welfare and addresses the moral concern. The slides list Dec 5 / Dec 7 as due dates.<span class="zh-full" lang="zh-Hant">觀看座談影片前兩位講者（約 35 分鐘）。選擇一個引發大眾道德反感的市場，說明反對理由；用供需、福利、外部性與資訊問題分析；根據理論及證據比較禁止、管制與合法化；最後提出兼顧社會福利及道德顧慮的政策。投影片列出 12 月 5 日／7 日兩個截止日期。</span></p>
 </div>
 
 <!-- 7 -->
-<h2 id="tax">7. Taxes, subsidies and government failure<span class="zh-translation" lang="zh-Hant">7. 稅、補貼與政府失靈</span></h2>
-<p class="sub">Who legally pays a tax does not decide who bears it. Elasticity does.<span class="zh-translation" lang="zh-Hant">法律規定誰繳稅，不等於誰實際承擔稅負；關鍵在彈性。</span></p>
+<h2 id="tax">7. Taxes, subsidies and government failure<span class="zh-full" lang="zh-Hant">7. 稅、補貼與政府失靈</span></h2>
+<p class="sub">Who legally pays a tax does not decide who bears it. Elasticity does.<span class="zh-full" lang="zh-Hant">法律規定誰繳稅，不等於誰實際承擔稅負；關鍵在彈性。</span></p>
 <div data-widget="tax"></div>
 <ul>
-  <li><b>Tax incidence</b> <span class="zh">租稅歸宿</span>: the less elastic side bears more. Cigarette buyers are inelastic, so they carry most of a cigarette tax.<span class="zh-translation" lang="zh-Hant">租稅歸宿：彈性較低的一方承擔較多。香菸買方需求較缺乏彈性，因此承擔香菸稅的大部分。</span></li>
-  <li><b>Subsidy</b>: a negative tax that encourages an activity, such as EV purchase subsidies.<span class="zh-translation" lang="zh-Hant">補貼：如同負的稅，用於鼓勵某種活動，例如購買電動車的補貼。</span></li>
-  <li><b>Government failure</b>: the policy itself produces an inefficient result. Compare realistic market outcomes with realistic government outcomes, not ideal versions of either.<span class="zh-translation" lang="zh-Hant">政府失靈：政策本身造成無效率。應比較現實中的市場結果與政府結果，而非拿任何一方的理想版本比較。</span></li>
+  <li><b>Tax incidence</b> <span class="zh">租稅歸宿</span>: the less elastic side bears more. Cigarette buyers are inelastic, so they carry most of a cigarette tax.<span class="zh-full" lang="zh-Hant">租稅歸宿：彈性較低的一方承擔較多。香菸買方需求較缺乏彈性，因此承擔香菸稅的大部分。</span></li>
+  <li><b>Subsidy</b>: a negative tax that encourages an activity, such as EV purchase subsidies.<span class="zh-full" lang="zh-Hant">補貼：如同負的稅，用於鼓勵某種活動，例如購買電動車的補貼。</span></li>
+  <li><b>Government failure</b>: the policy itself produces an inefficient result. Compare realistic market outcomes with realistic government outcomes, not ideal versions of either.<span class="zh-full" lang="zh-Hant">政府失靈：政策本身造成無效率。應比較現實中的市場結果與政府結果，而非拿任何一方的理想版本比較。</span></li>
 </ul>
 
 <!-- 8 -->
-<h2 id="traps">8. Common mistakes<span class="zh-translation" lang="zh-Hant">8. 常見錯誤</span></h2>
+<h2 id="traps">8. Common mistakes<span class="zh-full" lang="zh-Hant">8. 常見錯誤</span></h2>
 <div class="traps">
-  <div><s>A high price means market failure.<span class="zh-translation" lang="zh-Hant">價格高代表市場失靈。</span></s><p>A high price may simply signal scarcity.<span class="zh-translation" lang="zh-Hant">高價也可能只是稀缺的訊號。</span></p></div>
-  <div><s>A price ceiling makes goods affordable for everyone.<span class="zh-translation" lang="zh-Hant">最高限價讓所有人都買得起。</span></s><p>A binding ceiling causes a shortage. Some people get nothing.<span class="zh-translation" lang="zh-Hant">有約束力的限價造成短缺；有些人根本買不到。</span></p></div>
-  <div><s>All consumer loss from a tariff is DWL.<span class="zh-translation" lang="zh-Hant">消費者因關稅受損的部分全是無謂損失。</span></s><p>Part is transferred to producers and government.<span class="zh-translation" lang="zh-Hant">其中一部分轉移給生產者和政府。</span></p></div>
-  <div><s>DWL always means too little trade.<span class="zh-translation" lang="zh-Hant">無謂損失一定表示交易太少。</span></s><p>A negative externality creates DWL from too much trade.<span class="zh-translation" lang="zh-Hant">負外部性會因交易太多而造成無謂損失。</span></p></div>
-  <div><s>Pollution permits allow more pollution.<span class="zh-translation" lang="zh-Hant">污染許可證容許更多污染。</span></s><p>The cap is fixed. Trading only decides who cuts.<span class="zh-translation" lang="zh-Hant">總量上限固定；交易只決定由誰減排。</span></p></div>
-  <div><s>Anything shared is a public good.<span class="zh-translation" lang="zh-Hant">凡是共享的東西都是公共財。</span></s><p>A fishery is rival, so it is a common resource.<span class="zh-translation" lang="zh-Hant">漁業資源具有競爭性，因此是共有資源。</span></p></div>
-  <div><s>The tragedy of the commons comes from irrational people.<span class="zh-translation" lang="zh-Hant">共有地悲劇源於人們不理性。</span></s><p>Each user is rational. The cost is shared.<span class="zh-translation" lang="zh-Hant">每位使用者都理性；成本由眾人分攤。</span></p></div>
-  <div><s>Banning a market removes demand.<span class="zh-translation" lang="zh-Hant">禁止市場就能消除需求。</span></s><p>Demand moves abroad, to imports or to black markets.<span class="zh-translation" lang="zh-Hant">需求可能轉往國外、進口或黑市。</span></p></div>
-  <div><s>Paternalism is the same as an externality.<span class="zh-translation" lang="zh-Hant">父愛主義等同外部性。</span></s><p>Externality harms others. Paternalism protects people from themselves.<span class="zh-translation" lang="zh-Hant">外部性傷害他人；父愛主義旨在防止人們傷害自己。</span></p></div>
-  <div><s>The only options are allow or ban.<span class="zh-translation" lang="zh-Hant">選項只有允許或禁止。</span></s><p>Market design can change payment form, eligibility or limits.<span class="zh-translation" lang="zh-Hant">市場設計能改變付款形式、參與資格或限制。</span></p></div>
+  <div><s>A high price means market failure.<span class="zh-full" lang="zh-Hant">價格高代表市場失靈。</span></s><p>A high price may simply signal scarcity.<span class="zh-full" lang="zh-Hant">高價也可能只是稀缺的訊號。</span></p></div>
+  <div><s>A price ceiling makes goods affordable for everyone.<span class="zh-full" lang="zh-Hant">最高限價讓所有人都買得起。</span></s><p>A binding ceiling causes a shortage. Some people get nothing.<span class="zh-full" lang="zh-Hant">有約束力的限價造成短缺；有些人根本買不到。</span></p></div>
+  <div><s>All consumer loss from a tariff is DWL.<span class="zh-full" lang="zh-Hant">消費者因關稅受損的部分全是無謂損失。</span></s><p>Part is transferred to producers and government.<span class="zh-full" lang="zh-Hant">其中一部分轉移給生產者和政府。</span></p></div>
+  <div><s>DWL always means too little trade.<span class="zh-full" lang="zh-Hant">無謂損失一定表示交易太少。</span></s><p>A negative externality creates DWL from too much trade.<span class="zh-full" lang="zh-Hant">負外部性會因交易太多而造成無謂損失。</span></p></div>
+  <div><s>Pollution permits allow more pollution.<span class="zh-full" lang="zh-Hant">污染許可證容許更多污染。</span></s><p>The cap is fixed. Trading only decides who cuts.<span class="zh-full" lang="zh-Hant">總量上限固定；交易只決定由誰減排。</span></p></div>
+  <div><s>Anything shared is a public good.<span class="zh-full" lang="zh-Hant">凡是共享的東西都是公共財。</span></s><p>A fishery is rival, so it is a common resource.<span class="zh-full" lang="zh-Hant">漁業資源具有競爭性，因此是共有資源。</span></p></div>
+  <div><s>The tragedy of the commons comes from irrational people.<span class="zh-full" lang="zh-Hant">共有地悲劇源於人們不理性。</span></s><p>Each user is rational. The cost is shared.<span class="zh-full" lang="zh-Hant">每位使用者都理性；成本由眾人分攤。</span></p></div>
+  <div><s>Banning a market removes demand.<span class="zh-full" lang="zh-Hant">禁止市場就能消除需求。</span></s><p>Demand moves abroad, to imports or to black markets.<span class="zh-full" lang="zh-Hant">需求可能轉往國外、進口或黑市。</span></p></div>
+  <div><s>Paternalism is the same as an externality.<span class="zh-full" lang="zh-Hant">父愛主義等同外部性。</span></s><p>Externality harms others. Paternalism protects people from themselves.<span class="zh-full" lang="zh-Hant">外部性傷害他人；父愛主義旨在防止人們傷害自己。</span></p></div>
+  <div><s>The only options are allow or ban.<span class="zh-full" lang="zh-Hant">選項只有允許或禁止。</span></s><p>Market design can change payment form, eligibility or limits.<span class="zh-full" lang="zh-Hant">市場設計能改變付款形式、參與資格或限制。</span></p></div>
 </div>
 
 <!-- 9 -->
-<h2 id="coldcall">9. Cold call practice<span class="zh-translation" lang="zh-Hant">9. 課堂問答練習</span></h2>
-<p class="sub">Answer aloud first, then open the card. Structure: definition, example, why it matters.<span class="zh-translation" lang="zh-Hant">先口頭回答，再打開卡片。架構：定義、例子、重要性。</span></p>
-<div class="qa-tools"><button type="button" id="qaAll">Show all answers</button></div>
+<h2 id="coldcall">9. Cold call practice<span class="zh-full" lang="zh-Hant">9. 課堂問答練習</span></h2>
+<p class="sub">Answer aloud first, then open the card. Structure: definition, example, why it matters.<span class="zh-full" lang="zh-Hant">先口頭回答，再打開卡片。架構：定義、例子、重要性。</span></p>
+<div class="qa-tools"><button type="button" id="qaAll">Show all answers<span class="zh-full" lang="zh-Hant">展開全部答案</span></button></div>
 <div class="qa">
-  <details><summary>What does "a price is a signal wrapped up in an incentive" mean?<span class="zh-translation" lang="zh-Hant">「價格既是訊號，也是誘因」是什麼意思？</span></summary><p>A price tells people a good has become scarcer and gives them a reason to act: buyers use less, sellers supply more.<span class="zh-translation" lang="zh-Hant">價格告訴人們財貨變得稀缺，並使人有理由行動：買家少用，賣家多供給。</span></p></details>
-  <details><summary>What is the invisible hand?<span class="zh-translation" lang="zh-Hant">什麼是「看不見的手」？</span></summary><p>People pursuing their own interests are coordinated by prices into outcomes that serve others, without a central planner.<span class="zh-translation" lang="zh-Hant">人們追求私利，在價格協調下也能產生有利他人的結果，無須中央規劃者。</span></p></details>
-  <details><summary>Why is equilibrium more than Qd = Qs?<span class="zh-translation" lang="zh-Hant">為什麼均衡不只是 Qd＝Qs？</span></summary><p>Up to the equilibrium quantity WTP ≥ MC, and beyond it MC &gt; WTP. Equilibrium therefore maximizes total surplus in the basic model.<span class="zh-translation" lang="zh-Hant">均衡數量之前 WTP≥MC，之後 MC&gt;WTP。因此在基本模型中，均衡使總剩餘最大化。</span></p></details>
-  <details><summary>Who wins and loses from a tariff?<span class="zh-translation" lang="zh-Hant">關稅讓誰得益、誰受損？</span></summary><p>Domestic producers gain, consumers lose, government collects revenue, and society loses DWL from wasted resources and lost gains from trade.<span class="zh-translation" lang="zh-Hant">國內生產者得益、消費者受損、政府取得收入；社會因資源浪費與錯失的交易利益而承受無謂損失。</span></p></details>
-  <details><summary>What is deadweight loss?<span class="zh-translation" lang="zh-Hant">什麼是無謂損失？</span></summary><p>The value lost because the traded quantity differs from the efficient quantity. Nobody receives it.<span class="zh-translation" lang="zh-Hant">交易數量偏離效率數量而消失的價值；沒有任何人得到它。</span></p></details>
-  <details><summary>Why can Mumbai have vacant flats and a housing shortage?<span class="zh-translation" lang="zh-Hant">為什麼孟買會同時有空屋和住房短缺？</span></summary><p>Rent control cuts landlord returns, so owners reduce maintenance and withhold units. Supply falls even though controlled rent is low.<span class="zh-translation" lang="zh-Hant">租金管制降低房東報酬，使屋主減少維修並撤出房源。雖然受管制租金低，供給卻下降。</span></p></details>
-  <details><summary>How does wasted time differ from A + B?<span class="zh-translation" lang="zh-Hant">排隊浪費的時間和 A＋B 有何不同？</span></summary><p>Wasted time is the real cost of queuing and searching. A + B is lost consumer and producer surplus from trades that no longer happen.<span class="zh-translation" lang="zh-Hant">浪費的時間是排隊及搜尋的真實成本；A＋B 是不再發生的交易所損失的消費者與生產者剩餘。</span></p></details>
-  <details><summary>Why does a negative externality cause overproduction?<span class="zh-translation" lang="zh-Hant">為什麼負外部性導致生產過多？</span></summary><p>Decision-makers ignore the external cost, so they keep trading past the point where social cost exceeds benefit. Q market &gt; Q efficient.<span class="zh-translation" lang="zh-Hant">決策者忽略外部成本，於是即使社會成本已高於利益仍繼續交易；市場數量大於效率數量。</span></p></details>
-  <details><summary>How do tradable permits work?<span class="zh-translation" lang="zh-Hant">可交易許可證如何運作？</span></summary><p>Government caps total pollution. Firms that can cut cheaply do so and sell permits, so the cap is met at the lowest total cost.<span class="zh-translation" lang="zh-Hant">政府限制污染總量；能低成本減排的企業多減排並出售許可證，以最低總成本達到上限。</span></p></details>
-  <details><summary>When does the Coase theorem fail?<span class="zh-translation" lang="zh-Hant">科斯定理何時難以適用？</span></summary><p>When property rights are unclear or bargaining is costly, for example when millions of people are affected by PM2.5.<span class="zh-translation" lang="zh-Hant">當財產權不明確或協商成本很高時，例如 PM2.5 影響數百萬人。</span></p></details>
-  <details><summary>Why is a fishery not a public good?<span class="zh-translation" lang="zh-Hant">為什麼漁業不是公共財？</span></summary><p>It is nonexcludable but rival: one person's catch reduces what others can catch. That makes it a common resource.<span class="zh-translation" lang="zh-Hant">它雖難以排除他人使用，卻具有競爭性：一人的漁獲減少他人可捕的魚，因此是共有資源。</span></p></details>
-  <details><summary>What did Elinor Ostrom show?<span class="zh-translation" lang="zh-Hant">Elinor Ostrom 指出了什麼？</span></summary><p>Communities can govern common resources with their own rules, monitoring and sanctions, without full privatization or central control.<span class="zh-translation" lang="zh-Hant">社群可透過自訂規則、監督和制裁治理共有資源，不必全面私有化或完全依賴中央控制。</span></p></details>
-  <details><summary>Why might a voluntary trade be unacceptable?<span class="zh-translation" lang="zh-Hant">為什麼自願交易仍可能不被接受？</span></summary><p>Repugnance: people object to paying for certain things, such as kidneys, even when both sides gain.<span class="zh-translation" lang="zh-Hant">道德反感：即使雙方得益，人們仍反對付錢取得某些東西，例如腎臟。</span></p></details>
-  <details><summary>Besides morality, what problems does subscription firefighting create?<span class="zh-translation" lang="zh-Hant">除了道德考量，訂閱制消防還有什麼問題？</span></summary><p>A negative externality, because fire spreads to neighbors, and a free-rider problem, because people expect to be saved anyway.<span class="zh-translation" lang="zh-Hant">負外部性：火災可能蔓延到鄰居；搭便車：未付費者仍期待獲救。</span></p></details>
-  <details><summary>What happens when a market is outlawed?<span class="zh-translation" lang="zh-Hant">市場被取締後會怎樣？</span></summary><p>Both demand and supply can shift inward. Quantity falls, while the price effect depends on which shift is larger.<span class="zh-translation" lang="zh-Hant">需求與供給都可能向內移，交易量下降；價格方向則取決於哪一方移動較多。</span></p></details>
-  <details><summary>Who bears the burden of a tax?<span class="zh-translation" lang="zh-Hant">誰承擔稅負？</span></summary><p>The less elastic side of the market, regardless of who legally pays it.<span class="zh-translation" lang="zh-Hant">市場中彈性較低的一方，與法律規定誰繳稅無關。</span></p></details>
+  <details><summary>What does "a price is a signal wrapped up in an incentive" mean?<span class="zh-full" lang="zh-Hant">「價格既是訊號，也是誘因」是什麼意思？</span></summary><p>A price tells people a good has become scarcer and gives them a reason to act: buyers use less, sellers supply more.<span class="zh-full" lang="zh-Hant">價格告訴人們財貨變得稀缺，並使人有理由行動：買家少用，賣家多供給。</span></p></details>
+  <details><summary>What is the invisible hand?<span class="zh-full" lang="zh-Hant">什麼是「看不見的手」？</span></summary><p>People pursuing their own interests are coordinated by prices into outcomes that serve others, without a central planner.<span class="zh-full" lang="zh-Hant">人們追求私利，在價格協調下也能產生有利他人的結果，無須中央規劃者。</span></p></details>
+  <details><summary>Why is equilibrium more than Qd = Qs?<span class="zh-full" lang="zh-Hant">為什麼均衡不只是 Qd＝Qs？</span></summary><p>Up to the equilibrium quantity WTP ≥ MC, and beyond it MC &gt; WTP. Equilibrium therefore maximizes total surplus in the basic model.<span class="zh-full" lang="zh-Hant">均衡數量之前 WTP≥MC，之後 MC&gt;WTP。因此在基本模型中，均衡使總剩餘最大化。</span></p></details>
+  <details><summary>Who wins and loses from a tariff?<span class="zh-full" lang="zh-Hant">關稅讓誰得益、誰受損？</span></summary><p>Domestic producers gain, consumers lose, government collects revenue, and society loses DWL from wasted resources and lost gains from trade.<span class="zh-full" lang="zh-Hant">國內生產者得益、消費者受損、政府取得收入；社會因資源浪費與錯失的交易利益而承受無謂損失。</span></p></details>
+  <details><summary>What is deadweight loss?<span class="zh-full" lang="zh-Hant">什麼是無謂損失？</span></summary><p>The value lost because the traded quantity differs from the efficient quantity. Nobody receives it.<span class="zh-full" lang="zh-Hant">交易數量偏離效率數量而消失的價值；沒有任何人得到它。</span></p></details>
+  <details><summary>Why can Mumbai have vacant flats and a housing shortage?<span class="zh-full" lang="zh-Hant">為什麼孟買會同時有空屋和住房短缺？</span></summary><p>Rent control cuts landlord returns, so owners reduce maintenance and withhold units. Supply falls even though controlled rent is low.<span class="zh-full" lang="zh-Hant">租金管制降低房東報酬，使屋主減少維修並撤出房源。雖然受管制租金低，供給卻下降。</span></p></details>
+  <details><summary>How does wasted time differ from A + B?<span class="zh-full" lang="zh-Hant">排隊浪費的時間和 A＋B 有何不同？</span></summary><p>Wasted time is the real cost of queuing and searching. A + B is lost consumer and producer surplus from trades that no longer happen.<span class="zh-full" lang="zh-Hant">浪費的時間是排隊及搜尋的真實成本；A＋B 是不再發生的交易所損失的消費者與生產者剩餘。</span></p></details>
+  <details><summary>Why does a negative externality cause overproduction?<span class="zh-full" lang="zh-Hant">為什麼負外部性導致生產過多？</span></summary><p>Decision-makers ignore the external cost, so they keep trading past the point where social cost exceeds benefit. Q market &gt; Q efficient.<span class="zh-full" lang="zh-Hant">決策者忽略外部成本，於是即使社會成本已高於利益仍繼續交易；市場數量大於效率數量。</span></p></details>
+  <details><summary>How do tradable permits work?<span class="zh-full" lang="zh-Hant">可交易許可證如何運作？</span></summary><p>Government caps total pollution. Firms that can cut cheaply do so and sell permits, so the cap is met at the lowest total cost.<span class="zh-full" lang="zh-Hant">政府限制污染總量；能低成本減排的企業多減排並出售許可證，以最低總成本達到上限。</span></p></details>
+  <details><summary>When does the Coase theorem fail?<span class="zh-full" lang="zh-Hant">科斯定理何時難以適用？</span></summary><p>When property rights are unclear or bargaining is costly, for example when millions of people are affected by PM2.5.<span class="zh-full" lang="zh-Hant">當財產權不明確或協商成本很高時，例如 PM2.5 影響數百萬人。</span></p></details>
+  <details><summary>Why is a fishery not a public good?<span class="zh-full" lang="zh-Hant">為什麼漁業不是公共財？</span></summary><p>It is nonexcludable but rival: one person's catch reduces what others can catch. That makes it a common resource.<span class="zh-full" lang="zh-Hant">它雖難以排除他人使用，卻具有競爭性：一人的漁獲減少他人可捕的魚，因此是共有資源。</span></p></details>
+  <details><summary>What did Elinor Ostrom show?<span class="zh-full" lang="zh-Hant">Elinor Ostrom 指出了什麼？</span></summary><p>Communities can govern common resources with their own rules, monitoring and sanctions, without full privatization or central control.<span class="zh-full" lang="zh-Hant">社群可透過自訂規則、監督和制裁治理共有資源，不必全面私有化或完全依賴中央控制。</span></p></details>
+  <details><summary>Why might a voluntary trade be unacceptable?<span class="zh-full" lang="zh-Hant">為什麼自願交易仍可能不被接受？</span></summary><p>Repugnance: people object to paying for certain things, such as kidneys, even when both sides gain.<span class="zh-full" lang="zh-Hant">道德反感：即使雙方得益，人們仍反對付錢取得某些東西，例如腎臟。</span></p></details>
+  <details><summary>Besides morality, what problems does subscription firefighting create?<span class="zh-full" lang="zh-Hant">除了道德考量，訂閱制消防還有什麼問題？</span></summary><p>A negative externality, because fire spreads to neighbors, and a free-rider problem, because people expect to be saved anyway.<span class="zh-full" lang="zh-Hant">負外部性：火災可能蔓延到鄰居；搭便車：未付費者仍期待獲救。</span></p></details>
+  <details><summary>What happens when a market is outlawed?<span class="zh-full" lang="zh-Hant">市場被取締後會怎樣？</span></summary><p>Both demand and supply can shift inward. Quantity falls, while the price effect depends on which shift is larger.<span class="zh-full" lang="zh-Hant">需求與供給都可能向內移，交易量下降；價格方向則取決於哪一方移動較多。</span></p></details>
+  <details><summary>Who bears the burden of a tax?<span class="zh-full" lang="zh-Hant">誰承擔稅負？</span></summary><p>The less elastic side of the market, regardless of who legally pays it.<span class="zh-full" lang="zh-Hant">市場中彈性較低的一方，與法律規定誰繳稅無關。</span></p></details>
 </div>
 
-<h3 id="drill">Quick drill: name the problem and the tool<span class="zh-translation" lang="zh-Hant">快速練習：指出問題與政策工具</span></h3>
+<h3 id="drill">Quick drill: name the problem and the tool<span class="zh-full" lang="zh-Hant">快速練習：指出問題與政策工具</span></h3>
 <div class="tbl"><table class="drill">
-<thead><tr><th>Situation<span class="zh-translation" lang="zh-Hant">情境</span></th><th>Answer<span class="zh-translation" lang="zh-Hant">答案</span></th></tr></thead>
+<thead><tr><th>Situation<span class="zh-full" lang="zh-Hant">情境</span></th><th>Answer<span class="zh-full" lang="zh-Hant">答案</span></th></tr></thead>
 <tbody>
-<tr><td>A factory dumps waste water into a river.<span class="zh-translation" lang="zh-Hant">工廠將廢水排入河流。</span></td><td><span class="ans">Negative externality. Tax, permits or regulation.</span><span class="zh-translation" lang="zh-Hant">負外部性；可用稅、許可證或管制。</span></td></tr>
-<tr><td>Too few people get flu shots.<span class="zh-translation" lang="zh-Hant">接種流感疫苗的人太少。</span></td><td><span class="ans">Positive externality. Subsidy.</span><span class="zh-translation" lang="zh-Hant">正外部性；可用補貼。</span></td></tr>
-<tr><td>Fish stocks in the Gulf of Thailand keep falling.<span class="zh-translation" lang="zh-Hant">泰國灣的魚群數量持續下降。</span></td><td><span class="ans">Tragedy of the commons. Quotas, property rights, community rules.</span><span class="zh-translation" lang="zh-Hant">共有地悲劇；可用配額、財產權或社群規則。</span></td></tr>
-<tr><td>Rent is capped at half the market rate.<span class="zh-translation" lang="zh-Hant">租金被限制在市場租金的一半。</span></td><td><span class="ans">Binding ceiling. Shortage, lower quality, misallocation.</span><span class="zh-translation" lang="zh-Hant">有約束力的最高限價；造成短缺、品質下降與錯誤配置。</span></td></tr>
-<tr><td>A 25% tariff on imported steel.<span class="zh-translation" lang="zh-Hant">對進口鋼鐵課徵 25% 關稅。</span></td><td><span class="ans">Domestic price rises, producers gain, consumers lose, DWL.</span><span class="zh-translation" lang="zh-Hant">國內價格上漲、生產者得益、消費者受損，產生無謂損失。</span></td></tr>
-<tr><td>Everyone wants flood defenses; nobody wants to pay.<span class="zh-translation" lang="zh-Hant">大家都想要防洪設施，卻沒人想付款。</span></td><td><span class="ans">Public good with free riders. Tax-funded provision.</span><span class="zh-translation" lang="zh-Hant">有搭便車問題的公共財；可由稅收支持供給。</span></td></tr>
-<tr><td>A proposal to allow paid kidney donation.<span class="zh-translation" lang="zh-Hant">提議允許有償捐贈腎臟。</span></td><td><span class="ans">Repugnance. Consider framing and market design.</span><span class="zh-translation" lang="zh-Hant">道德反感；可考慮調整呈現框架與市場設計。</span></td></tr>
-<tr><td>Young people borrow to bet on gambling apps.<span class="zh-translation" lang="zh-Hant">年輕人借錢在賭博應用程式下注。</span></td><td><span class="ans">Paternalism and self-control. Loss limits, age limits.</span><span class="zh-translation" lang="zh-Hant">父愛主義與自我控制；設定虧損上限與年齡限制。</span></td></tr>
+<tr><td>A factory dumps waste water into a river.<span class="zh-full" lang="zh-Hant">工廠將廢水排入河流。</span></td><td><span class="ans">Negative externality. Tax, permits or regulation.</span><span class="zh-full" lang="zh-Hant">負外部性；可用稅、許可證或管制。</span></td></tr>
+<tr><td>Too few people get flu shots.<span class="zh-full" lang="zh-Hant">接種流感疫苗的人太少。</span></td><td><span class="ans">Positive externality. Subsidy.</span><span class="zh-full" lang="zh-Hant">正外部性；可用補貼。</span></td></tr>
+<tr><td>Fish stocks in the Gulf of Thailand keep falling.<span class="zh-full" lang="zh-Hant">泰國灣的魚群數量持續下降。</span></td><td><span class="ans">Tragedy of the commons. Quotas, property rights, community rules.</span><span class="zh-full" lang="zh-Hant">共有地悲劇；可用配額、財產權或社群規則。</span></td></tr>
+<tr><td>Rent is capped at half the market rate.<span class="zh-full" lang="zh-Hant">租金被限制在市場租金的一半。</span></td><td><span class="ans">Binding ceiling. Shortage, lower quality, misallocation.</span><span class="zh-full" lang="zh-Hant">有約束力的最高限價；造成短缺、品質下降與錯誤配置。</span></td></tr>
+<tr><td>A 25% tariff on imported steel.<span class="zh-full" lang="zh-Hant">對進口鋼鐵課徵 25% 關稅。</span></td><td><span class="ans">Domestic price rises, producers gain, consumers lose, DWL.</span><span class="zh-full" lang="zh-Hant">國內價格上漲、生產者得益、消費者受損，產生無謂損失。</span></td></tr>
+<tr><td>Everyone wants flood defenses; nobody wants to pay.<span class="zh-full" lang="zh-Hant">大家都想要防洪設施，卻沒人想付款。</span></td><td><span class="ans">Public good with free riders. Tax-funded provision.</span><span class="zh-full" lang="zh-Hant">有搭便車問題的公共財；可由稅收支持供給。</span></td></tr>
+<tr><td>A proposal to allow paid kidney donation.<span class="zh-full" lang="zh-Hant">提議允許有償捐贈腎臟。</span></td><td><span class="ans">Repugnance. Consider framing and market design.</span><span class="zh-full" lang="zh-Hant">道德反感；可考慮調整呈現框架與市場設計。</span></td></tr>
+<tr><td>Young people borrow to bet on gambling apps.<span class="zh-full" lang="zh-Hant">年輕人借錢在賭博應用程式下注。</span></td><td><span class="ans">Paternalism and self-control. Loss limits, age limits.</span><span class="zh-full" lang="zh-Hant">父愛主義與自我控制；設定虧損上限與年齡限制。</span></td></tr>
 </tbody></table></div>
-<p class="note-small">Click an answer to reveal it.<span class="zh-translation" lang="zh-Hant">點擊答案即可顯示。</span></p>
+<p class="note-small">Click an answer to reveal it.<span class="zh-full" lang="zh-Hant">點擊答案即可顯示。</span></p>
 </article></main>
 </div>
 
@@ -553,8 +606,8 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
       axes(xl, yl) {
         el('line', { x1: L, y1: sy(0), x2: W - R + 10, y2: sy(0), class: 'ax' }, g.lines);
         el('line', { x1: L, y1: sy(0), x2: L, y2: T - 4, class: 'ax' }, g.lines);
-        const tx = el('text', { x: W - R + 10, y: sy(0) + 30, class: 'axl', 'text-anchor': 'end' }, g.top); tx.textContent = xl;
-        const ty = el('text', { x: L + 8, y: T + 4, class: 'axl', 'text-anchor': 'start' }, g.top); ty.textContent = yl;
+        const tx = el('text', { x: W - R + 10, y: sy(0) + 30, class: 'axl', 'text-anchor': 'end' }, g.top); biSetSvg(tx, xl);
+        const ty = el('text', { x: L + 8, y: T + 4, class: 'axl', 'text-anchor': 'start' }, g.top); biSetSvg(ty, yl);
       },
       poly(pts, cls) {
         if (!pts.length) return;
@@ -571,28 +624,28 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
         el('line', { x1: sx(q0), y1: sy(a + m * q0), x2: sx(q1), y2: sy(a + m * q1), class: 'cv ' + cls + (dashed ? ' dash' : '') }, g.lines);
         if (label) {
           const t = el('text', { x: sx(q1) + 6, y: sy(a + m * q1) + 4, class: 'cvl ' + cls }, g.top);
-          t.textContent = label;
+          biSetSvg(t, label);
         }
       },
       hline(p, cls, label) {
         el('line', { x1: sx(0), y1: sy(p), x2: W - R, y2: sy(p), class: 'cv ' + cls }, g.lines);
-        if (label) { const t = el('text', { x: W - R + 6, y: sy(p) + 4, class: 'cvl ' + cls }, g.top); t.textContent = label; }
+        if (label) { const t = el('text', { x: W - R + 6, y: sy(p) + 4, class: 'cvl ' + cls }, g.top); biSetSvg(t, label); }
       },
       guide(q, p, ql, pl) {
         if (q != null) el('line', { x1: sx(q), y1: sy(p), x2: sx(q), y2: sy(0), class: 'gd' }, g.lines);
         if (p != null && q != null) el('line', { x1: sx(0), y1: sy(p), x2: sx(q), y2: sy(p), class: 'gd' }, g.lines);
-        if (ql) { const t = el('text', { x: sx(q), y: sy(0) + 16, class: 'tk', 'text-anchor': 'middle' }, g.top); t.textContent = ql; }
-        if (pl) { const t = el('text', { x: L - 6, y: sy(p) + 4, class: 'tk', 'text-anchor': 'end' }, g.top); t.textContent = pl; }
+        if (ql) { const t = el('text', { x: sx(q), y: sy(0) + 16, class: 'tk', 'text-anchor': 'middle' }, g.top); biSetSvg(t, ql); }
+        if (pl) { const t = el('text', { x: L - 6, y: sy(p) + 4, class: 'tk', 'text-anchor': 'end' }, g.top); biSetSvg(t, pl); }
       },
       dot(q, p, label, left) {
         el('circle', { cx: sx(q), cy: sy(p), r: 4.5, class: 'pt' }, g.top);
-        if (label) { const t = el('text', { x: sx(q) + (left ? -9 : 8), y: sy(p) + (left ? 4 : -8), class: 'ptl', 'text-anchor': left ? 'end' : 'start' }, g.top); t.textContent = label; }
+        if (label) { const t = el('text', { x: sx(q) + (left ? -9 : 8), y: sy(p) + (left ? 4 : -8), class: 'ptl', 'text-anchor': left ? 'end' : 'start' }, g.top); biSetSvg(t, label); }
       },
       path(pts, cls) { el('polyline', { points: pts.map(p => sx(p[0]) + ',' + sy(p[1])).join(' '), class: 'cv ' + cls, fill: 'none' }, g.lines); },
-      label(q, p, s, cls) { const t = el('text', { x: sx(q) + 6, y: sy(p) + 4, class: 'cvl ' + cls }, g.top); t.textContent = s; },
-      xticks(arr) { arr.forEach(v => { const t = el('text', { x: sx(v), y: sy(0) + 16, class: 'tk', 'text-anchor': 'middle' }, g.top); t.textContent = v; }); },
-      yticks(arr, pre) { arr.forEach(v => { el('line', { x1: sx(0), y1: sy(v), x2: W - R, y2: sy(v), class: 'grid' }, g.area); const t = el('text', { x: L - 6, y: sy(v) + 4, class: 'tk', 'text-anchor': 'end' }, g.top); t.textContent = (pre || '') + v; }); },
-      tag(q, p, s) { const t = el('text', { x: sx(q), y: sy(p) + 4, class: 'atag', 'text-anchor': 'middle' }, g.top); t.textContent = s; }
+      label(q, p, s, cls) { const t = el('text', { x: sx(q) + 6, y: sy(p) + 4, class: 'cvl ' + cls }, g.top); biSetSvg(t, s); },
+      xticks(arr) { arr.forEach(v => { const t = el('text', { x: sx(v), y: sy(0) + 16, class: 'tk', 'text-anchor': 'middle' }, g.top); biSetSvg(t, v); }); },
+      yticks(arr, pre) { arr.forEach(v => { el('line', { x1: sx(0), y1: sy(v), x2: W - R, y2: sy(v), class: 'grid' }, g.area); const t = el('text', { x: L - 6, y: sy(v) + 4, class: 'tk', 'text-anchor': 'end' }, g.top); biSetSvg(t, (pre || '') + v); }); },
+      tag(q, p, s) { const t = el('text', { x: sx(q), y: sy(p) + 4, class: 'atag', 'text-anchor': 'middle' }, g.top); biSetSvg(t, s); }
     };
     return api;
   }
@@ -601,8 +654,8 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
     const id = 'w' + (++uid);
     host.classList.add('graph');
     host.innerHTML =
-      '<div class="g-head"><span class="g-kicker">Interactive graph</span><h4>' + title + '</h4><p>' + sub + '</p></div>' +
-      '<div class="g-body"><div class="g-plot"><svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + title + '"></svg></div>' +
+      "<div class=\"g-head\"><span class=\"g-kicker\">Interactive graph<span class=\"zh-full\" lang=\"zh-Hant\">互動圖表</span></span><h4>" + title + '</h4><p>' + sub + '</p></div>' +
+      '<div class="g-body"><div class="g-plot"><svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + biPlain(title) + '"></svg></div>' +
       '<div class="g-side"><div class="g-ctrl"></div><dl class="g-stats"></dl></div></div>' +
       '<p class="g-note" aria-live="polite"></p>';
     const svg = host.querySelector('svg');
@@ -617,20 +670,20 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
         wrap.innerHTML = '<label for="' + iid + '"><span>' + label + '</span><output></output></label>' +
           '<input type="range" id="' + iid + '" min="' + min + '" max="' + max + '" step="' + step + '" value="' + val + '">';
         const inp = wrap.querySelector('input'), out = wrap.querySelector('output');
-        const sync = () => { out.textContent = fmt ? fmt(+inp.value) : inp.value; };
+        const sync = () => { out.innerHTML = fmt ? fmt(+inp.value) : inp.value; };
         inp.addEventListener('input', () => { sync(); on(+inp.value); });
         sync();
         this.ctrl.appendChild(wrap);
         return { set(v) { inp.value = v; sync(); }, input: inp };
       },
       button(label, on) {
-        const b = document.createElement('button'); b.type = 'button'; b.className = 'g-btn'; b.textContent = label;
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'g-btn'; b.innerHTML = label;
         b.addEventListener('click', on); this.ctrl.appendChild(b); return b;
       },
       seg(key, opts, val, on) {
         const wrap = document.createElement('div'); wrap.className = 'seg'; wrap.setAttribute('role', 'radiogroup');
         opts.forEach(([v, lab]) => {
-          const b = document.createElement('button'); b.type = 'button'; b.textContent = lab; b.dataset.v = v;
+          const b = document.createElement('button'); b.type = 'button'; b.innerHTML = lab; b.dataset.v = v;
           b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', v === val);
           b.addEventListener('click', () => { wrap.querySelectorAll('button').forEach(x => x.setAttribute('aria-checked', x === b)); on(v); });
           wrap.appendChild(b);
@@ -657,8 +710,8 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 
   /* 1. Equilibrium welfare */
   W_.welfare = host => {
-    const s = shell(host, 'Gains from trade peak at equilibrium',
-      'Shift demand or supply, or force the quantity away from equilibrium, and watch total surplus.');
+    const s = shell(host, "Gains from trade peak at equilibrium<span class=\"zh-full\" lang=\"zh-Hant\">均衡時交易利益最大</span>",
+      "Shift demand or supply, or force the quantity away from equilibrium, and watch total surplus.<span class=\"zh-full\" lang=\"zh-Hant\">移動需求或供給，或使交易量偏離均衡，觀察總剩餘如何改變。</span>");
     const st = { a: 100, c: 10, q: 45, forced: false };
     const P = Plot(s.svg, 80, 130);
     const qe = () => (st.a - st.c) / 2;
@@ -666,57 +719,57 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
       const Qe = qe(), Pe = (st.a + st.c) / 2, a = st.a, c = st.c;
       if (!st.forced) { st.q = Qe; qs.set(Qe); }
       const q = st.q;
-      P.clear(); P.axes('Quantity', 'Price');
+      P.clear(); P.axes("Quantity<span class=\"zh-full\" lang=\"zh-Hant\">數量</span>", "Price<span class=\"zh-full\" lang=\"zh-Hant\">價格</span>");
       const TSe = 0.5 * Qe * (a - c);
       let rows, note;
       if (Math.abs(q - Qe) < 0.26) {
         const CS = 0.5 * Qe * (a - Pe), PS = 0.5 * Qe * (Pe - c);
         P.poly([[0, a], [Qe, Pe], [0, Pe]], 'a-cs'); P.poly([[0, Pe], [Qe, Pe], [0, c]], 'a-ps');
-        P.tag(Qe / 3, Pe + (a - Pe) / 3, 'CS'); P.tag(Qe / 3, Pe - (Pe - c) / 3, 'PS');
-        rows = [{ k: 'Consumer Surplus', v: f1(CS), sw: 'a-cs' }, { k: 'Producer Surplus', v: f1(PS), sw: 'a-ps' },
-          { k: 'Total Surplus', v: f1(TSe), big: true }, { k: 'Deadweight Loss', v: '0', sw: 'a-dwl' }];
-        note = 'At equilibrium every trade with WTP ≥ MC takes place, so total surplus is at its maximum.';
+        P.tag(Qe / 3, Pe + (a - Pe) / 3, "CS<span class=\"zh-full\" lang=\"zh-Hant\">消費者剩餘</span>"); P.tag(Qe / 3, Pe - (Pe - c) / 3, "PS<span class=\"zh-full\" lang=\"zh-Hant\">生產者剩餘</span>");
+        rows = [{ k: "Consumer Surplus<span class=\"zh-full\" lang=\"zh-Hant\">消費者剩餘</span>", v: f1(CS), sw: 'a-cs' }, { k: "Producer Surplus<span class=\"zh-full\" lang=\"zh-Hant\">生產者剩餘</span>", v: f1(PS), sw: 'a-ps' },
+          { k: "Total Surplus<span class=\"zh-full\" lang=\"zh-Hant\">總剩餘</span>", v: f1(TSe), big: true }, { k: "Deadweight Loss<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失</span>", v: '0', sw: 'a-dwl' }];
+        note = "At equilibrium every trade with WTP ≥ MC takes place, so total surplus is at its maximum.<span class=\"zh-full\" lang=\"zh-Hant\">均衡時，所有支付意願不低於邊際成本的交易都會發生，因此總剩餘達最大。</span>";
       } else if (q < Qe) {
         const dwl = 0.5 * (Qe - q) * ((a - q) - (c + q));
         P.poly([[0, a], [q, a - q], [q, c + q], [0, c]], 'a-ts');
         P.poly([[q, a - q], [Qe, Pe], [q, c + q]], 'a-dwl');
-        P.tag((q + Qe) / 2 - 2, Pe, 'DWL');
+        P.tag((q + Qe) / 2 - 2, Pe, "DWL<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失</span>");
         P.guide(q, null, 'Q');
-        rows = [{ k: 'Surplus realized', v: f1(TSe - dwl), sw: 'a-ts' }, { k: 'Max possible', v: f1(TSe) },
-          { k: 'Deadweight Loss', v: f1(dwl), sw: 'a-dwl', big: true }];
-        note = 'Too little trade: between Q and Qe, buyer WTP still exceeds seller cost, yet these trades do not happen.';
+        rows = [{ k: "Surplus realized<span class=\"zh-full\" lang=\"zh-Hant\">已實現剩餘</span>", v: f1(TSe - dwl), sw: 'a-ts' }, { k: "Max possible<span class=\"zh-full\" lang=\"zh-Hant\">可能的最大剩餘</span>", v: f1(TSe) },
+          { k: "Deadweight Loss<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失</span>", v: f1(dwl), sw: 'a-dwl', big: true }];
+        note = "Too little trade: between Q and Qe, buyer WTP still exceeds seller cost, yet these trades do not happen.<span class=\"zh-full\" lang=\"zh-Hant\">交易不足：在 Q 與 Qe 之間，買方支付意願仍高於賣方成本，交易卻未發生。</span>";
       } else {
         const dwl = 0.5 * (q - Qe) * ((c + q) - (a - q));
         P.poly([[0, a], [Qe, Pe], [0, c]], 'a-ts');
         P.poly([[Qe, Pe], [q, c + q], [q, a - q]], 'a-dwl');
-        P.tag((q + Qe) / 2 + 2, Pe, 'DWL');
+        P.tag((q + Qe) / 2 + 2, Pe, "DWL<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失</span>");
         P.guide(q, null, 'Q');
-        rows = [{ k: 'Surplus realized', v: f1(TSe - dwl), sw: 'a-ts' }, { k: 'Max possible', v: f1(TSe) },
-          { k: 'Deadweight Loss', v: f1(dwl), sw: 'a-dwl', big: true }];
-        note = 'Too much trade: beyond Qe, MC > WTP, so every extra unit reduces total surplus.';
+        rows = [{ k: "Surplus realized<span class=\"zh-full\" lang=\"zh-Hant\">已實現剩餘</span>", v: f1(TSe - dwl), sw: 'a-ts' }, { k: "Max possible<span class=\"zh-full\" lang=\"zh-Hant\">可能的最大剩餘</span>", v: f1(TSe) },
+          { k: "Deadweight Loss<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失</span>", v: f1(dwl), sw: 'a-dwl', big: true }];
+        note = "Too much trade: beyond Qe, MC > WTP, so every extra unit reduces total surplus.<span class=\"zh-full\" lang=\"zh-Hant\">交易過多：超過 Qe 後，邊際成本大於支付意願，每多交易一單位都會降低總剩餘。</span>";
       }
       P.lin(a, -1, 'c-d', 'D'); P.lin(c, 1, 'c-s', 'S');
-      P.guide(Qe, Pe, 'Qe', 'Pe'); P.dot(Qe, Pe, 'E');
+      P.guide(Qe, Pe, "Qe<span class=\"zh-full\" lang=\"zh-Hant\">均衡數量</span>", "Pe<span class=\"zh-full\" lang=\"zh-Hant\">均衡價格</span>"); P.dot(Qe, Pe, 'E');
       s.show(rows, note);
     };
-    s.slider('a', 'Demand shift', 80, 120, 1, st.a, v => (v > 100 ? '+' : '') + (v - 100), v => { st.a = v; draw(); });
-    s.slider('c', 'Supply shift', 0, 30, 1, st.c, v => (v > 10 ? '+' : '') + (v - 10), v => { st.c = v; draw(); });
-    const qs = s.slider('q', 'Quantity traded', 5, 70, 0.5, st.q, f1, v => { st.q = v; st.forced = true; draw(); });
-    s.button('Reset to equilibrium', () => { st.forced = false; draw(); });
+    s.slider('a', "Demand shift<span class=\"zh-full\" lang=\"zh-Hant\">需求移動</span>", 80, 120, 1, st.a, v => (v > 100 ? '+' : '') + (v - 100), v => { st.a = v; draw(); });
+    s.slider('c', "Supply shift<span class=\"zh-full\" lang=\"zh-Hant\">供給移動</span>", 0, 30, 1, st.c, v => (v > 10 ? '+' : '') + (v - 10), v => { st.c = v; draw(); });
+    const qs = s.slider('q', "Quantity traded<span class=\"zh-full\" lang=\"zh-Hant\">交易量</span>", 5, 70, 0.5, st.q, f1, v => { st.q = v; st.forced = true; draw(); });
+    s.button("Reset to equilibrium<span class=\"zh-full\" lang=\"zh-Hant\">重設為均衡</span>", () => { st.forced = false; draw(); });
     draw();
   };
 
   /* 2. Tariff in a small open economy */
   W_.tariff = host => {
-    const s = shell(host, 'A tariff transfers surplus and destroys some of it',
-      'Adjust the world price and the tariff to see the domestic price, imports and the welfare areas change.');
+    const s = shell(host, "A tariff transfers surplus and destroys some of it<span class=\"zh-full\" lang=\"zh-Hant\">關稅移轉部分剩餘，也使部分剩餘消失</span>",
+      "Adjust the world price and the tariff to see the domestic price, imports and the welfare areas change.<span class=\"zh-full\" lang=\"zh-Hant\">調整世界價格與關稅，觀察國內價格、進口量與福利面積如何變化。</span>");
     const st = { pw: 25, t: 12 };
     const P = Plot(s.svg, 100, 110);
     const D = p => 100 - p, Sq = p => p - 5, PA = 52.5;
     const draw = () => {
       const pw = st.pw, pt = Math.min(pw + st.t, PA);
       const Q1 = Sq(pw), Q4 = D(pw), Q2 = Sq(pt), Q3 = D(pt), h = pt - pw;
-      P.clear(); P.axes('Quantity', 'Price');
+      P.clear(); P.axes("Quantity<span class=\"zh-full\" lang=\"zh-Hant\">數量</span>", "Price<span class=\"zh-full\" lang=\"zh-Hant\">價格</span>");
       P.poly([[0, 100], [Q3, pt], [0, pt]], 'a-cs');
       P.poly([[0, 5], [Q1, pw], [0, pw]], 'a-ps');
       if (h > 0) {
@@ -724,46 +777,46 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
         P.poly([[Q1, pw], [Q2, pt], [Q2, pw]], 'a-dwl');
         P.poly([[Q2, pw], [Q3, pw], [Q3, pt], [Q2, pt]], 'a-rev');
         P.poly([[Q3, pt], [Q3, pw], [Q4, pw]], 'a-dwl');
-        if (Q3 - Q2 > 6) P.tag((Q2 + Q3) / 2, (pw + pt) / 2, 'Revenue');
+        if (Q3 - Q2 > 6) P.tag((Q2 + Q3) / 2, (pw + pt) / 2, "Revenue<span class=\"zh-full\" lang=\"zh-Hant\">營收</span>");
       }
-      P.lin(100, -1, 'c-d', 'D'); P.lin(5, 1, 'c-s', 'S domestic');
-      P.hline(pw, 'c-w', 'World price');
-      if (h > 0) P.hline(pt, 'c-t', 'With tariff');
+      P.lin(100, -1, 'c-d', 'D'); P.lin(5, 1, 'c-s', "S domestic<span class=\"zh-full\" lang=\"zh-Hant\">本國供給</span>");
+      P.hline(pw, 'c-w', "World price<span class=\"zh-full\" lang=\"zh-Hant\">世界價格</span>");
+      if (h > 0) P.hline(pt, 'c-t', "With tariff<span class=\"zh-full\" lang=\"zh-Hant\">加徵關稅後</span>");
       P.guide(Q1, pw, 'Q1', f1(pw)); P.guide(Q4, pw, 'Q4');
       if (h > 0) { P.guide(Q2, pt, 'Q2', f1(pt)); P.guide(Q3, pt, 'Q3'); }
       const csL = h * (Q3 + Q4) / 2, psG = h * (Q1 + Q2) / 2, rev = h * (Q3 - Q2), dP = 0.5 * (Q2 - Q1) * h, dC = 0.5 * (Q4 - Q3) * h;
       s.show([
-        { k: 'Imports (free trade → tariff)', v: f1(Q4 - Q1) + ' → ' + f1(Q3 - Q2) },
-        { k: 'Consumer Surplus loss', v: '−' + f1(csL), sw: 'a-cs' },
-        { k: 'Producer Surplus gain', v: '+' + f1(psG), sw: 'a-ps2' },
-        { k: 'Government revenue', v: '+' + f1(rev), sw: 'a-rev' },
-        { k: 'DWL: wasted resources', v: f1(dP), sw: 'a-dwl' },
-        { k: 'DWL: lost gains from trade', v: f1(dC), sw: 'a-dwl' },
-        { k: 'Total DWL', v: f1(dP + dC), big: true }
-      ], pt >= PA - 0.01 ? 'Prohibitive tariff: the domestic price returns to the no-trade price and imports fall to zero.'
-        : 'CS loss = PS gain + tariff revenue + two DWL triangles. The first two are transfers; only the DWL is lost to society.');
+        { k: "Imports (free trade → tariff)<span class=\"zh-full\" lang=\"zh-Hant\">進口量（自由貿易 → 課稅後）</span>", v: f1(Q4 - Q1) + ' → ' + f1(Q3 - Q2) },
+        { k: "Consumer Surplus loss<span class=\"zh-full\" lang=\"zh-Hant\">消費者剩餘損失</span>", v: '−' + f1(csL), sw: 'a-cs' },
+        { k: "Producer Surplus gain<span class=\"zh-full\" lang=\"zh-Hant\">生產者剩餘增加</span>", v: '+' + f1(psG), sw: 'a-ps2' },
+        { k: "Government revenue<span class=\"zh-full\" lang=\"zh-Hant\">政府收入</span>", v: '+' + f1(rev), sw: 'a-rev' },
+        { k: "DWL: wasted resources<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失：資源浪費</span>", v: f1(dP), sw: 'a-dwl' },
+        { k: "DWL: lost gains from trade<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失：錯失交易利益</span>", v: f1(dC), sw: 'a-dwl' },
+        { k: "Total DWL<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失合計</span>", v: f1(dP + dC), big: true }
+      ], pt >= PA - 0.01 ? "Prohibitive tariff: the domestic price returns to the no-trade price and imports fall to zero.<span class=\"zh-full\" lang=\"zh-Hant\">禁止性關稅：國內價格回到無貿易時的水準，進口量降為零。</span>"
+        : "CS loss = PS gain + tariff revenue + two DWL triangles. The first two are transfers; only the DWL is lost to society.<span class=\"zh-full\" lang=\"zh-Hant\">消費者剩餘損失＝生產者剩餘增加＋關稅收入＋兩塊無謂損失。前兩者是移轉；只有無謂損失是社會真正失去的價值。</span>");
     };
-    s.slider('pw', 'World price', 10, 50, 1, st.pw, null, v => { st.pw = v; draw(); });
-    s.slider('t', 'Tariff per unit', 0, 40, 1, st.t, null, v => { st.t = v; draw(); });
+    s.slider('pw', "World price<span class=\"zh-full\" lang=\"zh-Hant\">世界價格</span>", 10, 50, 1, st.pw, null, v => { st.pw = v; draw(); });
+    s.slider('t', "Tariff per unit<span class=\"zh-full\" lang=\"zh-Hant\">每單位關稅</span>", 0, 40, 1, st.t, null, v => { st.t = v; draw(); });
     draw();
   };
 
   /* 3. Price ceiling / floor */
   W_.control = host => {
-    const s = shell(host, 'Binding price controls shrink trade',
-      'Choose ceiling or floor and drag the legal price. A ceiling binds only below equilibrium; a floor binds only above it.');
+    const s = shell(host, "Binding price controls shrink trade<span class=\"zh-full\" lang=\"zh-Hant\">有約束力的價格管制減少交易</span>",
+      "Choose ceiling or floor and drag the legal price. A ceiling binds only below equilibrium; a floor binds only above it.<span class=\"zh-full\" lang=\"zh-Hant\">選擇最高或最低限價並拖曳法定價格。最高限價只有低於均衡時有約束力；最低限價只有高於均衡時有約束力。</span>");
     const st = { mode: 'ceiling', p: 35, time: true };
     const P = Plot(s.svg, 100, 110);
     const Qe = 45, Pe = 55, Dq = p => 100 - p, Sq = p => p - 10, Dp = q => 100 - q, Sp = q => 10 + q;
     const draw = () => {
-      const p = st.p; P.clear(); P.axes('Quantity', 'Price');
+      const p = st.p; P.clear(); P.axes("Quantity<span class=\"zh-full\" lang=\"zh-Hant\">數量</span>", "Price<span class=\"zh-full\" lang=\"zh-Hant\">價格</span>");
       const binding = st.mode === 'ceiling' ? p < Pe : p > Pe;
       let rows, note;
       if (!binding) {
         P.poly([[0, 100], [Qe, Pe], [0, Pe]], 'a-cs'); P.poly([[0, Pe], [Qe, Pe], [0, 10]], 'a-ps');
-        rows = [{ k: 'Status', v: 'Non-binding', big: true }, { k: 'Quantity traded', v: f1(Qe) }, { k: 'Deadweight Loss', v: '0', sw: 'a-dwl' }];
-        note = st.mode === 'ceiling' ? 'The ceiling is above the equilibrium price, so the market still clears at Pe. The control has no effect.'
-          : 'The floor is below the equilibrium price, so the market still clears at Pe. The control has no effect.';
+        rows = [{ k: "Status<span class=\"zh-full\" lang=\"zh-Hant\">狀態</span>", v: "Non-binding<span class=\"zh-full\" lang=\"zh-Hant\">無約束力</span>", big: true }, { k: "Quantity traded<span class=\"zh-full\" lang=\"zh-Hant\">交易量</span>", v: f1(Qe) }, { k: "Deadweight Loss<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失</span>", v: '0', sw: 'a-dwl' }];
+        note = st.mode === 'ceiling' ? "The ceiling is above the equilibrium price, so the market still clears at Pe. The control has no effect.<span class=\"zh-full\" lang=\"zh-Hant\">最高限價高於均衡價格，市場仍在 Pe 出清；管制沒有作用。</span>"
+          : "The floor is below the equilibrium price, so the market still clears at Pe. The control has no effect.<span class=\"zh-full\" lang=\"zh-Hant\">最低限價低於均衡價格，市場仍在 Pe 出清；管制沒有作用。</span>";
       } else if (st.mode === 'ceiling') {
         const qs = Sq(p), qd = Dq(p), pd = Dp(qs);
         if (st.time) { P.poly([[0, 100], [qs, pd], [0, pd]], 'a-cs'); P.poly([[0, p], [qs, p], [qs, pd], [0, pd]], 'a-time'); }
@@ -771,193 +824,132 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
         P.poly([[0, p], [qs, p], [0, 10]], 'a-ps');
         P.poly([[qs, pd], [Qe, Pe], [qs, Pe]], 'a-dwl'); P.poly([[qs, Pe], [Qe, Pe], [qs, p]], 'a-dwl');
         P.tag(qs + (Qe - qs) / 3, Pe + (pd - Pe) / 3, 'A'); P.tag(qs + (Qe - qs) / 3, Pe - (Pe - p) / 3, 'B');
-        if (st.time && qs > 8) P.tag(qs / 2, (p + pd) / 2, 'Wasted time');
-        P.hline(p, 'c-t', 'Ceiling');
-        P.guide(qs, p, 'Qs', f1(p)); P.guide(qd, p, 'Qd');
+        if (st.time && qs > 8) P.tag(qs / 2, (p + pd) / 2, "Wasted time<span class=\"zh-full\" lang=\"zh-Hant\">浪費的時間</span>");
+        P.hline(p, 'c-t', "Ceiling<span class=\"zh-full\" lang=\"zh-Hant\">價格上限</span>");
+        P.guide(qs, p, "Qs<span class=\"zh-full\" lang=\"zh-Hant\">供給量</span>", f1(p)); P.guide(qd, p, "Qd<span class=\"zh-full\" lang=\"zh-Hant\">需求量</span>");
         const A = 0.5 * (Qe - qs) * (pd - Pe), Bv = 0.5 * (Qe - qs) * (Pe - p);
-        rows = [{ k: 'Shortage = Qd − Qs', v: f1(qd - qs), big: true },
-          { k: 'A: lost Consumer Surplus', v: f1(A), sw: 'a-dwl' }, { k: 'B: lost Producer Surplus', v: f1(Bv), sw: 'a-dwl' },
-          { k: 'DWL = A + B', v: f1(A + Bv) }];
-        if (st.time) rows.push({ k: 'Wasted time / search (max)', v: f1(qs * (pd - p)), sw: 'a-time' });
-        note = 'Only Qs units are supplied. The marginal buyer would pay up to ' + f1(pd) + ', so the gap turns into queues, search and other non-price costs.';
+        rows = [{ k: "Shortage = Qd − Qs<span class=\"zh-full\" lang=\"zh-Hant\">短缺＝需求量－供給量</span>", v: f1(qd - qs), big: true },
+          { k: "A: lost Consumer Surplus<span class=\"zh-full\" lang=\"zh-Hant\">A：損失的消費者剩餘</span>", v: f1(A), sw: 'a-dwl' }, { k: "B: lost Producer Surplus<span class=\"zh-full\" lang=\"zh-Hant\">B：損失的生產者剩餘</span>", v: f1(Bv), sw: 'a-dwl' },
+          { k: "DWL = A + B<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失＝A＋B</span>", v: f1(A + Bv) }];
+        if (st.time) rows.push({ k: "Wasted time / search (max)<span class=\"zh-full\" lang=\"zh-Hant\">浪費的時間／搜尋成本（最大值）</span>", v: f1(qs * (pd - p)), sw: 'a-time' });
+        note=biPair('Only Qs units are supplied. The marginal buyer would pay up to '+f1(pd)+', so the gap turns into queues, search and other non-price costs.','供給只有 Qs 單位；邊際買家最多願付 '+f1(pd)+'，因此價差轉為排隊、搜尋及其他非價格成本。');
       } else {
         const qd = Dq(p), qs = Sq(p), ps = Sp(qd);
         P.poly([[0, 100], [qd, p], [0, p]], 'a-cs'); P.poly([[0, p], [qd, p], [qd, ps], [0, 10]], 'a-ps');
         P.poly([[qd, p], [Qe, Pe], [qd, Pe]], 'a-dwl'); P.poly([[qd, Pe], [Qe, Pe], [qd, ps]], 'a-dwl');
         P.tag(qd + (Qe - qd) / 3, Pe + (p - Pe) / 3, 'A'); P.tag(qd + (Qe - qd) / 3, Pe - (Pe - ps) / 3, 'B');
-        P.hline(p, 'c-t', 'Floor');
-        P.guide(qd, p, 'Qd', f1(p)); P.guide(qs, p, 'Qs');
+        P.hline(p, 'c-t', "Floor<span class=\"zh-full\" lang=\"zh-Hant\">價格下限</span>");
+        P.guide(qd, p, "Qd<span class=\"zh-full\" lang=\"zh-Hant\">需求量</span>", f1(p)); P.guide(qs, p, "Qs<span class=\"zh-full\" lang=\"zh-Hant\">供給量</span>");
         const A = 0.5 * (Qe - qd) * (p - Pe), Bv = 0.5 * (Qe - qd) * (Pe - ps);
-        rows = [{ k: 'Surplus = Qs − Qd', v: f1(qs - qd), big: true },
-          { k: 'A: lost Consumer Surplus', v: f1(A), sw: 'a-dwl' }, { k: 'B: lost Producer Surplus', v: f1(Bv), sw: 'a-dwl' },
-          { k: 'DWL = A + B', v: f1(A + Bv) }];
-        note = 'Only Qd units are bought; sellers cannot sell the rest. Example: unemployment under a minimum wage.';
+        rows = [{ k: "Surplus = Qs − Qd<span class=\"zh-full\" lang=\"zh-Hant\">過剩＝供給量－需求量</span>", v: f1(qs - qd), big: true },
+          { k: "A: lost Consumer Surplus<span class=\"zh-full\" lang=\"zh-Hant\">A：損失的消費者剩餘</span>", v: f1(A), sw: 'a-dwl' }, { k: "B: lost Producer Surplus<span class=\"zh-full\" lang=\"zh-Hant\">B：損失的生產者剩餘</span>", v: f1(Bv), sw: 'a-dwl' },
+          { k: "DWL = A + B<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失＝A＋B</span>", v: f1(A + Bv) }];
+        note = "Only Qd units are bought; sellers cannot sell the rest. Example: unemployment under a minimum wage.<span class=\"zh-full\" lang=\"zh-Hant\">只有 Qd 單位被買走；其餘賣不出去。例如最低工資下的失業。</span>";
       }
-      P.lin(100, -1, 'c-d', 'D'); P.lin(10, 1, 'c-s', 'S'); P.guide(Qe, Pe, null, 'Pe'); P.dot(Qe, Pe, 'E');
+      P.lin(100, -1, 'c-d', 'D'); P.lin(10, 1, 'c-s', 'S'); P.guide(Qe, Pe, null, "Pe<span class=\"zh-full\" lang=\"zh-Hant\">均衡價格</span>"); P.dot(Qe, Pe, 'E');
       s.show(rows, note);
     };
-    s.seg('mode', [['ceiling', 'Price Ceiling'], ['floor', 'Price Floor']], st.mode, v => {
+    s.seg('mode', [['ceiling', "Price Ceiling<span class=\"zh-full\" lang=\"zh-Hant\">最高限價</span>"], ['floor', "Price Floor<span class=\"zh-full\" lang=\"zh-Hant\">最低限價</span>"]], st.mode, v => {
       st.mode = v; const np = v === 'ceiling' ? 35 : 75; st.p = np; ps.set(np); draw();
     });
-    const ps = s.slider('p', 'Legal price', 15, 95, 1, st.p, null, v => { st.p = v; draw(); });
-    s.check('time', 'Show wasted time (ceiling)', st.time, v => { st.time = v; draw(); });
+    const ps = s.slider('p', "Legal price<span class=\"zh-full\" lang=\"zh-Hant\">法定價格</span>", 15, 95, 1, st.p, null, v => { st.p = v; draw(); });
+    s.check('time', "Show wasted time (ceiling)<span class=\"zh-full\" lang=\"zh-Hant\">顯示浪費的時間（最高限價）</span>", st.time, v => { st.time = v; draw(); });
     draw();
   };
 
   /* 4. Negative externality + Pigouvian tax */
   W_.negext = host => {
-    const s = shell(host, 'A Pigouvian tax corrects overproduction',
-      'Raise the external cost, then use a tax to lift private cost up to social cost.');
+    const s = shell(host, "A Pigouvian tax corrects overproduction<span class=\"zh-full\" lang=\"zh-Hant\">庇古稅矯正過度生產</span>",
+      "Raise the external cost, then use a tax to lift private cost up to social cost.<span class=\"zh-full\" lang=\"zh-Hant\">提高外部成本，再以稅使私人成本上升至社會成本。</span>");
     const st = { e: 25, t: 0 };
     const P = Plot(s.svg, 100, 110);
     const draw = () => {
       const e = st.e, t = st.t, Qm = (90 - t) / 2, Qf = (90 - e) / 2;
-      P.clear(); P.axes('Quantity', 'Price / Cost');
+      P.clear(); P.axes("Quantity<span class=\"zh-full\" lang=\"zh-Hant\">數量</span>", "Price / Cost<span class=\"zh-full\" lang=\"zh-Hant\">價格／成本</span>");
       const dwl = 0.5 * Math.abs(Qm - Qf) * Math.abs(e - t);
       if (dwl > 0.01) {
         P.poly([[Qf, 100 - Qf], [Qm, 100 - Qm], [Qm, 10 + e + Qm]], 'a-dwl');
-        P.tag((2 * Qm + Qf) / 3, ((100 - Qf) + (100 - Qm) + (10 + e + Qm)) / 3, 'DWL');
+        P.tag((2 * Qm + Qf) / 3, ((100 - Qf) + (100 - Qm) + (10 + e + Qm)) / 3, "DWL<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失</span>");
       }
-      P.lin(100, -1, 'c-d', 'D = MPB'); P.lin(10, 1, 'c-s', 'MPC'); P.lin(10 + e, 1, 'c-x', 'MSC');
-      if (t > 0) P.lin(10 + t, 1, 'c-t', 'MPC + tax', true);
-      P.guide(Qm, 100 - Qm, 'Q mkt', null); P.dot(Qm, 100 - Qm, 'Market');
-      P.guide(Qf, 100 - Qf, 'Q eff', null); P.dot(Qf, 100 - Qf, 'Efficient', true);
+      P.lin(100, -1, 'c-d', "D = MPB<span class=\"zh-full\" lang=\"zh-Hant\">需求＝邊際私人利益</span>"); P.lin(10, 1, 'c-s', "MPC<span class=\"zh-full\" lang=\"zh-Hant\">邊際私人成本</span>"); P.lin(10 + e, 1, 'c-x', "MSC<span class=\"zh-full\" lang=\"zh-Hant\">邊際社會成本</span>");
+      if (t > 0) P.lin(10 + t, 1, 'c-t', "MPC + tax<span class=\"zh-full\" lang=\"zh-Hant\">邊際私人成本＋稅</span>", true);
+      P.guide(Qm, 100 - Qm, "Q mkt<span class=\"zh-full\" lang=\"zh-Hant\">市場數量</span>", null); P.dot(Qm, 100 - Qm, "Market<span class=\"zh-full\" lang=\"zh-Hant\">市場</span>");
+      P.guide(Qf, 100 - Qf, "Q eff<span class=\"zh-full\" lang=\"zh-Hant\">效率數量</span>", null); P.dot(Qf, 100 - Qf, "Efficient<span class=\"zh-full\" lang=\"zh-Hant\">效率點</span>", true);
       let note;
-      if (Math.abs(t - e) < 0.5) note = 'Tax = marginal external cost: decision-makers now face the full social cost, Q returns to the efficient level and the DWL disappears.';
-      else if (t < e) note = 'Tax below the external cost: decision-makers still understate cost, so Q market > Q efficient (overproduction).';
-      else note = 'Tax above the external cost: output falls below the efficient level, which also creates DWL.';
-      s.show([{ k: 'Q market', v: f1(Qm) }, { k: 'Q efficient', v: f1(Qf) },
-        { k: 'Deadweight Loss', v: f1(dwl), sw: 'a-dwl', big: true }, { k: 'Tax revenue', v: f1(t * Qm), sw: 'a-rev' }], note);
+      if (Math.abs(t - e) < 0.5) note = "Tax = marginal external cost: decision-makers now face the full social cost, Q returns to the efficient level and the DWL disappears.<span class=\"zh-full\" lang=\"zh-Hant\">稅額等於邊際外部成本：決策者面對完整社會成本，交易量回到效率水準，無謂損失消失。</span>";
+      else if (t < e) note = "Tax below the external cost: decision-makers still understate cost, so Q market > Q efficient (overproduction).<span class=\"zh-full\" lang=\"zh-Hant\">稅額低於外部成本：決策者仍低估成本，市場數量高於效率數量（生產過多）。</span>";
+      else note = "Tax above the external cost: output falls below the efficient level, which also creates DWL.<span class=\"zh-full\" lang=\"zh-Hant\">稅額高於外部成本：產量低於效率水準，同樣造成無謂損失。</span>";
+      s.show([{ k: "Q market<span class=\"zh-full\" lang=\"zh-Hant\">市場數量</span>", v: f1(Qm) }, { k: "Q efficient<span class=\"zh-full\" lang=\"zh-Hant\">效率數量</span>", v: f1(Qf) },
+        { k: "Deadweight Loss<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失</span>", v: f1(dwl), sw: 'a-dwl', big: true }, { k: "Tax revenue<span class=\"zh-full\" lang=\"zh-Hant\">稅收</span>", v: f1(t * Qm), sw: 'a-rev' }], note);
     };
-    s.slider('e', 'External cost per unit', 0, 50, 1, st.e, null, v => { st.e = v; draw(); });
-    const ts = s.slider('t', 'Pigouvian tax per unit', 0, 60, 1, st.t, null, v => { st.t = v; draw(); });
-    s.button('Tax = external cost', () => { st.t = st.e; ts.set(st.e); draw(); });
+    s.slider('e', "External cost per unit<span class=\"zh-full\" lang=\"zh-Hant\">每單位外部成本</span>", 0, 50, 1, st.e, null, v => { st.e = v; draw(); });
+    const ts = s.slider('t', "Pigouvian tax per unit<span class=\"zh-full\" lang=\"zh-Hant\">每單位庇古稅</span>", 0, 60, 1, st.t, null, v => { st.t = v; draw(); });
+    s.button("Tax = external cost<span class=\"zh-full\" lang=\"zh-Hant\">稅額＝外部成本</span>", () => { st.t = st.e; ts.set(st.e); draw(); });
     draw();
   };
 
   /* 5. Positive externality + subsidy */
   W_.posext = host => {
-    const s = shell(host, 'A subsidy corrects underproduction',
-      'Raise the external benefit, then use a subsidy to lift private benefit up to social benefit.');
+    const s = shell(host, "A subsidy corrects underproduction<span class=\"zh-full\" lang=\"zh-Hant\">補貼矯正生產不足</span>",
+      "Raise the external benefit, then use a subsidy to lift private benefit up to social benefit.<span class=\"zh-full\" lang=\"zh-Hant\">提高外部利益，再以補貼使私人利益上升至社會利益。</span>");
     const st = { e: 20, s: 0 };
     const P = Plot(s.svg, 100, 110);
     const draw = () => {
       const e = st.e, sb = st.s, Qm = (70 + sb) / 2, Qs = (70 + e) / 2;
-      P.clear(); P.axes('Quantity', 'Price / Benefit');
+      P.clear(); P.axes("Quantity<span class=\"zh-full\" lang=\"zh-Hant\">數量</span>", "Price / Benefit<span class=\"zh-full\" lang=\"zh-Hant\">價格／利益</span>");
       const dwl = 0.5 * Math.abs(Qm - Qs) * Math.abs(e - sb);
       if (dwl > 0.01) {
         P.poly([[Qs, 10 + Qs], [Qm, 10 + Qm], [Qm, 80 + e - Qm]], 'a-dwl');
-        P.tag((2 * Qm + Qs) / 3, ((10 + Qs) + (10 + Qm) + (80 + e - Qm)) / 3, 'DWL');
+        P.tag((2 * Qm + Qs) / 3, ((10 + Qs) + (10 + Qm) + (80 + e - Qm)) / 3, "DWL<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失</span>");
       }
-      P.lin(80, -1, 'c-d', 'D = MPB'); P.lin(80 + e, -1, 'c-x', 'MSB'); P.lin(10, 1, 'c-s', 'S');
-      if (sb > 0) P.lin(80 + sb, -1, 'c-t', 'MPB + subsidy', true);
-      P.guide(Qm, 10 + Qm, 'Q mkt', null); P.dot(Qm, 10 + Qm, 'Market');
-      P.guide(Qs, 10 + Qs, 'Q soc', null); P.dot(Qs, 10 + Qs, 'Social', true);
+      P.lin(80, -1, 'c-d', "D = MPB<span class=\"zh-full\" lang=\"zh-Hant\">需求＝邊際私人利益</span>"); P.lin(80 + e, -1, 'c-x', "MSB<span class=\"zh-full\" lang=\"zh-Hant\">邊際社會利益</span>"); P.lin(10, 1, 'c-s', 'S');
+      if (sb > 0) P.lin(80 + sb, -1, 'c-t', "MPB + subsidy<span class=\"zh-full\" lang=\"zh-Hant\">邊際私人利益＋補貼</span>", true);
+      P.guide(Qm, 10 + Qm, "Q mkt<span class=\"zh-full\" lang=\"zh-Hant\">市場數量</span>", null); P.dot(Qm, 10 + Qm, "Market<span class=\"zh-full\" lang=\"zh-Hant\">市場</span>");
+      P.guide(Qs, 10 + Qs, "Q soc<span class=\"zh-full\" lang=\"zh-Hant\">社會最適數量</span>", null); P.dot(Qs, 10 + Qs, "Social<span class=\"zh-full\" lang=\"zh-Hant\">社會最適</span>", true);
       let note;
-      if (Math.abs(sb - e) < 0.5) note = 'Subsidy = marginal external benefit: Q returns to the social optimum and the DWL disappears.';
-      else if (sb < e) note = 'The market counts only private benefit, so Q market < Q social (too little vaccination, education or R&D).';
-      else note = 'A subsidy above the external benefit pushes quantity too high, which also creates DWL.';
-      s.show([{ k: 'Q market', v: f1(Qm) }, { k: 'Q social', v: f1(Qs) },
-        { k: 'Deadweight Loss', v: f1(dwl), sw: 'a-dwl', big: true }, { k: 'Subsidy cost', v: f1(sb * Qm), sw: 'a-rev' }], note);
+      if (Math.abs(sb - e) < 0.5) note = "Subsidy = marginal external benefit: Q returns to the social optimum and the DWL disappears.<span class=\"zh-full\" lang=\"zh-Hant\">補貼等於邊際外部利益：數量回到社會最適水準，無謂損失消失。</span>";
+      else if (sb < e) note = "The market counts only private benefit, so Q market < Q social (too little vaccination, education or R&D).<span class=\"zh-full\" lang=\"zh-Hant\">市場只計入私人利益，所以市場數量低於社會最適數量（疫苗、教育或研發投入過少）。</span>";
+      else note = "A subsidy above the external benefit pushes quantity too high, which also creates DWL.<span class=\"zh-full\" lang=\"zh-Hant\">補貼高於外部利益使產量過高，同樣造成無謂損失。</span>";
+      s.show([{ k: "Q market<span class=\"zh-full\" lang=\"zh-Hant\">市場數量</span>", v: f1(Qm) }, { k: "Q social<span class=\"zh-full\" lang=\"zh-Hant\">社會最適數量</span>", v: f1(Qs) },
+        { k: "Deadweight Loss<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失</span>", v: f1(dwl), sw: 'a-dwl', big: true }, { k: "Subsidy cost<span class=\"zh-full\" lang=\"zh-Hant\">補貼成本</span>", v: f1(sb * Qm), sw: 'a-rev' }], note);
     };
-    s.slider('e', 'External benefit per unit', 0, 40, 1, st.e, null, v => { st.e = v; draw(); });
-    const ss = s.slider('s', 'Subsidy per unit', 0, 50, 1, st.s, null, v => { st.s = v; draw(); });
-    s.button('Subsidy = external benefit', () => { st.s = st.e; ss.set(st.e); draw(); });
+    s.slider('e', "External benefit per unit<span class=\"zh-full\" lang=\"zh-Hant\">每單位外部利益</span>", 0, 40, 1, st.e, null, v => { st.e = v; draw(); });
+    const ss = s.slider('s', "Subsidy per unit<span class=\"zh-full\" lang=\"zh-Hant\">每單位補貼</span>", 0, 50, 1, st.s, null, v => { st.s = v; draw(); });
+    s.button("Subsidy = external benefit<span class=\"zh-full\" lang=\"zh-Hant\">補貼＝外部利益</span>", () => { st.s = st.e; ss.set(st.e); draw(); });
     draw();
   };
 
   /* 6. Tax incidence */
   W_.tax = host => {
-    const s = shell(host, 'The less elastic side bears more of a tax',
-      'Change each curve\'s slope and the tax. A steeper curve is less elastic and carries a larger share of the burden.');
+    const s = shell(host, "The less elastic side bears more of a tax<span class=\"zh-full\" lang=\"zh-Hant\">彈性較低的一方承擔較多稅負</span>",
+      "Change each curve's slope and the tax. A steeper curve is less elastic and carries a larger share of the burden.<span class=\"zh-full\" lang=\"zh-Hant\">改變兩條曲線斜率和稅額；曲線越陡，彈性越低，承擔的稅負越多。</span>");
     const st = { b: 1, d: 1, t: 20 };
     const svg = s.svg;
     const draw = () => {
       const { b, d, t } = st, Qe = 90 / (b + d), Pe = 100 - b * Qe, Qt = (90 - t) / (b + d), Pb = 100 - b * Qt, Ps = Pb - t;
       svg.innerHTML = '';
       const P = Plot(svg, Math.max(40, Math.ceil(Qe * 1.7 / 10) * 10), 110);
-      P.axes('Quantity', 'Price');
+      P.axes("Quantity<span class=\"zh-full\" lang=\"zh-Hant\">數量</span>", "Price<span class=\"zh-full\" lang=\"zh-Hant\">價格</span>");
       P.poly([[0, Pe], [Qt, Pe], [Qt, Pb], [0, Pb]], 'a-rev');
       P.poly([[0, Ps], [Qt, Ps], [Qt, Pe], [0, Pe]], 'a-rev2');
       P.poly([[Qt, Pb], [Qe, Pe], [Qt, Ps]], 'a-dwl');
-      P.lin(100, -b, 'c-d', 'D'); P.lin(10, d, 'c-s', 'S'); P.lin(10 + t, d, 'c-t', 'S + tax', true);
-      P.guide(Qt, Pb, 'Qt', 'Pb ' + f1(Pb)); P.guide(Qt, Ps, null, 'Ps ' + f1(Ps)); P.guide(Qe, Pe, 'Qe', 'Pe');
+      P.lin(100, -b, 'c-d', 'D'); P.lin(10, d, 'c-s', 'S'); P.lin(10 + t, d, 'c-t', "S + tax<span class=\"zh-full\" lang=\"zh-Hant\">供給＋稅</span>", true);
+      P.guide(Qt, Pb, "Qt<span class=\"zh-full\" lang=\"zh-Hant\">課稅後數量</span>", "Pb <span class=\"zh-full\" lang=\"zh-Hant\">買方支付價格</span>" + f1(Pb)); P.guide(Qt, Ps, null, "Ps <span class=\"zh-full\" lang=\"zh-Hant\">賣方實收價格</span>" + f1(Ps)); P.guide(Qe, Pe, "Qe<span class=\"zh-full\" lang=\"zh-Hant\">均衡數量</span>", "Pe<span class=\"zh-full\" lang=\"zh-Hant\">均衡價格</span>");
       P.dot(Qe, Pe);
       const bb = Pb - Pe, sbur = Pe - Ps;
-      s.show([{ k: 'Buyers pay more', v: '+' + f1(bb) + ' (' + pct(t ? bb / t : 0) + ')', sw: 'a-rev' },
-        { k: 'Sellers receive less', v: '−' + f1(sbur) + ' (' + pct(t ? sbur / t : 0) + ')', sw: 'a-rev2' },
-        { k: 'Tax revenue', v: f1(t * Qt) }, { k: 'Deadweight Loss', v: f1(0.5 * t * (Qe - Qt)), sw: 'a-dwl', big: true }],
-        b > d + 0.05 ? 'Demand is steeper (less elastic), so buyers bear more. Who legally pays the tax does not change who bears it.'
-          : d > b + 0.05 ? 'Supply is steeper (less elastic), so sellers bear more.'
-            : 'Equal slopes: the burden splits evenly.');
+      s.show([{ k: "Buyers pay more<span class=\"zh-full\" lang=\"zh-Hant\">買方多付</span>", v: '+' + f1(bb) + ' (' + pct(t ? bb / t : 0) + ')', sw: 'a-rev' },
+        { k: "Sellers receive less<span class=\"zh-full\" lang=\"zh-Hant\">賣方少收</span>", v: '−' + f1(sbur) + ' (' + pct(t ? sbur / t : 0) + ')', sw: 'a-rev2' },
+        { k: "Tax revenue<span class=\"zh-full\" lang=\"zh-Hant\">稅收</span>", v: f1(t * Qt) }, { k: "Deadweight Loss<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失</span>", v: f1(0.5 * t * (Qe - Qt)), sw: 'a-dwl', big: true }],
+        b > d + 0.05 ? "Demand is steeper (less elastic), so buyers bear more. Who legally pays the tax does not change who bears it.<span class=\"zh-full\" lang=\"zh-Hant\">需求較陡峭（較缺乏彈性），因此買方負擔較多。法律規定由誰繳稅，不會改變實際由誰承擔稅負。</span>"
+          : d > b + 0.05 ? "Supply is steeper (less elastic), so sellers bear more.<span class=\"zh-full\" lang=\"zh-Hant\">供給較陡峭（較缺乏彈性），因此賣方負擔較多。</span>"
+            : "Equal slopes: the burden splits evenly.<span class=\"zh-full\" lang=\"zh-Hant\">斜率相同：稅負由雙方平均分擔。</span>");
     };
-    s.slider('b', 'Demand slope', 0.4, 3, 0.1, st.b, v => v.toFixed(1), v => { st.b = v; draw(); });
-    s.slider('d', 'Supply slope', 0.4, 3, 0.1, st.d, v => v.toFixed(1), v => { st.d = v; draw(); });
-    s.slider('t', 'Tax per unit', 0, 40, 1, st.t, null, v => { st.t = v; draw(); });
+    s.slider('b', "Demand slope<span class=\"zh-full\" lang=\"zh-Hant\">需求曲線斜率</span>", 0.4, 3, 0.1, st.b, v => v.toFixed(1), v => { st.b = v; draw(); });
+    s.slider('d', "Supply slope<span class=\"zh-full\" lang=\"zh-Hant\">供給曲線斜率</span>", 0.4, 3, 0.1, st.d, v => v.toFixed(1), v => { st.d = v; draw(); });
+    s.slider('t', "Tax per unit<span class=\"zh-full\" lang=\"zh-Hant\">每單位稅額</span>", 0, 40, 1, st.t, null, v => { st.t = v; draw(); });
     draw();
   };
 
-
-  /* Professor's oil-well cost table (CMMU Slides 6-8) */
-  const OIL = { FC: 35, VC: [0, 2, 7, 17, 34, 58, 88, 123, 172, 247, 349, 479, 629] };
-  OIL.TC = OIL.VC.map(v => v + OIL.FC);
-  OIL.MC = OIL.TC.map((t, i) => i ? t - OIL.TC[i - 1] : null);
-  function bestQ(P) { let b = 0, bp = -OIL.FC; for (let q = 1; q <= 12; q++) { const p = P * q - OIL.TC[q]; if (p > bp) { bp = p; b = q; } } return [b, bp]; }
-
-  W_.oil = host => {
-    const s = shell(host, 'One oil well: how many barrels?', 'Drag the market price. The firm compares each barrel\'s marginal cost with the price, using the cost table from the class slides.');
-    const st = { p: 50 };
-    const P = Plot(s.svg, 12.5, 160);
-    const draw = () => {
-      const p = st.p, [q, pi] = bestQ(p);
-      P.clear(); P.yticks([50, 100, 150], '$'); P.axes('Barrels per day', 'Dollars');
-      P.xticks([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
-      if (q > 0) {
-        const atc = OIL.TC[q] / q;
-        P.poly([[0, Math.min(p, 160)], [q, Math.min(p, 160)], [q, Math.min(atc, 160)], [0, Math.min(atc, 160)]], pi >= 0 ? 'a-prof' : 'a-loss');
-        P.guide(q, Math.min(p, 160), null, null);
-      }
-      const mcPts = [], acPts = [], avcPts = [];
-      for (let i = 1; i <= 12; i++) { mcPts.push([i, OIL.MC[i]]); acPts.push([i, OIL.TC[i] / i]); avcPts.push([i, OIL.VC[i] / i]); }
-      P.path(mcPts.filter(x => x[1] <= 160), 'c-s'); P.path(acPts, 'c-d'); P.path(avcPts, 'c-d dash');
-      P.label(10.4, 155, 'MC', 'c-s'); P.label(10.3, 60, 'AC', 'c-d'); P.label(11.2, 34, 'AVC', 'c-d');
-      P.hline(Math.min(p, 160), 'c-t', 'P = MR');
-      mcPts.forEach(([i, m]) => { if (m <= 160) P.dot(i, m); });
-      const tr = p * q, tc = OIL.TC[q];
-      let status, note;
-      if (q === 0) { status = 'Shut down'; note = 'Even the first barrel costs more than the price ($2). Producing nothing limits the loss to the $35 fixed cost.'; }
-      else if (pi < 0) { status = 'Loss, keep operating'; note = 'Price is below average cost, so the firm loses money. But revenue covers variable cost, so producing loses less than shutting down (−$35).'; }
-      else { status = 'Profit'; note = 'Barrel ' + q + ' costs $' + OIL.MC[q] + ' ≤ $' + p + '. ' + (q < 12 ? 'Barrel ' + (q + 1) + ' would cost $' + OIL.MC[q + 1] + ' > $' + p + ', so stop at ' + q + '.' : ''); }
-      s.show([{ k: 'Best output q*', v: q + ' barrels', big: true }, { k: 'Revenue P × q', v: '$' + tr }, { k: 'Total cost', v: '$' + tc },
-        { k: 'Profit TR − TC', v: (pi < 0 ? '−$' : '$') + Math.abs(pi), sw: pi >= 0 ? 'a-prof' : 'a-loss' }, { k: 'Decision', v: status }], note);
-    };
-    const ps = s.slider('p', 'Market price per barrel', 1, 150, 1, st.p, v => '$' + v, v => { st.p = v; draw(); });
-    s.button('Slide price $50', () => { st.p = 50; ps.set(50); draw(); });
-    s.button('Slide price $100', () => { st.p = 100; ps.set(100); draw(); });
-    draw();
-  };
-
-  W_.taker = host => {
-    const s = shell(host, 'The market sets the price; the firm picks the quantity', 'Shift market demand. The new market price becomes the firm\'s horizontal demand line.');
-    host.classList.add('wide');
-    const plot = host.querySelector('.g-plot');
-    plot.innerHTML = '<div class="twin"><div><p class="tw-t">Market for oil</p><svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Market"></svg></div><div><p class="tw-t">One oil well</p><svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Firm"></svg></div></div>';
-    const [m, f] = plot.querySelectorAll('svg');
-    const k = 40 / 82, st = { a: 90 };
-    const M = Plot(m, 200, 160), F = Plot(f, 12.5, 160);
-    const draw = () => {
-      const a = st.a, Qe = (a - 10) / (2 * k), Pe = 10 + k * Qe, [q, pi] = bestQ(Pe);
-      M.clear(); M.axes('Million barrels', 'Price'); M.lin(a, -k, 'c-d', 'D'); M.lin(10, k, 'c-s', 'S'); M.guide(Qe, Pe, f1(Qe) + 'M', '$' + f1(Pe)); M.dot(Qe, Pe);
-      F.clear(); F.axes('Barrels per day', 'Price');
-      const mc = []; for (let i = 1; i <= 12; i++) if (OIL.MC[i] <= 160) mc.push([i, OIL.MC[i]]);
-      F.path(mc, 'c-s'); F.label(10.4, 155, 'MC', 'c-s'); F.hline(Pe, 'c-t', 'd = MR = P');
-      if (q) { F.guide(q, Pe, 'q* = ' + q, '$' + f1(Pe)); F.dot(q, Pe); }
-      s.show([{ k: 'Market price', v: '$' + f1(Pe) }, { k: 'Market quantity', v: f1(Qe) + ' million' }, { k: 'This firm produces', v: q + ' barrels', big: true }, { k: 'Firm profit', v: (pi < 0 ? '−$' : '$') + f1(Math.abs(pi)) }],
-        'One well\'s ' + q + ' barrels cannot move a market of ' + f1(Qe) + ' million barrels, so the firm takes $' + f1(Pe) + ' as given and only chooses its own output.');
-    };
-    s.slider('a', 'Market demand', 60, 150, 1, st.a, v => (v > 90 ? '+' : '') + (v - 90), v => { st.a = v; draw(); });
-    draw();
-  };
 
   window.EconWidgets = { mount(root) { root.querySelectorAll('[data-widget]').forEach(h => { const f = W_[h.dataset.widget]; if (f && !h.dataset.ready) { h.dataset.ready = 1; f(h); } }); } };
 })();
@@ -968,7 +960,7 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
   const hs = [...document.querySelectorAll('.doc > h2, .doc > h3')];
   hs.forEach(h => {
     const li = document.createElement('li'); li.className = h.tagName.toLowerCase(); li.dataset.id = h.id;
-    const a = document.createElement('a'); a.href = '#' + h.id; a.textContent = h.childNodes[0].textContent.trim();
+    const a = document.createElement('a'); a.href = '#' + h.id; a.innerHTML=biPair(h.childNodes[0].textContent.trim(),h.querySelector(':scope > .zh-full')?.textContent||'');
     li.appendChild(a); toc.appendChild(li);
   });
   const spy = new IntersectionObserver(es => es.forEach(e => {
@@ -985,7 +977,7 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
   const all = document.getElementById('qaAll');
   if (all) all.addEventListener('click', () => {
     const ds = document.querySelectorAll('.qa details'), open = ![...ds].every(d => d.open);
-    ds.forEach(d => d.open = open); all.textContent = open ? 'Hide all answers' : 'Show all answers';
+    ds.forEach(d => d.open = open); all.innerHTML=biPair(open?'Hide all answers':'Show all answers',open?'收合全部答案':'顯示全部答案');
   });
   document.querySelectorAll('.drill .ans').forEach(s => s.addEventListener('click', () => s.classList.toggle('shown')));
 
@@ -995,38 +987,13 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 </script>
 <script>
 (function(){
- const key='study-notes-show-zh', toggle=document.getElementById('zhToggle'), modeLabel=document.getElementById('zhModeLabel');
- function set(on){document.body.classList.toggle('show-zh',on);toggle.checked=on;modeLabel.textContent=on?'ON':'OFF';toggle.title=on?'隱藏完整繁體中文對照（保留原有中文註解）':'顯示完整繁體中文對照（保留英文）';try{localStorage.setItem(key,on?'1':'0')}catch(e){}}
- let saved=false;try{saved=localStorage.getItem(key)==='1'}catch(e){}
- set(saved);toggle.addEventListener('change',()=>set(toggle.checked));
- const header=document.querySelector('.top');
- function measureHeader(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
- measureHeader();window.addEventListener('resize',measureHeader);
- if('ResizeObserver' in window)new ResizeObserver(measureHeader).observe(header);
- const dict={"Interactive graph": "互動圖表", "Interactive": "互動練習", "Case lens": "個案視角", "Team view": "小組視角", "Classify": "分類練習", "Compare": "比較", "Gains from trade peak at equilibrium": "均衡時交易利益最大", "A tariff transfers surplus and destroys some of it": "關稅移轉部分剩餘，也使部分剩餘消失", "Binding price controls shrink trade": "有約束力的價格管制減少交易", "A Pigouvian tax corrects overproduction": "庇古稅矯正過度生產", "A subsidy corrects underproduction": "補貼矯正生產不足", "The less elastic side bears more of a tax": "彈性較低的一方承擔較多稅負", "One oil well: how many barrels?": "一口油井應生產幾桶？", "Drag the market price. The firm compares each barrel's marginal cost with the price, using the cost table from the class slides.": "拖曳市場價格。廠商根據課堂成本表，比較每桶的邊際成本與價格。", "The market sets the price; the firm picks the quantity": "市場決定價格，單一廠商決定產量", "Shift market demand. The new market price becomes the firm's horizontal demand line.": "改變市場需求；新的市場價格會成為單一廠商的水平需求線。", "Quantity": "數量", "Price": "價格", "Market price": "市場價格", "Tariff": "關稅", "Tax": "稅", "Subsidy": "補貼", "World price": "世界價格", "Domestic price": "國內價格", "Consumer surplus": "消費者剩餘", "Producer surplus": "生產者剩餘", "Deadweight loss": "無謂損失", "Government revenue": "政府收入", "Imports": "進口量", "Shortage": "短缺", "Surplus": "過剩", "Price ceiling": "最高限價", "Price floor": "最低限價", "Equilibrium": "均衡", "Efficient quantity": "效率數量", "Market quantity": "市場數量", "Demand": "需求", "Supply": "供給", "Two separate scales": "兩條彼此獨立的量尺", "Mark each hygiene factor as fixed or poor, and each motivator as present or missing.": "將各項保健因素標為已改善或不佳；將各項激勵因素標為存在或缺乏。", "Hygiene factors": "保健因素", "Motivators": "激勵因素", "Quality of supervision": "督導品質", "Rate of pay": "薪資水準", "Company policies": "公司政策", "Working conditions": "工作環境", "Relations with others": "人際關係", "Job security": "工作保障", "Career advancement": "職涯晉升", "Personal growth": "個人成長", "Recognition": "肯定", "Responsibility": "責任", "Achievement": "成就", "Poor": "不佳", "Fixed": "已改善", "Present": "存在", "Missing": "缺乏", "High dissatisfaction": "高度不滿", "High satisfaction": "高度滿意", "What gets measured gets done": "衡量什麼，就促成什麼", "A call center chooses a KPI. Switch it and see what people optimize.": "客服中心選擇一項 KPI。切換後觀察員工會優先追求什麼。", "Calls handled per hour": "每小時處理的通話數", "Problems solved on first contact": "首次接觸解決問題數", "Keep calls short": "縮短通話", "Avoid complex cases": "避開複雜案件", "Transfer customers quickly": "迅速轉接顧客", "Take time to understand the issue": "花時間了解問題", "Fix it fully before ending": "結束通話前徹底解決", "Escalate only when needed": "僅在必要時轉交上級", "KPI result": "KPI 結果", "Real outcome": "實際結果", "Behavior": "行為", "Rises": "上升", "Customer problems solved may fall": "成功解決的顧客問題可能減少", "Customer satisfaction rises": "顧客滿意度上升", "Framework side by side": "並排比較理論框架", "Framework A": "框架 A", "Framework B": "框架 B", "Core question": "核心問題", "Key idea": "核心概念", "Look for in the case": "在個案中尋找", "Use it when": "適用情境", "Common mistake": "常見錯誤", "Lee Medical Supply": "李氏醫療用品公司", "Switch the framework. The facts stay the same; the question changes.": "切換理論框架。事實不變，分析問題的角度會改變。", "No clear gap": "無明顯缺口", "Gap": "缺口", "Possible / mixed": "可能有缺口／證據不一致", "Not enough evidence": "證據不足", "Issue statement": "問題陳述", "Design a job": "設計一份工作", "Set each dimension from 1 (low) to 5 (high). Illustration of the model, not a measured score.": "將各構面設為 1（低）至 5（高）。此處只用來示範模型，並非實際測量分數。", "Core job dimensions": "核心工作構面", "Psychological states": "心理狀態", "Expected outcomes": "預期成果", "Skill variety": "技能多樣性", "Task identity": "任務完整性", "Task significance": "任務重要性", "Autonomy": "自主性", "Feedback": "回饋", "High growth need": "高成長需求", "Low growth need": "低成長需求", "Experienced meaningfulness": "感受到工作有意義", "Experienced responsibility": "感受到自己負有責任", "Knowledge of results": "了解工作成果", "Strong": "強", "Moderate": "中等", "Weak": "弱", "Internal work motivation": "內在工作動機", "Quality of performance": "工作表現品質", "Satisfaction with work": "工作滿意度", "Low absenteeism and turnover": "較低的缺勤與離職率", "Which response is this?": "這是哪一種反應？", "Read the statement, then pick the quadrant.": "閱讀情境，再選擇對應的象限。", "Exit": "離職", "Voice": "建言", "Loyalty": "忠誠", "Neglect": "怠忽", "Active · Destructive": "主動・破壞性", "Active · Constructive": "主動・建設性", "Passive · Constructive": "被動・建設性", "Passive · Destructive": "被動・破壞性", "Next": "下一題", "Which schedule is this?": "這是哪種增強時制？", "Time or output first, then fixed or variable.": "先判斷依時間或產出，再判斷固定或變動。", "Continuous": "連續增強", "Fixed interval": "固定時距", "Variable interval": "變動時距", "Fixed ratio": "固定比率", "Variable ratio": "變動比率", "Every time": "每次", "Set time": "固定時間", "Changing time": "變動時間", "Set output": "固定產出", "Changing output": "變動產出", "From issue to recommendation": "從問題到改善建議", "Pick a team. Each follows framework, evidence, gap, actions, risk.": "選擇小組。每組依序說明框架、證據、缺口、行動與風險。", "Framework": "理論框架", "Evidence": "證據", "Gap = issue": "缺口＝問題", "Action": "行動", "Why it helps": "為何有幫助", "How to check": "如何檢驗", "Risk": "風險", "30 to 45 second answer": "30 至 45 秒回答", "Team 1 · Maslow": "第一組・馬斯洛", "Team 2 · Goal setting": "第二組・目標設定", "Team 3 · Theory X / Y": "第三組・X／Y 理論", "Team 4 · Herzberg": "第四組・赫茲伯格", "Contents": "目錄", "Study Notes": "學習筆記", "Economics": "經濟學", "Management": "管理學", "Show all answers": "顯示所有答案", "Hide all answers": "收起所有答案", "Employees are dissatisfied. Fixing the hygiene factors brings them back to zero, not to motivated.": "員工處於不滿狀態；改善保健因素只會使不滿回到零，不會直接創造動機。", "No dissatisfaction, but no motivation either. Employees may not complain, yet they are not engaged.": "員工雖沒有不滿，也缺乏動機；可能不會抱怨，卻不投入工作。", "Both problems at once: hygiene issues create dissatisfaction while motivators push the other way. The lecture says fix the hygiene foundation first.": "兩個問題同時存在：保健因素引發不滿，激勵因素又帶來相反作用；課堂主張先修補保健因素的基礎。", "Hygiene is in place and motivators are present: this is where real motivation and satisfaction come from.": "保健因素已到位、激勵因素也存在，才可能同時產生真正的動機與滿意度。", "I am interviewing elsewhere because management ignores the problem.": "管理層無視問題，因此我正在別處面試。", "I reported the problems and proposed a cross-team solution.": "我反映了問題，並提出跨團隊解決方案。", "I believe management will fix things. I will stay and wait.": "我相信管理層會改善，所以會留下來等待。", "Nothing will change, so I stopped checking my work carefully.": "反正不會改變，我不再仔細檢查工作。", "I handed in my resignation letter this morning.": "我今天早上遞出了辭呈。", "I suggested a new workflow to my manager and offered to pilot it.": "我向主管建議新流程，並自願試行。", "Each time a new staff member completes the safety demonstration, the supervisor praises them.": "新進員工每完成一次安全示範，主管都給予稱讚。", "A supervisor gives an incentive after every five verified error-free orders.": "每完成五筆經確認無誤的訂單，主管就給一次獎勵。", "Teams are evaluated after changing, unannounced periods.": "團隊在不固定、未事先公告的時間點接受評估。", "A reward follows an unpredictable number of completed service interactions.": "完成次數不固定的顧客服務互動後才給獎勵。", "Employees receive a paycheck every Friday.": "員工每週五領薪水。", "Factory workers are paid for each batch of 20 units they complete.": "工廠員工每完成一批二十件產品就領一次報酬。", "The manager runs surprise quality inspections.": "主管不定期進行突擊品質檢查。", "Active and destructive: moving toward leaving.": "主動且具有破壞性：正朝離職行動。", "Active and constructive: trying to improve conditions.": "主動且具建設性：試圖改善情況。", "Passive and constructive: hoping conditions improve.": "被動且具建設性：期待情況改善。", "Passive and destructive: letting performance slide.": "被動且具破壞性：任由績效下滑。", "Active and destructive toward the relationship: leaving.": "對僱傭關係而言屬主動、破壞性的離開行為。", "Active and constructive.": "主動且具建設性。", "Every occurrence is reinforced.": "每次發生期望行為都得到增強。", "A fixed count of output.": "依固定產出數量給獎勵。", "Time-based, and the timing varies.": "依時間給獎勵，但時間點不固定。", "Output-based, and the count varies.": "依產出給獎勵，但產出數量不固定。", "Fixed time. This is the slide example for fixed interval.": "依固定時間發放；這是投影片的固定時距例子。", "Piece-rate pay is the slide example for fixed ratio.": "按件計酬是投影片的固定比率例子。", "Unannounced inspection is the slide example for variable interval.": "無預警檢查是投影片的變動時距例子。", "Correct.": "答對了。", "Not quite.": "再想一下。", "Shift demand or supply, or force the quantity away from equilibrium, and watch total surplus.": "移動需求或供給，或使交易量偏離均衡，觀察總剩餘如何改變。", "Demand shift": "需求移動", "Supply shift": "供給移動", "Quantity traded": "交易量", "Reset to equilibrium": "重設為均衡", "Consumer Surplus": "消費者剩餘", "Producer Surplus": "生產者剩餘", "Total Surplus": "總剩餘", "Deadweight Loss": "無謂損失", "Surplus realized": "已實現剩餘", "Max possible": "可能的最大剩餘", "At equilibrium every trade with WTP ≥ MC takes place, so total surplus is at its maximum.": "均衡時，所有支付意願不低於邊際成本的交易都會發生，因此總剩餘達最大。", "Too little trade: between Q and Qe, buyer WTP still exceeds seller cost, yet these trades do not happen.": "交易不足：在 Q 與 Qe 之間，買方支付意願仍高於賣方成本，交易卻未發生。", "Too much trade: beyond Qe, MC > WTP, so every extra unit reduces total surplus.": "交易過多：超過 Qe 後，邊際成本大於支付意願，每多交易一單位都會降低總剩餘。", "Adjust the world price and the tariff to see the domestic price, imports and the welfare areas change.": "調整世界價格與關稅，觀察國內價格、進口量與福利面積如何變化。", "Tariff per unit": "每單位關稅", "Imports (free trade → tariff)": "進口量（自由貿易 → 課稅後）", "Consumer Surplus loss": "消費者剩餘損失", "Producer Surplus gain": "生產者剩餘增加", "DWL: wasted resources": "無謂損失：資源浪費", "DWL: lost gains from trade": "無謂損失：錯失交易利益", "Total DWL": "無謂損失合計", "Prohibitive tariff: the domestic price returns to the no-trade price and imports fall to zero.": "禁止性關稅：國內價格回到無貿易時的水準，進口量降為零。", "CS loss = PS gain + tariff revenue + two DWL triangles. The first two are transfers; only the DWL is lost to society.": "消費者剩餘損失＝生產者剩餘增加＋關稅收入＋兩塊無謂損失。前兩者是移轉；只有無謂損失是社會真正失去的價值。", "Choose ceiling or floor and drag the legal price. A ceiling binds only below equilibrium; a floor binds only above it.": "選擇最高或最低限價並拖曳法定價格。最高限價只有低於均衡時有約束力；最低限價只有高於均衡時有約束力。", "Price Ceiling": "最高限價", "Price Floor": "最低限價", "Legal price": "法定價格", "Show wasted time (ceiling)": "顯示浪費的時間（最高限價）", "Status": "狀態", "Non-binding": "無約束力", "Shortage = Qd − Qs": "短缺＝需求量－供給量", "Surplus = Qs − Qd": "過剩＝供給量－需求量", "A: lost Consumer Surplus": "A：損失的消費者剩餘", "B: lost Producer Surplus": "B：損失的生產者剩餘", "Wasted time / search (max)": "浪費的時間／搜尋成本（最大值）", "The ceiling is above the equilibrium price, so the market still clears at Pe. The control has no effect.": "最高限價高於均衡價格，市場仍在 Pe 出清；管制沒有作用。", "The floor is below the equilibrium price, so the market still clears at Pe. The control has no effect.": "最低限價低於均衡價格，市場仍在 Pe 出清；管制沒有作用。", "Only Qd units are bought; sellers cannot sell the rest. Example: unemployment under a minimum wage.": "只有 Qd 單位被買走；其餘賣不出去。例如最低工資下的失業。", "Raise the external cost, then use a tax to lift private cost up to social cost.": "提高外部成本，再以稅使私人成本上升至社會成本。", "External cost per unit": "每單位外部成本", "Pigouvian tax per unit": "每單位庇古稅", "Tax = external cost": "稅額＝外部成本", "Raise the external benefit, then use a subsidy to lift private benefit up to social benefit.": "提高外部利益，再以補貼使私人利益上升至社會利益。", "External benefit per unit": "每單位外部利益", "Subsidy per unit": "每單位補貼", "Subsidy = external benefit": "補貼＝外部利益", "Change each curve's slope and the tax. A steeper curve is less elastic and carries a larger share of the burden.": "改變兩條曲線斜率和稅額；曲線越陡，彈性越低，承擔的稅負越多。", "Demand slope": "需求曲線斜率", "Supply slope": "供給曲線斜率", "Tax per unit": "每單位稅額", "Market price per barrel": "每桶市場價格", "Slide price $50": "投影片價格：50 美元", "Slide price $100": "投影片價格：100 美元", "Market demand": "市場需求", "Barrels per day": "每日桶數", "Million barrels": "百萬桶", "Dollars": "美元", "Price / Cost": "價格／成本", "Price / Benefit": "價格／利益", "Employees need chances to meet all five levels. Find which are missing instead of assuming money solves everything.": "員工需要有機會滿足五個層次的需求；應找出缺少哪些，而不是假設金錢能解決一切。", "Pay and bonuses exist. Harsh control and high turnover are documented. The family atmosphere and training are gone. Lecturer: physiological met, esteem partly, safety, social and self-actualization short.": "薪資與獎金確實存在；嚴格控制與高流失率有紀錄；家庭般氛圍與訓練已消失。教師判斷：生理需求已滿足，尊重需求部分滿足，安全、社交和自我實現仍不足。", "Strong financial output, but weak security, belonging and growth. The source of insecurity is not measured yet.": "財務成果強，但安全感、歸屬感與成長機會薄弱；不安全感的來源尚未測量。", "Safety: investigate fears of arbitrary discipline; clarify fair review and grievance steps": "安全：調查員工是否擔憂任意懲處；釐清公平考核與申訴流程。", "Predictable rules reduce threat and allow initiative": "可預期的規則減輕威脅感，使員工願意主動行事。", "Listening sessions; fairness items in surveys; voluntary turnover": "傾聽會議；問卷中的公平性題目；自願離職率。", "Social: cross-division problem-solving teams and shared customer goals; limit zero-sum contests": "社交：建立跨部門解題團隊與共同顧客目標，減少零和競爭。", "Belonging without dropping output standards": "在維持產出標準的同時重建歸屬感。", "Cross-team projects; collaboration survey": "跨團隊專案；合作情形問卷。", "Growth: restore training and career planning; invite product-improvement ideas": "成長：恢復訓練及職涯規劃，徵求產品改善想法。", "Rebuilds the growth path removed in the turnaround": "重建轉型期間被取消的成長路徑。", "Training uptake; internal moves; ideas implemented": "訓練參與率；內部轉調；已實施的構想。", "Esteem: recognize teamwork, customer problem-solving and innovation, not only revenue": "尊重：肯定合作、顧客問題解決與創新，而不只看營收。", "Widens recognition beyond quotas": "讓肯定不再侷限於配額。", "Perceived fairness; retention of qualified staff": "公平感；合格員工留任率。", "Training and team time cost money. Run budgeted pilots and keep clear accountability.": "訓練與團隊合作都需要成本。應在預算內試行，並保持明確問責。", "Effective goals need specificity, a time period, participation and feedback. Hitting a narrow metric may not serve the wider objective.": "有效目標須具體、有時間範圍，並有參與及回饋。達成狹窄指標未必有助整體目標。", "Profit centers, MBO, appraisals and sales and profit targets exist. Staff report too little feedback. Lecturer: staff do not know the overall profit goal. Customer satisfaction and innovation fell.": "利潤中心、目標管理、考核及銷售與利潤目標已存在。員工表示回饋不足；教師指出員工不知道整體利潤目標。顧客滿意度與創新下滑。", "Specific financial goals, but weak shared understanding and feedback, and metrics not aligned with wider strategy.": "財務目標具體，但共同理解與回饋薄弱，指標也未與更廣的策略對齊。", "Publish the CEO's three priorities in plain language; cascade clear, time-bound team goals": "用淺白語言公布執行長的三項優先事項，向下拆解成清楚且有期限的團隊目標。", "Makes success visible beyond profit": "讓大家看見利潤以外的成功標準。", "Staff can explain the goals unaided": "員工能不靠提示說明目標。", "Involve employees in goal setting and customer-improvement decisions": "讓員工參與目標設定與改善顧客體驗的決策。", "Builds buy-in and surfaces operational knowledge": "提高認同，也讓第一線營運知識浮現。", "Participation records; ideas adopted": "參與紀錄；獲採用的構想。", "Regular two-way performance feedback, not only scores": "定期雙向回饋績效，不只給分數。", "Closes the documented feedback gap": "補上個案明確指出的回饋缺口。", "Feedback frequency and quality": "回饋頻率與品質。", "Balanced measures: profit and cost plus customer, innovation and high-performer retention": "平衡衡量：除利潤與成本，也納入顧客、創新與高績效員工留任。", "Limits \"what gets measured gets done\"": "減少只追逐被衡量事項的偏差。", "Complaints, new products, turnover; watch for gaming": "客訴、新產品、流失率；留意操弄指標。", "Do not claim time periods are missing; the case does not say. Too many KPIs create admin cost and gaming.": "不能說時間範圍缺失，因為個案未交代。KPI 過多會增加行政成本與操弄風險。", "Theory X relies on control and external consequences; Theory Y on responsibility, ideas and self-direction. The point is fit between style, people and task.": "X 理論重視控制與外在後果；Y 理論重視責任、構想與自我引導。重點在管理方式是否適合人員與任務。", "Written orders, little discussion, intolerance of mistakes. Staffing and pay authority were decentralized. Lecturer: the X style meets deadlines, but high-flyer Y workers leave.": "書面命令、討論少、不能容錯；人事與薪酬權限已下放。教師指出 X 式管理可達成期限，但優秀的 Y 型員工會離開。", "The climate underuses the participation and ownership LMS needs for innovation and customer problem-solving.": "職場氛圍未充分運用 LMS 在創新與解決顧客問題方面需要的參與感及主人翁意識。", "Keep accountability but give bounded autonomy to experienced staff": "維持問責，同時給資深員工有界限的自主權。", "Responsibility with reliable execution": "兼顧責任感與可靠執行。", "Quality and timeliness; autonomy and retention surveys": "品質與時效；自主感和留任調查。", "Regular employee and customer problem-solving forums with real follow-through": "定期舉行員工與顧客問題討論會，並真正追蹤後續行動。", "Gives a channel for Voice instead of Exit or silence": "提供建言管道，避免員工只剩離職或沉默。", "Ideas submitted, decided, implemented": "提出、決定與實施的構想數。", "Coach managers to replace one-way orders and automatic punishment with discussion and feedback": "培訓主管以討論和回饋取代單向命令與機械式懲罰。", "Reduces fear while keeping standards": "維持標準，同時降低恐懼感。", "Upward feedback; complaints": "向上回饋；客訴。", "Let cross-functional teams own small innovation projects": "讓跨職能團隊負責小型創新專案。", "Points self-directed effort at the CEO's goals": "使自主投入的努力指向執行長目標。", "Ideas tested; customer outcomes": "已測試構想；顧客成果。", "Not everything can be delegated in medical supplies (safety, compliance). Not all turnover comes from management style; interview leavers.": "醫療用品業的安全與法規遵循事項不能全數下放；員工流失也未必全由管理風格造成，應訪談離職者。", "Hygiene factors reduce dissatisfaction; motivators create motivation. Fixing only one side is not enough.": "保健因素減少不滿；激勵因素創造動機。只修補一邊並不足夠。", "Unsupportive management, strained relationships, high competition, too little feedback; training and career development ended. Bonuses exist and some authority was decentralized.": "管理支持不足、人際緊張、競爭激烈、回饋太少；訓練及職涯發展停止。獎金確實存在，部分權限也已下放。", "Possible mix of supervision and relationship hygiene problems with lost growth motivators. Not diagnosed on the slide; built from the case.": "可能同時存在督導與人際關係的保健因素問題，以及成長激勵因素流失。這不是投影片直接診斷，而是根據個案建構的分析。", "Hygiene: audit supervisor respect, communication, competition rules and reward fairness": "保健因素：檢查主管是否尊重員工、溝通方式、競爭規則及獎酬公平性。", "Targets dissatisfaction drivers other than pay level": "處理薪資水準以外的不滿來源。", "Climate and fairness surveys; voluntary turnover": "氛圍及公平性問卷；自願離職率。", "Hygiene: clear, respectful review and corrective procedures": "保健因素：建立清楚且尊重人的考核與改進程序。", "Removes uncertainty": "減少不確定感。", "Perceived fairness; appeals resolved": "公平感；申訴解決情形。", "Motivators: restore development, training and skill-based advancement": "激勵因素：恢復發展、訓練及依技能晉升。", "Rebuilds growth paths": "重建成長路徑。", "Training access; promotions; retention": "訓練機會；晉升；留任。", "Motivators: recognize cross-team customer solutions and real achievement; give ownership where suitable": "激勵因素：肯定跨團隊解決顧客問題與真實成就；在合適情況下賦予工作主導權。", "Recognition beyond revenue": "擴大營收以外的肯定。", "Recognition quality; product and customer improvements": "肯定的品質；產品與顧客成果改善。", "Pay is not shown to be low; some leavers were well paid. Do not promise satisfaction from salary.": "個案沒有證明薪資偏低，部分離職者還領高薪；不能保證加薪會帶來滿意度。", "Maslow suggests we should examine which needs the workplace allows employees to fulfill. The lecturer's LMS diagnosis identifies gaps in safety, social relationships and self-actualization. I would first find out why employees feel insecure, restore cross-functional teamwork, and introduce structured development opportunities. I would keep clear performance standards and measure high-performer retention, employees' perceived support and innovation output.": "馬斯洛理論提醒我們檢查職場讓員工滿足了哪些需求。教師對 LMS 的診斷指出，安全、社交關係與自我實現存在缺口。我會先查明員工不安全感的來源，恢復跨職能合作，並建立有系統的發展機會。我也會維持明確的績效標準，衡量高績效員工留任、員工感受到的支持，以及創新成果。", "LMS already has measurable sales and profit targets, so I would not simply add more quotas. The handout shows a clear lack of performance feedback, and the lecturer says employees do not understand the overall goal. I would communicate a small set of shared objectives, let employees contribute to how they will be achieved, and provide regular two-way feedback. Success should include customer results, new-product development and high-performer retention, not only short-term profit.": "LMS 已有可衡量的銷售與利潤目標，因此我不會單純增加配額。講義顯示績效回饋明顯不足，教師也指出員工不理解整體目標。我會傳達少數共同目標，讓員工參與決定如何達成，並提供定期雙向回饋。成功標準除短期利潤，也應包括顧客成果、新產品開發與高績效員工留任。", "The professor describes Apichart as using a Theory X style with both X- and Y-oriented employees. His control has improved financial discipline, but high-performing employees continue to leave and the company needs innovation. I would keep clear performance expectations while giving experienced employees more ownership, feedback and input into customer and product decisions. We should measure retention and quality as well as deadlines.": "教授認為 Apichart 對 X 與 Y 型員工都採取 X 理論式管理。他的控制改善了財務紀律，但高績效員工持續離開，而公司需要創新。我會保留清楚的績效期待，同時給有經驗的員工更多主導權、回饋，以及參與顧客和產品決策的機會。除了期限，也應衡量留任與品質。", "Herzberg tells us to distinguish removing dissatisfaction from creating motivation. LMS has evidence of weak supervision and workplace relationships, even though financial rewards exist. It also removed training and career development, which are important motivators. I would improve fair and supportive management practices while restoring growth opportunities and meaningful recognition. Then I would compare employee satisfaction, retention and innovation outcomes.": "赫茲伯格理論提醒我們區分「消除不滿」與「創造動機」。即使 LMS 有金錢獎勵，仍有督導與職場關係薄弱的證據；公司也取消了訓練與職涯發展，削弱重要的激勵因素。我會改善公平且支持員工的管理方式，並恢復成長機會及有意義的肯定，再比較員工滿意度、留任與創新成果。", "Physiological": "生理需求", "Safety": "安全需求", "Social": "社交需求", "Self-esteem": "尊重需求", "Self-actualization": "自我實現", "Pay and incentives are strong; many leavers are well paid.": "薪資與誘因充足；許多離職者薪資高。", "Terminations, turnover and intolerance of mistakes. Job security is not measured directly.": "解聘、流失及不容犯錯確實存在；但工作保障未被直接測量。", "The family-oriented atmosphere is gone; competition between units is mandated; the workplace is tense.": "家庭般氛圍消失；單位間被要求競爭，職場氣氛緊張。", "Recognition exists but is tied narrowly to numbers; little respect for feelings and needs.": "肯定雖存在，卻狹隘地與數字綁定；員工的感受與需求少受尊重。", "Career development plan and training stopped; no new products in 12 months.": "職涯發展計畫及訓練停止；十二個月內沒有新產品。", "LMS supports financial rewards but leaves clear gaps in social and higher-level needs: competition replaced the family atmosphere, and training and career development were stopped.": "LMS 有金錢獎酬，卻在社交與較高層次需求留下明顯缺口：競爷取代家庭般的氛圍，訓練與職涯發展也停止。", "Goal specificity": "目標具體性", "Time period": "時間範圍", "Participation": "參與", "Performance feedback": "績效回饋", "Alignment": "目標對齊", "Clear sales, profit and cost targets; every unit is a profit center.": "銷售、利潤及成本目標明確；各單位都是利潤中心。", "The case gives too little detail. Do not invent a gap.": "個案細節不足；不能憑空推定缺口。", "Written orders and imposed standards suggest weak participation; evidence is indirect.": "書面命令與由上而下的標準暗示參與不足，但證據是間接的。", "Employees say they get too little feedback and do not know if they meet expectations.": "員工表示回饋太少，不知道自己是否達到期待。", "Sales and profit rose while customer satisfaction, innovation and retention fell.": "銷售及利潤上升，但顧客滿意度、創新與留任下降。", "The goal system is strong on financial targets but weak on feedback and broader alignment. What gets measured (sales and profit) gets done, while customer, innovation and people outcomes decline.": "目標制度重視財務指標，卻缺乏回饋及更廣的策略對齊。銷售與利潤被衡量就得到改善，顧客、創新及人員成果反而下降。", "Assumptions": "管理假設", "Style": "管理方式", "Nuance": "需注意的細節", "What LMS now needs": "LMS 現在需要什麼", "Written orders, intolerance of mistakes, unwillingness to discuss problems.": "書面命令、不能容錯、不願討論問題。", "Control systems, mandated internal competition, rewards tied only to measurable results.": "控制制度、強制內部競爭、獎勵只連結可衡量成果。", "Staffing and pay decisions were decentralized, but the climate stays control-heavy.": "人事與薪酬決策已下放，但氛圍仍高度控制。", "Innovation, customer problem-solving and initiative, which fit Theory Y behavior.": "創新、解決顧客問題和主動性；這些較符合 Y 理論式行為。", "Management is strongly Theory X. The gap: LMS now needs initiative, ideas and customer problem-solving, which a control-heavy climate does not support.": "管理方式明顯偏向 X 理論。缺口在於 LMS 現在需要員工主動、提出想法並解決顧客問題，而高度控制的氛圍不利於此。", "Supervision (hygiene)": "督導（保健因素）", "Pay (hygiene)": "薪資（保健因素）", "Relations, policies (hygiene)": "人際關係與政策（保健因素）", "Growth, advancement (motivator)": "成長與晉升（激勵因素）", "Recognition, responsibility (motivator)": "肯定與責任（激勵因素）", "Written orders, no tolerance of mistakes, little discussion or feedback.": "書面命令、不能容錯、缺乏討論或回饋。", "Bonuses and commissions exist; leavers are well paid.": "獎金與佣金存在；離職者薪資高。", "Mandated competition; tense workplace; family atmosphere lost.": "強制競爭、職場緊張、家庭般氛圍消失。", "Career development and training stopped.": "職涯發展與訓練停止。", "Recognition is narrow (numbers only); lower units gained some authority.": "肯定的範圍狹窄（只看數字）；基層單位取得部分權限。", "LMS has both hygiene problems (supervision, relations) and weak motivators (growth). Strong pay cannot offset either.": "LMS 同時有保健因素問題（督導、人際關係）與激勵因素不足（成長）。高薪不能抵銷任何一者。", "Tax = marginal external cost: decision-makers now face the full social cost, Q returns to the efficient level and the DWL disappears.": "稅額等於邊際外部成本：決策者面對完整社會成本，交易量回到效率水準，無謂損失消失。", "Tax below the external cost: decision-makers still understate cost, so Q market > Q efficient (overproduction).": "稅額低於外部成本：決策者仍低估成本，市場數量高於效率數量（生產過多）。", "Tax above the external cost: output falls below the efficient level, which also creates DWL.": "稅額高於外部成本：產量低於效率水準，同樣造成無謂損失。", "Q market": "市場數量", "Q efficient": "效率數量", "Tax revenue": "稅收", "Subsidy = marginal external benefit: Q returns to the social optimum and the DWL disappears.": "補貼等於邊際外部利益：數量回到社會最適水準，無謂損失消失。", "The market counts only private benefit, so Q market < Q social (too little vaccination, education or R&D).": "市場只計入私人利益，所以市場數量低於社會最適數量（疫苗、教育或研發投入過少）。", "A subsidy above the external benefit pushes quantity too high, which also creates DWL.": "補貼高於外部利益使產量過高，同樣造成無謂損失。", "Q social": "社會最適數量", "Subsidy cost": "補貼成本", "Buyers pay more": "買方多付", "Sellers receive less": "賣方少收", "Even the first barrel costs more than the price ($2). Producing nothing limits the loss to the $35 fixed cost.": "連第一桶的成本（2 美元）都高於價格；不生產可把虧損限制在 35 美元固定成本。", "Price is below average cost, so the firm loses money. But revenue covers variable cost, so producing loses less than shutting down (−$35).": "價格低於平均成本，因此廠商虧損；但收入足以支付變動成本，繼續生產比停產（虧 35 美元）損失更少。", "Best output q*": "最適產量 q*", "Revenue P × q": "收入 P × q", "Total cost": "總成本", "Profit TR − TC": "利潤 TR－TC", "Decision": "決策", "Shut down": "停產", "Loss, keep operating": "虧損，但繼續營運", "This firm produces": "這家廠商的產量", "Firm profit": "廠商利潤", "ERG": "存在、關係、成長（ERG）", "Existence": "存在需求", "Relatedness": "關係需求", "Growth": "成長需求", "Pay and incentives are present.": "薪資與誘因存在。", "Tense workplace, internal competition, loss of family atmosphere.": "職場緊張、內部競爭、家庭般氛圍消失。", "Training and career development stopped; innovation declined.": "訓練與職涯發展停止；創新下降。", "Existence rewards are strong while Relatedness and Growth are weak. The case does not prove frustration-regression.": "存在需求方面的獎酬較強，關係與成長需求卻弱；個案不足以證明「受挫退化」現象。", "Which level of need is under-supported?": "哪個需求層次未獲充分支持？", "Five levels, met from lower to higher.": "五層需求，由低至高獲得滿足。", "Evidence for each of the five levels.": "分別尋找五層需求的證據。", "You need to check which needs the company supports and which it neglects.": "需要檢查公司支持與忽略了哪些需求。", "Labeling a person as \"stuck\" at a level without evidence.": "沒有證據就說某人「卡在」某個需求層次。", "Which needs coexist, and is growth blocked?": "哪些需求同時存在？成長是否受阻？", "Existence, Relatedness, Growth can be pursued at the same time.": "存在、關係與成長需求可以同時追求。", "Several needs at once; signs that blocked growth shifted attention to pay or security.": "多種需求並存的證據，以及成長受阻後轉而重視薪資或安全的跡象。", "Employees want pay, relationships and growth together.": "員工同時在意薪資、人際關係與成長。", "Claiming frustration-regression without evidence of the shift.": "沒有注意力轉移的證據，就聲稱存在受挫退化。", "Are we only removing dissatisfaction, or creating motivation?": "我們只是消除不滿，還是在創造動機？", "Hygiene factors and motivators are two different scales.": "保健因素與激勵因素是兩條不同的量尺。", "Pay, supervision, policies, conditions versus growth, recognition, responsibility.": "比較薪資、督導、政策、環境與成長、肯定、責任。", "Pay and conditions are fine, yet motivation stays low.": "薪資與條件不錯，動機卻仍偏低。", "Assuming good pay means motivated staff.": "誤以為高薪就代表員工有動機。", "What do managers assume about workers?": "主管對員工抱持什麼假設？", "Assumptions drive style: control and punishment, or support and responsibility.": "管理假設影響風格：控制與懲罰，或支持與賦責。", "Approvals, written orders, tolerance of mistakes, how much responsibility is given.": "核准流程、書面命令、容錯程度與賦予多少責任。", "The case centers on control and how managers treat people.": "個案聚焦控制方式及主管如何對待員工。", "Treating X as always bad, or decentralization as proof of Y.": "誤以為 X 一定不好，或把權限下放當作 Y 理論的證據。", "Do goals point effort at the right outcome?": "目標是否把努力導向正確成果？", "Specific goals, a time period, participation and feedback direct effort.": "具體目標、時間範圍、參與和回饋會引導努力。", "KPIs, targets, feedback, who sets goals, how goals cascade.": "檢查 KPI、目標、回饋、誰設定目標及目標如何向下拆解。", "Targets are hit but the real result does not improve.": "指標達標，真正的成果卻沒有改善。", "Calling a KPI-design problem a motivation problem.": "把 KPI 設計問題誤判為動機問題。"};
- function translateLive(){
-   document.querySelectorAll('.graph h4,.graph p,.graph span,.graph dt,.graph dd,.graph label,.graph button,.mw h4,.mw p,.mw span,.mw li,.mw b,.mw th,.mw td,.mw label,.mw button,.mw summary,.mw blockquote,.top .crumbs a,.top .toc-btn,.rail .lbl,.qa-tools button').forEach(e=>{
-     if(e.classList.contains('zh-translation')||e.querySelector(':scope > .zh-translation'))return;
-     let raw=e.textContent.trim().replace(/\s+/g,' ');
-     if(raw.startsWith('"')&&raw.endsWith('"'))raw=raw.slice(1,-1);
-     let zh=dict[raw];
-     if(!zh&&raw.startsWith('Correct. '))zh='答對了。'+(dict[raw.slice(9)]||'');
-     if(!zh&&raw.startsWith('Not quite. '))zh='再想一下。'+(dict[raw.slice(11)]||'');
-     if(!zh&&/^\d+ items$/.test(raw))zh=raw.replace(' items',' 題');
-     if(!zh&&/^\d+ \/ \d+ correct$/.test(raw))zh=raw.replace(' correct',' 題答對');
-     if(!zh&&raw.startsWith('The weakest link is ')){
-       const match=raw.match(/^The weakest link is (meaningfulness|responsibility|knowledge of results) /);
-       if(match)zh='最弱的環節是'+({'meaningfulness':'工作意義感','responsibility':'責任感','knowledge of results':'對成果的了解'}[match[1]])+'；一個薄弱的心理狀態會拖累整體工作設計。'+(raw.includes('Low growth-need strength')?'成長需求較低時，同一份豐富化工作的效果也較弱。':'');
-     }
-     if(!zh&&raw.startsWith('All three states are supported.'))zh='三種心理狀態都獲得支持。'+(raw.includes('Low growth-need strength')?'成長需求較低時，同一份豐富化工作的效果也較弱。':'');
-     if(!zh&&raw.startsWith('Only Qs units are supplied.'))zh='只有 Qs 單位獲得供給。邊際買家的最高支付意願為 '+(raw.match(/up to ([\d.]+)/)||[])[1]+'；價差轉為排隊、搜尋和其他非價格成本。';
-     if(!zh&&raw.startsWith('Barrel ')&&raw.includes(' costs $'))zh='第 '+(raw.match(/^Barrel (\d+)/)||[])[1]+' 桶的邊際成本不高於價格；下一桶若成本超過價格就停止生產。';
-     if(!zh||zh==='答對了。'||zh==='再想一下。')return;
-     const t=document.createElement('span');t.className='zh-translation';t.lang='zh-Hant';t.textContent=zh;e.appendChild(t);
-   });
- }
- let queued=false;
- new MutationObserver(()=>{if(!queued){queued=true;queueMicrotask(()=>{queued=false;translateLive()})}}).observe(document.body,{subtree:true,childList:true,characterData:true});
- translateLive();
+const toggle=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+const key='study-notes-show-zh';
+function syncOptions(on){document.querySelectorAll('option[data-zh]').forEach(o=>{if(!o.dataset.en)o.dataset.en=o.textContent;o.textContent=o.dataset.en+(on&&o.dataset.zh?'／'+o.dataset.zh:'')})}
+function set(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';syncOptions(on);try{localStorage.setItem(key,on?'1':'0')}catch(e){}}
+let initial=false;try{initial=localStorage.getItem(key)==='1'}catch(e){}
+set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
+const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
+if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
 })();
 </script></body></html>

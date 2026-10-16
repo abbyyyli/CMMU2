@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Marketing Research · Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+/* Layout: one light reading column with a sticky chapter rail; deliberately single (light) theme. */
+:root {
+  color-scheme: light;
+  --bg: #FDF9F9; --panel: #F8EEF0; --paper: #FFFFFF; --tint: #FAE9ED; --line: #EFDDE2;
+  --fg: #2F282B; --muted: #7E6F74; --accent: #C06C84; --accent-ink: #9C4862;
+  --demand: #3F5675; --supply: #C06C84; --ext: #6E3F55; --world: #8A7A5C; --policy: #3F7F7A;
+  --cs: #A7CDB6; --ps: #B2C4E3; --dwl: #D9674F; --rev: #E5C171; --rev2: #F1DCA8; --time: #DDB3CB; --ts: #BFDCC9;
+  --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; background: var(--bg); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.75; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(253, 249, 249, .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
+.top-in { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 14px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.02rem; white-space: nowrap; }
+.brand small { font-family: var(--sans); font-weight: 500; color: var(--muted); font-size: .76rem; margin-left: 6px; letter-spacing: .06em; }
+.sessions { display: flex; gap: 4px; margin-left: auto; }
+.crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
+.sessions a.pill {
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):hover,
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):focus-visible {
+  background: #fceef2;
+  border-color: #b86b7b;
+  color: #8e4357;
+}
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):focus-visible {
+  outline: 2px solid #b86b7b;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sessions a.pill { transition: none; }
+}
+.sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
+.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.sessions .pill.off { opacity: .5; cursor: not-allowed; }
+.toc-btn { display: none; font: 500 .85rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--fg); border-radius: 8px; padding: 5px 12px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 52px; }
+.rail { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow: auto; padding-block: 34px 40px; font-size: .86rem; line-height: 1.5; }
+.rail .lbl { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.rail ol { list-style: none; margin: 0; padding: 0; }
+.rail li a { display: block; padding: 4px 10px; color: var(--muted); text-decoration: none; border-radius: 6px; }
+.rail li a:hover { color: var(--fg); background: var(--tint); }
+.rail li.h3 a { padding-left: 22px; font-size: .8rem; }
+.rail li a.on { color: var(--accent-ink); background: var(--tint); font-weight: 500; }
+
+main { min-width: 0; padding-block: 30px 120px; }
+.doc { max-width: 780px; }
+.hero { padding-block: 8px 26px; border-bottom: 1px solid var(--line); }
+.kick { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px; font-weight: 500; }
+.hero h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.25; margin: 0 0 12px; text-wrap: balance; }
+.lead { margin: 0; font-size: 1.04rem; max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.doc h2 { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 3.4rem 0 .3rem; text-wrap: balance; }
+.doc h3 { font-size: 1.1rem; line-height: 1.45; margin: 2.2rem 0 .5rem; color: var(--accent-ink); text-wrap: balance; }
+.sub { margin: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
+.doc p, .doc li { max-width: 68ch; }
+.doc ul, .doc ol { padding-left: 1.25em; }
+.doc li { margin: .25rem 0; }
+.zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
+.hint { font-size: .9rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.hint b { flex: none; font-size: .72rem; color: #fff; background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
+.key { background: var(--tint); padding: 12px 16px; border-radius: 8px; font-weight: 500; }
+.note-small { font-size: .8rem; color: var(--muted); }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.pair > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.pair b { color: var(--accent-ink); }
+.pair p { margin: 4px 0 0; font-size: .92rem; }
+
+.matrix { display: grid; grid-template-columns: minmax(90px, .7fr) repeat(2, minmax(0, 1fr)); gap: 6px; margin: 1rem 0 1.2rem; font-size: .9rem; max-width: 620px; }
+.matrix .mh { font-weight: 700; font-size: .8rem; color: var(--muted); align-self: end; padding: 0 4px 2px; }
+.matrix .mh.side { align-self: center; }
+.matrix .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-weight: 500; }
+.matrix .cell.hi { background: var(--tint); border-color: var(--accent); }
+.matrix small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; margin-top: 2px; line-height: 1.45; }
+
+.map { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 1rem 0; }
+.mcol { display: flex; flex-direction: column; gap: 8px; }
+.mbox { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; display: flex; flex-direction: column; gap: 2px; }
+.mbox b { font-size: .9rem; } .mbox span { color: var(--muted); } .mbox em { font-style: normal; color: var(--accent-ink); font-size: .78rem; font-weight: 500; }
+.mbox.good { border-color: var(--cs); } .mbox.ask { background: var(--tint); border-color: var(--accent); }
+.marrow { color: var(--accent); font-weight: 700; }
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.flow span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; line-height: 1.45; }
+.flow i { font-style: normal; color: var(--accent); font-weight: 700; }
+.formula { font-family: var(--mono); font-size: .9rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; line-height: 1.9; overflow-x: auto; }
+.steps { counter-reset: s; list-style: none; padding-left: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 10px; }
+.steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .75rem/22px var(--sans); text-align: center; margin-top: 3px; }
+.assign { margin: 1.6rem 0; border: 1px dashed var(--accent); border-radius: 10px; padding: 14px 16px; background: var(--paper); }
+.assign p { margin: 6px 0 0; font-size: .92rem; }
+
+.tbl { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.doc table { border-collapse: collapse; width: 100%; font-size: .88rem; line-height: 1.55; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.doc th { background: var(--panel); font-weight: 700; }
+.doc tr:last-child td { border-bottom: 0; }
+.drill .ans { filter: blur(5px); cursor: pointer; user-select: none; transition: filter .2s; }
+.drill .ans.shown { filter: none; user-select: auto; }
+
+.traps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 1rem; }
+.traps > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: .88rem; line-height: 1.55; }
+.traps s { color: var(--muted); text-decoration-color: var(--dwl); }
+.traps p { margin: 6px 0 0; font-weight: 500; }
+
+.qa-tools { margin: .4rem 0 .8rem; }
+.qa-tools button { font: 500 .82rem var(--sans); border: 1px solid var(--accent); background: var(--paper); color: var(--accent-ink); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+.qa { display: flex; flex-direction: column; gap: 6px; }
+.qa details { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.qa summary { cursor: pointer; padding: 10px 14px; font-weight: 500; font-size: .93rem; list-style: none; display: flex; gap: 10px; }
+.qa summary::before { content: "Q"; color: var(--accent); font-weight: 700; }
+.qa details[open] summary { border-bottom: 1px dashed var(--line); }
+.qa details p { margin: 0; padding: 10px 14px 12px 36px; font-size: .9rem; }
+
+/* graphs */
+.graph { max-width: 900px; margin: 1.8rem 0 2.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; }
+.g-head h4 { font-family: var(--serif); font-size: 1.12rem; margin: 2px 0 2px; line-height: 1.45; }
+.g-head p { margin: 0 0 10px; color: var(--muted); font-size: .86rem; }
+.g-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+.g-body { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.g-plot svg { width: 100%; height: auto; display: block; }
+.g-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.g-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.sl label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); line-height: 1.3; }
+.sl output { font-family: var(--mono); color: var(--fg); font-size: .8rem; }
+.sl input { width: 100%; accent-color: var(--accent); margin: 4px 0 0; }
+.g-btn { align-self: flex-start; font: 500 .8rem var(--sans); border: 1px solid var(--accent); color: var(--accent-ink); background: transparent; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.g-btn:hover { background: var(--tint); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; align-self: flex-start; }
+.seg button { font: 500 .8rem var(--sans); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--paper); }
+.chk { display: flex; gap: 8px; align-items: center; font-size: .8rem; color: var(--muted); }
+.chk input { accent-color: var(--accent); }
+.g-stats { margin: 0; border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+.st { display: flex; justify-content: space-between; gap: 10px; font-size: .8rem; line-height: 1.45; }
+.st dt { color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.st dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.st.big dd { font-weight: 500; color: var(--accent-ink); font-size: .92rem; }
+.g-note { margin: 12px 0 0; padding: 9px 12px; background: var(--tint); border-radius: 6px; font-size: .85rem; line-height: 1.6; }
+
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; flex: none; }
+.sw.none { background: transparent; }
+.sw.a-cs { background: var(--cs); } .sw.a-ps { background: var(--ps); } .sw.a-ps2 { background: var(--ps); outline: 1px solid var(--demand); }
+.sw.a-dwl { background: repeating-linear-gradient(45deg, var(--dwl) 0 2px, transparent 2px 4px); outline: 1px solid var(--dwl); }
+.sw.a-rev { background: var(--rev); } .sw.a-rev2 { background: var(--rev2); } .sw.a-time { background: var(--time); } .sw.a-ts { background: var(--ts); }
+.sw.ln { height: 3px; border-radius: 2px; width: 16px; }
+
+svg .ax { stroke: var(--muted); stroke-width: 1.2; }
+svg .axl { fill: var(--muted); font: 500 11px var(--sans); }
+svg .tk { fill: var(--muted); font: 500 10.5px var(--mono); }
+svg .gd { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+svg .cv { stroke-width: 2.6; fill: none; stroke-linecap: round; }
+svg .cv.dash { stroke-dasharray: 7 5; stroke-width: 2; }
+svg .cvl { font: 700 11.5px var(--sans); }
+svg .c-d { stroke: var(--demand); fill: var(--demand); } svg .c-s { stroke: var(--supply); fill: var(--supply); }
+svg .c-x { stroke: var(--ext); fill: var(--ext); } svg .c-w { stroke: var(--world); fill: var(--world); } svg .c-t { stroke: var(--policy); fill: var(--policy); }
+svg text.cvl { stroke: none; }
+svg .pt { fill: var(--paper); stroke: var(--fg); stroke-width: 2; }
+svg .ptl { fill: var(--fg); font: 700 11px var(--sans); }
+svg .atag { fill: var(--fg); font: 700 11px var(--sans); opacity: .8; }
+svg .a-cs { fill: var(--cs); fill-opacity: .6; } svg .a-ps { fill: var(--ps); fill-opacity: .6; }
+svg .a-ps2 { fill: var(--ps); fill-opacity: .95; } svg .a-ts { fill: var(--ts); fill-opacity: .6; }
+svg .a-dwl { fill: url(#dwlHatch); stroke: var(--dwl); stroke-width: 1.2; }
+svg .a-rev { fill: var(--rev); fill-opacity: .75; } svg .a-rev2 { fill: var(--rev2); fill-opacity: .8; } svg .a-time { fill: var(--time); fill-opacity: .65; }
+
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .a-prof { fill: var(--cs); fill-opacity: .75; } svg .a-loss { fill: var(--dwl); fill-opacity: .35; }
+.sw.a-prof { background: var(--cs); } .sw.a-loss { background: var(--dwl); opacity: .5; }
+.twin { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tw-t { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.g-ctrl .g-btn + .g-btn { margin-top: -4px; }
+.graph.wide .g-body { grid-template-columns: minmax(0, 1fr); }
+.graph.wide .g-side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 700px) { .twin, .graph.wide .g-side { grid-template-columns: minmax(0, 1fr); } }
+svg polyline.cv { fill: none !important; }
+.seg { flex-wrap: wrap; }
+
+.graph { background: var(--paper); }
+.g-note { background: var(--tint); }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail { display: none; position: fixed; inset: 64px 0 0 0; max-height: none; background: var(--bg); z-index: 15; padding: 20px 16px 60px; }
+  .rail.open { display: block; }
+  .toc-btn { display: inline-block; }
+  .g-body { grid-template-columns: minmax(0, 1fr); }
+  .map { grid-template-columns: minmax(0, 1fr); }
+  .marrow { transform: rotate(90deg); justify-self: center; }
+}
+@media (max-width: 560px) { .pair, .traps { grid-template-columns: minmax(0, 1fr); } }
+/* Management components */
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.tcard { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.tcard .tnum { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font: 700 .78rem/24px var(--sans); text-align: center; }
+.tcard p { margin: 0; color: var(--muted); font-size: .88rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.tags span { font-size: .74rem; background: var(--tint); color: var(--accent-ink); padding: 1px 8px; border-radius: 999px; font-weight: 500; }
+.method, .loop, .cascade { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.method span, .loop span, .cascade span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 5px 11px; line-height: 1.4; }
+.method span.hi { background: var(--tint); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+.method i, .loop i, .cascade i { font-style: normal; color: var(--accent); font-weight: 700; }
+.loop i.back { font-size: 1.1rem; }
+.cascade { flex-direction: column; align-items: flex-start; gap: 2px; }
+.cascade span:nth-of-type(2) { margin-left: 18px; } .cascade span:nth-of-type(3) { margin-left: 36px; } .cascade span:nth-of-type(4) { margin-left: 54px; }
+.cascade i:nth-of-type(1) { margin-left: 14px; } .cascade i:nth-of-type(2) { margin-left: 32px; } .cascade i:nth-of-type(3) { margin-left: 50px; }
+.four { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.four > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+.four b { font-size: .9rem; color: var(--accent-ink); } .four p { margin: 4px 0 0; font-size: .84rem; color: var(--muted); line-height: 1.5; }
+
+.ladder { display: grid; grid-template-columns: minmax(0, 1fr) 118px 118px; grid-template-rows: repeat(5, auto); gap: 5px 8px; margin: 1rem 0 .3rem; max-width: 640px; }
+.lv { grid-column: 1; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; font-weight: 700; font-size: .9rem; line-height: 1.35; }
+.lv small { display: block; font-weight: 400; color: var(--muted); font-size: .78rem; }
+.lv.l5 { grid-row: 1; margin-inline: 22%; } .lv.l4 { grid-row: 2; margin-inline: 16%; } .lv.l3 { grid-row: 3; margin-inline: 10%; } .lv.l2 { grid-row: 4; margin-inline: 5%; } .lv.l1 { grid-row: 5; }
+.lv.l5, .lv.l4 { background: #F6E9F4; } .lv.l3 { background: var(--tint); } .lv.l2, .lv.l1 { background: #EAF2EE; }
+.erg { border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .84rem; text-align: center; padding: 6px; }
+.erg.g { grid-column: 2; grid-row: 1 / span 2; background: #EBD7EA; color: #6E3F6A; }
+.erg.r { grid-column: 3; grid-row: 2 / span 2; background: var(--tint); color: var(--accent-ink); }
+.erg.e { grid-column: 2; grid-row: 4 / span 2; background: #D9EBE1; color: #2F6B4F; }
+
+.mw { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 1.6rem 0 2rem; }
+.mw-body { margin-top: 10px; }
+.hz-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.hz-t { margin: 0 0 6px; font-weight: 700; font-size: .88rem; } .hz-t small { font-weight: 400; color: var(--muted); }
+.chips { display: flex; flex-direction: column; gap: 5px; }
+.chip { display: flex; justify-content: space-between; gap: 10px; font: 500 .84rem var(--sans); text-align: left; background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 7px; padding: 6px 10px; cursor: pointer; }
+.chip em { font-style: normal; font-size: .74rem; color: var(--muted); }
+.hz-cols > div:first-child .chip[aria-pressed="true"] { border-color: var(--dwl); background: #FCEDEA; }
+.hz-cols > div:first-child .chip[aria-pressed="true"] em { color: #A8432F; }
+.hz-cols > div:last-child .chip[aria-pressed="true"] { border-color: #6FAE8B; background: #EAF5EE; }
+.hz-cols > div:last-child .chip[aria-pressed="true"] em { color: #2F6B4F; }
+.scale { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 6px; margin-top: 18px; }
+.half { height: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; position: relative; overflow: hidden; }
+.half i { position: absolute; top: 0; bottom: 0; transition: width .25s; }
+.half.left i { right: 0; background: var(--dwl); } .half.right i { left: 0; background: #6FAE8B; }
+@media (prefers-reduced-motion: reduce) { .half i { transition: none; } }
+.zero { font: 700 .8rem var(--mono); color: var(--muted); }
+.scale-l { display: flex; justify-content: space-between; font-size: .74rem; color: var(--muted); margin-top: 4px; }
+
+.kpi-flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, .8fr) auto minmax(0, 1fr); gap: 8px; align-items: stretch; margin-top: 12px; font-size: .84rem; }
+.kpi-flow > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; line-height: 1.45; }
+.kpi-flow > i { font-style: normal; color: var(--accent); font-weight: 700; align-self: center; }
+.kpi-flow b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.kpi-flow p { margin: 3px 0 0; } .kpi-flow ul { margin: 3px 0 0; padding-left: 1.1em; }
+.kpi-flow .bad { border-color: var(--dwl); background: #FCEDEA; } .kpi-flow .good { border-color: #6FAE8B; background: #EAF5EE; }
+
+.cmp-sel { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: .84rem; color: var(--muted); }
+.cmp-sel select { font: 500 .88rem var(--sans); padding: 5px 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); color: var(--fg); }
+table.cmp td:first-child { font-weight: 700; color: var(--muted); width: 22%; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); }
+.tabs button { font: 500 .86rem var(--sans); background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); padding: 6px 12px; cursor: pointer; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--accent-ink); border-bottom-color: var(--accent); }
+.ev { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+.ev > div { display: grid; grid-template-columns: 190px auto minmax(0, 1fr); gap: 10px; align-items: baseline; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: .86rem; line-height: 1.5; }
+.ev p { margin: 0; }
+.tag { font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.tag.gap { background: #FCE3DD; color: #A8432F; } .tag.ok { background: #E3F2E9; color: #2F6B4F; }
+.tag.maybe { background: #FBF0D9; color: #8A6216; } .tag.na { background: #EEE9EB; color: var(--muted); }
+.issue { margin-top: 12px; background: var(--tint); border-radius: 8px; padding: 10px 14px; font-size: .9rem; }
+.issue p { margin: 4px 0 0; }
+
+.xgrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.xgrid > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 5px; font-size: .84rem; line-height: 1.4; }
+.xgrid small { color: var(--muted); font-size: .76rem; }
+.xgrid .ok, .xgrid .gap { align-self: flex-start; font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; }
+.xgrid .ok { background: #E3F2E9; color: #2F6B4F; } .xgrid .gap { background: #FCE3DD; color: #A8432F; }
+
+@media (max-width: 760px) {
+  .three, .four { grid-template-columns: minmax(0, 1fr); }
+  .xgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hz-cols { grid-template-columns: minmax(0, 1fr); }
+  .kpi-flow { grid-template-columns: minmax(0, 1fr); } .kpi-flow > i { transform: rotate(90deg); justify-self: center; }
+  .ev > div { grid-template-columns: minmax(0, 1fr); gap: 3px; } .ev .tag { justify-self: start; }
+  .ladder { grid-template-columns: minmax(0, 1fr) 84px 84px; }
+}
+
+/* Session 4 + case page */
+.tcard small.dont { color: var(--muted); font-size: .78rem; border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 4px; }
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: .6rem 0 1rem; }
+.quotes q { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-style: italic; color: var(--muted); font-size: .9rem; }
+.six { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.six > div { display: flex; gap: 10px; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .88rem; line-height: 1.5; }
+.six span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
+a.cta { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+a.cta:hover { background: var(--accent-ink); }
+blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; font-size: .92rem; line-height: 1.7; }
+.timeline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.timeline > div { background: var(--paper); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 10px; padding: 10px 14px; font-size: .88rem; line-height: 1.5; }
+.timeline time { font: 500 .76rem var(--mono); color: var(--accent-ink); display: block; }
+.timeline p { margin: 4px 0 0; color: var(--muted); }
+.score { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.score > div { border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; border: 1px solid var(--line); }
+.score .up { background: #EAF5EE; border-color: #A9D3BA; } .score .down { background: #FCEDEA; border-color: #EDC2B8; }
+.score b::after { margin-left: 6px; font-size: .78rem; } .score .up b::after { content: "improved"; color: #2F6B4F; } .score .down b::after { content: "worse"; color: #A8432F; }
+.score ul { margin: 6px 0 0; padding-left: 1.1em; }
+
+.jcm { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, .9fr); gap: 16px; }
+.jdims { display: flex; flex-direction: column; gap: 8px; }
+.jd.g0 label span { color: #6E3F6A; } .jd.g1 label span { color: var(--accent-ink); } .jd.g2 label span { color: #2F6B4F; }
+.jstates { display: flex; flex-direction: column; gap: 12px; padding-top: 4px; }
+.jst span { font-size: .8rem; font-weight: 500; }
+.jbar { height: 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); overflow: hidden; margin-top: 3px; }
+.jbar i { display: block; height: 100%; transition: width .25s; }
+.jst.g0 .jbar i { background: #B98AB5; } .jst.g1 .jbar i { background: var(--accent); } .jst.g2 .jbar i { background: #6FAE8B; }
+@media (prefers-reduced-motion: reduce) { .jbar i { transition: none; } }
+.jout ul { margin: 8px 0 0; padding-left: 1.1em; font-size: .82rem; color: var(--muted); }
+.jlvl { display: inline-block; font-weight: 700; padding: 3px 12px; border-radius: 999px; font-size: .86rem; }
+.jlvl.strong { background: #E3F2E9; color: #2F6B4F; } .jlvl.moderate { background: #FBF0D9; color: #8A6216; } .jlvl.weak { background: #FCE3DD; color: #A8432F; }
+.jgns { margin-top: 14px; }
+
+.qz-item { font-size: 1rem; font-weight: 500; margin: 4px 0 12px; }
+.qz-opts { display: grid; gap: 8px; }
+.qz-opts.grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 520px; }
+.qz-opts.row5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.qz-o { font: 500 .88rem var(--sans); background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 8px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; text-align: center; }
+.qz-o small { color: var(--muted); font-size: .74rem; font-weight: 400; }
+.qz-o:hover { border-color: var(--accent); }
+.qz-o.right { background: #E3F2E9; border-color: #6FAE8B; } .qz-o.wrong { background: #FCE3DD; border-color: var(--dwl); }
+.qz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: .8rem; color: var(--muted); }
+
+.rsteps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.rsteps > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: .85rem; line-height: 1.5; }
+.rsteps > div.g { background: var(--tint); border-color: var(--accent); }
+.rsteps b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.rsteps p { margin: 4px 0 0; }
+.risk { font-size: .88rem; } .risk b { font-size: .72rem; color: #fff; background: #B98A2E; padding: 1px 7px; border-radius: 4px; margin-right: 6px; }
+.sayd summary { cursor: pointer; font-weight: 500; color: var(--accent-ink); font-size: .9rem; }
+
+@media (max-width: 760px) {
+  .quotes, .six, .timeline, .rsteps { grid-template-columns: minmax(0, 1fr); }
+  .score { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jcm { grid-template-columns: minmax(0, 1fr); }
+  .qz-opts.row5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* Marketing components */
+.qz-opts.row3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pop-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 18px; align-items: start; }
+.pop-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.pb-h { margin: 6px 0 4px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.pb { display: grid; grid-template-columns: 96px minmax(0, 1fr) 76px; gap: 8px; align-items: center; font-size: .8rem; margin-bottom: 4px; }
+.pb b { font-family: var(--mono); font-weight: 500; text-align: right; }
+.pb-track { height: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; overflow: hidden; }
+.pb-track i { display: block; height: 100%; transition: width .25s; }
+.pb-track i.base { background: #CFD8E4; } .pb-track i.test { background: var(--accent); } .pb-track i.ctrl { background: #A7CDB6; }
+@media (prefers-reduced-motion: reduce) { .pb-track i { transition: none; } }
+.ladder2 { display: flex; flex-direction: column; gap: 4px; margin: 1rem 0; max-width: 560px; }
+.ladder2 > div { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: .88rem; line-height: 1.5; }
+.ladder2 > div b { display: block; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
+.ladder2 > i { font-style: normal; color: var(--accent); font-weight: 700; padding-left: 14px; line-height: 1; }
+.cf { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, .8fr); gap: 12px; align-items: center; margin: 1rem 0; max-width: 560px; }
+.cf-in { display: flex; flex-direction: column; gap: 6px; }
+.cf-in span, .cf-out { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; font-size: .86rem; }
+.cf-out { background: var(--tint); border-color: var(--accent); font-weight: 700; text-align: center; }
+.cf i { font-style: normal; color: var(--accent); font-weight: 700; font-size: 1.2rem; }
+.cf-lab { display: flex; justify-content: space-between; max-width: 560px; font-size: .74rem; color: var(--muted); }
+.targets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.targets > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; text-align: center; font-size: .8rem; line-height: 1.4; }
+.targets svg { width: 100%; max-width: 120px; height: auto; display: block; margin: 0 auto 6px; }
+.targets b { display: block; font-size: .84rem; }
+.targets small { color: var(--muted); }
+@media (max-width: 760px) {
+  .pop-grid { grid-template-columns: minmax(0, 1fr); }
+  .targets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .qz-opts.row3 { grid-template-columns: minmax(0, 1fr); }
+  .cf { grid-template-columns: minmax(0, 1fr); } .cf i { transform: rotate(90deg); justify-self: center; }
+}
+.ladder2 > i { font-size: .8rem; font-weight: 500; }
+
+</style><style>
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid #d5c6ca;border-radius:999px;background:#eee6e8;position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:white;border-radius:50%;box-shadow:0 1px 2px #7775}
+.topswitch input:checked{background:var(--accent)}
+.topswitch input:checked:after{left:14px}
+.topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+</style><script>
+/* Bilingual content helpers: no text dictionary, observer or page-wide rescan. */
+(function(){
+  const scratch=document.createElement('div');
+  function read(s){scratch.innerHTML=String(s);const z=[...scratch.querySelectorAll('.zh-full,.zh-svg')].map(e=>e.textContent).join('');scratch.querySelectorAll('.zh-full,.zh-svg').forEach(e=>e.remove());return {en:scratch.textContent,zh:z};}
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  window.biPlain=s=>read(s).en;
+  window.biChinese=s=>read(s).zh;
+  window.biPair=(en,zh)=>esc(en)+'<span class="zh-full" lang="zh-Hant">'+esc(zh)+'</span>';
+  window.biEscape=s=>String(s).includes('class="zh-full"')?String(s):esc(s);
+  window.biSvgLabel=(s,x,zhX,below)=>{const a=read(s);return esc(a.en)+(a.zh?'<tspan class="zh-svg" lang="zh-Hant" text-anchor="end" x="'+zhX+'" dy="'+(below?12:0)+'">'+esc(a.zh)+'</tspan>':'')};
+  window.biSetSvg=(el,s)=>{const a=read(s);el.textContent=a.en;if(a.zh){const t=document.createElementNS('http://www.w3.org/2000/svg','tspan');t.setAttribute('class','zh-svg');t.setAttribute('lang','zh-Hant');t.setAttribute('x',el.getAttribute('x')||'0');t.setAttribute('dy','13');t.textContent=a.zh;el.appendChild(t);}};
+})();
+</script></head><body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<pattern id="dwlHatch" width="6" height="6" patternunits="userSpaceOnUse" patterntransform="rotate(45)">
+<rect width="6" height="6" style="fill:var(--dwl);fill-opacity:.12"></rect><rect width="2.2" height="6" style="fill:var(--dwl);fill-opacity:.75"></rect></pattern></defs></svg>
+
+<header class="top"><div class="top-in">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="marketing.html">Marketing<span class="zh-full" lang="zh-Hant">行銷學</span></a><span>/</span><b>Session 3<span class="zh-full" lang="zh-Hant">第 3 堂</span></b></nav>
+  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
+  <nav class="sessions" aria-label="Sessions"><a class="pill" href="marketing-s1.html">S1</a><a class="pill" href="marketing-s2.html">S2</a><span class="pill" aria-current="page">S3</span><a class="pill" href="marketing-s4.html">S4</a></nav>
+<label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label></div></header>
+
+<div class="wrap">
+  <aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
+  <main><article class="doc"><div class="hero">
+  <p class="kick">Strategic Marketing Management · Session 3<span class="zh-full" lang="zh-Hant">策略行銷管理・第 3 堂</span></p>
+  <h1>Marketing Research<span class="zh-full" lang="zh-Hant">行銷研究</span></h1>
+  <p class="lead">Research reduces uncertainty; it does not eliminate it. Start from the management decision, choose the method the question needs, study the right people, and never claim more than the evidence supports.<span class="zh-full" lang="zh-Hant">研究能減少不確定性，卻不能消除它。從管理決策出發，依問題選方法，研究對的人，並且不做超出證據支持範圍的主張。</span></p>
+</div>
+
+<h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
+<div class="method"><span>Business problem<span class="zh-full" lang="zh-Hant">企業問題</span></span><i>→</i><span>Research question<span class="zh-full" lang="zh-Hant">研究問題</span></span><i>→</i><span>Objective<span class="zh-full" lang="zh-Hant">研究目標</span></span><i>→</i><span>Information gap<span class="zh-full" lang="zh-Hant">資訊缺口</span></span><i>→</i><span class="hi">Method<span class="zh-full" lang="zh-Hant">方法</span></span><i>→</i><span>Sample<span class="zh-full" lang="zh-Hant">樣本</span></span><i>→</i><span>Measurement<span class="zh-full" lang="zh-Hant">衡量</span></span><i>→</i><span>Analysis and limits<span class="zh-full" lang="zh-Hant">分析與限制</span></span><i>→</i><span>Decision<span class="zh-full" lang="zh-Hant">決策</span></span></div>
+<div class="three">
+  <div class="tcard"><span class="tnum">1</span><b>Lesson 1<span class="zh-full" lang="zh-Hant">第 1 堂</span></b><p>What should marketing do? Customer, need, value, strategy.<span class="zh-full" lang="zh-Hant">行銷應該做什麼？顧客、需要、價值與策略。</span></p></div>
+  <div class="tcard"><span class="tnum">2</span><b>Lesson 2<span class="zh-full" lang="zh-Hant">第 2 堂</span></b><p>What can existing data tell us? Data, pattern, interpretation.<span class="zh-full" lang="zh-Hant">既有資料能告訴我們什麼？資料、模式與解讀。</span></p></div>
+  <div class="tcard"><span class="tnum">3</span><b>Lesson 3<span class="zh-full" lang="zh-Hant">第 3 堂</span></b><p>What do we still need to know, and how do we find out? Question, method, evidence.<span class="zh-full" lang="zh-Hant">我們還需要知道什麼，又要如何找出答案？問題、方法與證據。</span></p></div>
+</div>
+
+<!-- 1 -->
+<h2 id="why">1. Why research?<span class="zh-full" lang="zh-Hant">1. 為什麼要研究？</span></h2>
+<p class="sub">Managers decide under uncertainty <span class="zh">不確定性</span> about wants, needs, motivations, drivers and barriers. Research improves the decision; it cannot guarantee it.<span class="zh-full" lang="zh-Hant">管理者在消費者想要、需要、動機、驅動因素與障礙都不確定的情況下決策。研究改善決策，卻無法保證結果。</span></p>
+<div class="tbl"><table>
+<thead><tr><th>Type<span class="zh-full" lang="zh-Hant">類型</span></th><th>Main question<span class="zh-full" lang="zh-Hant">主要問題</span></th><th>Example<span class="zh-full" lang="zh-Hant">例子</span></th></tr></thead>
+<tbody>
+<tr><td><b>Descriptive</b><span class="zh-full" lang="zh-Hant">描述性</span></td><td>What is happening?<span class="zh-full" lang="zh-Hant">正在發生什麼？</span></td><td>Who buys? How often? How much?<span class="zh-full" lang="zh-Hant">誰買？多久買一次？買多少？</span></td></tr>
+<tr><td><b>Diagnostic</b><span class="zh-full" lang="zh-Hant">診斷性</span></td><td>What may explain the problem?<span class="zh-full" lang="zh-Hant">什麼可能解釋這個問題？</span></td><td>Why is satisfaction falling?<span class="zh-full" lang="zh-Hant">為什麼滿意度下降？</span></td></tr>
+<tr><td><b>Predictive</b><span class="zh-full" lang="zh-Hant">預測性</span></td><td>What might happen if...?<span class="zh-full" lang="zh-Hant">如果……，可能發生什麼？</span></td><td>What if we launch, change price or run a promotion?<span class="zh-full" lang="zh-Hant">如果上市、調價或促銷，會怎樣？</span></td></tr>
+</tbody></table></div>
+<div data-mk="rtype"></div>
+<div class="pair">
+  <div><b>Business research<span class="zh-full" lang="zh-Hant">商業研究</span></b><p>A real management problem, practical, fast and usable.<span class="zh-full" lang="zh-Hant">針對真實管理問題，重視實用、快速與可採用性。</span></p></div>
+  <div><b>Academic research<span class="zh-full" lang="zh-Hant">學術研究</span></b><p>Explanation, theory, prior studies and explicit hypotheses. A different purpose, not a higher quality.<span class="zh-full" lang="zh-Hant">重視解釋、理論、既有研究與明確假設。目的不同，不代表品質較高。</span></p></div>
+</div>
+
+<!-- 2 -->
+<h2 id="question">2. Question before method<span class="zh-full" lang="zh-Hant">2. 先有問題，再選方法</span></h2>
+<p class="sub">The professor's rule: you must have a question, then define objectives. The method comes last.<span class="zh-full" lang="zh-Hant">教授的原則：必須先有問題，再定義目標；方法放在最後。</span></p>
+<div class="pair">
+  <div><b>Wrong order<span class="zh-full" lang="zh-Hant">錯誤順序</span></b><p>"Let's run a survey." Then invent a question for it.<span class="zh-full" lang="zh-Hant">「我們來做問卷。」然後才替問卷想一個問題。</span></p></div>
+  <div><b>Right order<span class="zh-full" lang="zh-Hant">正確順序</span></b><p>Question → objective → information needed → method.<span class="zh-full" lang="zh-Hant">問題 → 目標 → 所需資訊 → 方法。</span></p></div>
+</div>
+<h3 id="problem">Business problem versus research question<span class="zh-full" lang="zh-Hant">企業問題與研究問題</span></h3>
+<p>"Sales of a new drink are weak" is a symptom <span class="zh">症狀</span>. Research questions turn it into something evidence can answer:<span class="zh-full" lang="zh-Hant">「新飲料銷售不好」是症狀。研究問題把症狀轉為證據可以回答的問題：</span></p>
+<ul>
+  <li>Are customers aware of the product?<span class="zh-full" lang="zh-Hant">顧客知道這項產品嗎？</span></li>
+  <li>Do target customers understand the benefit?<span class="zh-full" lang="zh-Hant">目標顧客了解它的利益嗎？</span></li>
+  <li>Is the price seen as too high?<span class="zh-full" lang="zh-Hant">顧客認為價格太高嗎？</span></li>
+  <li>Why did trial customers not buy again?<span class="zh-full" lang="zh-Hant">試買顧客為什麼沒有再次購買？</span></li>
+</ul>
+<h3 id="objective">A useful research objective<span class="zh-full" lang="zh-Hant">有用的研究目標</span></h3>
+<div class="ladder2">
+  <div><b>Weak<span class="zh-full" lang="zh-Hant">不夠明確</span></b>Understand consumers.<span class="zh-full" lang="zh-Hant">理解消費者。</span></div>
+  <div><b>Better<span class="zh-full" lang="zh-Hant">較好</span></b>Understand the main barriers preventing Bangkok office workers from trying Product X.<span class="zh-full" lang="zh-Hant">了解阻止曼谷上班族試用 X 產品的主要障礙。</span></div>
+  <div><b>Best<span class="zh-full" lang="zh-Hant">最好</span></b>Identify and rank the main barriers preventing Bangkok office workers aged 25 to 40 from trying Product X, so management can decide whether to change price, communication or distribution.<span class="zh-full" lang="zh-Hant">找出並排序阻止曼谷 25 至 40 歲上班族試用 X 產品的主要障礙，讓管理層決定是否調整價格、溝通或通路。</span></div>
+</div>
+<p class="key">A good objective names who is studied, what must be learned, and which decision it supports. If the objective is vague, the whole design becomes vague.<span class="zh-full" lang="zh-Hant">好的目標說明研究誰、需要了解什麼，以及支援哪個決策。目標模糊，整個研究設計也會模糊。</span></p>
+<h3 id="skip">When not to do research<span class="zh-full" lang="zh-Hant">何時不該做研究？</span></h3>
+<p>No time or money; cost above expected value; the result will not change the decision; the decision is already made; the information already exists; timing makes it irrelevant; or there is no clear question.<span class="zh-full" lang="zh-Hant">沒有時間或預算；成本高於預期價值；結果不會改變決策；決策已定；資訊已存在；時機使結果失去意義；或根本沒有清楚問題。</span></p>
+
+<!-- 3 -->
+<h2 id="process">3. Research process and evidence sources<span class="zh-full" lang="zh-Hant">3. 研究流程與證據來源</span></h2>
+<div class="flow"><span>Problem identification<span class="zh-full" lang="zh-Hant">辨識問題</span></span><i>→</i><span>Research design<span class="zh-full" lang="zh-Hant">研究設計</span></span><i>→</i><span>Method<span class="zh-full" lang="zh-Hant">方法</span></span><i>→</i><span>Sampling<span class="zh-full" lang="zh-Hant">抽樣</span></span><i>→</i><span>Data collection<span class="zh-full" lang="zh-Hant">資料蒐集</span></span><i>→</i><span>Analysis<span class="zh-full" lang="zh-Hant">分析</span></span><i>→</i><span>Report<span class="zh-full" lang="zh-Hant">報告</span></span><i>→</i><span>Follow-up<span class="zh-full" lang="zh-Hant">後續追蹤</span></span></div>
+<p>Three parties are involved: the company writes a research brief, the research firm proposes and runs the study, and respondents provide data. A vague brief can produce research that is technically correct but useless to management.<span class="zh-full" lang="zh-Hant">涉及三方：公司撰寫研究需求簡報，研究公司提案並執行，受訪者提供資料。模糊的需求簡報可能產生技術上正確，卻對管理毫無用處的研究。</span></p>
+<div class="pair">
+  <div><b>Secondary data<span class="zh-full" lang="zh-Hant">次級資料</span></b> <span class="zh">次級資料</span><p>Already exists: government reports, company records, industry reports, published statistics. Check it first.<span class="zh-full" lang="zh-Hant">已存在的資料：政府報告、公司紀錄、產業報告與公開統計。先檢查這些資料。</span></p></div>
+  <div><b>Primary data<span class="zh-full" lang="zh-Hant">初級資料</span></b> <span class="zh">初級資料</span><p>Collected for this question: surveys, interviews, focus groups, observation, experiments. Collect it only for the remaining gap; it costs time and money.<span class="zh-full" lang="zh-Hant">為目前問題而蒐集：問卷、訪談、焦點團體、觀察與實驗。只為剩餘缺口蒐集，因為它需要時間與金錢。</span></p></div>
+</div>
+
+<!-- 4 -->
+<h2 id="qualquant">4. Qualitative versus quantitative<span class="zh-full" lang="zh-Hant">4. 質性與量化研究</span></h2>
+<p class="sub">Qualitative is for understanding; quantitative is for measurement.<span class="zh-full" lang="zh-Hant">質性幫助理解，量化幫助衡量。</span></p>
+<div class="tbl"><table>
+<thead><tr><th></th><th>Qualitative <span class="zh">質性</span><span class="zh-full" lang="zh-Hant">質性</span></th><th>Quantitative <span class="zh">量化</span><span class="zh-full" lang="zh-Hant">量化</span></th></tr></thead>
+<tbody>
+<tr><td>Questions<span class="zh-full" lang="zh-Hant">問題</span></td><td>Why? How?<span class="zh-full" lang="zh-Hant">為什麼？如何？</span></td><td>Who? How many? How often? How much?<span class="zh-full" lang="zh-Hant">誰？多少人？多久一次？多少？</span></td></tr>
+<tr><td>Good for<span class="zh-full" lang="zh-Hant">適合用途</span></td><td>Motivations, barriers, emotions, meanings, decision processes, concept and ad development<span class="zh-full" lang="zh-Hant">動機、障礙、情緒、意義、決策過程，以及概念與廣告開發</span></td><td>Awareness, usage, satisfaction, purchase intention, frequency, group differences<span class="zh-full" lang="zh-Hant">知名度、使用情形、滿意度、購買意願、頻率與群體差異</span></td></tr>
+<tr><td>Methods<span class="zh-full" lang="zh-Hant">方法</span></td><td>Focus groups, in-depth interviews<span class="zh-full" lang="zh-Hant">焦點團體、深度訪談</span></td><td>Structured surveys<span class="zh-full" lang="zh-Hant">結構式問卷</span></td></tr>
+<tr><td>Stop when<span class="zh-full" lang="zh-Hant">何時停止</span></td><td><b>Saturation</b>: new interviews add no new themes<span class="zh-full" lang="zh-Hant">飽和：新訪談不再帶來新主題</span></td><td>The sample can <b>represent</b> the population<span class="zh-full" lang="zh-Hant">樣本足以代表母體時</span></td></tr>
+<tr><td>Not for<span class="zh-full" lang="zh-Hant">不適合用途</span></td><td>Counting or population percentages<span class="zh-full" lang="zh-Hant">計數或推估母體百分比</span></td><td>Fully explaining why<span class="zh-full" lang="zh-Hant">完整解釋原因</span></td></tr>
+</tbody></table></div>
+<p>They work in sequence: qualitative research finds the possible reasons (EV barriers: price, charging, battery, resale value); quantitative research measures which matters most across the target market.<span class="zh-full" lang="zh-Hant">兩者可以依序使用：質性找出可能原因，例如電動車的價格、充電、電池與轉售價值障礙；量化再衡量哪些因素對整個目標市場最重要。</span></p>
+<div data-mk="method"></div>
+
+<!-- 5 -->
+<h2 id="sampling">5. Sampling<span class="zh-full" lang="zh-Hant">5. 抽樣</span></h2>
+<p class="sub">The first sampling question is not "how many?" but "who is the right respondent?"<span class="zh-full" lang="zh-Hant">抽樣首先不是問「多少人」，而是「誰才是正確的受訪者？」</span></p>
+<ul>
+  <li><b>Probability sampling</b>: selection by known probabilities, so results can be projected to the population with a known sampling error.<span class="zh-full" lang="zh-Hant">機率抽樣：依已知機率選樣，因此可用已知的抽樣誤差推估母體結果。</span></li>
+  <li><b>Non-probability sampling</b>: needs more caution before claiming the sample represents anyone.<span class="zh-full" lang="zh-Hant">非機率抽樣：要主張樣本代表某個群體前，需要更加謹慎。</span></li>
+  <li><b>Screening question</b> <span class="zh">篩選題</span>: "Have you visited Siam Paragon in the past three months?" Without it, satisfaction ratings may come from people with no recent experience.<span class="zh-full" lang="zh-Hant">篩選題：「過去三個月，你去過 Siam Paragon 嗎？」缺少這題，滿意度評分可能來自近期根本沒去過的人。</span></li>
+</ul>
+<p class="key">"We interviewed 100 people, so the results represent Thailand" is wrong. Sample size is not representativeness.<span class="zh-full" lang="zh-Hant">「訪問了 100 人，所以結果代表泰國」是錯的。樣本數不等於代表性。</span></p>
+
+<!-- 6 -->
+<h2 id="measure">6. From concept to measurement<span class="zh-full" lang="zh-Hant">6. 從概念到衡量</span></h2>
+<h3 id="framework">Conceptual framework (class example)<span class="zh-full" lang="zh-Hant">概念架構（課堂例子）</span></h3>
+<div class="cf">
+  <div class="cf-in"><span>Packaging<span class="zh-full" lang="zh-Hant">包裝</span></span><span>Functional benefits<span class="zh-full" lang="zh-Hant">功能性利益</span></span><span>Lifestyle<span class="zh-full" lang="zh-Hant">生活型態</span></span><span>Health benefits<span class="zh-full" lang="zh-Hant">健康利益</span></span></div>
+  <i>→</i>
+  <div class="cf-out">Intention to buy<span class="zh-full" lang="zh-Hant">購買意願</span></div>
+</div>
+<div class="cf-lab"><span>Independent variables <span class="zh">自變數</span><span class="zh-full" lang="zh-Hant">自變數</span></span><span>Dependent variable <span class="zh">依變數</span><span class="zh-full" lang="zh-Hant">依變數</span></span></div>
+<p>The arrows show relationships we want to investigate. They do not prove cause.<span class="zh-full" lang="zh-Hant">箭頭表示想要研究的關係，不代表因果已被證實。</span></p>
+<h3 id="operational">Conceptual versus operational definition<span class="zh-full" lang="zh-Hant">概念性定義與操作性定義</span></h3>
+<div class="ladder2">
+  <div><b>Abstract concept<span class="zh-full" lang="zh-Hant">抽象概念</span></b>Health benefits<span class="zh-full" lang="zh-Hant">健康利益</span></div><i>↓</i>
+  <div><b>Conceptual definition: what it means<span class="zh-full" lang="zh-Hant">概念性定義：它的意義是什麼</span></b>Low fat, low calories, high fiber, nutritional value, no sugar<span class="zh-full" lang="zh-Hant">低脂、低熱量、高纖、營養價值與無糖</span></div><i>↓</i>
+  <div><b>Operational definition: how we measure it<span class="zh-full" lang="zh-Hant">操作性定義：我們如何衡量它</span></b>"I prefer my ice cream to be low fat." "I prefer ice cream with low calories." Rated on a scale from 1 (strongly disagree) to 4 (strongly agree).<span class="zh-full" lang="zh-Hant">「我偏好低脂冰淇淋。」「我偏好低熱量冰淇淋。」以 1（非常不同意）到 4（非常同意）的量尺評分。</span></div>
+</div>
+<p class="hint"><b>注意</b>問卷有數字不代表量對了。用字、概念定義、受訪者理解和偏誤都會影響品質。</p>
+<h3 id="rv">Validity versus reliability<span class="zh-full" lang="zh-Hant">效度與信度</span></h3>
+<p><b>Validity</b> <span class="zh">效度</span>: are we measuring what we intend to? <b>Reliability</b> <span class="zh">信度</span>: is the measurement consistent? A survey can be consistently wrong.<span class="zh-full" lang="zh-Hant">效度：是否測到原本想測的東西？信度：測量是否一致？問卷可能很一致地測錯。</span></p>
+<div class="targets"><div><svg viewbox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" style="fill:var(--paper);stroke:var(--line)"></circle><circle cx="50" cy="50" r="34" style="fill:var(--tint);stroke:var(--line)"></circle><circle cx="50" cy="50" r="22" style="fill:var(--paper);stroke:var(--line)"></circle><circle cx="50" cy="50" r="10" style="fill:var(--tint);stroke:var(--line)"></circle><circle cx="48" cy="48" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="52" cy="50" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="50" cy="53" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="47" cy="52" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="53" cy="47" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="50" cy="49" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle></svg><b>Reliable and valid<span class="zh-full" lang="zh-Hant">有信度，也有效度</span></b><small>Consistent and on target<span class="zh-full" lang="zh-Hant">結果一致，且對準目標</span></small></div><div><svg viewbox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" style="fill:var(--paper);stroke:var(--line)"></circle><circle cx="50" cy="50" r="34" style="fill:var(--tint);stroke:var(--line)"></circle><circle cx="50" cy="50" r="22" style="fill:var(--paper);stroke:var(--line)"></circle><circle cx="50" cy="50" r="10" style="fill:var(--tint);stroke:var(--line)"></circle><circle cx="70" cy="28" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="74" cy="30" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="72" cy="33" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="69" cy="31" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="75" cy="27" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="72" cy="30" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle></svg><b>Reliable, not valid<span class="zh-full" lang="zh-Hant">有信度，沒有效度</span></b><small>Consistently measures the wrong thing<span class="zh-full" lang="zh-Hant">持續一致地測錯東西</span></small></div><div><svg viewbox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" style="fill:var(--paper);stroke:var(--line)"></circle><circle cx="50" cy="50" r="34" style="fill:var(--tint);stroke:var(--line)"></circle><circle cx="50" cy="50" r="22" style="fill:var(--paper);stroke:var(--line)"></circle><circle cx="50" cy="50" r="10" style="fill:var(--tint);stroke:var(--line)"></circle><circle cx="50" cy="22" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="76" cy="48" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="50" cy="78" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="24" cy="52" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="70" cy="70" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="30" cy="30" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle></svg><b>Valid on average, not reliable<span class="zh-full" lang="zh-Hant">平均而言對準目標，但信度不足</span></b><small>Scattered around the target<span class="zh-full" lang="zh-Hant">結果散布於目標周圍</span></small></div><div><svg viewbox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" style="fill:var(--paper);stroke:var(--line)"></circle><circle cx="50" cy="50" r="34" style="fill:var(--tint);stroke:var(--line)"></circle><circle cx="50" cy="50" r="22" style="fill:var(--paper);stroke:var(--line)"></circle><circle cx="50" cy="50" r="10" style="fill:var(--tint);stroke:var(--line)"></circle><circle cx="22" cy="62" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="40" cy="82" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="30" cy="72" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="18" cy="80" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="44" cy="66" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="28" cy="88" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle></svg><b>Neither<span class="zh-full" lang="zh-Hant">兩者皆無</span></b><small>Scattered and off target<span class="zh-full" lang="zh-Hant">結果分散，且偏離目標</span></small></div></div>
+
+<!-- 7 -->
+<h2 id="bias">7. Can we trust what people say?<span class="zh-full" lang="zh-Hant">7. 能相信人們說的話嗎？</span></h2>
+<p class="sub">What consumers say may not fully explain what they do.<span class="zh-full" lang="zh-Hant">消費者說的話，不一定能完整解釋實際行為。</span></p>
+<div class="tbl"><table>
+<thead><tr><th>Danger<span class="zh-full" lang="zh-Hant">風險</span></th><th>What happens<span class="zh-full" lang="zh-Hant">會發生什麼</span></th></tr></thead>
+<tbody>
+<tr><td><b>Rationalization</b><span class="zh-full" lang="zh-Hant">事後合理化</span></td><td>A logical reason given after the fact, when habit, emotion or impulse drove the purchase<span class="zh-full" lang="zh-Hant">購買其實由習慣、情緒或衝動驅動，事後卻提出合理的理由</span></td></tr>
+<tr><td><b>Social desirability</b><span class="zh-full" lang="zh-Hant">社會期許偏誤</span></td><td>Answers that look responsible or healthy: people overstate exercise and recycling<span class="zh-full" lang="zh-Hant">回答看起來負責或健康，例如高報運動與回收行為</span></td></tr>
+<tr><td><b>Courtesy bias</b><span class="zh-full" lang="zh-Hant">禮貌性偏誤</span></td><td>Overly positive feedback to be polite, common face to face and where criticism is uncomfortable<span class="zh-full" lang="zh-Hant">為了禮貌給過度正面的回饋；面訪及不習慣批評的場合較常見</span></td></tr>
+<tr><td><b>Attitude-behavior gap</b><span class="zh-full" lang="zh-Hant">態度與行為落差</span></td><td>"I care about sustainability," then buys the cheapest option<span class="zh-full" lang="zh-Hant">口頭說「我重視永續」，實際卻買最便宜的選項</span></td></tr>
+</tbody></table></div>
+<div data-mk="bias"></div>
+<p>Garbage in, garbage out: statistics cannot rescue a bad question. When possible, combine stated attitudes with observed behavior or transaction data.<span class="zh-full" lang="zh-Hant">垃圾進，垃圾出：統計救不了問錯的問題。可行時，結合自述態度、觀察到的行為與交易資料。</span></p>
+
+<!-- 8 -->
+<h2 id="methods">8. Survey, observation and experiment<span class="zh-full" lang="zh-Hant">8. 問卷、觀察與實驗</span></h2>
+<div class="three">
+  <div class="tcard"><b>Survey<span class="zh-full" lang="zh-Hant">問卷調查</span></b><p>Door-to-door, mall intercept, phone, online, mobile, paper. No single best mode: choose by respondent, complexity, cost, speed and control.<span class="zh-full" lang="zh-Hant">到府、商場攔訪、電話、線上、手機與紙本。沒有唯一最佳方式，要依受訪者、複雜度、成本、速度與控制程度選擇。</span></p></div>
+  <div class="tcard"><b>Observation<span class="zh-full" lang="zh-Hant">觀察</span></b><p>Records what people actually do and avoids some self-report bias, but cannot directly show motives. Mystery shoppers check real service, prices and displays.<span class="zh-full" lang="zh-Hant">紀錄實際行為，避免部分自陳偏誤，但無法直接顯示動機。神秘客會檢查真實服務、價格與陳列。</span></p></div>
+  <div class="tcard"><b>Experiment<span class="zh-full" lang="zh-Hant">實驗</span></b><p>Change something (X, the treatment) and observe (O) what happens. The only method built to test cause.<span class="zh-full" lang="zh-Hant">改變某個因素（X，處理），再觀察（O）結果。它是為檢驗因果而設計的方法。</span></p></div>
+</div>
+<h3 id="pop">Correlation is not causation: the POP display<span class="zh-full" lang="zh-Hant">相關不等於因果：POP 店頭陳列</span></h3>
+<div data-mk="pop"></div>
+<p>A spurious factor <span class="zh">干擾因素</span> such as payday, weekend traffic, a competitor stockout, seasonality or another promotion can explain part of a before/after change. Stronger designs use comparison stores or periods and repeated observations.<span class="zh-full" lang="zh-Hant">發薪日、週末人流、競爭者缺貨、季節性或其他促銷等干擾因素，都可能解釋部分前後差異。較強的設計會使用比較門市或比較期間，並重複觀察。</span></p>
+<div class="pair">
+  <div><b>Laboratory<span class="zh-full" lang="zh-Hant">實驗室</span></b><p>High control, but artificial.<span class="zh-full" lang="zh-Hant">控制程度高，但情境較人工化。</span></p></div>
+  <div><b>Field<span class="zh-full" lang="zh-Hant">實地</span></b><p>Realistic, but less control over other factors.<span class="zh-full" lang="zh-Hant">貼近真實，但對其他因素的控制較弱。</span></p></div>
+</div>
+<p class="note-small">This closes Lesson 2's open question: a loyalty program's real effect is the difference between members and a comparable group without the program.<span class="zh-full" lang="zh-Hant">這回應了第 2 堂留下的問題：忠誠計畫的真實效果，要比較會員與未參加計畫的可比較群體。</span></p>
+
+<!-- 9 -->
+<h2 id="tools">9. Advanced tools and analysis<span class="zh-full" lang="zh-Hant">9. 進階工具與分析</span></h2>
+<div class="tbl"><table>
+<thead><tr><th>Tool<span class="zh-full" lang="zh-Hant">工具</span></th><th>What it does<span class="zh-full" lang="zh-Hant">用途</span></th><th>Watch out<span class="zh-full" lang="zh-Hant">注意事項</span></th></tr></thead>
+<tbody>
+<tr><td><b>Cluster analysis</b> <span class="zh">集群分析</span><span class="zh-full" lang="zh-Hant">集群分析</span></td><td>Groups respondents with similar patterns<span class="zh-full" lang="zh-Hant">把模式相似的受訪者分組</span></td><td>A statistical group may have no clear meaning or action<span class="zh-full" lang="zh-Hant">統計上的群組未必有清楚的意義或可採取的行動</span></td></tr>
+<tr><td><b>Conjoint analysis</b> <span class="zh">聯合分析</span><span class="zh-full" lang="zh-Hant">聯合分析</span></td><td>Asks people to choose between bundles of attributes, revealing trade-offs<span class="zh-full" lang="zh-Hant">讓受訪者在屬性組合間選擇，以揭露取捨</span></td><td>Results depend on which attributes are tested<span class="zh-full" lang="zh-Hant">結果取決於測試哪些屬性</span></td></tr>
+<tr><td><b>Online communities</b><span class="zh-full" lang="zh-Hant">線上社群</span></td><td>Ongoing, low-cost qualitative input with photos and tasks<span class="zh-full" lang="zh-Hant">透過照片與任務，持續取得低成本質性回饋</span></td><td>Participants may not represent the market<span class="zh-full" lang="zh-Hant">參與者未必代表市場</span></td></tr>
+<tr><td><b>Agile research</b><span class="zh-full" lang="zh-Hant">敏捷研究</span></td><td>Faster, cheaper feedback<span class="zh-full" lang="zh-Hant">更快、更便宜的回饋</span></td><td>Speed helps only if the company can act on it<span class="zh-full" lang="zh-Hant">公司有能力採取行動時，速度才有價值</span></td></tr>
+</tbody></table></div>
+<p><b>Customer experience management</b> runs Listen → Learn → React. Feedback that arrives weeks late may explain a problem but miss the chance to recover that customer. <b>Proactive</b> research looks for opportunities and threats early; <b>reactive</b> research responds after something goes wrong.<span class="zh-full" lang="zh-Hant">顧客體驗管理依循「聆聽 → 學習 → 回應」。數週後才到的回饋，可能解釋了問題，卻錯過挽回顧客的時機。主動研究提早尋找機會與威脅；反應式研究則在出問題後回應。</span></p>
+<p class="key">"63% satisfied" is a result, not an analysis. Ask which group is lower, which attribute matters most, what changed, what explains it, and what evidence is still missing.<span class="zh-full" lang="zh-Hant">「63% 滿意」是結果，不是分析。要問哪一群較低、什麼屬性最重要、哪些地方改變、如何解釋，以及還缺什麼證據。</span></p>
+
+<!-- 10 -->
+<h2 id="traps">10. Do not mix these up<span class="zh-full" lang="zh-Hant">10. 別混淆這些概念</span></h2>
+<div class="traps">
+  <div><s>A business problem is a research question.<span class="zh-full" lang="zh-Hant">企業問題就是研究問題。</span></s><p>The problem is a symptom; the question targets one uncertainty.<span class="zh-full" lang="zh-Hant">企業問題是症狀；研究問題聚焦一個不確定之處。</span></p></div>
+  <div><s>We should run a survey.<span class="zh-full" lang="zh-Hant">我們應該做問卷。</span></s><p>The method follows the objective.<span class="zh-full" lang="zh-Hant">方法應由目標決定。</span></p></div>
+  <div><s>Primary data is always better.<span class="zh-full" lang="zh-Hant">初級資料一定較好。</span></s><p>Existing data may already answer the question at lower cost.<span class="zh-full" lang="zh-Hant">既有資料可能已能以較低成本回答問題。</span></p></div>
+  <div><s>A big sample is representative.<span class="zh-full" lang="zh-Hant">大樣本就有代表性。</span></s><p>Who you sample matters more than how many.<span class="zh-full" lang="zh-Hant">抽到誰比抽多少人更重要。</span></p></div>
+  <div><s>Saturation means representation.<span class="zh-full" lang="zh-Hant">飽和代表有代表性。</span></s><p>Saturation is about themes, not population inference.<span class="zh-full" lang="zh-Hant">飽和關乎主題，不等於能推論母體。</span></p></div>
+  <div><s>An independent variable is a proven cause.<span class="zh-full" lang="zh-Hant">自變數就是已證實的原因。</span></s><p>It is a proposed explanation to test.<span class="zh-full" lang="zh-Hant">它是等待檢驗的解釋。</span></p></div>
+  <div><s>Reliable means valid.<span class="zh-full" lang="zh-Hant">有信度就有效度。</span></s><p>A measure can be consistently wrong.<span class="zh-full" lang="zh-Hant">測量可能很一致地出錯。</span></p></div>
+  <div><s>Sales rose after the display, so it worked.<span class="zh-full" lang="zh-Hant">陳列後銷售上升，所以陳列有效。</span></s><p>Rule out outside factors with a comparison group.<span class="zh-full" lang="zh-Hant">需要比較組來排除外部因素。</span></p></div>
+  <div><s>Observation shows why people act.<span class="zh-full" lang="zh-Hant">觀察顯示人們為何行動。</span></s><p>It shows what they do, not their motives.<span class="zh-full" lang="zh-Hant">它顯示人們做什麼，而非動機。</span></p></div>
+  <div><s>Reporting numbers is analysis.<span class="zh-full" lang="zh-Hant">報告數字就是分析。</span></s><p>Analysis explains and links to a decision.<span class="zh-full" lang="zh-Hant">分析需要解釋結果並連結決策。</span></p></div>
+</div>
+
+<!-- 11 -->
+<h2 id="coldcall">11. Cold call practice<span class="zh-full" lang="zh-Hant">11. 課堂即答練習</span></h2>
+<div class="qa-tools"><button type="button" id="qaAll">Show all answers<span class="zh-full" lang="zh-Hant">顯示全部答案</span></button></div>
+<div class="qa">
+  <details><summary>Why conduct marketing research?<span class="zh-full" lang="zh-Hant">為什麼要進行行銷研究？</span></summary><p>To understand consumers, explore opportunities, diagnose problems and measure outcomes, reducing decision risk without eliminating it.<span class="zh-full" lang="zh-Hant">為了理解消費者、探索機會、診斷問題與衡量成果，降低決策風險，但不能消除風險。</span></p></details>
+  <details><summary>Why must the question come before the method?<span class="zh-full" lang="zh-Hant">為什麼必須先有問題，再選方法？</span></summary><p>The objective and the information needed decide the method. Choosing a survey first reverses the logic.<span class="zh-full" lang="zh-Hant">研究目標與所需資訊決定方法；先決定做問卷，是把邏輯倒過來。</span></p></details>
+  <details><summary>When should we not do research?<span class="zh-full" lang="zh-Hant">什麼時候不該研究？</span></summary><p>When the decision is already made, the information exists, time is too short, or the cost exceeds the value.<span class="zh-full" lang="zh-Hant">決策已定、資訊已存在、時間太短，或成本超過價值時。</span></p></details>
+  <details><summary>Qualitative or quantitative: which is better?<span class="zh-full" lang="zh-Hant">質性與量化，哪個比較好？</span></summary><p>Neither. Qualitative helps us understand; quantitative helps us measure. They often work in sequence.<span class="zh-full" lang="zh-Hant">沒有誰必然較好。質性幫助理解；量化幫助衡量，兩者常依序使用。</span></p></details>
+  <details><summary>What is saturation?<span class="zh-full" lang="zh-Hant">什麼是飽和？</span></summary><p>The point where more qualitative interviews add no materially new themes.<span class="zh-full" lang="zh-Hant">增加質性訪談，也不再產生實質新主題的時點。</span></p></details>
+  <details><summary>Why use a screening question?<span class="zh-full" lang="zh-Hant">為什麼要用篩選題？</span></summary><p>To make sure respondents belong to the target population, for example recent visitors to Siam Paragon.<span class="zh-full" lang="zh-Hant">確認受訪者屬於目標母體，例如近期曾造訪 Siam Paragon 的人。</span></p></details>
+  <details><summary>What is a conceptual framework?<span class="zh-full" lang="zh-Hant">什麼是概念架構？</span></summary><p>A set of proposed relationships between independent variables and an outcome. The arrows are what we test, not proven cause.<span class="zh-full" lang="zh-Hant">自變數與結果之間的一組待驗證關係；箭頭代表要檢驗的內容，不是已證實的因果。</span></p></details>
+  <details><summary>Conceptual versus operational definition?<span class="zh-full" lang="zh-Hant">概念性定義與操作性定義有何不同？</span></summary><p>The conceptual definition says what a concept means; the operational definition says how we will measure it.<span class="zh-full" lang="zh-Hant">概念性定義說明概念的意義；操作性定義說明如何衡量。</span></p></details>
+  <details><summary>Why can't we just ask "Why did you buy this?"<span class="zh-full" lang="zh-Hant">為什麼不能只問「你為什麼買這個？」</span></summary><p>People may not know or report their real motives: rationalization, memory, social desirability and courtesy bias distort answers.<span class="zh-full" lang="zh-Hant">人可能不知道或不願說出真實動機；事後合理化、記憶、社會期許與禮貌性偏誤都可能扭曲答案。</span></p></details>
+  <details><summary>Why doesn't a before/after sales rise prove the display worked?<span class="zh-full" lang="zh-Hant">為什麼銷售前後上升，不能證明陳列有效？</span></summary><p>Payday, weekend traffic, a competitor stockout or another promotion could explain it. A comparison group is needed.<span class="zh-full" lang="zh-Hant">發薪日、週末人流、競爭者缺貨或其他促銷，也可能解釋上升；需要比較組。</span></p></details>
+  <details><summary>Validity versus reliability?<span class="zh-full" lang="zh-Hant">效度與信度有何不同？</span></summary><p>Validity is measuring the right thing; reliability is measuring consistently. A measure can be reliable but invalid.<span class="zh-full" lang="zh-Hant">效度是測對東西；信度是測得一致。測量可以有信度，卻沒有效度。</span></p></details>
+  <details><summary>Cluster versus conjoint analysis?<span class="zh-full" lang="zh-Hant">集群分析與聯合分析有何不同？</span></summary><p>Cluster groups similar respondents; conjoint reveals trade-offs between bundles of attributes.<span class="zh-full" lang="zh-Hant">集群分析把相似受訪者分組；聯合分析揭露屬性組合之間的取捨。</span></p></details>
+</div>
+
+<h3 id="templates">Answer templates<span class="zh-full" lang="zh-Hant">答題模板</span></h3>
+<div class="tbl"><table>
+<tbody>
+<tr><td><b>Choose a method</b><span class="zh-full" lang="zh-Hant">選擇方法</span></td><td>Objective → information needed → method → sample → why it fits → limitation<span class="zh-full" lang="zh-Hant">目標 → 所需資訊 → 方法 → 樣本 → 為何契合 → 限制</span></td></tr>
+<tr><td><b>Critique a study</b><span class="zh-full" lang="zh-Hant">評析研究</span></td><td>Question → sample → measurement → bias → analysis → is the conclusion stronger than the evidence?<span class="zh-full" lang="zh-Hant">問題 → 樣本 → 衡量 → 偏誤 → 分析 → 結論是否超出證據？</span></td></tr>
+<tr><td><b>Causal claim</b><span class="zh-full" lang="zh-Hant">因果主張</span></td><td>Did X come before Y? Did Y change? Were other factors controlled? Was there a comparison group? Could it be spurious?<span class="zh-full" lang="zh-Hant">X 是否先於 Y？Y 是否改變？其他因素有控制嗎？有比較組嗎？會不會只是偽相關？</span></td></tr>
+</tbody></table></div>
+</article></main>
+</div>
+
+<script>/* Marketing Session 3 widgets: method quiz, research-type quiz, POP display experiment. */
+(function () {
+  const esc = biEscape;
+  let uid = 0;
+  function shell(host, kicker, title, sub) {
+    host.classList.add('mw');
+    host.innerHTML = '<div class="g-head"><span class="g-kicker">' + kicker + '</span><h4>' + title + '</h4>' + (sub ? '<p>' + sub + '</p>' : '') + '</div><div class="mw-body"></div>';
+    return host.querySelector('.mw-body');
+  }
+  function quiz(host, kicker, title, sub, items, opts, layout) {
+    const body = shell(host, kicker, title, sub);
+    body.innerHTML = '<p class="qz-item"></p><div class="qz-opts ' + (layout || '') + "\"></div><p class=\"g-note\"></p><div class=\"qz-nav\"><span class=\"qz-n\"></span><button type=\"button\" class=\"g-btn\">Next<span class=\"zh-full\" lang=\"zh-Hant\">下一題</span></button></div>";
+    const P = body.querySelector('.qz-item'), O = body.querySelector('.qz-opts'), N = body.querySelector('.g-note'), C = body.querySelector('.qz-n');
+    let i = 0, score = 0, done = 0;
+    opts.forEach(([k, lab, sub2]) => {
+      const b = document.createElement('button'); b.type = 'button'; b.dataset.k = k; b.className = 'qz-o';
+      b.innerHTML = '<b>' + lab + '</b>' + (sub2 ? '<small>' + sub2 + '</small>' : '');
+      b.addEventListener('click', () => {
+        if (O.dataset.answered) return; O.dataset.answered = 1;
+        const it = items[i], ok = k === it.a; done++; if (ok) score++;
+        O.querySelectorAll('button').forEach(x => x.classList.toggle('right', x.dataset.k === it.a));
+        if (!ok) b.classList.add('wrong');
+        N.innerHTML = biPair((ok?'Correct. ':'Not quite. ')+biPlain(it.why),(ok?'答對了。':'再想一下。')+biChinese(it.why)); N.hidden = false;
+        C.innerHTML=biPair(score+' / '+done+' correct',score+'／'+done+' 題答對');
+      });
+      O.appendChild(b);
+    });
+    function show() {
+      const it = items[i]; P.innerHTML=biPair('\u0022'+biPlain(it.q)+'\u0022',biChinese(it.q)); delete O.dataset.answered;
+      O.querySelectorAll('button').forEach(x => x.classList.remove('right', 'wrong')); N.hidden = true;
+    }
+    body.querySelector('.qz-nav button').addEventListener('click', () => { i = (i + 1) % items.length; show(); });
+    C.innerHTML=biPair(items.length+' items',items.length+' 題'); show();
+  }
+
+  const W = {};
+
+  /* ---------- Session 1 and 2 widgets ---------- */
+  const baht = v => (v < -0.5 ? '−' : '') + '฿' + Math.abs(Math.round(v)).toLocaleString('en-US');
+  function sliders(id, defs) {
+    return defs.map((d, k) => '<div class="sl"><label for="' + id + k + '"><span>' + d[0] + '</span><output></output></label><input type="range" id="' + id + k + '" min="' + d[1] + '" max="' + d[2] + '" step="' + d[3] + '" value="' + d[4] + '"></div>').join('');
+  }
+  function hbar(lab, v, max, cls, txt) {
+    return '<div class="pb"><span>' + lab + '</span><div class="pb-track"><i class="' + cls + '" style="width:' + Math.max(0, Math.min(100, v / max * 100)) + '%"></i></div><b>' + txt + '</b></div>';
+  }
+
+  W.rtype = host => quiz(host, "Classify<span class=\"zh-full\" lang=\"zh-Hant\">分類練習</span>", "What kind of research question is this?<span class=\"zh-full\" lang=\"zh-Hant\">這是哪一類研究問題？</span>", "Descriptive, diagnostic or predictive?<span class=\"zh-full\" lang=\"zh-Hant\">描述性、診斷性，還是預測性？</span>", [
+    { q: "How often do our customers buy each week?<span class=\"zh-full\" lang=\"zh-Hant\">顧客每週多久買一次？</span>", a: 'desc', why: "It describes what is happening.<span class=\"zh-full\" lang=\"zh-Hant\">它描述正在發生什麼。</span>" },
+    { q: "Why is customer satisfaction falling this quarter?<span class=\"zh-full\" lang=\"zh-Hant\">為什麼這季顧客滿意度下降？</span>", a: 'diag', why: "It looks for what explains a problem.<span class=\"zh-full\" lang=\"zh-Hant\">它尋找問題的解釋。</span>" },
+    { q: "What would happen to sales if we cut the price by 10%?<span class=\"zh-full\" lang=\"zh-Hant\">如果降價 10%，銷售會如何變化？</span>", a: 'pred', why: "It estimates a future response to an action.<span class=\"zh-full\" lang=\"zh-Hant\">它估計某項行動帶來的未來反應。</span>" },
+    { q: "Who are the main buyers of our premium line?<span class=\"zh-full\" lang=\"zh-Hant\">誰是高級產品線的主要買家？</span>", a: 'desc', why: "Who, how many and how often are descriptive.<span class=\"zh-full\" lang=\"zh-Hant\">誰、多少人與多久一次，都屬於描述性問題。</span>" },
+    { q: "Will customers switch if we launch a cheaper competitor brand?<span class=\"zh-full\" lang=\"zh-Hant\">如果我們推出較便宜的競爭品牌，顧客會轉換嗎？</span>", a: 'pred', why: "\"What if\" questions are predictive.<span class=\"zh-full\" lang=\"zh-Hant\">「如果……會怎樣」屬於預測性問題。</span>" },
+    { q: "What is driving the drop in repeat purchases among young customers?<span class=\"zh-full\" lang=\"zh-Hant\">什麼因素導致年輕顧客重購下降？</span>", a: 'diag', why: "It investigates possible causes.<span class=\"zh-full\" lang=\"zh-Hant\">它調查可能原因。</span>" }
+  ], [['desc', "Descriptive<span class=\"zh-full\" lang=\"zh-Hant\">描述性</span>", "What is happening?<span class=\"zh-full\" lang=\"zh-Hant\">正在發生什麼？</span>"], ['diag', "Diagnostic<span class=\"zh-full\" lang=\"zh-Hant\">診斷性</span>", "What may explain it?<span class=\"zh-full\" lang=\"zh-Hant\">什麼可能解釋這件事？</span>"], ['pred', "Predictive<span class=\"zh-full\" lang=\"zh-Hant\">預測性</span>", "What might happen if?<span class=\"zh-full\" lang=\"zh-Hant\">如果……，可能發生什麼？</span>"]], 'row3');
+
+  W.method = host => quiz(host, "Choose a method<span class=\"zh-full\" lang=\"zh-Hant\">選擇方法</span>", "Which method would you start with?<span class=\"zh-full\" lang=\"zh-Hant\">你會先採用哪一種方法？</span>", "Question first, method second. Each item comes from the class list.<span class=\"zh-full\" lang=\"zh-Hant\">先有問題，再選方法。各題來自課堂列出的問題類型。</span>", [
+    { q: "How often do people shop at malls?<span class=\"zh-full\" lang=\"zh-Hant\">人們多久去購物中心一次？</span>", a: 'quant', why: "How often is a measurement question: use a survey.<span class=\"zh-full\" lang=\"zh-Hant\">頻率是衡量問題，可用問卷調查。</span>" },
+    { q: "How do people decide which car to buy?<span class=\"zh-full\" lang=\"zh-Hant\">人們如何決定買哪一款車？</span>", a: 'qual', why: "A complex how and why process: start with in-depth interviews.<span class=\"zh-full\" lang=\"zh-Hant\">這是複雜的過程與原因問題，可先做深度訪談。</span>" },
+    { q: "What steps do people follow when washing clothes?<span class=\"zh-full\" lang=\"zh-Hant\">人們洗衣服時遵循哪些步驟？</span>", a: 'obs', why: "Actual routine behavior is best seen, not recalled.<span class=\"zh-full\" lang=\"zh-Hant\">日常實際行為適合直接觀察，而非只靠回憶。</span>" },
+    { q: "How satisfied are our restaurant customers?<span class=\"zh-full\" lang=\"zh-Hant\">餐廳顧客有多滿意？</span>", a: 'quant', why: "Satisfaction level is a measurement.<span class=\"zh-full\" lang=\"zh-Hant\">滿意程度是衡量問題。</span>" },
+    { q: "Why are our restaurant customers dissatisfied?<span class=\"zh-full\" lang=\"zh-Hant\">餐廳顧客為什麼不滿意？</span>", a: 'qual', why: "Explaining why needs qualitative follow-up.<span class=\"zh-full\" lang=\"zh-Hant\">解釋原因需要質性追問。</span>" },
+    { q: "What is purchase intention for an electric scooter?<span class=\"zh-full\" lang=\"zh-Hant\">電動機車的購買意願如何？</span>", a: 'quant', why: "Intention can be measured, though intention is not purchase.<span class=\"zh-full\" lang=\"zh-Hant\">意願可以衡量，但意願不等於購買。</span>" },
+    { q: "How do people react to three early storyboards?<span class=\"zh-full\" lang=\"zh-Hant\">人們對三份初期廣告分鏡有什麼反應？</span>", a: 'qual', why: "Early concepts need exploration of interpretation.<span class=\"zh-full\" lang=\"zh-Hant\">初期概念需要探索人們如何理解。</span>" },
+    { q: "Did the new POP display increase sales?<span class=\"zh-full\" lang=\"zh-Hant\">新的 POP 店頭陳列增加銷售了嗎？</span>", a: 'exp', why: "A causal question needs a test with a comparison group.<span class=\"zh-full\" lang=\"zh-Hant\">因果問題需要有比較組的測試。</span>" },
+    { q: "How big is the Thai ready-to-drink tea market?<span class=\"zh-full\" lang=\"zh-Hant\">泰國即飲茶市場有多大？</span>", a: 'sec', why: "Check existing industry reports first.<span class=\"zh-full\" lang=\"zh-Hant\">先查現有產業報告。</span>" }
+  ], [['qual', "Qualitative<span class=\"zh-full\" lang=\"zh-Hant\">質性</span>", "Why / how<span class=\"zh-full\" lang=\"zh-Hant\">原因／過程</span>"], ['quant', "Quantitative<span class=\"zh-full\" lang=\"zh-Hant\">量化</span>", "Who / how many / how often<span class=\"zh-full\" lang=\"zh-Hant\">誰／多少人／多久一次</span>"], ['obs', "Observation<span class=\"zh-full\" lang=\"zh-Hant\">觀察</span>", "What people do<span class=\"zh-full\" lang=\"zh-Hant\">人們實際做什麼</span>"], ['exp', "Experiment<span class=\"zh-full\" lang=\"zh-Hant\">實驗</span>", "Does X cause Y?<span class=\"zh-full\" lang=\"zh-Hant\">X 是否造成 Y？</span>"], ['sec', "Secondary data<span class=\"zh-full\" lang=\"zh-Hant\">次級資料</span>", "Already exists<span class=\"zh-full\" lang=\"zh-Hant\">已經存在</span>"]], 'row5');
+
+  W.pop = host => {
+    const body = shell(host, "Interactive<span class=\"zh-full\" lang=\"zh-Hant\">互動練習</span>", "Did the display really add 30%?<span class=\"zh-full\" lang=\"zh-Hant\">陳列真的增加了 30% 嗎？</span>", "Week 3 sales ฿100,000; week 4 with the display ฿130,000. Split the jump into the display effect and an outside factor such as payday.<span class=\"zh-full\" lang=\"zh-Hant\">第 3 週銷售 ฿100,000，第 4 週加入陳列後為 ฿130,000。把增幅拆成陳列效果與發薪日等外部因素。</span>");
+    const st = { fx: 10, ext: 20, ctrl: false };
+    const id = 'pop' + (++uid);
+    body.innerHTML = '<div class="pop-grid"><div class="pop-ctrl">' +
+      '<div class="sl"><label for="' + id + "a\"><span>True display effect<span class=\"zh-full\" lang=\"zh-Hant\">真實陳列效果</span></span><output></output></label><input type=\"range\" id=\"" + id + 'a" min="0" max="30" step="1" value="' + st.fx + '"></div>' +
+      '<div class="sl"><label for="' + id + "b\"><span>Outside factor (payday, weekend)<span class=\"zh-full\" lang=\"zh-Hant\">外部因素（發薪日、週末）</span></span><output></output></label><input type=\"range\" id=\"" + id + 'b" min="0" max="30" step="1" value="' + st.ext + '"></div>' +
+      '<label class="chk" for="' + id + 'c"><input type="checkbox" id="' + id + "c\"><span>Add a comparable store without the display<span class=\"zh-full\" lang=\"zh-Hant\">加入一家沒有陳列的可比較門市</span></span></label>" +
+      '<dl class="g-stats"></dl></div><div class="pop-bars"></div></div><p class="g-note"></p>';
+    const [a, b] = body.querySelectorAll('input[type=range]'), c = body.querySelector('input[type=checkbox]');
+    const outs = body.querySelectorAll('output'), bars = body.querySelector('.pop-bars'), stats = body.querySelector('.g-stats'), note = body.querySelector('.g-note');
+    const bar = (lab, v, cls) => '<div class="pb"><span>' + lab + '</span><div class="pb-track"><i class="' + cls + '" style="width:' + (v / 1.6) + '%"></i></div><b>฿' + (v * 1000).toLocaleString('en-US') + '</b></div>';
+    function draw() {
+      outs[0].innerHTML = '+' + st.fx + '%'; outs[1].innerHTML = '+' + st.ext + '%';
+      const t3 = 100, t4 = 100 * (1 + st.fx / 100 + st.ext / 100), c3 = 100, c4 = 100 * (1 + st.ext / 100);
+      let h = "<p class=\"pb-h\">Test store (display in week 4)<span class=\"zh-full\" lang=\"zh-Hant\">實驗門市（第 4 週有陳列）</span></p>" + bar("Week 3<span class=\"zh-full\" lang=\"zh-Hant\">第 3 週</span>", t3, 'base') + bar("Week 4<span class=\"zh-full\" lang=\"zh-Hant\">第 4 週</span>", t4, 'test');
+      if (st.ctrl) h += "<p class=\"pb-h\">Comparison store (no display)<span class=\"zh-full\" lang=\"zh-Hant\">比較門市（沒有陳列）</span></p>" + bar("Week 3<span class=\"zh-full\" lang=\"zh-Hant\">第 3 週</span>", c3, 'base') + bar("Week 4<span class=\"zh-full\" lang=\"zh-Hant\">第 4 週</span>", c4, 'ctrl');
+      bars.innerHTML = h;
+      const naive = t4 - t3, did = (t4 - t3) - (c4 - c3);
+      stats.innerHTML = "<div class=\"st\"><dt>Before/after estimate<span class=\"zh-full\" lang=\"zh-Hant\">單純前後比較的估計</span></dt><dd>+" + Math.round(naive) + '%</dd></div>' +
+        (st.ctrl ? "<div class=\"st big\"><dt>With comparison store<span class=\"zh-full\" lang=\"zh-Hant\">加入比較門市後</span></dt><dd>+" + Math.round(did) + '%</dd></div>' : '') +
+        "<div class=\"st\"><dt>True display effect<span class=\"zh-full\" lang=\"zh-Hant\">真實陳列效果</span></dt><dd>+" + st.fx + '%</dd></div>';
+      note.innerHTML=st.ctrl?biPair('The comparison store also gained '+st.ext+'% without a display, so that part came from the outside factor. Subtracting it recovers the display effect.','比較門市沒有陳列也增加 '+st.ext+'%，表示這部分來自外部因素。扣除後，便能還原陳列效果。'):biPair('Before/after alone credits the display with the whole +'+Math.round(naive)+'%, including '+st.ext+'% from the outside factor. Add a comparison store to separate them.','單純前後比較會把全部 +'+Math.round(naive)+'% 都歸功於陳列，其中其實包含外部因素的 '+st.ext+'%。加入比較門市，才能分開兩者。');
+    }
+    a.addEventListener('input', () => { st.fx = +a.value; draw(); });
+    b.addEventListener('input', () => { st.ext = +b.value; draw(); });
+    c.addEventListener('change', () => { st.ctrl = c.checked; draw(); });
+    draw();
+  };
+
+  W.bias = host => quiz(host, "Spot the bias<span class=\"zh-full\" lang=\"zh-Hant\">找出偏誤</span>", "What is distorting this answer?<span class=\"zh-full\" lang=\"zh-Hant\">什麼扭曲了這個回答？</span>", '', [
+    { q: "Respondents say they exercise four times a week; gym records show once.<span class=\"zh-full\" lang=\"zh-Hant\">受訪者說每週運動四次，健身房紀錄卻只有一次。</span>", a: 'sd', why: "Social desirability: people report what looks good.<span class=\"zh-full\" lang=\"zh-Hant\">社會期許偏誤：人們報告看起來較好的行為。</span>" },
+    { q: "Diners tell the friendly waiter the meal was excellent, then never return.<span class=\"zh-full\" lang=\"zh-Hant\">顧客對親切服務生說餐點非常好吃，之後卻再也不來。</span>", a: 'court', why: "Courtesy bias: polite, overly positive feedback.<span class=\"zh-full\" lang=\"zh-Hant\">禮貌性偏誤：出於禮貌，給出過度正面的回饋。</span>" },
+    { q: "\"I bought it because of the better specifications,\" says a buyer who chose on impulse.<span class=\"zh-full\" lang=\"zh-Hant\">一位衝動購買者說：「我買是因為規格比較好。」</span>", a: 'rat', why: "Rationalization: a logical reason made up after the fact.<span class=\"zh-full\" lang=\"zh-Hant\">事後合理化：事後才編出合乎邏輯的理由。</span>" },
+    { q: "Shoppers say they care about sustainability but buy the cheapest option.<span class=\"zh-full\" lang=\"zh-Hant\">購物者說重視永續，卻選擇最便宜的商品。</span>", a: 'gap', why: "Attitude-behavior gap: stated attitude differs from action.<span class=\"zh-full\" lang=\"zh-Hant\">態度與行為落差：自述態度與實際行動不同。</span>" }
+  ], [['sd', "Social desirability<span class=\"zh-full\" lang=\"zh-Hant\">社會期許偏誤</span>"], ['court', "Courtesy bias<span class=\"zh-full\" lang=\"zh-Hant\">禮貌性偏誤</span>"], ['rat', "Rationalization<span class=\"zh-full\" lang=\"zh-Hant\">事後合理化</span>"], ['gap', "Attitude-behavior gap<span class=\"zh-full\" lang=\"zh-Hant\">態度與行為落差</span>"]], 'grid2');
+
+  window.MktWidgets = { mount(root) { root.querySelectorAll('[data-mk]').forEach(h => { if (!h.dataset.ready && W[h.dataset.mk]) { h.dataset.ready = 1; W[h.dataset.mk](h); } }); } };
+})();
+</script>
+<script>
+(function () {
+  const toc = document.getElementById('toc'), rail = document.getElementById('rail');
+  const hs = [...document.querySelectorAll('.doc > h2, .doc > h3')];
+  hs.forEach(h => {
+    const li = document.createElement('li'); li.className = h.tagName.toLowerCase(); li.dataset.id = h.id;
+    const a = document.createElement('a'); a.href = '#' + h.id; a.innerHTML=biPair(h.childNodes[0].textContent.trim(),h.querySelector(':scope > .zh-full')?.textContent||'');
+    li.appendChild(a); toc.appendChild(li);
+  });
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    toc.querySelectorAll('a.on').forEach(a => a.classList.remove('on'));
+    const a = toc.querySelector('li[data-id="' + e.target.id + '"] a'); if (a) a.classList.add('on');
+  }), { rootMargin: '-80px 0px -70% 0px' });
+  hs.forEach(h => spy.observe(h));
+
+  const tb = document.getElementById('tocBtn');
+  tb.addEventListener('click', () => { const o = rail.classList.toggle('open'); tb.setAttribute('aria-expanded', o); });
+  toc.addEventListener('click', e => { if (e.target.closest('a')) { rail.classList.remove('open'); tb.setAttribute('aria-expanded', false); } });
+
+  const all = document.getElementById('qaAll');
+  if (all) all.addEventListener('click', () => {
+    const ds = document.querySelectorAll('.qa details'), open = ![...ds].every(d => d.open);
+    ds.forEach(d => d.open = open); all.innerHTML=biPair(open?'Hide all answers':'Show all answers',open?'收合全部答案':'顯示全部答案');
+  });
+  document.querySelectorAll('.drill .ans').forEach(s => s.addEventListener('click', () => s.classList.toggle('shown')));
+
+  if (window.EconWidgets) window.EconWidgets.mount(document);
+  if (window.MgmtWidgets) window.MgmtWidgets.mount(document);
+  if (window.MktWidgets) window.MktWidgets.mount(document);
+})();
+</script>
+<script>
+(function(){
+const toggle=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+const key='study-notes-show-zh';
+function syncOptions(on){document.querySelectorAll('option[data-zh]').forEach(o=>{if(!o.dataset.en)o.dataset.en=o.textContent;o.textContent=o.dataset.en+(on&&o.dataset.zh?'／'+o.dataset.zh:'')})}
+function set(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';syncOptions(on);try{localStorage.setItem(key,on?'1':'0')}catch(e){}}
+let initial=false;try{initial=localStorage.getItem(key)==='1'}catch(e){}
+set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
+const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
+if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
+})();
+</script></body></html>

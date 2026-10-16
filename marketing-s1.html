@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Marketing Fundamentals and Customer Value · Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+/* Layout: one light reading column with a sticky chapter rail; deliberately single (light) theme. */
+:root {
+  color-scheme: light;
+  --bg: #FDF9F9; --panel: #F8EEF0; --paper: #FFFFFF; --tint: #FAE9ED; --line: #EFDDE2;
+  --fg: #2F282B; --muted: #7E6F74; --accent: #C06C84; --accent-ink: #9C4862;
+  --demand: #3F5675; --supply: #C06C84; --ext: #6E3F55; --world: #8A7A5C; --policy: #3F7F7A;
+  --cs: #A7CDB6; --ps: #B2C4E3; --dwl: #D9674F; --rev: #E5C171; --rev2: #F1DCA8; --time: #DDB3CB; --ts: #BFDCC9;
+  --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; background: var(--bg); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.75; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(253, 249, 249, .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
+.top-in { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 14px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.02rem; white-space: nowrap; }
+.brand small { font-family: var(--sans); font-weight: 500; color: var(--muted); font-size: .76rem; margin-left: 6px; letter-spacing: .06em; }
+.sessions { display: flex; gap: 4px; margin-left: auto; }
+.crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
+.sessions a.pill {
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):hover,
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):focus-visible {
+  background: #fceef2;
+  border-color: #b86b7b;
+  color: #8e4357;
+}
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):focus-visible {
+  outline: 2px solid #b86b7b;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sessions a.pill { transition: none; }
+}
+.sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
+.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.sessions .pill.off { opacity: .5; cursor: not-allowed; }
+.toc-btn { display: none; font: 500 .85rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--fg); border-radius: 8px; padding: 5px 12px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 52px; }
+.rail { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow: auto; padding-block: 34px 40px; font-size: .86rem; line-height: 1.5; }
+.rail .lbl { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.rail ol { list-style: none; margin: 0; padding: 0; }
+.rail li a { display: block; padding: 4px 10px; color: var(--muted); text-decoration: none; border-radius: 6px; }
+.rail li a:hover { color: var(--fg); background: var(--tint); }
+.rail li.h3 a { padding-left: 22px; font-size: .8rem; }
+.rail li a.on { color: var(--accent-ink); background: var(--tint); font-weight: 500; }
+
+main { min-width: 0; padding-block: 30px 120px; }
+.doc { max-width: 780px; }
+.hero { padding-block: 8px 26px; border-bottom: 1px solid var(--line); }
+.kick { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px; font-weight: 500; }
+.hero h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.25; margin: 0 0 12px; text-wrap: balance; }
+.lead { margin: 0; font-size: 1.04rem; max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.doc h2 { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 3.4rem 0 .3rem; text-wrap: balance; }
+.doc h3 { font-size: 1.1rem; line-height: 1.45; margin: 2.2rem 0 .5rem; color: var(--accent-ink); text-wrap: balance; }
+.sub { margin: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
+.doc p, .doc li { max-width: 68ch; }
+.doc ul, .doc ol { padding-left: 1.25em; }
+.doc li { margin: .25rem 0; }
+.zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
+.hint { font-size: .9rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.hint b { flex: none; font-size: .72rem; color: #fff; background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
+.key { background: var(--tint); padding: 12px 16px; border-radius: 8px; font-weight: 500; }
+.note-small { font-size: .8rem; color: var(--muted); }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.pair > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.pair b { color: var(--accent-ink); }
+.pair p { margin: 4px 0 0; font-size: .92rem; }
+
+.matrix { display: grid; grid-template-columns: minmax(90px, .7fr) repeat(2, minmax(0, 1fr)); gap: 6px; margin: 1rem 0 1.2rem; font-size: .9rem; max-width: 620px; }
+.matrix .mh { font-weight: 700; font-size: .8rem; color: var(--muted); align-self: end; padding: 0 4px 2px; }
+.matrix .mh.side { align-self: center; }
+.matrix .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-weight: 500; }
+.matrix .cell.hi { background: var(--tint); border-color: var(--accent); }
+.matrix small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; margin-top: 2px; line-height: 1.45; }
+
+.map { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 1rem 0; }
+.mcol { display: flex; flex-direction: column; gap: 8px; }
+.mbox { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; display: flex; flex-direction: column; gap: 2px; }
+.mbox b { font-size: .9rem; } .mbox span { color: var(--muted); } .mbox em { font-style: normal; color: var(--accent-ink); font-size: .78rem; font-weight: 500; }
+.mbox.good { border-color: var(--cs); } .mbox.ask { background: var(--tint); border-color: var(--accent); }
+.marrow { color: var(--accent); font-weight: 700; }
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.flow span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; line-height: 1.45; }
+.flow i { font-style: normal; color: var(--accent); font-weight: 700; }
+.formula { font-family: var(--mono); font-size: .9rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; line-height: 1.9; overflow-x: auto; }
+.steps { counter-reset: s; list-style: none; padding-left: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 10px; }
+.steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .75rem/22px var(--sans); text-align: center; margin-top: 3px; }
+.assign { margin: 1.6rem 0; border: 1px dashed var(--accent); border-radius: 10px; padding: 14px 16px; background: var(--paper); }
+.assign p { margin: 6px 0 0; font-size: .92rem; }
+
+.tbl { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.doc table { border-collapse: collapse; width: 100%; font-size: .88rem; line-height: 1.55; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.doc th { background: var(--panel); font-weight: 700; }
+.doc tr:last-child td { border-bottom: 0; }
+.drill .ans { filter: blur(5px); cursor: pointer; user-select: none; transition: filter .2s; }
+.drill .ans.shown { filter: none; user-select: auto; }
+
+.traps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 1rem; }
+.traps > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: .88rem; line-height: 1.55; }
+.traps s { color: var(--muted); text-decoration-color: var(--dwl); }
+.traps p { margin: 6px 0 0; font-weight: 500; }
+
+.qa-tools { margin: .4rem 0 .8rem; }
+.qa-tools button { font: 500 .82rem var(--sans); border: 1px solid var(--accent); background: var(--paper); color: var(--accent-ink); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+.qa { display: flex; flex-direction: column; gap: 6px; }
+.qa details { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.qa summary { cursor: pointer; padding: 10px 14px; font-weight: 500; font-size: .93rem; list-style: none; display: flex; gap: 10px; }
+.qa summary::before { content: "Q"; color: var(--accent); font-weight: 700; }
+.qa details[open] summary { border-bottom: 1px dashed var(--line); }
+.qa details p { margin: 0; padding: 10px 14px 12px 36px; font-size: .9rem; }
+
+/* graphs */
+.graph { max-width: 900px; margin: 1.8rem 0 2.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; }
+.g-head h4 { font-family: var(--serif); font-size: 1.12rem; margin: 2px 0 2px; line-height: 1.45; }
+.g-head p { margin: 0 0 10px; color: var(--muted); font-size: .86rem; }
+.g-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+.g-body { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.g-plot svg { width: 100%; height: auto; display: block; }
+.g-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.g-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.sl label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); line-height: 1.3; }
+.sl output { font-family: var(--mono); color: var(--fg); font-size: .8rem; }
+.sl input { width: 100%; accent-color: var(--accent); margin: 4px 0 0; }
+.g-btn { align-self: flex-start; font: 500 .8rem var(--sans); border: 1px solid var(--accent); color: var(--accent-ink); background: transparent; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.g-btn:hover { background: var(--tint); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; align-self: flex-start; }
+.seg button { font: 500 .8rem var(--sans); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--paper); }
+.chk { display: flex; gap: 8px; align-items: center; font-size: .8rem; color: var(--muted); }
+.chk input { accent-color: var(--accent); }
+.g-stats { margin: 0; border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+.st { display: flex; justify-content: space-between; gap: 10px; font-size: .8rem; line-height: 1.45; }
+.st dt { color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.st dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.st.big dd { font-weight: 500; color: var(--accent-ink); font-size: .92rem; }
+.g-note { margin: 12px 0 0; padding: 9px 12px; background: var(--tint); border-radius: 6px; font-size: .85rem; line-height: 1.6; }
+
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; flex: none; }
+.sw.none { background: transparent; }
+.sw.a-cs { background: var(--cs); } .sw.a-ps { background: var(--ps); } .sw.a-ps2 { background: var(--ps); outline: 1px solid var(--demand); }
+.sw.a-dwl { background: repeating-linear-gradient(45deg, var(--dwl) 0 2px, transparent 2px 4px); outline: 1px solid var(--dwl); }
+.sw.a-rev { background: var(--rev); } .sw.a-rev2 { background: var(--rev2); } .sw.a-time { background: var(--time); } .sw.a-ts { background: var(--ts); }
+.sw.ln { height: 3px; border-radius: 2px; width: 16px; }
+
+svg .ax { stroke: var(--muted); stroke-width: 1.2; }
+svg .axl { fill: var(--muted); font: 500 11px var(--sans); }
+svg .tk { fill: var(--muted); font: 500 10.5px var(--mono); }
+svg .gd { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+svg .cv { stroke-width: 2.6; fill: none; stroke-linecap: round; }
+svg .cv.dash { stroke-dasharray: 7 5; stroke-width: 2; }
+svg .cvl { font: 700 11.5px var(--sans); }
+svg .c-d { stroke: var(--demand); fill: var(--demand); } svg .c-s { stroke: var(--supply); fill: var(--supply); }
+svg .c-x { stroke: var(--ext); fill: var(--ext); } svg .c-w { stroke: var(--world); fill: var(--world); } svg .c-t { stroke: var(--policy); fill: var(--policy); }
+svg text.cvl { stroke: none; }
+svg .pt { fill: var(--paper); stroke: var(--fg); stroke-width: 2; }
+svg .ptl { fill: var(--fg); font: 700 11px var(--sans); }
+svg .atag { fill: var(--fg); font: 700 11px var(--sans); opacity: .8; }
+svg .a-cs { fill: var(--cs); fill-opacity: .6; } svg .a-ps { fill: var(--ps); fill-opacity: .6; }
+svg .a-ps2 { fill: var(--ps); fill-opacity: .95; } svg .a-ts { fill: var(--ts); fill-opacity: .6; }
+svg .a-dwl { fill: url(#dwlHatch); stroke: var(--dwl); stroke-width: 1.2; }
+svg .a-rev { fill: var(--rev); fill-opacity: .75; } svg .a-rev2 { fill: var(--rev2); fill-opacity: .8; } svg .a-time { fill: var(--time); fill-opacity: .65; }
+
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .a-prof { fill: var(--cs); fill-opacity: .75; } svg .a-loss { fill: var(--dwl); fill-opacity: .35; }
+.sw.a-prof { background: var(--cs); } .sw.a-loss { background: var(--dwl); opacity: .5; }
+.twin { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tw-t { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.g-ctrl .g-btn + .g-btn { margin-top: -4px; }
+.graph.wide .g-body { grid-template-columns: minmax(0, 1fr); }
+.graph.wide .g-side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 700px) { .twin, .graph.wide .g-side { grid-template-columns: minmax(0, 1fr); } }
+svg polyline.cv { fill: none !important; }
+.seg { flex-wrap: wrap; }
+
+.graph { background: var(--paper); }
+.g-note { background: var(--tint); }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail { display: none; position: fixed; inset: 64px 0 0 0; max-height: none; background: var(--bg); z-index: 15; padding: 20px 16px 60px; }
+  .rail.open { display: block; }
+  .toc-btn { display: inline-block; }
+  .g-body { grid-template-columns: minmax(0, 1fr); }
+  .map { grid-template-columns: minmax(0, 1fr); }
+  .marrow { transform: rotate(90deg); justify-self: center; }
+}
+@media (max-width: 560px) { .pair, .traps { grid-template-columns: minmax(0, 1fr); } }
+/* Management components */
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.tcard { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.tcard .tnum { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font: 700 .78rem/24px var(--sans); text-align: center; }
+.tcard p { margin: 0; color: var(--muted); font-size: .88rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.tags span { font-size: .74rem; background: var(--tint); color: var(--accent-ink); padding: 1px 8px; border-radius: 999px; font-weight: 500; }
+.method, .loop, .cascade { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.method span, .loop span, .cascade span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 5px 11px; line-height: 1.4; }
+.method span.hi { background: var(--tint); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+.method i, .loop i, .cascade i { font-style: normal; color: var(--accent); font-weight: 700; }
+.loop i.back { font-size: 1.1rem; }
+.cascade { flex-direction: column; align-items: flex-start; gap: 2px; }
+.cascade span:nth-of-type(2) { margin-left: 18px; } .cascade span:nth-of-type(3) { margin-left: 36px; } .cascade span:nth-of-type(4) { margin-left: 54px; }
+.cascade i:nth-of-type(1) { margin-left: 14px; } .cascade i:nth-of-type(2) { margin-left: 32px; } .cascade i:nth-of-type(3) { margin-left: 50px; }
+.four { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.four > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+.four b { font-size: .9rem; color: var(--accent-ink); } .four p { margin: 4px 0 0; font-size: .84rem; color: var(--muted); line-height: 1.5; }
+
+.ladder { display: grid; grid-template-columns: minmax(0, 1fr) 118px 118px; grid-template-rows: repeat(5, auto); gap: 5px 8px; margin: 1rem 0 .3rem; max-width: 640px; }
+.lv { grid-column: 1; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; font-weight: 700; font-size: .9rem; line-height: 1.35; }
+.lv small { display: block; font-weight: 400; color: var(--muted); font-size: .78rem; }
+.lv.l5 { grid-row: 1; margin-inline: 22%; } .lv.l4 { grid-row: 2; margin-inline: 16%; } .lv.l3 { grid-row: 3; margin-inline: 10%; } .lv.l2 { grid-row: 4; margin-inline: 5%; } .lv.l1 { grid-row: 5; }
+.lv.l5, .lv.l4 { background: #F6E9F4; } .lv.l3 { background: var(--tint); } .lv.l2, .lv.l1 { background: #EAF2EE; }
+.erg { border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .84rem; text-align: center; padding: 6px; }
+.erg.g { grid-column: 2; grid-row: 1 / span 2; background: #EBD7EA; color: #6E3F6A; }
+.erg.r { grid-column: 3; grid-row: 2 / span 2; background: var(--tint); color: var(--accent-ink); }
+.erg.e { grid-column: 2; grid-row: 4 / span 2; background: #D9EBE1; color: #2F6B4F; }
+
+.mw { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 1.6rem 0 2rem; }
+.mw-body { margin-top: 10px; }
+.hz-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.hz-t { margin: 0 0 6px; font-weight: 700; font-size: .88rem; } .hz-t small { font-weight: 400; color: var(--muted); }
+.chips { display: flex; flex-direction: column; gap: 5px; }
+.chip { display: flex; justify-content: space-between; gap: 10px; font: 500 .84rem var(--sans); text-align: left; background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 7px; padding: 6px 10px; cursor: pointer; }
+.chip em { font-style: normal; font-size: .74rem; color: var(--muted); }
+.hz-cols > div:first-child .chip[aria-pressed="true"] { border-color: var(--dwl); background: #FCEDEA; }
+.hz-cols > div:first-child .chip[aria-pressed="true"] em { color: #A8432F; }
+.hz-cols > div:last-child .chip[aria-pressed="true"] { border-color: #6FAE8B; background: #EAF5EE; }
+.hz-cols > div:last-child .chip[aria-pressed="true"] em { color: #2F6B4F; }
+.scale { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 6px; margin-top: 18px; }
+.half { height: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; position: relative; overflow: hidden; }
+.half i { position: absolute; top: 0; bottom: 0; transition: width .25s; }
+.half.left i { right: 0; background: var(--dwl); } .half.right i { left: 0; background: #6FAE8B; }
+@media (prefers-reduced-motion: reduce) { .half i { transition: none; } }
+.zero { font: 700 .8rem var(--mono); color: var(--muted); }
+.scale-l { display: flex; justify-content: space-between; font-size: .74rem; color: var(--muted); margin-top: 4px; }
+
+.kpi-flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, .8fr) auto minmax(0, 1fr); gap: 8px; align-items: stretch; margin-top: 12px; font-size: .84rem; }
+.kpi-flow > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; line-height: 1.45; }
+.kpi-flow > i { font-style: normal; color: var(--accent); font-weight: 700; align-self: center; }
+.kpi-flow b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.kpi-flow p { margin: 3px 0 0; } .kpi-flow ul { margin: 3px 0 0; padding-left: 1.1em; }
+.kpi-flow .bad { border-color: var(--dwl); background: #FCEDEA; } .kpi-flow .good { border-color: #6FAE8B; background: #EAF5EE; }
+
+.cmp-sel { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: .84rem; color: var(--muted); }
+.cmp-sel select { font: 500 .88rem var(--sans); padding: 5px 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); color: var(--fg); }
+table.cmp td:first-child { font-weight: 700; color: var(--muted); width: 22%; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); }
+.tabs button { font: 500 .86rem var(--sans); background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); padding: 6px 12px; cursor: pointer; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--accent-ink); border-bottom-color: var(--accent); }
+.ev { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+.ev > div { display: grid; grid-template-columns: 190px auto minmax(0, 1fr); gap: 10px; align-items: baseline; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: .86rem; line-height: 1.5; }
+.ev p { margin: 0; }
+.tag { font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.tag.gap { background: #FCE3DD; color: #A8432F; } .tag.ok { background: #E3F2E9; color: #2F6B4F; }
+.tag.maybe { background: #FBF0D9; color: #8A6216; } .tag.na { background: #EEE9EB; color: var(--muted); }
+.issue { margin-top: 12px; background: var(--tint); border-radius: 8px; padding: 10px 14px; font-size: .9rem; }
+.issue p { margin: 4px 0 0; }
+
+.xgrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.xgrid > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 5px; font-size: .84rem; line-height: 1.4; }
+.xgrid small { color: var(--muted); font-size: .76rem; }
+.xgrid .ok, .xgrid .gap { align-self: flex-start; font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; }
+.xgrid .ok { background: #E3F2E9; color: #2F6B4F; } .xgrid .gap { background: #FCE3DD; color: #A8432F; }
+
+@media (max-width: 760px) {
+  .three, .four { grid-template-columns: minmax(0, 1fr); }
+  .xgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hz-cols { grid-template-columns: minmax(0, 1fr); }
+  .kpi-flow { grid-template-columns: minmax(0, 1fr); } .kpi-flow > i { transform: rotate(90deg); justify-self: center; }
+  .ev > div { grid-template-columns: minmax(0, 1fr); gap: 3px; } .ev .tag { justify-self: start; }
+  .ladder { grid-template-columns: minmax(0, 1fr) 84px 84px; }
+}
+
+/* Session 4 + case page */
+.tcard small.dont { color: var(--muted); font-size: .78rem; border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 4px; }
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: .6rem 0 1rem; }
+.quotes q { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-style: italic; color: var(--muted); font-size: .9rem; }
+.six { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.six > div { display: flex; gap: 10px; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .88rem; line-height: 1.5; }
+.six span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
+a.cta { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+a.cta:hover { background: var(--accent-ink); }
+blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; font-size: .92rem; line-height: 1.7; }
+.timeline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.timeline > div { background: var(--paper); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 10px; padding: 10px 14px; font-size: .88rem; line-height: 1.5; }
+.timeline time { font: 500 .76rem var(--mono); color: var(--accent-ink); display: block; }
+.timeline p { margin: 4px 0 0; color: var(--muted); }
+.score { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.score > div { border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; border: 1px solid var(--line); }
+.score .up { background: #EAF5EE; border-color: #A9D3BA; } .score .down { background: #FCEDEA; border-color: #EDC2B8; }
+.score b::after { margin-left: 6px; font-size: .78rem; } .score .up b::after { content: "improved"; color: #2F6B4F; } .score .down b::after { content: "worse"; color: #A8432F; }
+.score ul { margin: 6px 0 0; padding-left: 1.1em; }
+
+.jcm { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, .9fr); gap: 16px; }
+.jdims { display: flex; flex-direction: column; gap: 8px; }
+.jd.g0 label span { color: #6E3F6A; } .jd.g1 label span { color: var(--accent-ink); } .jd.g2 label span { color: #2F6B4F; }
+.jstates { display: flex; flex-direction: column; gap: 12px; padding-top: 4px; }
+.jst span { font-size: .8rem; font-weight: 500; }
+.jbar { height: 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); overflow: hidden; margin-top: 3px; }
+.jbar i { display: block; height: 100%; transition: width .25s; }
+.jst.g0 .jbar i { background: #B98AB5; } .jst.g1 .jbar i { background: var(--accent); } .jst.g2 .jbar i { background: #6FAE8B; }
+@media (prefers-reduced-motion: reduce) { .jbar i { transition: none; } }
+.jout ul { margin: 8px 0 0; padding-left: 1.1em; font-size: .82rem; color: var(--muted); }
+.jlvl { display: inline-block; font-weight: 700; padding: 3px 12px; border-radius: 999px; font-size: .86rem; }
+.jlvl.strong { background: #E3F2E9; color: #2F6B4F; } .jlvl.moderate { background: #FBF0D9; color: #8A6216; } .jlvl.weak { background: #FCE3DD; color: #A8432F; }
+.jgns { margin-top: 14px; }
+
+.qz-item { font-size: 1rem; font-weight: 500; margin: 4px 0 12px; }
+.qz-opts { display: grid; gap: 8px; }
+.qz-opts.grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 520px; }
+.qz-opts.row5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.qz-o { font: 500 .88rem var(--sans); background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 8px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; text-align: center; }
+.qz-o small { color: var(--muted); font-size: .74rem; font-weight: 400; }
+.qz-o:hover { border-color: var(--accent); }
+.qz-o.right { background: #E3F2E9; border-color: #6FAE8B; } .qz-o.wrong { background: #FCE3DD; border-color: var(--dwl); }
+.qz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: .8rem; color: var(--muted); }
+
+.rsteps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.rsteps > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: .85rem; line-height: 1.5; }
+.rsteps > div.g { background: var(--tint); border-color: var(--accent); }
+.rsteps b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.rsteps p { margin: 4px 0 0; }
+.risk { font-size: .88rem; } .risk b { font-size: .72rem; color: #fff; background: #B98A2E; padding: 1px 7px; border-radius: 4px; margin-right: 6px; }
+.sayd summary { cursor: pointer; font-weight: 500; color: var(--accent-ink); font-size: .9rem; }
+
+@media (max-width: 760px) {
+  .quotes, .six, .timeline, .rsteps { grid-template-columns: minmax(0, 1fr); }
+  .score { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jcm { grid-template-columns: minmax(0, 1fr); }
+  .qz-opts.row5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* Marketing components */
+.qz-opts.row3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pop-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 18px; align-items: start; }
+.pop-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.pb-h { margin: 6px 0 4px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.pb { display: grid; grid-template-columns: 96px minmax(0, 1fr) 76px; gap: 8px; align-items: center; font-size: .8rem; margin-bottom: 4px; }
+.pb b { font-family: var(--mono); font-weight: 500; text-align: right; }
+.pb-track { height: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; overflow: hidden; }
+.pb-track i { display: block; height: 100%; transition: width .25s; }
+.pb-track i.base { background: #CFD8E4; } .pb-track i.test { background: var(--accent); } .pb-track i.ctrl { background: #A7CDB6; }
+@media (prefers-reduced-motion: reduce) { .pb-track i { transition: none; } }
+.ladder2 { display: flex; flex-direction: column; gap: 4px; margin: 1rem 0; max-width: 560px; }
+.ladder2 > div { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: .88rem; line-height: 1.5; }
+.ladder2 > div b { display: block; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
+.ladder2 > i { font-style: normal; color: var(--accent); font-weight: 700; padding-left: 14px; line-height: 1; }
+.cf { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, .8fr); gap: 12px; align-items: center; margin: 1rem 0; max-width: 560px; }
+.cf-in { display: flex; flex-direction: column; gap: 6px; }
+.cf-in span, .cf-out { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; font-size: .86rem; }
+.cf-out { background: var(--tint); border-color: var(--accent); font-weight: 700; text-align: center; }
+.cf i { font-style: normal; color: var(--accent); font-weight: 700; font-size: 1.2rem; }
+.cf-lab { display: flex; justify-content: space-between; max-width: 560px; font-size: .74rem; color: var(--muted); }
+.targets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.targets > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; text-align: center; font-size: .8rem; line-height: 1.4; }
+.targets svg { width: 100%; max-width: 120px; height: auto; display: block; margin: 0 auto 6px; }
+.targets b { display: block; font-size: .84rem; }
+.targets small { color: var(--muted); }
+@media (max-width: 760px) {
+  .pop-grid { grid-template-columns: minmax(0, 1fr); }
+  .targets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .qz-opts.row3 { grid-template-columns: minmax(0, 1fr); }
+  .cf { grid-template-columns: minmax(0, 1fr); } .cf i { transform: rotate(90deg); justify-self: center; }
+}
+.ladder2 > i { font-size: .8rem; font-weight: 500; }
+
+</style><style>
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid #d5c6ca;border-radius:999px;background:#eee6e8;position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:white;border-radius:50%;box-shadow:0 1px 2px #7775}
+.topswitch input:checked{background:var(--accent)}
+.topswitch input:checked:after{left:14px}
+.topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+</style><script>
+/* Bilingual content helpers: no text dictionary, observer or page-wide rescan. */
+(function(){
+  const scratch=document.createElement('div');
+  function read(s){scratch.innerHTML=String(s);const z=[...scratch.querySelectorAll('.zh-full,.zh-svg')].map(e=>e.textContent).join('');scratch.querySelectorAll('.zh-full,.zh-svg').forEach(e=>e.remove());return {en:scratch.textContent,zh:z};}
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  window.biPlain=s=>read(s).en;
+  window.biChinese=s=>read(s).zh;
+  window.biPair=(en,zh)=>esc(en)+'<span class="zh-full" lang="zh-Hant">'+esc(zh)+'</span>';
+  window.biEscape=s=>String(s).includes('class="zh-full"')?String(s):esc(s);
+  window.biSvgLabel=(s,x,zhX,below)=>{const a=read(s);return esc(a.en)+(a.zh?'<tspan class="zh-svg" lang="zh-Hant" text-anchor="end" x="'+zhX+'" dy="'+(below?12:0)+'">'+esc(a.zh)+'</tspan>':'')};
+  window.biSetSvg=(el,s)=>{const a=read(s);el.textContent=a.en;if(a.zh){const t=document.createElementNS('http://www.w3.org/2000/svg','tspan');t.setAttribute('class','zh-svg');t.setAttribute('lang','zh-Hant');t.setAttribute('x',el.getAttribute('x')||'0');t.setAttribute('dy','13');t.textContent=a.zh;el.appendChild(t);}};
+})();
+</script></head><body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<pattern id="dwlHatch" width="6" height="6" patternunits="userSpaceOnUse" patterntransform="rotate(45)">
+<rect width="6" height="6" style="fill:var(--dwl);fill-opacity:.12"></rect><rect width="2.2" height="6" style="fill:var(--dwl);fill-opacity:.75"></rect></pattern></defs></svg>
+
+<header class="top"><div class="top-in">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="marketing.html">Marketing<span class="zh-full" lang="zh-Hant">行銷學</span></a><span>/</span><b>Session 1<span class="zh-full" lang="zh-Hant">第 1 堂</span></b></nav>
+  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
+  <nav class="sessions" aria-label="Sessions"><span class="pill" aria-current="page">S1</span><a class="pill" href="marketing-s2.html">S2</a><a class="pill" href="marketing-s3.html">S3</a><a class="pill" href="marketing-s4.html">S4</a></nav>
+<label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label></div></header>
+
+<div class="wrap">
+  <aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
+  <main><article class="doc"><div class="hero">
+  <p class="kick">Strategic Marketing Management · Session 1<span class="zh-full" lang="zh-Hant">策略行銷管理・第 1 堂</span></p>
+  <h1>Marketing Fundamentals and Customer Value<span class="zh-full" lang="zh-Hant">行銷基礎與顧客價值</span></h1>
+  <p class="lead">Marketing starts before the advertisement. Understand the customer and the market, create value that matters, deliver it through a coherent mix, then judge success by customer behavior and sustainable business results.<span class="zh-full" lang="zh-Hant">行銷在廣告之前就已開始：了解顧客與市場，創造顧客重視的價值，透過一致的行銷組合交付價值，再以顧客行為與可持續的經營成果判斷成效。</span></p>
+</div>
+
+<h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
+<div class="method"><span>Customer<span class="zh-full" lang="zh-Hant">顧客</span></span><i>→</i><span>Need, want, demand<span class="zh-full" lang="zh-Hant">需要、想要與需求</span></span><i>→</i><span class="hi">Customer value<span class="zh-full" lang="zh-Hant">顧客價值</span></span><i>→</i><span>Why us?<span class="zh-full" lang="zh-Hant">為什麼選我們？</span></span><i>→</i><span>4Ps<span class="zh-full" lang="zh-Hant">行銷組合 4Ps</span></span><i>→</i><span>Funnel response<span class="zh-full" lang="zh-Hant">漏斗各階段的反應</span></span><i>→</i><span>GET + KEEP<span class="zh-full" lang="zh-Hant">獲客＋留客</span></span><i>→</i><span>Profit and society<span class="zh-full" lang="zh-Hant">利潤與社會</span></span></div>
+<p class="hint"><b>中文邏輯</b><span>不是背名詞，而是學「先懂顧客與市場，再決定價值、競爭與 4Ps，最後看顧客反應與商業結果」。</span></p>
+
+<!-- 1 -->
+<h2 id="what">1. What marketing is<span class="zh-full" lang="zh-Hant">1. 什麼是行銷？</span></h2>
+<p class="sub">The professor's definition: <b>understanding and satisfying consumer wants and needs.</b><span class="zh-full" lang="zh-Hant">教授的定義：理解並滿足消費者的想要與需要。</span></p>
+<div class="pair">
+  <div><b>Advertising<span class="zh-full" lang="zh-Hant">廣告</span></b><p>One communication tool inside Promotion.<span class="zh-full" lang="zh-Hant">促銷之中的一種溝通工具。</span></p></div>
+  <div><b>Marketing<span class="zh-full" lang="zh-Hant">行銷</span></b><p>Customer + value + market + strategy + execution: product, price, distribution, service, branding, research, experience and demand management.<span class="zh-full" lang="zh-Hant">顧客＋價值＋市場＋策略＋執行：包括產品、價格、通路、服務、品牌、研究、體驗與需求管理。</span></p></div>
+</div>
+<h3 id="evidence">Evidence, not common sense<span class="zh-full" lang="zh-Hant">依據證據，而非只靠常識</span></h3>
+<p>Store A sells more iced coffee than Store B. "It is hotter there" is plausible, but customer profile, traffic, competitors, price, opening hours or promotions could explain the same pattern.<span class="zh-full" lang="zh-Hant">A 店的冰咖啡賣得比 B 店多。「那裡比較熱」是合理假設，但客群、來客量、競爭者、價格、營業時間或促銷，也可能解釋同樣的現象。</span></p>
+<div class="method"><span>Observation<span class="zh-full" lang="zh-Hant">觀察</span></span><i>→</i><span>Possible explanation<span class="zh-full" lang="zh-Hant">可能的解釋</span></span><i>≠</i><span class="hi">Proven explanation<span class="zh-full" lang="zh-Hant">已獲證實的解釋</span></span></div>
+<p class="key">Common sense can generate a hypothesis <span class="zh">假設</span>. Evidence is needed to support a conclusion. Always ask: what other variables could explain the same pattern?<span class="zh-full" lang="zh-Hant">常識可以產生假設，結論則需要證據支持。要持續追問：還有哪些變數能解釋同樣的現象？</span></p>
+<h3 id="rational">Customers are not perfectly rational<span class="zh-full" lang="zh-Hant">顧客並非完全理性</span></h3>
+<p>The professor questions the economic assumptions that customers always minimize money, time and effort. People also value experience, identity, status, habit, convenience and variety. The cheapest or fastest option does not automatically deliver the highest value.<span class="zh-full" lang="zh-Hant">教授質疑消費者總是追求金錢、時間與力氣最小化的經濟學假設。人也重視體驗、認同、地位、習慣、便利與多樣性。最便宜或最快的選項，不一定提供最高價值。</span></p>
+
+<!-- 2 -->
+<h2 id="value">2. Need, want, demand and customer value<span class="zh-full" lang="zh-Hant">2. 需要、想要、需求與顧客價值</span></h2>
+<div class="ladder2">
+  <div><b>Need<span class="zh-full" lang="zh-Hant">需要</span></b> <span class="zh">需要</span>A state of felt deprivation. Hunger.<span class="zh-full" lang="zh-Hant">感受到匱乏的狀態，例如飢餓。</span></div>
+  <i>↓ shaped by culture, personality, situation<span class="zh-full" lang="zh-Hant">↓ 受文化、個性與情境塑造</span></i>
+  <div><b>Want<span class="zh-full" lang="zh-Hant">想要</span></b> <span class="zh">想要</span>How the need is expressed. Sushi.<span class="zh-full" lang="zh-Hant">需要的具體表現形式，例如想吃壽司。</span></div>
+  <i>↓ plus buying power<span class="zh-full" lang="zh-Hant">↓ 再加上購買力</span></i>
+  <div><b>Demand<span class="zh-full" lang="zh-Hant">有購買力支持的需求</span></b> <span class="zh">有效需求</span>A want backed by ability and willingness to pay.<span class="zh-full" lang="zh-Hant">有支付能力與支付意願支持的想要。</span></div>
+</div>
+<p class="key">"People like this idea" is not a market. Ask whether enough relevant customers will actually pay for it.<span class="zh-full" lang="zh-Hant">「大家喜歡這個點子」不等於市場成立。要問：是否有足夠多的相關顧客，真的願意付錢？</span></p>
+<h3 id="cv">Customer value<span class="zh-full" lang="zh-Hant">顧客價值</span></h3>
+<div class="formula">Customer value ≈ perceived benefits ÷ perceived costs<span class="zh-full" lang="zh-Hant">顧客價值 ≈ 感知利益 ÷ 感知成本</span></div>
+<p>Costs include money, time, effort, risk and inconvenience. Benefits can be functional, emotional, social, convenience or experience.<span class="zh-full" lang="zh-Hant">成本包括金錢、時間、力氣、風險與不便；利益則可能來自功能、情緒、社交、便利或體驗。</span></p>
+<div data-mk="value"></div>
+<p class="note-small">Illustrative numbers built on the class two-shop example.<span class="zh-full" lang="zh-Hant">以下數字是依課堂兩家店的例子設計的示範數值。</span></p>
+
+<h3 id="loyal">Satisfaction, repeat purchase, loyalty<span class="zh-full" lang="zh-Hant">滿意度、重複購買與忠誠</span></h3>
+<div class="three">
+  <div class="tcard"><b>Satisfaction<span class="zh-full" lang="zh-Hant">滿意度</span></b><p>Was this experience good?<span class="zh-full" lang="zh-Hant">這次體驗好嗎？</span></p></div>
+  <div class="tcard"><b>Repeat purchase<span class="zh-full" lang="zh-Hant">重複購買</span></b><p>Did I actually buy again?<span class="zh-full" lang="zh-Hant">我真的再次購買了嗎？</span></p></div>
+  <div class="tcard"><b>Loyalty<span class="zh-full" lang="zh-Hant">忠誠</span></b><p>A stronger, ongoing preference.<span class="zh-full" lang="zh-Hant">較強且持續的偏好。</span></p></div>
+</div>
+<p>The Starbucks example: you may love the coffee, but you already had one today, want variety, or another option is closer. A satisfied customer does not automatically buy again, so also track repeat behavior, switching, frequency and retention.<span class="zh-full" lang="zh-Hant">以 Starbucks 為例：即使喜歡它的咖啡，你可能今天已喝過、想換口味，或另一家更近。滿意的顧客不一定再買，因此也要追蹤重購、轉換品牌、購買頻率與留存。</span></p>
+
+<!-- 3 -->
+<h2 id="benefit">3. From product thinking to customer thinking<span class="zh-full" lang="zh-Hant">3. 從產品思維轉向顧客思維</span></h2>
+<p class="sub">A product can be a good, service, person, place, organization, activity or idea. The key question is not "what are we selling?" but "what customer benefit is being satisfied?"<span class="zh-full" lang="zh-Hant">產品可以是實體商品、服務、人、地點、組織、活動或理念。關鍵不只是「我們賣什麼」，而是「滿足了顧客的什麼利益？」</span></p>
+<div class="pair">
+  <div><b>Product view<span class="zh-full" lang="zh-Hant">產品觀點</span></b><p>"We sell drills." "We are in the DVD business."<span class="zh-full" lang="zh-Hant">「我們賣鑽孔機。」「我們經營 DVD 生意。」</span></p></div>
+  <div><b>Customer view<span class="zh-full" lang="zh-Hant">顧客觀點</span></b><p>The customer wants a hole, a finished DIY job. The DVD buyer wants entertainment, so streaming is a competitor.<span class="zh-full" lang="zh-Hant">顧客想要的是一個洞，或完成一項 DIY 工作。DVD 買家需要娛樂，因此串流也是競爭者。</span></p></div>
+</div>
+<h3 id="myopia">Marketing myopia <span class="zh">行銷近視</span><span class="zh-full" lang="zh-Hant">行銷近視症</span></h3>
+<div class="flow"><span>Define the business too narrowly<span class="zh-full" lang="zh-Hant">過度狹隘地定義業務</span></span><i>→</i><span>Focus on the current product<span class="zh-full" lang="zh-Hant">只專注於現有產品</span></span><i>→</i><span>Ignore substitutes<span class="zh-full" lang="zh-Hant">忽略替代方案</span></span><i>→</i><span>Miss environmental change<span class="zh-full" lang="zh-Hant">錯過環境變化</span></span></div>
+<p class="key">Ask: what customer need are we actually serving, and what other solutions can satisfy it?<span class="zh-full" lang="zh-Hant">要問：我們實際服務的是什麼需要？還有哪些方案也能滿足它？</span></p>
+
+<h3 id="diff">Difference is not meaningful differentiation<span class="zh-full" lang="zh-Hant">有差異，不代表有意義的差異化</span></h3>
+<p>A feature can be new, unusual or unique and still create almost no customer benefit. Test any claimed USP:<span class="zh-full" lang="zh-Hant">一項功能可以很新奇、特殊或獨特，卻幾乎不帶來顧客利益。檢驗任何宣稱的獨特銷售主張（USP）：</span></p>
+<div class="six">
+  <div><span>1</span><p>Who cares?<span class="zh-full" lang="zh-Hant">誰在乎？</span></p></div>
+  <div><span>2</span><p>Why do they care?<span class="zh-full" lang="zh-Hant">為什麼在乎？</span></p></div>
+  <div><span>3</span><p>Does it solve a real problem?<span class="zh-full" lang="zh-Hant">它解決真實問題嗎？</span></p></div>
+  <div><span>4</span><p>Can competitors easily copy it?<span class="zh-full" lang="zh-Hant">競爭者容易模仿嗎？</span></p></div>
+  <div><span>5</span><p>Would customers pay or switch because of it?<span class="zh-full" lang="zh-Hant">顧客會因此付錢或轉換品牌嗎？</span></p></div>
+</div>
+<div class="pair">
+  <div><b>Me-too marketing<span class="zh-full" lang="zh-Hant">跟隨模仿式行銷</span></b><p>Firms copy features, products and promotions. In the phone-camera example, customers rarely remember who introduced a feature first. Technical leadership does not guarantee preference.<span class="zh-full" lang="zh-Hant">企業模仿功能、產品與促銷。在手機相機的例子中，顧客通常不記得誰先推出某項功能。技術領先不保證顧客偏好。</span></p></div>
+  <div><b>Branding<span class="zh-full" lang="zh-Hant">品牌經營</span></b><p>When features are copied, brand meaning matters more: recognition, associations, expectations and trust. A brand is what customers associate with the offering, not a logo.<span class="zh-full" lang="zh-Hant">功能被模仿後，品牌意義更重要：辨識度、聯想、期待與信任。品牌是顧客對產品或服務的聯想，而不只是標誌。</span></p></div>
+</div>
+
+<!-- 4 -->
+<h2 id="market">4. Understanding the market<span class="zh-full" lang="zh-Hant">4. 理解市場</span></h2>
+<h3 id="forwhom">Attractive for whom?<span class="zh-full" lang="zh-Hant">對誰有吸引力？</span></h3>
+<p>The professor asks: how big is the Thai market, how attractive is it, and <b>for whom?</b> A market is only attractive for a specific offering, target and business model.<span class="zh-full" lang="zh-Hant">教授問：泰國市場有多大、多有吸引力，又是對誰而言？市場吸引力必須相對於特定產品或服務、目標客群與商業模式來判斷。</span></p>
+<div class="tbl"><table>
+<thead><tr><th></th><th>Mercedes<span class="zh-full" lang="zh-Hant">賓士</span></th><th>Tesco Lotus<span class="zh-full" lang="zh-Hant">Tesco Lotus</span></th></tr></thead>
+<tbody>
+<tr><td>Target<span class="zh-full" lang="zh-Hant">目標客群</span></td><td>High-income buyers<span class="zh-full" lang="zh-Hant">高收入買家</span></td><td>Mass households<span class="zh-full" lang="zh-Hant">大眾家庭</span></td></tr>
+<tr><td>Purchase frequency<span class="zh-full" lang="zh-Hant">購買頻率</span></td><td>Rare, high value<span class="zh-full" lang="zh-Hant">低頻、高金額</span></td><td>Weekly, low value<span class="zh-full" lang="zh-Hant">每週、低金額</span></td></tr>
+<tr><td>What matters most<span class="zh-full" lang="zh-Hant">最重要的因素</span></td><td>Buying power, status<span class="zh-full" lang="zh-Hant">購買力與地位</span></td><td>Population size, access, price<span class="zh-full" lang="zh-Hant">人口規模、可取得性與價格</span></td></tr>
+</tbody></table></div>
+<p>Check population, age, income, purchasing power, needs, growth, competition and distribution access. A big population with weak buying power, poor fit or hard distribution can still be unattractive.<span class="zh-full" lang="zh-Hant">檢查人口、年齡、所得、購買力、需要、成長、競爭與通路可及性。即使人口多，若購買力弱、契合度差或配送困難，仍可能沒有吸引力。</span></p>
+
+<h3 id="season">Seasonality and demographics<span class="zh-full" lang="zh-Hant">季節性與人口結構</span></h3>
+<div class="pair">
+  <div><b>Seasonality<span class="zh-full" lang="zh-Hant">季節性</span></b> <span class="zh">季節性</span><p>Weather, holidays, time of day and routines move demand: coffee shops, 7-Eleven mornings, gasoline, taxis near malls. Ask when, where, which customer and why, then adjust inventory, staff, price and hours.<span class="zh-full" lang="zh-Hant">天氣、節日、時段與日常習慣都會改變需求，例如咖啡店、早晨的 7-Eleven、汽油與商場旁的計程車。先問何時、何地、哪種顧客及原因，再調整庫存、人力、價格與營業時間。</span></p></div>
+  <div><b>Demographics<span class="zh-full" lang="zh-Hant">人口結構</span></b><p>Age is relatively predictable. An aging Thailand brings threats (shrinking labor force, fewer students) and opportunities (home care, telemedicine, telepharmacy, assisted living, smart homes).<span class="zh-full" lang="zh-Hant">年齡結構相對可預測。泰國高齡化帶來威脅，例如勞動力縮減、學生減少；也帶來居家照護、遠距醫療、遠距藥事服務、輔助生活與智慧住宅等機會。</span></p></div>
+</div>
+<div class="method"><span>Trend<span class="zh-full" lang="zh-Hant">趨勢</span></span><i>→</i><span>Future pain point<span class="zh-full" lang="zh-Hant">未來痛點</span></span><i>→</i><span>Unmet need<span class="zh-full" lang="zh-Hant">未被滿足的需要</span></span><i>→</i><span class="hi">Possible opportunity<span class="zh-full" lang="zh-Hant">可能的機會</span></span></div>
+
+<h3 id="env">External environment<span class="zh-full" lang="zh-Hant">外部環境</span></h3>
+<p>Monitor customers, competitors, the economy, technology, culture, demographics, the natural environment and globalization. A strategy can fail because the environment changed, even if the company did not.<span class="zh-full" lang="zh-Hant">觀察顧客、競爭者、經濟、科技、文化、人口結構、自然環境與全球化。即使公司沒有改變，策略也可能因環境改變而失效。</span></p>
+<div class="tbl"><table>
+<thead><tr><th>Challenge<span class="zh-full" lang="zh-Hant">挑戰</span></th><th>Marketing question<span class="zh-full" lang="zh-Hant">行銷問題</span></th></tr></thead>
+<tbody>
+<tr><td>Changing customer values<span class="zh-full" lang="zh-Hant">顧客價值觀改變</span></td><td>Is our value proposition still relevant?<span class="zh-full" lang="zh-Hant">我們的價值主張仍切合顧客嗎？</span></td></tr>
+<tr><td>Recession<span class="zh-full" lang="zh-Hant">經濟衰退</span></td><td>Wants remain, buying power falls: fewer wants become demand.<span class="zh-full" lang="zh-Hant">想要仍存在，但購買力下降，因此較少的想要能轉化成需求。</span></td></tr>
+<tr><td>Technology and e-commerce<span class="zh-full" lang="zh-Hant">科技與電子商務</span></td><td>Channels change how value is delivered, not whether we must understand customers.<span class="zh-full" lang="zh-Hant">通路改變價值的交付方式，但不改變理解顧客的必要性。</span></td></tr>
+<tr><td>Globalization<span class="zh-full" lang="zh-Hant">全球化</span></td><td>Are our competitors only local firms, or global alternatives too?<span class="zh-full" lang="zh-Hant">我們的競爭者只有本地企業，還包括全球替代方案？</span></td></tr>
+</tbody></table></div>
+<p class="hint"><b>中文邏輯</b><span>「上網賣」只是 channel 選擇，不是 strategy；仍需 target、value proposition 和 4Ps 配合。</span></p>
+
+<!-- 5 -->
+<h2 id="execute">5. From insight to execution<span class="zh-full" lang="zh-Hant">5. 從洞察到執行</span></h2>
+<h3 id="mix">The 4Ps as one system<span class="zh-full" lang="zh-Hant">把 4Ps 視為同一套系統</span></h3>
+<div class="four">
+  <div><b>Product<span class="zh-full" lang="zh-Hant">產品</span></b><p>What value or solution do we offer?<span class="zh-full" lang="zh-Hant">我們提供什麼價值或解決方案？</span></p></div>
+  <div><b>Price<span class="zh-full" lang="zh-Hant">價格</span></b><p>What exchange will customers accept?<span class="zh-full" lang="zh-Hant">顧客願意接受什麼交換條件？</span></p></div>
+  <div><b>Place<span class="zh-full" lang="zh-Hant">通路</span></b><p>How and where do customers access it?<span class="zh-full" lang="zh-Hant">顧客如何、在哪裡取得它？</span></p></div>
+  <div><b>Promotion<span class="zh-full" lang="zh-Hant">促銷</span></b><p>How do customers learn and respond?<span class="zh-full" lang="zh-Hant">顧客如何得知，並做出反應？</span></p></div>
+</div>
+<p class="key">A luxury product with a bargain price, poor distribution and mixed messages creates a confused value proposition. Good marketing needs fit across the mix.<span class="zh-full" lang="zh-Hant">奢華產品若搭配廉價定價、不佳通路與混亂訊息，會使價值主張模糊。好的行銷需要整個組合彼此契合。</span></p>
+
+<h3 id="funnel">The funnel is a diagnostic tool<span class="zh-full" lang="zh-Hant">漏斗是診斷工具</span></h3>
+<div class="method"><span>Awareness<span class="zh-full" lang="zh-Hant">知名度</span></span><i>→</i><span>Interest<span class="zh-full" lang="zh-Hant">興趣</span></span><i>→</i><span>Trial<span class="zh-full" lang="zh-Hant">首次試用／購買</span></span><i>→</i><span>Repeat purchase<span class="zh-full" lang="zh-Hant">重複購買</span></span></div>
+<div data-mk="funnel"></div>
+<p>Low sales can come from any stage. Do not answer every problem with more advertising.<span class="zh-full" lang="zh-Hant">銷售低迷可能發生在任何階段。別用更多廣告回答所有問題。</span></p>
+
+<h3 id="demand">Demand management and GET + KEEP<span class="zh-full" lang="zh-Hant">需求管理與獲客＋留客</span></h3>
+<div class="pair">
+  <div><b>Demand management<span class="zh-full" lang="zh-Hant">需求管理</span></b> <span class="zh">需求管理</span><p>Too much demand means queues, lower service quality and unhappy customers; too little means idle staff and assets. The goal is appropriate demand at the right time for the capacity. A gym can shift peak users to off-peak hours.<span class="zh-full" lang="zh-Hant">需求太多會造成排隊、服務品質下降與顧客不滿；需求太少則使人力與資產閒置。目標是在適當時間，讓需求符合產能。健身房可以把尖峰使用者引導到離峰時段。</span></p></div>
+  <div><b>GET + KEEP<span class="zh-full" lang="zh-Hant">獲客＋留客</span></b><p>Demand comes from new and repeat customers. New + retained − lost = customer base development. 10,000 new customers with 9,500 lost is weak growth. This is the bridge to Session 2 CRM.<span class="zh-full" lang="zh-Hant">需求來自新顧客與回頭客。新顧客＋留存顧客－流失顧客，決定顧客基礎的變化。獲得 10,000 位新客，卻流失 9,500 位，成長仍弱。這也連結到第 2 堂的 CRM。</span></p></div>
+</div>
+
+<!-- 6 -->
+<h2 id="philo">6. Six marketing management philosophies<span class="zh-full" lang="zh-Hant">6. 六種行銷管理觀念</span></h2>
+<div class="tbl"><table>
+<thead><tr><th>Philosophy<span class="zh-full" lang="zh-Hant">管理觀念</span></th><th>Starts with<span class="zh-full" lang="zh-Hant">出發點</span></th><th>Main risk<span class="zh-full" lang="zh-Hant">主要風險</span></th></tr></thead>
+<tbody>
+<tr><td><b>Production</b><span class="zh-full" lang="zh-Hant">生產觀念</span></td><td>Affordability and availability: efficiency, distribution<span class="zh-full" lang="zh-Hant">負擔得起且容易取得：重視效率與配送</span></td><td>Ignores other customer value<span class="zh-full" lang="zh-Hant">忽略顧客重視的其他價值</span></td></tr>
+<tr><td><b>Product</b><span class="zh-full" lang="zh-Hant">產品觀念</span></td><td>Better quality and features<span class="zh-full" lang="zh-Hant">更好的品質與功能</span></td><td>Marketing myopia: better for engineers, not customers<span class="zh-full" lang="zh-Hant">行銷近視症：工程師覺得更好，顧客卻未必認同</span></td></tr>
+<tr><td><b>Selling</b><span class="zh-full" lang="zh-Hant">銷售觀念</span></td><td>Persuasion: "we made it, now sell it"<span class="zh-full" lang="zh-Hant">說服：「已經做出來，現在把它賣掉」</span></td><td>Pushes what the firm makes; suits unsought goods<span class="zh-full" lang="zh-Hant">推銷公司既有產品；可見於顧客通常不主動尋求的商品</span></td></tr>
+<tr><td><b>Marketing</b><span class="zh-full" lang="zh-Hant">行銷觀念</span></td><td>Target customer needs, satisfied better than competitors<span class="zh-full" lang="zh-Hant">以比競爭者更好的方式滿足目標顧客需要</span></td><td>Requires real customer orientation<span class="zh-full" lang="zh-Hant">需要真正以顧客為中心</span></td></tr>
+<tr><td><b>Societal</b><span class="zh-full" lang="zh-Hant">社會行銷觀念</span></td><td>Customer + firm + long-term welfare of society<span class="zh-full" lang="zh-Hant">顧客＋企業＋社會長期福祉</span></td><td>Difficult trade-offs<span class="zh-full" lang="zh-Hant">取捨不容易</span></td></tr>
+<tr><td><b>Strategic</b><span class="zh-full" lang="zh-Hant">策略行銷觀念</span></td><td>Customer value that is also economically viable: logistics, cost, margins<span class="zh-full" lang="zh-Hant">顧客價值也必須在經濟上可行：考量物流、成本與利潤率</span></td><td>Efficiency without customer fit<span class="zh-full" lang="zh-Hant">只有效率，卻不符合顧客需要</span></td></tr>
+</tbody></table></div>
+<div class="pair">
+  <div><b>Selling Concept<span class="zh-full" lang="zh-Hant">銷售觀念</span></b><p>Product first → sell harder.<span class="zh-full" lang="zh-Hant">產品先行 → 更努力推銷。</span></p></div>
+  <div><b>Marketing Concept<span class="zh-full" lang="zh-Hant">行銷觀念</span></b><p>Customer first → design the offering to fit.<span class="zh-full" lang="zh-Hant">顧客先行 → 設計契合需要的產品或服務。</span></p></div>
+</div>
+<div data-mk="philo"></div>
+
+<!-- 7 -->
+<h2 id="system">7. The strategic marketing system<span class="zh-full" lang="zh-Hant">7. 策略行銷系統</span></h2>
+<div class="three">
+  <div class="tcard"><span class="tnum">1</span><b>5Cs<span class="zh-full" lang="zh-Hant">5Cs 情境分析</span></b><p>Understand: company, customers, competitors, collaborators, context.<span class="zh-full" lang="zh-Hant">理解：公司、顧客、競爭者、合作夥伴與總體情境。</span></p></div>
+  <div class="tcard"><span class="tnum">2</span><b>STP<span class="zh-full" lang="zh-Hant">STP</span></b><p>Choose: segmentation, targeting, positioning. Whom to serve, why choose us.<span class="zh-full" lang="zh-Hant">選擇：市場區隔、目標市場與定位。服務誰？為什麼選我們？</span></p></div>
+  <div class="tcard"><span class="tnum">3</span><b>4Ps<span class="zh-full" lang="zh-Hant">4Ps 行銷組合</span></b><p>Execute: deliver and communicate the value.<span class="zh-full" lang="zh-Hant">執行：交付並溝通價值。</span></p></div>
+</div>
+<p class="key">Positioning comes before promotion. Promotion communicates a defined value to a chosen target; it should not decide the target afterward.<span class="zh-full" lang="zh-Hant">定位先於促銷。促銷是把已定義的價值傳達給已選定的目標客群，不應做完促銷才決定客群。</span></p>
+<h3 id="sustain">Is marketing anti-sustainability?<span class="zh-full" lang="zh-Hant">行銷是否違背永續？</span></h3>
+<p>Marketing drives consumption, yet society may need less waste, reuse and healthier behavior. Marketing can also promote better behavior (reusable bags, energy saving, recycling) and create value through durability, repair, reuse and access rather than more units.<span class="zh-full" lang="zh-Hant">行銷推動消費，但社會可能需要減少浪費、重複使用與更健康的行為。行銷也能推廣環保袋、節能、回收等行為，並透過耐用、維修、重複使用與使用權創造價值，而非只追求多賣幾件。</span></p>
+
+<!-- 8 -->
+<h2 id="cases">8. Class cases<span class="zh-full" lang="zh-Hant">8. 課堂案例</span></h2>
+<div class="tbl"><table>
+<thead><tr><th>Case<span class="zh-full" lang="zh-Hant">案例</span></th><th>Analysis<span class="zh-full" lang="zh-Hant">分析</span></th><th>Lesson<span class="zh-full" lang="zh-Hant">啟示</span></th></tr></thead>
+<tbody>
+<tr><td><b>McDonald's 60-second guarantee</b><span class="zh-full" lang="zh-Hant">麥當勞 60 秒保證</span></td><td>Customer problem: waiting. Value: speed and reliability. Risk: staff stress, quality, gaming the clock.<span class="zh-full" lang="zh-Hant">顧客問題：等待。價值：快速且可靠。風險：員工壓力、品質與鑽計時規則漏洞。</span></td><td>A promotion can also be an operational promise.<span class="zh-full" lang="zh-Hant">促銷也可能是營運承諾。</span></td></tr>
+<tr><td><b>Aging Thailand</b><span class="zh-full" lang="zh-Hant">高齡化的泰國</span></td><td>Pain points: mobility, health, independent living, medication.<span class="zh-full" lang="zh-Hant">痛點：行動、健康、獨立生活與用藥。</span></td><td>Ask what problems demographic change will make more important.<span class="zh-full" lang="zh-Hant">追問人口變化會讓哪些問題變得更重要。</span></td></tr>
+<tr><td><b>Mercedes vs Tesco Lotus</b><span class="zh-full" lang="zh-Hant">賓士與 Tesco Lotus</span></td><td>Same country, different targets, frequency and value propositions.<span class="zh-full" lang="zh-Hant">同一國家，卻有不同目標客群、購買頻率與價值主張。</span></td><td>A market fact matters only relative to a specific business.<span class="zh-full" lang="zh-Hant">市場事實必須相對於特定企業才有意義。</span></td></tr>
+<tr><td><b>7-Eleven, coffee, taxis</b><span class="zh-full" lang="zh-Hant">7-Eleven、咖啡與計程車</span></td><td>Recurring, context-dependent demand.<span class="zh-full" lang="zh-Hant">反覆出現且取決於情境的需求。</span></td><td>Transfer the reasoning, not the example.<span class="zh-full" lang="zh-Hant">要遷移運用的是推理方式，而非照搬例子。</span></td></tr>
+</tbody></table></div>
+
+<!-- 9 -->
+<h2 id="traps">9. Do not mix these up<span class="zh-full" lang="zh-Hant">9. 別混淆這些概念</span></h2>
+<div class="traps">
+  <div><s>Marketing = advertising.<span class="zh-full" lang="zh-Hant">行銷＝廣告。</span></s><p>Promotion is one of four Ps; marketing starts earlier.<span class="zh-full" lang="zh-Hant">促銷只是 4Ps 之一；行銷更早就開始。</span></p></div>
+  <div><s>Want = demand.<span class="zh-full" lang="zh-Hant">想要＝需求。</span></s><p>Demand needs buying power.<span class="zh-full" lang="zh-Hant">需求需要購買力支持。</span></p></div>
+  <div><s>Satisfied = loyal.<span class="zh-full" lang="zh-Hant">滿意＝忠誠。</span></s><p>Satisfied customers still switch.<span class="zh-full" lang="zh-Hant">滿意的顧客仍會轉換品牌。</span></p></div>
+  <div><s>Lowest price = highest value.<span class="zh-full" lang="zh-Hant">最低價格＝最高價值。</span></s><p>Value counts time, effort and risk too.<span class="zh-full" lang="zh-Hant">價值也計入時間、力氣與風險。</span></p></div>
+  <div><s>Different = differentiated.<span class="zh-full" lang="zh-Hant">有差異＝有差異化。</span></s><p>The target must care about the difference.<span class="zh-full" lang="zh-Hant">目標顧客必須在乎這項差異。</span></p></div>
+  <div><s>Large population = attractive market.<span class="zh-full" lang="zh-Hant">人口多＝市場有吸引力。</span></s><p>Attractive for whom, with what fit?<span class="zh-full" lang="zh-Hant">對誰有吸引力？契合點是什麼？</span></p></div>
+  <div><s>Low sales = awareness problem.<span class="zh-full" lang="zh-Hant">低銷售＝知名度問題。</span></s><p>Diagnose the funnel stage first.<span class="zh-full" lang="zh-Hant">先診斷漏斗卡在哪個階段。</span></p></div>
+  <div><s>More demand is always better.<span class="zh-full" lang="zh-Hant">需求越多越好。</span></s><p>Excess demand can hurt service quality.<span class="zh-full" lang="zh-Hant">過多需求可能損害服務品質。</span></p></div>
+  <div><s>Customer orientation ignores profit.<span class="zh-full" lang="zh-Hant">顧客導向不考慮利潤。</span></s><p>Strategic marketing includes margins.<span class="zh-full" lang="zh-Hant">策略行銷也包括利潤率。</span></p></div>
+  <div><s>Going online is a strategy.<span class="zh-full" lang="zh-Hant">上網就是策略。</span></s><p>A channel is an execution choice.<span class="zh-full" lang="zh-Hant">通路是執行上的選擇。</span></p></div>
+</div>
+
+<!-- 10 -->
+<h2 id="coldcall">10. Cold call practice<span class="zh-full" lang="zh-Hant">10. 課堂即答練習</span></h2>
+<div class="qa-tools"><button type="button" id="qaAll">Show all answers<span class="zh-full" lang="zh-Hant">顯示全部答案</span></button></div>
+<div class="qa">
+  <details><summary>Why do one million ad views not prove marketing success?<span class="zh-full" lang="zh-Hant">為什麼一百萬次廣告觀看不能證明行銷成功？</span></summary><p>Views show exposure, not trial, repeat purchase, value or profit.<span class="zh-full" lang="zh-Hant">觀看代表接觸，不代表試用、重購、價值或利潤。</span></p></details>
+  <details><summary>A hungry person wants omakase but cannot afford it. Need, want, demand?<span class="zh-full" lang="zh-Hant">一個飢餓的人想吃無菜單料理，卻負擔不起：如何區分需要、想要與需求？</span></summary><p>Hunger is the need, omakase is the want, and without buying power there is no demand.<span class="zh-full" lang="zh-Hant">飢餓是需要，無菜單料理是想要；缺乏購買力，就沒有對它的需求。</span></p></details>
+  <details><summary>Why can a pricier coffee shop give more value?<span class="zh-full" lang="zh-Hant">為什麼較貴的咖啡店可能提供更高價值？</span></summary><p>A shorter wait, closer location or less effort can outweigh the higher price for a busy customer.<span class="zh-full" lang="zh-Hant">對忙碌顧客而言，較短等待、較近地點或更省力，可能足以抵銷較高價格。</span></p></details>
+  <details><summary>What does the drill example teach?<span class="zh-full" lang="zh-Hant">鑽孔機的例子教我們什麼？</span></summary><p>Customers buy the result, a hole or a finished job, not the product for its own sake.<span class="zh-full" lang="zh-Hant">顧客買的是洞或完成工作等成果，而非為產品本身而買。</span></p></details>
+  <details><summary>What is the risk of defining a business by its current technology?<span class="zh-full" lang="zh-Hant">用現有科技定義業務有什麼風險？</span></summary><p>Marketing myopia: new solutions can satisfy the same need and take the market.<span class="zh-full" lang="zh-Hant">行銷近視症：新方案可能滿足同樣需要，並搶走市場。</span></p></details>
+  <details><summary>Awareness and interest are high but trial is low. What first?<span class="zh-full" lang="zh-Hant">知名度與興趣高，但首次購買低，先做什麼？</span></summary><p>Check price, availability, perceived risk and purchase friction before buying more awareness.<span class="zh-full" lang="zh-Hant">先檢查價格、供貨、感知風險與購買阻力，再考慮增加知名度。</span></p></details>
+  <details><summary>How do the Selling, Marketing, Societal and Strategic Concepts differ?<span class="zh-full" lang="zh-Hant">銷售、行銷、社會行銷與策略行銷觀念有何不同？</span></summary><p>Selling pushes existing products; Marketing starts with target needs; Societal adds long-run welfare; Strategic also requires efficiency and sustainable profit.<span class="zh-full" lang="zh-Hant">銷售推動現有產品；行銷從目標需要出發；社會行銷加入長期福祉；策略行銷也要求效率與可持續利潤。</span></p></details>
+  <details><summary>What does 5Cs → STP → 4Ps mean?<span class="zh-full" lang="zh-Hant">5Cs → STP → 4Ps 代表什麼？</span></summary><p>Understand the situation, choose the target and positioning, then execute the mix.<span class="zh-full" lang="zh-Hant">先理解情境，再選擇目標市場與定位，最後執行行銷組合。</span></p></details>
+  <details><summary>Why is lower consumption not necessarily a failure?<span class="zh-full" lang="zh-Hant">為什麼消費減少不一定代表失敗？</span></summary><p>A firm can create value through durability, repair or reuse while building trust and long-run viability.<span class="zh-full" lang="zh-Hant">企業可以透過耐用、維修或重複使用創造價值，同時建立信任與長期經營能力。</span></p></details>
+</div>
+
+<h3 id="templates">Answer templates<span class="zh-full" lang="zh-Hant">答題模板</span></h3>
+<div class="tbl"><table>
+<tbody>
+<tr><td><b>Analyze a business</b><span class="zh-full" lang="zh-Hant">分析一家公司</span></td><td>Objective → target customer → value → action → expected behavior → metric → risk<span class="zh-full" lang="zh-Hant">目標 → 目標顧客 → 價值 → 行動 → 預期行為 → 指標 → 風險</span></td></tr>
+<tr><td><b>Product launch</b><span class="zh-full" lang="zh-Hant">產品上市</span></td><td>Context → target → need → value → competitive logic → commercial logic → what we know vs infer<span class="zh-full" lang="zh-Hant">情境 → 目標客群 → 需要 → 價值 → 競爭邏輯 → 商業邏輯 → 已知與推論的區別</span></td></tr>
+<tr><td><b>Advertisement</b><span class="zh-full" lang="zh-Hant">廣告分析</span></td><td>Target → funnel stage → message → desired behavior → evidence of success<span class="zh-full" lang="zh-Hant">目標客群 → 漏斗階段 → 訊息 → 期望行為 → 成效證據</span></td></tr>
+<tr><td><b>Market attractiveness</b><span class="zh-full" lang="zh-Hant">市場吸引力</span></td><td>Target → need → buying power → competition → access → company fit<span class="zh-full" lang="zh-Hant">目標客群 → 需要 → 購買力 → 競爭 → 可取得性 → 公司契合度</span></td></tr>
+<tr><td><b>Will it survive?</b><span class="zh-full" lang="zh-Hant">能否生存？</span></td><td>Real need → meaningful value → enough demand → advantage → distribution → repeat → economics<span class="zh-full" lang="zh-Hant">真實需要 → 有意義的價值 → 足夠需求 → 優勢 → 通路 → 重購 → 經濟效益</span></td></tr>
+</tbody></table></div>
+<p class="key">Strategic marketing understands customers and context, turns insight into meaningful value and a coherent mix, and judges success by behavior, competitive performance, profit and long-term consequences.<span class="zh-full" lang="zh-Hant">策略行銷理解顧客與情境，把洞察轉為有意義的價值與一致的行銷組合，並以行為、競爭表現、利潤與長期影響判斷成功。</span></p>
+</article></main>
+</div>
+
+<script>/* Marketing Session 3 widgets: method quiz, research-type quiz, POP display experiment. */
+(function () {
+  const esc = biEscape;
+  let uid = 0;
+  function shell(host, kicker, title, sub) {
+    host.classList.add('mw');
+    host.innerHTML = '<div class="g-head"><span class="g-kicker">' + kicker + '</span><h4>' + title + '</h4>' + (sub ? '<p>' + sub + '</p>' : '') + '</div><div class="mw-body"></div>';
+    return host.querySelector('.mw-body');
+  }
+  function quiz(host, kicker, title, sub, items, opts, layout) {
+    const body = shell(host, kicker, title, sub);
+    body.innerHTML = '<p class="qz-item"></p><div class="qz-opts ' + (layout || '') + "\"></div><p class=\"g-note\"></p><div class=\"qz-nav\"><span class=\"qz-n\"></span><button type=\"button\" class=\"g-btn\">Next<span class=\"zh-full\" lang=\"zh-Hant\">下一題</span></button></div>";
+    const P = body.querySelector('.qz-item'), O = body.querySelector('.qz-opts'), N = body.querySelector('.g-note'), C = body.querySelector('.qz-n');
+    let i = 0, score = 0, done = 0;
+    opts.forEach(([k, lab, sub2]) => {
+      const b = document.createElement('button'); b.type = 'button'; b.dataset.k = k; b.className = 'qz-o';
+      b.innerHTML = '<b>' + lab + '</b>' + (sub2 ? '<small>' + sub2 + '</small>' : '');
+      b.addEventListener('click', () => {
+        if (O.dataset.answered) return; O.dataset.answered = 1;
+        const it = items[i], ok = k === it.a; done++; if (ok) score++;
+        O.querySelectorAll('button').forEach(x => x.classList.toggle('right', x.dataset.k === it.a));
+        if (!ok) b.classList.add('wrong');
+        N.innerHTML = biPair((ok?'Correct. ':'Not quite. ')+biPlain(it.why),(ok?'答對了。':'再想一下。')+biChinese(it.why)); N.hidden = false;
+        C.innerHTML=biPair(score+' / '+done+' correct',score+'／'+done+' 題答對');
+      });
+      O.appendChild(b);
+    });
+    function show() {
+      const it = items[i]; P.innerHTML=biPair('\u0022'+biPlain(it.q)+'\u0022',biChinese(it.q)); delete O.dataset.answered;
+      O.querySelectorAll('button').forEach(x => x.classList.remove('right', 'wrong')); N.hidden = true;
+    }
+    body.querySelector('.qz-nav button').addEventListener('click', () => { i = (i + 1) % items.length; show(); });
+    C.innerHTML=biPair(items.length+' items',items.length+' 題'); show();
+  }
+
+  const W = {};
+
+  /* ---------- Session 1 and 2 widgets ---------- */
+  const baht = v => (v < -0.5 ? '−' : '') + '฿' + Math.abs(Math.round(v)).toLocaleString('en-US');
+  function sliders(id, defs) {
+    return defs.map((d, k) => '<div class="sl"><label for="' + id + k + '"><span>' + d[0] + '</span><output></output></label><input type="range" id="' + id + k + '" min="' + d[1] + '" max="' + d[2] + '" step="' + d[3] + '" value="' + d[4] + '"></div>').join('');
+  }
+  function hbar(lab, v, max, cls, txt) {
+    return '<div class="pb"><span>' + lab + '</span><div class="pb-track"><i class="' + cls + '" style="width:' + Math.max(0, Math.min(100, v / max * 100)) + '%"></i></div><b>' + txt + '</b></div>';
+  }
+
+  W.value = host => {
+    const body = shell(host, "Interactive<span class=\"zh-full\" lang=\"zh-Hant\">互動練習</span>", "Which coffee shop gives more value?<span class=\"zh-full\" lang=\"zh-Hant\">哪家咖啡店提供更高價值？</span>", "Shop A: ฿70, 12-minute queue, 8-minute walk. Shop B: ฿100, ready in 1 minute, 2 minutes from the office. Price is only part of what the customer gives up.<span class=\"zh-full\" lang=\"zh-Hant\">A 店：฿70，排隊 12 分鐘、步行 8 分鐘。B 店：฿100，1 分鐘備妥，離辦公室 2 分鐘。價格只是顧客付出的一部分。</span>");
+    const id = 'val' + (++uid);
+    body.innerHTML = '<div class="pop-grid"><div class="pop-ctrl">' + sliders(id, [["What one minute of your time is worth<span class=\"zh-full\" lang=\"zh-Hant\">你的一分鐘值多少？</span>", 0, 8, .5, 1]]) +
+      "<div class=\"seg\" role=\"radiogroup\"><button type=\"button\" role=\"radio\" data-v=\"0.5\">Relaxed student<span class=\"zh-full\" lang=\"zh-Hant\">時間充裕的學生</span></button><button type=\"button\" role=\"radio\" data-v=\"4\">Busy manager<span class=\"zh-full\" lang=\"zh-Hant\">忙碌的經理人</span></button></div><dl class=\"g-stats\"></dl></div><div class=\"pop-bars\"></div></div><p class=\"g-note\"></p>";
+    const r = body.querySelector('input'), o = body.querySelector('output'), bars = body.querySelector('.pop-bars'), stats = body.querySelector('.g-stats'), note = body.querySelector('.g-note');
+    const A = { p: 70, m: 20 }, B = { p: 100, m: 3 }, be = (B.p - A.p) / (A.m - B.m);
+    function draw() {
+      const t = +r.value; o.innerHTML = baht(t) + " / min<span class=\"zh-full\" lang=\"zh-Hant\">／分鐘</span>";
+      body.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-checked', +b.dataset.v === t));
+      const ca = A.p + A.m * t, cb = B.p + B.m * t, mx = Math.max(ca, cb, 1) * 1.1;
+      bars.innerHTML = "<p class=\"pb-h\">Price paid<span class=\"zh-full\" lang=\"zh-Hant\">支付的價格</span></p>" + hbar("Shop A<span class=\"zh-full\" lang=\"zh-Hant\">A 店</span>", A.p, mx, 'base', baht(A.p)) + hbar("Shop B<span class=\"zh-full\" lang=\"zh-Hant\">B 店</span>", B.p, mx, 'base', baht(B.p)) +
+        "<p class=\"pb-h\">Full cost: price + time<span class=\"zh-full\" lang=\"zh-Hant\">完整成本：價格＋時間</span></p>" + hbar("Shop A<span class=\"zh-full\" lang=\"zh-Hant\">A 店</span>", ca, mx, ca <= cb ? 'ctrl' : 'test', baht(ca)) + hbar("Shop B<span class=\"zh-full\" lang=\"zh-Hant\">B 店</span>", cb, mx, cb <= ca ? 'ctrl' : 'test', baht(cb));
+      stats.innerHTML = "<div class=\"st\"><dt>Time cost A / B<span class=\"zh-full\" lang=\"zh-Hant\">A／B 的時間成本</span></dt><dd>" + baht(A.m * t) + ' / ' + baht(B.m * t) + "</dd></div><div class=\"st big\"><dt>Break-even time value<span class=\"zh-full\" lang=\"zh-Hant\">兩店成本相等的時間價值</span></dt><dd>" + '฿' + be.toFixed(1) + " / min<span class=\"zh-full\" lang=\"zh-Hant\">／分鐘</span></dd></div>";
+      note.innerHTML = cb < ca ? "For this customer the more expensive shop costs less in total. Low price and high value are not the same thing.<span class=\"zh-full\" lang=\"zh-Hant\">對這位顧客，較貴店家的總成本反而較低。低價格與高價值不是同一回事。</span>"
+        : ca < cb ? "For this customer the cheaper shop wins. The same offer has different value for different targets.<span class=\"zh-full\" lang=\"zh-Hant\">對這位顧客，較便宜的店家更划算。同樣的產品或服務，對不同客群有不同價值。</span>" : "At this point both shops cost the same in total.<span class=\"zh-full\" lang=\"zh-Hant\">此時兩家店的總成本相同。</span>";
+    }
+    r.addEventListener('input', draw);
+    body.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => { r.value = b.dataset.v; draw(); }));
+    draw();
+  };
+
+  W.funnel = host => {
+    const body = shell(host, "Interactive<span class=\"zh-full\" lang=\"zh-Hant\">互動練習</span>", "Where is the funnel leaking?<span class=\"zh-full\" lang=\"zh-Hant\">漏斗在哪個階段流失？</span>", "Start from 1,000 target customers. Set each conversion rate and find the weakest step before choosing an action.<span class=\"zh-full\" lang=\"zh-Hant\">從 1,000 位目標顧客開始。調整各階段轉換率，先找出最弱環節，再選擇行動。</span>");
+    const id = 'fn' + (++uid);
+    const steps = [["Awareness<span class=\"zh-full\" lang=\"zh-Hant\">知名度</span>", "of target customers<span class=\"zh-full\" lang=\"zh-Hant\">以目標顧客為分母</span>"], ["Interest<span class=\"zh-full\" lang=\"zh-Hant\">興趣</span>", "of aware<span class=\"zh-full\" lang=\"zh-Hant\">以已知品牌者為分母</span>"], ["Trial<span class=\"zh-full\" lang=\"zh-Hant\">首次試用／購買</span>", "of interested<span class=\"zh-full\" lang=\"zh-Hant\">以感興趣者為分母</span>"], ["Repeat<span class=\"zh-full\" lang=\"zh-Hant\">重購</span>", "of triers<span class=\"zh-full\" lang=\"zh-Hant\">以曾試買者為分母</span>"]];
+    const fix = ["Do people know us? Look at reach and communication.<span class=\"zh-full\" lang=\"zh-Hant\">人們知道我們嗎？檢查觸及與溝通。</span>", "Is the value proposition relevant? Check the message and the offer.<span class=\"zh-full\" lang=\"zh-Hant\">價值主張切合顧客嗎？檢查訊息與產品／服務。</span>", "What blocks the first purchase? Check price, access and perceived risk.<span class=\"zh-full\" lang=\"zh-Hant\">什麼阻擋首次購買？檢查價格、可取得性與感知風險。</span>", "Why don't triers come back? Check the product and the experience.<span class=\"zh-full\" lang=\"zh-Hant\">試買者為什麼不回來？檢查產品與體驗。</span>"];
+    body.innerHTML = '<div class="pop-grid"><div class="pop-ctrl">' + sliders(id, steps.map((s, k) => [biPair(biPlain(s[0])+' rate',biChinese(s[0])+'轉換率'), 5, 100, 5, [80, 60, 15, 50][k]])) +
+      "<div class=\"seg\" role=\"radiogroup\"><button type=\"button\" data-p=\"80,60,15,50\">Low trial<span class=\"zh-full\" lang=\"zh-Hant\">首次購買率低</span></button><button type=\"button\" data-p=\"20,70,50,60\">Low awareness<span class=\"zh-full\" lang=\"zh-Hant\">知名度低</span></button><button type=\"button\" data-p=\"85,70,60,15\">Low repeat<span class=\"zh-full\" lang=\"zh-Hant\">重購率低</span></button></div></div><div class=\"pop-bars\"></div></div><p class=\"g-note\"></p>";
+    const rs = body.querySelectorAll('input'), os = body.querySelectorAll('output'), bars = body.querySelector('.pop-bars'), note = body.querySelector('.g-note');
+    function draw() {
+      let n = 1000, h = "<p class=\"pb-h\">Customers left at each stage<span class=\"zh-full\" lang=\"zh-Hant\">各階段剩餘顧客數</span></p>", lo = 0;
+      const v = [...rs].map(x => +x.value);
+      v.forEach((p, k) => { os[k].innerHTML=biPair(p+'% '+biPlain(steps[k][1]),p+'%（'+biChinese(steps[k][1])+'）'); if (p < v[lo]) lo = k; });
+      v.forEach((p, k) => { n = n * p / 100; h += hbar(steps[k][0], n, 1000, k === lo ? 'test' : 'base', Math.round(n).toLocaleString('en-US')); });
+      bars.innerHTML = h;
+      note.innerHTML=biPair('Weakest step: '+biPlain(steps[lo][0])+' ('+v[lo]+'%). '+biPlain(fix[lo])+(lo>0?' More advertising would not fix this.':''),'最弱環節：'+biChinese(steps[lo][0])+'（'+v[lo]+'%）。'+biChinese(fix[lo])+(lo>0?'增加廣告也無法解決這個問題。':''));
+    }
+    rs.forEach(x => x.addEventListener('input', draw));
+    body.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => { b.dataset.p.split(',').forEach((p, k) => rs[k].value = p); draw(); }));
+    draw();
+  };
+
+  W.philo = host => quiz(host, "Diagnose<span class=\"zh-full\" lang=\"zh-Hant\">診斷</span>", "Which philosophy is driving this decision?<span class=\"zh-full\" lang=\"zh-Hant\">哪一種管理觀念驅動這項決策？</span>", "Look at the starting point of the decision, not the activity.<span class=\"zh-full\" lang=\"zh-Hant\">看決策的出發點，而不是只看活動本身。</span>", [
+    { q: "We need to cut unit cost and get the product into every province.<span class=\"zh-full\" lang=\"zh-Hant\">我們需要降低單位成本，把產品送到每一個府。</span>", a: 'prod', why: "Production Concept: availability and low cost.<span class=\"zh-full\" lang=\"zh-Hant\">生產觀念：可取得性與低成本。</span>" },
+    { q: "Add two more camera modes. A better phone will sell itself.<span class=\"zh-full\" lang=\"zh-Hant\">再加兩種相機模式，更好的手機自然會賣。</span>", a: 'pdt', why: "Product Concept: features first, with a risk of marketing myopia.<span class=\"zh-full\" lang=\"zh-Hant\">產品觀念：功能優先，有行銷近視症風險。</span>" },
+    { q: "Inventory is too high. Push the sales team to close more deals this month.<span class=\"zh-full\" lang=\"zh-Hant\">庫存太高，要求業務團隊這個月多成交。</span>", a: 'sell', why: "Selling Concept: persuade people to buy what we already made.<span class=\"zh-full\" lang=\"zh-Hant\">銷售觀念：說服顧客購買已經製造的產品。</span>" },
+    { q: "Interview office workers first to learn what they need from a lunch service.<span class=\"zh-full\" lang=\"zh-Hant\">先訪談上班族，了解他們對午餐服務的需要。</span>", a: 'mkt', why: "Marketing Concept: start with target customer needs.<span class=\"zh-full\" lang=\"zh-Hant\">行銷觀念：從目標顧客需要出發。</span>" },
+    { q: "Customers love the single-use pods, but what happens to all that plastic waste?<span class=\"zh-full\" lang=\"zh-Hant\">顧客喜歡一次性膠囊，但這些塑膠廢棄物最後怎麼辦？</span>", a: 'soc', why: "Societal Marketing: long-term effects on society and the environment.<span class=\"zh-full\" lang=\"zh-Hant\">社會行銷：考慮對社會與環境的長期影響。</span>" },
+    { q: "Rivals offer the same quality and price. Win through a cheaper delivery system that keeps margins healthy.<span class=\"zh-full\" lang=\"zh-Hant\">對手提供同等品質與價格；用較低成本的配送系統維持利潤率，取得優勢。</span>", a: 'strat', why: "Strategic Marketing: customer value delivered with better economics.<span class=\"zh-full\" lang=\"zh-Hant\">策略行銷：用更好的經濟效益交付顧客價值。</span>" }
+  ], [['prod', "Production<span class=\"zh-full\" lang=\"zh-Hant\">生產觀念</span>"], ['pdt', "Product<span class=\"zh-full\" lang=\"zh-Hant\">產品</span>"], ['sell', "Selling<span class=\"zh-full\" lang=\"zh-Hant\">銷售觀念</span>"], ['mkt', "Marketing<span class=\"zh-full\" lang=\"zh-Hant\">行銷學</span>"], ['soc', "Societal<span class=\"zh-full\" lang=\"zh-Hant\">社會行銷觀念</span>"], ['strat', "Strategic<span class=\"zh-full\" lang=\"zh-Hant\">策略行銷觀念</span>"]], 'row3');
+
+  window.MktWidgets = { mount(root) { root.querySelectorAll('[data-mk]').forEach(h => { if (!h.dataset.ready && W[h.dataset.mk]) { h.dataset.ready = 1; W[h.dataset.mk](h); } }); } };
+})();
+</script>
+<script>
+(function () {
+  const toc = document.getElementById('toc'), rail = document.getElementById('rail');
+  const hs = [...document.querySelectorAll('.doc > h2, .doc > h3')];
+  hs.forEach(h => {
+    const li = document.createElement('li'); li.className = h.tagName.toLowerCase(); li.dataset.id = h.id;
+    const a = document.createElement('a'); a.href = '#' + h.id; a.innerHTML=biPair(h.childNodes[0].textContent.trim(),h.querySelector(':scope > .zh-full')?.textContent||'');
+    li.appendChild(a); toc.appendChild(li);
+  });
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    toc.querySelectorAll('a.on').forEach(a => a.classList.remove('on'));
+    const a = toc.querySelector('li[data-id="' + e.target.id + '"] a'); if (a) a.classList.add('on');
+  }), { rootMargin: '-80px 0px -70% 0px' });
+  hs.forEach(h => spy.observe(h));
+
+  const tb = document.getElementById('tocBtn');
+  tb.addEventListener('click', () => { const o = rail.classList.toggle('open'); tb.setAttribute('aria-expanded', o); });
+  toc.addEventListener('click', e => { if (e.target.closest('a')) { rail.classList.remove('open'); tb.setAttribute('aria-expanded', false); } });
+
+  const all = document.getElementById('qaAll');
+  if (all) all.addEventListener('click', () => {
+    const ds = document.querySelectorAll('.qa details'), open = ![...ds].every(d => d.open);
+    ds.forEach(d => d.open = open); all.innerHTML=biPair(open?'Hide all answers':'Show all answers',open?'收合全部答案':'顯示全部答案');
+  });
+  document.querySelectorAll('.drill .ans').forEach(s => s.addEventListener('click', () => s.classList.toggle('shown')));
+
+  if (window.EconWidgets) window.EconWidgets.mount(document);
+  if (window.MgmtWidgets) window.MgmtWidgets.mount(document);
+  if (window.MktWidgets) window.MktWidgets.mount(document);
+})();
+</script>
+<script>
+(function(){
+const toggle=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+const key='study-notes-show-zh';
+function syncOptions(on){document.querySelectorAll('option[data-zh]').forEach(o=>{if(!o.dataset.en)o.dataset.en=o.textContent;o.textContent=o.dataset.en+(on&&o.dataset.zh?'／'+o.dataset.zh:'')})}
+function set(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';syncOptions(on);try{localStorage.setItem(key,on?'1':'0')}catch(e){}}
+let initial=false;try{initial=localStorage.getItem(key)==='1'}catch(e){}
+set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
+const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
+if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
+})();
+</script></body></html>

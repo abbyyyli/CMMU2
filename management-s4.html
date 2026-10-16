@@ -29,7 +29,24 @@ a { color: var(--accent-ink); }
 .sessions { display: flex; gap: 4px; margin-left: auto; }
 .crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
 .crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
-.sessions a.pill { text-decoration: none; }
+.sessions a.pill {
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):hover,
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):focus-visible {
+  background: #fceef2;
+  border-color: #b86b7b;
+  color: #8e4357;
+}
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):focus-visible {
+  outline: 2px solid #b86b7b;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sessions a.pill { transition: none; }
+}
 .sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
 .sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #fff; }
 .sessions .pill.off { opacity: .5; cursor: not-allowed; }
@@ -338,232 +355,263 @@ blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); 
 
 
 
-.topswitch{font:500 .72rem var(--sans);color:var(--muted);white-space:nowrap;display:inline-flex;align-items:center;gap:5px;order:3;opacity:.78;margin-inline:4px}
-.topswitch input{appearance:none;width:27px;height:15px;flex:none;border:1px solid #d5c6ca;border-radius:999px;background:#eee6e8;position:relative;cursor:pointer;transition:background .15s}
-.topswitch input::after{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:#fff;left:2px;top:2px;box-shadow:0 1px 2px #7775;transition:left .15s}
+</style><style>
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid #d5c6ca;border-radius:999px;background:#eee6e8;position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:white;border-radius:50%;box-shadow:0 1px 2px #7775}
 .topswitch input:checked{background:var(--accent)}
-.topswitch input:checked::after{left:14px}
+.topswitch input:checked:after{left:14px}
 .topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.zh-translation{display:none!important}
-.show-zh .zh-translation{display:block!important;font-family:system-ui,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-size:.92em;font-weight:400;line-height:1.55;letter-spacing:0;color:var(--accent-ink);margin:.3em 0 .1em;padding-left:.65em;border-left:2px solid var(--accent)}
-.show-zh td>.zh-translation,.show-zh th>.zh-translation{font-size:.88em}
-.show-zh .legend .zh-translation,.show-zh .flow .zh-translation,.show-zh .method .zh-translation,.show-zh .matrix .zh-translation,.show-zh .spectrum .zh-translation,.show-zh .spec-l .zh-translation{font-size:.76em;padding-left:0;border:0;line-height:1.3}
-.show-zh .legend>span,.show-zh .steps li,.show-zh .six>div,.show-zh .qa summary,.show-zh .sl label,.show-zh .st dt,.show-zh .chip,.show-zh .chk{flex-wrap:wrap}
-.show-zh .legend>span>.zh-translation,.show-zh .steps li>.zh-translation,.show-zh .six>div>.zh-translation,.show-zh .qa summary>.zh-translation,.show-zh .sl label>.zh-translation,.show-zh .st dt>.zh-translation,.show-zh .chip>.zh-translation,.show-zh .chk>.zh-translation{flex:0 0 100%;min-width:0}
-.show-zh .steps li{display:list-item;list-style:none}
-.show-zh .steps li::before{display:inline-block;margin-right:10px;vertical-align:middle}
-.show-zh .qa summary>.zh-translation{margin-left:20px}
-.show-zh .six>div>.zh-translation{margin-left:34px;flex-basis:calc(100% - 34px)}
-.show-zh .legend>span{align-content:center}
-.show-zh .legend>span>.zh-translation{padding-left:17px}
-.show-zh .seg{max-width:100%;flex-wrap:wrap}
-.show-zh .seg button{min-width:0;white-space:normal}
-.show-zh .score .up b::after{content:'改善'}
-.show-zh .score .down b::after{content:'惡化'}
-.show-zh .spectrum{min-width:0}
-.show-zh .spectrum>span{min-width:0;overflow-wrap:anywhere}
-.show-zh .formula>.zh-translation{white-space:normal;font-family:var(--sans)}
-.show-zh .mw .tabs button,.show-zh .mw .qz-o,.show-zh .graph .g-btn{overflow-wrap:anywhere}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+
+/* Shared reading rhythm, with room for each chapter's own teaching tools. */
+.doc select{font-family:var(--sans);font-size:.88rem}
 html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 @media(max-width:900px){.rail.open{top:var(--header-height,64px);bottom:0;inset-inline:0;max-height:calc(100vh - var(--header-height,64px))}}
-
-@media(max-width:700px){.top-in{flex-wrap:wrap}.topswitch{font-size:.69rem;margin-inline:0}}
-@media(max-width:560px){.show-zh .spectrum{grid-template-columns:minmax(0,1fr)}.show-zh .spectrum .bar{min-width:0}}
-
-.show-zh .six .zh-translation {width:auto;height:auto;min-width:0;max-width:100%;background:transparent;border-radius:0;text-align:left;overflow-wrap:anywhere}
-.show-zh .six > div > .zh-translation {flex:0 0 calc(100% - 34px);margin-left:34px}
-
-.six > div > .plan-copy {flex:1;min-width:0;overflow-wrap:anywhere}
-.six .plan-copy > b {display:block}
-.six .plan-copy > .plan-text {margin:4px 0 0}
-.show-zh .six .plan-copy > .zh-translation {margin-top:6px}
-</style></head><body>
+body.show-zh .legend>span,body.show-zh .steps li,body.show-zh .six>div,body.show-zh .qa summary,body.show-zh .chk{flex-wrap:wrap}
+body.show-zh .legend>span>.zh-full,body.show-zh .steps li>.zh-full,body.show-zh .six>div>.zh-full,body.show-zh .qa summary>.zh-full,body.show-zh .chk>.zh-full{flex:0 0 100%;min-width:0}
+body.show-zh .steps li{display:list-item;list-style:none}
+body.show-zh .steps li:before{display:inline-block;margin-right:10px;vertical-align:middle}
+body.show-zh .six>div>.zh-full{margin-left:34px;flex-basis:calc(100% - 34px)}
+body.show-zh .seg{flex-wrap:wrap;max-width:100%}
+body.show-zh .seg button{min-width:0;white-space:normal}
+body.show-zh .spectrum{min-width:0}
+body.show-zh .spectrum>span{min-width:0;overflow-wrap:anywhere}
+body.show-zh .formula>.zh-full{white-space:normal;font-family:var(--sans)}
+body.show-zh .mw .tabs button,body.show-zh .mw .qz-o,body.show-zh .graph .g-btn{overflow-wrap:anywhere}
+body.show-zh .funnel-level{height:auto;min-height:68px;flex-direction:column;gap:1px;white-space:normal;line-height:1.3}
+body.show-zh .funnel-level .zh-full{color:inherit;margin-top:0;font-size:.75em}
+body.show-zh .decision-step{height:auto;min-height:100px}
+body.show-zh .m-control label{flex-wrap:wrap}
+body.show-zh .m-control label .zh-full{flex-basis:100%;text-align:left}
+body.show-zh .decision-step>.zh-full{font-size:.8em;line-height:1.45}
+body.show-zh .score .up b:after{content:'改善'}
+body.show-zh .score .down b:after{content:'惡化'}
+@media(max-width:560px){body.show-zh .spectrum{grid-template-columns:minmax(0,1fr)}body.show-zh .m-choices button{min-height:65px}}
+</style><script>
+/* Bilingual content helpers: no text dictionary, observer or page-wide rescan. */
+(function(){
+  const scratch=document.createElement('div');
+  function read(s){scratch.innerHTML=String(s);const z=[...scratch.querySelectorAll('.zh-full,.zh-svg')].map(e=>e.textContent).join('');scratch.querySelectorAll('.zh-full,.zh-svg').forEach(e=>e.remove());return {en:scratch.textContent,zh:z};}
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  window.biPlain=s=>read(s).en;
+  window.biChinese=s=>read(s).zh;
+  window.biPair=(en,zh)=>esc(en)+'<span class="zh-full" lang="zh-Hant">'+esc(zh)+'</span>';
+  window.biEscape=s=>String(s).includes('class="zh-full"')?String(s):esc(s);
+  window.biSvgLabel=(s,x,zhX,below)=>{const a=read(s);return esc(a.en)+(a.zh?'<tspan class="zh-svg" lang="zh-Hant" text-anchor="end" x="'+zhX+'" dy="'+(below?12:0)+'">'+esc(a.zh)+'</tspan>':'')};
+  window.biSetSvg=(el,s)=>{const a=read(s);el.textContent=a.en;if(a.zh){const t=document.createElementNS('http://www.w3.org/2000/svg','tspan');t.setAttribute('class','zh-svg');t.setAttribute('lang','zh-Hant');t.setAttribute('x',el.getAttribute('x')||'0');t.setAttribute('dy','13');t.textContent=a.zh;el.appendChild(t);}};
+})();
+</script></head><body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <pattern id="dwlHatch" width="6" height="6" patternunits="userSpaceOnUse" patterntransform="rotate(45)">
 <rect width="6" height="6" style="fill:var(--dwl);fill-opacity:.12"></rect><rect width="2.2" height="6" style="fill:var(--dwl);fill-opacity:.75"></rect></pattern></defs></svg>
 
 <header class="top"><div class="top-in">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes</a><span>/</span><a href="management.html">Management</a><span>/</span><b>Session 4</b></nav>
-  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false">Contents</button>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="management.html">Management<span class="zh-full" lang="zh-Hant">管理學</span></a><span>/</span><b>Session 4<span class="zh-full" lang="zh-Hant">第 4 堂</span></b></nav>
+  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
   <nav class="sessions" aria-label="Sessions"><a class="pill" href="management-s1.html">S1</a>
 <a class="pill" href="management-s2.html">S2</a>
 <a class="pill" href="management-s3.html">S3</a>
 <span class="pill" aria-current="page">S4</span></nav>
-<label class="topswitch" for="zhToggle" title="加入完整繁體中文翻譯，保留所有英文原文"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示中文對照翻譯（保留英文）"> 中文 <span id="zhModeLabel">OFF</span></label></div></header>
+<label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label></div></header>
 
 <div class="wrap">
-  <aside class="rail" id="rail"><p class="lbl">Contents</p><ol id="toc"></ol></aside>
+  <aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
   <main><article class="doc"><div class="hero">
-  <p class="kick">Managing People in Organizations · Session 4<span class="zh-translation" lang="zh-Hant">組織人員管理・第 4 堂</span></p>
-  <h1>Motivation, Job Satisfaction and Reinforcement<span class="zh-translation" lang="zh-Hant">激勵、工作滿意度與增強理論</span></h1>
-  <p class="lead">Session 3 diagnosed why people are or are not motivated. Session 4 asks how to design the job, how unhappy employees respond, and what behavior the reward system actually reinforces.<span class="zh-translation" lang="zh-Hant">第 3 堂診斷員工為什麼有或沒有動機；第 4 堂討論如何設計工作、不滿意的員工會如何反應，以及獎酬制度實際強化了什麼行為。</span></p>
+  <p class="kick">Managing People in Organizations · Session 4<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 4 堂</span></p>
+  <h1>Motivation, Job Satisfaction and Reinforcement<span class="zh-full" lang="zh-Hant">動機、工作滿意度與增強理論</span></h1>
+  <p class="lead">Session 3 diagnosed why people are or are not motivated. Session 4 asks how to design the job, how unhappy employees respond, and what behavior the reward system actually reinforces.<span class="zh-full" lang="zh-Hant">第 3 堂診斷員工為什麼有或沒有動機；第 4 堂討論如何設計工作、不滿意的員工會如何反應，以及獎酬制度實際強化了什麼行為。</span></p>
 </div>
 
-<h2 id="map">Chapter map<span class="zh-translation" lang="zh-Hant">章節地圖</span></h2>
-<p class="sub">Three levels to check in any case, each with its own framework.<span class="zh-translation" lang="zh-Hant">分析個案時檢查三個層次，各有相應的理論框架。</span></p>
+<h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
+<p class="sub">Three levels to check in any case, each with its own framework.<span class="zh-full" lang="zh-Hant">分析個案時檢查三個層次，各有相應的理論框架。</span></p>
 <div class="three">
-  <div class="tcard"><span class="tnum">1</span><b>Job design<span class="zh-translation" lang="zh-Hant">工作設計</span></b><p>Does the job create meaning, responsibility and knowledge of results?<span class="zh-translation" lang="zh-Hant">工作是否帶來意義感、責任感，以及對成果的了解？</span></p><div class="tags"><span>Job Characteristics Model<span class="zh-translation" lang="zh-Hant">工作特徵模型</span></span></div></div>
-  <div class="tcard"><span class="tnum">2</span><b>Employee response<span class="zh-translation" lang="zh-Hant">員工反應</span></b><p>How do people feel, and what do they do when dissatisfied?<span class="zh-translation" lang="zh-Hant">人們感受如何？不滿意時會採取什麼行動？</span></p><div class="tags"><span>Satisfaction<span class="zh-translation" lang="zh-Hant">滿意度</span></span><span>Commitment<span class="zh-translation" lang="zh-Hant">承諾</span></span><span>OCB<span class="zh-translation" lang="zh-Hant">組織公民行為（OCB）</span></span><span>EVLN<span class="zh-translation" lang="zh-Hant">離職、建言、忠誠、怠忽（EVLN）</span></span></div></div>
-  <div class="tcard"><span class="tnum">3</span><b>Management consequences<span class="zh-translation" lang="zh-Hant">管理措施的後果</span></b><p>What behavior are we rewarding, and is the system fair?<span class="zh-translation" lang="zh-Hant">我們獎勵了哪些行為？制度是否公平？</span></p><div class="tags"><span>Reinforcement<span class="zh-translation" lang="zh-Hant">增強理論</span></span><span>Recognition<span class="zh-translation" lang="zh-Hant">表揚與肯定</span></span><span>Schedules<span class="zh-translation" lang="zh-Hant">增強時制</span></span></div></div>
+  <div class="tcard"><span class="tnum">1</span><b>Job design<span class="zh-full" lang="zh-Hant">工作設計</span></b><p>Does the job create meaning, responsibility and knowledge of results?<span class="zh-full" lang="zh-Hant">工作是否帶來意義感、責任感，以及對成果的了解？</span></p><div class="tags"><span>Job Characteristics Model<span class="zh-full" lang="zh-Hant">工作特徵模型</span></span></div></div>
+  <div class="tcard"><span class="tnum">2</span><b>Employee response<span class="zh-full" lang="zh-Hant">員工反應</span></b><p>How do people feel, and what do they do when dissatisfied?<span class="zh-full" lang="zh-Hant">人們感受如何？不滿意時會採取什麼行動？</span></p><div class="tags"><span>Satisfaction<span class="zh-full" lang="zh-Hant">滿意度</span></span><span>Commitment<span class="zh-full" lang="zh-Hant">承諾</span></span><span>OCB<span class="zh-full" lang="zh-Hant">組織公民行為（OCB）</span></span><span>EVLN<span class="zh-full" lang="zh-Hant">離職、建言、忠誠、怠忽（EVLN）</span></span></div></div>
+  <div class="tcard"><span class="tnum">3</span><b>Management consequences<span class="zh-full" lang="zh-Hant">管理措施的後果</span></b><p>What behavior are we rewarding, and is the system fair?<span class="zh-full" lang="zh-Hant">我們獎勵了哪些行為？制度是否公平？</span></p><div class="tags"><span>Reinforcement<span class="zh-full" lang="zh-Hant">增強理論</span></span><span>Recognition<span class="zh-full" lang="zh-Hant">肯定</span></span><span>Schedules<span class="zh-full" lang="zh-Hant">增強時制</span></span></div></div>
 </div>
-<div class="method"><span>Framework<span class="zh-translation" lang="zh-Hant">理論框架</span></span><i>→</i><span>Evidence<span class="zh-translation" lang="zh-Hant">證據</span></span><i>→</i><span>Gap<span class="zh-translation" lang="zh-Hant">缺口</span></span><i>→</i><span>Issue<span class="zh-translation" lang="zh-Hant">問題</span></span><i>→</i><span class="hi">Recommendation<span class="zh-translation" lang="zh-Hant">建議</span></span><i>→</i><span>Metric and risk<span class="zh-translation" lang="zh-Hant">指標與風險</span></span></div>
-<p class="note-small">New in Session 4: the case task moves from identifying issues to recommending improvements.<span class="zh-translation" lang="zh-Hant">第 4 堂的新任務：個案分析從辨識問題進一步走向提出改善建議。</span></p>
+<div class="method"><span>Framework<span class="zh-full" lang="zh-Hant">理論框架</span></span><i>→</i><span>Evidence<span class="zh-full" lang="zh-Hant">證據</span></span><i>→</i><span>Gap<span class="zh-full" lang="zh-Hant">缺口</span></span><i>→</i><span>Issue<span class="zh-full" lang="zh-Hant">問題</span></span><i>→</i><span class="hi">Recommendation<span class="zh-full" lang="zh-Hant">建議</span></span><i>→</i><span>Metric and risk<span class="zh-full" lang="zh-Hant">指標與風險</span></span></div>
+<p class="note-small">New in Session 4: the case task moves from identifying issues to recommending improvements.<span class="zh-full" lang="zh-Hant">第 4 堂的新任務：個案分析從辨識問題進一步走向提出改善建議。</span></p>
 
 <!-- 1 -->
-<h2 id="jcm">1. Job Characteristics Model<span class="zh-translation" lang="zh-Hant">1. 工作特徵模型</span></h2>
-<p class="sub">Five job dimensions create three psychological states, which lead to work outcomes. Source: Robbins and Judge.<span class="zh-translation" lang="zh-Hant">五項工作特徵創造三種心理狀態，進而影響工作成果。資料來源：Robbins 與 Judge。</span></p>
+<h2 id="jcm">1. Job Characteristics Model<span class="zh-full" lang="zh-Hant">1. 工作特徵模型</span></h2>
+<p class="sub">Five job dimensions create three psychological states, which lead to work outcomes. Source: Robbins and Judge.<span class="zh-full" lang="zh-Hant">五項工作特徵創造三種心理狀態，進而影響工作成果。資料來源：Robbins 與 Judge。</span></p>
 <div data-mw="jcm"></div>
 <div class="tbl"><table>
-<thead><tr><th>Dimension<span class="zh-translation" lang="zh-Hant">構面</span></th><th>Meaning<span class="zh-translation" lang="zh-Hant">意義</span></th><th>Do not confuse with<span class="zh-translation" lang="zh-Hant">不要與下列概念混淆</span></th></tr></thead>
+<thead><tr><th>Dimension<span class="zh-full" lang="zh-Hant">構面</span></th><th>Meaning<span class="zh-full" lang="zh-Hant">意義</span></th><th>Do not confuse with<span class="zh-full" lang="zh-Hant">不要與下列概念混淆</span></th></tr></thead>
 <tbody>
-<tr><td><b>Skill variety</b> <span class="zh">技能多樣性</span><span class="zh-translation" lang="zh-Hant">技能多樣性</span></td><td>The job uses different skills and activities<span class="zh-translation" lang="zh-Hant">工作運用不同技能與活動。</span></td><td>Simply adding more tasks, which can mean overload<span class="zh-translation" lang="zh-Hant">只是一味增加工作項目，可能反而造成負荷過重。</span></td></tr>
-<tr><td><b>Task identity</b> <span class="zh">任務完整性</span><span class="zh-translation" lang="zh-Hant">任務完整性</span></td><td>Completing a whole, identifiable piece of work<span class="zh-translation" lang="zh-Hant">完成一項完整且可辨識的工作。</span></td><td>Task significance (impact on others)<span class="zh-translation" lang="zh-Hant">任務重要性（對他人的影響）。</span></td></tr>
-<tr><td><b>Task significance</b><span class="zh-translation" lang="zh-Hant">任務重要性</span></td><td>The work affects other people<span class="zh-translation" lang="zh-Hant">工作會影響他人。</span></td><td>An important-sounding job title<span class="zh-translation" lang="zh-Hant">聽起來很重要的職稱。</span></td></tr>
-<tr><td><b>Autonomy</b> <span class="zh">自主權</span><span class="zh-translation" lang="zh-Hant">自主性</span></td><td>Freedom in how the work is done<span class="zh-translation" lang="zh-Hant">決定如何完成工作的自由。</span></td><td>No accountability or no standards<span class="zh-translation" lang="zh-Hant">不等於沒有問責或標準。</span></td></tr>
-<tr><td><b>Feedback</b><span class="zh-translation" lang="zh-Hant">回饋</span></td><td>The work itself shows how well it was done<span class="zh-translation" lang="zh-Hant">工作本身讓人知道做得好不好。</span></td><td>Having a KPI, which does not guarantee useful feedback<span class="zh-translation" lang="zh-Hant">有 KPI 不代表能得到有用的回饋。</span></td></tr>
+<tr><td><b>Skill variety</b> <span class="zh">技能多樣性</span><span class="zh-full" lang="zh-Hant">技能多樣性</span></td><td>The job uses different skills and activities<span class="zh-full" lang="zh-Hant">工作運用不同技能與活動。</span></td><td>Simply adding more tasks, which can mean overload<span class="zh-full" lang="zh-Hant">只是一味增加工作項目，可能反而造成負荷過重。</span></td></tr>
+<tr><td><b>Task identity</b> <span class="zh">任務完整性</span><span class="zh-full" lang="zh-Hant">任務完整性</span></td><td>Completing a whole, identifiable piece of work<span class="zh-full" lang="zh-Hant">完成一項完整且可辨識的工作。</span></td><td>Task significance (impact on others)<span class="zh-full" lang="zh-Hant">任務重要性（對他人的影響）。</span></td></tr>
+<tr><td><b>Task significance</b><span class="zh-full" lang="zh-Hant">任務重要性</span></td><td>The work affects other people<span class="zh-full" lang="zh-Hant">工作會影響他人。</span></td><td>An important-sounding job title<span class="zh-full" lang="zh-Hant">聽起來很重要的職稱。</span></td></tr>
+<tr><td><b>Autonomy</b> <span class="zh">自主權</span><span class="zh-full" lang="zh-Hant">自主性</span></td><td>Freedom in how the work is done<span class="zh-full" lang="zh-Hant">決定如何完成工作的自由。</span></td><td>No accountability or no standards<span class="zh-full" lang="zh-Hant">不等於沒有問責或標準。</span></td></tr>
+<tr><td><b>Feedback</b><span class="zh-full" lang="zh-Hant">回饋</span></td><td>The work itself shows how well it was done<span class="zh-full" lang="zh-Hant">工作本身讓人知道做得好不好。</span></td><td>Having a KPI, which does not guarantee useful feedback<span class="zh-full" lang="zh-Hant">有 KPI 不代表能得到有用的回饋。</span></td></tr>
 </tbody></table></div>
-<p class="key">Growth-need strength <span class="zh">成長需求強度</span> moderates the model: people who want challenge respond more strongly to enriched jobs. More autonomy is not a universal fix.<span class="zh-translation" lang="zh-Hant">成長需求強度會調節模型的效果：渴望挑戰的人對內容更豐富的工作反應更強。提高自主性不是對所有人都有效的萬用解方。</span></p>
+<p class="key">Growth-need strength <span class="zh">成長需求強度</span> moderates the model: people who want challenge respond more strongly to enriched jobs. More autonomy is not a universal fix.<span class="zh-full" lang="zh-Hant">成長需求強度會調節模型的效果：渴望挑戰的人對內容更豐富的工作反應更強。提高自主性不是對所有人都有效的萬用解方。</span></p>
 
 <!-- 2 -->
-<h2 id="satisfaction">2. Satisfaction, commitment and OCB<span class="zh-translation" lang="zh-Hant">2. 滿意度、承諾與組織公民行為</span></h2>
-<p class="sub">Related, but not the same. The lecture links job satisfaction to citizenship, commitment, productivity, absenteeism and turnover. The arrows show relationships to examine, not proven causes.<span class="zh-translation" lang="zh-Hant">這些概念有關，卻不相同。課堂將工作滿意度連結到組織公民行為、承諾、生產力、缺勤與流失；箭頭代表值得檢查的關係，並非已證明的因果。</span></p>
+<h2 id="satisfaction">2. Satisfaction, commitment and OCB<span class="zh-full" lang="zh-Hant">2. 滿意度、承諾與組織公民行為</span></h2>
+<p class="sub">Related, but not the same. The lecture links job satisfaction to citizenship, commitment, productivity, absenteeism and turnover. The arrows show relationships to examine, not proven causes.<span class="zh-full" lang="zh-Hant">這些概念有關，卻不相同。課堂將工作滿意度連結到組織公民行為、承諾、生產力、缺勤與流失；箭頭代表值得檢查的關係，並非已證明的因果。</span></p>
 <div class="three">
-  <div class="tcard"><b>Job satisfaction<span class="zh-translation" lang="zh-Hant">工作滿意度</span></b><p>"I like my job."<span class="zh-translation" lang="zh-Hant">「我喜歡我的工作。」</span></p><small class="dont">Does not prove they will stay or perform well<span class="zh-translation" lang="zh-Hant">不代表此人一定留下或表現出色。</span></small></div>
-  <div class="tcard"><b>Organizational commitment<span class="zh-translation" lang="zh-Hant">組織承諾</span></b> <span class="zh">組織承諾</span><p>"I believe in this organization and want to stay."<span class="zh-translation" lang="zh-Hant">「我認同這個組織，並希望留下。」</span></p><small class="dont">Does not mean they like every task<span class="zh-translation" lang="zh-Hant">不代表喜歡工作中的每項任務。</span></small></div>
-  <div class="tcard"><b>OCB<span class="zh-translation" lang="zh-Hant">組織公民行為（OCB）</span></b> <span class="zh">組織公民行為</span><p>"I help a colleague even though no one pays me to."<span class="zh-translation" lang="zh-Hant">「即使沒人付錢，我也會幫助同事。」</span></p><small class="dont">Does not follow from hitting sales targets<span class="zh-translation" lang="zh-Hant">達成銷售目標不代表一定會如此。</span></small></div>
+  <div class="tcard"><b>Job satisfaction<span class="zh-full" lang="zh-Hant">工作滿意度</span></b><p>"I like my job."<span class="zh-full" lang="zh-Hant">「我喜歡我的工作。」</span></p><small class="dont">Does not prove they will stay or perform well<span class="zh-full" lang="zh-Hant">不代表此人一定留下或表現出色。</span></small></div>
+  <div class="tcard"><b>Organizational commitment<span class="zh-full" lang="zh-Hant">組織承諾</span></b> <span class="zh">組織承諾</span><p>"I believe in this organization and want to stay."<span class="zh-full" lang="zh-Hant">「我認同這個組織，並希望留下。」</span></p><small class="dont">Does not mean they like every task<span class="zh-full" lang="zh-Hant">不代表喜歡工作中的每項任務。</span></small></div>
+  <div class="tcard"><b>OCB<span class="zh-full" lang="zh-Hant">組織公民行為（OCB）</span></b> <span class="zh">組織公民行為</span><p>"I help a colleague even though no one pays me to."<span class="zh-full" lang="zh-Hant">「即使沒人付錢，我也會幫助同事。」</span></p><small class="dont">Does not follow from hitting sales targets<span class="zh-full" lang="zh-Hant">達成銷售目標不代表一定會如此。</span></small></div>
 </div>
-<h3 id="commitment">Three components of commitment<span class="zh-translation" lang="zh-Hant">承諾的三個組成部分</span></h3>
+<h3 id="commitment">Three components of commitment<span class="zh-full" lang="zh-Hant">承諾的三個組成部分</span></h3>
 <ol class="steps">
-  <li>Strong acceptance of the organization's goals and values<span class="zh-translation" lang="zh-Hant">強烈認同組織的目標與價值。</span></li>
-  <li>Willingness to put in considerable effort for the organization<span class="zh-translation" lang="zh-Hant">願意為組織投入相當程度的努力。</span></li>
-  <li>Desire to remain a member<span class="zh-translation" lang="zh-Hant">希望繼續成為組織成員。</span></li>
+  <li>Strong acceptance of the organization's goals and values<span class="zh-full" lang="zh-Hant">強烈認同組織的目標與價值。</span></li>
+  <li>Willingness to put in considerable effort for the organization<span class="zh-full" lang="zh-Hant">願意為組織投入相當程度的努力。</span></li>
+  <li>Desire to remain a member<span class="zh-full" lang="zh-Hant">希望繼續成為組織成員。</span></li>
 </ol>
-<p>Organizational citizenship behavior (OCB) is discretionary, outside the formal reward system, and done without expecting a direct reward. A top performer can still show weak OCB.<span class="zh-translation" lang="zh-Hant">組織公民行為（OCB）是自主選擇、超出正式獎酬制度之外，而且不期待直接回報的行為。高績效員工也可能缺乏 OCB。</span></p>
+<p>Organizational citizenship behavior (OCB) is discretionary, outside the formal reward system, and done without expecting a direct reward. A top performer can still show weak OCB.<span class="zh-full" lang="zh-Hant">組織公民行為（OCB）是自主選擇、超出正式獎酬制度之外，而且不期待直接回報的行為。高績效員工也可能缺乏 OCB。</span></p>
 
-<h3 id="leaders">Motivation strategies of leaders<span class="zh-translation" lang="zh-Hant">領導者的激勵策略</span></h3>
+<h3 id="leaders">Motivation strategies of leaders<span class="zh-full" lang="zh-Hant">領導者的激勵策略</span></h3>
 <div class="tbl"><table>
-<thead><tr><th>Strategy on the slide<span class="zh-translation" lang="zh-Hant">投影片列出的策略</span></th><th>Links to<span class="zh-translation" lang="zh-Hant">關聯概念</span></th></tr></thead>
+<thead><tr><th>Strategy on the slide<span class="zh-full" lang="zh-Hant">投影片列出的策略</span></th><th>Links to<span class="zh-full" lang="zh-Hant">關聯概念</span></th></tr></thead>
 <tbody>
-<tr><td>Create and communicate the vision and every success behind it<span class="zh-translation" lang="zh-Hant">建立並傳達願景，以及達成願景過程中的每項成果。</span></td><td>Meaning, recognition<span class="zh-translation" lang="zh-Hant">工作意義與肯定。</span></td></tr>
-<tr><td>Participative management<span class="zh-translation" lang="zh-Hant">參與式管理。</span></td><td>Theory Y; participation in MBO<span class="zh-translation" lang="zh-Hant">Y 理論；參與目標管理（MBO）。</span></td></tr>
-<tr><td>Self-motivation through values alignment between individuals and the organization<span class="zh-translation" lang="zh-Hant">使個人與組織的價值一致，促進自我激勵。</span></td><td>Session 2 values and fit; commitment<span class="zh-translation" lang="zh-Hant">第 2 堂的價值觀與契合度；組織承諾。</span></td></tr>
+<tr><td>Create and communicate the vision and every success behind it<span class="zh-full" lang="zh-Hant">建立並傳達願景，以及達成願景過程中的每項成果。</span></td><td>Meaning, recognition<span class="zh-full" lang="zh-Hant">工作意義與肯定。</span></td></tr>
+<tr><td>Participative management<span class="zh-full" lang="zh-Hant">參與式管理。</span></td><td>Theory Y; participation in MBO<span class="zh-full" lang="zh-Hant">Y 理論；參與目標管理（MBO）。</span></td></tr>
+<tr><td>Self-motivation through values alignment between individuals and the organization<span class="zh-full" lang="zh-Hant">使個人與組織的價值一致，促進自我激勵。</span></td><td>Session 2 values and fit; commitment<span class="zh-full" lang="zh-Hant">第 2 堂的價值觀與契合度；組織承諾。</span></td></tr>
 </tbody></table></div>
-<p class="note-small">To analyze a leader, the slide asks: Theory X or Y? Intrinsic or extrinsic motivators? Which Maslow levels?<span class="zh-translation" lang="zh-Hant">分析領導者時，投影片要求思考：X 或 Y 理論？內在或外在激勵？馬斯洛的哪些需求層次？</span></p>
+<p class="note-small">To analyze a leader, the slide asks: Theory X or Y? Intrinsic or extrinsic motivators? Which Maslow levels?<span class="zh-full" lang="zh-Hant">分析領導者時，投影片要求思考：X 或 Y 理論？內在或外在激勵？馬斯洛的哪些需求層次？</span></p>
 
 <!-- 3 -->
-<h2 id="evln">3. Responses to dissatisfaction: EVLN<span class="zh-translation" lang="zh-Hant">3. 對不滿意的反應：EVLN</span></h2>
-<p class="sub">Dissatisfied employees do not all quit. Two axes, active or passive and constructive or destructive, give four responses.<span class="zh-translation" lang="zh-Hant">不滿意的員工不一定離職。以主動／被動、建設性／破壞性兩條軸線，可區分四種反應。</span></p>
+<h2 id="evln">3. Responses to dissatisfaction: EVLN<span class="zh-full" lang="zh-Hant">3. 對不滿意的反應：EVLN</span></h2>
+<p class="sub">Dissatisfied employees do not all quit. Two axes, active or passive and constructive or destructive, give four responses.<span class="zh-full" lang="zh-Hant">不滿意的員工不一定離職。以主動／被動、建設性／破壞性兩條軸線，可區分四種反應。</span></p>
 <div data-mw="evln"></div>
 <p class="hint original-zh"><b>注意</b>Low morale 本身不能判斷員工會選哪一種反應，要看實際行為證據。投影片把 lateness / absence 放在 Exit；Robbins 課本放在 Neglect，考試照投影片寫，必要時向老師確認。</p>
-<p class="note-small">The slide notes that exit, voice and loyalty apply to all stakeholder groups, not only employees.<span class="zh-translation" lang="zh-Hant">投影片指出，離職、建言與忠誠也適用於其他利害關係人，不限於員工。</span></p>
+<p class="note-small">The slide notes that exit, voice and loyalty apply to all stakeholder groups, not only employees.<span class="zh-full" lang="zh-Hant">投影片指出，離職、建言與忠誠也適用於其他利害關係人，不限於員工。</span></p>
 
 <!-- 4 -->
-<h2 id="reinforcement">4. Reinforcement theory<span class="zh-translation" lang="zh-Hant">4. 增強理論</span></h2>
-<p class="sub">Consequences shape future behavior. A reward strengthens whatever behavior it actually pays for.<span class="zh-translation" lang="zh-Hant">行為的後果會影響未來行為。獎勵實際與哪種行為連動，就會強化哪種行為。</span></p>
-<div class="method"><span>Behavior<span class="zh-translation" lang="zh-Hant">行為</span></span><i>→</i><span>Consequence (reward or punishment)<span class="zh-translation" lang="zh-Hant">後果（獎勵或懲罰）</span></span><i>→</i><span>Likelihood of repeating changes<span class="zh-translation" lang="zh-Hant">重複該行為的可能性改變</span></span></div>
+<h2 id="reinforcement">4. Reinforcement theory<span class="zh-full" lang="zh-Hant">4. 增強理論</span></h2>
+<p class="sub">Consequences shape future behavior. A reward strengthens whatever behavior it actually pays for.<span class="zh-full" lang="zh-Hant">行為的後果會影響未來行為。獎勵實際與哪種行為連動，就會強化哪種行為。</span></p>
+<div class="method"><span>Behavior<span class="zh-full" lang="zh-Hant">行為</span></span><i>→</i><span>Consequence (reward or punishment)<span class="zh-full" lang="zh-Hant">後果（獎勵或懲罰）</span></span><i>→</i><span>Likelihood of repeating changes<span class="zh-full" lang="zh-Hant">重複該行為的可能性改變</span></span></div>
 <div class="pair">
-  <div><b>Positive reinforcement<span class="zh-translation" lang="zh-Hant">正向增強</span></b> <span class="zh">正向增強</span><p>Slide example: a bonus for reaching a sales quota, to encourage more sales effort.<span class="zh-translation" lang="zh-Hant">投影片例子：達成銷售配額後給獎金，以鼓勵更努力銷售。</span></p></div>
-  <div><b>Punishment<span class="zh-translation" lang="zh-Hant">懲罰</span></b><p>Slide example: a salary deduction for lateness, to encourage punctuality.<span class="zh-translation" lang="zh-Hant">投影片例子：遲到扣薪，以鼓勵準時。</span></p></div>
+  <div><b>Positive reinforcement<span class="zh-full" lang="zh-Hant">正向增強</span></b> <span class="zh">正向增強</span><p>Slide example: a bonus for reaching a sales quota, to encourage more sales effort.<span class="zh-full" lang="zh-Hant">投影片例子：達成銷售配額後給獎金，以鼓勵更努力銷售。</span></p></div>
+  <div><b>Punishment<span class="zh-full" lang="zh-Hant">懲罰</span></b><p>Slide example: a salary deduction for lateness, to encourage punctuality.<span class="zh-full" lang="zh-Hant">投影片例子：遲到扣薪，以鼓勵準時。</span></p></div>
 </div>
 <div class="tbl"><table>
-<thead><tr><th>Term<span class="zh-translation" lang="zh-Hant">術語</span></th><th>After the behavior<span class="zh-translation" lang="zh-Hant">行為發生後的措施</span></th><th>Aim<span class="zh-translation" lang="zh-Hant">目的</span></th></tr></thead>
+<thead><tr><th>Term<span class="zh-full" lang="zh-Hant">術語</span></th><th>After the behavior<span class="zh-full" lang="zh-Hant">行為發生後的措施</span></th><th>Aim<span class="zh-full" lang="zh-Hant">目的</span></th></tr></thead>
 <tbody>
-<tr><td>Positive reinforcement<span class="zh-translation" lang="zh-Hant">正向增強</span></td><td>Add something desired<span class="zh-translation" lang="zh-Hant">加入員工想要的事物。</span></td><td>Increase the behavior<span class="zh-translation" lang="zh-Hant">增加該行為。</span></td></tr>
-<tr><td>Negative reinforcement<span class="zh-translation" lang="zh-Hant">負向增強</span></td><td>Remove something unpleasant<span class="zh-translation" lang="zh-Hant">移除令人不快的事物。</span></td><td>Increase the behavior<span class="zh-translation" lang="zh-Hant">增加該行為。</span></td></tr>
-<tr><td>Punishment<span class="zh-translation" lang="zh-Hant">懲罰</span></td><td>Apply something unpleasant<span class="zh-translation" lang="zh-Hant">施加令人不快的後果。</span></td><td>Decrease the behavior<span class="zh-translation" lang="zh-Hant">減少該行為。</span></td></tr>
+<tr><td>Positive reinforcement<span class="zh-full" lang="zh-Hant">正向增強</span></td><td>Add something desired<span class="zh-full" lang="zh-Hant">加入員工想要的事物。</span></td><td>Increase the behavior<span class="zh-full" lang="zh-Hant">增加該行為。</span></td></tr>
+<tr><td>Negative reinforcement<span class="zh-full" lang="zh-Hant">負向增強</span></td><td>Remove something unpleasant<span class="zh-full" lang="zh-Hant">移除令人不快的事物。</span></td><td>Increase the behavior<span class="zh-full" lang="zh-Hant">增加該行為。</span></td></tr>
+<tr><td>Punishment<span class="zh-full" lang="zh-Hant">懲罰</span></td><td>Apply something unpleasant<span class="zh-full" lang="zh-Hant">施加令人不快的後果。</span></td><td>Decrease the behavior<span class="zh-full" lang="zh-Hant">減少該行為。</span></td></tr>
 </tbody></table></div>
-<p class="note-small">Negative reinforcement is a standard textbook term added for clarity; it is not on the slide. "Positive" and "negative" mean adding or removing, not good or bad.<span class="zh-translation" lang="zh-Hant">「負向增強」是為釐清概念而補充的標準教科書術語，投影片並未列出。「正」與「負」指加入或移除，不是好與壞。</span></p>
-<p>Managers should understand employees' personality and values to know what each person actually finds rewarding.<span class="zh-translation" lang="zh-Hant">主管應了解員工的人格與價值觀，才知道每個人真正重視什麼獎勵。</span></p>
+<p class="note-small">Negative reinforcement is a standard textbook term added for clarity; it is not on the slide. "Positive" and "negative" mean adding or removing, not good or bad.<span class="zh-full" lang="zh-Hant">「負向增強」是為釐清概念而補充的標準教科書術語，投影片並未列出。「正」與「負」指加入或移除，不是好與壞。</span></p>
+<p>Managers should understand employees' personality and values to know what each person actually finds rewarding.<span class="zh-full" lang="zh-Hant">主管應了解員工的人格與價值觀，才知道每個人真正重視什麼獎勵。</span></p>
 
 <!-- 5 -->
-<h2 id="recognition">5. Why reward systems fail, and how to fix them<span class="zh-translation" lang="zh-Hant">5. 獎酬制度為何失效，以及如何修正</span></h2>
-<p class="sub">Signs of a poor reward system, quoted on the slide:<span class="zh-translation" lang="zh-Hant">投影片引用以下話語，作為獎酬制度不良的徵兆：</span></p>
+<h2 id="recognition">5. Why reward systems fail, and how to fix them<span class="zh-full" lang="zh-Hant">5. 獎酬制度為何失效，以及如何修正</span></h2>
+<p class="sub">Signs of a poor reward system, quoted on the slide:<span class="zh-full" lang="zh-Hant">投影片引用以下話語，作為獎酬制度不良的徵兆：</span></p>
 <div class="quotes">
-  <q>It doesn't matter how hard I work around here.<span class="zh-translation" lang="zh-Hant">「我在這裡再努力也沒差。」</span></q>
-  <q>Who cares.<span class="zh-translation" lang="zh-Hant">「誰在乎？」</span></q>
-  <q>Hey, we can get away with anything around here!<span class="zh-translation" lang="zh-Hant">「嘿，在這裡做什麼都不會有事！」</span></q>
-  <q>If management doesn't care, why should I?<span class="zh-translation" lang="zh-Hant">「管理層都不在乎了，我為什麼要在乎？」</span></q>
+  <q>It doesn't matter how hard I work around here.<span class="zh-full" lang="zh-Hant">「我在這裡再努力也沒差。」</span></q>
+  <q>Who cares.<span class="zh-full" lang="zh-Hant">「誰在乎？」</span></q>
+  <q>Hey, we can get away with anything around here!<span class="zh-full" lang="zh-Hant">「嘿，在這裡做什麼都不會有事！」</span></q>
+  <q>If management doesn't care, why should I?<span class="zh-full" lang="zh-Hant">「管理層都不在乎了，我為什麼要在乎？」</span></q>
 </div>
-<h3 id="six">Six elements of a recognition system<span class="zh-translation" lang="zh-Hant">表揚制度的六個要素</span></h3>
+<h3 id="six">Six elements of a recognition system<span class="zh-full" lang="zh-Hant">表揚制度的六個要素</span></h3>
 <div class="six">
-  <div><span>1</span><div class="plan-copy"><p class="plan-text">Commitment and support from top and middle management</p><span class="zh-translation" lang="zh-Hant">高階與中階管理層的承諾與支持。</span></div></div>
-  <div><span>2</span><div class="plan-copy"><p class="plan-text">Formal standards and expectations set in policy</p><span class="zh-translation" lang="zh-Hant">以政策訂定正式標準與期待。</span></div></div>
-  <div><span>3</span><div class="plan-copy"><p class="plan-text">A system of performance measurement</p><span class="zh-translation" lang="zh-Hant">設立績效衡量制度。</span></div></div>
-  <div><span>4</span><div class="plan-copy"><p class="plan-text">Consequences that participants see as meaningful</p><span class="zh-translation" lang="zh-Hant">參與者認為有意義的後果。</span></div></div>
-  <div><span>5</span><div class="plan-copy"><p class="plan-text">Fair and regular application</p><span class="zh-translation" lang="zh-Hant">公平且定期地執行。</span></div></div>
-  <div><span>6</span><div class="plan-copy"><p class="plan-text">Periodic evaluation of the system</p><span class="zh-translation" lang="zh-Hant">定期評估制度。</span></div></div>
+  <div><span>1</span><div class="plan-copy"><p class="plan-text">Commitment and support from top and middle management<span class="zh-full" lang="zh-Hant">高階與中階管理層的承諾與支持。</span></p></div></div>
+  <div><span>2</span><div class="plan-copy"><p class="plan-text">Formal standards and expectations set in policy<span class="zh-full" lang="zh-Hant">以政策訂定正式標準與期待。</span></p></div></div>
+  <div><span>3</span><div class="plan-copy"><p class="plan-text">A system of performance measurement<span class="zh-full" lang="zh-Hant">設立績效衡量制度。</span></p></div></div>
+  <div><span>4</span><div class="plan-copy"><p class="plan-text">Consequences that participants see as meaningful<span class="zh-full" lang="zh-Hant">參與者認為有意義的後果。</span></p></div></div>
+  <div><span>5</span><div class="plan-copy"><p class="plan-text">Fair and regular application<span class="zh-full" lang="zh-Hant">公平且定期地執行。</span></p></div></div>
+  <div><span>6</span><div class="plan-copy"><p class="plan-text">Periodic evaluation of the system<span class="zh-full" lang="zh-Hant">定期評估制度。</span></p></div></div>
 </div>
-<p class="key">A KPI is only one of six. If leaders do not back the system, rewards mean little to staff, or rules are applied unevenly, behavior will not change the way management wants.<span class="zh-translation" lang="zh-Hant">KPI 只是六要素之一。若領導者不支持、獎勵對員工沒有意義，或規則執行不一致，行為就不會照管理層期望的方向改變。</span></p>
+<p class="key">A KPI is only one of six. If leaders do not back the system, rewards mean little to staff, or rules are applied unevenly, behavior will not change the way management wants.<span class="zh-full" lang="zh-Hant">KPI 只是六要素之一。若領導者不支持、獎勵對員工沒有意義，或規則執行不一致，行為就不會照管理層期望的方向改變。</span></p>
 
 <!-- 6 -->
-<h2 id="schedules">6. Schedules of reinforcement<span class="zh-translation" lang="zh-Hant">6. 增強時制</span></h2>
-<p class="sub">First ask: is the reward tied to <b>time</b> (interval) or to <b>output</b> (ratio)? Then: is the rule <b>fixed</b> or <b>variable</b>?<span class="zh-translation" lang="zh-Hant">先問：獎勵依時間（時距）還是產出（比率）發放？再問：規則是固定還是變動？</span></p>
+<h2 id="schedules">6. Schedules of reinforcement<span class="zh-full" lang="zh-Hant">6. 增強時制</span></h2>
+<p class="sub">First ask: is the reward tied to <b>time</b> (interval) or to <b>output</b> (ratio)? Then: is the rule <b>fixed</b> or <b>variable</b>?<span class="zh-full" lang="zh-Hant">先問：獎勵依時間（時距）還是產出（比率）發放？再問：規則是固定還是變動？</span></p>
 <div class="tbl"><table>
-<thead><tr><th>Schedule<span class="zh-translation" lang="zh-Hant">時制</span></th><th>Rule<span class="zh-translation" lang="zh-Hant">規則</span></th><th>Effect on behavior (slide)<span class="zh-translation" lang="zh-Hant">對行為的影響（投影片）</span></th><th>Slide example<span class="zh-translation" lang="zh-Hant">投影片例子</span></th></tr></thead>
+<thead><tr><th>Schedule<span class="zh-full" lang="zh-Hant">時制</span></th><th>Rule<span class="zh-full" lang="zh-Hant">規則</span></th><th>Effect on behavior (slide)<span class="zh-full" lang="zh-Hant">對行為的影響（投影片）</span></th><th>Slide example<span class="zh-full" lang="zh-Hant">投影片例子</span></th></tr></thead>
 <tbody>
-<tr><td><b>Continuous</b><span class="zh-translation" lang="zh-Hant">連續增強</span></td><td>Every desired behavior<span class="zh-translation" lang="zh-Hant">每次出現期望行為都給獎勵。</span></td><td>Fast learning, fast extinction<span class="zh-translation" lang="zh-Hant">學習快，停止獎勵後也消退得快。</span></td><td>Compliments<span class="zh-translation" lang="zh-Hant">稱讚。</span></td></tr>
-<tr><td><b>Fixed interval</b><span class="zh-translation" lang="zh-Hant">固定時距</span></td><td>Fixed times<span class="zh-translation" lang="zh-Hant">固定的時間點。</span></td><td>Average performance, rapid extinction<span class="zh-translation" lang="zh-Hant">表現普通，消退快。</span></td><td>Weekly paychecks<span class="zh-translation" lang="zh-Hant">每週發薪。</span></td></tr>
-<tr><td><b>Variable interval</b><span class="zh-translation" lang="zh-Hant">變動時距</span></td><td>Variable times<span class="zh-translation" lang="zh-Hant">不固定的時間點。</span></td><td>Moderate to high performance, slow extinction<span class="zh-translation" lang="zh-Hant">表現中等至高，消退慢。</span></td><td>Pop quiz, unannounced inspection<span class="zh-translation" lang="zh-Hant">突擊小考、無預警檢查。</span></td></tr>
-<tr><td><b>Fixed ratio</b><span class="zh-translation" lang="zh-Hant">固定比率</span></td><td>Fixed amount of output<span class="zh-translation" lang="zh-Hant">固定的產出數量。</span></td><td>High, stable performance, rapid extinction<span class="zh-translation" lang="zh-Hant">表現高且穩定，消退快。</span></td><td>Piece-rate pay<span class="zh-translation" lang="zh-Hant">按件計酬。</span></td></tr>
-<tr><td><b>Variable ratio</b><span class="zh-translation" lang="zh-Hant">變動比率</span></td><td>Variable amount of output<span class="zh-translation" lang="zh-Hant">不固定的產出數量。</span></td><td>Very high performance, slow extinction<span class="zh-translation" lang="zh-Hant">表現很高，消退慢。</span></td><td>Commissioned sales<span class="zh-translation" lang="zh-Hant">佣金銷售（投影片的例子）。</span></td></tr>
+<tr><td><b>Continuous</b><span class="zh-full" lang="zh-Hant">連續增強</span></td><td>Every desired behavior<span class="zh-full" lang="zh-Hant">每次出現期望行為都給獎勵。</span></td><td>Fast learning, fast extinction<span class="zh-full" lang="zh-Hant">學習快，停止獎勵後也消退得快。</span></td><td>Compliments<span class="zh-full" lang="zh-Hant">稱讚。</span></td></tr>
+<tr><td><b>Fixed interval</b><span class="zh-full" lang="zh-Hant">固定時距</span></td><td>Fixed times<span class="zh-full" lang="zh-Hant">固定的時間點。</span></td><td>Average performance, rapid extinction<span class="zh-full" lang="zh-Hant">表現普通，消退快。</span></td><td>Weekly paychecks<span class="zh-full" lang="zh-Hant">每週發薪。</span></td></tr>
+<tr><td><b>Variable interval</b><span class="zh-full" lang="zh-Hant">變動時距</span></td><td>Variable times<span class="zh-full" lang="zh-Hant">不固定的時間點。</span></td><td>Moderate to high performance, slow extinction<span class="zh-full" lang="zh-Hant">表現中等至高，消退慢。</span></td><td>Pop quiz, unannounced inspection<span class="zh-full" lang="zh-Hant">突擊小考、無預警檢查。</span></td></tr>
+<tr><td><b>Fixed ratio</b><span class="zh-full" lang="zh-Hant">固定比率</span></td><td>Fixed amount of output<span class="zh-full" lang="zh-Hant">固定的產出數量。</span></td><td>High, stable performance, rapid extinction<span class="zh-full" lang="zh-Hant">表現高且穩定，消退快。</span></td><td>Piece-rate pay<span class="zh-full" lang="zh-Hant">按件計酬。</span></td></tr>
+<tr><td><b>Variable ratio</b><span class="zh-full" lang="zh-Hant">變動比率</span></td><td>Variable amount of output<span class="zh-full" lang="zh-Hant">不固定的產出數量。</span></td><td>Very high performance, slow extinction<span class="zh-full" lang="zh-Hant">表現很高，消退慢。</span></td><td>Commissioned sales<span class="zh-full" lang="zh-Hant">佣金銷售（投影片的例子）。</span></td></tr>
 </tbody></table></div>
-<p class="note-small">Extinction <span class="zh">消退</span> means a learned behavior fades when reinforcement stops. In a real case, classify by the actual reward rule: a fixed commission on every sale behaves more like fixed ratio.<span class="zh-translation" lang="zh-Hant">「消退」指停止增強後，已學會的行為逐漸減少。分析真實個案時，應依實際獎酬規則分類：每筆銷售都支付固定佣金，更接近固定比率。</span></p>
+<p class="note-small">Extinction <span class="zh">消退</span> means a learned behavior fades when reinforcement stops. In a real case, classify by the actual reward rule: a fixed commission on every sale behaves more like fixed ratio.<span class="zh-full" lang="zh-Hant">「消退」指停止增強後，已學會的行為逐漸減少。分析真實個案時，應依實際獎酬規則分類：每筆銷售都支付固定佣金，更接近固定比率。</span></p>
 <div data-mw="sched"></div>
 
 <!-- 7 -->
-<h2 id="workers">7. Different workers, different motivators<span class="zh-translation" lang="zh-Hant">7. 不同員工、不同激勵因素</span></h2>
+<h2 id="workers">7. Different workers, different motivators<span class="zh-full" lang="zh-Hant">7. 不同員工、不同激勵因素</span></h2>
 <div class="tbl"><table>
-<thead><tr><th>Worker group<span class="zh-translation" lang="zh-Hant">員工類別</span></th><th>Motivators listed on the slide<span class="zh-translation" lang="zh-Hant">投影片列出的激勵因素</span></th></tr></thead>
+<thead><tr><th>Worker group<span class="zh-full" lang="zh-Hant">員工類別</span></th><th>Motivators listed on the slide<span class="zh-full" lang="zh-Hant">投影片列出的激勵因素</span></th></tr></thead>
 <tbody>
-<tr><td>Professionals<span class="zh-translation" lang="zh-Hant">專業人員</span></td><td>Challenging tasks, autonomy of work style, learning opportunities<span class="zh-translation" lang="zh-Hant">具挑戰的任務、工作方式自主、學習機會。</span></td></tr>
-<tr><td>Temporary / contingent workers<span class="zh-translation" lang="zh-Hant">臨時／非典型聘用員工</span></td><td>Chance of permanent status, training, piece-rate, commission<span class="zh-translation" lang="zh-Hant">轉正機會、訓練、按件計酬、佣金。</span></td></tr>
-<tr><td>Diversified workers<span class="zh-translation" lang="zh-Hant">多元化員工</span></td><td>Flexibility, job sharing, flexible hours, different fringe benefits<span class="zh-translation" lang="zh-Hant">彈性、工作分享、彈性工時、不同的附加福利。</span></td></tr>
-<tr><td>Low-skilled service workers<span class="zh-translation" lang="zh-Hant">低技能服務業員工</span></td><td>Family-like climate, profit sharing, shared work targets<span class="zh-translation" lang="zh-Hant">家庭般的氛圍、利潤分享、共同工作目標。</span></td></tr>
+<tr><td>Professionals<span class="zh-full" lang="zh-Hant">專業人員</span></td><td>Challenging tasks, autonomy of work style, learning opportunities<span class="zh-full" lang="zh-Hant">具挑戰的任務、工作方式自主、學習機會。</span></td></tr>
+<tr><td>Temporary / contingent workers<span class="zh-full" lang="zh-Hant">臨時／非典型聘用員工</span></td><td>Chance of permanent status, training, piece-rate, commission<span class="zh-full" lang="zh-Hant">轉正機會、訓練、按件計酬、佣金。</span></td></tr>
+<tr><td>Diversified workers<span class="zh-full" lang="zh-Hant">多元化員工</span></td><td>Flexibility, job sharing, flexible hours, different fringe benefits<span class="zh-full" lang="zh-Hant">彈性、工作分享、彈性工時、不同的附加福利。</span></td></tr>
+<tr><td>Low-skilled service workers<span class="zh-full" lang="zh-Hant">低技能服務業員工</span></td><td>Family-like climate, profit sharing, shared work targets<span class="zh-full" lang="zh-Hant">家庭般的氛圍、利潤分享、共同工作目標。</span></td></tr>
 </tbody></table></div>
-<p>These are starting points, not stereotypes. Check each person's needs and values before choosing a reward.<span class="zh-translation" lang="zh-Hant">這些只是分析起點，不是刻板分類。選擇獎勵前要確認個人的需求與價值觀。</span></p>
+<p>These are starting points, not stereotypes. Check each person's needs and values before choosing a reward.<span class="zh-full" lang="zh-Hant">這些只是分析起點，不是刻板分類。選擇獎勵前要確認個人的需求與價值觀。</span></p>
 
 <!-- 8 -->
-<h2 id="lms">8. Lee Medical Supply: Session 4 task<span class="zh-translation" lang="zh-Hant">8. 李氏醫療用品公司：第 4 堂任務</span></h2>
-<p>Four teams, the same frameworks as Session 3 (Maslow, goal setting, Theory X/Y, Herzberg). This time each team <b>recommends improvements</b> and presents to the class.<span class="zh-translation" lang="zh-Hant">四個小組沿用第 3 堂的四個理論（馬斯洛、目標設定、X／Y 理論、赫茲伯格），這次各組須提出改善建議並向全班報告。</span></p>
-<p>The lecturer's recap: LMS supports physiological needs, esteem only partly, and falls short on safety, social and self-actualization. Apichart uses a Theory X style with both X and Y workers, and high-flyer Y workers leave. Staff do not know the overall 18-month profit goal.<span class="zh-translation" lang="zh-Hant">教師回顧：LMS 滿足生理需求，部分滿足尊重需求，但安全、社交與自我實現不足。Apichart 對 X 與 Y 型員工都採 X 理論式管理，優秀的 Y 型員工離開；員工不知道整體的 18 個月利潤目標。</span></p>
-<p><a class="cta" href="management-lms.html">Open the full Lee Medical Supply case page →</a><span class="zh-translation" lang="zh-Hant">開啟完整的李氏醫療用品公司個案頁面 →</span></p>
+<h2 id="lms">8. Lee Medical Supply: Session 4 task<span class="zh-full" lang="zh-Hant">8. 李氏醫療用品公司：第 4 堂任務</span></h2>
+<p>Four teams, the same frameworks as Session 3 (Maslow, goal setting, Theory X/Y, Herzberg). This time each team <b>recommends improvements</b> and presents to the class.<span class="zh-full" lang="zh-Hant">四個小組沿用第 3 堂的四個理論（馬斯洛、目標設定、X／Y 理論、赫茲伯格），這次各組須提出改善建議並向全班報告。</span></p>
+<p>The lecturer's recap: LMS supports physiological needs, esteem only partly, and falls short on safety, social and self-actualization. Apichart uses a Theory X style with both X and Y workers, and high-flyer Y workers leave. Staff do not know the overall 18-month profit goal.<span class="zh-full" lang="zh-Hant">教師回顧：LMS 滿足生理需求，部分滿足尊重需求，但安全、社交與自我實現不足。Apichart 對 X 與 Y 型員工都採 X 理論式管理，優秀的 Y 型員工離開；員工不知道整體的 18 個月利潤目標。</span></p>
+<p><a class="cta" href="management-lms.html">Open the full Lee Medical Supply case page →</a><span class="zh-full" lang="zh-Hant">開啟完整的李氏醫療用品公司個案頁面 →</span></p>
 
 <!-- 9 -->
-<h2 id="traps">9. Common mistakes<span class="zh-translation" lang="zh-Hant">9. 常見錯誤</span></h2>
+<h2 id="traps">9. Common mistakes<span class="zh-full" lang="zh-Hant">9. 常見錯誤</span></h2>
 <div class="traps">
-  <div><s>Task identity means the job is important.<span class="zh-translation" lang="zh-Hant">任務完整性表示工作很重要。</span></s><p>Identity is completing a whole job. Significance is impact on others.<span class="zh-translation" lang="zh-Hant">完整性指完成整項工作；重要性指對他人的影響。</span></p></div>
-  <div><s>Autonomy tells employees how well they did.<span class="zh-translation" lang="zh-Hant">自主性告訴員工自己做得好不好。</span></s><p>That is feedback. Autonomy creates responsibility.<span class="zh-translation" lang="zh-Hant">那是回饋；自主性帶來責任感。</span></p></div>
-  <div><s>Happy workers always perform better.<span class="zh-translation" lang="zh-Hant">快樂的員工一定表現較好。</span></s><p>They may be related; the slide does not prove cause.<span class="zh-translation" lang="zh-Hant">兩者可能相關；投影片沒有證明因果。</span></p></div>
-  <div><s>Commitment and OCB are the same.<span class="zh-translation" lang="zh-Hant">承諾與 OCB 一樣。</span></s><p>Commitment is an attitude. OCB is voluntary behavior.<span class="zh-translation" lang="zh-Hant">承諾是態度；OCB 是自願行為。</span></p></div>
-  <div><s>Low morale means people will resign.<span class="zh-translation" lang="zh-Hant">士氣低落表示員工一定會辭職。</span></s><p>They may also voice, wait or neglect.<span class="zh-translation" lang="zh-Hant">也可能提出意見、等待或消極怠忽。</span></p></div>
-  <div><s>Negative reinforcement is punishment.<span class="zh-translation" lang="zh-Hant">負向增強就是懲罰。</span></s><p>It removes something unpleasant to increase a behavior.<span class="zh-translation" lang="zh-Hant">它移除不愉快的事物，目的在增加某行為。</span></p></div>
-  <div><s>Any sales commission is variable ratio.<span class="zh-translation" lang="zh-Hant">任何銷售佣金都是變動比率。</span></s><p>Check the actual rule linking reward to output.<span class="zh-translation" lang="zh-Hant">須檢查獎勵與產出連動的實際規則。</span></p></div>
-  <div><s>High KPI means organizational success.<span class="zh-translation" lang="zh-Hant">KPI 高就代表組織成功。</span></s><p>The system may reward the wrong output.<span class="zh-translation" lang="zh-Hant">制度可能獎勵了錯誤的產出。</span></p></div>
+  <div><s>Task identity means the job is important.<span class="zh-full" lang="zh-Hant">任務完整性表示工作很重要。</span></s><p>Identity is completing a whole job. Significance is impact on others.<span class="zh-full" lang="zh-Hant">完整性指完成整項工作；重要性指對他人的影響。</span></p></div>
+  <div><s>Autonomy tells employees how well they did.<span class="zh-full" lang="zh-Hant">自主性告訴員工自己做得好不好。</span></s><p>That is feedback. Autonomy creates responsibility.<span class="zh-full" lang="zh-Hant">那是回饋；自主性帶來責任感。</span></p></div>
+  <div><s>Happy workers always perform better.<span class="zh-full" lang="zh-Hant">快樂的員工一定表現較好。</span></s><p>They may be related; the slide does not prove cause.<span class="zh-full" lang="zh-Hant">兩者可能相關；投影片沒有證明因果。</span></p></div>
+  <div><s>Commitment and OCB are the same.<span class="zh-full" lang="zh-Hant">承諾與 OCB 一樣。</span></s><p>Commitment is an attitude. OCB is voluntary behavior.<span class="zh-full" lang="zh-Hant">承諾是態度；OCB 是自願行為。</span></p></div>
+  <div><s>Low morale means people will resign.<span class="zh-full" lang="zh-Hant">士氣低落表示員工一定會辭職。</span></s><p>They may also voice, wait or neglect.<span class="zh-full" lang="zh-Hant">也可能提出意見、等待或消極怠忽。</span></p></div>
+  <div><s>Negative reinforcement is punishment.<span class="zh-full" lang="zh-Hant">負向增強就是懲罰。</span></s><p>It removes something unpleasant to increase a behavior.<span class="zh-full" lang="zh-Hant">它移除不愉快的事物，目的在增加某行為。</span></p></div>
+  <div><s>Any sales commission is variable ratio.<span class="zh-full" lang="zh-Hant">任何銷售佣金都是變動比率。</span></s><p>Check the actual rule linking reward to output.<span class="zh-full" lang="zh-Hant">須檢查獎勵與產出連動的實際規則。</span></p></div>
+  <div><s>High KPI means organizational success.<span class="zh-full" lang="zh-Hant">KPI 高就代表組織成功。</span></s><p>The system may reward the wrong output.<span class="zh-full" lang="zh-Hant">制度可能獎勵了錯誤的產出。</span></p></div>
 </div>
 
 <!-- 10 -->
-<h2 id="coldcall">10. Cold call practice<span class="zh-translation" lang="zh-Hant">10. 課堂問答練習</span></h2>
-<div class="qa-tools"><button type="button" id="qaAll">Show all answers</button></div>
+<h2 id="coldcall">10. Cold call practice<span class="zh-full" lang="zh-Hant">10. 課堂問答練習</span></h2>
+<div class="qa-tools"><button type="button" id="qaAll">Show all answers<span class="zh-full" lang="zh-Hant">展開全部答案</span></button></div>
 <div class="qa">
-  <details><summary>What is the Job Characteristics Model?<span class="zh-translation" lang="zh-Hant">什麼是工作特徵模型？</span></summary><p>It links five job dimensions to three psychological states and to outcomes such as motivation, quality, satisfaction, and lower absenteeism and turnover.<span class="zh-translation" lang="zh-Hant">它連結五項工作特徵、三種心理狀態，以及動機、品質、滿意度和較低缺勤率與流失率等成果。</span></p></details>
-  <details><summary>Which dimensions create experienced meaningfulness?<span class="zh-translation" lang="zh-Hant">哪些構面產生工作的意義感？</span></summary><p>Skill variety, task identity and task significance together.<span class="zh-translation" lang="zh-Hant">技能多樣性、任務完整性與任務重要性三者共同作用。</span></p></details>
-  <details><summary>Autonomy versus feedback?<span class="zh-translation" lang="zh-Hant">自主性與回饋有何不同？</span></summary><p>Autonomy creates experienced responsibility. Feedback gives knowledge of actual results.<span class="zh-translation" lang="zh-Hant">自主性帶來責任感；回饋讓人知道實際成果。</span></p></details>
-  <details><summary>What is growth-need strength?<span class="zh-translation" lang="zh-Hant">什麼是成長需求強度？</span></summary><p>How strongly a person wants challenge and growth. It explains why people respond differently to enriched jobs.<span class="zh-translation" lang="zh-Hant">一個人渴望挑戰與成長的程度；它解釋為何人們對豐富化工作的反應不同。</span></p></details>
-  <details><summary>What is organizational commitment?<span class="zh-translation" lang="zh-Hant">什麼是組織承諾？</span></summary><p>Accepting the organization's goals and values, willingness to work hard for it, and wanting to stay.<span class="zh-translation" lang="zh-Hant">認同組織目標與價值、願意投入努力，並希望留下。</span></p></details>
-  <details><summary>What is OCB?<span class="zh-translation" lang="zh-Hant">什麼是 OCB？</span></summary><p>Discretionary helpful behavior outside the formal reward system, done without expecting a direct reward.<span class="zh-translation" lang="zh-Hant">正式獎酬制度以外、不期待直接回報的自發助人行為。</span></p></details>
-  <details><summary>What is EVLN?<span class="zh-translation" lang="zh-Hant">什麼是 EVLN？</span></summary><p>Four responses to dissatisfaction: Exit (active, destructive), Voice (active, constructive), Loyalty (passive, constructive), Neglect (passive, destructive).<span class="zh-translation" lang="zh-Hant">對不滿意的四種反應：離職（主動、破壞性）、建言（主動、建設性）、忠誠（被動、建設性）、怠忽（被動、破壞性）。</span></p></details>
-  <details><summary>What is reinforcement theory?<span class="zh-translation" lang="zh-Hant">什麼是增強理論？</span></summary><p>Consequences shape future behavior. Rewarded behavior tends to be repeated; punished behavior tends to decrease.<span class="zh-translation" lang="zh-Hant">後果會塑造未來行為。獲獎勵的行為傾向重複；受懲罰的行為傾向減少。</span></p></details>
-  <details><summary>Why can a reward system fail?<span class="zh-translation" lang="zh-Hant">獎酬制度為什麼會失效？</span></summary><p>Employees see no reliable link between effort, performance and meaningful, fairly applied consequences.<span class="zh-translation" lang="zh-Hant">員工看不到努力、績效與有意義且公平執行的後果之間有可靠連結。</span></p></details>
-  <details><summary>Name the six recognition elements.<span class="zh-translation" lang="zh-Hant">說出表揚制度的六要素。</span></summary><p>Management support, formal standards, performance measurement, meaningful consequences, fair and regular application, periodic evaluation.<span class="zh-translation" lang="zh-Hant">管理層支持、正式標準、績效衡量、有意義的後果、公平且定期的執行、定期評估。</span></p></details>
-  <details><summary>How do the schedules differ?<span class="zh-translation" lang="zh-Hant">各種增強時制有何差別？</span></summary><p>Interval schedules depend on time, ratio schedules on output. Fixed is predictable, variable is not. Continuous rewards every occurrence.<span class="zh-translation" lang="zh-Hant">時距時制依時間、比率時制依產出；固定時制可預測，變動時制不可預測；連續增強則在每次行為發生時獎勵。</span></p></details>
+  <details><summary>What is the Job Characteristics Model?<span class="zh-full" lang="zh-Hant">什麼是工作特徵模型？</span></summary><p>It links five job dimensions to three psychological states and to outcomes such as motivation, quality, satisfaction, and lower absenteeism and turnover.<span class="zh-full" lang="zh-Hant">它連結五項工作特徵、三種心理狀態，以及動機、品質、滿意度和較低缺勤率與流失率等成果。</span></p></details>
+  <details><summary>Which dimensions create experienced meaningfulness?<span class="zh-full" lang="zh-Hant">哪些構面產生工作的意義感？</span></summary><p>Skill variety, task identity and task significance together.<span class="zh-full" lang="zh-Hant">技能多樣性、任務完整性與任務重要性三者共同作用。</span></p></details>
+  <details><summary>Autonomy versus feedback?<span class="zh-full" lang="zh-Hant">自主性與回饋有何不同？</span></summary><p>Autonomy creates experienced responsibility. Feedback gives knowledge of actual results.<span class="zh-full" lang="zh-Hant">自主性帶來責任感；回饋讓人知道實際成果。</span></p></details>
+  <details><summary>What is growth-need strength?<span class="zh-full" lang="zh-Hant">什麼是成長需求強度？</span></summary><p>How strongly a person wants challenge and growth. It explains why people respond differently to enriched jobs.<span class="zh-full" lang="zh-Hant">一個人渴望挑戰與成長的程度；它解釋為何人們對豐富化工作的反應不同。</span></p></details>
+  <details><summary>What is organizational commitment?<span class="zh-full" lang="zh-Hant">什麼是組織承諾？</span></summary><p>Accepting the organization's goals and values, willingness to work hard for it, and wanting to stay.<span class="zh-full" lang="zh-Hant">認同組織目標與價值、願意投入努力，並希望留下。</span></p></details>
+  <details><summary>What is OCB?<span class="zh-full" lang="zh-Hant">什麼是 OCB？</span></summary><p>Discretionary helpful behavior outside the formal reward system, done without expecting a direct reward.<span class="zh-full" lang="zh-Hant">正式獎酬制度以外、不期待直接回報的自發助人行為。</span></p></details>
+  <details><summary>What is EVLN?<span class="zh-full" lang="zh-Hant">什麼是 EVLN？</span></summary><p>Four responses to dissatisfaction: Exit (active, destructive), Voice (active, constructive), Loyalty (passive, constructive), Neglect (passive, destructive).<span class="zh-full" lang="zh-Hant">對不滿意的四種反應：離職（主動、破壞性）、建言（主動、建設性）、忠誠（被動、建設性）、怠忽（被動、破壞性）。</span></p></details>
+  <details><summary>What is reinforcement theory?<span class="zh-full" lang="zh-Hant">什麼是增強理論？</span></summary><p>Consequences shape future behavior. Rewarded behavior tends to be repeated; punished behavior tends to decrease.<span class="zh-full" lang="zh-Hant">後果會塑造未來行為。獲獎勵的行為傾向重複；受懲罰的行為傾向減少。</span></p></details>
+  <details><summary>Why can a reward system fail?<span class="zh-full" lang="zh-Hant">獎酬制度為什麼會失效？</span></summary><p>Employees see no reliable link between effort, performance and meaningful, fairly applied consequences.<span class="zh-full" lang="zh-Hant">員工看不到努力、績效與有意義且公平執行的後果之間有可靠連結。</span></p></details>
+  <details><summary>Name the six recognition elements.<span class="zh-full" lang="zh-Hant">說出表揚制度的六要素。</span></summary><p>Management support, formal standards, performance measurement, meaningful consequences, fair and regular application, periodic evaluation.<span class="zh-full" lang="zh-Hant">管理層支持、正式標準、績效衡量、有意義的後果、公平且定期的執行、定期評估。</span></p></details>
+  <details><summary>How do the schedules differ?<span class="zh-full" lang="zh-Hant">各種增強時制有何差別？</span></summary><p>Interval schedules depend on time, ratio schedules on output. Fixed is predictable, variable is not. Continuous rewards every occurrence.<span class="zh-full" lang="zh-Hant">時距時制依時間、比率時制依產出；固定時制可預測，變動時制不可預測；連續增強則在每次行為發生時獎勵。</span></p></details>
 </div>
 </article></main>
 </div>
 
 <script>/* Management interactive components: Herzberg scale, KPI trap, framework comparator, LMS lens. */
 (function () {
-  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const esc = biEscape;
   let uid = 0;
   function shell(host, kicker, title, sub) {
     host.classList.add('mw');
@@ -573,153 +621,21 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 
   const W = {};
 
-  W.herzberg = host => {
-    const body = shell(host, 'Interactive', 'Two separate scales', 'Mark each hygiene factor as fixed or poor, and each motivator as present or missing.');
-    const hyg = ['Quality of supervision', 'Rate of pay', 'Company policies', 'Working conditions', 'Relations with others', 'Job security'];
-    const mot = ['Career advancement', 'Personal growth', 'Recognition', 'Responsibility', 'Achievement'];
-    const st = { h: hyg.map((_, i) => i < 3), m: mot.map(() => false) };
-    const id = 'hz' + (++uid);
-    body.innerHTML =
-      '<div class="hz-cols"><div><p class="hz-t">Hygiene factors <small>poor → dissatisfaction</small></p><div class="chips" id="' + id + 'h"></div></div>' +
-      '<div><p class="hz-t">Motivators <small>present → satisfaction</small></p><div class="chips" id="' + id + 'm"></div></div></div>' +
-      '<div class="scale"><div class="half left"><i></i></div><div class="zero">0</div><div class="half right"><i></i></div></div>' +
-      '<div class="scale-l"><span>High dissatisfaction</span><span>High satisfaction</span></div><p class="g-note"></p>';
-    const H = body.querySelector('#' + id + 'h'), M = body.querySelector('#' + id + 'm');
-    const chip = (box, list, arr, onTxt, offTxt) => list.forEach((t, i) => {
-      const b = document.createElement('button'); b.type = 'button'; b.className = 'chip';
-      const sync = () => { b.setAttribute('aria-pressed', arr[i]); b.innerHTML = esc(t) + '<em>' + (arr[i] ? onTxt : offTxt) + '</em>'; };
-      b.addEventListener('click', () => { arr[i] = !arr[i]; sync(); draw(); }); sync(); box.appendChild(b);
-    });
-    chip(H, hyg, st.h, 'Poor', 'Fixed'); chip(M, mot, st.m, 'Present', 'Missing');
-    const L = body.querySelector('.left i'), R = body.querySelector('.right i'), note = body.querySelector('.g-note');
-    function draw() {
-      const d = st.h.filter(Boolean).length, s = st.m.filter(Boolean).length;
-      L.style.width = (d / hyg.length * 100) + '%'; R.style.width = (s / mot.length * 100) + '%';
-      if (d && !s) note.textContent = 'Employees are dissatisfied. Fixing the hygiene factors brings them back to zero, not to motivated.';
-      else if (!d && !s) note.textContent = 'No dissatisfaction, but no motivation either. Employees may not complain, yet they are not engaged.';
-      else if (d && s) note.textContent = 'Both problems at once: hygiene issues create dissatisfaction while motivators push the other way. The lecture says fix the hygiene foundation first.';
-      else note.textContent = 'Hygiene is in place and motivators are present: this is where real motivation and satisfaction come from.';
-    }
-    draw();
-  };
-
-  W.kpi = host => {
-    const body = shell(host, 'Interactive', 'What gets measured gets done', 'A call center chooses a KPI. Switch it and see what people optimize.');
-    const K = {
-      calls: { name: 'Calls handled per hour', act: ['Keep calls short', 'Avoid complex cases', 'Transfer customers quickly'], kpi: 'Rises', out: 'Customer problems solved may fall', ok: false },
-      fcr: { name: 'Problems solved on first contact', act: ['Take time to understand the issue', 'Fix it fully before ending', 'Escalate only when needed'], kpi: 'Rises', out: 'Customer satisfaction rises', ok: true }
-    };
-    let cur = 'calls';
-    body.innerHTML = '<div class="seg" role="radiogroup"></div><div class="kpi-flow"></div>';
-    const seg = body.querySelector('.seg'), flow = body.querySelector('.kpi-flow');
-    Object.entries(K).forEach(([k, v]) => {
-      const b = document.createElement('button'); b.type = 'button'; b.textContent = v.name; b.setAttribute('role', 'radio');
-      b.addEventListener('click', () => { cur = k; draw(); }); b.dataset.k = k; seg.appendChild(b);
-    });
-    function draw() {
-      const v = K[cur];
-      seg.querySelectorAll('button').forEach(b => b.setAttribute('aria-checked', b.dataset.k === cur));
-      flow.innerHTML = '<div><b>KPI</b><p>' + v.name + '</p></div><i>→</i><div><b>Behavior</b><ul>' + v.act.map(a => '<li>' + a + '</li>').join('') + '</ul></div><i>→</i>' +
-        '<div><b>KPI result</b><p>' + v.kpi + '</p></div><i>→</i><div class="' + (v.ok ? 'good' : 'bad') + '"><b>Real outcome</b><p>' + v.out + '</p></div>';
-    }
-    draw();
-  };
-
-  const F = {
-    maslow: { n: 'Maslow', q: 'Which level of need is under-supported?', idea: 'Five levels, met from lower to higher.', look: 'Evidence for each of the five levels.', use: 'You need to check which needs the company supports and which it neglects.', trap: 'Labeling a person as "stuck" at a level without evidence.' },
-    erg: { n: 'ERG', q: 'Which needs coexist, and is growth blocked?', idea: 'Existence, Relatedness, Growth can be pursued at the same time.', look: 'Several needs at once; signs that blocked growth shifted attention to pay or security.', use: 'Employees want pay, relationships and growth together.', trap: 'Claiming frustration-regression without evidence of the shift.' },
-    herzberg: { n: 'Herzberg', q: 'Are we only removing dissatisfaction, or creating motivation?', idea: 'Hygiene factors and motivators are two different scales.', look: 'Pay, supervision, policies, conditions versus growth, recognition, responsibility.', use: 'Pay and conditions are fine, yet motivation stays low.', trap: 'Assuming good pay means motivated staff.' },
-    xy: { n: 'Theory X / Y', q: 'What do managers assume about workers?', idea: 'Assumptions drive style: control and punishment, or support and responsibility.', look: 'Approvals, written orders, tolerance of mistakes, how much responsibility is given.', use: 'The case centers on control and how managers treat people.', trap: 'Treating X as always bad, or decentralization as proof of Y.' },
-    goals: { n: 'Goal setting / MBO', q: 'Do goals point effort at the right outcome?', idea: 'Specific goals, a time period, participation and feedback direct effort.', look: 'KPIs, targets, feedback, who sets goals, how goals cascade.', use: 'Targets are hit but the real result does not improve.', trap: 'Calling a KPI-design problem a motivation problem.' }
-  };
-  const ROWS = [['q', 'Core question'], ['idea', 'Key idea'], ['look', 'Look for in the case'], ['use', 'Use it when'], ['trap', 'Common mistake']];
-
-  W.compare = host => {
-    const body = shell(host, 'Compare', 'Framework side by side', '');
-    const id = 'cmp' + (++uid);
-    const opts = Object.entries(F).map(([k, v]) => '<option value="' + k + '">' + v.n + '</option>').join('');
-    body.innerHTML = '<div class="cmp-sel"><label for="' + id + 'a">Framework A</label><select id="' + id + 'a">' + opts + '</select>' +
-      '<label for="' + id + 'b">Framework B</label><select id="' + id + 'b">' + opts + '</select></div><div class="tbl"><table class="cmp"></table></div>';
-    const a = body.querySelector('#' + id + 'a'), b = body.querySelector('#' + id + 'b'), t = body.querySelector('table');
-    a.value = 'maslow'; b.value = 'herzberg';
-    function draw() {
-      const A = F[a.value], B = F[b.value];
-      t.innerHTML = '<thead><tr><th></th><th>' + A.n + '</th><th>' + B.n + '</th></tr></thead><tbody>' +
-        ROWS.map(([k, l]) => '<tr><td>' + l + '</td><td>' + A[k] + '</td><td>' + B[k] + '</td></tr>').join('') + '</tbody>';
-    }
-    a.addEventListener('change', draw); b.addEventListener('change', draw); draw();
-  };
-
-  const LMS = {
-    maslow: { n: 'Maslow', rows: [
-      ['Physiological', 'ok', 'Pay and incentives are strong; many leavers are well paid.'],
-      ['Safety', 'maybe', 'Terminations, turnover and intolerance of mistakes. Job security is not measured directly.'],
-      ['Social', 'gap', 'The family-oriented atmosphere is gone; competition between units is mandated; the workplace is tense.'],
-      ['Self-esteem', 'maybe', 'Recognition exists but is tied narrowly to numbers; little respect for feelings and needs.'],
-      ['Self-actualization', 'gap', 'Career development plan and training stopped; no new products in 12 months.']],
-      issue: 'LMS supports financial rewards but leaves clear gaps in social and higher-level needs: competition replaced the family atmosphere, and training and career development were stopped.' },
-    goals: { n: 'Goal setting', rows: [
-      ['Goal specificity', 'ok', 'Clear sales, profit and cost targets; every unit is a profit center.'],
-      ['Time period', 'na', 'The case gives too little detail. Do not invent a gap.'],
-      ['Participation', 'maybe', 'Written orders and imposed standards suggest weak participation; evidence is indirect.'],
-      ['Performance feedback', 'gap', 'Employees say they get too little feedback and do not know if they meet expectations.'],
-      ['Alignment', 'gap', 'Sales and profit rose while customer satisfaction, innovation and retention fell.']],
-      issue: 'The goal system is strong on financial targets but weak on feedback and broader alignment. What gets measured (sales and profit) gets done, while customer, innovation and people outcomes decline.' },
-    xy: { n: 'Theory X / Y', rows: [
-      ['Assumptions', 'gap', 'Written orders, intolerance of mistakes, unwillingness to discuss problems.'],
-      ['Style', 'gap', 'Control systems, mandated internal competition, rewards tied only to measurable results.'],
-      ['Nuance', 'maybe', 'Staffing and pay decisions were decentralized, but the climate stays control-heavy.'],
-      ['What LMS now needs', 'gap', 'Innovation, customer problem-solving and initiative, which fit Theory Y behavior.']],
-      issue: 'Management is strongly Theory X. The gap: LMS now needs initiative, ideas and customer problem-solving, which a control-heavy climate does not support.' },
-    herzberg: { n: 'Herzberg', rows: [
-      ['Supervision (hygiene)', 'gap', 'Written orders, no tolerance of mistakes, little discussion or feedback.'],
-      ['Pay (hygiene)', 'ok', 'Bonuses and commissions exist; leavers are well paid.'],
-      ['Relations, policies (hygiene)', 'gap', 'Mandated competition; tense workplace; family atmosphere lost.'],
-      ['Growth, advancement (motivator)', 'gap', 'Career development and training stopped.'],
-      ['Recognition, responsibility (motivator)', 'maybe', 'Recognition is narrow (numbers only); lower units gained some authority.']],
-      issue: 'LMS has both hygiene problems (supervision, relations) and weak motivators (growth). Strong pay cannot offset either.' },
-    erg: { n: 'ERG', rows: [
-      ['Existence', 'ok', 'Pay and incentives are present.'],
-      ['Relatedness', 'gap', 'Tense workplace, internal competition, loss of family atmosphere.'],
-      ['Growth', 'gap', 'Training and career development stopped; innovation declined.']],
-      issue: 'Existence rewards are strong while Relatedness and Growth are weak. The case does not prove frustration-regression.' }
-  };
-  const TAG = { ok: 'No clear gap', gap: 'Gap', maybe: 'Possible / mixed', na: 'Not enough evidence' };
-
-  W.lms = host => {
-    const body = shell(host, 'Case lens', 'Lee Medical Supply', 'Switch the framework. The facts stay the same; the question changes.');
-    body.innerHTML = '<div class="tabs" role="tablist"></div><div class="lens"></div>';
-    const tabs = body.querySelector('.tabs'), lens = body.querySelector('.lens');
-    let cur = 'maslow';
-    Object.entries(LMS).forEach(([k, v]) => {
-      const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'tab'); b.dataset.k = k; b.textContent = v.n;
-      b.addEventListener('click', () => { cur = k; draw(); }); tabs.appendChild(b);
-    });
-    function draw() {
-      const v = LMS[cur];
-      tabs.querySelectorAll('button').forEach(b => b.setAttribute('aria-selected', b.dataset.k === cur));
-      lens.innerHTML = '<div class="ev">' + v.rows.map(r => '<div><b>' + r[0] + '</b><span class="tag ' + r[1] + '">' + TAG[r[1]] + '</span><p>' + r[2] + '</p></div>').join('') + '</div>' +
-        '<div class="issue"><b>Issue statement</b><p>' + v.issue + '</p></div>';
-    }
-    draw();
-  };
-
-
   W.jcm = host => {
-    const body = shell(host, 'Interactive', 'Design a job', 'Set each dimension from 1 (low) to 5 (high). Illustration of the model, not a measured score.');
-    const D = [['sv', 'Skill variety', 0], ['ti', 'Task identity', 0], ['ts', 'Task significance', 0], ['au', 'Autonomy', 1], ['fb', 'Feedback', 2]];
+    const body = shell(host, "Interactive<span class=\"zh-full\" lang=\"zh-Hant\">互動練習</span>", "Design a job<span class=\"zh-full\" lang=\"zh-Hant\">設計一份工作</span>", "Set each dimension from 1 (low) to 5 (high). Illustration of the model, not a measured score.<span class=\"zh-full\" lang=\"zh-Hant\">將各構面設為 1（低）至 5（高）。此處只用來示範模型，並非實際測量分數。</span>");
+    const D = [['sv', "Skill variety<span class=\"zh-full\" lang=\"zh-Hant\">技能多樣性</span>", 0], ['ti', "Task identity<span class=\"zh-full\" lang=\"zh-Hant\">任務完整性</span>", 0], ['ts', "Task significance<span class=\"zh-full\" lang=\"zh-Hant\">任務重要性</span>", 0], ['au', "Autonomy<span class=\"zh-full\" lang=\"zh-Hant\">自主性</span>", 1], ['fb', "Feedback<span class=\"zh-full\" lang=\"zh-Hant\">回饋</span>", 2]];
     const st = { sv: 2, ti: 2, ts: 4, au: 1, fb: 1, gns: true };
     const id = 'jc' + (++uid);
-    body.innerHTML = '<div class="jcm"><div class="jcol"><p class="hz-t">Core job dimensions</p><div class="jdims"></div></div>' +
-      '<div class="jcol"><p class="hz-t">Psychological states</p><div class="jstates"></div></div>' +
-      '<div class="jcol"><p class="hz-t">Expected outcomes</p><div class="jout"></div></div></div>' +
-      '<div class="seg jgns" role="radiogroup" aria-label="Growth-need strength"><button type="button" data-v="1">High growth need</button><button type="button" data-v="0">Low growth need</button></div><p class="g-note"></p>';
+    body.innerHTML = "<div class=\"jcm\"><div class=\"jcol\"><p class=\"hz-t\">Core job dimensions<span class=\"zh-full\" lang=\"zh-Hant\">核心工作構面</span></p><div class=\"jdims\"></div></div>" +
+      "<div class=\"jcol\"><p class=\"hz-t\">Psychological states<span class=\"zh-full\" lang=\"zh-Hant\">心理狀態</span></p><div class=\"jstates\"></div></div>" +
+      "<div class=\"jcol\"><p class=\"hz-t\">Expected outcomes<span class=\"zh-full\" lang=\"zh-Hant\">預期成果</span></p><div class=\"jout\"></div></div></div>" +
+      "<div class=\"seg jgns\" role=\"radiogroup\" aria-label=\"Growth-need strength\"><button type=\"button\" data-v=\"1\">High growth need<span class=\"zh-full\" lang=\"zh-Hant\">高成長需求</span></button><button type=\"button\" data-v=\"0\">Low growth need<span class=\"zh-full\" lang=\"zh-Hant\">低成長需求</span></button></div><p class=\"g-note\"></p>";
     const dims = body.querySelector('.jdims');
     D.forEach(([k, lab, grp]) => {
       const w = document.createElement('div'); w.className = 'sl jd g' + grp;
       w.innerHTML = '<label for="' + id + k + '"><span>' + lab + '</span><output></output></label><input type="range" min="1" max="5" step="1" id="' + id + k + '" value="' + st[k] + '">';
       const inp = w.querySelector('input'), out = w.querySelector('output');
-      const sync = () => { out.textContent = inp.value; };
+      const sync = () => { out.innerHTML = inp.value; };
       inp.addEventListener('input', () => { st[k] = +inp.value; sync(); draw(); }); sync(); dims.appendChild(w);
     });
     body.querySelectorAll('.jgns button').forEach(b => b.addEventListener('click', () => { st.gns = b.dataset.v === '1'; draw(); }));
@@ -727,22 +643,21 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
     function bar(lab, v, cls) { return '<div class="jst ' + cls + '"><span>' + lab + '</span><div class="jbar"><i style="width:' + Math.round(v * 100) + '%"></i></div></div>'; }
     function draw() {
       const m = ((st.sv + st.ti + st.ts) / 3 - 1) / 4, r = (st.au - 1) / 4, k = (st.fb - 1) / 4;
-      S.innerHTML = bar('Experienced meaningfulness', m, 'g0') + bar('Experienced responsibility', r, 'g1') + bar('Knowledge of results', k, 'g2');
+      S.innerHTML = bar("Experienced meaningfulness<span class=\"zh-full\" lang=\"zh-Hant\">感受到工作有意義</span>", m, 'g0') + bar("Experienced responsibility<span class=\"zh-full\" lang=\"zh-Hant\">感受到自己負有責任</span>", r, 'g1') + bar("Knowledge of results<span class=\"zh-full\" lang=\"zh-Hant\">了解工作成果</span>", k, 'g2');
       const core = Math.cbrt(Math.max(m, .02) * Math.max(r, .02) * Math.max(k, .02));
       const v = st.gns ? core : core * 0.6;
       const lvl = v > .62 ? 'Strong' : v > .35 ? 'Moderate' : 'Weak';
-      O.innerHTML = '<div class="jlvl ' + lvl.toLowerCase() + '">' + lvl + '</div><ul><li>Internal work motivation</li><li>Quality of performance</li><li>Satisfaction with work</li><li>Low absenteeism and turnover</li></ul>';
+      O.innerHTML='<div class="jlvl '+lvl.toLowerCase()+'">'+biPair(lvl,{Strong:'強',Moderate:'中等',Weak:'弱'}[lvl])+'</div><ul><li>'+biPair('Internal work motivation','內在工作動機')+'</li><li>'+biPair('Quality of performance','工作表現品質')+'</li><li>'+biPair('Satisfaction with work','工作滿意度')+'</li><li>'+biPair('Low absenteeism and turnover','低缺勤率與低流動率')+'</li></ul>';
       body.querySelectorAll('.jgns button').forEach(b => b.setAttribute('aria-checked', (b.dataset.v === '1') === st.gns));
-      const weakest = [[m, 'meaningfulness (skill variety, task identity, task significance)'], [r, 'responsibility (autonomy)'], [k, 'knowledge of results (feedback)']].sort((a, b) => a[0] - b[0])[0];
-      note.textContent = (weakest[0] < .5 ? 'The weakest link is ' + weakest[1] + '. One weak state holds back the whole job. ' : 'All three states are supported. ') +
-        (st.gns ? '' : 'Low growth-need strength: the same enriched job produces a weaker response.');
+      const weakest = [[m, "meaningfulness (skill variety, task identity, task significance)<span class=\"zh-full\" lang=\"zh-Hant\">意義感（技能多樣性、任務完整性、任務重要性）</span>"], [r, "responsibility (autonomy)<span class=\"zh-full\" lang=\"zh-Hant\">責任感（自主性）</span>"], [k, "knowledge of results (feedback)<span class=\"zh-full\" lang=\"zh-Hant\">對成果的了解（回饋）</span>"]].sort((a, b) => a[0] - b[0])[0];
+      note.innerHTML=biPair((weakest[0]<.5?'The weakest link is '+biPlain(weakest[1])+'. One weak state holds back the whole job. ':'All three states are supported. ')+(st.gns?'':'Low growth-need strength: the same enriched job produces a weaker response.'),(weakest[0]<.5?'最弱環節是'+biChinese(weakest[1])+'。一項薄弱的心理狀態會拖累整體工作設計。':'三種心理狀態都獲得支持。')+(st.gns?'':'成長需求強度較低時，同樣的工作豐富化會帶來較弱反應。'));
     }
     draw();
   };
 
   function quiz(host, kicker, title, sub, items, opts, layout) {
     const body = shell(host, kicker, title, sub);
-    body.innerHTML = '<p class="qz-item"></p><div class="qz-opts ' + (layout || '') + '"></div><p class="g-note"></p><div class="qz-nav"><span class="qz-n"></span><button type="button" class="g-btn">Next</button></div>';
+    body.innerHTML = '<p class="qz-item"></p><div class="qz-opts ' + (layout || '') + "\"></div><p class=\"g-note\"></p><div class=\"qz-nav\"><span class=\"qz-n\"></span><button type=\"button\" class=\"g-btn\">Next<span class=\"zh-full\" lang=\"zh-Hant\">下一題</span></button></div>";
     const P = body.querySelector('.qz-item'), O = body.querySelector('.qz-opts'), N = body.querySelector('.g-note'), C = body.querySelector('.qz-n');
     let i = 0, score = 0, done = 0;
     opts.forEach(([k, lab, sub2]) => {
@@ -753,100 +668,37 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
         const it = items[i], ok = k === it.a; done++; if (ok) score++;
         O.querySelectorAll('button').forEach(x => x.classList.toggle('right', x.dataset.k === it.a));
         if (!ok) b.classList.add('wrong');
-        N.textContent = (ok ? 'Correct. ' : 'Not quite. ') + it.why; N.hidden = false;
-        C.textContent = score + ' / ' + done + ' correct';
+        N.innerHTML=biPair((ok?'Correct. ':'Not quite. ')+biPlain(it.why),(ok?'答對了。':'再想一下。')+biChinese(it.why)); N.hidden = false;
+        C.innerHTML=biPair(score+' / '+done+' correct',score+'／'+done+' 題答對');
       });
       O.appendChild(b);
     });
     function show() {
-      const it = items[i]; P.textContent = '"' + it.q + '"'; delete O.dataset.answered;
+      const it = items[i]; P.innerHTML=biPair('\u0022'+biPlain(it.q)+'\u0022',biChinese(it.q)); delete O.dataset.answered;
       O.querySelectorAll('button').forEach(x => x.classList.remove('right', 'wrong')); N.hidden = true;
     }
     body.querySelector('.qz-nav button').addEventListener('click', () => { i = (i + 1) % items.length; show(); });
-    C.textContent = items.length + ' items'; show();
+    C.innerHTML=biPair(items.length+' items',items.length+' 題'); show();
   }
 
-  W.evln = host => quiz(host, 'Classify', 'Which response is this?', 'Read the statement, then pick the quadrant.', [
-    { q: 'I am interviewing elsewhere because management ignores the problem.', a: 'exit', why: 'Active and destructive: moving toward leaving.' },
-    { q: 'I reported the problems and proposed a cross-team solution.', a: 'voice', why: 'Active and constructive: trying to improve conditions.' },
-    { q: 'I believe management will fix things. I will stay and wait.', a: 'loyalty', why: 'Passive and constructive: hoping conditions improve.' },
-    { q: 'Nothing will change, so I stopped checking my work carefully.', a: 'neglect', why: 'Passive and destructive: letting performance slide.' },
-    { q: 'I handed in my resignation letter this morning.', a: 'exit', why: 'Active and destructive toward the relationship: leaving.' },
-    { q: 'I suggested a new workflow to my manager and offered to pilot it.', a: 'voice', why: 'Active and constructive.' }
-  ], [['exit', 'Exit', 'Active · Destructive'], ['voice', 'Voice', 'Active · Constructive'], ['neglect', 'Neglect', 'Passive · Destructive'], ['loyalty', 'Loyalty', 'Passive · Constructive']], 'grid2');
+  W.evln = host => quiz(host, "Classify<span class=\"zh-full\" lang=\"zh-Hant\">分類練習</span>", "Which response is this?<span class=\"zh-full\" lang=\"zh-Hant\">這是哪一種反應？</span>", "Read the statement, then pick the quadrant.<span class=\"zh-full\" lang=\"zh-Hant\">閱讀情境，再選擇對應的象限。</span>", [
+    { q: "I am interviewing elsewhere because management ignores the problem.<span class=\"zh-full\" lang=\"zh-Hant\">管理層無視問題，因此我正在別處面試。</span>", a: 'exit', why: "Active and destructive: moving toward leaving.<span class=\"zh-full\" lang=\"zh-Hant\">主動且具有破壞性：正朝離職行動。</span>" },
+    { q: "I reported the problems and proposed a cross-team solution.<span class=\"zh-full\" lang=\"zh-Hant\">我反映了問題，並提出跨團隊解決方案。</span>", a: 'voice', why: "Active and constructive: trying to improve conditions.<span class=\"zh-full\" lang=\"zh-Hant\">主動且具建設性：試圖改善情況。</span>" },
+    { q: "I believe management will fix things. I will stay and wait.<span class=\"zh-full\" lang=\"zh-Hant\">我相信管理層會改善，所以會留下來等待。</span>", a: 'loyalty', why: "Passive and constructive: hoping conditions improve.<span class=\"zh-full\" lang=\"zh-Hant\">被動且具建設性：期待情況改善。</span>" },
+    { q: "Nothing will change, so I stopped checking my work carefully.<span class=\"zh-full\" lang=\"zh-Hant\">反正不會改變，我不再仔細檢查工作。</span>", a: 'neglect', why: "Passive and destructive: letting performance slide.<span class=\"zh-full\" lang=\"zh-Hant\">被動且具破壞性：任由績效下滑。</span>" },
+    { q: "I handed in my resignation letter this morning.<span class=\"zh-full\" lang=\"zh-Hant\">我今天早上遞出了辭呈。</span>", a: 'exit', why: "Active and destructive toward the relationship: leaving.<span class=\"zh-full\" lang=\"zh-Hant\">對僱傭關係而言屬主動、破壞性的離開行為。</span>" },
+    { q: "I suggested a new workflow to my manager and offered to pilot it.<span class=\"zh-full\" lang=\"zh-Hant\">我向主管建議新流程，並自願試行。</span>", a: 'voice', why: "Active and constructive.<span class=\"zh-full\" lang=\"zh-Hant\">主動且具建設性。</span>" }
+  ], [['exit', "Exit<span class=\"zh-full\" lang=\"zh-Hant\">離職</span>", "Active · Destructive<span class=\"zh-full\" lang=\"zh-Hant\">主動・破壞性</span>"], ['voice', "Voice<span class=\"zh-full\" lang=\"zh-Hant\">建言</span>", "Active · Constructive<span class=\"zh-full\" lang=\"zh-Hant\">主動・建設性</span>"], ['neglect', "Neglect<span class=\"zh-full\" lang=\"zh-Hant\">怠忽</span>", "Passive · Destructive<span class=\"zh-full\" lang=\"zh-Hant\">被動・破壞性</span>"], ['loyalty', "Loyalty<span class=\"zh-full\" lang=\"zh-Hant\">忠誠</span>", "Passive · Constructive<span class=\"zh-full\" lang=\"zh-Hant\">被動・建設性</span>"]], 'grid2');
 
-  W.sched = host => quiz(host, 'Classify', 'Which schedule is this?', 'Time or output first, then fixed or variable.', [
-    { q: 'Each time a new staff member completes the safety demonstration, the supervisor praises them.', a: 'c', why: 'Every occurrence is reinforced.' },
-    { q: 'A supervisor gives an incentive after every five verified error-free orders.', a: 'fr', why: 'A fixed count of output.' },
-    { q: 'Teams are evaluated after changing, unannounced periods.', a: 'vi', why: 'Time-based, and the timing varies.' },
-    { q: 'A reward follows an unpredictable number of completed service interactions.', a: 'vr', why: 'Output-based, and the count varies.' },
-    { q: 'Employees receive a paycheck every Friday.', a: 'fi', why: 'Fixed time. This is the slide example for fixed interval.' },
-    { q: 'Factory workers are paid for each batch of 20 units they complete.', a: 'fr', why: 'Piece-rate pay is the slide example for fixed ratio.' },
-    { q: 'The manager runs surprise quality inspections.', a: 'vi', why: 'Unannounced inspection is the slide example for variable interval.' }
-  ], [['c', 'Continuous', 'Every time'], ['fi', 'Fixed interval', 'Set time'], ['vi', 'Variable interval', 'Changing time'], ['fr', 'Fixed ratio', 'Set output'], ['vr', 'Variable ratio', 'Changing output']], 'row5');
-
-  const REC = {
-    maslow: { n: 'Team 1 · Maslow',
-      fw: 'Employees need chances to meet all five levels. Find which are missing instead of assuming money solves everything.',
-      ev: 'Pay and bonuses exist. Harsh control and high turnover are documented. The family atmosphere and training are gone. Lecturer: physiological met, esteem partly, safety, social and self-actualization short.',
-      gap: 'Strong financial output, but weak security, belonging and growth. The source of insecurity is not measured yet.',
-      acts: [['Safety: investigate fears of arbitrary discipline; clarify fair review and grievance steps', 'Predictable rules reduce threat and allow initiative', 'Listening sessions; fairness items in surveys; voluntary turnover'],
-        ['Social: cross-division problem-solving teams and shared customer goals; limit zero-sum contests', 'Belonging without dropping output standards', 'Cross-team projects; collaboration survey'],
-        ['Growth: restore training and career planning; invite product-improvement ideas', 'Rebuilds the growth path removed in the turnaround', 'Training uptake; internal moves; ideas implemented'],
-        ['Esteem: recognize teamwork, customer problem-solving and innovation, not only revenue', 'Widens recognition beyond quotas', 'Perceived fairness; retention of qualified staff']],
-      risk: 'Training and team time cost money. Run budgeted pilots and keep clear accountability.',
-      say: 'Maslow suggests we should examine which needs the workplace allows employees to fulfill. The lecturer\'s LMS diagnosis identifies gaps in safety, social relationships and self-actualization. I would first find out why employees feel insecure, restore cross-functional teamwork, and introduce structured development opportunities. I would keep clear performance standards and measure high-performer retention, employees\' perceived support and innovation output.' },
-    goals: { n: 'Team 2 · Goal setting',
-      fw: 'Effective goals need specificity, a time period, participation and feedback. Hitting a narrow metric may not serve the wider objective.',
-      ev: 'Profit centers, MBO, appraisals and sales and profit targets exist. Staff report too little feedback. Lecturer: staff do not know the overall profit goal. Customer satisfaction and innovation fell.',
-      gap: 'Specific financial goals, but weak shared understanding and feedback, and metrics not aligned with wider strategy.',
-      acts: [['Publish the CEO\'s three priorities in plain language; cascade clear, time-bound team goals', 'Makes success visible beyond profit', 'Staff can explain the goals unaided'],
-        ['Involve employees in goal setting and customer-improvement decisions', 'Builds buy-in and surfaces operational knowledge', 'Participation records; ideas adopted'],
-        ['Regular two-way performance feedback, not only scores', 'Closes the documented feedback gap', 'Feedback frequency and quality'],
-        ['Balanced measures: profit and cost plus customer, innovation and high-performer retention', 'Limits "what gets measured gets done"', 'Complaints, new products, turnover; watch for gaming']],
-      risk: 'Do not claim time periods are missing; the case does not say. Too many KPIs create admin cost and gaming.',
-      say: 'LMS already has measurable sales and profit targets, so I would not simply add more quotas. The handout shows a clear lack of performance feedback, and the lecturer says employees do not understand the overall goal. I would communicate a small set of shared objectives, let employees contribute to how they will be achieved, and provide regular two-way feedback. Success should include customer results, new-product development and high-performer retention, not only short-term profit.' },
-    xy: { n: 'Team 3 · Theory X / Y',
-      fw: 'Theory X relies on control and external consequences; Theory Y on responsibility, ideas and self-direction. The point is fit between style, people and task.',
-      ev: 'Written orders, little discussion, intolerance of mistakes. Staffing and pay authority were decentralized. Lecturer: the X style meets deadlines, but high-flyer Y workers leave.',
-      gap: 'The climate underuses the participation and ownership LMS needs for innovation and customer problem-solving.',
-      acts: [['Keep accountability but give bounded autonomy to experienced staff', 'Responsibility with reliable execution', 'Quality and timeliness; autonomy and retention surveys'],
-        ['Regular employee and customer problem-solving forums with real follow-through', 'Gives a channel for Voice instead of Exit or silence', 'Ideas submitted, decided, implemented'],
-        ['Coach managers to replace one-way orders and automatic punishment with discussion and feedback', 'Reduces fear while keeping standards', 'Upward feedback; complaints'],
-        ['Let cross-functional teams own small innovation projects', 'Points self-directed effort at the CEO\'s goals', 'Ideas tested; customer outcomes']],
-      risk: 'Not everything can be delegated in medical supplies (safety, compliance). Not all turnover comes from management style; interview leavers.',
-      say: 'The professor describes Apichart as using a Theory X style with both X- and Y-oriented employees. His control has improved financial discipline, but high-performing employees continue to leave and the company needs innovation. I would keep clear performance expectations while giving experienced employees more ownership, feedback and input into customer and product decisions. We should measure retention and quality as well as deadlines.' },
-    herz: { n: 'Team 4 · Herzberg',
-      fw: 'Hygiene factors reduce dissatisfaction; motivators create motivation. Fixing only one side is not enough.',
-      ev: 'Unsupportive management, strained relationships, high competition, too little feedback; training and career development ended. Bonuses exist and some authority was decentralized.',
-      gap: 'Possible mix of supervision and relationship hygiene problems with lost growth motivators. Not diagnosed on the slide; built from the case.',
-      acts: [['Hygiene: audit supervisor respect, communication, competition rules and reward fairness', 'Targets dissatisfaction drivers other than pay level', 'Climate and fairness surveys; voluntary turnover'],
-        ['Hygiene: clear, respectful review and corrective procedures', 'Removes uncertainty', 'Perceived fairness; appeals resolved'],
-        ['Motivators: restore development, training and skill-based advancement', 'Rebuilds growth paths', 'Training access; promotions; retention'],
-        ['Motivators: recognize cross-team customer solutions and real achievement; give ownership where suitable', 'Recognition beyond revenue', 'Recognition quality; product and customer improvements']],
-      risk: 'Pay is not shown to be low; some leavers were well paid. Do not promise satisfaction from salary.',
-      say: 'Herzberg tells us to distinguish removing dissatisfaction from creating motivation. LMS has evidence of weak supervision and workplace relationships, even though financial rewards exist. It also removed training and career development, which are important motivators. I would improve fair and supportive management practices while restoring growth opportunities and meaningful recognition. Then I would compare employee satisfaction, retention and innovation outcomes.' }
-  };
-
-  W.lmsrec = host => {
-    const body = shell(host, 'Team view', 'From issue to recommendation', 'Pick a team. Each follows framework, evidence, gap, actions, risk.');
-    body.innerHTML = '<div class="tabs" role="tablist"></div><div class="rec"></div>';
-    const tabs = body.querySelector('.tabs'), box = body.querySelector('.rec');
-    let cur = 'maslow';
-    Object.entries(REC).forEach(([k, v]) => {
-      const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'tab'); b.dataset.k = k; b.textContent = v.n;
-      b.addEventListener('click', () => { cur = k; draw(); }); tabs.appendChild(b);
-    });
-    function draw() {
-      const v = REC[cur];
-      tabs.querySelectorAll('button').forEach(b => b.setAttribute('aria-selected', b.dataset.k === cur));
-      box.innerHTML = '<div class="rsteps"><div><b>Framework</b><p>' + esc(v.fw) + '</p></div><div><b>Evidence</b><p>' + esc(v.ev) + '</p></div><div class="g"><b>Gap = issue</b><p>' + esc(v.gap) + '</p></div></div>' +
-        '<div class="tbl"><table><thead><tr><th>Action</th><th>Why it helps</th><th>How to check</th></tr></thead><tbody>' +
-        v.acts.map(a => '<tr><td>' + esc(a[0]) + '</td><td>' + esc(a[1]) + '</td><td>' + esc(a[2]) + '</td></tr>').join('') + '</tbody></table></div>' +
-        '<p class="risk"><b>Risk</b> ' + esc(v.risk) + '</p><details class="sayd"><summary>30 to 45 second answer</summary><blockquote class="say">' + esc(v.say) + '</blockquote></details>';
-    }
-    draw();
-  };
+  W.sched = host => quiz(host, "Classify<span class=\"zh-full\" lang=\"zh-Hant\">分類練習</span>", "Which schedule is this?<span class=\"zh-full\" lang=\"zh-Hant\">這是哪種增強時制？</span>", "Time or output first, then fixed or variable.<span class=\"zh-full\" lang=\"zh-Hant\">先判斷依時間或產出，再判斷固定或變動。</span>", [
+    { q: "Each time a new staff member completes the safety demonstration, the supervisor praises them.<span class=\"zh-full\" lang=\"zh-Hant\">新進員工每完成一次安全示範，主管都給予稱讚。</span>", a: 'c', why: "Every occurrence is reinforced.<span class=\"zh-full\" lang=\"zh-Hant\">每次發生期望行為都得到增強。</span>" },
+    { q: "A supervisor gives an incentive after every five verified error-free orders.<span class=\"zh-full\" lang=\"zh-Hant\">每完成五筆經確認無誤的訂單，主管就給一次獎勵。</span>", a: 'fr', why: "A fixed count of output.<span class=\"zh-full\" lang=\"zh-Hant\">依固定產出數量給獎勵。</span>" },
+    { q: "Teams are evaluated after changing, unannounced periods.<span class=\"zh-full\" lang=\"zh-Hant\">團隊在不固定、未事先公告的時間點接受評估。</span>", a: 'vi', why: "Time-based, and the timing varies.<span class=\"zh-full\" lang=\"zh-Hant\">依時間給獎勵，但時間點不固定。</span>" },
+    { q: "A reward follows an unpredictable number of completed service interactions.<span class=\"zh-full\" lang=\"zh-Hant\">完成次數不固定的顧客服務互動後才給獎勵。</span>", a: 'vr', why: "Output-based, and the count varies.<span class=\"zh-full\" lang=\"zh-Hant\">依產出給獎勵，但產出數量不固定。</span>" },
+    { q: "Employees receive a paycheck every Friday.<span class=\"zh-full\" lang=\"zh-Hant\">員工每週五領薪水。</span>", a: 'fi', why: "Fixed time. This is the slide example for fixed interval.<span class=\"zh-full\" lang=\"zh-Hant\">依固定時間發放；這是投影片的固定時距例子。</span>" },
+    { q: "Factory workers are paid for each batch of 20 units they complete.<span class=\"zh-full\" lang=\"zh-Hant\">工廠員工每完成一批二十件產品就領一次報酬。</span>", a: 'fr', why: "Piece-rate pay is the slide example for fixed ratio.<span class=\"zh-full\" lang=\"zh-Hant\">按件計酬是投影片的固定比率例子。</span>" },
+    { q: "The manager runs surprise quality inspections.<span class=\"zh-full\" lang=\"zh-Hant\">主管不定期進行突擊品質檢查。</span>", a: 'vi', why: "Unannounced inspection is the slide example for variable interval.<span class=\"zh-full\" lang=\"zh-Hant\">無預警檢查是投影片的變動時距例子。</span>" }
+  ], [['c', "Continuous<span class=\"zh-full\" lang=\"zh-Hant\">連續增強</span>", "Every time<span class=\"zh-full\" lang=\"zh-Hant\">每次</span>"], ['fi', "Fixed interval<span class=\"zh-full\" lang=\"zh-Hant\">固定時距</span>", "Set time<span class=\"zh-full\" lang=\"zh-Hant\">固定時間</span>"], ['vi', "Variable interval<span class=\"zh-full\" lang=\"zh-Hant\">變動時距</span>", "Changing time<span class=\"zh-full\" lang=\"zh-Hant\">變動時間</span>"], ['fr', "Fixed ratio<span class=\"zh-full\" lang=\"zh-Hant\">固定比率</span>", "Set output<span class=\"zh-full\" lang=\"zh-Hant\">固定產出</span>"], ['vr', "Variable ratio<span class=\"zh-full\" lang=\"zh-Hant\">變動比率</span>", "Changing output<span class=\"zh-full\" lang=\"zh-Hant\">變動產出</span>"]], 'row5');
 
   window.MgmtWidgets = { mount(root) { root.querySelectorAll('[data-mw]').forEach(h => { if (!h.dataset.ready && W[h.dataset.mw]) { h.dataset.ready = 1; W[h.dataset.mw](h); } }); } };
 })();
@@ -857,7 +709,7 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
   const hs = [...document.querySelectorAll('.doc > h2, .doc > h3')];
   hs.forEach(h => {
     const li = document.createElement('li'); li.className = h.tagName.toLowerCase(); li.dataset.id = h.id;
-    const a = document.createElement('a'); a.href = '#' + h.id; a.textContent = h.childNodes[0].textContent.trim();
+    const a = document.createElement('a'); a.href = '#' + h.id; a.innerHTML=biPair(h.childNodes[0].textContent.trim(),h.querySelector(':scope > .zh-full')?.textContent||'');
     li.appendChild(a); toc.appendChild(li);
   });
   const spy = new IntersectionObserver(es => es.forEach(e => {
@@ -874,7 +726,7 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
   const all = document.getElementById('qaAll');
   if (all) all.addEventListener('click', () => {
     const ds = document.querySelectorAll('.qa details'), open = ![...ds].every(d => d.open);
-    ds.forEach(d => d.open = open); all.textContent = open ? 'Hide all answers' : 'Show all answers';
+    ds.forEach(d => d.open = open); all.innerHTML=biPair(open?'Hide all answers':'Show all answers',open?'收合全部答案':'顯示全部答案');
   });
   document.querySelectorAll('.drill .ans').forEach(s => s.addEventListener('click', () => s.classList.toggle('shown')));
 
@@ -884,38 +736,13 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 </script>
 <script>
 (function(){
- const key='study-notes-show-zh', toggle=document.getElementById('zhToggle'), modeLabel=document.getElementById('zhModeLabel');
- function set(on){document.body.classList.toggle('show-zh',on);toggle.checked=on;modeLabel.textContent=on?'ON':'OFF';toggle.title=on?'隱藏完整繁體中文對照（保留原有中文註解）':'顯示完整繁體中文對照（保留英文）';try{localStorage.setItem(key,on?'1':'0')}catch(e){}}
- let saved=false;try{saved=localStorage.getItem(key)==='1'}catch(e){}
- set(saved);toggle.addEventListener('change',()=>set(toggle.checked));
- const header=document.querySelector('.top');
- function measureHeader(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
- measureHeader();window.addEventListener('resize',measureHeader);
- if('ResizeObserver' in window)new ResizeObserver(measureHeader).observe(header);
- const dict={"Interactive graph": "互動圖表", "Interactive": "互動練習", "Case lens": "個案視角", "Team view": "小組視角", "Classify": "分類練習", "Compare": "比較", "Gains from trade peak at equilibrium": "均衡時交易利益最大", "A tariff transfers surplus and destroys some of it": "關稅移轉部分剩餘，也使部分剩餘消失", "Binding price controls shrink trade": "有約束力的價格管制減少交易", "A Pigouvian tax corrects overproduction": "庇古稅矯正過度生產", "A subsidy corrects underproduction": "補貼矯正生產不足", "The less elastic side bears more of a tax": "彈性較低的一方承擔較多稅負", "One oil well: how many barrels?": "一口油井應生產幾桶？", "Drag the market price. The firm compares each barrel's marginal cost with the price, using the cost table from the class slides.": "拖曳市場價格。廠商根據課堂成本表，比較每桶的邊際成本與價格。", "The market sets the price; the firm picks the quantity": "市場決定價格，單一廠商決定產量", "Shift market demand. The new market price becomes the firm's horizontal demand line.": "改變市場需求；新的市場價格會成為單一廠商的水平需求線。", "Quantity": "數量", "Price": "價格", "Market price": "市場價格", "Tariff": "關稅", "Tax": "稅", "Subsidy": "補貼", "World price": "世界價格", "Domestic price": "國內價格", "Consumer surplus": "消費者剩餘", "Producer surplus": "生產者剩餘", "Deadweight loss": "無謂損失", "Government revenue": "政府收入", "Imports": "進口量", "Shortage": "短缺", "Surplus": "過剩", "Price ceiling": "最高限價", "Price floor": "最低限價", "Equilibrium": "均衡", "Efficient quantity": "效率數量", "Market quantity": "市場數量", "Demand": "需求", "Supply": "供給", "Two separate scales": "兩條彼此獨立的量尺", "Mark each hygiene factor as fixed or poor, and each motivator as present or missing.": "將各項保健因素標為已改善或不佳；將各項激勵因素標為存在或缺乏。", "Hygiene factors": "保健因素", "Motivators": "激勵因素", "Quality of supervision": "督導品質", "Rate of pay": "薪資水準", "Company policies": "公司政策", "Working conditions": "工作環境", "Relations with others": "人際關係", "Job security": "工作保障", "Career advancement": "職涯晉升", "Personal growth": "個人成長", "Recognition": "肯定", "Responsibility": "責任", "Achievement": "成就", "Poor": "不佳", "Fixed": "已改善", "Present": "存在", "Missing": "缺乏", "High dissatisfaction": "高度不滿", "High satisfaction": "高度滿意", "What gets measured gets done": "衡量什麼，就促成什麼", "A call center chooses a KPI. Switch it and see what people optimize.": "客服中心選擇一項 KPI。切換後觀察員工會優先追求什麼。", "Calls handled per hour": "每小時處理的通話數", "Problems solved on first contact": "首次接觸解決問題數", "Keep calls short": "縮短通話", "Avoid complex cases": "避開複雜案件", "Transfer customers quickly": "迅速轉接顧客", "Take time to understand the issue": "花時間了解問題", "Fix it fully before ending": "結束通話前徹底解決", "Escalate only when needed": "僅在必要時轉交上級", "KPI result": "KPI 結果", "Real outcome": "實際結果", "Behavior": "行為", "Rises": "上升", "Customer problems solved may fall": "成功解決的顧客問題可能減少", "Customer satisfaction rises": "顧客滿意度上升", "Framework side by side": "並排比較理論框架", "Framework A": "框架 A", "Framework B": "框架 B", "Core question": "核心問題", "Key idea": "核心概念", "Look for in the case": "在個案中尋找", "Use it when": "適用情境", "Common mistake": "常見錯誤", "Lee Medical Supply": "李氏醫療用品公司", "Switch the framework. The facts stay the same; the question changes.": "切換理論框架。事實不變，分析問題的角度會改變。", "No clear gap": "無明顯缺口", "Gap": "缺口", "Possible / mixed": "可能有缺口／證據不一致", "Not enough evidence": "證據不足", "Issue statement": "問題陳述", "Design a job": "設計一份工作", "Set each dimension from 1 (low) to 5 (high). Illustration of the model, not a measured score.": "將各構面設為 1（低）至 5（高）。此處只用來示範模型，並非實際測量分數。", "Core job dimensions": "核心工作構面", "Psychological states": "心理狀態", "Expected outcomes": "預期成果", "Skill variety": "技能多樣性", "Task identity": "任務完整性", "Task significance": "任務重要性", "Autonomy": "自主性", "Feedback": "回饋", "High growth need": "高成長需求", "Low growth need": "低成長需求", "Experienced meaningfulness": "感受到工作有意義", "Experienced responsibility": "感受到自己負有責任", "Knowledge of results": "了解工作成果", "Strong": "強", "Moderate": "中等", "Weak": "弱", "Internal work motivation": "內在工作動機", "Quality of performance": "工作表現品質", "Satisfaction with work": "工作滿意度", "Low absenteeism and turnover": "較低的缺勤與離職率", "Which response is this?": "這是哪一種反應？", "Read the statement, then pick the quadrant.": "閱讀情境，再選擇對應的象限。", "Exit": "離職", "Voice": "建言", "Loyalty": "忠誠", "Neglect": "怠忽", "Active · Destructive": "主動・破壞性", "Active · Constructive": "主動・建設性", "Passive · Constructive": "被動・建設性", "Passive · Destructive": "被動・破壞性", "Next": "下一題", "Which schedule is this?": "這是哪種增強時制？", "Time or output first, then fixed or variable.": "先判斷依時間或產出，再判斷固定或變動。", "Continuous": "連續增強", "Fixed interval": "固定時距", "Variable interval": "變動時距", "Fixed ratio": "固定比率", "Variable ratio": "變動比率", "Every time": "每次", "Set time": "固定時間", "Changing time": "變動時間", "Set output": "固定產出", "Changing output": "變動產出", "From issue to recommendation": "從問題到改善建議", "Pick a team. Each follows framework, evidence, gap, actions, risk.": "選擇小組。每組依序說明框架、證據、缺口、行動與風險。", "Framework": "理論框架", "Evidence": "證據", "Gap = issue": "缺口＝問題", "Action": "行動", "Why it helps": "為何有幫助", "How to check": "如何檢驗", "Risk": "風險", "30 to 45 second answer": "30 至 45 秒回答", "Team 1 · Maslow": "第一組・馬斯洛", "Team 2 · Goal setting": "第二組・目標設定", "Team 3 · Theory X / Y": "第三組・X／Y 理論", "Team 4 · Herzberg": "第四組・赫茲伯格", "Contents": "目錄", "Study Notes": "學習筆記", "Economics": "經濟學", "Management": "管理學", "Show all answers": "顯示所有答案", "Hide all answers": "收起所有答案", "Employees are dissatisfied. Fixing the hygiene factors brings them back to zero, not to motivated.": "員工處於不滿狀態；改善保健因素只會使不滿回到零，不會直接創造動機。", "No dissatisfaction, but no motivation either. Employees may not complain, yet they are not engaged.": "員工雖沒有不滿，也缺乏動機；可能不會抱怨，卻不投入工作。", "Both problems at once: hygiene issues create dissatisfaction while motivators push the other way. The lecture says fix the hygiene foundation first.": "兩個問題同時存在：保健因素引發不滿，激勵因素又帶來相反作用；課堂主張先修補保健因素的基礎。", "Hygiene is in place and motivators are present: this is where real motivation and satisfaction come from.": "保健因素已到位、激勵因素也存在，才可能同時產生真正的動機與滿意度。", "I am interviewing elsewhere because management ignores the problem.": "管理層無視問題，因此我正在別處面試。", "I reported the problems and proposed a cross-team solution.": "我反映了問題，並提出跨團隊解決方案。", "I believe management will fix things. I will stay and wait.": "我相信管理層會改善，所以會留下來等待。", "Nothing will change, so I stopped checking my work carefully.": "反正不會改變，我不再仔細檢查工作。", "I handed in my resignation letter this morning.": "我今天早上遞出了辭呈。", "I suggested a new workflow to my manager and offered to pilot it.": "我向主管建議新流程，並自願試行。", "Each time a new staff member completes the safety demonstration, the supervisor praises them.": "新進員工每完成一次安全示範，主管都給予稱讚。", "A supervisor gives an incentive after every five verified error-free orders.": "每完成五筆經確認無誤的訂單，主管就給一次獎勵。", "Teams are evaluated after changing, unannounced periods.": "團隊在不固定、未事先公告的時間點接受評估。", "A reward follows an unpredictable number of completed service interactions.": "完成次數不固定的顧客服務互動後才給獎勵。", "Employees receive a paycheck every Friday.": "員工每週五領薪水。", "Factory workers are paid for each batch of 20 units they complete.": "工廠員工每完成一批二十件產品就領一次報酬。", "The manager runs surprise quality inspections.": "主管不定期進行突擊品質檢查。", "Active and destructive: moving toward leaving.": "主動且具有破壞性：正朝離職行動。", "Active and constructive: trying to improve conditions.": "主動且具建設性：試圖改善情況。", "Passive and constructive: hoping conditions improve.": "被動且具建設性：期待情況改善。", "Passive and destructive: letting performance slide.": "被動且具破壞性：任由績效下滑。", "Active and destructive toward the relationship: leaving.": "對僱傭關係而言屬主動、破壞性的離開行為。", "Active and constructive.": "主動且具建設性。", "Every occurrence is reinforced.": "每次發生期望行為都得到增強。", "A fixed count of output.": "依固定產出數量給獎勵。", "Time-based, and the timing varies.": "依時間給獎勵，但時間點不固定。", "Output-based, and the count varies.": "依產出給獎勵，但產出數量不固定。", "Fixed time. This is the slide example for fixed interval.": "依固定時間發放；這是投影片的固定時距例子。", "Piece-rate pay is the slide example for fixed ratio.": "按件計酬是投影片的固定比率例子。", "Unannounced inspection is the slide example for variable interval.": "無預警檢查是投影片的變動時距例子。", "Correct.": "答對了。", "Not quite.": "再想一下。", "Shift demand or supply, or force the quantity away from equilibrium, and watch total surplus.": "移動需求或供給，或使交易量偏離均衡，觀察總剩餘如何改變。", "Demand shift": "需求移動", "Supply shift": "供給移動", "Quantity traded": "交易量", "Reset to equilibrium": "重設為均衡", "Consumer Surplus": "消費者剩餘", "Producer Surplus": "生產者剩餘", "Total Surplus": "總剩餘", "Deadweight Loss": "無謂損失", "Surplus realized": "已實現剩餘", "Max possible": "可能的最大剩餘", "At equilibrium every trade with WTP ≥ MC takes place, so total surplus is at its maximum.": "均衡時，所有支付意願不低於邊際成本的交易都會發生，因此總剩餘達最大。", "Too little trade: between Q and Qe, buyer WTP still exceeds seller cost, yet these trades do not happen.": "交易不足：在 Q 與 Qe 之間，買方支付意願仍高於賣方成本，交易卻未發生。", "Too much trade: beyond Qe, MC > WTP, so every extra unit reduces total surplus.": "交易過多：超過 Qe 後，邊際成本大於支付意願，每多交易一單位都會降低總剩餘。", "Adjust the world price and the tariff to see the domestic price, imports and the welfare areas change.": "調整世界價格與關稅，觀察國內價格、進口量與福利面積如何變化。", "Tariff per unit": "每單位關稅", "Imports (free trade → tariff)": "進口量（自由貿易 → 課稅後）", "Consumer Surplus loss": "消費者剩餘損失", "Producer Surplus gain": "生產者剩餘增加", "DWL: wasted resources": "無謂損失：資源浪費", "DWL: lost gains from trade": "無謂損失：錯失交易利益", "Total DWL": "無謂損失合計", "Prohibitive tariff: the domestic price returns to the no-trade price and imports fall to zero.": "禁止性關稅：國內價格回到無貿易時的水準，進口量降為零。", "CS loss = PS gain + tariff revenue + two DWL triangles. The first two are transfers; only the DWL is lost to society.": "消費者剩餘損失＝生產者剩餘增加＋關稅收入＋兩塊無謂損失。前兩者是移轉；只有無謂損失是社會真正失去的價值。", "Choose ceiling or floor and drag the legal price. A ceiling binds only below equilibrium; a floor binds only above it.": "選擇最高或最低限價並拖曳法定價格。最高限價只有低於均衡時有約束力；最低限價只有高於均衡時有約束力。", "Price Ceiling": "最高限價", "Price Floor": "最低限價", "Legal price": "法定價格", "Show wasted time (ceiling)": "顯示浪費的時間（最高限價）", "Status": "狀態", "Non-binding": "無約束力", "Shortage = Qd − Qs": "短缺＝需求量－供給量", "Surplus = Qs − Qd": "過剩＝供給量－需求量", "A: lost Consumer Surplus": "A：損失的消費者剩餘", "B: lost Producer Surplus": "B：損失的生產者剩餘", "Wasted time / search (max)": "浪費的時間／搜尋成本（最大值）", "The ceiling is above the equilibrium price, so the market still clears at Pe. The control has no effect.": "最高限價高於均衡價格，市場仍在 Pe 出清；管制沒有作用。", "The floor is below the equilibrium price, so the market still clears at Pe. The control has no effect.": "最低限價低於均衡價格，市場仍在 Pe 出清；管制沒有作用。", "Only Qd units are bought; sellers cannot sell the rest. Example: unemployment under a minimum wage.": "只有 Qd 單位被買走；其餘賣不出去。例如最低工資下的失業。", "Raise the external cost, then use a tax to lift private cost up to social cost.": "提高外部成本，再以稅使私人成本上升至社會成本。", "External cost per unit": "每單位外部成本", "Pigouvian tax per unit": "每單位庇古稅", "Tax = external cost": "稅額＝外部成本", "Raise the external benefit, then use a subsidy to lift private benefit up to social benefit.": "提高外部利益，再以補貼使私人利益上升至社會利益。", "External benefit per unit": "每單位外部利益", "Subsidy per unit": "每單位補貼", "Subsidy = external benefit": "補貼＝外部利益", "Change each curve's slope and the tax. A steeper curve is less elastic and carries a larger share of the burden.": "改變兩條曲線斜率和稅額；曲線越陡，彈性越低，承擔的稅負越多。", "Demand slope": "需求曲線斜率", "Supply slope": "供給曲線斜率", "Tax per unit": "每單位稅額", "Market price per barrel": "每桶市場價格", "Slide price $50": "投影片價格：50 美元", "Slide price $100": "投影片價格：100 美元", "Market demand": "市場需求", "Barrels per day": "每日桶數", "Million barrels": "百萬桶", "Dollars": "美元", "Price / Cost": "價格／成本", "Price / Benefit": "價格／利益", "Employees need chances to meet all five levels. Find which are missing instead of assuming money solves everything.": "員工需要有機會滿足五個層次的需求；應找出缺少哪些，而不是假設金錢能解決一切。", "Pay and bonuses exist. Harsh control and high turnover are documented. The family atmosphere and training are gone. Lecturer: physiological met, esteem partly, safety, social and self-actualization short.": "薪資與獎金確實存在；嚴格控制與高流失率有紀錄；家庭般氛圍與訓練已消失。教師判斷：生理需求已滿足，尊重需求部分滿足，安全、社交和自我實現仍不足。", "Strong financial output, but weak security, belonging and growth. The source of insecurity is not measured yet.": "財務成果強，但安全感、歸屬感與成長機會薄弱；不安全感的來源尚未測量。", "Safety: investigate fears of arbitrary discipline; clarify fair review and grievance steps": "安全：調查員工是否擔憂任意懲處；釐清公平考核與申訴流程。", "Predictable rules reduce threat and allow initiative": "可預期的規則減輕威脅感，使員工願意主動行事。", "Listening sessions; fairness items in surveys; voluntary turnover": "傾聽會議；問卷中的公平性題目；自願離職率。", "Social: cross-division problem-solving teams and shared customer goals; limit zero-sum contests": "社交：建立跨部門解題團隊與共同顧客目標，減少零和競爭。", "Belonging without dropping output standards": "在維持產出標準的同時重建歸屬感。", "Cross-team projects; collaboration survey": "跨團隊專案；合作情形問卷。", "Growth: restore training and career planning; invite product-improvement ideas": "成長：恢復訓練及職涯規劃，徵求產品改善想法。", "Rebuilds the growth path removed in the turnaround": "重建轉型期間被取消的成長路徑。", "Training uptake; internal moves; ideas implemented": "訓練參與率；內部轉調；已實施的構想。", "Esteem: recognize teamwork, customer problem-solving and innovation, not only revenue": "尊重：肯定合作、顧客問題解決與創新，而不只看營收。", "Widens recognition beyond quotas": "讓肯定不再侷限於配額。", "Perceived fairness; retention of qualified staff": "公平感；合格員工留任率。", "Training and team time cost money. Run budgeted pilots and keep clear accountability.": "訓練與團隊合作都需要成本。應在預算內試行，並保持明確問責。", "Effective goals need specificity, a time period, participation and feedback. Hitting a narrow metric may not serve the wider objective.": "有效目標須具體、有時間範圍，並有參與及回饋。達成狹窄指標未必有助整體目標。", "Profit centers, MBO, appraisals and sales and profit targets exist. Staff report too little feedback. Lecturer: staff do not know the overall profit goal. Customer satisfaction and innovation fell.": "利潤中心、目標管理、考核及銷售與利潤目標已存在。員工表示回饋不足；教師指出員工不知道整體利潤目標。顧客滿意度與創新下滑。", "Specific financial goals, but weak shared understanding and feedback, and metrics not aligned with wider strategy.": "財務目標具體，但共同理解與回饋薄弱，指標也未與更廣的策略對齊。", "Publish the CEO's three priorities in plain language; cascade clear, time-bound team goals": "用淺白語言公布執行長的三項優先事項，向下拆解成清楚且有期限的團隊目標。", "Makes success visible beyond profit": "讓大家看見利潤以外的成功標準。", "Staff can explain the goals unaided": "員工能不靠提示說明目標。", "Involve employees in goal setting and customer-improvement decisions": "讓員工參與目標設定與改善顧客體驗的決策。", "Builds buy-in and surfaces operational knowledge": "提高認同，也讓第一線營運知識浮現。", "Participation records; ideas adopted": "參與紀錄；獲採用的構想。", "Regular two-way performance feedback, not only scores": "定期雙向回饋績效，不只給分數。", "Closes the documented feedback gap": "補上個案明確指出的回饋缺口。", "Feedback frequency and quality": "回饋頻率與品質。", "Balanced measures: profit and cost plus customer, innovation and high-performer retention": "平衡衡量：除利潤與成本，也納入顧客、創新與高績效員工留任。", "Limits \"what gets measured gets done\"": "減少只追逐被衡量事項的偏差。", "Complaints, new products, turnover; watch for gaming": "客訴、新產品、流失率；留意操弄指標。", "Do not claim time periods are missing; the case does not say. Too many KPIs create admin cost and gaming.": "不能說時間範圍缺失，因為個案未交代。KPI 過多會增加行政成本與操弄風險。", "Theory X relies on control and external consequences; Theory Y on responsibility, ideas and self-direction. The point is fit between style, people and task.": "X 理論重視控制與外在後果；Y 理論重視責任、構想與自我引導。重點在管理方式是否適合人員與任務。", "Written orders, little discussion, intolerance of mistakes. Staffing and pay authority were decentralized. Lecturer: the X style meets deadlines, but high-flyer Y workers leave.": "書面命令、討論少、不能容錯；人事與薪酬權限已下放。教師指出 X 式管理可達成期限，但優秀的 Y 型員工會離開。", "The climate underuses the participation and ownership LMS needs for innovation and customer problem-solving.": "職場氛圍未充分運用 LMS 在創新與解決顧客問題方面需要的參與感及主人翁意識。", "Keep accountability but give bounded autonomy to experienced staff": "維持問責，同時給資深員工有界限的自主權。", "Responsibility with reliable execution": "兼顧責任感與可靠執行。", "Quality and timeliness; autonomy and retention surveys": "品質與時效；自主感和留任調查。", "Regular employee and customer problem-solving forums with real follow-through": "定期舉行員工與顧客問題討論會，並真正追蹤後續行動。", "Gives a channel for Voice instead of Exit or silence": "提供建言管道，避免員工只剩離職或沉默。", "Ideas submitted, decided, implemented": "提出、決定與實施的構想數。", "Coach managers to replace one-way orders and automatic punishment with discussion and feedback": "培訓主管以討論和回饋取代單向命令與機械式懲罰。", "Reduces fear while keeping standards": "維持標準，同時降低恐懼感。", "Upward feedback; complaints": "向上回饋；客訴。", "Let cross-functional teams own small innovation projects": "讓跨職能團隊負責小型創新專案。", "Points self-directed effort at the CEO's goals": "使自主投入的努力指向執行長目標。", "Ideas tested; customer outcomes": "已測試構想；顧客成果。", "Not everything can be delegated in medical supplies (safety, compliance). Not all turnover comes from management style; interview leavers.": "醫療用品業的安全與法規遵循事項不能全數下放；員工流失也未必全由管理風格造成，應訪談離職者。", "Hygiene factors reduce dissatisfaction; motivators create motivation. Fixing only one side is not enough.": "保健因素減少不滿；激勵因素創造動機。只修補一邊並不足夠。", "Unsupportive management, strained relationships, high competition, too little feedback; training and career development ended. Bonuses exist and some authority was decentralized.": "管理支持不足、人際緊張、競爭激烈、回饋太少；訓練及職涯發展停止。獎金確實存在，部分權限也已下放。", "Possible mix of supervision and relationship hygiene problems with lost growth motivators. Not diagnosed on the slide; built from the case.": "可能同時存在督導與人際關係的保健因素問題，以及成長激勵因素流失。這不是投影片直接診斷，而是根據個案建構的分析。", "Hygiene: audit supervisor respect, communication, competition rules and reward fairness": "保健因素：檢查主管是否尊重員工、溝通方式、競爭規則及獎酬公平性。", "Targets dissatisfaction drivers other than pay level": "處理薪資水準以外的不滿來源。", "Climate and fairness surveys; voluntary turnover": "氛圍及公平性問卷；自願離職率。", "Hygiene: clear, respectful review and corrective procedures": "保健因素：建立清楚且尊重人的考核與改進程序。", "Removes uncertainty": "減少不確定感。", "Perceived fairness; appeals resolved": "公平感；申訴解決情形。", "Motivators: restore development, training and skill-based advancement": "激勵因素：恢復發展、訓練及依技能晉升。", "Rebuilds growth paths": "重建成長路徑。", "Training access; promotions; retention": "訓練機會；晉升；留任。", "Motivators: recognize cross-team customer solutions and real achievement; give ownership where suitable": "激勵因素：肯定跨團隊解決顧客問題與真實成就；在合適情況下賦予工作主導權。", "Recognition beyond revenue": "擴大營收以外的肯定。", "Recognition quality; product and customer improvements": "肯定的品質；產品與顧客成果改善。", "Pay is not shown to be low; some leavers were well paid. Do not promise satisfaction from salary.": "個案沒有證明薪資偏低，部分離職者還領高薪；不能保證加薪會帶來滿意度。", "Maslow suggests we should examine which needs the workplace allows employees to fulfill. The lecturer's LMS diagnosis identifies gaps in safety, social relationships and self-actualization. I would first find out why employees feel insecure, restore cross-functional teamwork, and introduce structured development opportunities. I would keep clear performance standards and measure high-performer retention, employees' perceived support and innovation output.": "馬斯洛理論提醒我們檢查職場讓員工滿足了哪些需求。教師對 LMS 的診斷指出，安全、社交關係與自我實現存在缺口。我會先查明員工不安全感的來源，恢復跨職能合作，並建立有系統的發展機會。我也會維持明確的績效標準，衡量高績效員工留任、員工感受到的支持，以及創新成果。", "LMS already has measurable sales and profit targets, so I would not simply add more quotas. The handout shows a clear lack of performance feedback, and the lecturer says employees do not understand the overall goal. I would communicate a small set of shared objectives, let employees contribute to how they will be achieved, and provide regular two-way feedback. Success should include customer results, new-product development and high-performer retention, not only short-term profit.": "LMS 已有可衡量的銷售與利潤目標，因此我不會單純增加配額。講義顯示績效回饋明顯不足，教師也指出員工不理解整體目標。我會傳達少數共同目標，讓員工參與決定如何達成，並提供定期雙向回饋。成功標準除短期利潤，也應包括顧客成果、新產品開發與高績效員工留任。", "The professor describes Apichart as using a Theory X style with both X- and Y-oriented employees. His control has improved financial discipline, but high-performing employees continue to leave and the company needs innovation. I would keep clear performance expectations while giving experienced employees more ownership, feedback and input into customer and product decisions. We should measure retention and quality as well as deadlines.": "教授認為 Apichart 對 X 與 Y 型員工都採取 X 理論式管理。他的控制改善了財務紀律，但高績效員工持續離開，而公司需要創新。我會保留清楚的績效期待，同時給有經驗的員工更多主導權、回饋，以及參與顧客和產品決策的機會。除了期限，也應衡量留任與品質。", "Herzberg tells us to distinguish removing dissatisfaction from creating motivation. LMS has evidence of weak supervision and workplace relationships, even though financial rewards exist. It also removed training and career development, which are important motivators. I would improve fair and supportive management practices while restoring growth opportunities and meaningful recognition. Then I would compare employee satisfaction, retention and innovation outcomes.": "赫茲伯格理論提醒我們區分「消除不滿」與「創造動機」。即使 LMS 有金錢獎勵，仍有督導與職場關係薄弱的證據；公司也取消了訓練與職涯發展，削弱重要的激勵因素。我會改善公平且支持員工的管理方式，並恢復成長機會及有意義的肯定，再比較員工滿意度、留任與創新成果。", "Physiological": "生理需求", "Safety": "安全需求", "Social": "社交需求", "Self-esteem": "尊重需求", "Self-actualization": "自我實現", "Pay and incentives are strong; many leavers are well paid.": "薪資與誘因充足；許多離職者薪資高。", "Terminations, turnover and intolerance of mistakes. Job security is not measured directly.": "解聘、流失及不容犯錯確實存在；但工作保障未被直接測量。", "The family-oriented atmosphere is gone; competition between units is mandated; the workplace is tense.": "家庭般氛圍消失；單位間被要求競爭，職場氣氛緊張。", "Recognition exists but is tied narrowly to numbers; little respect for feelings and needs.": "肯定雖存在，卻狹隘地與數字綁定；員工的感受與需求少受尊重。", "Career development plan and training stopped; no new products in 12 months.": "職涯發展計畫及訓練停止；十二個月內沒有新產品。", "LMS supports financial rewards but leaves clear gaps in social and higher-level needs: competition replaced the family atmosphere, and training and career development were stopped.": "LMS 有金錢獎酬，卻在社交與較高層次需求留下明顯缺口：競爷取代家庭般的氛圍，訓練與職涯發展也停止。", "Goal specificity": "目標具體性", "Time period": "時間範圍", "Participation": "參與", "Performance feedback": "績效回饋", "Alignment": "目標對齊", "Clear sales, profit and cost targets; every unit is a profit center.": "銷售、利潤及成本目標明確；各單位都是利潤中心。", "The case gives too little detail. Do not invent a gap.": "個案細節不足；不能憑空推定缺口。", "Written orders and imposed standards suggest weak participation; evidence is indirect.": "書面命令與由上而下的標準暗示參與不足，但證據是間接的。", "Employees say they get too little feedback and do not know if they meet expectations.": "員工表示回饋太少，不知道自己是否達到期待。", "Sales and profit rose while customer satisfaction, innovation and retention fell.": "銷售及利潤上升，但顧客滿意度、創新與留任下降。", "The goal system is strong on financial targets but weak on feedback and broader alignment. What gets measured (sales and profit) gets done, while customer, innovation and people outcomes decline.": "目標制度重視財務指標，卻缺乏回饋及更廣的策略對齊。銷售與利潤被衡量就得到改善，顧客、創新及人員成果反而下降。", "Assumptions": "管理假設", "Style": "管理方式", "Nuance": "需注意的細節", "What LMS now needs": "LMS 現在需要什麼", "Written orders, intolerance of mistakes, unwillingness to discuss problems.": "書面命令、不能容錯、不願討論問題。", "Control systems, mandated internal competition, rewards tied only to measurable results.": "控制制度、強制內部競爭、獎勵只連結可衡量成果。", "Staffing and pay decisions were decentralized, but the climate stays control-heavy.": "人事與薪酬決策已下放，但氛圍仍高度控制。", "Innovation, customer problem-solving and initiative, which fit Theory Y behavior.": "創新、解決顧客問題和主動性；這些較符合 Y 理論式行為。", "Management is strongly Theory X. The gap: LMS now needs initiative, ideas and customer problem-solving, which a control-heavy climate does not support.": "管理方式明顯偏向 X 理論。缺口在於 LMS 現在需要員工主動、提出想法並解決顧客問題，而高度控制的氛圍不利於此。", "Supervision (hygiene)": "督導（保健因素）", "Pay (hygiene)": "薪資（保健因素）", "Relations, policies (hygiene)": "人際關係與政策（保健因素）", "Growth, advancement (motivator)": "成長與晉升（激勵因素）", "Recognition, responsibility (motivator)": "肯定與責任（激勵因素）", "Written orders, no tolerance of mistakes, little discussion or feedback.": "書面命令、不能容錯、缺乏討論或回饋。", "Bonuses and commissions exist; leavers are well paid.": "獎金與佣金存在；離職者薪資高。", "Mandated competition; tense workplace; family atmosphere lost.": "強制競爭、職場緊張、家庭般氛圍消失。", "Career development and training stopped.": "職涯發展與訓練停止。", "Recognition is narrow (numbers only); lower units gained some authority.": "肯定的範圍狹窄（只看數字）；基層單位取得部分權限。", "LMS has both hygiene problems (supervision, relations) and weak motivators (growth). Strong pay cannot offset either.": "LMS 同時有保健因素問題（督導、人際關係）與激勵因素不足（成長）。高薪不能抵銷任何一者。", "Tax = marginal external cost: decision-makers now face the full social cost, Q returns to the efficient level and the DWL disappears.": "稅額等於邊際外部成本：決策者面對完整社會成本，交易量回到效率水準，無謂損失消失。", "Tax below the external cost: decision-makers still understate cost, so Q market > Q efficient (overproduction).": "稅額低於外部成本：決策者仍低估成本，市場數量高於效率數量（生產過多）。", "Tax above the external cost: output falls below the efficient level, which also creates DWL.": "稅額高於外部成本：產量低於效率水準，同樣造成無謂損失。", "Q market": "市場數量", "Q efficient": "效率數量", "Tax revenue": "稅收", "Subsidy = marginal external benefit: Q returns to the social optimum and the DWL disappears.": "補貼等於邊際外部利益：數量回到社會最適水準，無謂損失消失。", "The market counts only private benefit, so Q market < Q social (too little vaccination, education or R&D).": "市場只計入私人利益，所以市場數量低於社會最適數量（疫苗、教育或研發投入過少）。", "A subsidy above the external benefit pushes quantity too high, which also creates DWL.": "補貼高於外部利益使產量過高，同樣造成無謂損失。", "Q social": "社會最適數量", "Subsidy cost": "補貼成本", "Buyers pay more": "買方多付", "Sellers receive less": "賣方少收", "Even the first barrel costs more than the price ($2). Producing nothing limits the loss to the $35 fixed cost.": "連第一桶的成本（2 美元）都高於價格；不生產可把虧損限制在 35 美元固定成本。", "Price is below average cost, so the firm loses money. But revenue covers variable cost, so producing loses less than shutting down (−$35).": "價格低於平均成本，因此廠商虧損；但收入足以支付變動成本，繼續生產比停產（虧 35 美元）損失更少。", "Best output q*": "最適產量 q*", "Revenue P × q": "收入 P × q", "Total cost": "總成本", "Profit TR − TC": "利潤 TR－TC", "Decision": "決策", "Shut down": "停產", "Loss, keep operating": "虧損，但繼續營運", "This firm produces": "這家廠商的產量", "Firm profit": "廠商利潤", "ERG": "存在、關係、成長（ERG）", "Existence": "存在需求", "Relatedness": "關係需求", "Growth": "成長需求", "Pay and incentives are present.": "薪資與誘因存在。", "Tense workplace, internal competition, loss of family atmosphere.": "職場緊張、內部競爭、家庭般氛圍消失。", "Training and career development stopped; innovation declined.": "訓練與職涯發展停止；創新下降。", "Existence rewards are strong while Relatedness and Growth are weak. The case does not prove frustration-regression.": "存在需求方面的獎酬較強，關係與成長需求卻弱；個案不足以證明「受挫退化」現象。", "Which level of need is under-supported?": "哪個需求層次未獲充分支持？", "Five levels, met from lower to higher.": "五層需求，由低至高獲得滿足。", "Evidence for each of the five levels.": "分別尋找五層需求的證據。", "You need to check which needs the company supports and which it neglects.": "需要檢查公司支持與忽略了哪些需求。", "Labeling a person as \"stuck\" at a level without evidence.": "沒有證據就說某人「卡在」某個需求層次。", "Which needs coexist, and is growth blocked?": "哪些需求同時存在？成長是否受阻？", "Existence, Relatedness, Growth can be pursued at the same time.": "存在、關係與成長需求可以同時追求。", "Several needs at once; signs that blocked growth shifted attention to pay or security.": "多種需求並存的證據，以及成長受阻後轉而重視薪資或安全的跡象。", "Employees want pay, relationships and growth together.": "員工同時在意薪資、人際關係與成長。", "Claiming frustration-regression without evidence of the shift.": "沒有注意力轉移的證據，就聲稱存在受挫退化。", "Are we only removing dissatisfaction, or creating motivation?": "我們只是消除不滿，還是在創造動機？", "Hygiene factors and motivators are two different scales.": "保健因素與激勵因素是兩條不同的量尺。", "Pay, supervision, policies, conditions versus growth, recognition, responsibility.": "比較薪資、督導、政策、環境與成長、肯定、責任。", "Pay and conditions are fine, yet motivation stays low.": "薪資與條件不錯，動機卻仍偏低。", "Assuming good pay means motivated staff.": "誤以為高薪就代表員工有動機。", "What do managers assume about workers?": "主管對員工抱持什麼假設？", "Assumptions drive style: control and punishment, or support and responsibility.": "管理假設影響風格：控制與懲罰，或支持與賦責。", "Approvals, written orders, tolerance of mistakes, how much responsibility is given.": "核准流程、書面命令、容錯程度與賦予多少責任。", "The case centers on control and how managers treat people.": "個案聚焦控制方式及主管如何對待員工。", "Treating X as always bad, or decentralization as proof of Y.": "誤以為 X 一定不好，或把權限下放當作 Y 理論的證據。", "Do goals point effort at the right outcome?": "目標是否把努力導向正確成果？", "Specific goals, a time period, participation and feedback direct effort.": "具體目標、時間範圍、參與和回饋會引導努力。", "KPIs, targets, feedback, who sets goals, how goals cascade.": "檢查 KPI、目標、回饋、誰設定目標及目標如何向下拆解。", "Targets are hit but the real result does not improve.": "指標達標，真正的成果卻沒有改善。", "Calling a KPI-design problem a motivation problem.": "把 KPI 設計問題誤判為動機問題。"};
- function translateLive(){
-   document.querySelectorAll('.graph h4,.graph p,.graph span,.graph dt,.graph dd,.graph label,.graph button,.mw h4,.mw p,.mw span,.mw li,.mw b,.mw th,.mw td,.mw label,.mw button,.mw summary,.mw blockquote,.top .crumbs a,.top .toc-btn,.rail .lbl,.qa-tools button').forEach(e=>{
-     if(e.classList.contains('zh-translation')||e.querySelector(':scope > .zh-translation'))return;
-     let raw=e.textContent.trim().replace(/\s+/g,' ');
-     if(raw.startsWith('"')&&raw.endsWith('"'))raw=raw.slice(1,-1);
-     let zh=dict[raw];
-     if(!zh&&raw.startsWith('Correct. '))zh='答對了。'+(dict[raw.slice(9)]||'');
-     if(!zh&&raw.startsWith('Not quite. '))zh='再想一下。'+(dict[raw.slice(11)]||'');
-     if(!zh&&/^\d+ items$/.test(raw))zh=raw.replace(' items',' 題');
-     if(!zh&&/^\d+ \/ \d+ correct$/.test(raw))zh=raw.replace(' correct',' 題答對');
-     if(!zh&&raw.startsWith('The weakest link is ')){
-       const match=raw.match(/^The weakest link is (meaningfulness|responsibility|knowledge of results) /);
-       if(match)zh='最弱的環節是'+({'meaningfulness':'工作意義感','responsibility':'責任感','knowledge of results':'對成果的了解'}[match[1]])+'；一個薄弱的心理狀態會拖累整體工作設計。'+(raw.includes('Low growth-need strength')?'成長需求較低時，同一份豐富化工作的效果也較弱。':'');
-     }
-     if(!zh&&raw.startsWith('All three states are supported.'))zh='三種心理狀態都獲得支持。'+(raw.includes('Low growth-need strength')?'成長需求較低時，同一份豐富化工作的效果也較弱。':'');
-     if(!zh&&raw.startsWith('Only Qs units are supplied.'))zh='只有 Qs 單位獲得供給。邊際買家的最高支付意願為 '+(raw.match(/up to ([\d.]+)/)||[])[1]+'；價差轉為排隊、搜尋和其他非價格成本。';
-     if(!zh&&raw.startsWith('Barrel ')&&raw.includes(' costs $'))zh='第 '+(raw.match(/^Barrel (\d+)/)||[])[1]+' 桶的邊際成本不高於價格；下一桶若成本超過價格就停止生產。';
-     if(!zh||zh==='答對了。'||zh==='再想一下。')return;
-     const t=document.createElement('span');t.className='zh-translation';t.lang='zh-Hant';t.textContent=zh;e.appendChild(t);
-   });
- }
- let queued=false;
- new MutationObserver(()=>{if(!queued){queued=true;queueMicrotask(()=>{queued=false;translateLive()})}}).observe(document.body,{subtree:true,childList:true,characterData:true});
- translateLive();
+const toggle=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+const key='study-notes-show-zh';
+function syncOptions(on){document.querySelectorAll('option[data-zh]').forEach(o=>{if(!o.dataset.en)o.dataset.en=o.textContent;o.textContent=o.dataset.en+(on&&o.dataset.zh?'／'+o.dataset.zh:'')})}
+function set(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';syncOptions(on);try{localStorage.setItem(key,on?'1':'0')}catch(e){}}
+let initial=false;try{initial=localStorage.getItem(key)==='1'}catch(e){}
+set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
+const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
+if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
 })();
 </script></body></html>
