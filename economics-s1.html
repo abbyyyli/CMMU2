@@ -231,6 +231,18 @@ table.oil td.hi { background: var(--tint); color: var(--accent-ink); font-weight
 @media (max-width: 760px) { .ap-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .g-note:empty { display: none; }
 
+
+/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
 </style><style>
 /* Full Chinese support is additive; existing short Chinese aides remain. */
 body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
@@ -301,6 +313,7 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
   <p class="kick">MGMG515 · Session 1<span class="zh-full" lang="zh-Hant">MGMG515・第 1 堂</span></p>
   <h1>Supply, Demand and Equilibrium<span class="zh-full" lang="zh-Hant">供給、需求與均衡</span></h1>
   <p class="lead">For any market event, ask what changes first, whether it hits buyers or sellers, which curve shifts and which way, then read the new equilibrium price and quantity from the new intersection.<span class="zh-full" lang="zh-Hant">遇到任何市場事件，先問什麼最先改變、影響買方還是賣方、哪條曲線向哪個方向移動，再從新交點讀出新的均衡價格與數量。</span></p>
+<div class="practice-toolbar"><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div>
 </div>
 
 <h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
@@ -331,6 +344,8 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 </tbody></table></div>
 
 <!-- 2 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A health claim makes quinoa more attractive even though its current market price has not changed. At that price, why do buyers want more quinoa? Is this a shift or a movement along demand?<span class="zh-full" lang="zh-Hant">新的健康資訊使藜麥更受歡迎，但目前市場價格還沒變。為何在同一價格下，買方會想買更多？這是需求曲線移動，還是沿曲線移動？</span></p></aside>
+
 <h2 id="supply">2. Supply<span class="zh-full" lang="zh-Hant">2. 供給</span></h2>
 <p class="sub">Supply is the relationship between price and the quantity producers are willing to sell, other things equal.<span class="zh-full" lang="zh-Hant">供給是其他條件不變時，價格與生產者願意出售數量之間的關係。</span></p>
 <div class="pair">
@@ -351,6 +366,8 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 </tbody></table></div>
 
 <!-- 3 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A farmer reallocates land from quinoa to a crop that has become more profitable. Which curve shifts in the quinoa market, and why? Distinguish that shift from a later movement along the curve.<span class="zh-full" lang="zh-Hant">農夫把原本種藜麥的土地改種報酬更高的作物。藜麥市場的哪條曲線會移動，原因是什麼？它與之後可能發生的沿線移動有何不同？</span></p></aside>
+
 <h2 id="eq">3. Equilibrium: the quinoa market<span class="zh-full" lang="zh-Hant">3. 均衡：藜麥市場</span></h2>
 <p class="sub">Equilibrium is where quantity demanded equals quantity supplied: no shortage, no surplus.<span class="zh-full" lang="zh-Hant">均衡是需求量等於供給量的狀態：沒有短缺，也沒有過剩。</span></p>
 <div data-widget="quinoa"></div>
@@ -371,6 +388,8 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 <p class="key">At equilibrium every trade where the buyer values the good more than it costs to produce takes place, so total surplus is maximized.<span class="zh-full" lang="zh-Hant">在均衡下，買方評價高於生產成本的交易都會發生，因此總剩餘最大。</span></p>
 
 <!-- 4 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A price below equilibrium causes a shortage. Why does competition among buyers push the price upward without requiring the demand curve itself to shift?<span class="zh-full" lang="zh-Hant">價格低於均衡時會出現短缺。為什麼買方之間的競爭會推高價格，卻不需要假設需求曲線本身移動？</span></p></aside>
+
 <h2 id="shifts">4. One curve shifts<span class="zh-full" lang="zh-Hant">4. 單一曲線移動</span></h2>
 <div class="tbl"><table>
 <thead><tr><th>Shift<span class="zh-full" lang="zh-Hant">移動方向</span></th><th>Price<span class="zh-full" lang="zh-Hant">價格</span></th><th>Quantity<span class="zh-full" lang="zh-Hant">數量</span></th></tr></thead>
@@ -383,6 +402,8 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 <p class="key">Classic trap: a drought shifts supply left and raises the price. Buyers then buy less, but that is a fall in <b>quantity demanded</b>. Demand did not move.<span class="zh-full" lang="zh-Hant">常見陷阱：乾旱使供給左移並推高價格，買方於是少買；這是需求量下降，需求曲線沒有移動。</span></p>
 
 <!-- 5 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Quinoa becomes more popular in one case and suffers a drought in another. Both can raise equilibrium price. What opposite changes in equilibrium quantity help distinguish these two causes?<span class="zh-full" lang="zh-Hant">一種情況是藜麥變得更受歡迎，另一種是發生乾旱。兩者都可能提高均衡價格。均衡數量的變動方向如何幫助區分這兩個原因？</span></p></aside>
+
 <h2 id="apps">5. The class applications<span class="zh-full" lang="zh-Hant">5. 課堂應用</span></h2>
 <p class="sub">"What would happen to the equilibrium quantity and price of quinoa if...?" Predict first, then check the graph.<span class="zh-full" lang="zh-Hant">「如果發生以下事件，藜麥的均衡數量與價格會如何改變？」先預測，再查看圖形。</span></p>
 <div data-widget="apps"></div>
@@ -420,6 +441,8 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 <p class="key">"?" depends on which shift is larger. If the question does not say, do not guess.<span class="zh-full" lang="zh-Hant">「？」取決於哪一個移動幅度較大。題目沒有說明，就不要猜測。</span></p>
 
 <!-- 7 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>If quinoa demand and supply both increase, why is the quantity prediction definite but the price prediction uncertain? Explain how the relative size of the two shifts matters.<span class="zh-full" lang="zh-Hant">如果藜麥的需求與供給同時增加，為什麼均衡數量的方向可以確定，價格卻不一定？說明兩條曲線位移幅度的相對大小有何影響。</span></p></aside>
+
 <h2 id="method">7. Seven-step method<span class="zh-full" lang="zh-Hant">7. 七步分析法</span></h2>
 <div class="steps">
   <div><b>1 · Market<span class="zh-full" lang="zh-Hant">1・市場</span></b><p>Define it: the world market for quinoa.<span class="zh-full" lang="zh-Hant">先界定：藜麥的全球市場。</span></p></div>
@@ -432,6 +455,8 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 </div>
 
 <!-- 8 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Riceberry becomes cheaper while improved technology reduces the cost of growing quinoa. Identify both shifts. Which equilibrium outcome is definite, and which cannot be determined without their relative magnitudes?<span class="zh-full" lang="zh-Hant">假設米莓米變便宜，同時新技術降低藜麥的種植成本。請指出兩條曲線各如何移動。哪個均衡結果可以確定？哪個需要知道相對位移幅度才有答案？</span></p></aside>
+
 <h2 id="drills">8. Graph drills<span class="zh-full" lang="zh-Hant">8. 畫圖練習</span></h2>
 <p class="sub">Draw E1, E2, P1, P2, Q1, Q2 for each, then tap to check.<span class="zh-full" lang="zh-Hant">每題先畫出 E1、E2、P1、P2、Q1、Q2，再點開核對。</span></p>
 <div class="tbl drill"><table>
@@ -834,4 +859,20 @@ set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
 const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
 if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
 })();
-</script></body></html>
+</script><script>
+'use strict';
+(function(){
+  const $=(id)=>document.getElementById(id);
+
+ // Practice mode does not affect the teaching tools or cold-call answers.
+ const practiceToggle=$('practiceToggle'),practiceState=$('practiceState');
+ const practicePrompts=[...document.querySelectorAll('.practice-prompt')];
+ practiceToggle.addEventListener('click',()=>{
+   const isOn=practiceToggle.getAttribute('aria-pressed')!=='true';
+   practiceToggle.setAttribute('aria-pressed',String(isOn));
+   practiceState.innerHTML=isOn?'On':'Off';practiceToggle.querySelector(':scope > .zh-full').innerHTML='練習模式：'+(isOn?'開啟':'關閉');
+   practicePrompts.forEach(prompt=>{prompt.hidden=!isOn});
+ });
+})();
+</script>
+</body></html>

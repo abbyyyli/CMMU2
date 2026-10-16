@@ -412,6 +412,18 @@ body.show-zh .decision-step>.zh-full{font-size:.8em;line-height:1.45}
 body.show-zh .score .up b:after{content:'改善'}
 body.show-zh .score .down b:after{content:'惡化'}
 @media(max-width:560px){body.show-zh .spectrum{grid-template-columns:minmax(0,1fr)}body.show-zh .m-choices button{min-height:65px}}
+
+/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
 </style><script>
 /* Bilingual content helpers: no text dictionary, observer or page-wide rescan. */
 (function(){
@@ -446,6 +458,7 @@ body.show-zh .score .down b:after{content:'惡化'}
   <p class="kick">Managing People in Organizations · Session 4<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 4 堂</span></p>
   <h1>Motivation, Job Satisfaction and Reinforcement<span class="zh-full" lang="zh-Hant">動機、工作滿意度與增強理論</span></h1>
   <p class="lead">Session 3 diagnosed why people are or are not motivated. Session 4 asks how to design the job, how unhappy employees respond, and what behavior the reward system actually reinforces.<span class="zh-full" lang="zh-Hant">第 3 堂診斷員工為什麼有或沒有動機；第 4 堂討論如何設計工作、不滿意的員工會如何反應，以及獎酬制度實際強化了什麼行為。</span></p>
+<div class="practice-toolbar"><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div>
 </div>
 
 <h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
@@ -473,6 +486,9 @@ body.show-zh .score .down b:after{content:'惡化'}
 </tbody></table></div>
 <p class="key">Growth-need strength <span class="zh">成長需求強度</span> moderates the model: people who want challenge respond more strongly to enriched jobs. More autonomy is not a universal fix.<span class="zh-full" lang="zh-Hant">成長需求強度會調節模型的效果：渴望挑戰的人對內容更豐富的工作反應更強。提高自主性不是對所有人都有效的萬用解方。</span></p>
 
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A support employee performs one repetitive fragment, receives no outcome information and must request approval for minor decisions. Trace three job-design gaps to the psychological states in JCM. Why is higher profit not a guaranteed result of fixing them?<span class="zh-full" lang="zh-Hant">支援人員只做重複的一小段工作、看不到成果資訊，連小決定都要請示。請將三個工作設計缺口連到 JCM 的心理狀態。為什麼改善後也不能保證利潤提高？</span></p></aside>
+
 <!-- 2 -->
 <h2 id="satisfaction">2. Satisfaction, commitment and OCB<span class="zh-full" lang="zh-Hant">2. 滿意度、承諾與組織公民行為</span></h2>
 <p class="sub">Related, but not the same. The lecture links job satisfaction to citizenship, commitment, productivity, absenteeism and turnover. The arrows show relationships to examine, not proven causes.<span class="zh-full" lang="zh-Hant">這些概念有關，卻不相同。課堂將工作滿意度連結到組織公民行為、承諾、生產力、缺勤與流失；箭頭代表值得檢查的關係，並非已證明的因果。</span></p>
@@ -499,12 +515,18 @@ body.show-zh .score .down b:after{content:'惡化'}
 </tbody></table></div>
 <p class="note-small">To analyze a leader, the slide asks: Theory X or Y? Intrinsic or extrinsic motivators? Which Maslow levels?<span class="zh-full" lang="zh-Hant">分析領導者時，投影片要求思考：X 或 Y 理論？內在或外在激勵？馬斯洛的哪些需求層次？</span></p>
 
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A top salesperson meets every sales target but no longer helps coworkers voluntarily. What evidence supports a change in OCB? Why can neither poor commitment nor poor task performance be concluded from this fact alone?<span class="zh-full" lang="zh-Hant">頂尖業務達成所有業績目標，卻不再自願幫助同事。哪些證據支持 OCB 改變？為什麼不能僅憑此事就斷定組織承諾或工作績效低落？</span></p></aside>
+
 <!-- 3 -->
 <h2 id="evln">3. Responses to dissatisfaction: EVLN<span class="zh-full" lang="zh-Hant">3. 對不滿意的反應：EVLN</span></h2>
 <p class="sub">Dissatisfied employees do not all quit. Two axes, active or passive and constructive or destructive, give four responses.<span class="zh-full" lang="zh-Hant">不滿意的員工不一定離職。以主動／被動、建設性／破壞性兩條軸線，可區分四種反應。</span></p>
 <div data-mw="evln"></div>
 <p class="hint original-zh"><b>注意</b>Low morale 本身不能判斷員工會選哪一種反應，要看實際行為證據。投影片把 lateness / absence 放在 Exit；Robbins 課本放在 Neglect，考試照投影片寫，必要時向老師確認。</p>
 <p class="note-small">The slide notes that exit, voice and loyalty apply to all stakeholder groups, not only employees.<span class="zh-full" lang="zh-Hant">投影片指出，離職、建言與忠誠也適用於其他利害關係人，不限於員工。</span></p>
+
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>An employee first proposes a constructive improvement, then begins interviewing elsewhere. How can EVLN describe changing responses over time? Why would assigning one permanent label be misleading?<span class="zh-full" lang="zh-Hant">員工先提出建設性的改善建議，後來開始到外部面試。EVLN 如何描述不同時間的反應？為什麼給他貼上一個永遠不變的標籤會誤導判斷？</span></p></aside>
 
 <!-- 4 -->
 <h2 id="reinforcement">4. Reinforcement theory<span class="zh-full" lang="zh-Hant">4. 增強理論</span></h2>
@@ -523,6 +545,9 @@ body.show-zh .score .down b:after{content:'惡化'}
 </tbody></table></div>
 <p class="note-small">Negative reinforcement is a standard textbook term added for clarity; it is not on the slide. "Positive" and "negative" mean adding or removing, not good or bad.<span class="zh-full" lang="zh-Hant">「負向增強」是為釐清概念而補充的標準教科書術語，投影片並未列出。「正」與「負」指加入或移除，不是好與壞。</span></p>
 <p>Managers should understand employees' personality and values to know what each person actually finds rewarding.<span class="zh-full" lang="zh-Hant">主管應了解員工的人格與價值觀，才知道每個人真正重視什麼獎勵。</span></p>
+
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A bonus pays for the number of customer calls while unresolved problems increase. Which behavior is actually being reinforced? Separate management intent from observed consequences and suggest one outcome measure.<span class="zh-full" lang="zh-Hant">獎金依客服通話數發放，未解決的問題卻增加。制度實際強化了什麼行為？請區分管理原意與觀察到的後果，並提出一項成果衡量指標。</span></p></aside>
 
 <!-- 5 -->
 <h2 id="recognition">5. Why reward systems fail, and how to fix them<span class="zh-full" lang="zh-Hant">5. 獎酬制度為何失效，以及如何修正</span></h2>
@@ -544,6 +569,9 @@ body.show-zh .score .down b:after{content:'惡化'}
 </div>
 <p class="key">A KPI is only one of six. If leaders do not back the system, rewards mean little to staff, or rules are applied unevenly, behavior will not change the way management wants.<span class="zh-full" lang="zh-Hant">KPI 只是六要素之一。若領導者不支持、獎勵對員工沒有意義，或規則執行不一致，行為就不會照管理層期望的方向改變。</span></p>
 
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A company adds more KPIs but employees still believe rewards are arbitrary. Beyond measurement, which parts of the six-element recognition system should be checked, and what evidence would reveal unfair application?<span class="zh-full" lang="zh-Hant">公司增加 KPI，員工仍覺得獎勵很隨意。除了績效衡量，六要素表揚制度還應檢查什麼？哪些證據能看出獎勵標準是否不公平？</span></p></aside>
+
 <!-- 6 -->
 <h2 id="schedules">6. Schedules of reinforcement<span class="zh-full" lang="zh-Hant">6. 增強時制</span></h2>
 <p class="sub">First ask: is the reward tied to <b>time</b> (interval) or to <b>output</b> (ratio)? Then: is the rule <b>fixed</b> or <b>variable</b>?<span class="zh-full" lang="zh-Hant">先問：獎勵依時間（時距）還是產出（比率）發放？再問：規則是固定還是變動？</span></p>
@@ -559,6 +587,9 @@ body.show-zh .score .down b:after{content:'惡化'}
 <p class="note-small">Extinction <span class="zh">消退</span> means a learned behavior fades when reinforcement stops. In a real case, classify by the actual reward rule: a fixed commission on every sale behaves more like fixed ratio.<span class="zh-full" lang="zh-Hant">「消退」指停止增強後，已學會的行為逐漸減少。分析真實個案時，應依實際獎酬規則分類：每筆銷售都支付固定佣金，更接近固定比率。</span></p>
 <div data-mw="sched"></div>
 
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Continuous reinforcement can speed early learning but may fade quickly once rewards stop. Why might a less predictable schedule sustain responding longer? What unintended behavior would still need monitoring?<span class="zh-full" lang="zh-Hant">連續增強可讓行為較快學會，但停止獎勵後也可能很快消退。為什麼較不可預測的時制可能讓行為維持較久？仍需監測哪些非預期行為？</span></p></aside>
+
 <!-- 7 -->
 <h2 id="workers">7. Different workers, different motivators<span class="zh-full" lang="zh-Hant">7. 不同員工、不同激勵因素</span></h2>
 <div class="tbl"><table>
@@ -571,11 +602,17 @@ body.show-zh .score .down b:after{content:'惡化'}
 </tbody></table></div>
 <p>These are starting points, not stereotypes. Check each person's needs and values before choosing a reward.<span class="zh-full" lang="zh-Hant">這些只是分析起點，不是刻板分類。選擇獎勵前要確認個人的需求與價值觀。</span></p>
 
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>The slide lists different possible motivators for professionals, temporary workers and service workers. Why is this a starting point rather than a rule for an individual? What question should the manager ask before choosing a reward?<span class="zh-full" lang="zh-Hant">投影片列出專業人員、臨時員工與服務人員可能重視的不同誘因。為什麼這只能作為起點，不能直接套用到個人？主管選擇獎勵前應先問什麼？</span></p></aside>
+
 <!-- 8 -->
 <h2 id="lms">8. Lee Medical Supply: Session 4 task<span class="zh-full" lang="zh-Hant">8. 李氏醫療用品公司：第 4 堂任務</span></h2>
 <p>Four teams, the same frameworks as Session 3 (Maslow, goal setting, Theory X/Y, Herzberg). This time each team <b>recommends improvements</b> and presents to the class.<span class="zh-full" lang="zh-Hant">四個小組沿用第 3 堂的四個理論（馬斯洛、目標設定、X／Y 理論、赫茲伯格），這次各組須提出改善建議並向全班報告。</span></p>
 <p>The lecturer's recap: LMS supports physiological needs, esteem only partly, and falls short on safety, social and self-actualization. Apichart uses a Theory X style with both X and Y workers, and high-flyer Y workers leave. Staff do not know the overall 18-month profit goal.<span class="zh-full" lang="zh-Hant">教師回顧：LMS 滿足生理需求，部分滿足尊重需求，但安全、社交與自我實現不足。Apichart 對 X 與 Y 型員工都採 X 理論式管理，優秀的 Y 型員工離開；員工不知道整體的 18 個月利潤目標。</span></p>
 <p><a class="cta" href="management-lms.html">Open the full Lee Medical Supply case page →</a><span class="zh-full" lang="zh-Hant">開啟完整的李氏醫療用品公司個案頁面 →</span></p>
+
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Lee Medical Supply met financial targets while morale and innovation worsened. Propose one job-design or reward-system change, name a measure to test it and explain which part is case evidence versus a proposed hypothesis.<span class="zh-full" lang="zh-Hant">Lee Medical Supply 達成財務目標，士氣與創新卻惡化。提出一項工作設計或獎勵制度調整，選一項成效指標，並說明哪些是個案證據、哪些只是待驗證的假設。</span></p></aside>
 
 <!-- 9 -->
 <h2 id="traps">9. Common mistakes<span class="zh-full" lang="zh-Hant">9. 常見錯誤</span></h2>
@@ -608,6 +645,21 @@ body.show-zh .score .down b:after{content:'惡化'}
 </div>
 </article></main>
 </div>
+
+<script>
+(function(){
+const $ = (id) => document.getElementById(id);
+// Practice mode does not affect the teaching tools or cold-call answers.
+ const practiceToggle=$('practiceToggle'),practiceState=$('practiceState');
+ const practicePrompts=[...document.querySelectorAll('.practice-prompt')];
+ practiceToggle.addEventListener('click',()=>{
+   const isOn=practiceToggle.getAttribute('aria-pressed')!=='true';
+   practiceToggle.setAttribute('aria-pressed',String(isOn));
+   practiceState.innerHTML=isOn?'On':'Off';practiceToggle.querySelector(':scope > .zh-full').innerHTML='練習模式：'+(isOn?'開啟':'關閉');
+   practicePrompts.forEach(prompt=>{prompt.hidden=!isOn});
+ });
+})();
+</script>
 
 <script>/* Management interactive components: Herzberg scale, KPI trap, framework comparator, LMS lens. */
 (function () {

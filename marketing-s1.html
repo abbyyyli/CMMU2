@@ -387,6 +387,18 @@ blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); 
 }
 .ladder2 > i { font-size: .8rem; font-weight: 500; }
 
+
+/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
 </style><style>
 /* Full Chinese support is additive; existing short Chinese aides remain. */
 body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
@@ -450,6 +462,7 @@ body.show-zh .cmp-sel select{max-width:100%}
   <p class="kick">Strategic Marketing Management · Session 1<span class="zh-full" lang="zh-Hant">策略行銷管理・第 1 堂</span></p>
   <h1>Marketing Fundamentals and Customer Value<span class="zh-full" lang="zh-Hant">行銷基礎與顧客價值</span></h1>
   <p class="lead">Marketing starts before the advertisement. Understand the customer and the market, create value that matters, deliver it through a coherent mix, then judge success by customer behavior and sustainable business results.<span class="zh-full" lang="zh-Hant">行銷在廣告之前就已開始：了解顧客與市場，創造顧客重視的價值，透過一致的行銷組合交付價值，再以顧客行為與可持續的經營成果判斷成效。</span></p>
+<div class="practice-toolbar"><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div>
 </div>
 
 <h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
@@ -467,6 +480,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p>Store A sells more iced coffee than Store B. "It is hotter there" is plausible, but customer profile, traffic, competitors, price, opening hours or promotions could explain the same pattern.<span class="zh-full" lang="zh-Hant">A 店的冰咖啡賣得比 B 店多。「那裡比較熱」是合理假設，但客群、來客量、競爭者、價格、營業時間或促銷，也可能解釋同樣的現象。</span></p>
 <div class="method"><span>Observation<span class="zh-full" lang="zh-Hant">觀察</span></span><i>→</i><span>Possible explanation<span class="zh-full" lang="zh-Hant">可能的解釋</span></span><i>≠</i><span class="hi">Proven explanation<span class="zh-full" lang="zh-Hant">已獲證實的解釋</span></span></div>
 <p class="key">Common sense can generate a hypothesis <span class="zh">假設</span>. Evidence is needed to support a conclusion. Always ask: what other variables could explain the same pattern?<span class="zh-full" lang="zh-Hant">常識可以產生假設，結論則需要證據支持。要持續追問：還有哪些變數能解釋同樣的現象？</span></p>
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Store A sells more iced coffee than Store B. A manager credits hotter weather alone. What competing explanations must be checked before making that causal claim?<span class="zh-full" lang="zh-Hant">A 店的冰咖啡銷量高於 B 店，主管把原因全部歸給天氣較熱。要做出這項因果判斷前，還必須檢查哪些其他可能的解釋？</span></p></aside>
+
 <h3 id="rational">Customers are not perfectly rational<span class="zh-full" lang="zh-Hant">顧客並非完全理性</span></h3>
 <p>The professor questions the economic assumptions that customers always minimize money, time and effort. People also value experience, identity, status, habit, convenience and variety. The cheapest or fastest option does not automatically deliver the highest value.<span class="zh-full" lang="zh-Hant">教授質疑消費者總是追求金錢、時間與力氣最小化的經濟學假設。人也重視體驗、認同、地位、習慣、便利與多樣性。最便宜或最快的選項，不一定提供最高價值。</span></p>
 
@@ -480,6 +496,9 @@ body.show-zh .cmp-sel select{max-width:100%}
   <div><b>Demand<span class="zh-full" lang="zh-Hant">有購買力支持的需求</span></b> <span class="zh">有效需求</span>A want backed by ability and willingness to pay.<span class="zh-full" lang="zh-Hant">有支付能力與支付意願支持的想要。</span></div>
 </div>
 <p class="key">"People like this idea" is not a market. Ask whether enough relevant customers will actually pay for it.<span class="zh-full" lang="zh-Hant">「大家喜歡這個點子」不等於市場成立。要問：是否有足夠多的相關顧客，真的願意付錢？</span></p>
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A premium product receives enthusiastic comments, but most interested customers cannot afford it. Which part of the need–want–demand chain is still unproven, and what evidence should management collect?<span class="zh-full" lang="zh-Hant">一款高價產品獲得熱烈好評，但多數感興趣的顧客買不起。需要、想要與有效需求之間，哪個環節還沒有被證實？管理者應蒐集什麼證據？</span></p></aside>
+
 <h3 id="cv">Customer value<span class="zh-full" lang="zh-Hant">顧客價值</span></h3>
 <div class="formula">Customer value ≈ perceived benefits ÷ perceived costs<span class="zh-full" lang="zh-Hant">顧客價值 ≈ 感知利益 ÷ 感知成本</span></div>
 <p>Costs include money, time, effort, risk and inconvenience. Benefits can be functional, emotional, social, convenience or experience.<span class="zh-full" lang="zh-Hant">成本包括金錢、時間、力氣、風險與不便；利益則可能來自功能、情緒、社交、便利或體驗。</span></p>
@@ -495,6 +514,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p>The Starbucks example: you may love the coffee, but you already had one today, want variety, or another option is closer. A satisfied customer does not automatically buy again, so also track repeat behavior, switching, frequency and retention.<span class="zh-full" lang="zh-Hant">以 Starbucks 為例：即使喜歡它的咖啡，你可能今天已喝過、想換口味，或另一家更近。滿意的顧客不一定再買，因此也要追蹤重購、轉換品牌、購買頻率與留存。</span></p>
 
 <!-- 3 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A Starbucks customer reports high satisfaction but buys from another café the next day. Why is this not necessarily a contradiction? What would be needed to assess actual loyalty?<span class="zh-full" lang="zh-Hant">一名星巴克顧客表示非常滿意，隔天卻到別家咖啡店購買。為什麼這不一定矛盾？要評估真正的忠誠度，還需要哪些資料？</span></p></aside>
+
 <h2 id="benefit">3. From product thinking to customer thinking<span class="zh-full" lang="zh-Hant">3. 從產品思維轉向顧客思維</span></h2>
 <p class="sub">A product can be a good, service, person, place, organization, activity or idea. The key question is not "what are we selling?" but "what customer benefit is being satisfied?"<span class="zh-full" lang="zh-Hant">產品可以是實體商品、服務、人、地點、組織、活動或理念。關鍵不只是「我們賣什麼」，而是「滿足了顧客的什麼利益？」</span></p>
 <div class="pair">
@@ -520,6 +542,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 </div>
 
 <!-- 4 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A phone maker adds an unusual camera feature that rivals do not offer. What must be true about the target customer before the feature counts as meaningful differentiation rather than mere difference?<span class="zh-full" lang="zh-Hant">手機品牌增加競爭者沒有的特殊相機功能。從目標顧客角度看，還必須滿足哪些條件，這項功能才能算有意義的差異化，而不只是不同？</span></p></aside>
+
 <h2 id="market">4. Understanding the market<span class="zh-full" lang="zh-Hant">4. 理解市場</span></h2>
 <h3 id="forwhom">Attractive for whom?<span class="zh-full" lang="zh-Hant">對誰有吸引力？</span></h3>
 <p>The professor asks: how big is the Thai market, how attractive is it, and <b>for whom?</b> A market is only attractive for a specific offering, target and business model.<span class="zh-full" lang="zh-Hant">教授問：泰國市場有多大、多有吸引力，又是對誰而言？市場吸引力必須相對於特定產品或服務、目標客群與商業模式來判斷。</span></p>
@@ -531,6 +556,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <tr><td>What matters most<span class="zh-full" lang="zh-Hant">最重要的因素</span></td><td>Buying power, status<span class="zh-full" lang="zh-Hant">購買力與地位</span></td><td>Population size, access, price<span class="zh-full" lang="zh-Hant">人口規模、可取得性與價格</span></td></tr>
 </tbody></table></div>
 <p>Check population, age, income, purchasing power, needs, growth, competition and distribution access. A big population with weak buying power, poor fit or hard distribution can still be unattractive.<span class="zh-full" lang="zh-Hant">檢查人口、年齡、所得、購買力、需要、成長、競爭與通路可及性。即使人口多，若購買力弱、契合度差或配送困難，仍可能沒有吸引力。</span></p>
+
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Thailand has a large population, yet a premium brand may still find a target market unattractive. Which customer, purchasing-power, competitive and channel facts would matter more than population size alone?<span class="zh-full" lang="zh-Hant">泰國人口眾多，高價品牌的目標市場卻仍可能缺乏吸引力。除了人口規模，還應看哪些顧客、購買力、競爭與通路證據？</span></p></aside>
 
 <h3 id="season">Seasonality and demographics<span class="zh-full" lang="zh-Hant">季節性與人口結構</span></h3>
 <div class="pair">
@@ -574,6 +602,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 </div>
 
 <!-- 6 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A café has empty seats on weekdays but long queues at weekend peak times. Why might maximizing total demand be the wrong objective? Suggest a more useful demand-management goal.<span class="zh-full" lang="zh-Hant">咖啡店平日有空位，週末尖峰卻大排長龍。為什麼「把總需求最大化」可能是錯的目標？請提出更合適的需求管理目標。</span></p></aside>
+
 <h2 id="philo">6. Six marketing management philosophies<span class="zh-full" lang="zh-Hant">6. 六種行銷管理觀念</span></h2>
 <div class="tbl"><table>
 <thead><tr><th>Philosophy<span class="zh-full" lang="zh-Hant">管理觀念</span></th><th>Starts with<span class="zh-full" lang="zh-Hant">出發點</span></th><th>Main risk<span class="zh-full" lang="zh-Hant">主要風險</span></th></tr></thead>
@@ -603,6 +634,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p>Marketing drives consumption, yet society may need less waste, reuse and healthier behavior. Marketing can also promote better behavior (reusable bags, energy saving, recycling) and create value through durability, repair, reuse and access rather than more units.<span class="zh-full" lang="zh-Hant">行銷推動消費，但社會可能需要減少浪費、重複使用與更健康的行為。行銷也能推廣環保袋、節能、回收等行為，並透過耐用、維修、重複使用與使用權創造價值，而非只追求多賣幾件。</span></p>
 
 <!-- 8 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A marketing campaign raises sales but encourages unnecessary waste. What additional business and social evidence is needed before calling the campaign successful or sustainable?<span class="zh-full" lang="zh-Hant">一項行銷活動提高銷售，卻也鼓勵不必要的浪費。在稱它成功或永續之前，還需要哪些經營與社會面的證據？</span></p></aside>
+
 <h2 id="cases">8. Class cases<span class="zh-full" lang="zh-Hant">8. 課堂案例</span></h2>
 <div class="tbl"><table>
 <thead><tr><th>Case<span class="zh-full" lang="zh-Hant">案例</span></th><th>Analysis<span class="zh-full" lang="zh-Hant">分析</span></th><th>Lesson<span class="zh-full" lang="zh-Hant">啟示</span></th></tr></thead>
@@ -800,4 +834,18 @@ set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
 const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
 if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
 })();
-</script></body></html>
+</script><script>
+(function(){
+const $=(id)=>document.getElementById(id);
+// Practice mode does not affect the teaching tools or cold-call answers.
+ const practiceToggle=$('practiceToggle'),practiceState=$('practiceState');
+ const practicePrompts=[...document.querySelectorAll('.practice-prompt')];
+ practiceToggle.addEventListener('click',()=>{
+   const isOn=practiceToggle.getAttribute('aria-pressed')!=='true';
+   practiceToggle.setAttribute('aria-pressed',String(isOn));
+   practiceState.innerHTML=isOn?'On':'Off';practiceToggle.querySelector(':scope > .zh-full').innerHTML='練習模式：'+(isOn?'開啟':'關閉');
+   practicePrompts.forEach(prompt=>{prompt.hidden=!isOn});
+ });
+})();
+</script>
+</body></html>

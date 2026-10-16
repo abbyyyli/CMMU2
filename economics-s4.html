@@ -220,6 +220,18 @@ table.oil td.hi { background: var(--tint); color: var(--accent-ink); font-weight
 
 
 
+
+/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
 </style><style>
 /* Full Chinese support is additive; existing short Chinese aides remain. */
 body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
@@ -318,6 +330,7 @@ body.show-zh .score .down b:after{content:'惡化'}
     <span><i class="sw a-prof"></i>Profit<span class="zh-full" lang="zh-Hant">利潤</span></span>
     <span><i class="sw a-loss"></i>Loss<span class="zh-full" lang="zh-Hant">虧損</span></span>
   </div>
+<div class="practice-toolbar"><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div>
 </div>
 
 <h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
@@ -342,6 +355,8 @@ body.show-zh .score .down b:after{content:'惡化'}
 <p class="note-small">The slide gives no years, authorities or decision criteria, so it does not establish an approval threshold. Use it to discuss how far a real market is from perfect competition.<span class="zh-full" lang="zh-Hant">投影片未提供年份、主管機關或審查標準，因此不能從中推定併購核准門檻。這些例子可用來討論現實市場與完全競爭相距多遠。</span></p>
 
 <!-- 2 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>The class merger table shows different regulatory decisions across countries. Why would those observations alone be insufficient to prove which market characteristics caused each outcome?<span class="zh-full" lang="zh-Hant">課堂合併案例表顯示不同國家的監管結果不同。為什麼只看這些觀察結果，還不足以證明各國究竟是哪些市場特徵造成審查差異？</span></p></aside>
+
 <h2 id="taker">2. The competitive firm is a price taker<span class="zh-full" lang="zh-Hant">2. 競爭廠商是價格接受者</span></h2>
 <p class="sub">Many sellers offer an identical product, so a single firm cannot charge more than the market price <span class="zh">價格接受者</span>. Buyers would simply switch.<span class="zh-full" lang="zh-Hant">許多賣家提供相同產品，因此單一廠商無法收取高於市場的價格；買家會轉向其他賣家。</span></p>
 <div data-widget="taker"></div>
@@ -351,6 +366,8 @@ body.show-zh .score .down b:after{content:'惡化'}
 </div>
 
 <!-- 3 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Suppose the market price of oil rises but a single competitive well has unchanged production costs. Which line moves in the firm-level graph, and how does the firm decide its new output?<span class="zh-full" lang="zh-Hant">假設石油市場價格上升，但某個競爭性油井的生產成本沒有改變。在個別廠商圖上，哪條線會變動？廠商如何決定新的產量？</span></p></aside>
+
 <h2 id="costs">3. Revenue, cost and profit<span class="zh-full" lang="zh-Hant">3. 收入、成本與利潤</span></h2>
 <div class="formula">Total revenue TR = P × q<span class="zh-full" lang="zh-Hant">總收益 TR＝價格 P × 產量 q</span><br>Total cost TC = fixed cost FC + variable cost VC<br>Profit π = TR − TC = (P − AC) × q<br>Marginal revenue MR = ΔTR / Δq = P    Marginal cost MC = ΔTC / Δq</div>
 <div class="tbl"><table>
@@ -364,6 +381,8 @@ body.show-zh .score .down b:after{content:'惡化'}
 </tbody></table></div>
 
 <!-- 4 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A business reports positive accounting profit but its owner has given up a valuable alternative job. Why may its economic profit be much smaller, zero, or negative?<span class="zh-full" lang="zh-Hant">一家企業的會計利潤為正，但業主放棄了一份高價值的其他工作。為什麼其經濟利潤可能小得多、等於零，甚至為負？</span></p></aside>
+
 <h2 id="oil">4. The oil-well example from class<span class="zh-full" lang="zh-Hant">4. 課堂油井例子</span></h2>
 <p class="sub">Fixed cost is $35 a day. Produce each barrel whose marginal cost is below the price; stop before the first one that costs more.<span class="zh-full" lang="zh-Hant">固定成本每天 35 美元。當一桶的邊際成本低於價格，就生產該桶；遇到第一桶成本高於價格時停止。</span></p>
 <div data-widget="oil"></div>
@@ -385,6 +404,8 @@ body.show-zh .score .down b:after{content:'惡化'}
 <p class="note-small">Two slide details to note: the profit-rectangle slide shows AC = $25.75 and profit $194, while the table gives 207 ÷ 8 = $25.875 and $193. The smooth $100 graph crosses MC near 10 barrels, but the table gives 9 because barrel 10 costs $102.<span class="zh-full" lang="zh-Hant">投影片有兩處值得留意：利潤矩形圖標示 AC＝25.75 美元、利潤 194 美元，但表格算出 207÷8＝25.875 美元、利潤 193 美元。平滑的 100 美元曲線在約第 10 桶與 MC 相交，但表格顯示第 10 桶成本 102 美元，因此最適產量是 9 桶。</span></p>
 
 <!-- 5 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Using the class oil-well table at a market price of $50, explain why an extra barrel may increase total revenue yet reduce profit. Which marginal comparison determines when to stop?<span class="zh-full" lang="zh-Hant">根據課堂油井表格，當市場價格為 50 美元時，為什麼多生產一桶可能增加總營收，卻降低利潤？要用哪個邊際比較來決定何時停止增產？</span></p></aside>
+
 <h2 id="decide">5. Three questions, three cost curves<span class="zh-full" lang="zh-Hant">5. 三個問題、三條成本曲線</span></h2>
 <p class="sub">Find q* first, then read average costs at that same q*.<span class="zh-full" lang="zh-Hant">先找出 q*，再讀取同一產量下的平均成本。</span></p>
 <div class="tbl"><table>
@@ -411,6 +432,8 @@ body.show-zh .score .down b:after{content:'惡化'}
 </div>
 
 <!-- 6 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A firm produces at its profit-maximizing quantity where price is below ATC but above AVC. Is short-run shutdown necessarily better? How is the answer different if price falls below AVC?<span class="zh-full" lang="zh-Hant">廠商已在利潤最大化產量生產，但價格低於 ATC、仍高於 AVC。短期停產一定比較好嗎？如果價格進一步低於 AVC，答案有何改變？</span></p></aside>
+
 <h2 id="jones">6. Case: the Jones Act<span class="zh-full" lang="zh-Hant">6. 個案：瓊斯法案</span></h2>
 <p class="sub">US law generally reserves cargo shipping between US ports for US-built, US-owned, coastwise-qualified vessels. It is a domestic eligibility rule, not a tariff on imported goods.<span class="zh-full" lang="zh-Hant">美國法律原則上保留美國港口間的貨運給美國建造、美國所有且符合沿海航運資格的船舶。這是國內運輸資格規定，不是對進口商品課關稅。</span></p>
 <div class="flow"><span>Fewer eligible ships<span class="zh-full" lang="zh-Hant">符合資格的船舶減少</span></span><i>→</i><span>Higher vessel and operating costs, less competition<span class="zh-full" lang="zh-Hant">船舶與營運成本上升，競爭減少</span></span><i>→</i><span>Shipping supply shifts left, freight rates rise<span class="zh-full" lang="zh-Hant">海運供給左移，運費上漲</span></span><i>→</i><span>Higher delivered costs for downstream firms<span class="zh-full" lang="zh-Hant">下游企業的交貨成本上升</span></span><i>→</i><span>Goods prices up, quantity down<span class="zh-full" lang="zh-Hant">商品價格上升、交易量下降</span></span></div>
@@ -425,6 +448,8 @@ body.show-zh .score .down b:after{content:'惡化'}
 <p class="key">Higher costs and reduced competition push protected carriers' profits in opposite directions. Do not claim the law always cuts their profit.<span class="zh-full" lang="zh-Hant">成本上升與競爭減少，對受保護業者的利潤有相反方向的影響。不能聲稱該法一定降低其利潤。</span></p>
 
 <!-- 7 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A video argues that the Jones Act raises shipping costs. Which legal constraint and potential cost channels should you identify, and what additional evidence is required before stating the net welfare effect?<span class="zh-full" lang="zh-Hant">某影片主張《瓊斯法案》提高運輸成本。應先指出哪些法律限制與可能的成本傳遞管道？在斷言淨福利效果前，還需要什麼額外證據？</span></p></aside>
+
 <h2 id="traps">7. Common mistakes<span class="zh-full" lang="zh-Hant">7. 常見錯誤</span></h2>
 <div class="traps">
   <div><s>A competitive firm chooses the price where P = MC.<span class="zh-full" lang="zh-Hant">競爭廠商選擇 P＝MC 時的價格。</span></s><p>It takes P as given and chooses q.<span class="zh-full" lang="zh-Hant">它接受既定價格 P，選擇產量 q。</span></p></div>
@@ -689,4 +714,20 @@ set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
 const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
 if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
 })();
-</script></body></html>
+</script><script>
+'use strict';
+(function(){
+  const $=(id)=>document.getElementById(id);
+
+ // Practice mode does not affect the teaching tools or cold-call answers.
+ const practiceToggle=$('practiceToggle'),practiceState=$('practiceState');
+ const practicePrompts=[...document.querySelectorAll('.practice-prompt')];
+ practiceToggle.addEventListener('click',()=>{
+   const isOn=practiceToggle.getAttribute('aria-pressed')!=='true';
+   practiceToggle.setAttribute('aria-pressed',String(isOn));
+   practiceState.innerHTML=isOn?'On':'Off';practiceToggle.querySelector(':scope > .zh-full').innerHTML='練習模式：'+(isOn?'開啟':'關閉');
+   practicePrompts.forEach(prompt=>{prompt.hidden=!isOn});
+ });
+})();
+</script>
+</body></html>

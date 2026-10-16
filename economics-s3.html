@@ -220,6 +220,18 @@ table.oil td.hi { background: var(--tint); color: var(--accent-ink); font-weight
 
 
 
+
+/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
 </style><style>
 /* Full Chinese support is additive; existing short Chinese aides remain. */
 body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
@@ -319,6 +331,7 @@ body.show-zh .score .down b:after{content:'惡化'}
     <span><i class="sw a-rev"></i>Tax / tariff revenue<span class="zh-full" lang="zh-Hant">稅收／關稅收入</span></span>
     <span><i class="sw a-dwl"></i>Deadweight loss<span class="zh-full" lang="zh-Hant">無謂損失</span></span>
   </div>
+<div class="practice-toolbar"><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div>
 </div>
 
 <h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
@@ -371,6 +384,8 @@ body.show-zh .score .down b:after{content:'惡化'}
 <p class="hint original-zh"><b>邏輯</b>後面每張政策圖都在比：政策下的數量 vs. efficient quantity。偏離越多，DWL 越大。</p>
 
 <!-- 2 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Suppose a good suddenly becomes scarce. Trace how one higher market price can both communicate information and change buyer and seller behavior, without requiring a central coordinator.<span class="zh-full" lang="zh-Hant">假設某商品突然變得稀缺。請說明同一個上升的市場價格，如何同時傳遞資訊並改變買賣雙方行為，而不需要中央協調者。</span></p></aside>
+
 <h2 id="trade">2. Trade and tariffs<span class="zh-full" lang="zh-Hant">2. 貿易與關稅</span></h2>
 <p class="sub">A tariff <span class="zh">關稅</span> raises the domestic price. Producers gain, consumers lose more, and society loses the DWL.<span class="zh-full" lang="zh-Hant">關稅使國內價格上漲。生產者得益，消費者損失更大，社會則承受無謂損失（DWL）。</span></p>
 <div data-widget="tariff"></div>
@@ -400,6 +415,8 @@ body.show-zh .score .down b:after{content:'惡化'}
 <p>The tariff model shows the short-run cost. Whether long-run benefits outweigh it is an <b>empirical question</b> <span class="zh">要看實證</span>, not something the graph can prove.<span class="zh-full" lang="zh-Hant">關稅圖示呈現短期成本；長期利益是否超過成本，必須靠實證判斷，圖本身無法證明。</span></p>
 
 <!-- 3 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>After a tariff raises the domestic price, why is the gain to protected producers not identical to the total welfare loss? Distinguish transfers from the two sources of deadweight loss.<span class="zh-full" lang="zh-Hant">關稅提高國內價格後，為何受保護生產者的收益不能直接等同社會總福利損失？請區分剩餘移轉與無謂損失的兩個來源。</span></p></aside>
+
 <h2 id="controls">3. Price controls<span class="zh-full" lang="zh-Hant">3. 價格管制</span></h2>
 <p class="sub">A binding control stops the price from clearing the market, so scarcity shows up in other ways.<span class="zh-full" lang="zh-Hant">有約束力的價格管制使價格無法使市場出清，稀缺因此以其他形式出現。</span></p>
 <div data-widget="control"></div>
@@ -435,6 +452,8 @@ body.show-zh .score .down b:after{content:'惡化'}
 </ul>
 
 <!-- 4 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A binding rent ceiling lowers the posted rent. Why might renters still bear a higher total cost in time, search, or reduced housing quality? Does the lower price remove scarcity?<span class="zh-full" lang="zh-Hant">有約束力的租金上限降低了標示租金。為什麼租客仍可能付出更高的等候、搜尋或住房品質成本？較低的標示價格是否消除了稀缺？</span></p></aside>
+
 <h2 id="externalities">4. Externalities<span class="zh-full" lang="zh-Hant">4. 外部性</span></h2>
 <p class="sub">An externality <span class="zh">外部性</span> is a cost or benefit that falls on a third party outside the trade.<span class="zh-full" lang="zh-Hant">外部性是交易之外的第三方承受的成本或享有的利益。</span></p>
 <div class="formula">Social cost = Private cost + External cost<span class="zh-full" lang="zh-Hant">社會成本＝私人成本＋外部成本</span><br>Social benefit = Private benefit + External benefit</div>
@@ -467,6 +486,8 @@ body.show-zh .score .down b:after{content:'惡化'}
 </ul>
 
 <!-- 5 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>For a factory that harms nearby residents through pollution, why does the unregulated market produce too much? Show the gap between private and social marginal cost and how a corrective tax works.<span class="zh-full" lang="zh-Hant">工廠污染使附近居民受害時，為什麼不受管制的市場會生產過多？請說明私人邊際成本與社會邊際成本之間的落差，以及矯正性稅如何作用。</span></p></aside>
+
 <h2 id="goods">5. Public goods and common resources<span class="zh-full" lang="zh-Hant">5. 公共財與共有資源</span></h2>
 <p class="sub">Classify a good by two questions: can non-payers be excluded, and does one person's use reduce what others get?<span class="zh-full" lang="zh-Hant">用兩個問題分類財貨：能否排除未付款者？一人使用會否減少他人可用的數量？</span></p>
 <div class="matrix goods">
@@ -486,6 +507,8 @@ body.show-zh .score .down b:after{content:'惡化'}
 <p>Other fixes: property rights, quotas, tradable fishing permits.<span class="zh-full" lang="zh-Hant">其他方法：財產權、配額、可交易捕魚許可證。</span></p>
 
 <!-- 6 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Why is a fishery vulnerable to overuse while asteroid defense faces a free-rider problem? Classify each good using rivalry and excludability before suggesting an appropriate response.<span class="zh-full" lang="zh-Hant">為何漁業容易被過度使用，而小行星防禦卻容易遇到搭便車問題？請先依競爭性與可排他性分類，再提出適合的因應方向。</span></p></aside>
+
 <h2 id="moral">6. Moral economics<span class="zh-full" lang="zh-Hant">6. 道德經濟學</span></h2>
 <p class="sub">A voluntary, mutually beneficial trade can still be socially unacceptable. Efficiency is one criterion, not the only one.<span class="zh-full" lang="zh-Hant">自願且對雙方有利的交易仍可能不被社會接受。效率是評估標準之一，並非唯一標準。</span></p>
 
@@ -517,6 +540,8 @@ body.show-zh .score .down b:after{content:'惡化'}
 </div>
 
 <!-- 7 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Imagine a voluntary market that society considers morally unacceptable. How would you analyze possible gains from trade, objections, likely effects of a ban, and alternatives in market design?<span class="zh-full" lang="zh-Hant">想像一個自願交易、卻被社會視為道德上難以接受的市場。你會如何分析交易利益、道德疑慮、禁令的可能效果，以及市場制度設計的替代方案？</span></p></aside>
+
 <h2 id="tax">7. Taxes, subsidies and government failure<span class="zh-full" lang="zh-Hant">7. 稅、補貼與政府失靈</span></h2>
 <p class="sub">Who legally pays a tax does not decide who bears it. Elasticity does.<span class="zh-full" lang="zh-Hant">法律規定誰繳稅，不等於誰實際承擔稅負；關鍵在彈性。</span></p>
 <div data-widget="tax"></div>
@@ -527,6 +552,8 @@ body.show-zh .score .down b:after{content:'惡化'}
 </ul>
 
 <!-- 8 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>When buyers can hardly reduce quantity but sellers can adjust easily, who tends to bear more of a new tax? Why does the law naming the taxpayer not settle the economic incidence?<span class="zh-full" lang="zh-Hant">如果買方很難減少購買量，但賣方很容易調整供給，新增稅負通常由哪一方承擔較多？為什麼法定納稅人是誰，不能直接決定實際稅負歸宿？</span></p></aside>
+
 <h2 id="traps">8. Common mistakes<span class="zh-full" lang="zh-Hant">8. 常見錯誤</span></h2>
 <div class="traps">
   <div><s>A high price means market failure.<span class="zh-full" lang="zh-Hant">價格高代表市場失靈。</span></s><p>A high price may simply signal scarcity.<span class="zh-full" lang="zh-Hant">高價也可能只是稀缺的訊號。</span></p></div>
@@ -996,4 +1023,20 @@ set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
 const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
 if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
 })();
-</script></body></html>
+</script><script>
+'use strict';
+(function(){
+  const $=(id)=>document.getElementById(id);
+
+ // Practice mode does not affect the teaching tools or cold-call answers.
+ const practiceToggle=$('practiceToggle'),practiceState=$('practiceState');
+ const practicePrompts=[...document.querySelectorAll('.practice-prompt')];
+ practiceToggle.addEventListener('click',()=>{
+   const isOn=practiceToggle.getAttribute('aria-pressed')!=='true';
+   practiceToggle.setAttribute('aria-pressed',String(isOn));
+   practiceState.innerHTML=isOn?'On':'Off';practiceToggle.querySelector(':scope > .zh-full').innerHTML='練習模式：'+(isOn?'開啟':'關閉');
+   practicePrompts.forEach(prompt=>{prompt.hidden=!isOn});
+ });
+})();
+</script>
+</body></html>

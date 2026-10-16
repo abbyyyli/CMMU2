@@ -435,6 +435,18 @@ body.show-zh .mb-code>span{display:block}
 body.show-zh .mb-sel .seg button{white-space:normal}
 body.show-zh .ap-grid figcaption .zh-full{font-family:var(--sans);line-height:1.6}
 body.show-zh .g-stats .st{align-items:flex-start}
+
+/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
 </style><script>
 /* Bilingual content helpers: no text dictionary, observer or page-wide rescan. */
 (function(){
@@ -468,6 +480,7 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
   <p class="kick">Managing People in Organizations · Session 1<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 1 堂</span></p>
   <h1>Working with Personality Types<span class="zh-full" lang="zh-Hant">與不同人格類型共事</span></h1>
   <p class="lead">Performance is not decided by personality alone. Know your own preferences, see how they create strengths and blind spots, and adapt how you lead, communicate and build teams.<span class="zh-full" lang="zh-Hant">績效並非只由人格決定。了解自己的偏好，看見偏好帶來的優勢與盲點，再調整領導、溝通及組建團隊的方式。</span></p>
+<div class="practice-toolbar"><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div>
 </div>
 
 <h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
@@ -496,6 +509,9 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
   <div class="tcard"><b>Human skill<span class="zh-full" lang="zh-Hant">人際技能</span></b><p>Working with and leading people. Personality type connects mainly here.<span class="zh-full" lang="zh-Hant">與人合作並帶領他人。人格類型主要與這項技能相關。</span></p></div>
 </div>
 
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Lek repeatedly arrives late. Which evidence would help distinguish an individual issue from work-process, leadership or context factors? What would show that a management response worked?<span class="zh-full" lang="zh-Hant">Lek 經常遲到。要區分個人因素與工作流程、領導或情境因素，還需要哪些證據？如何判斷管理措施是否有效？</span></p></aside>
+
 <!-- 2 -->
 <h2 id="why">2. Why study personality at work<span class="zh-full" lang="zh-Hant">2. 為何在工作中研究人格</span></h2>
 <div class="six">
@@ -506,6 +522,9 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
   <div><span>5</span><p>Adjust yourself to the needs of other people.<span class="zh-full" lang="zh-Hant">依他人的需要調整自己。</span></p></div>
 </div>
 <p class="note-small">Background: Carl Jung; Isabel Briggs Myers (Myers-Briggs Type Indicator, MBTI); David Keirsey. Four dimensions combine into 16 types. The slide calls it the most widely used instrument for selection, career counseling, coaching and team development.<span class="zh-full" lang="zh-Hant">背景人物：Carl Jung、Isabel Briggs Myers（Myers-Briggs Type Indicator，MBTI）、David Keirsey。四個維度組合成 16 種類型。投影片將其稱為在甄選、職涯諮詢、教練與團隊發展中最廣泛使用的工具。</span></p>
+
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A manager wants to use personality types to choose the team member with the highest ability. Why does a preference profile alone not support that decision, and what task evidence should be checked?<span class="zh-full" lang="zh-Hant">主管想用人格類型選出能力最高的隊員。為什麼偏好類型本身不足以支持這個決定？應補看哪些實際工作證據？</span></p></aside>
 
 <!-- 3 -->
 <h2 id="dims">3. The four preference pairs<span class="zh-full" lang="zh-Hant">3. 四組偏好</span></h2>
@@ -522,6 +541,9 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
   <div><b>Thinking ≠ not caring<span class="zh-full" lang="zh-Hant">思考型 ≠ 不在乎他人</span></b><p>T and F are both rational; they differ in what they weigh first: criteria or people impact.<span class="zh-full" lang="zh-Hant">T 與 F 都是理性的，差別在於先衡量什麼：判準，或對人的影響。</span></p></div>
 </div>
 <div data-mw="mbti"></div>
+
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>One colleague wants a detailed step-by-step plan; another prefers to keep options open as conditions change. Which preference dimension is relevant, and how could a manager combine both contributions without judging competence?<span class="zh-full" lang="zh-Hant">一位同事要清楚的逐步計畫；另一位希望情況變化時仍保留選項。這涉及哪個偏好維度？主管如何整合兩者，而不是評斷誰能力較好？</span></p></aside>
 
 <!-- 4 -->
 <h2 id="overuse">4. Strength overused becomes weakness<span class="zh-full" lang="zh-Hant">4. 優勢過度使用會成為弱點</span></h2>
@@ -540,6 +562,9 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 <p class="key">The problem is usually not the preference itself, but overusing it. Strong N helps strategy but can neglect execution; strong P helps adaptability but can prevent closure.<span class="zh-full" lang="zh-Hant">問題通常不是偏好本身，而是過度使用。強 N 有助策略思考，卻可能忽略執行；強 P 有助適應，卻可能遲遲無法定案。</span></p>
 <div data-mw="overuse"></div>
 
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A manager makes a logically persuasive decision, yet staff feel that their concerns were ignored. Which useful preference might have been overused? What work-context evidence should be checked before making a personality-based diagnosis?<span class="zh-full" lang="zh-Hant">主管的決策邏輯充分，但員工覺得自己的顧慮被忽略。哪一項有用偏好可能被過度使用？在歸因人格之前，還應檢查哪些工作情境證據？</span></p></aside>
+
 <h3 id="intp">Reading four letters as one pattern: INTP<span class="zh-full" lang="zh-Hant">把四個字母讀成一個整體模式：INTP</span></h3>
 <p>The lecture's likes and dislikes slide fits an INTP profile. Read the letters together, not separately.<span class="zh-full" lang="zh-Hant">課堂中喜歡與不喜歡的清單符合 INTP 輪廓。要把四個字母一起理解，而非分開看。</span></p>
 <div class="method"><span>I · think internally<span class="zh-full" lang="zh-Hant">I・在內心思考</span></span><i>→</i><span>N · find patterns<span class="zh-full" lang="zh-Hant">N・尋找模式</span></span><i>→</i><span>T · test logic<span class="zh-full" lang="zh-Hant">T・檢驗邏輯</span></span><i>→</i><span>P · keep options open<span class="zh-full" lang="zh-Hant">P・保留選項</span></span></div>
@@ -548,6 +573,9 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
   <div><b>Combined risk<span class="zh-full" lang="zh-Hant">組合後的風險</span></b><p>Deep analysis → more alternatives → delayed closure → weak follow-through. Dislikes: interruptions, long meetings, routines, implementing policies, telling staff what to do, people problems.<span class="zh-full" lang="zh-Hant">深入分析 → 更多替代方案 → 延遲定案 → 後續執行不足。不喜歡：被打斷、冗長會議、例行工作、執行政策、指派員工工作、人際問題。</span></p></div>
 </div>
 <p class="hint"><b>中文邏輯</b><span>不要寫「INTP 討厭開會，所以不適合當主管」；這是把偏好當能力。要寫偏好可能讓哪些情境比較費力，需要怎麼調整。</span></p>
+
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A highly analytical team keeps generating possibilities and postpones a decision. What specific boundary or handoff would preserve good analysis while improving follow-through?<span class="zh-full" lang="zh-Hant">分析能力很強的團隊一直提出新可能性、遲遲不做決定。可以設定什麼具體的決策界線或工作交接，既保留分析品質又改善執行？</span></p></aside>
 
 <!-- 5 -->
 <h2 id="teams">5. Adapting and forming better teams<span class="zh-full" lang="zh-Hant">5. 調整自己並組成更好的團隊</span></h2>
@@ -565,6 +593,9 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 <p class="key">Balance team composition <span class="zh">團隊組成</span>. The useful question is "which perspective is missing from this discussion?", not "who is difficult?" More diversity helps only when the perspectives fit the task and the team can integrate them.<span class="zh-full" lang="zh-Hant">平衡團隊組成。有用的問題是「這次討論少了哪種觀點？」，而非「誰很難相處？」只有當不同觀點符合任務需要，而且團隊能整合它們時，多樣性才有幫助。</span></p>
 <h3 id="thai">Thailand note<span class="zh-full" lang="zh-Hant">泰國情境補充</span></h3>
 <p>The slide says personality is influenced by national culture. No scientific data on type distribution in Thailand was available; the lecturer <b>suggests</b> F and P may be more common than T and J. Treat this as a suggestion, not a statistic.<span class="zh-full" lang="zh-Hant">投影片指出人格受到國家文化影響。當時沒有泰國類型分布的科學資料；講師提出 F、P 可能比 T、J 常見。請視為一項看法，而非統計事實。</span></p>
+
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A team creates original ideas but misses operational details and deadlines. Which missing perspectives or processes should a leader add? Why is recruiting one person of every personality type not a sufficient solution?<span class="zh-full" lang="zh-Hant">團隊有創意，卻漏掉執行細節與期限。領導者該補上哪些觀點或流程？為什麼找齊每種人格類型各一人仍不是充分的解法？</span></p></aside>
 
 <!-- 6 -->
 <h2 id="traps">6. Do not mix these up<span class="zh-full" lang="zh-Hant">6. 不要混淆</span></h2>
@@ -596,6 +627,21 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 </tbody></table></div>
 </article></main>
 </div>
+
+<script>
+(function(){
+const $ = (id) => document.getElementById(id);
+// Practice mode does not affect the teaching tools or cold-call answers.
+ const practiceToggle=$('practiceToggle'),practiceState=$('practiceState');
+ const practicePrompts=[...document.querySelectorAll('.practice-prompt')];
+ practiceToggle.addEventListener('click',()=>{
+   const isOn=practiceToggle.getAttribute('aria-pressed')!=='true';
+   practiceToggle.setAttribute('aria-pressed',String(isOn));
+   practiceState.innerHTML=isOn?'On':'Off';practiceToggle.querySelector(':scope > .zh-full').innerHTML='練習模式：'+(isOn?'開啟':'關閉');
+   practicePrompts.forEach(prompt=>{prompt.hidden=!isOn});
+ });
+})();
+</script>
 
 <script>/* Management interactive components: Herzberg scale, KPI trap, framework comparator, LMS lens. */
 (function () {

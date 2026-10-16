@@ -445,6 +445,18 @@ body {margin:0}
 .m-reveal{background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:10px 14px;margin:12px 0;font-size:.91rem}
 .m-reveal summary{cursor:pointer;color:var(--accent-ink);font-weight:600;line-height:1.55}
 .m-reveal p{margin:10px 0 2px;font-size:.91rem;line-height:1.7}
+
+/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
 </style><style>
 /* Full Chinese support is additive; existing short Chinese aides remain. */
 body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
@@ -527,7 +539,8 @@ body.show-zh .score .down b:after{content:'惡化'}
  <h1>Strategic Planning &amp; Consumer Behavior<span class="zh-full" lang="zh-Hant">策略規劃與消費者行為</span></h1>
  <p class="lead">A company chooses where to compete and what value to promise. Consumers decide which brands deserve their attention, trust and money. Practice the judgment connecting the two.<span class="zh-full" lang="zh-Hant">企業決定要在哪裡競爭，以及承諾提供什麼價值；消費者則決定哪些品牌值得他們投入注意力、信任與金錢。透過練習，學會做出能連結這兩端的判斷。</span></p>
  <div class="legend"><span>Strategy → action → metric<span class="zh-full" lang="zh-Hant">策略 → 行動 → 指標</span></span><span>Customer → motive → choice<span class="zh-full" lang="zh-Hant">顧客 → 動機 → 選擇</span></span><span>English-first <span class="zh">中文輔助常駐</span><span class="zh-full" lang="zh-Hant">以英文為主</span></span></div>
- </div>
+ <div class="practice-toolbar"><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div>
+</div>
  <h2 id="map">Chapter map · Two questions, one marketing decision<span class="zh-full" lang="zh-Hant">本章地圖｜兩個問題，一項行銷決策</span></h2>
  <div class="m-two"><div><strong>1 · Company direction<span class="zh-full" lang="zh-Hant">1｜公司方向</span></strong><p>Vision → mission → objectives → coordinated brand delivery.<span class="zh-full" lang="zh-Hant">願景 → 使命 → 目標 → 一致的品牌執行。</span></p><small>Portfolio, growth options and environmental fit<span class="zh-full" lang="zh-Hant">事業組合、成長選項與外部環境的契合度</span></small></div><div><strong>2 · Consumer choice<span class="zh-full" lang="zh-Hant">2｜消費者選擇</span></strong><p>Need → involvement → alternatives → purchase → postpurchase.<span class="zh-full" lang="zh-Hant">需要 → 涉入程度 → 替代方案 → 購買 → 購後反應。</span></p><small>Benefits, situation, trust, social context<span class="zh-full" lang="zh-Hant">利益、情境、信任、社會脈絡</span></small></div></div>
  <div class="chapterline"><span>Choose an objective<span class="zh-full" lang="zh-Hant">選定目標</span></span><i>→</i><span>Understand the customer<span class="zh-full" lang="zh-Hant">理解顧客</span></span><i>→</i><span>Make a decision<span class="zh-full" lang="zh-Hant">做出決策</span></span><i>→</i><span>Measure behavior<span class="zh-full" lang="zh-Hant">衡量行為</span></span></div>
@@ -544,7 +557,10 @@ body.show-zh .score .down b:after{content:'惡化'}
  <p>A company can display friendly-service values everywhere in its office yet deliver an indifferent store greeting. Customers judge the <b>actual touchpoint</b>, not only the internal slogan.<span class="zh-full" lang="zh-Hant">公司可以在辦公室各處展示親切服務的價值觀，門市招呼卻冷淡。顧客評價的是實際接觸點，而非只有內部口號。</span></p>
  <div class="method"><span>Promised warmth<span class="zh-full" lang="zh-Hant">承諾的友善</span></span><i>→</i><span>Frontline interaction<span class="zh-full" lang="zh-Hant">第一線互動</span></span><i>→</i><span>Customer experience<span class="zh-full" lang="zh-Hant">顧客體驗</span></span><i>→</i><span>Consistency test<span class="zh-full" lang="zh-Hant">一致性檢驗</span></span></div>
  <p class="hint"><b>Question</b>Does a disappointing greeting prove a low-pay problem? <span class="zhtext">不能，還要考慮訓練、流程、主管、負荷及顧客證據。</span><span class="zh-full" lang="zh-Hant">提問：令人失望的招呼，能證明薪資過低嗎？</span></p>
- <h3 id="mission">Market-oriented mission and brand fit<span class="zh-full" lang="zh-Hant">以市場為導向的使命與品牌契合度</span></h3>
+ 
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Tops displays customer-service values in its offices, yet shoppers experience an indifferent greeting. Which gap does this reveal, and why would blaming pay alone go beyond the available evidence?<span class="zh-full" lang="zh-Hant">Tops 辦公室張貼顧客服務價值觀，但消費者實際感受到冷淡的招呼。這顯示什麼落差？為什麼只怪罪薪資，會超出目前證據？</span></p></aside>
+
+<h3 id="mission">Market-oriented mission and brand fit<span class="zh-full" lang="zh-Hant">以市場為導向的使命與品牌契合度</span></h3>
  <p>“We sell photocopiers” is narrower than “We help offices work productively.” The first depends on today's technology; the second centers on an enduring customer need.<span class="zh-full" lang="zh-Hant">「我們賣影印機」的定義，比「我們幫助辦公室提高工作效率」狹窄。前者依賴今天的技術，後者著重長期存在的顧客需求。</span></p>
  <div class="tbl"><table><thead><tr><th>Class example<span class="zh-full" lang="zh-Hant">課堂例子</span></th><th>Business question<span class="zh-full" lang="zh-Hant">商業問題</span></th><th>What not to assume<span class="zh-full" lang="zh-Hant">不該直接假設的事</span></th></tr></thead><tbody>
  <tr><td><b>Malee · “The Fruit Expert”</b><span class="zh-full" lang="zh-Hant">Malee｜「水果專家」</span></td><td>Would a mushroom drink fit the brand promise?<span class="zh-full" lang="zh-Hant">蘑菇飲料符合這項品牌承諾嗎？</span></td><td>Brand extension is not automatically good or bad.<span class="zh-full" lang="zh-Hant">品牌延伸並非必然成功，也非必然失敗。</span></td></tr>
@@ -554,8 +570,11 @@ body.show-zh .score .down b:after{content:'惡化'}
  </tbody></table></div>
  <p class="key">Mission ≠ slogan. A useful mission changes which opportunities a firm pursues and what customers actually experience.<span class="zh-full" lang="zh-Hant">使命 ≠ 口號。有用的使命會影響企業追求哪些機會，以及顧客實際感受到什麼。</span></p>
 
- <h2 id="portfolio">2. BCG: classify the business, then judge the option<span class="zh-full" lang="zh-Hant">2. BCG：先判斷事業定位，再評估管理選項</span></h2>
- <p class="sub">A portfolio uses limited resources across products or business units. BCG compares <b>market growth rate</b> and <b>relative market share</b> — not total sales and not profitability itself.<span class="zh-full" lang="zh-Hant">事業組合必須在產品或事業單位之間分配有限資源。BCG 比較市場成長率與相對市占率，不是總銷售額，也不直接衡量獲利能力。</span></p>
+ 
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Malee considers a mushroom drink under “The Fruit Expert” brand. How should management test brand fit without assuming that an unusual extension must succeed or fail?<span class="zh-full" lang="zh-Hant">以「水果專家」為品牌定位的 Malee 考慮推出蘑菇飲料。管理者應如何檢驗品牌契合度，而不是先假設不尋常的延伸一定成功或失敗？</span></p></aside>
+
+<h2 id="portfolio">2. BCG: classify the business, then judge the option<span class="zh-full" lang="zh-Hant">2. BCG：先判斷事業定位，再評估管理選項</span></h2>
+ <p class="sub">A portfolio uses limited resources across products or business units. BCG compares <b>market growth rate</b> and <b>relative market share</b>, not total sales and not profitability itself.<span class="zh-full" lang="zh-Hant">事業組合必須在產品或事業單位之間分配有限資源。BCG 比較市場成長率與相對市占率，不是總銷售額，也不直接衡量獲利能力。</span></p>
  <div class="m-widget" id="bcgWidget"><h4>Interactive · BCG positioning lab<span class="zh-full" lang="zh-Hant">互動練習｜BCG 事業定位</span></h4><p class="mw-sub">Move the two sliders or drag the point. Watch the quadrant change, but do not let the quadrant make the decision for you.<span class="zh-full" lang="zh-Hant">拖曳滑桿或圖上的圓點，觀察象限如何變化；但不要讓象限直接替你做決策。</span></p>
  <div class="m-grid"><div>
  <svg class="bcg-svg" id="bcgSvg" viewbox="0 0 420 340" role="img" aria-label="BCG quadrant with draggable business position">
@@ -592,8 +611,11 @@ body.show-zh .score .down b:after{content:'惡化'}
  <p class="hint"><b>中文邏輯</b><span class="zhtext">市場高成長 ≠ 本公司市占率高；市占率高 ≠ 一定獲利。BCG 幫你思考資源分配，不會自動給唯一答案。</span></p>
 
 
- <h3 id="plc">Product Life Cycle · different stages, different management questions<span class="zh-full" lang="zh-Hant">產品生命週期｜不同階段，管理問題也不同</span></h3>
- <p>A product category may move through <b>introduction, growth, maturity and decline</b>. Early growth often requires awareness and distribution investment. Mature markets may place greater weight on repeat purchase, efficiency and differentiation. Decline can call for renewal, repositioning or withdrawal — but the decision still requires evidence.<span class="zh-full" lang="zh-Hant">產品品類可能經歷導入、成長、成熟與衰退。成長初期通常需要投資知名度與通路；成熟市場可能更重視重購、效率與差異化。衰退可能需要更新、重新定位或退出，但決策仍要依證據。</span></p>
+ 
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A new electric vehicle looks innovative, so someone labels it a BCG Star. Which two market measures are missing, and why does the product category or its novelty not settle the quadrant?<span class="zh-full" lang="zh-Hant">有人因一款電動車看起來創新，就把它列為 BCG 明星事業。還缺少哪兩項市場衡量？為什麼產品類別或新穎程度不足以決定象限？</span></p></aside>
+
+<h3 id="plc">Product Life Cycle · different stages, different management questions<span class="zh-full" lang="zh-Hant">產品生命週期｜不同階段，管理問題也不同</span></h3>
+ <p>A product category may move through <b>introduction, growth, maturity and decline</b>. Early growth often requires awareness and distribution investment. Mature markets may place greater weight on repeat purchase, efficiency and differentiation. Decline can call for renewal, repositioning or withdrawal, but the decision still requires evidence.<span class="zh-full" lang="zh-Hant">產品品類可能經歷導入、成長、成熟與衰退。成長初期通常需要投資知名度與通路；成熟市場可能更重視重購、效率與差異化。衰退可能需要更新、重新定位或退出，但決策仍要依證據。</span></p>
  <div class="pair"><div><b>PLC asks: what stage?<span class="zh-full" lang="zh-Hant">PLC 問的是：處於哪個階段？</span></b><p>The Product Life Cycle describes how a category's sales may develop over time. It is a useful pattern, not a guaranteed timetable.<span class="zh-full" lang="zh-Hant">產品生命週期（Product Life Cycle）描述一項產品類別的銷售量可能如何隨時間發展。它是有用的觀察模式，不是保證會照表發生的時間表。</span></p></div><div><b>BCG asks: what position?<span class="zh-full" lang="zh-Hant">BCG 問的是：競爭位置在哪裡？</span></b><p>The matrix combines <em>market growth</em> with our <em>relative competitive share</em>. A mature category is not automatically a Cash Cow for every brand.<span class="zh-full" lang="zh-Hant">這個矩陣結合市場成長與本公司的相對競爭市占率。品類成熟，不代表每個品牌都自動成為金牛。</span></p></div></div>
  <p class="hint"><b>中文邏輯</b><span class="zhtext">PLC 描述市場或產品可能經歷的生命週期；BCG 還要看「本公司的相對市占率」。市場成熟不代表每個品牌都成了金牛事業。</span></p>
  <details class="m-reveal"><summary>BCG decision check · A Star is losing money. Must we invest?<span class="zh-full" lang="zh-Hant">BCG 決策練習｜明星事業正在虧錢，就一定要投資嗎？</span></summary><p><b>Not automatically.</b> First check whether losses come from temporary growth investment or an unviable business model. Compare future margins, funding needs, competitive advantage and alternatives. <b>Quadrant → hypotheses → evidence → decision</b>, not quadrant → command.<span class="zh-full" lang="zh-Hant">不一定。先檢查虧損來自暫時性的成長投資，還是不可行的商業模式，再比較未來利潤率、資金需要、競爭優勢與替代方案。應是「象限 → 假設 → 證據 → 決策」，不是「象限 → 命令」。</span></p></details>
@@ -608,7 +630,10 @@ body.show-zh .score .down b:after{content:'惡化'}
  <p><b>Kodak</b> illustrates why a business defined too narrowly by current film technology can be vulnerable when consumers continue wanting memories but adopt a different way to capture and share them.<span class="zh-full" lang="zh-Hant">Kodak 說明：若企業以現有底片技術過度狹隘地定義業務，當消費者仍想保存回憶，卻改用其他拍攝與分享方式時，就容易受到衝擊。</span></p>
  <p class="key">SWOT ≠ strategy. Turning a box into a decision requires an objective, a realistic action and evidence that it will create value.<span class="zh-full" lang="zh-Hant">SWOT ≠ 策略。要把格子上的資訊變成決策，還需要清楚的目標、可行的行動及創造價值的證據。</span></p>
 
- <h2 id="buyer">4. Buyer Decision Process: a guide, not a compulsory ritual<span class="zh-full" lang="zh-Hant">4. 購買決策過程：參考框架，不是人人必走的儀式</span></h2>
+ 
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A Thai brand imports U.S. generational stereotypes to design a campaign. What local history, customer behavior and research evidence would be needed before treating the same birth cohort as a useful target segment?<span class="zh-full" lang="zh-Hant">泰國品牌直接套用美國的世代刻板印象設計活動。在把同出生世代視為有效客群前，需要哪些當地歷史、顧客行為與研究證據？</span></p></aside>
+
+<h2 id="buyer">4. Buyer Decision Process: a guide, not a compulsory ritual<span class="zh-full" lang="zh-Hant">4. 購買決策過程：參考框架，不是人人必走的儀式</span></h2>
  <p class="sub">Marketing stimuli pass through the consumer's “black box”: needs, experience, social context and perception shape what the customer eventually does.<span class="zh-full" lang="zh-Hant">行銷刺激進入消費者的「黑箱」後，需求、既有經驗、社會情境與知覺都會影響最後的行為。</span></p>
  <div class="m-widget" id="decisionWidget"><h4>Interactive · How the five stages change<span class="zh-full" lang="zh-Hant">互動練習｜購買決策五階段如何改變</span></h4><p class="mw-sub">Switch situations. Select a stage to see why it is long, brief or sometimes skipped.<span class="zh-full" lang="zh-Hant">切換購買情境，再選擇階段，觀察哪些環節較長、較短，或可能被跳過。</span></p>
  <div class="m-pillrow" id="decisionModes" role="group" aria-label="Purchase contexts"><button type="button" data-mode="routine" aria-pressed="true">Routine water<span class="zh-full" lang="zh-Hant">例行購買瓶裝水</span></button><button type="button" data-mode="high" aria-pressed="false">Carefully chosen car<span class="zh-full" lang="zh-Hant">謹慎選車</span></button><button type="button" data-mode="impulse" aria-pressed="false">Impulsive car purchase<span class="zh-full" lang="zh-Hant">衝動買車</span></button></div>
@@ -622,7 +647,10 @@ body.show-zh .score .down b:after{content:'惡化'}
 
  <p class="hint"><b>中文抓重點</b><span class="zhtext">人口統計能描述「誰」，但無法單靠年齡預測「為什麼買」。教授用跑車與旅行車讓你看到品牌形象和真實車主可能完全不同。</span></p>
  
- <h2 id="motives">5. Motivation, involvement, risk and postpurchase behavior<span class="zh-full" lang="zh-Hant">5. 動機、涉入程度、風險與購後行為</span></h2>
+ 
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A sports-car advertisement suggests a young, affluent lifestyle. Why can that image attract a buyer without establishing the actual age or income of owners? How would psychographics help?<span class="zh-full" lang="zh-Hant">跑車廣告呈現年輕富裕的生活形象。為什麼這種形象可能吸引顧客，卻無法證明真實車主的年齡與收入？心理特徵資料能補充什麼？</span></p></aside>
+
+<h2 id="motives">5. Motivation, involvement, risk and postpurchase behavior<span class="zh-full" lang="zh-Hant">5. 動機、涉入程度、風險與購後行為</span></h2>
  <p class="sub">The same category can satisfy physiological, safety, belonging, esteem and self-actualization motives in different proportions.<span class="zh-full" lang="zh-Hant">同一項產品可能同時滿足生理、安全、歸屬、尊重與自我實現需求，只是各種動機的重要性不同。</span></p>
  <div class="method"><span>Need / context<span class="zh-full" lang="zh-Hant">需要／情境</span></span><i>→</i><span>Importance &amp; perceived risk<span class="zh-full" lang="zh-Hant">重要程度與知覺風險</span></span><i>→</i><span>Information search<span class="zh-full" lang="zh-Hant">資訊搜尋</span></span><i>→</i><span>Choice<span class="zh-full" lang="zh-Hant">選擇</span></span><i>→</i><span>Postpurchase feeling<span class="zh-full" lang="zh-Hant">購後感受</span></span></div>
  <div class="tbl"><table><thead><tr><th>Do not mix up<span class="zh-full" lang="zh-Hant">不要混淆</span></th><th>What it means<span class="zh-full" lang="zh-Hant">意義</span></th></tr></thead><tbody>
@@ -638,22 +666,28 @@ body.show-zh .score .down b:after{content:'惡化'}
 
  <h3 id="maslow">Maslow's needs · several motives can operate at once<span class="zh-full" lang="zh-Hant">馬斯洛需求｜多種動機可以同時存在</span></h3>
  <p>Maslow's categories include <b>physiological needs, safety, belonging, esteem and self-actualization</b>. These are useful prompts for exploring motivation; the professor emphasizes that they need not activate one at a time in a strict ladder.<span class="zh-full" lang="zh-Hant">Maslow 的分類包括生理、安全、歸屬、自尊與自我實現需求，可用來探索動機。教授強調，它們不必嚴格按階梯一次啟動一項。</span></p>
- <p>In a restaurant, food may satisfy hunger, safe preparation addresses security, eating with friends supports belonging, and choosing a premium venue may express esteem. Which motive is most important depends on the customer and occasion — this is a question for marketing research, not a fact the framework can answer alone.<span class="zh-full" lang="zh-Hant">在餐廳用餐時，食物可以滿足飢餓，安全的料理過程滿足安全感，和朋友吃飯滿足歸屬感，選擇高價餐廳則可能表達自我尊重或地位。哪一項動機最重要取決於顧客與場合；這應由行銷研究回答，不能單靠框架推定。</span></p>
+ <p>In a restaurant, food may satisfy hunger, safe preparation addresses security, eating with friends supports belonging, and choosing a premium venue may express esteem. Which motive is most important depends on the customer and occasion; this is a question for marketing research, not a fact the framework can answer alone.<span class="zh-full" lang="zh-Hant">在餐廳用餐時，食物可以滿足飢餓，安全的料理過程滿足安全感，和朋友吃飯滿足歸屬感，選擇高價餐廳則可能表達自我尊重或地位。哪一項動機最重要取決於顧客與場合；這應由行銷研究回答，不能單靠框架推定。</span></p>
  <p class="hint"><b>中文邏輯</b><span class="zhtext">同一餐可能同時滿足吃飽、安全、社交與面子需求。不要把 Maslow 當成「第一層完全滿足才能進入第二層」的固定規則。</span></p>
  <h3 id="diffusion">Diffusion of Innovations · early buyer vs. influential buyer<span class="zh-full" lang="zh-Hant">創新擴散｜早期買家與有影響力的買家不同</span></h3>
  <p>Innovators may accept uncertainty to try new technology early; other buyers may wait for reliability, a larger product ecosystem or lower prices. The professor's software-upgrade and new media-format stories highlight <b>compatibility risk and waiting costs</b>, not a universal adoption schedule.<span class="zh-full" lang="zh-Hant">創新者可能為了提早試用新科技而接受不確定性，其他買家則可能等待可靠性、更多配套或較低價格。教授的軟體升級與新媒體格式故事，重點在相容性風險與等待成本，不是普遍適用的採用時間表。</span></p>
  <p><b>Innovator ≠ Opinion Leader.</b> Someone who buys first does not necessarily persuade others. To market a new product, ask both who will try it and whose recommendation other customers trust.<span class="zh-full" lang="zh-Hant">創新者不等於意見領袖。最先買的人不一定能說服別人。推廣新產品時，要分別問誰會試用，以及其他顧客信任誰的推薦。</span></p>
  
- <h2 id="coffee">6. Coffee choice: which benefit matters <em>in this situation</em>?<span class="zh-full" lang="zh-Hant">6. 咖啡選擇：在這個情境下哪一項利益最重要？</span></h2>
+ 
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Two consumers buy the same bottled water, one for ordinary hydration and another for infant formula. How might involvement and perceived risk differ, and why should price alone not determine the prediction?<span class="zh-full" lang="zh-Hant">兩位顧客買同款瓶裝水，一位用於日常補水，一位用於沖泡嬰兒配方奶。兩人的涉入程度與知覺風險可能有何不同？為什麼不能只用價格預測？</span></p></aside>
+
+<h2 id="coffee">6. Coffee choice: which benefit matters <em>in this situation</em>?<span class="zh-full" lang="zh-Hant">6. 咖啡選擇：在這個情境下哪一項利益最重要？</span></h2>
  <p class="sub">Utilitarian benefits <span class="zh">功能性價值</span>, hedonic/social benefits <span class="zh">情感／體驗價值</span>, taste and convenience can all coexist. Their importance changes with the purchase occasion.<span class="zh-full" lang="zh-Hant">實用利益、享樂／社交利益、口味與便利可以同時存在，重要性則隨購買場合而改變。</span></p>
- <div class="m-widget" id="coffeeWidget"><h4>Interactive · Change the coffee context<span class="zh-full" lang="zh-Hant">互動練習｜切換咖啡購買情境</span></h4><p class="mw-sub">A teaching model of relative decision weights — <b>not</b> measured preferences from class research.<span class="zh-full" lang="zh-Hant">這是相對決策權重的教學模型，不是課堂研究測得的偏好。</span></p>
+ <div class="m-widget" id="coffeeWidget"><h4>Interactive · Change the coffee context<span class="zh-full" lang="zh-Hant">互動練習｜切換咖啡購買情境</span></h4><p class="mw-sub">A teaching model of relative decision weights, <b>not</b> measured preferences from class research.<span class="zh-full" lang="zh-Hant">這是相對決策權重的教學模型，不是課堂研究測得的偏好。</span></p>
  <div class="m-pillrow" id="coffeeModes" role="group" aria-label="Coffee contexts"><button type="button" data-context="commute" aria-pressed="true">Rushing to work<span class="zh-full" lang="zh-Hant">趕著上班</span></button><button type="button" data-context="friends" aria-pressed="false">Meeting friends<span class="zh-full" lang="zh-Hant">與朋友聚會</span></button><button type="button" data-context="home" aria-pressed="false">Brewing at home<span class="zh-full" lang="zh-Hant">在家沖泡</span></button></div>
  <div id="coffeeBars"></div><div class="m-answer" aria-live="polite"><b id="coffeeTop"></b><p id="coffeeMessage"></p></div><p class="m-interact-note">The numbers are illustrative weights summing to 100, not claims about Thai consumers or a particular brand. Test the hypothesis in Session 3 research.<span class="zh-full" lang="zh-Hant">這些數字是加總為 100 的示範權重，不是對泰國消費者或特定品牌的實測主張。可以用第 3 堂的研究方法檢驗假設。</span></p></div>
  <h3 id="message">Creative message vs. measurable marketing outcome<span class="zh-full" lang="zh-Hant">廣告創意訊息與可衡量的行銷成果</span></h3>
  <p>In class, the Xcite mint example shows how a memorable creative concept can attract attention but fail to connect clearly to the brand. The same goes for premium and private-label bottled water: perceived cleanliness, convenience, taste, trust, status and packaging matter differently by customer and occasion.<span class="zh-full" lang="zh-Hant">課堂的 Xcite 薄荷糖例子顯示：令人難忘的創意可能吸引注意，卻無法清楚連結品牌。高價與自有品牌瓶裝水也一樣；潔淨、便利、口味、信任、地位與包裝的重要性，會隨顧客及場合而變。</span></p>
  <p class="key">Attention ≠ brand recall ≠ consideration ≠ purchase ≠ profit. Pick the metric that matches the objective.<span class="zh-full" lang="zh-Hant">注意力 ≠ 品牌回想 ≠ 納入考慮 ≠ 購買 ≠ 利潤。選擇符合目標的指標。</span></p>
 
- <h2 id="funnel">7. Brand awareness is not the same as consideration or purchase<span class="zh-full" lang="zh-Hant">7. 品牌知名度不等於納入考慮或購買</span></h2>
+ 
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>The Xcite mint advertisement is memorable, but viewers cannot recall the brand. Which link in the marketing response chain is weak, and what evidence would separate attention from business success?<span class="zh-full" lang="zh-Hant">Xcite 薄荷糖廣告令人印象深刻，但觀眾記不起品牌。行銷反應鏈的哪個環節薄弱？哪些證據能區分注意力與真正的商業成果？</span></p></aside>
+
+<h2 id="funnel">7. Brand awareness is not the same as consideration or purchase<span class="zh-full" lang="zh-Hant">7. 品牌知名度不等於納入考慮或購買</span></h2>
  <p class="sub">This class distinguishes brands the consumer <b>knows</b> (the lecturer's use of “evoked set”) from brands they would actually <b>consider</b>, and then from brands purchased. Other textbooks sometimes define “evoked set” more narrowly.<span class="zh-full" lang="zh-Hant">本課區分顧客知道的品牌（教授所用的 evoked set）、真正願意納入考慮的品牌，以及實際購買的品牌。其他教科書有時對 evoked set 採較狹窄的定義。</span></p>
  <div class="m-widget" id="funnelWidget"><h4>Interactive · Brand-choice funnel<span class="zh-full" lang="zh-Hant">互動練習｜品牌選擇漏斗</span></h4><p class="mw-sub">Start with 100 potential shoppers. Change what share knows the brand, what share of the aware would consider it, and what share of considerers purchase.<span class="zh-full" lang="zh-Hant">從 100 位潛在購物者開始，調整知道品牌的比例、知悉者中願意納入考慮的比例，以及考慮者中實際購買的比例。</span></p>
  <div class="m-grid"><div id="funnelSliders"><div class="m-control"><label for="fAwareness"><span>Awareness among 100 shoppers <span class="zh-full" lang="zh-Hant">100 位購物者中的品牌知名率</span></span><output id="fAwareOut"></output></label><input id="fAwareness" type="range" min="0" max="100" value="80" step="1"></div>
@@ -677,7 +711,10 @@ body.show-zh .score .down b:after{content:'惡化'}
  <details class="m-reveal"><summary>Case A · A consumer says: “I buy premium water because it tastes better.” What can we conclude?<span class="zh-full" lang="zh-Hant">案例 A｜消費者說：「我買高價水，因為比較好喝。」我們能得出什麼結論？</span></summary><p><b>Evidence:</b> the consumer reports a taste preference. <b>Not yet proven:</b> that taste objectively explains the premium purchase or predicts other consumers. A blind taste test and an occasion-specific choice study could help distinguish sensory preference from branding and social context.<span class="zh-full" lang="zh-Hant">證據是消費者自述口味偏好；尚未證明口味能客觀解釋高價購買，或預測其他消費者。盲飲測試與特定場合的選擇研究，有助區分感官偏好、品牌與社交情境的影響。</span></p></details>
  <details class="m-reveal"><summary>Case B · A bottled-water advertisement gets lots of views. Did the campaign succeed?<span class="zh-full" lang="zh-Hant">案例 B｜瓶裝水廣告獲得大量觀看，活動成功了嗎？</span></summary><p><b>It depends on the objective.</b> Views may support an awareness goal, but cannot by themselves prove brand attribution, consideration or sales. Choose the outcome first, then the relevant metric; compare results with a suitable baseline if making a causal claim.<span class="zh-full" lang="zh-Hant">取決於目標。觀看可能支持知名度目標，但不能單獨證明品牌歸因、納入考慮或銷售。先選成果，再選相關指標；若要主張因果，需搭配適當基準比較。</span></p></details>
  
- <h2 id="traps">8. Do not mix these up · Flip-to-check cards<span class="zh-full" lang="zh-Hant">8. 別混淆這些概念｜翻卡檢查</span></h2>
+ 
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A customer chooses premium bottled water for an important social occasion but buys private-label water at home. Why is neither choice proof of superior physical quality? What evidence would reveal the different benefits valued?<span class="zh-full" lang="zh-Hant">顧客在重要社交場合選高價瓶裝水，在家卻買通路自有品牌。為什麼這兩種選擇都無法證明哪種水的物理品質較好？什麼證據能找出情境中的不同價值？</span></p></aside>
+
+<h2 id="traps">8. Do not mix these up · Flip-to-check cards<span class="zh-full" lang="zh-Hant">8. 別混淆這些概念｜翻卡檢查</span></h2>
  <p class="sub">Click a misconception to reveal the correct distinction. Use these as retrieval practice before opening the answers.<span class="zh-full" lang="zh-Hant">點選常見誤解，查看正確區別。先自行回想，再揭示答案。</span></p>
  <div class="flash-grid" id="flipCards"></div>
 
@@ -813,4 +850,18 @@ set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
 const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
 if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
 })();
-</script></body></html>
+</script><script>
+(function(){
+const $=(id)=>document.getElementById(id);
+// Practice mode does not affect the teaching tools or cold-call answers.
+ const practiceToggle=$('practiceToggle'),practiceState=$('practiceState');
+ const practicePrompts=[...document.querySelectorAll('.practice-prompt')];
+ practiceToggle.addEventListener('click',()=>{
+   const isOn=practiceToggle.getAttribute('aria-pressed')!=='true';
+   practiceToggle.setAttribute('aria-pressed',String(isOn));
+   practiceState.innerHTML=isOn?'On':'Off';practiceToggle.querySelector(':scope > .zh-full').innerHTML='練習模式：'+(isOn?'開啟':'關閉');
+   practicePrompts.forEach(prompt=>{prompt.hidden=!isOn});
+ });
+})();
+</script>
+</body></html>

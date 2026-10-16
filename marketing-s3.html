@@ -387,6 +387,18 @@ blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); 
 }
 .ladder2 > i { font-size: .8rem; font-weight: 500; }
 
+
+/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
 </style><style>
 /* Full Chinese support is additive; existing short Chinese aides remain. */
 body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
@@ -450,6 +462,7 @@ body.show-zh .cmp-sel select{max-width:100%}
   <p class="kick">Strategic Marketing Management · Session 3<span class="zh-full" lang="zh-Hant">策略行銷管理・第 3 堂</span></p>
   <h1>Marketing Research<span class="zh-full" lang="zh-Hant">行銷研究</span></h1>
   <p class="lead">Research reduces uncertainty; it does not eliminate it. Start from the management decision, choose the method the question needs, study the right people, and never claim more than the evidence supports.<span class="zh-full" lang="zh-Hant">研究能減少不確定性，卻不能消除它。從管理決策出發，依問題選方法，研究對的人，並且不做超出證據支持範圍的主張。</span></p>
+<div class="practice-toolbar"><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div>
 </div>
 
 <h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
@@ -502,6 +515,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p>No time or money; cost above expected value; the result will not change the decision; the decision is already made; the information already exists; timing makes it irrelevant; or there is no clear question.<span class="zh-full" lang="zh-Hant">沒有時間或預算；成本高於預期價值；結果不會改變決策；決策已定；資訊已存在；時機使結果失去意義；或根本沒有清楚問題。</span></p>
 
 <!-- 3 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A manager wants to launch a survey, but the result cannot change a product decision already made. What is wrong with the research plan, and when might skipping research be more rational?<span class="zh-full" lang="zh-Hant">主管打算做問卷，但結果無法改變早已決定的產品策略。這項研究計畫有什麼問題？何時不做研究反而更合理？</span></p></aside>
+
 <h2 id="process">3. Research process and evidence sources<span class="zh-full" lang="zh-Hant">3. 研究流程與證據來源</span></h2>
 <div class="flow"><span>Problem identification<span class="zh-full" lang="zh-Hant">辨識問題</span></span><i>→</i><span>Research design<span class="zh-full" lang="zh-Hant">研究設計</span></span><i>→</i><span>Method<span class="zh-full" lang="zh-Hant">方法</span></span><i>→</i><span>Sampling<span class="zh-full" lang="zh-Hant">抽樣</span></span><i>→</i><span>Data collection<span class="zh-full" lang="zh-Hant">資料蒐集</span></span><i>→</i><span>Analysis<span class="zh-full" lang="zh-Hant">分析</span></span><i>→</i><span>Report<span class="zh-full" lang="zh-Hant">報告</span></span><i>→</i><span>Follow-up<span class="zh-full" lang="zh-Hant">後續追蹤</span></span></div>
 <p>Three parties are involved: the company writes a research brief, the research firm proposes and runs the study, and respondents provide data. A vague brief can produce research that is technically correct but useless to management.<span class="zh-full" lang="zh-Hant">涉及三方：公司撰寫研究需求簡報，研究公司提案並執行，受訪者提供資料。模糊的需求簡報可能產生技術上正確，卻對管理毫無用處的研究。</span></p>
@@ -511,6 +527,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 </div>
 
 <!-- 4 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A research firm delivers a polished survey to answer the vague brief “Understand customers.” Why could technically correct findings still be useless for management? Rewrite the brief as a decision-linked objective.<span class="zh-full" lang="zh-Hant">研究公司依據模糊的「了解顧客」簡報，完成一份精美問卷。為什麼技術上正確的結果仍可能對管理者無用？請改寫成能連結決策的研究目標。</span></p></aside>
+
 <h2 id="qualquant">4. Qualitative versus quantitative<span class="zh-full" lang="zh-Hant">4. 質性與量化研究</span></h2>
 <p class="sub">Qualitative is for understanding; quantitative is for measurement.<span class="zh-full" lang="zh-Hant">質性幫助理解，量化幫助衡量。</span></p>
 <div class="tbl"><table>
@@ -526,6 +545,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <div data-mk="method"></div>
 
 <!-- 5 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Interviews uncover several reasons customers hesitate to buy an EV. Why does this not tell management how common each barrier is in the target market? What next step could address that gap?<span class="zh-full" lang="zh-Hant">訪談發現顧客猶豫購買電動車的幾種原因。為什麼這還不能告訴主管每種障礙在目標市場有多普遍？下一步可用什麼方法補上缺口？</span></p></aside>
+
 <h2 id="sampling">5. Sampling<span class="zh-full" lang="zh-Hant">5. 抽樣</span></h2>
 <p class="sub">The first sampling question is not "how many?" but "who is the right respondent?"<span class="zh-full" lang="zh-Hant">抽樣首先不是問「多少人」，而是「誰才是正確的受訪者？」</span></p>
 <ul>
@@ -536,6 +558,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p class="key">"We interviewed 100 people, so the results represent Thailand" is wrong. Sample size is not representativeness.<span class="zh-full" lang="zh-Hant">「訪問了 100 人，所以結果代表泰國」是錯的。樣本數不等於代表性。</span></p>
 
 <!-- 6 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A mall survey recruits 300 convenient passersby without checking whether they recently shopped there. Why do a large sample and many responses not establish representative satisfaction findings?<span class="zh-full" lang="zh-Hant">商場問卷方便抽樣了 300 位路人，也沒有確認他們近期是否來購物。為什麼樣本大、回覆多，仍不能證明滿意度結果有代表性？</span></p></aside>
+
 <h2 id="measure">6. From concept to measurement<span class="zh-full" lang="zh-Hant">6. 從概念到衡量</span></h2>
 <h3 id="framework">Conceptual framework (class example)<span class="zh-full" lang="zh-Hant">概念架構（課堂例子）</span></h3>
 <div class="cf">
@@ -557,6 +582,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <div class="targets"><div><svg viewbox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" style="fill:var(--paper);stroke:var(--line)"></circle><circle cx="50" cy="50" r="34" style="fill:var(--tint);stroke:var(--line)"></circle><circle cx="50" cy="50" r="22" style="fill:var(--paper);stroke:var(--line)"></circle><circle cx="50" cy="50" r="10" style="fill:var(--tint);stroke:var(--line)"></circle><circle cx="48" cy="48" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="52" cy="50" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="50" cy="53" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="47" cy="52" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="53" cy="47" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="50" cy="49" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle></svg><b>Reliable and valid<span class="zh-full" lang="zh-Hant">有信度，也有效度</span></b><small>Consistent and on target<span class="zh-full" lang="zh-Hant">結果一致，且對準目標</span></small></div><div><svg viewbox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" style="fill:var(--paper);stroke:var(--line)"></circle><circle cx="50" cy="50" r="34" style="fill:var(--tint);stroke:var(--line)"></circle><circle cx="50" cy="50" r="22" style="fill:var(--paper);stroke:var(--line)"></circle><circle cx="50" cy="50" r="10" style="fill:var(--tint);stroke:var(--line)"></circle><circle cx="70" cy="28" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="74" cy="30" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="72" cy="33" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="69" cy="31" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="75" cy="27" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="72" cy="30" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle></svg><b>Reliable, not valid<span class="zh-full" lang="zh-Hant">有信度，沒有效度</span></b><small>Consistently measures the wrong thing<span class="zh-full" lang="zh-Hant">持續一致地測錯東西</span></small></div><div><svg viewbox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" style="fill:var(--paper);stroke:var(--line)"></circle><circle cx="50" cy="50" r="34" style="fill:var(--tint);stroke:var(--line)"></circle><circle cx="50" cy="50" r="22" style="fill:var(--paper);stroke:var(--line)"></circle><circle cx="50" cy="50" r="10" style="fill:var(--tint);stroke:var(--line)"></circle><circle cx="50" cy="22" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="76" cy="48" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="50" cy="78" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="24" cy="52" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="70" cy="70" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="30" cy="30" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle></svg><b>Valid on average, not reliable<span class="zh-full" lang="zh-Hant">平均而言對準目標，但信度不足</span></b><small>Scattered around the target<span class="zh-full" lang="zh-Hant">結果散布於目標周圍</span></small></div><div><svg viewbox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" style="fill:var(--paper);stroke:var(--line)"></circle><circle cx="50" cy="50" r="34" style="fill:var(--tint);stroke:var(--line)"></circle><circle cx="50" cy="50" r="22" style="fill:var(--paper);stroke:var(--line)"></circle><circle cx="50" cy="50" r="10" style="fill:var(--tint);stroke:var(--line)"></circle><circle cx="22" cy="62" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="40" cy="82" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="30" cy="72" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="18" cy="80" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="44" cy="66" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle><circle cx="28" cy="88" r="3.2" style="fill:var(--accent);stroke:#fff;stroke-width:1"></circle></svg><b>Neither<span class="zh-full" lang="zh-Hant">兩者皆無</span></b><small>Scattered and off target<span class="zh-full" lang="zh-Hant">結果分散，且偏離目標</span></small></div></div>
 
 <!-- 7 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A questionnaire measures “healthy choices” only by asking whether customers prefer low-fat food, with highly consistent answers. Why might the measure still lack validity? What would you check?<span class="zh-full" lang="zh-Hant">問卷只靠「是否偏好低脂食物」衡量健康選擇，且回答非常一致。為什麼這項衡量仍可能缺乏效度？應再檢查什麼？</span></p></aside>
+
 <h2 id="bias">7. Can we trust what people say?<span class="zh-full" lang="zh-Hant">7. 能相信人們說的話嗎？</span></h2>
 <p class="sub">What consumers say may not fully explain what they do.<span class="zh-full" lang="zh-Hant">消費者說的話，不一定能完整解釋實際行為。</span></p>
 <div class="tbl"><table>
@@ -571,6 +599,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p>Garbage in, garbage out: statistics cannot rescue a bad question. When possible, combine stated attitudes with observed behavior or transaction data.<span class="zh-full" lang="zh-Hant">垃圾進，垃圾出：統計救不了問錯的問題。可行時，結合自述態度、觀察到的行為與交易資料。</span></p>
 
 <!-- 8 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Survey respondents say they care about sustainability, but transaction records show frequent purchases of the cheapest option. What can be concluded, and what competing explanations should be tested before calling the respondents dishonest?<span class="zh-full" lang="zh-Hant">受訪者表示重視永續，但交易紀錄顯示他們經常選最便宜的商品。現在能推論什麼？在認定受訪者不誠實之前，還有哪些其他解釋要檢查？</span></p></aside>
+
 <h2 id="methods">8. Survey, observation and experiment<span class="zh-full" lang="zh-Hant">8. 問卷、觀察與實驗</span></h2>
 <div class="three">
   <div class="tcard"><b>Survey<span class="zh-full" lang="zh-Hant">問卷調查</span></b><p>Door-to-door, mall intercept, phone, online, mobile, paper. No single best mode: choose by respondent, complexity, cost, speed and control.<span class="zh-full" lang="zh-Hant">到府、商場攔訪、電話、線上、手機與紙本。沒有唯一最佳方式，要依受訪者、複雜度、成本、速度與控制程度選擇。</span></p></div>
@@ -600,6 +631,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p class="key">"63% satisfied" is a result, not an analysis. Ask which group is lower, which attribute matters most, what changed, what explains it, and what evidence is still missing.<span class="zh-full" lang="zh-Hant">「63% 滿意」是結果，不是分析。要問哪一群較低、什麼屬性最重要、哪些地方改變、如何解釋，以及還缺什麼證據。</span></p>
 
 <!-- 10 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Cluster analysis groups consumers who show similar patterns. Why is a statistical cluster not automatically a useful marketing segment, and what customer and actionability evidence would you need?<span class="zh-full" lang="zh-Hant">集群分析把行為模式相似的顧客分成群組。為什麼統計群組不會自動成為有用的行銷區隔？還需要哪些顧客證據及可採取行動的依據？</span></p></aside>
+
 <h2 id="traps">10. Do not mix these up<span class="zh-full" lang="zh-Hant">10. 別混淆這些概念</span></h2>
 <div class="traps">
   <div><s>A business problem is a research question.<span class="zh-full" lang="zh-Hant">企業問題就是研究問題。</span></s><p>The problem is a symptom; the question targets one uncertainty.<span class="zh-full" lang="zh-Hant">企業問題是症狀；研究問題聚焦一個不確定之處。</span></p></div>
@@ -792,4 +826,18 @@ set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
 const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
 if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
 })();
-</script></body></html>
+</script><script>
+(function(){
+const $=(id)=>document.getElementById(id);
+// Practice mode does not affect the teaching tools or cold-call answers.
+ const practiceToggle=$('practiceToggle'),practiceState=$('practiceState');
+ const practicePrompts=[...document.querySelectorAll('.practice-prompt')];
+ practiceToggle.addEventListener('click',()=>{
+   const isOn=practiceToggle.getAttribute('aria-pressed')!=='true';
+   practiceToggle.setAttribute('aria-pressed',String(isOn));
+   practiceState.innerHTML=isOn?'On':'Off';practiceToggle.querySelector(':scope > .zh-full').innerHTML='練習模式：'+(isOn?'開啟':'關閉');
+   practicePrompts.forEach(prompt=>{prompt.hidden=!isOn});
+ });
+})();
+</script>
+</body></html>

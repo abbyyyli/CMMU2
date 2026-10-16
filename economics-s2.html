@@ -219,6 +219,18 @@ table.oil th, table.oil td { text-align: right; padding: 6px 8px; white-space: n
 table.oil th:first-child, table.oil td:first-child { text-align: left; font-weight: 700; }
 table.oil td.hi { background: var(--tint); color: var(--accent-ink); font-weight: 700; }
 
+
+/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
 </style><style>
 /* Full Chinese support is additive; existing short Chinese aides remain. */
 body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
@@ -288,6 +300,7 @@ body.show-zh .cmp-sel select{max-width:100%}
     <span><i class="sw a-prof"></i>Revenue gained<span class="zh-full" lang="zh-Hant">增加的營收</span></span>
     <span><i class="sw a-loss"></i>Revenue lost<span class="zh-full" lang="zh-Hant">減少的營收</span></span>
   </div>
+<div class="practice-toolbar"><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div>
 </div>
 
 <h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
@@ -307,6 +320,8 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p class="key">Both curves slope down, so the direction is the same. Elasticity is about responsiveness, not direction.<span class="zh-full" lang="zh-Hant">兩條曲線都向下，方向相同。彈性關乎反應程度，不是方向。</span></p>
 
 <!-- 2 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Two markets face the same percentage price increase. Quantity falls sharply in one market but barely changes in the other. Which market is more price elastic? What additional information would identify whether each is elastic or inelastic?<span class="zh-full" lang="zh-Hant">兩個市場的價格上漲百分比相同，但一個市場的需求量大幅下降，另一個只小幅下降。哪個市場的價格彈性較大？還需要什麼資訊，才能判斷各自屬於富彈性或缺乏彈性？</span></p></aside>
+
 <h2 id="determinants">2. What makes demand more elastic?<span class="zh-full" lang="zh-Hant">2. 什麼讓需求更有彈性？</span></h2>
 <p class="sub">One question covers all five factors: if the price rises, how easily can consumers change their behavior?<span class="zh-full" lang="zh-Hant">五個因素都可用同一問題理解：價格上升時，消費者有多容易改變行為？</span></p>
 <div class="tbl"><table>
@@ -336,6 +351,8 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p>Elasticity is not a permanent label on a product. It depends on substitutes, urgency, time and the consumer.<span class="zh-full" lang="zh-Hant">彈性不是貼在產品上的永久標籤；它取決於替代品、急迫性、時間與消費者。</span></p>
 
 <!-- 3 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Why might ride-hailing demand be less elastic during heavy rain late at night than on a relaxed weekend trip to a café? Identify the substitutes and time constraints.<span class="zh-full" lang="zh-Hant">為何深夜大雨時的叫車需求，可能比週末悠閒前往咖啡廳時更缺乏彈性？請從替代方案與時間限制說明。</span></p></aside>
+
 <h2 id="revenue">3. Elasticity and total revenue<span class="zh-full" lang="zh-Hant">3. 彈性與總營收</span></h2>
 <p class="sub">Total revenue = P × Q. A price change creates a price effect and a quantity effect; elasticity tells you which one is stronger.<span class="zh-full" lang="zh-Hant">總營收＝P × Q。價格變動產生價格效果與數量效果；彈性告訴你哪個效果較強。</span></p>
 <div class="tbl"><table>
@@ -352,6 +369,8 @@ body.show-zh .cmp-sel select{max-width:100%}
 </ul>
 
 <!-- 4 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>If a firm raises price when demand is inelastic, total revenue may rise. Why does this fact alone not establish that the decision increases economic profit?<span class="zh-full" lang="zh-Hant">當需求缺乏彈性時，企業漲價可能提高總營收。為什麼這個事實仍不足以證明該決策會提高經濟利潤？</span></p></aside>
+
 <h2 id="supply">4. Elasticity of supply<span class="zh-full" lang="zh-Hant">4. 供給彈性</span></h2>
 <p class="sub">How responsive is quantity supplied to a price change? Ask: how easily can production rise at low cost?<span class="zh-full" lang="zh-Hant">供給量對價格變動的反應程度如何？要問：以低成本增加生產，有多容易？</span></p>
 <div class="pair">
@@ -369,6 +388,8 @@ body.show-zh .cmp-sel select{max-width:100%}
 </tbody></table></div>
 
 <!-- 5 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Why can the supply of an original Picasso painting barely respond to price while toothpick production can adjust much more? What role does the time horizon play?<span class="zh-full" lang="zh-Hant">為何畢卡索真跡的供給幾乎無法隨價格增加，而牙籤產量卻比較容易調整？時間長短在其中扮演什麼角色？</span></p></aside>
+
 <h2 id="shifts">5. When a curve shifts, which moves more?<span class="zh-full" lang="zh-Hant">5. 曲線移動時，哪個變動較大？</span></h2>
 <p class="sub">The elasticity of the curve that does <b>not</b> move decides whether the adjustment shows up in price or in quantity.<span class="zh-full" lang="zh-Hant">沒有移動的那條曲線，其彈性決定調整主要反映在價格還是數量。</span></p>
 <div data-widget="shiftel"></div>
@@ -382,6 +403,8 @@ body.show-zh .cmp-sel select{max-width:100%}
 </tbody></table></div>
 
 <!-- 6 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A program reduces food waste and therefore food demand. Compare the effects on market price and quantity when food supply is relatively elastic versus relatively inelastic.<span class="zh-full" lang="zh-Hant">減少食物浪費的計畫使市場食物需求下降。若食物供給相對有彈性或相對缺乏彈性，市場價格與數量的調整幅度會有何不同？</span></p></aside>
+
 <h2 id="cases">6. The cases<span class="zh-full" lang="zh-Hant">6. 案例</span></h2>
 
 <h3 id="food-waste">Ending food waste (class slides)<span class="zh-full" lang="zh-Hant">終結食物浪費（課堂投影片）</span></h3>
@@ -404,6 +427,8 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p>A local area is linked to a much larger market, so supply is close to perfectly elastic. Guns bought back are replaced from outside at the same price, so the number of guns in use barely changes.<span class="zh-full" lang="zh-Hant">地方市場連結到更大的市場，供給因此接近完全有彈性。被回購的槍枝由外地以相同價格補入，使用中的槍枝數量幾乎不變。</span></p>
 
 <!-- 7 -->
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>In the drug enforcement example, supply falls while demand is inelastic. Why might seller revenue rise even as quantity falls? What does this reveal about using quantity alone to judge the effect?<span class="zh-full" lang="zh-Hant">在毒品取締的例子中，供給下降，而需求缺乏彈性。為什麼即使交易量下降，賣方營收仍可能增加？這顯示只看數量判斷政策效果有什麼問題？</span></p></aside>
+
 <h2 id="traps">7. Common mistakes<span class="zh-full" lang="zh-Hant">7. 常見錯誤</span></h2>
 <div class="traps">
   <div><s>The law of demand and elasticity are the same thing.<span class="zh-full" lang="zh-Hant">需求法則與彈性是同一件事。</span></s><p>One gives direction, the other gives magnitude.<span class="zh-full" lang="zh-Hant">前者說明方向，後者說明變動幅度。</span></p></div>
@@ -698,4 +723,20 @@ set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
 const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
 if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
 })();
-</script></body></html>
+</script><script>
+'use strict';
+(function(){
+  const $=(id)=>document.getElementById(id);
+
+ // Practice mode does not affect the teaching tools or cold-call answers.
+ const practiceToggle=$('practiceToggle'),practiceState=$('practiceState');
+ const practicePrompts=[...document.querySelectorAll('.practice-prompt')];
+ practiceToggle.addEventListener('click',()=>{
+   const isOn=practiceToggle.getAttribute('aria-pressed')!=='true';
+   practiceToggle.setAttribute('aria-pressed',String(isOn));
+   practiceState.innerHTML=isOn?'On':'Off';practiceToggle.querySelector(':scope > .zh-full').innerHTML='練習模式：'+(isOn?'開啟':'關閉');
+   practicePrompts.forEach(prompt=>{prompt.hidden=!isOn});
+ });
+})();
+</script>
+</body></html>

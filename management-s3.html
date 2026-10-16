@@ -385,6 +385,18 @@ body.show-zh .cmp-sel select{max-width:100%}
 .topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 @media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
 @media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+
+/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
 </style><script>
 /* Bilingual content helpers: no text dictionary, observer or page-wide rescan. */
 (function(){
@@ -419,6 +431,7 @@ body.show-zh .cmp-sel select{max-width:100%}
   <p class="kick">Managing People in Organizations · Session 3<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 3 堂</span></p>
   <h1>Motivation and Human Behavior<span class="zh-full" lang="zh-Hant">動機與人類行為</span></h1>
   <p class="lead">Before fixing a motivation problem, decide what kind of problem it is: unmet needs, management style, or the goal system. Then choose the one framework that best explains the evidence.<span class="zh-full" lang="zh-Hant">處理動機問題前，先判斷問題屬於未滿足的需求、管理方式，還是目標制度，再選出最能解釋證據的一個架構。</span></p>
+<div class="practice-toolbar"><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div>
 </div>
 
 <h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
@@ -438,6 +451,9 @@ body.show-zh .cmp-sel select{max-width:100%}
   <div><b>Extrinsic<span class="zh-full" lang="zh-Hant">外在動機</span></b> <span class="zh">外在</span><p>Comes from outside rewards or consequences: pay, bonus, promotion, punishment. A salesperson works harder for commission.<span class="zh-full" lang="zh-Hant">來自外部獎勵或後果：薪資、獎金、晉升與懲罰，例如業務為佣金而更加努力。</span></p></div>
 </div>
 <p class="key">They are not either-or. The useful question is what currently drives behavior, and whether it pushes effort toward the right outcome.<span class="zh-full" lang="zh-Hant">兩者不是非此即彼。真正有用的問題是：目前什麼在驅動行為？它是否把努力導向正確成果？</span></p>
+
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A salesperson enjoys negotiation and also earns a commission. Why is an either-or intrinsic/extrinsic label incomplete? Which behavior or outcome would you examine to assess whether the incentive is helping?<span class="zh-full" lang="zh-Hant">業務員既享受談判，也能賺取佣金。為什麼只能二選一的內在／外在動機分類不完整？應檢查哪些行為或結果，才能判斷誘因是否有幫助？</span></p></aside>
 
 <!-- 2 -->
 <h2 id="needs">2. Needs theories<span class="zh-full" lang="zh-Hant">2. 需求理論</span></h2>
@@ -470,6 +486,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <div data-mw="herzberg"></div>
 <p>The lecture links this to Maslow: hygiene needs form the foundation and must be met first. Motivators without that base may not work, and hygiene alone will not create high motivation.<span class="zh-full" lang="zh-Hant">課堂將它與 Maslow 連結：保健需求構成基礎，必須先滿足。缺少基礎時，激勵因素可能無效；但只有保健因素，也不會創造高度動機。</span></p>
 
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>An employee is denied promotion and later requests higher pay. Which ERG mechanism might explain the shift? Why is blocked promotion without evidence of a changed priority not enough to confirm that mechanism?<span class="zh-full" lang="zh-Hant">員工升遷受阻後開始要求加薪。哪項 ERG 機制可能解釋這個轉變？為什麼只有升遷受阻、沒有重視程度轉變的證據，還不能確認該機制？</span></p></aside>
+
 <!-- 3 -->
 <h2 id="xy">3. Theory X and Theory Y<span class="zh-full" lang="zh-Hant">3. X 理論與 Y 理論</span></h2>
 <p class="sub">These describe a manager's assumptions <span class="zh">假設</span> about workers, and those assumptions shape the management style.<span class="zh-full" lang="zh-Hant">兩者描述主管對員工的假設，而這些假設會塑造管理方式。</span></p>
@@ -485,6 +504,9 @@ body.show-zh .cmp-sel select{max-width:100%}
   <span>Manager assumes staff cannot be trusted<span class="zh-full" lang="zh-Hant">主管認為員工不值得信任</span></span><i>→</i><span>Close control, micromanagement<span class="zh-full" lang="zh-Hant">嚴密控制與微觀管理</span></span><i>→</i><span>Staff lose initiative, act passively<span class="zh-full" lang="zh-Hant">員工失去主動性，變得被動</span></span><i>→</i><span>Manager feels proven right<span class="zh-full" lang="zh-Hant">主管覺得自己的假設得到驗證</span></span><i class="back">↺</i>
 </div>
 <p class="key">Theory Y is not always better. Ask whether the style fits the people and the task. New staff on high-risk work may need structure; experienced experts under micromanagement waste their ability.<span class="zh-full" lang="zh-Hant">Y 理論不一定永遠較好。要問管理方式是否適合人員與任務。高風險工作的新手可能需要結構；有經驗的專家若被過度控制，能力反而遭到浪費。</span></p>
+
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A new employee performs a hazardous task under close supervision, while an expert is micromanaged on routine work. Why might identical control be appropriate in one case but counterproductive in the other? Distinguish safety requirements from Theory X assumptions.<span class="zh-full" lang="zh-Hant">新員工執行高風險任務時受到密切督導；資深專家做例行工作卻被事事緊盯。為什麼同樣的控制可能在一種情況合理、另一種有害？請區分安全需求與 Theory X 假設。</span></p></aside>
 
 <!-- 4 -->
 <h2 id="goals">4. Goal setting and MBO<span class="zh-full" lang="zh-Hant">4. 目標設定與 MBO</span></h2>
@@ -509,6 +531,9 @@ body.show-zh .cmp-sel select{max-width:100%}
   <li><b>Hard-to-measure outcomes get ignored</b>: trust, quality, innovation, long-term customer relationships.<span class="zh-full" lang="zh-Hant">難以衡量的成果被忽略：信任、品質、創新與長期顧客關係。</span></li>
 </ol>
 <div data-mw="kpi"></div>
+
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A team meets its individual activity targets while customer outcomes deteriorate. What is misaligned in the organization-to-individual goal cascade, and what measures beyond activity counts would you check?<span class="zh-full" lang="zh-Hant">團隊達到個人活動量目標，顧客結果卻惡化。從組織到個人的目標連結哪裡可能不一致？除了活動次數，還應檢查哪些指標？</span></p></aside>
 
 <!-- 5 -->
 <h2 id="compare">5. Compare the frameworks<span class="zh-full" lang="zh-Hant">5. 比較各架構</span></h2>
@@ -544,6 +569,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 </div>
 <p><b>Conclusion: two motivation issues exist.</b><span class="zh-full" lang="zh-Hant">結論：存在兩項動機議題。</span></p>
 
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Company X pays above the industry average and reports no accidents, but employees have few opportunities to build relationships. Write one Maslow-based issue, distinguish it from the visible symptom and identify one important fact not established by the case.<span class="zh-full" lang="zh-Hant">Company X 薪資高於業界、沒有事故，但員工缺乏建立關係的機會。請寫出一個以 Maslow 分析的核心問題，將它與表面症狀分開，並指出個案尚未證實的一項重要事實。</span></p></aside>
+
 <!-- 7 -->
 <h2 id="lms">7. Lee Medical Supply through each lens<span class="zh-full" lang="zh-Hant">7. 用不同架構分析 Lee Medical Supply</span></h2>
 <p class="sub">One company, several valid issues. Each framework asks a different question of the same facts.<span class="zh-full" lang="zh-Hant">同一家公司可以有多項成立的議題。不同架構對同樣事實提出不同問題。</span></p>
@@ -557,6 +585,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p class="hint"><b>證據</b>CEO 懷疑員工「不敢或不想提意見」只是推測，不是員工證詞。寫 issue 時分清楚 direct evidence、reasonable inference 和證據不足的部分。</p>
 <p class="note-small">Class activity: four teams, one framework each (Maslow, goal setting, Theory X/Y, Herzberg). Identify motivation issues only; no recommendations yet.<span class="zh-full" lang="zh-Hant">課堂活動：四組各選一個架構（Maslow、目標設定、X／Y 理論、Herzberg）。只辨識動機議題，暫時不提出建議。</span></p>
 <p><a class="cta" href="management-lms.html">Open the full Lee Medical Supply case page →</a><span class="zh-full" lang="zh-Hant">開啟完整 Lee Medical Supply 個案頁 →</span></p>
+
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Lee Medical Supply improved financial performance while losing strong employees and weakening product development. Which framework would you use to examine the mismatch between financial targets and broader outcomes? What evidence prevents treating pay as the only issue?<span class="zh-full" lang="zh-Hant">Lee Medical Supply 財務表現改善，卻流失優秀員工、新產品開發也變弱。你會用哪個架構檢查財務目標與整體成果的錯位？哪些證據能說明薪資不是唯一問題？</span></p></aside>
 
 <!-- 8 -->
 <h2 id="traps">8. Common mistakes<span class="zh-full" lang="zh-Hant">8. 常見錯誤</span></h2>
@@ -602,6 +633,21 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p class="note-small">Click an answer to reveal it.<span class="zh-full" lang="zh-Hant">點擊答案即可揭示。</span></p>
 </article></main>
 </div>
+
+<script>
+(function(){
+const $ = (id) => document.getElementById(id);
+// Practice mode does not affect the teaching tools or cold-call answers.
+ const practiceToggle=$('practiceToggle'),practiceState=$('practiceState');
+ const practicePrompts=[...document.querySelectorAll('.practice-prompt')];
+ practiceToggle.addEventListener('click',()=>{
+   const isOn=practiceToggle.getAttribute('aria-pressed')!=='true';
+   practiceToggle.setAttribute('aria-pressed',String(isOn));
+   practiceState.innerHTML=isOn?'On':'Off';practiceToggle.querySelector(':scope > .zh-full').innerHTML='練習模式：'+(isOn?'開啟':'關閉');
+   practicePrompts.forEach(prompt=>{prompt.hidden=!isOn});
+ });
+})();
+</script>
 
 <script>/* Management interactive components: Herzberg scale, KPI trap, framework comparator, LMS lens. */
 (function () {

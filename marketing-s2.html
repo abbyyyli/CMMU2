@@ -387,6 +387,18 @@ blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); 
 }
 .ladder2 > i { font-size: .8rem; font-weight: 500; }
 
+
+/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
 </style><style>
 /* Full Chinese support is additive; existing short Chinese aides remain. */
 body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
@@ -450,6 +462,7 @@ body.show-zh .cmp-sel select{max-width:100%}
   <p class="kick">Strategic Marketing Management · Session 2<span class="zh-full" lang="zh-Hant">策略行銷管理・第 2 堂</span></p>
   <h1>CRM, Customer Data and Marketing Metrics<span class="zh-full" lang="zh-Hant">顧客關係管理、顧客資料與行銷指標</span></h1>
   <p class="lead">More data is not better insight. Turn customer interactions into useful information, use it to improve relationships and experience, and test whether actions change behavior and create economic value.<span class="zh-full" lang="zh-Hant">更多資料不等於更好的洞察。把顧客互動轉成有用資訊，據以改善關係與體驗，再檢驗行動是否改變行為並創造經濟價值。</span></p>
+<div class="practice-toolbar"><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div>
 </div>
 
 <h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
@@ -474,6 +487,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p class="key">An expensive customer to acquire is worth it only if the relationship lasts long enough to repay the cost. Retention is not the goal for every customer at any cost.<span class="zh-full" lang="zh-Hant">獲客成本高，只有在關係維持夠久、能回收成本時才值得。留客不代表對每位顧客都要不計代價。</span></p>
 
 <!-- 2 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A firm acquired many new customers but most left after one purchase. Why could acquisition growth coexist with weak relationship economics? What would you examine beyond first-purchase revenue?<span class="zh-full" lang="zh-Hant">公司取得許多新顧客，但大多只買一次就流失。為什麼獲客成長可能同時伴隨不佳的顧客關係經濟效益？除了首購營收，還要檢查什麼？</span></p></aside>
+
 <h2 id="satisfaction">2. Satisfaction, importance and experience<span class="zh-full" lang="zh-Hant">2. 滿意度、重要性與體驗</span></h2>
 <p class="sub">The lowest satisfaction score is not automatically the top priority. Weight it by how much the attribute matters.<span class="zh-full" lang="zh-Hant">滿意度最低的項目不一定最優先。必須依該屬性的重要程度加權判斷。</span></p>
 <div class="tbl"><table>
@@ -483,7 +499,7 @@ body.show-zh .cmp-sel select{max-width:100%}
 <tr><td>Coffee taste<span class="zh-full" lang="zh-Hant">咖啡口味</span></td><td>7/10</td><td>10/10</td><td>Examine first<span class="zh-full" lang="zh-Hant">優先檢查</span></td></tr>
 </tbody></table></div>
 <div data-mk="satimp"></div>
-<p class="note-small">Queue time and Wi-Fi are added examples. The quadrant view is a standard importance-performance supplement.<span class="zh-full" lang="zh-Hant">排隊時間與 Wi-Fi 是補充例子；四象限圖則是標準的重要性—績效分析補充。</span></p>
+<p class="note-small">Queue time and Wi-Fi are added examples. The quadrant view is a standard importance-performance supplement.<span class="zh-full" lang="zh-Hant">排隊時間與 Wi-Fi 是補充例子；四象限圖則是標準的重要性與績效分析補充。</span></p>
 <h3 id="hygiene">Hygiene versus motivators<span class="zh-full" lang="zh-Hant">保健因素與激勵因素</span></h3>
 <div class="pair">
   <div><b>Must-have (hygiene)<span class="zh-full" lang="zh-Hant">必備項目（保健因素）</span></b><p>Correct order, cleanliness, working payment, no defects. Failure creates dissatisfaction; success only meets expectations.<span class="zh-full" lang="zh-Hant">訂單正確、環境清潔、付款正常、沒有瑕疵。失敗會造成不滿；做好只是達到基本期待。</span></p></div>
@@ -492,6 +508,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p class="key">Fix serious hygiene failures first, then add experience enhancers. Customer experience management means learning fast enough to respond while the problem still matters.<span class="zh-full" lang="zh-Hant">先修正嚴重的基本服務缺失，再增加體驗亮點。顧客體驗管理需要及時學習，在問題仍有影響時就能回應。</span></p>
 
 <!-- 3 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A café has low satisfaction with its music but only moderate satisfaction with coffee taste. Why might improving taste have greater value? What additional customer evidence would justify the priority?<span class="zh-full" lang="zh-Hant">咖啡店的音樂滿意度很低，咖啡口味滿意度則普通。為什麼先改善口味可能更有價值？還要取得哪些顧客證據，才能支持這個優先順序？</span></p></aside>
+
 <h2 id="data">3. Data, information and decisions<span class="zh-full" lang="zh-Hant">3. 資料、資訊與決策</span></h2>
 <div class="ladder2">
   <div><b>Data<span class="zh-full" lang="zh-Hant">資料</span></b>Observations.<span class="zh-full" lang="zh-Hant">觀察紀錄。</span></div><i>↓</i>
@@ -506,6 +525,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p class="hint"><b>中文邏輯</b><span>科技改變的是 channel、速度與資訊量；顧客需求、價值與比較替代選項的邏輯不變。</span></p>
 
 <!-- 4 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A dashboard records thousands of clicks and visits but managers cannot choose a next action. What decision should be defined first, and how would you turn raw observations into usable insight?<span class="zh-full" lang="zh-Hant">儀表板記錄數千次點擊與造訪，主管卻無法決定下一步。應先定義什麼決策問題？如何把原始紀錄轉成有用的洞察？</span></p></aside>
+
 <h2 id="mining">4. Data mining and evidence discipline<span class="zh-full" lang="zh-Hant">4. 資料探勘與證據判讀</span></h2>
 <p class="sub">Data mining: computers filter large datasets for patterns; humans interpret. It shows what happened better than why.<span class="zh-full" lang="zh-Hant">資料探勘由電腦從大量資料中篩選模式，再由人解讀。它較能顯示發生什麼，卻不一定能解釋為什麼。</span></p>
 <div class="method"><span>Large dataset<span class="zh-full" lang="zh-Hant">大型資料集</span></span><i>→</i><span>Pattern<span class="zh-full" lang="zh-Hant">模式</span></span><i>→</i><span>Human interpretation<span class="zh-full" lang="zh-Hant">人的解讀</span></span><i>→</i><span class="hi">Hypothesis, not conclusion<span class="zh-full" lang="zh-Hant">假設，而非結論</span></span></div>
@@ -529,6 +551,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p>Jumping straight to intervention can fix the wrong problem and makes results hard to interpret. Session 3 covers how to test causality.<span class="zh-full" lang="zh-Hant">直接跳到介入，可能修錯問題，也讓結果難以解讀。第 3 堂會說明如何檢驗因果。</span></p>
 
 <!-- 5 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Morning sales fell after a price increase. Explain why that sequence is not proof that the price change caused the decline. What investigation or comparison could strengthen the claim?<span class="zh-full" lang="zh-Hant">早上銷售在漲價後下滑。為什麼這個前後順序無法證明漲價造成銷售下降？哪種調查或比較能讓判斷更可靠？</span></p></aside>
+
 <h2 id="ai">5. Prediction, privacy and trust<span class="zh-full" lang="zh-Hant">5. 預測、隱私與信任</span></h2>
 <div class="pair">
   <div><b>Prediction is not certainty<span class="zh-full" lang="zh-Hant">預測不等於確定</span></b><p>AI and predictive models estimate patterns from historical data. New competitors, technology, shocks or changing preferences can break them. Past behavior is evidence, not destiny.<span class="zh-full" lang="zh-Hant">AI 與預測模型從歷史資料估計模式。新競爭者、科技、衝擊或偏好改變，都可能使模式失效。過往行為是證據，不是命運。</span></p></div>
@@ -537,6 +562,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p class="key">Do not ask how much data we can collect. Ask what data is necessary to improve the customer experience or the decision.<span class="zh-full" lang="zh-Hant">別只問能蒐集多少資料；要問改善顧客體驗或決策，真正需要哪些資料。</span></p>
 
 <!-- 6 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Personalized ads accurately predict customer interests, but some customers find them intrusive. What trade-off should the brand evaluate before collecting more personal data?<span class="zh-full" lang="zh-Hant">個人化廣告能準確預測顧客興趣，但部分顧客覺得被侵犯隱私。品牌蒐集更多個資前，應評估什麼取捨？</span></p></aside>
+
 <h2 id="channels">6. Omnichannel and e-commerce<span class="zh-full" lang="zh-Hant">6. 全通路與電子商務</span></h2>
 <div class="pair">
   <div><b>Multichannel<span class="zh-full" lang="zh-Hant">多通路</span></b><p>Store, website, app and social media, possibly run separately.<span class="zh-full" lang="zh-Hant">門市、網站、App 與社群媒體，可能各自獨立運作。</span></p></div>
@@ -553,6 +581,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <p>Pure play is fully online; clicks-and-mortar combines both. Do not ask which is modern; ask which creates better value and economics here. E-commerce is a trade-off, not an automatically superior channel.<span class="zh-full" lang="zh-Hant">純網路業者完全在線上經營；虛實整合業者同時有線上與實體。別只問哪種比較現代，要問哪種在此情境創造更好的價值與經濟效益。電子商務涉及取捨，不是自動優於其他通路。</span></p>
 
 <!-- 7 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A retailer runs an app, website and stores, but a customer cannot return an online purchase in-store. What is missing from this channel strategy, and which customer and operating evidence should guide the fix?<span class="zh-full" lang="zh-Hant">零售商有 App、網站和門市，但顧客不能在門市退回網購商品。這項通路策略缺少什麼？應用哪些顧客與營運證據決定改善方式？</span></p></aside>
+
 <h2 id="digital">7. Digital behavior and pain points<span class="zh-full" lang="zh-Hant">7. 數位行為與痛點</span></h2>
 <div class="tbl"><table>
 <thead><tr><th>Tool<span class="zh-full" lang="zh-Hant">工具</span></th><th>Value<span class="zh-full" lang="zh-Hant">價值</span></th><th>Limit<span class="zh-full" lang="zh-Hant">限制</span></th></tr></thead>
@@ -583,6 +614,9 @@ body.show-zh .cmp-sel select{max-width:100%}
 <div data-mk="metric"></div>
 
 <!-- 10 -->
+
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Loyalty membership and campaign clicks both rise, but profit declines. Which outcomes and counterfactual comparisons would show whether these programs created incremental customer value?<span class="zh-full" lang="zh-Hant">忠誠會員數與活動點擊數都上升，利潤卻下滑。哪些結果指標及反事實比較，才能判斷計畫是否真正創造新增的顧客價值？</span></p></aside>
+
 <h2 id="cases">10. Worked cases<span class="zh-full" lang="zh-Hant">10. 案例演練</span></h2>
 <div class="tbl"><table>
 <thead><tr><th>Case<span class="zh-full" lang="zh-Hant">案例</span></th><th>Evidence<span class="zh-full" lang="zh-Hant">證據</span></th><th>Can say<span class="zh-full" lang="zh-Hant">可以說</span></th><th>Cannot yet say<span class="zh-full" lang="zh-Hant">還不能說</span></th></tr></thead>
@@ -818,4 +852,18 @@ set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
 const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
 if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
 })();
-</script></body></html>
+</script><script>
+(function(){
+const $=(id)=>document.getElementById(id);
+// Practice mode does not affect the teaching tools or cold-call answers.
+ const practiceToggle=$('practiceToggle'),practiceState=$('practiceState');
+ const practicePrompts=[...document.querySelectorAll('.practice-prompt')];
+ practiceToggle.addEventListener('click',()=>{
+   const isOn=practiceToggle.getAttribute('aria-pressed')!=='true';
+   practiceToggle.setAttribute('aria-pressed',String(isOn));
+   practiceState.innerHTML=isOn?'On':'Off';practiceToggle.querySelector(':scope > .zh-full').innerHTML='練習模式：'+(isOn?'開啟':'關閉');
+   practicePrompts.forEach(prompt=>{prompt.hidden=!isOn});
+ });
+})();
+</script>
+</body></html>
