@@ -1,0 +1,837 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Supply, Demand and Equilibrium · Economics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+/* Layout: one light reading column with a sticky chapter rail; deliberately single (light) theme. */
+:root {
+  color-scheme: light;
+  --bg: #FDF9F9; --panel: #F8EEF0; --paper: #FFFFFF; --tint: #FAE9ED; --line: #EFDDE2;
+  --fg: #2F282B; --muted: #7E6F74; --accent: #C06C84; --accent-ink: #9C4862;
+  --demand: #3F5675; --supply: #C06C84; --ext: #6E3F55; --world: #8A7A5C; --policy: #3F7F7A;
+  --cs: #A7CDB6; --ps: #B2C4E3; --dwl: #D9674F; --rev: #E5C171; --rev2: #F1DCA8; --time: #DDB3CB; --ts: #BFDCC9;
+  --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; background: var(--bg); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.75; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(253, 249, 249, .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
+.top-in { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 14px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.02rem; white-space: nowrap; }
+.brand small { font-family: var(--sans); font-weight: 500; color: var(--muted); font-size: .76rem; margin-left: 6px; letter-spacing: .06em; }
+.sessions { display: flex; gap: 4px; margin-left: auto; }
+.crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
+.sessions a.pill {
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):hover,
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):focus-visible {
+  background: #fceef2;
+  border-color: #b86b7b;
+  color: #8e4357;
+}
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):focus-visible {
+  outline: 2px solid #b86b7b;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sessions a.pill { transition: none; }
+}
+.sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
+.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.sessions .pill.off { opacity: .5; cursor: not-allowed; }
+.toc-btn { display: none; font: 500 .85rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--fg); border-radius: 8px; padding: 5px 12px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 52px; }
+.rail { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow: auto; padding-block: 34px 40px; font-size: .86rem; line-height: 1.5; }
+.rail .lbl { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.rail ol { list-style: none; margin: 0; padding: 0; }
+.rail li a { display: block; padding: 4px 10px; color: var(--muted); text-decoration: none; border-radius: 6px; }
+.rail li a:hover { color: var(--fg); background: var(--tint); }
+.rail li.h3 a { padding-left: 22px; font-size: .8rem; }
+.rail li a.on { color: var(--accent-ink); background: var(--tint); font-weight: 500; }
+
+main { min-width: 0; padding-block: 30px 120px; }
+.doc { max-width: 780px; }
+.hero { padding-block: 8px 26px; border-bottom: 1px solid var(--line); }
+.kick { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px; font-weight: 500; }
+.hero h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.25; margin: 0 0 12px; text-wrap: balance; }
+.lead { margin: 0; font-size: 1.04rem; max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.doc h2 { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 3.4rem 0 .3rem; text-wrap: balance; }
+.doc h3 { font-size: 1.1rem; line-height: 1.45; margin: 2.2rem 0 .5rem; color: var(--accent-ink); text-wrap: balance; }
+.sub { margin: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
+.doc p, .doc li { max-width: 68ch; }
+.doc ul, .doc ol { padding-left: 1.25em; }
+.doc li { margin: .25rem 0; }
+.zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
+.hint { font-size: .9rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.hint b { flex: none; font-size: .72rem; color: #fff; background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
+.key { background: var(--tint); padding: 12px 16px; border-radius: 8px; font-weight: 500; }
+.note-small { font-size: .8rem; color: var(--muted); }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.pair > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.pair b { color: var(--accent-ink); }
+.pair p { margin: 4px 0 0; font-size: .92rem; }
+
+.matrix { display: grid; grid-template-columns: minmax(90px, .7fr) repeat(2, minmax(0, 1fr)); gap: 6px; margin: 1rem 0 1.2rem; font-size: .9rem; max-width: 620px; }
+.matrix .mh { font-weight: 700; font-size: .8rem; color: var(--muted); align-self: end; padding: 0 4px 2px; }
+.matrix .mh.side { align-self: center; }
+.matrix .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-weight: 500; }
+.matrix .cell.hi { background: var(--tint); border-color: var(--accent); }
+.matrix small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; margin-top: 2px; line-height: 1.45; }
+
+.map { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 1rem 0; }
+.mcol { display: flex; flex-direction: column; gap: 8px; }
+.mbox { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; display: flex; flex-direction: column; gap: 2px; }
+.mbox b { font-size: .9rem; } .mbox span { color: var(--muted); } .mbox em { font-style: normal; color: var(--accent-ink); font-size: .78rem; font-weight: 500; }
+.mbox.good { border-color: var(--cs); } .mbox.ask { background: var(--tint); border-color: var(--accent); }
+.marrow { color: var(--accent); font-weight: 700; }
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.flow span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; line-height: 1.45; }
+.flow i { font-style: normal; color: var(--accent); font-weight: 700; }
+.formula { font-family: var(--mono); font-size: .9rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; line-height: 1.9; overflow-x: auto; }
+.steps { counter-reset: s; list-style: none; padding-left: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 10px; }
+.steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .75rem/22px var(--sans); text-align: center; margin-top: 3px; }
+.assign { margin: 1.6rem 0; border: 1px dashed var(--accent); border-radius: 10px; padding: 14px 16px; background: var(--paper); }
+.assign p { margin: 6px 0 0; font-size: .92rem; }
+
+.tbl { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.doc table { border-collapse: collapse; width: 100%; font-size: .88rem; line-height: 1.55; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.doc th { background: var(--panel); font-weight: 700; }
+.doc tr:last-child td { border-bottom: 0; }
+.drill .ans { filter: blur(5px); cursor: pointer; user-select: none; transition: filter .2s; }
+.drill .ans.shown { filter: none; user-select: auto; }
+
+.traps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 1rem; }
+.traps > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: .88rem; line-height: 1.55; }
+.traps s { color: var(--muted); text-decoration-color: var(--dwl); }
+.traps p { margin: 6px 0 0; font-weight: 500; }
+
+.qa-tools { margin: .4rem 0 .8rem; }
+.qa-tools button { font: 500 .82rem var(--sans); border: 1px solid var(--accent); background: var(--paper); color: var(--accent-ink); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+.qa { display: flex; flex-direction: column; gap: 6px; }
+.qa details { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.qa summary { cursor: pointer; padding: 10px 14px; font-weight: 500; font-size: .93rem; list-style: none; display: flex; gap: 10px; }
+.qa summary::before { content: "Q"; color: var(--accent); font-weight: 700; }
+.qa details[open] summary { border-bottom: 1px dashed var(--line); }
+.qa details p { margin: 0; padding: 10px 14px 12px 36px; font-size: .9rem; }
+
+/* graphs */
+.graph { max-width: 900px; margin: 1.8rem 0 2.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; }
+.g-head h4 { font-family: var(--serif); font-size: 1.12rem; margin: 2px 0 2px; line-height: 1.45; }
+.g-head p { margin: 0 0 10px; color: var(--muted); font-size: .86rem; }
+.g-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+.g-body { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.g-plot svg { width: 100%; height: auto; display: block; }
+.g-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.g-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.sl label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); line-height: 1.3; }
+.sl output { font-family: var(--mono); color: var(--fg); font-size: .8rem; }
+.sl input { width: 100%; accent-color: var(--accent); margin: 4px 0 0; }
+.g-btn { align-self: flex-start; font: 500 .8rem var(--sans); border: 1px solid var(--accent); color: var(--accent-ink); background: transparent; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.g-btn:hover { background: var(--tint); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; align-self: flex-start; }
+.seg button { font: 500 .8rem var(--sans); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--paper); }
+.chk { display: flex; gap: 8px; align-items: center; font-size: .8rem; color: var(--muted); }
+.chk input { accent-color: var(--accent); }
+.g-stats { margin: 0; border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+.st { display: flex; justify-content: space-between; gap: 10px; font-size: .8rem; line-height: 1.45; }
+.st dt { color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.st dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.st.big dd { font-weight: 500; color: var(--accent-ink); font-size: .92rem; }
+.g-note { margin: 12px 0 0; padding: 9px 12px; background: var(--tint); border-radius: 6px; font-size: .85rem; line-height: 1.6; }
+
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; flex: none; }
+.sw.none { background: transparent; }
+.sw.a-cs { background: var(--cs); } .sw.a-ps { background: var(--ps); } .sw.a-ps2 { background: var(--ps); outline: 1px solid var(--demand); }
+.sw.a-dwl { background: repeating-linear-gradient(45deg, var(--dwl) 0 2px, transparent 2px 4px); outline: 1px solid var(--dwl); }
+.sw.a-rev { background: var(--rev); } .sw.a-rev2 { background: var(--rev2); } .sw.a-time { background: var(--time); } .sw.a-ts { background: var(--ts); }
+.sw.ln { height: 3px; border-radius: 2px; width: 16px; }
+
+svg .ax { stroke: var(--muted); stroke-width: 1.2; }
+svg .axl { fill: var(--muted); font: 500 11px var(--sans); }
+svg .tk { fill: var(--muted); font: 500 10.5px var(--mono); }
+svg .gd { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+svg .cv { stroke-width: 2.6; fill: none; stroke-linecap: round; }
+svg .cv.dash { stroke-dasharray: 7 5; stroke-width: 2; }
+svg .cvl { font: 700 11.5px var(--sans); }
+svg .c-d { stroke: var(--demand); fill: var(--demand); } svg .c-s { stroke: var(--supply); fill: var(--supply); }
+svg .c-x { stroke: var(--ext); fill: var(--ext); } svg .c-w { stroke: var(--world); fill: var(--world); } svg .c-t { stroke: var(--policy); fill: var(--policy); }
+svg text.cvl { stroke: none; }
+svg .pt { fill: var(--paper); stroke: var(--fg); stroke-width: 2; }
+svg .ptl { fill: var(--fg); font: 700 11px var(--sans); }
+svg .atag { fill: var(--fg); font: 700 11px var(--sans); opacity: .8; }
+svg .a-cs { fill: var(--cs); fill-opacity: .6; } svg .a-ps { fill: var(--ps); fill-opacity: .6; }
+svg .a-ps2 { fill: var(--ps); fill-opacity: .95; } svg .a-ts { fill: var(--ts); fill-opacity: .6; }
+svg .a-dwl { fill: url(#dwlHatch); stroke: var(--dwl); stroke-width: 1.2; }
+svg .a-rev { fill: var(--rev); fill-opacity: .75; } svg .a-rev2 { fill: var(--rev2); fill-opacity: .8; } svg .a-time { fill: var(--time); fill-opacity: .65; }
+
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .a-prof { fill: var(--cs); fill-opacity: .75; } svg .a-loss { fill: var(--dwl); fill-opacity: .35; }
+.sw.a-prof { background: var(--cs); } .sw.a-loss { background: var(--dwl); opacity: .5; }
+.twin { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tw-t { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.g-ctrl .g-btn + .g-btn { margin-top: -4px; }
+.graph.wide .g-body { grid-template-columns: minmax(0, 1fr); }
+.graph.wide .g-side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 700px) { .twin, .graph.wide .g-side { grid-template-columns: minmax(0, 1fr); } }
+svg polyline.cv { fill: none !important; }
+.seg { flex-wrap: wrap; }
+
+.graph { background: var(--paper); }
+.g-note { background: var(--tint); }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail { display: none; position: fixed; inset: 64px 0 0 0; max-height: none; background: var(--bg); z-index: 15; padding: 20px 16px 60px; }
+  .rail.open { display: block; }
+  .toc-btn { display: inline-block; }
+  .g-body { grid-template-columns: minmax(0, 1fr); }
+  .map { grid-template-columns: minmax(0, 1fr); }
+  .marrow { transform: rotate(90deg); justify-self: center; }
+}
+@media (max-width: 560px) { .pair, .traps { grid-template-columns: minmax(0, 1fr); } }
+.spectrum { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; margin: 1rem 0 .2rem; font-weight: 700; font-size: .9rem; }
+.spectrum .bar { height: 12px; border-radius: 6px; background: linear-gradient(90deg, #D9674F, #E5C171, #A7CDB6); }
+.spec-l { display: flex; justify-content: space-between; font-size: .78rem; color: var(--muted); margin-bottom: 1rem; }
+.no, .yes { font-size: .74rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; }
+.no { background: #FCE3DD; color: #A8432F; } .yes { background: #E3F2E9; color: #2F6B4F; }
+table.oil { font-variant-numeric: tabular-nums; }
+table.oil th, table.oil td { text-align: right; padding: 6px 8px; white-space: nowrap; }
+table.oil th:first-child, table.oil td:first-child { text-align: left; font-weight: 700; }
+table.oil td.hi { background: var(--tint); color: var(--accent-ink); font-weight: 700; }
+.ap-q { font-size: .86rem; line-height: 1.45; } .ap-q b { display: block; } .ap-q span { color: var(--muted); font-size: .8rem; }
+.ap-opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.ap-opts .qz-o { padding: 7px 6px; font: 500 .82rem var(--sans); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; color: var(--fg); }
+.ap-opts .qz-o:hover { border-color: var(--accent); }
+.ap-opts .qz-o.right { background: #E3F2E9; border-color: #6FAE8B; } .ap-opts .qz-o.wrong { background: #FCE3DD; border-color: var(--dwl); }
+.ap-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 1rem 0 1.6rem; }
+.ap-grid figure { margin: 0; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px 10px; }
+.ap-grid svg { width: 100%; height: auto; display: block; }
+.ap-grid .tk { font-size: 9px; }
+.ap-grid figcaption { font-size: .8rem; line-height: 1.4; } .ap-grid figcaption b { display: block; } .ap-grid figcaption span { font-family: var(--mono); color: var(--accent-ink); font-size: .78rem; }
+@media (max-width: 760px) { .ap-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.g-note:empty { display: none; }
+
+</style><style>
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid #d5c6ca;border-radius:999px;background:#eee6e8;position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:white;border-radius:50%;box-shadow:0 1px 2px #7775}
+.topswitch input:checked{background:var(--accent)}
+.topswitch input:checked:after{left:14px}
+.topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+
+body.show-zh .mb-code>span{display:block}
+body.show-zh .mb-sel .seg button{white-space:normal}
+body.show-zh .ap-grid figcaption .zh-full{font-family:var(--sans);line-height:1.6}
+body.show-zh .g-stats .st{align-items:flex-start}
+</style><script>
+/* Bilingual content helpers: no text dictionary, observer or page-wide rescan. */
+(function(){
+  const scratch=document.createElement('div');
+  function read(s){scratch.innerHTML=String(s);const z=[...scratch.querySelectorAll('.zh-full,.zh-svg')].map(e=>e.textContent).join('');scratch.querySelectorAll('.zh-full,.zh-svg').forEach(e=>e.remove());return {en:scratch.textContent,zh:z};}
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  window.biPlain=s=>read(s).en;
+  window.biChinese=s=>read(s).zh;
+  window.biPair=(en,zh)=>esc(en)+'<span class="zh-full" lang="zh-Hant">'+esc(zh)+'</span>';
+  window.biEscape=s=>String(s).includes('class="zh-full"')?String(s):esc(s);
+  window.biSvgLabel=(s,x,zhX,below)=>{const a=read(s);return esc(a.en)+(a.zh?'<tspan class="zh-svg" lang="zh-Hant" text-anchor="end" x="'+zhX+'" dy="'+(below?12:0)+'">'+esc(a.zh)+'</tspan>':'')};
+  window.biSetSvg=(el,s)=>{const a=read(s);el.textContent=a.en;if(a.zh){const t=document.createElementNS('http://www.w3.org/2000/svg','tspan');t.setAttribute('class','zh-svg');t.setAttribute('lang','zh-Hant');t.setAttribute('x',el.getAttribute('x')||'0');t.setAttribute('dy','13');t.textContent=a.zh;el.appendChild(t);}};
+})();
+
+window.biRichPair=(en,zh)=>en+biPair('',zh);
+</script></head><body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<pattern id="dwlHatch" width="6" height="6" patternunits="userSpaceOnUse" patterntransform="rotate(45)">
+<rect width="6" height="6" style="fill:var(--dwl);fill-opacity:.12"></rect><rect width="2.2" height="6" style="fill:var(--dwl);fill-opacity:.75"></rect></pattern></defs></svg>
+
+<header class="top"><div class="top-in">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="economics.html">Economics<span class="zh-full" lang="zh-Hant">經濟學</span></a><span>/</span><b>Session 1<span class="zh-full" lang="zh-Hant">第 1 堂</span></b></nav>
+  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
+  <nav class="sessions" aria-label="Sessions"><span class="pill" aria-current="page">S1</span><a class="pill" href="economics-s2.html">S2</a><a class="pill" href="economics-s3.html">S3</a><a class="pill" href="economics-s4.html">S4</a></nav>
+<label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label></div></header>
+
+<div class="wrap">
+  <aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
+  <main><article class="doc"><div class="hero">
+  <p class="kick">MGMG515 · Session 1<span class="zh-full" lang="zh-Hant">MGMG515・第 1 堂</span></p>
+  <h1>Supply, Demand and Equilibrium<span class="zh-full" lang="zh-Hant">供給、需求與均衡</span></h1>
+  <p class="lead">For any market event, ask what changes first, whether it hits buyers or sellers, which curve shifts and which way, then read the new equilibrium price and quantity from the new intersection.<span class="zh-full" lang="zh-Hant">遇到任何市場事件，先問什麼最先改變、影響買方還是賣方、哪條曲線向哪個方向移動，再從新交點讀出新的均衡價格與數量。</span></p>
+</div>
+
+<h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
+<div class="flow"><span>Willingness to pay → Demand<span class="zh-full" lang="zh-Hant">願付價格 → 需求</span></span><i>+</i><span>Cost and ability to sell → Supply<span class="zh-full" lang="zh-Hant">成本與出售能力 → 供給</span></span><i>→</i><span>Qd = Qs: equilibrium<span class="zh-full" lang="zh-Hant">需求量＝供給量：均衡</span></span><i>→</i><span>Event shifts a curve<span class="zh-full" lang="zh-Hant">事件使曲線移動</span></span><i>→</i><span>New P and Q<span class="zh-full" lang="zh-Hant">新的價格與數量</span></span></div>
+<p class="hint"><b>中文邏輯</b><span>不要先背答案。先問：這件事最先影響 buyer 還是 seller？只有商品自己的價格變，是沿著曲線移動，不是 shift。</span></p>
+
+<!-- 1 -->
+<h2 id="demand">1. Demand<span class="zh-full" lang="zh-Hant">1. 需求</span></h2>
+<p class="sub">Demand is the relationship between price and the quantity consumers are willing to buy, other things equal.<span class="zh-full" lang="zh-Hant">需求是其他條件不變時，價格與消費者願意購買數量之間的關係。</span></p>
+<div class="pair">
+  <div><b>Law of demand<span class="zh-full" lang="zh-Hant">需求法則</span></b><p>Price ↑ → quantity demanded ↓. At higher prices some buyers stop, some buy less, some switch to substitutes.<span class="zh-full" lang="zh-Hant">價格 ↑ → 需求量 ↓。價格較高時，有些買方停止購買、有些減少購買、有些轉向替代品。</span></p></div>
+  <div><b>Reading the curve<span class="zh-full" lang="zh-Hant">如何閱讀曲線</span></b><p>Horizontally: at this price, how much do buyers want? Vertically: the height is the marginal buyer's willingness to pay <span class="zh">願付價格</span>.<span class="zh-full" lang="zh-Hant">水平看：在這個價格下，買方想買多少？垂直看：曲線的高度代表邊際買方的願付價格。</span></p></div>
+</div>
+<div class="pair">
+  <div><b>Change in quantity demanded<span class="zh-full" lang="zh-Hant">需求量變動</span></b><p>The good's own price changes → movement along the same curve. Quinoa gets cheaper, people buy more.<span class="zh-full" lang="zh-Hant">商品本身價格改變 → 沿同一條曲線移動。藜麥變便宜，人們買得更多。</span></p></div>
+  <div><b>Change in demand<span class="zh-full" lang="zh-Hant">需求變動</span></b><p>A non-price factor changes → the whole curve shifts. Right = more at every price; left = less.<span class="zh-full" lang="zh-Hant">非價格因素改變 → 整條曲線移動。右移＝每個價格下都買更多；左移＝買更少。</span></p></div>
+</div>
+<h3 id="dshift">Demand shifters<span class="zh-full" lang="zh-Hant">使需求曲線移動的因素</span></h3>
+<div class="tbl"><table>
+<thead><tr><th>Factor<span class="zh-full" lang="zh-Hant">因素</span></th><th>Effect<span class="zh-full" lang="zh-Hant">效果</span></th><th>Example<span class="zh-full" lang="zh-Hant">例子</span></th></tr></thead>
+<tbody>
+<tr><td><b>Income ↑</b><span class="zh-full" lang="zh-Hant">所得 ↑</span></td><td>Normal good: D ↑. Inferior good <span class="zh">劣等財</span>: D ↓<span class="zh-full" lang="zh-Hant">正常財：需求 ↑；劣等財：需求 ↓</span></td><td>Higher income: more restaurant meals, fewer instant noodles. Inferior is about income response, not low quality.<span class="zh-full" lang="zh-Hant">所得提高：多吃餐廳、少吃泡麵。「劣等財」指所得反應，不代表品質低劣。</span></td></tr>
+<tr><td><b>Population ↑</b><span class="zh-full" lang="zh-Hant">人口 ↑</span></td><td>D ↑</td><td>More tourists, more Bangkok hotel demand<span class="zh-full" lang="zh-Hant">遊客增加，曼谷旅館需求增加</span></td></tr>
+<tr><td><b>Tastes and preferences</b><span class="zh-full" lang="zh-Hant">口味與偏好</span></td><td>Favorable → D ↑<span class="zh-full" lang="zh-Hant">偏好改善 → 需求 ↑</span></td><td>Health research, trends, advertising<span class="zh-full" lang="zh-Hant">健康研究、潮流、廣告</span></td></tr>
+<tr><td><b>Price of a substitute ↑</b><span class="zh-full" lang="zh-Hant">替代品價格 ↑</span></td><td>D ↑</td><td>Pepsi rises → Coke demand rises; Grab and Bolt<span class="zh-full" lang="zh-Hant">百事可樂漲價 → 可口可樂需求增加；Grab 與 Bolt 也是替代關係的例子</span></td></tr>
+<tr><td><b>Price of a complement ↑</b><span class="zh-full" lang="zh-Hant">互補品價格 ↑</span></td><td>D ↓</td><td>Gasoline rises → demand for large cars falls<span class="zh-full" lang="zh-Hant">汽油漲價 → 大型車需求減少</span></td></tr>
+<tr><td><b>Expect higher future price</b><span class="zh-full" lang="zh-Hant">預期未來價格更高</span></td><td>Current D ↑<span class="zh-full" lang="zh-Hant">當期需求 ↑</span></td><td>Fill the tank before the announced price rise<span class="zh-full" lang="zh-Hant">在已宣布的漲價前把油箱加滿</span></td></tr>
+</tbody></table></div>
+
+<!-- 2 -->
+<h2 id="supply">2. Supply<span class="zh-full" lang="zh-Hant">2. 供給</span></h2>
+<p class="sub">Supply is the relationship between price and the quantity producers are willing to sell, other things equal.<span class="zh-full" lang="zh-Hant">供給是其他條件不變時，價格與生產者願意出售數量之間的關係。</span></p>
+<div class="pair">
+  <div><b>Law of supply<span class="zh-full" lang="zh-Hant">供給法則</span></b><p>Price ↑ → quantity supplied ↑. Producing more uses higher-cost sources, which only pay at higher prices.<span class="zh-full" lang="zh-Hant">價格 ↑ → 供給量 ↑。擴大產量需要使用成本較高的生產來源，只有價格更高時才划算。</span></p></div>
+  <div><b>Reading the curve<span class="zh-full" lang="zh-Hant">如何閱讀曲線</span></b><p>The height is the minimum acceptable price <span class="zh">最低願售價</span> for that unit.<span class="zh-full" lang="zh-Hant">曲線高度代表出售該單位商品所能接受的最低價格。</span></p></div>
+</div>
+<div class="tbl"><table>
+<thead><tr><th>Factor<span class="zh-full" lang="zh-Hant">因素</span></th><th>Effect<span class="zh-full" lang="zh-Hant">效果</span></th><th>Example<span class="zh-full" lang="zh-Hant">例子</span></th></tr></thead>
+<tbody>
+<tr><td><b>Input cost ↑</b><span class="zh-full" lang="zh-Hant">投入成本 ↑</span></td><td>S ↓</td><td>Fertilizer, wages, energy<span class="zh-full" lang="zh-Hant">肥料、薪資、能源</span></td></tr>
+<tr><td><b>Better technology</b><span class="zh-full" lang="zh-Hant">技術改善</span></td><td>S ↑</td><td>Higher yield per tree<span class="zh-full" lang="zh-Hant">每棵樹的產量提高</span></td></tr>
+<tr><td><b>Tax ↑ / subsidy ↑</b><span class="zh-full" lang="zh-Hant">稅負 ↑／補貼 ↑</span></td><td>S ↓ / S ↑</td><td>Changes the effective cost<span class="zh-full" lang="zh-Hant">改變實際承擔的成本</span></td></tr>
+<tr><td><b>More producers</b><span class="zh-full" lang="zh-Hant">生產者增加</span></td><td>S ↑</td><td>China starts growing quinoa<span class="zh-full" lang="zh-Hant">中國開始種植藜麥</span></td></tr>
+<tr><td><b>Opportunity cost ↑</b> <span class="zh">機會成本</span><span class="zh-full" lang="zh-Hant">機會成本 ↑</span></td><td>S ↓</td><td>Resources move to a more profitable use<span class="zh-full" lang="zh-Hant">資源轉向獲利較高的用途</span></td></tr>
+<tr><td><b>Bad natural conditions</b><span class="zh-full" lang="zh-Hant">自然條件惡化</span></td><td>S ↓</td><td>La Niña drought<span class="zh-full" lang="zh-Hant">反聖嬰現象造成乾旱</span></td></tr>
+<tr><td><b>Imports allowed</b><span class="zh-full" lang="zh-Hant">允許進口</span></td><td>Market S ↑<span class="zh-full" lang="zh-Hant">市場供給 ↑</span></td><td>More foreign sellers serve the market<span class="zh-full" lang="zh-Hant">更多外國賣方進入市場</span></td></tr>
+<tr><td><b>Producers expect higher prices</b><span class="zh-full" lang="zh-Hant">生產者預期未來價格更高</span></td><td>Current S ↓<span class="zh-full" lang="zh-Hant">當期供給 ↓</span></td><td>Storable goods held back to sell later<span class="zh-full" lang="zh-Hant">可儲存商品暫不出售，留待未來賣出</span></td></tr>
+</tbody></table></div>
+
+<!-- 3 -->
+<h2 id="eq">3. Equilibrium: the quinoa market<span class="zh-full" lang="zh-Hant">3. 均衡：藜麥市場</span></h2>
+<p class="sub">Equilibrium is where quantity demanded equals quantity supplied: no shortage, no surplus.<span class="zh-full" lang="zh-Hant">均衡是需求量等於供給量的狀態：沒有短缺，也沒有過剩。</span></p>
+<div data-widget="quinoa"></div>
+<p class="note-small">Curves are straight lines fitted through the slide's points ($500 / 45k in 2001, $1,200 / 80k in 2010) so the shortage and surplus can be measured.<span class="zh-full" lang="zh-Hant">曲線是配合投影片上的點所建立的直線模型：2001 年每噸 500 美元、4.5 萬噸；2010 年每噸 1,200 美元、8 萬噸。這樣便能量化短缺與過剩。</span></p>
+<div class="tbl"><table>
+<thead><tr><th>Price<span class="zh-full" lang="zh-Hant">價格</span></th><th>Relationship<span class="zh-full" lang="zh-Hant">關係</span></th><th>Situation<span class="zh-full" lang="zh-Hant">市場狀況</span></th><th>Who competes<span class="zh-full" lang="zh-Hant">誰與誰競爭</span></th><th>Pressure<span class="zh-full" lang="zh-Hant">價格壓力</span></th></tr></thead>
+<tbody>
+<tr><td>Below equilibrium<span class="zh-full" lang="zh-Hant">低於均衡價格</span></td><td>Qd &gt; Qs<span class="zh-full" lang="zh-Hant">需求量＞供給量</span></td><td>Shortage <span class="zh">短缺</span><span class="zh-full" lang="zh-Hant">短缺</span></td><td>Buyers with buyers<span class="zh-full" lang="zh-Hant">買方與其他買方競爭</span></td><td>P ↑</td></tr>
+<tr><td>Above equilibrium<span class="zh-full" lang="zh-Hant">高於均衡價格</span></td><td>Qs &gt; Qd<span class="zh-full" lang="zh-Hant">供給量＞需求量</span></td><td>Surplus <span class="zh">過剩</span><span class="zh-full" lang="zh-Hant">過剩</span></td><td>Sellers with sellers<span class="zh-full" lang="zh-Hant">賣方與其他賣方競爭</span></td><td>P ↓</td></tr>
+</tbody></table></div>
+
+<h3 id="surplus">Consumer and producer surplus<span class="zh-full" lang="zh-Hant">消費者剩餘與生產者剩餘</span></h3>
+<div class="pair">
+  <div><b>Consumer surplus<span class="zh-full" lang="zh-Hant">消費者剩餘</span></b><p>Willingness to pay − price paid. Willing to pay ฿80, pay ฿50: surplus ฿30. Area under demand, above price.<span class="zh-full" lang="zh-Hant">願付價格－實付價格。願付 80 泰銖、支付 50 泰銖，剩餘為 30 泰銖。圖上是需求曲線下方、價格線上方的面積。</span></p></div>
+  <div><b>Producer surplus<span class="zh-full" lang="zh-Hant">生產者剩餘</span></b><p>Price − minimum acceptable price. Cost ฿30, sell at ฿50: surplus ฿20. Area above supply, below price.<span class="zh-full" lang="zh-Hant">價格－最低可接受價格。成本 30 泰銖、售價 50 泰銖，剩餘為 20 泰銖。圖上是供給曲線上方、價格線下方的面積。</span></p></div>
+</div>
+<div data-widget="welfare"></div>
+<p class="key">At equilibrium every trade where the buyer values the good more than it costs to produce takes place, so total surplus is maximized.<span class="zh-full" lang="zh-Hant">在均衡下，買方評價高於生產成本的交易都會發生，因此總剩餘最大。</span></p>
+
+<!-- 4 -->
+<h2 id="shifts">4. One curve shifts<span class="zh-full" lang="zh-Hant">4. 單一曲線移動</span></h2>
+<div class="tbl"><table>
+<thead><tr><th>Shift<span class="zh-full" lang="zh-Hant">移動方向</span></th><th>Price<span class="zh-full" lang="zh-Hant">價格</span></th><th>Quantity<span class="zh-full" lang="zh-Hant">數量</span></th></tr></thead>
+<tbody>
+<tr><td>Demand ↑ (right)<span class="zh-full" lang="zh-Hant">需求 ↑（右移）</span></td><td>↑</td><td>↑</td></tr>
+<tr><td>Demand ↓ (left)<span class="zh-full" lang="zh-Hant">需求 ↓（左移）</span></td><td>↓</td><td>↓</td></tr>
+<tr><td>Supply ↑ (right)<span class="zh-full" lang="zh-Hant">供給 ↑（右移）</span></td><td>↓</td><td>↑</td></tr>
+<tr><td>Supply ↓ (left)<span class="zh-full" lang="zh-Hant">供給 ↓（左移）</span></td><td>↑</td><td>↓</td></tr>
+</tbody></table></div>
+<p class="key">Classic trap: a drought shifts supply left and raises the price. Buyers then buy less, but that is a fall in <b>quantity demanded</b>. Demand did not move.<span class="zh-full" lang="zh-Hant">常見陷阱：乾旱使供給左移並推高價格，買方於是少買；這是需求量下降，需求曲線沒有移動。</span></p>
+
+<!-- 5 -->
+<h2 id="apps">5. The class applications<span class="zh-full" lang="zh-Hant">5. 課堂應用</span></h2>
+<p class="sub">"What would happen to the equilibrium quantity and price of quinoa if...?" Predict first, then check the graph.<span class="zh-full" lang="zh-Hant">「如果發生以下事件，藜麥的均衡數量與價格會如何改變？」先預測，再查看圖形。</span></p>
+<div data-widget="apps"></div>
+<h3 id="all">All six graphs at a glance<span class="zh-full" lang="zh-Hant">六張圖一次比較</span></h3>
+<div data-widget="appgrid"></div>
+<div class="tbl"><table>
+<thead><tr><th>#</th><th>Event<span class="zh-full" lang="zh-Hant">事件</span></th><th>What it tests<span class="zh-full" lang="zh-Hant">考查的因素</span></th><th>Curve<span class="zh-full" lang="zh-Hant">曲線</span></th><th>P</th><th>Q</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Virus pandemic<span class="zh-full" lang="zh-Hant">病毒大流行</span></td><td>Demand shock<span class="zh-full" lang="zh-Hant">需求衝擊</span></td><td>D ←</td><td>↓</td><td>↓</td></tr>
+<tr><td>2</td><td>La Niña drought<span class="zh-full" lang="zh-Hant">反聖嬰乾旱</span></td><td>Natural conditions<span class="zh-full" lang="zh-Hant">自然條件</span></td><td>S ←</td><td>↑</td><td>↓</td></tr>
+<tr><td>3</td><td>Riceberry becomes cheap<span class="zh-full" lang="zh-Hant">Riceberry 米變便宜</span></td><td>Price of a substitute<span class="zh-full" lang="zh-Hant">替代品價格</span></td><td>D ←</td><td>↓</td><td>↓</td></tr>
+<tr><td>4</td><td>China grows quinoa<span class="zh-full" lang="zh-Hant">中國種植藜麥</span></td><td>Number of producers<span class="zh-full" lang="zh-Hant">生產者數量</span></td><td>S →</td><td>↓</td><td>↑</td></tr>
+<tr><td>5</td><td>Diabetes-risk evidence<span class="zh-full" lang="zh-Hant">降低糖尿病風險的證據</span></td><td>Preferences<span class="zh-full" lang="zh-Hant">偏好</span></td><td>D →</td><td>↑</td><td>↑</td></tr>
+<tr><td>6</td><td>Rare-earth discovery<span class="zh-full" lang="zh-Hant">發現稀土礦藏</span></td><td>Opportunity cost<span class="zh-full" lang="zh-Hant">機會成本</span></td><td>S ←</td><td>↑</td><td>↓</td></tr>
+</tbody></table></div>
+<div class="traps">
+  <div><s>Riceberry is cheaper → move along quinoa demand.<span class="zh-full" lang="zh-Hant">Riceberry 米更便宜 → 沿藜麥需求曲線移動。</span></s><p>Another good's price changed, so quinoa demand shifts.<span class="zh-full" lang="zh-Hant">改變的是另一種商品的價格，因此藜麥需求曲線會移動。</span></p></div>
+  <div><s>Drought → demand falls.<span class="zh-full" lang="zh-Hant">乾旱 → 需求下降。</span></s><p>Production is hit, so supply falls.<span class="zh-full" lang="zh-Hant">受到衝擊的是生產，因此供給下降。</span></p></div>
+  <div><s>China grows quinoa → demand rises.<span class="zh-full" lang="zh-Hant">中國種植藜麥 → 需求增加。</span></s><p>More producers: supply rises.<span class="zh-full" lang="zh-Hant">生產者增加：供給增加。</span></p></div>
+  <div><s>Rare earth → people dislike quinoa.<span class="zh-full" lang="zh-Hant">發現稀土 → 人們不喜歡藜麥。</span></s><p>Opportunity cost rises: supply falls.<span class="zh-full" lang="zh-Hant">機會成本提高：供給減少。</span></p></div>
+</div>
+<p class="note-small">The pandemic graph comes straight from the teacher's answer: demand falls. The slide does not name a single channel, so do not add one. For rare earth, the slide gives the direction; opportunity cost is the economic explanation.<span class="zh-full" lang="zh-Hant">疫情圖直接沿用教師答案：需求下降。投影片未指定單一傳導途徑，因此不要自行補上。稀土案例中，投影片給出方向；機會成本則是其經濟學解釋。</span></p>
+
+<!-- 6 -->
+<h2 id="both">6. Both curves shift<span class="zh-full" lang="zh-Hant">6. 兩條曲線同時移動</span></h2>
+<div class="tbl"><table>
+<thead><tr><th>Shift<span class="zh-full" lang="zh-Hant">移動方向</span></th><th>Price<span class="zh-full" lang="zh-Hant">價格</span></th><th>Quantity<span class="zh-full" lang="zh-Hant">數量</span></th></tr></thead>
+<tbody>
+<tr><td>D ↑ + S ↑</td><td>?</td><td>↑</td></tr>
+<tr><td>D ↓ + S ↓</td><td>?</td><td>↓</td></tr>
+<tr><td>D ↑ + S ↓</td><td>↑</td><td>?</td></tr>
+<tr><td>D ↓ + S ↑</td><td>↓</td><td>?</td></tr>
+</tbody></table></div>
+<div data-widget="both"></div>
+<p class="key">"?" depends on which shift is larger. If the question does not say, do not guess.<span class="zh-full" lang="zh-Hant">「？」取決於哪一個移動幅度較大。題目沒有說明，就不要猜測。</span></p>
+
+<!-- 7 -->
+<h2 id="method">7. Seven-step method<span class="zh-full" lang="zh-Hant">7. 七步分析法</span></h2>
+<div class="steps">
+  <div><b>1 · Market<span class="zh-full" lang="zh-Hant">1・市場</span></b><p>Define it: the world market for quinoa.<span class="zh-full" lang="zh-Hant">先界定：藜麥的全球市場。</span></p></div>
+  <div><b>2 · Event<span class="zh-full" lang="zh-Hant">2・事件</span></b><p>What changed?<span class="zh-full" lang="zh-Hant">什麼改變了？</span></p></div>
+  <div><b>3 · Side<span class="zh-full" lang="zh-Hant">3・受影響的一方</span></b><p>Buyers (demand) or sellers (supply)?<span class="zh-full" lang="zh-Hant">買方（需求）還是賣方（供給）？</span></p></div>
+  <div><b>4 · Price or factor<span class="zh-full" lang="zh-Hant">4・價格或其他因素</span></b><p>Own price = movement; other factor = shift.<span class="zh-full" lang="zh-Hant">自身價格改變＝沿曲線移動；其他因素改變＝曲線移動。</span></p></div>
+  <div><b>5 · Direction<span class="zh-full" lang="zh-Hant">5・方向</span></b><p>Left or right?<span class="zh-full" lang="zh-Hant">左移還是右移？</span></p></div>
+  <div><b>6 · New E<span class="zh-full" lang="zh-Hant">6・新均衡</span></b><p>Read P2 and Q2.<span class="zh-full" lang="zh-Hant">讀出 P2 與 Q2。</span></p></div>
+  <div><b>7 · Explain<span class="zh-full" lang="zh-Hant">7・解釋</span></b><p>Event → factor → curve → direction → P → Q.<span class="zh-full" lang="zh-Hant">事件 → 因素 → 曲線 → 方向 → 價格 → 數量。</span></p></div>
+</div>
+
+<!-- 8 -->
+<h2 id="drills">8. Graph drills<span class="zh-full" lang="zh-Hant">8. 畫圖練習</span></h2>
+<p class="sub">Draw E1, E2, P1, P2, Q1, Q2 for each, then tap to check.<span class="zh-full" lang="zh-Hant">每題先畫出 E1、E2、P1、P2、Q1、Q2，再點開核對。</span></p>
+<div class="tbl drill"><table>
+<thead><tr><th>Event<span class="zh-full" lang="zh-Hant">事件</span></th><th>Answer<span class="zh-full" lang="zh-Hant">答案</span></th></tr></thead>
+<tbody>
+<tr><td>Fertilizer prices double. Thai rice market?<span class="zh-full" lang="zh-Hant">肥料價格加倍。泰國稻米市場會如何？</span></td><td class="ans">S ← · P ↑ · Q ↓</td></tr>
+<tr><td>A viral news story makes bubble tea a health concern.<span class="zh-full" lang="zh-Hant">一則廣為流傳的新聞，使珍珠奶茶成為健康疑慮。</span></td><td class="ans">D ← · P ↓ · Q ↓</td></tr>
+<tr><td>Bolt cuts fares by 30%. Grab's market?<span class="zh-full" lang="zh-Hant">Bolt 降價 30%。Grab 的市場會如何？</span></td><td class="ans">Substitute cheaper: D ← · P ↓ · Q ↓<span class="zh-full" lang="zh-Hant">替代品更便宜：需求 ←・價格 ↓・數量 ↓</span></td></tr>
+<tr><td>New technology doubles durian yield per tree.<span class="zh-full" lang="zh-Hant">新技術使每棵榴槤樹的產量加倍。</span></td><td class="ans">S → · P ↓ · Q ↑</td></tr>
+<tr><td>Income rises; instant noodles are an inferior good.<span class="zh-full" lang="zh-Hant">所得提高，而泡麵屬於劣等財。</span></td><td class="ans">D ← · P ↓ · Q ↓</td></tr>
+<tr><td>EV demand rises while battery costs fall.<span class="zh-full" lang="zh-Hant">電動車需求增加，同時電池成本下降。</span></td><td class="ans">D → and S →: Q ↑ certain, P ambiguous<span class="zh-full" lang="zh-Hant">需求 → 且供給 →：數量確定增加，價格不確定</span></td></tr>
+<tr><td>A health report raises quinoa demand while a drought raises costs.<span class="zh-full" lang="zh-Hant">健康報告提高藜麥需求，同時乾旱使成本上升。</span></td><td class="ans">D → and S ←: P ↑ certain, Q ambiguous<span class="zh-full" lang="zh-Hant">需求 → 且供給 ←：價格確定上升，數量不確定</span></td></tr>
+</tbody></table></div>
+
+<!-- 9 -->
+<h2 id="traps">9. Do not mix these up<span class="zh-full" lang="zh-Hant">9. 不要混淆</span></h2>
+<div class="traps">
+  <div><s>Price fell, so demand increased.<span class="zh-full" lang="zh-Hant">價格下降，所以需求增加。</span></s><p>Quantity demanded increased: a movement.<span class="zh-full" lang="zh-Hant">增加的是需求量：沿曲線移動。</span></p></div>
+  <div><s>Price rose, so supply increased.<span class="zh-full" lang="zh-Hant">價格上升，所以供給增加。</span></s><p>Quantity supplied increased.<span class="zh-full" lang="zh-Hant">增加的是供給量。</span></p></div>
+  <div><s>Supply fell, so demand also fell.<span class="zh-full" lang="zh-Hant">供給減少，所以需求也減少。</span></s><p>The higher price cut quantity demanded.<span class="zh-full" lang="zh-Hant">較高的價格使需求量減少。</span></p></div>
+  <div><s>Income ↑ → demand ↑.<span class="zh-full" lang="zh-Hant">所得 ↑ → 需求 ↑。</span></s><p>Only for normal goods.<span class="zh-full" lang="zh-Hant">只有正常財才是如此。</span></p></div>
+  <div><s>Above equilibrium = shortage.<span class="zh-full" lang="zh-Hant">高於均衡＝短缺。</span></s><p>Above = surplus; below = shortage.<span class="zh-full" lang="zh-Hant">高於均衡是過剩；低於均衡是短缺。</span></p></div>
+  <div><s>Both curves shift, so P and Q are both known.<span class="zh-full" lang="zh-Hant">兩條曲線都移動，所以價格與數量方向都能確定。</span></s><p>One is ambiguous.<span class="zh-full" lang="zh-Hant">其中一項結果不確定。</span></p></div>
+</div>
+
+<!-- 10 -->
+<h2 id="coldcall">10. Cold call practice<span class="zh-full" lang="zh-Hant">10. 課堂口答練習</span></h2>
+<div class="qa-tools"><button type="button" id="qaAll">Show all answers<span class="zh-full" lang="zh-Hant">顯示全部答案</span></button></div>
+<div class="qa">
+  <details><summary>Demand versus quantity demanded?<span class="zh-full" lang="zh-Hant">需求與需求量有何不同？</span></summary><p>Demand is the whole curve; quantity demanded is the amount at one price. Own price changes move along the curve.<span class="zh-full" lang="zh-Hant">需求是整條曲線；需求量是在某個價格下的數量。自身價格變動，會使位置沿同一條曲線移動。</span></p></details>
+  <details><summary>Why does demand slope downward?<span class="zh-full" lang="zh-Hant">需求曲線為何向下傾斜？</span></summary><p>At higher prices some buyers stop, some buy less and some switch to substitutes.<span class="zh-full" lang="zh-Hant">價格較高時，有些買方停止購買、有些少買、有些改買替代品。</span></p></details>
+  <details><summary>Why does supply slope upward?<span class="zh-full" lang="zh-Hant">供給曲線為何向上傾斜？</span></summary><p>More output needs higher-cost sources, which need a higher price.<span class="zh-full" lang="zh-Hant">增加產量需要成本較高的生產來源，必須有較高價格才值得生產。</span></p></details>
+  <details><summary>What happens below equilibrium, and who competes?<span class="zh-full" lang="zh-Hant">低於均衡價格時會如何？誰與誰競爭？</span></summary><p>A shortage: buyers compete with other buyers and push the price up.<span class="zh-full" lang="zh-Hant">出現短缺：買方與其他買方競爭，推高價格。</span></p></details>
+  <details><summary>Why can rare-earth deposits reduce quinoa supply?<span class="zh-full" lang="zh-Hant">為何稀土礦藏可能減少藜麥供給？</span></summary><p>They raise the opportunity cost of land, labor and capital used for quinoa, so resources move to mining.<span class="zh-full" lang="zh-Hant">稀土提高了用於藜麥的土地、勞動與資本之機會成本，因此資源轉向採礦。</span></p></details>
+  <details><summary>Drought cuts supply. Must demand shift too?<span class="zh-full" lang="zh-Hant">乾旱減少供給，需求也一定會移動嗎？</span></summary><p>No. The higher price lowers quantity demanded along the same curve.<span class="zh-full" lang="zh-Hant">不會。較高價格使需求量沿同一條需求曲線下降。</span></p></details>
+  <details><summary>Why is equilibrium efficient?<span class="zh-full" lang="zh-Hant">均衡為何具有效率？</span></summary><p>All trades where value exceeds cost take place, so consumer plus producer surplus is maximized.<span class="zh-full" lang="zh-Hant">所有價值高於成本的交易都會發生，因此消費者剩餘加生產者剩餘達到最大。</span></p></details>
+</div>
+<h3 id="templates">Answer templates<span class="zh-full" lang="zh-Hant">答題模板</span></h3>
+<div class="tbl"><table>
+<tbody>
+<tr><td><b>Demand shift</b><span class="zh-full" lang="zh-Hant">需求移動</span></td><td>Demand for ___ increases/decreases because ___. The demand curve shifts right/left, so equilibrium price ___ and quantity ___.<span class="zh-full" lang="zh-Hant">___ 的需求增加／減少，因為 ___。需求曲線右移／左移，因此均衡價格 ___、數量 ___。</span></td></tr>
+<tr><td><b>Supply shift</b><span class="zh-full" lang="zh-Hant">供給移動</span></td><td>Supply of ___ increases/decreases because ___. The supply curve shifts right/left, so equilibrium price ___ and quantity ___.<span class="zh-full" lang="zh-Hant">___ 的供給增加／減少，因為 ___。供給曲線右移／左移，因此均衡價格 ___、數量 ___。</span></td></tr>
+<tr><td><b>Substitute</b><span class="zh-full" lang="zh-Hant">替代品</span></td><td>Because ___ is a substitute for ___, a fall in its price reduces demand for ___.<span class="zh-full" lang="zh-Hant">因為 ___ 是 ___ 的替代品，它的價格下降會減少對 ___ 的需求。</span></td></tr>
+<tr><td><b>Opportunity cost</b><span class="zh-full" lang="zh-Hant">機會成本</span></td><td>The new opportunity raises the opportunity cost of producing ___, so supply decreases.<span class="zh-full" lang="zh-Hant">新的機會提高了生產 ___ 的機會成本，因此供給減少。</span></td></tr>
+</tbody></table></div>
+</article></main>
+</div>
+
+<script>/* Interactive economics graphs. Linear models, one shared plotting helper. */
+(function () {
+  const NS = 'http://www.w3.org/2000/svg';
+  const W = 560, H = 380, L = 54, R = 92, T = 16, B = 42;
+  const f1 = x => (Math.round(x * 10) / 10).toLocaleString('en-US', { maximumFractionDigits: 1 });
+  const pct = x => Math.round(x * 100) + '%';
+  let uid = 0;
+
+  function el(tag, attrs, parent) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+
+  function Plot(svg, qMax, pMax) {
+    const sx = q => L + (q / qMax) * (W - L - R);
+    const sy = p => H - B - (p / pMax) * (H - T - B);
+    const g = { area: el('g', {}, svg), lines: el('g', {}, svg), top: el('g', {}, svg) };
+    const api = {
+      sx, sy,
+      clear() { g.area.innerHTML = ''; g.lines.innerHTML = ''; g.top.innerHTML = ''; },
+      axes(xl, yl) {
+        el('line', { x1: L, y1: sy(0), x2: W - R + 10, y2: sy(0), class: 'ax' }, g.lines);
+        el('line', { x1: L, y1: sy(0), x2: L, y2: T - 4, class: 'ax' }, g.lines);
+        const tx = el('text', { x: W - R + 10, y: sy(0) + 30, class: 'axl', 'text-anchor': 'end' }, g.top); biSetSvg(tx,xl);
+        const ty = el('text', { x: L + 8, y: T + 4, class: 'axl', 'text-anchor': 'start' }, g.top); biSetSvg(ty,yl);
+      },
+      poly(pts, cls) {
+        if (!pts.length) return;
+        el('polygon', { points: pts.map(p => sx(p[0]) + ',' + sy(p[1])).join(' '), class: cls }, g.area);
+      },
+      lin(a, m, cls, label, dashed) {
+        // P = a + m*Q, clipped to the plot box
+        let q0 = 0, q1 = qMax;
+        if (m !== 0) {
+          const qa = (0 - a) / m, qb = (pMax - a) / m;
+          q0 = Math.max(0, Math.min(qa, qb)); q1 = Math.min(qMax, Math.max(qa, qb));
+        }
+        if (q1 <= q0) return;
+        el('line', { x1: sx(q0), y1: sy(a + m * q0), x2: sx(q1), y2: sy(a + m * q1), class: 'cv ' + cls + (dashed ? ' dash' : '') }, g.lines);
+        if (label) {
+          const t = el('text', { x: sx(q1) + 6, y: sy(a + m * q1) + 4, class: 'cvl ' + cls }, g.top);
+          biSetSvg(t,label);
+        }
+      },
+      hline(p, cls, label) {
+        el('line', { x1: sx(0), y1: sy(p), x2: W - R, y2: sy(p), class: 'cv ' + cls }, g.lines);
+        if (label) { const t = el('text', { x: W - R + 6, y: sy(p) + 4, class: 'cvl ' + cls }, g.top); biSetSvg(t,label); }
+      },
+      guide(q, p, ql, pl) {
+        if (q != null) el('line', { x1: sx(q), y1: sy(p), x2: sx(q), y2: sy(0), class: 'gd' }, g.lines);
+        if (p != null && q != null) el('line', { x1: sx(0), y1: sy(p), x2: sx(q), y2: sy(p), class: 'gd' }, g.lines);
+        if (ql) { const t = el('text', { x: sx(q), y: sy(0) + 16, class: 'tk', 'text-anchor': 'middle' }, g.top); biSetSvg(t,ql); }
+        if (pl) { const t = el('text', { x: L - 6, y: sy(p) + 4, class: 'tk', 'text-anchor': 'end' }, g.top); biSetSvg(t,pl); }
+      },
+      dot(q, p, label, left) {
+        el('circle', { cx: sx(q), cy: sy(p), r: 4.5, class: 'pt' }, g.top);
+        if (label) { const t = el('text', { x: sx(q) + (left ? -9 : 8), y: sy(p) + (left ? 4 : -8), class: 'ptl', 'text-anchor': left ? 'end' : 'start' }, g.top); biSetSvg(t,label); }
+      },
+      path(pts, cls) { el('polyline', { points: pts.map(p => sx(p[0]) + ',' + sy(p[1])).join(' '), class: 'cv ' + cls, fill: 'none' }, g.lines); },
+      label(q, p, s, cls) { const t = el('text', { x: sx(q) + 6, y: sy(p) + 4, class: 'cvl ' + cls }, g.top); biSetSvg(t,s); },
+      xticks(arr) { arr.forEach(v => { const t = el('text', { x: sx(v), y: sy(0) + 16, class: 'tk', 'text-anchor': 'middle' }, g.top); biSetSvg(t,v); }); },
+      yticks(arr, pre) { arr.forEach(v => { el('line', { x1: sx(0), y1: sy(v), x2: W - R, y2: sy(v), class: 'grid' }, g.area); const t = el('text', { x: L - 6, y: sy(v) + 4, class: 'tk', 'text-anchor': 'end' }, g.top); biSetSvg(t,(pre || '') + v); }); },
+      tag(q, p, s) { const t = el('text', { x: sx(q), y: sy(p) + 4, class: 'atag', 'text-anchor': 'middle' }, g.top); biSetSvg(t,s); }
+    };
+    return api;
+  }
+
+  function shell(host, title, sub) {
+    const id = 'w' + (++uid);
+    host.classList.add('graph');
+    host.innerHTML =
+      "<div class=\"g-head\"><span class=\"g-kicker\">Interactive graph<span class=\"zh-full\" lang=\"zh-Hant\">互動圖表</span></span><h4>" + title + '</h4><p>' + sub + '</p></div>' +
+      '<div class="g-body"><div class="g-plot"><svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + biPlain(title) + '"></svg></div>' +
+      '<div class="g-side"><div class="g-ctrl"></div><dl class="g-stats"></dl></div></div>' +
+      '<p class="g-note" aria-live="polite"></p>';
+    const svg = host.querySelector('svg');
+    return {
+      id, svg,
+      ctrl: host.querySelector('.g-ctrl'),
+      stats: host.querySelector('.g-stats'),
+      note: host.querySelector('.g-note'),
+      slider(key, label, min, max, step, val, fmt, on) {
+        const wrap = document.createElement('div'); wrap.className = 'sl';
+        const iid = id + '-' + key;
+        wrap.innerHTML = '<label for="' + iid + '"><span>' + label + '</span><output></output></label>' +
+          '<input type="range" id="' + iid + '" min="' + min + '" max="' + max + '" step="' + step + '" value="' + val + '">';
+        const inp = wrap.querySelector('input'), out = wrap.querySelector('output');
+        const sync = () => { out.innerHTML = fmt ? fmt(+inp.value) : inp.value; };
+        inp.addEventListener('input', () => { sync(); on(+inp.value); });
+        sync();
+        this.ctrl.appendChild(wrap);
+        return { set(v) { inp.value = v; sync(); }, input: inp };
+      },
+      button(label, on) {
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'g-btn'; b.innerHTML = label;
+        b.addEventListener('click', on); this.ctrl.appendChild(b); return b;
+      },
+      seg(key, opts, val, on) {
+        const wrap = document.createElement('div'); wrap.className = 'seg'; wrap.setAttribute('role', 'radiogroup');
+        opts.forEach(([v, lab]) => {
+          const b = document.createElement('button'); b.type = 'button'; b.innerHTML = lab; b.dataset.v = v;
+          b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', v === val);
+          b.addEventListener('click', () => { wrap.querySelectorAll('button').forEach(x => x.setAttribute('aria-checked', x === b)); on(v); });
+          wrap.appendChild(b);
+        });
+        this.ctrl.appendChild(wrap);
+      },
+      check(key, label, val, on) {
+        const wrap = document.createElement('label'); wrap.className = 'chk';
+        const iid = id + '-' + key;
+        wrap.setAttribute('for', iid);
+        wrap.innerHTML = '<input type="checkbox" id="' + iid + '"' + (val ? ' checked' : '') + '><span>' + label + '</span>';
+        wrap.querySelector('input').addEventListener('change', e => on(e.target.checked));
+        this.ctrl.appendChild(wrap);
+      },
+      show(rows, note) {
+        this.stats.innerHTML = rows.map(r =>
+          '<div class="st' + (r.big ? ' big' : '') + '"><dt><i class="sw ' + (r.sw || 'none') + '"></i>' + r.k + '</dt><dd>' + r.v + '</dd></div>').join('');
+        this.note.innerHTML = note || '';
+      }
+    };
+  }
+
+  const W_ = {};
+
+  /* 1. Equilibrium welfare */
+  W_.welfare = host => {
+    const s = shell(host, "Gains from trade peak at equilibrium<span class=\"zh-full\" lang=\"zh-Hant\">均衡時交易利益最大</span>",
+      "Shift demand or supply, or force the quantity away from equilibrium, and watch total surplus.<span class=\"zh-full\" lang=\"zh-Hant\">移動需求或供給，或使交易量偏離均衡，觀察總剩餘如何改變。</span>");
+    const st = { a: 100, c: 10, q: 45, forced: false };
+    const P = Plot(s.svg, 80, 130);
+    const qe = () => (st.a - st.c) / 2;
+    const draw = () => {
+      const Qe = qe(), Pe = (st.a + st.c) / 2, a = st.a, c = st.c;
+      if (!st.forced) { st.q = Qe; qs.set(Qe); }
+      const q = st.q;
+      P.clear(); P.axes("Quantity<span class=\"zh-full\" lang=\"zh-Hant\">數量</span>", "Price<span class=\"zh-full\" lang=\"zh-Hant\">價格</span>");
+      const TSe = 0.5 * Qe * (a - c);
+      let rows, note;
+      if (Math.abs(q - Qe) < 0.26) {
+        const CS = 0.5 * Qe * (a - Pe), PS = 0.5 * Qe * (Pe - c);
+        P.poly([[0, a], [Qe, Pe], [0, Pe]], 'a-cs'); P.poly([[0, Pe], [Qe, Pe], [0, c]], 'a-ps');
+        P.tag(Qe / 3, Pe + (a - Pe) / 3, "CS<span class=\"zh-full\" lang=\"zh-Hant\">消費者剩餘</span>"); P.tag(Qe / 3, Pe - (Pe - c) / 3, "PS<span class=\"zh-full\" lang=\"zh-Hant\">生產者剩餘</span>");
+        rows = [{ k: "Consumer Surplus<span class=\"zh-full\" lang=\"zh-Hant\">消費者剩餘</span>", v: f1(CS), sw: 'a-cs' }, { k: "Producer Surplus<span class=\"zh-full\" lang=\"zh-Hant\">生產者剩餘</span>", v: f1(PS), sw: 'a-ps' },
+          { k: "Total Surplus<span class=\"zh-full\" lang=\"zh-Hant\">總剩餘</span>", v: f1(TSe), big: true }, { k: "Deadweight Loss<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失</span>", v: '0', sw: 'a-dwl' }];
+        note = "At equilibrium every trade with WTP ≥ MC takes place, so total surplus is at its maximum.<span class=\"zh-full\" lang=\"zh-Hant\">均衡時，所有支付意願不低於邊際成本的交易都會發生，因此總剩餘達最大。</span>";
+      } else if (q < Qe) {
+        const dwl = 0.5 * (Qe - q) * ((a - q) - (c + q));
+        P.poly([[0, a], [q, a - q], [q, c + q], [0, c]], 'a-ts');
+        P.poly([[q, a - q], [Qe, Pe], [q, c + q]], 'a-dwl');
+        P.tag((q + Qe) / 2 - 2, Pe, "DWL<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失</span>");
+        P.guide(q, null, 'Q');
+        rows = [{ k: "Surplus realized<span class=\"zh-full\" lang=\"zh-Hant\">已實現剩餘</span>", v: f1(TSe - dwl), sw: 'a-ts' }, { k: "Max possible<span class=\"zh-full\" lang=\"zh-Hant\">可能的最大剩餘</span>", v: f1(TSe) },
+          { k: "Deadweight Loss<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失</span>", v: f1(dwl), sw: 'a-dwl', big: true }];
+        note = "Too little trade: between Q and Qe, buyer WTP still exceeds seller cost, yet these trades do not happen.<span class=\"zh-full\" lang=\"zh-Hant\">交易不足：在 Q 與 Qe 之間，買方支付意願仍高於賣方成本，交易卻未發生。</span>";
+      } else {
+        const dwl = 0.5 * (q - Qe) * ((c + q) - (a - q));
+        P.poly([[0, a], [Qe, Pe], [0, c]], 'a-ts');
+        P.poly([[Qe, Pe], [q, c + q], [q, a - q]], 'a-dwl');
+        P.tag((q + Qe) / 2 + 2, Pe, "DWL<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失</span>");
+        P.guide(q, null, 'Q');
+        rows = [{ k: "Surplus realized<span class=\"zh-full\" lang=\"zh-Hant\">已實現剩餘</span>", v: f1(TSe - dwl), sw: 'a-ts' }, { k: "Max possible<span class=\"zh-full\" lang=\"zh-Hant\">可能的最大剩餘</span>", v: f1(TSe) },
+          { k: "Deadweight Loss<span class=\"zh-full\" lang=\"zh-Hant\">無謂損失</span>", v: f1(dwl), sw: 'a-dwl', big: true }];
+        note = "Too much trade: beyond Qe, MC > WTP, so every extra unit reduces total surplus.<span class=\"zh-full\" lang=\"zh-Hant\">交易過多：超過 Qe 後，邊際成本大於支付意願，每多交易一單位都會降低總剩餘。</span>";
+      }
+      P.lin(a, -1, 'c-d', 'D'); P.lin(c, 1, 'c-s', 'S');
+      P.guide(Qe, Pe, "Qe<span class=\"zh-full\" lang=\"zh-Hant\">均衡數量</span>", "Pe<span class=\"zh-full\" lang=\"zh-Hant\">均衡價格</span>"); P.dot(Qe, Pe, 'E');
+      s.show(rows, note);
+    };
+    s.slider('a', "Demand shift<span class=\"zh-full\" lang=\"zh-Hant\">需求移動</span>", 80, 120, 1, st.a, v => (v > 100 ? '+' : '') + (v - 100), v => { st.a = v; draw(); });
+    s.slider('c', "Supply shift<span class=\"zh-full\" lang=\"zh-Hant\">供給移動</span>", 0, 30, 1, st.c, v => (v > 10 ? '+' : '') + (v - 10), v => { st.c = v; draw(); });
+    const qs = s.slider('q', "Quantity traded<span class=\"zh-full\" lang=\"zh-Hant\">交易量</span>", 5, 70, 0.5, st.q, f1, v => { st.q = v; st.forced = true; draw(); });
+    s.button("Reset to equilibrium<span class=\"zh-full\" lang=\"zh-Hant\">重設為均衡</span>", () => { st.forced = false; draw(); });
+    draw();
+  };
+
+  /* ---------- Session 1: quinoa market ---------- */
+  W_.quinoa = host => {
+    const s = shell(host, "Quinoa world market: shortage, surplus, equilibrium<span class=\"zh-full\" lang=\"zh-Hant\">藜麥全球市場：短缺、過剩與均衡</span>",
+      "Class numbers: equilibrium near $500 per ton and 45 thousand tons in 2001. Move the price away from $500, or switch on the 2010 demand.<span class=\"zh-full\" lang=\"zh-Hant\">課堂數字：2001 年均衡約為每噸 500 美元、4.5 萬噸。將價格調離 500 美元，或開啟 2010 年需求。</span>");
+    const st = { p: 400, y2010: false };
+    const P = Plot(s.svg, 100, 1600);
+    const qd = p => (1400 - p) / 20, qs = p => (p + 400) / 20, qd2 = p => (2800 - p) / 20;
+    const pr = s.slider('p', "Market price ($ per ton)<span class=\"zh-full\" lang=\"zh-Hant\">市場價格（美元／噸）</span>", 300, 700, 50, st.p, v => '$' + v, v => { st.p = v; draw(); });
+    s.check('y', "Show 2010 demand<span class=\"zh-full\" lang=\"zh-Hant\">顯示 2010 年需求</span>", false, v => { st.y2010 = v; pr.input.disabled = v; draw(); });
+    function draw() {
+      P.clear(); P.axes("Quantity (thousand tons)<span class=\"zh-full\" lang=\"zh-Hant\">數量（千噸）</span>", "Price ($/ton)<span class=\"zh-full\" lang=\"zh-Hant\">價格（美元／噸）</span>");
+      P.yticks([800], '$');
+      P.lin(-400, 20, 'c-s', 'S');
+      if (st.y2010) {
+        P.lin(1400, -20, 'c-d', 'D 2001', true); P.lin(2800, -20, 'c-d', 'D 2010');
+        P.guide(45, 500, '45', '$500'); P.guide(80, 1200, '80', '$1,200');
+        P.dot(45, 500, 'E 2001', true); P.dot(80, 1200, 'E 2010', true);
+        s.show([{ k: "Price<span class=\"zh-full\" lang=\"zh-Hant\">價格</span>", v: '$500 → $1,200', big: true }, { k: "Quantity<span class=\"zh-full\" lang=\"zh-Hant\">數量</span>", v: "45 → 80 thousand tons<span class=\"zh-full\" lang=\"zh-Hant\">4.5 萬 → 8 萬噸</span>" }, { k: "Supply<span class=\"zh-full\" lang=\"zh-Hant\">供給</span>", v: "Unchanged<span class=\"zh-full\" lang=\"zh-Hant\">不變</span>" }],
+          "Demand itself increased: the whole curve shifted right while supply stayed put, so both price and quantity rose. The slide does not name one cause, so do not invent one.<span class=\"zh-full\" lang=\"zh-Hant\">需求本身增加：整條曲線右移，供給則不變，因此價格與數量都上升。投影片沒有指定單一原因，請勿自行杜撰。</span>");
+        return;
+      }
+      P.lin(1400, -20, 'c-d', 'D');
+      const p = st.p, a = qd(p), b = qs(p);
+      P.dot(45, 500, 'E', true);
+      if (p !== 500) {
+        P.hline(p, 'c-t'); P.poly([[Math.min(a, b), p - 18], [Math.max(a, b), p - 18], [Math.max(a, b), p + 18], [Math.min(a, b), p + 18]], p < 500 ? 'a-loss' : 'a-rev2');
+        P.guide(a, p, "Qd <span class=\"zh-full\" lang=\"zh-Hant\">需求量</span>" + a); P.guide(b, p, "Qs <span class=\"zh-full\" lang=\"zh-Hant\">供給量</span>" + b, '$' + p);
+        P.tag((a + b) / 2, p + (p < 500 ? -70 : 70), p<500?biPair('Shortage '+(a-b),'短缺 '+(a-b)):biPair('Surplus '+(b-a),'過剩 '+(b-a)));
+      } else P.guide(45, 500, '45', '$500');
+      s.show([{ k: "Quantity demanded<span class=\"zh-full\" lang=\"zh-Hant\">需求量</span>", v: biPair(a+'k tons',a+' 千噸') }, { k: "Quantity supplied<span class=\"zh-full\" lang=\"zh-Hant\">供給量</span>", v: biPair(b+'k tons',b+' 千噸') },
+        { k: p < 500 ? "Shortage<span class=\"zh-full\" lang=\"zh-Hant\">短缺</span>" : p > 500 ? "Surplus<span class=\"zh-full\" lang=\"zh-Hant\">過剩</span>" : "Equilibrium<span class=\"zh-full\" lang=\"zh-Hant\">均衡</span>", v: p === 500 ? "Qd = Qs<span class=\"zh-full\" lang=\"zh-Hant\">需求量＝供給量</span>" : biPair(Math.abs(a-b)+'k tons',Math.abs(a-b)+' 千噸'), big: true }],
+        p < 500 ? "Below equilibrium Qd > Qs. Buyers compete with other buyers, pushing the price up toward $500.<span class=\"zh-full\" lang=\"zh-Hant\">低於均衡價格時，需求量＞供給量。買方與其他買方競爭，推動價格朝 500 美元上升。</span>"
+          : p > 500 ? "Above equilibrium Qs > Qd. Sellers compete with other sellers, pushing the price down toward $500.<span class=\"zh-full\" lang=\"zh-Hant\">高於均衡價格時，供給量＞需求量。賣方與其他賣方競爭，推動價格朝 500 美元下降。</span>"
+            : "At $500 buyers want to buy what sellers want to sell. No pressure to change.<span class=\"zh-full\" lang=\"zh-Hant\">在 500 美元時，買方想買的數量等於賣方想賣的數量，沒有改變價格的壓力。</span>");
+    }
+    draw();
+  };
+
+  const APPS = [
+    { t: "There is a virus pandemic<span class=\"zh-full\" lang=\"zh-Hant\">發生病毒大流行</span>", c: 'D', d: -1, f: "Demand shock<span class=\"zh-full\" lang=\"zh-Hant\">需求衝擊</span>", a: "A virus pandemic reduces demand for quinoa in the teacher's model. The demand curve shifts left, so equilibrium price and quantity both fall.<span class=\"zh-full\" lang=\"zh-Hant\">在教師的模型中，病毒大流行使藜麥需求下降。需求曲線左移，因此均衡價格與數量都下降。</span>" },
+    { t: "La Niña causes a major drought in Bolivia<span class=\"zh-full\" lang=\"zh-Hant\">反聖嬰現象使玻利維亞發生嚴重乾旱</span>", c: 'S', d: -1, f: "Natural conditions<span class=\"zh-full\" lang=\"zh-Hant\">自然條件</span>", a: "A major drought makes quinoa harder to produce, so supply decreases. The supply curve shifts left: equilibrium price rises and quantity falls.<span class=\"zh-full\" lang=\"zh-Hant\">嚴重乾旱使藜麥更難生產，供給因而減少。供給曲線左移：均衡價格上升、數量下降。</span>" },
+    { t: "Riceberry becomes very cheap<span class=\"zh-full\" lang=\"zh-Hant\">Riceberry 米變得非常便宜</span>", c: 'D', d: -1, f: "Substitute price<span class=\"zh-full\" lang=\"zh-Hant\">替代品價格</span>", a: "Riceberry is treated as a substitute. Its lower price draws buyers away, so demand for quinoa falls. Demand shifts left: price and quantity fall.<span class=\"zh-full\" lang=\"zh-Hant\">此處把 Riceberry 米視為替代品。它降價會吸引買方轉向，減少藜麥需求。需求左移：價格與數量都下降。</span>" },
+    { t: "China begins to grow quinoa<span class=\"zh-full\" lang=\"zh-Hant\">中國開始種植藜麥</span>", c: 'S', d: 1, f: "Number of producers<span class=\"zh-full\" lang=\"zh-Hant\">生產者數量</span>", a: "A new producing country increases world supply. The supply curve shifts right: equilibrium price falls and quantity rises.<span class=\"zh-full\" lang=\"zh-Hant\">新的生產國使全球供給增加。供給曲線右移：均衡價格下降、數量上升。</span>" },
+    { t: "New evidence that quinoa can reduce the risk of diabetes<span class=\"zh-full\" lang=\"zh-Hant\">新證據顯示藜麥可以降低糖尿病風險</span>", c: 'D', d: 1, f: "Preferences<span class=\"zh-full\" lang=\"zh-Hant\">偏好</span>", a: "Favorable health evidence makes consumers want more quinoa at every price. Demand shifts right: price and quantity both rise.<span class=\"zh-full\" lang=\"zh-Hant\">有利的健康證據，使消費者在每個價格下都想購買更多藜麥。需求右移：價格與數量都上升。</span>" },
+    { t: "Rare-earth deposits are discovered in Bolivia<span class=\"zh-full\" lang=\"zh-Hant\">玻利維亞發現稀土礦藏</span>", c: 'S', d: -1, f: "Opportunity cost<span class=\"zh-full\" lang=\"zh-Hant\">機會成本</span>", a: "Mining becomes a more valuable use of Bolivian resources, raising the opportunity cost of growing quinoa. Supply shifts left: price rises, quantity falls.<span class=\"zh-full\" lang=\"zh-Hant\">採礦成為玻利維亞資源更有價值的用途，提高種植藜麥的機會成本。供給左移：價格上升、數量下降。</span>" }
+  ];
+  function appDraw(P, ap, reveal) {
+    P.clear(); P.axes("Quantity of quinoa<span class=\"zh-full\" lang=\"zh-Hant\">藜麥數量</span>", "Price<span class=\"zh-full\" lang=\"zh-Hant\">價格</span>");
+    const dA = 90 + (reveal && ap.c === 'D' ? 20 * ap.d : 0), sA = 10 + (reveal && ap.c === 'S' ? -20 * ap.d : 0);
+    const q2 = (dA - sA) / 2, p2 = (dA + sA) / 2;
+    if (reveal && ap.c === 'D') { P.lin(90, -1, 'c-d', 'D1', true); P.lin(dA, -1, 'c-d', 'D2'); P.lin(10, 1, 'c-s', 'S'); }
+    else if (reveal) { P.lin(90, -1, 'c-d', 'D'); P.lin(10, 1, 'c-s', 'S1', true); P.lin(sA, 1, 'c-s', 'S2'); }
+    else { P.lin(90, -1, 'c-d', 'D'); P.lin(10, 1, 'c-s', 'S'); }
+    P.guide(40, 50, reveal ? 'Q1' : 'Q', reveal ? 'P1' : 'P');
+    P.dot(40, 50, reveal ? 'E1' : 'E', true);
+    if (reveal) {
+      P.guide(q2, p2, 'Q2', 'P2'); P.dot(q2, p2, 'E2');
+      const arrow = ap.d > 0 ? '→' : '←';
+      if (ap.c === 'D') P.tag(dA - 78, 82, biPair('D shifts '+arrow,'需求移動 '+arrow)); else P.tag(78 - sA + 2, 82, biPair('S shifts '+arrow,'供給移動 '+arrow));
+    }
+    return { q2, p2 };
+  }
+  W_.apps = host => {
+    const s = shell(host, "The quinoa applications, one graph each<span class=\"zh-full\" lang=\"zh-Hant\">藜麥應用：每個事件一張圖</span>", "Pick an event and predict which curve moves and which way. Then check the graph.<span class=\"zh-full\" lang=\"zh-Hant\">選一個事件，先預測哪條曲線向哪個方向移動，再查看圖形。</span>");
+    const P = Plot(s.svg, 100, 100);
+    let cur = 0, guess = null;
+    s.seg('ev', APPS.map((a, k) => [k, String(k + 1)]), 0, v => { cur = v; guess = null; draw(); });
+    const box = document.createElement('div'); box.className = 'ap-q'; s.ctrl.appendChild(box);
+    const opts = document.createElement('div'); opts.className = 'ap-opts'; s.ctrl.appendChild(opts);
+    [['D', -1, "Demand ←<span class=\"zh-full\" lang=\"zh-Hant\">需求 ←</span>"], ['D', 1, "Demand →<span class=\"zh-full\" lang=\"zh-Hant\">需求 →</span>"], ['S', -1, "Supply ←<span class=\"zh-full\" lang=\"zh-Hant\">供給 ←</span>"], ['S', 1, "Supply →<span class=\"zh-full\" lang=\"zh-Hant\">供給 →</span>"]].forEach(([c, d, lab]) => {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'qz-o'; b.innerHTML = lab;
+      b.addEventListener('click', () => { guess = { c, d }; draw(); }); b.dataset.k = c + d; opts.appendChild(b);
+    });
+    s.button("Show answer<span class=\"zh-full\" lang=\"zh-Hant\">顯示答案</span>", () => { guess = { c: '?', d: 0 }; draw(); });
+    function draw() {
+      const ap = APPS[cur], rev = !!guess;
+      box.innerHTML = '<b>' + (cur + 1) + '. ' + ap.t + ".</b><span>What happens to the equilibrium price and quantity of quinoa?<span class=\"zh-full\" lang=\"zh-Hant\">藜麥的均衡價格與數量會如何變動？</span></span>";
+      opts.querySelectorAll('button').forEach(b => { b.classList.toggle('right', rev && b.dataset.k === ap.c + ap.d); b.classList.toggle('wrong', rev && guess.c + guess.d === b.dataset.k && b.dataset.k !== ap.c + ap.d); });
+      appDraw(P, ap, rev);
+      if (!rev) { s.show([{ k: "Step 1<span class=\"zh-full\" lang=\"zh-Hant\">步驟 1</span>", v: "Buyer side or seller side?<span class=\"zh-full\" lang=\"zh-Hant\">買方還是賣方？</span>" }, { k: "Step 2<span class=\"zh-full\" lang=\"zh-Hant\">步驟 2</span>", v: "Own price or other factor?<span class=\"zh-full\" lang=\"zh-Hant\">商品本身價格，還是其他因素？</span>" }, { k: "Step 3<span class=\"zh-full\" lang=\"zh-Hant\">步驟 3</span>", v: "Left or right?<span class=\"zh-full\" lang=\"zh-Hant\">左移還是右移？</span>" }], ''); return; }
+      const up = (ap.c === 'D') === (ap.d > 0);
+      s.show([{ k: "Factor<span class=\"zh-full\" lang=\"zh-Hant\">因素</span>", v: ap.f }, { k: "Curve<span class=\"zh-full\" lang=\"zh-Hant\">曲線</span>", v: biPair((ap.c==='D'?'Demand':'Supply')+(ap.d>0?' → right':' ← left'),(ap.c==='D'?'需求':'供給')+(ap.d>0?' → 右移':' ← 左移')) },
+        { k: "Price<span class=\"zh-full\" lang=\"zh-Hant\">價格</span>", v: up ? 'P2 > P1 ↑' : 'P2 < P1 ↓', big: true }, { k: "Quantity<span class=\"zh-full\" lang=\"zh-Hant\">數量</span>", v: ap.d > 0 ? 'Q2 > Q1 ↑' : 'Q2 < Q1 ↓', big: true }],
+        (guess.c === '?' ? '' : guess.c + guess.d === ap.c + ap.d ? "<b>Correct.<span class=\"zh-full\" lang=\"zh-Hant\">答對了。</span></b> " : "<b>Not quite.<span class=\"zh-full\" lang=\"zh-Hant\">再想一下。</span></b> ") + ap.a);
+    }
+    draw();
+  };
+
+  W_.appgrid = host => {
+    host.classList.add('ap-grid');
+    host.innerHTML = APPS.map((ap, k) => {
+      const dA = 90 + (ap.c === 'D' ? 20 * ap.d : 0), sA = 10 + (ap.c === 'S' ? -20 * ap.d : 0), q2 = (dA - sA) / 2, p2 = (dA + sA) / 2;
+      const X = q => 22 + q * 1.5, Y = p => 128 - p * 1.15;
+      const ln = (a, m, cls, dash, lab) => { const q0 = Math.max(0, m < 0 ? a - 100 : -a), q1 = m < 0 ? Math.min(100, a) : Math.min(100, (100 - a) / m); return '<line x1="' + X(q0) + '" y1="' + Y(a + m * q0) + '" x2="' + X(q1) + '" y2="' + Y(a + m * q1) + '" class="cv ' + cls + (dash ? ' dash' : '') + '"/>' + (lab ? '<text x="' + (X(q1) + 3) + '" y="' + (Y(a + m * q1) + (m < 0 ? -2 : 8)) + '" class="cvl ' + cls + '" font-size="9">' + lab + '</text>' : ''); };
+      let g = '<line x1="22" y1="128" x2="186" y2="128" class="ax"/><line x1="22" y1="128" x2="22" y2="8" class="ax"/>';
+      g += ap.c === 'D' ? ln(90, -1, 'c-d', 1, 'D1') + ln(dA, -1, 'c-d', 0, 'D2') + ln(10, 1, 'c-s', 0, 'S') : ln(90, -1, 'c-d', 0, 'D') + ln(10, 1, 'c-s', 1, 'S1') + ln(sA, 1, 'c-s', 0, 'S2');
+      g += '<line x1="' + X(40) + '" y1="' + Y(50) + '" x2="' + X(40) + '" y2="128" class="gd"/><line x1="22" y1="' + Y(50) + '" x2="' + X(40) + '" y2="' + Y(50) + '" class="gd"/>';
+      g += '<line x1="' + X(q2) + '" y1="' + Y(p2) + '" x2="' + X(q2) + '" y2="128" class="gd"/><line x1="22" y1="' + Y(p2) + '" x2="' + X(q2) + '" y2="' + Y(p2) + '" class="gd"/>';
+      g += '<circle cx="' + X(40) + '" cy="' + Y(50) + '" r="3" class="pt"/><circle cx="' + X(q2) + '" cy="' + Y(p2) + '" r="3.5" class="pt"/>';
+      g += '<text x="18" y="' + (Y(50) + 3) + '" class="tk" text-anchor="end">P1</text><text x="18" y="' + (Y(p2) + 3) + '" class="tk" text-anchor="end">P2</text><text x="' + X(40) + '" y="139" class="tk" text-anchor="middle">Q1</text><text x="' + X(q2) + '" y="139" class="tk" text-anchor="middle">Q2</text>';
+      const up = (ap.c === 'D') === (ap.d > 0);
+      return '<figure><svg viewBox="0 0 200 145" role="img" aria-label="' + biPlain(ap.t) + '">' + g + '</svg><figcaption><b>' + (k + 1) + '. ' + ap.t + '</b><span>' + (ap.c === 'D' ? 'D' : 'S') + (ap.d > 0 ? ' →' : ' ←') + ' · P ' + (up ? '↑' : '↓') + ' · Q ' + (ap.d > 0 ? '↑' : '↓') + '</span></figcaption></figure>';
+    }).join('');
+  };
+
+  W_.both = host => {
+    const s = shell(host, "When both curves shift<span class=\"zh-full\" lang=\"zh-Hant\">兩條曲線同時移動</span>", "Move demand and supply together. One result is always certain; the other depends on which shift is bigger.<span class=\"zh-full\" lang=\"zh-Hant\">同時調整需求與供給。一項結果必定能確定；另一項取決於哪個移動幅度更大。</span>");
+    const st = { d: 20, s: -10 };
+    const P = Plot(s.svg, 100, 100);
+    const ds = s.slider('d', "Demand shift<span class=\"zh-full\" lang=\"zh-Hant\">需求移動</span>", -20, 20, 5, st.d, v=>biPair((v>0?'right +':v<0?'left ':'')+v,(v>0?'右移 +':v<0?'左移 ':'')+v), v => { st.d = v; draw(); });
+    const ss = s.slider('s', "Supply shift<span class=\"zh-full\" lang=\"zh-Hant\">供給移動</span>", -20, 20, 5, st.s, v=>biPair((v>0?'right +':v<0?'left ':'')+v,(v>0?'右移 +':v<0?'左移 ':'')+v), v => { st.s = v; draw(); });
+    s.button("Health report + drought<span class=\"zh-full\" lang=\"zh-Hant\">健康報告＋乾旱</span>", () => { st.d = 20; st.s = -10; ds.set(20); ss.set(-10); draw(); });
+    function draw() {
+      const dA = 90 + st.d, sA = 10 - st.s, q2 = (dA - sA) / 2, p2 = (dA + sA) / 2;
+      P.clear(); P.axes("Quantity<span class=\"zh-full\" lang=\"zh-Hant\">數量</span>", "Price<span class=\"zh-full\" lang=\"zh-Hant\">價格</span>");
+      P.lin(90, -1, 'c-d', st.d ? 'D1' : 'D', !!st.d); if (st.d) P.lin(dA, -1, 'c-d', 'D2');
+      P.lin(10, 1, 'c-s', st.s ? 'S1' : 'S', !!st.s); if (st.s) P.lin(sA, 1, 'c-s', 'S2');
+      P.guide(40, 50, 'Q1', 'P1'); P.dot(40, 50, 'E1', true);
+      if (st.d || st.s) { P.guide(q2, p2, Math.abs(q2 - 40) < 5 ? '' : 'Q2', Math.abs(p2 - 50) < 5 ? '' : 'P2'); P.dot(q2, p2, 'E2'); }
+      const dP = p2 - 50, dQ = q2 - 40, sg=x=>x>0?'↑':x<0?'↓':'no change';
+      let note;
+      if (st.d && st.s) {
+        const same = (st.d > 0) === (st.s > 0);
+        note=same?biRichPair('Both curves move the same way, so <b>quantity is certain ('+sg(st.d)+')</b>. Price depends on which shift is larger; here it is '+sg(dP)+'. Try making the shifts equal.','兩條曲線向同一方向移動，因此數量方向可以確定（'+sg(st.d)+'）。價格取決於哪個移動幅度較大；目前為'+(dP?sg(dP):'不變')+'。試著讓兩者移動幅度相等。'):biRichPair('The curves move in opposite directions, so <b>price is certain ('+sg(st.d)+')</b>. Quantity depends on which shift is larger; here it is '+sg(dQ)+'.','兩條曲線向相反方向移動，因此價格方向可以確定（'+sg(st.d)+'）。數量取決於哪個移動幅度較大；目前為'+(dQ?sg(dQ):'不變')+'。');
+      } else note = "Only one curve moved, so both price and quantity are determined. Shift the other curve too.<span class=\"zh-full\" lang=\"zh-Hant\">只有一條曲線移動，所以價格與數量的方向都能確定。也試著移動另一條曲線。</span>";
+      s.show([{ k: "Price<span class=\"zh-full\" lang=\"zh-Hant\">價格</span>", v: biPair(sg(dP)+' ('+(dP>0?'+':'')+dP+')',(dP?sg(dP):'不變')+'（'+(dP>0?'+':'')+dP+'）'), big: true }, { k: "Quantity<span class=\"zh-full\" lang=\"zh-Hant\">數量</span>", v: biPair(sg(dQ)+' ('+(dQ>0?'+':'')+dQ+')',(dQ?sg(dQ):'不變')+'（'+(dQ>0?'+':'')+dQ+'）'), big: true }], note);
+    }
+    draw();
+  };
+
+  window.EconWidgets = { mount(root) { root.querySelectorAll('[data-widget]').forEach(h => { const f = W_[h.dataset.widget]; if (f && !h.dataset.ready) { h.dataset.ready = 1; f(h); } }); } };
+})();
+</script>
+<script>
+(function () {
+  const toc = document.getElementById('toc'), rail = document.getElementById('rail');
+  const hs = [...document.querySelectorAll('.doc > h2, .doc > h3')];
+  hs.forEach(h => {
+    const li = document.createElement('li'); li.className = h.tagName.toLowerCase(); li.dataset.id = h.id;
+    const a = document.createElement('a'); a.href = '#' + h.id; a.innerHTML=biPair(h.childNodes[0].textContent.trim(),h.querySelector(':scope > .zh-full')?.textContent||'');
+    li.appendChild(a); toc.appendChild(li);
+  });
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    toc.querySelectorAll('a.on').forEach(a => a.classList.remove('on'));
+    const a = toc.querySelector('li[data-id="' + e.target.id + '"] a'); if (a) a.classList.add('on');
+  }), { rootMargin: '-80px 0px -70% 0px' });
+  hs.forEach(h => spy.observe(h));
+
+  const tb = document.getElementById('tocBtn');
+  tb.addEventListener('click', () => { const o = rail.classList.toggle('open'); tb.setAttribute('aria-expanded', o); });
+  toc.addEventListener('click', e => { if (e.target.closest('a')) { rail.classList.remove('open'); tb.setAttribute('aria-expanded', false); } });
+
+  const all = document.getElementById('qaAll');
+  if (all) all.addEventListener('click', () => {
+    const ds = document.querySelectorAll('.qa details'), open = ![...ds].every(d => d.open);
+    ds.forEach(d => d.open = open); all.innerHTML=biPair(open?'Hide all answers':'Show all answers',open?'收合全部答案':'顯示全部答案');
+  });
+  document.querySelectorAll('.drill .ans').forEach(s => s.addEventListener('click', () => s.classList.toggle('shown')));
+
+  if (window.EconWidgets) window.EconWidgets.mount(document);
+  if (window.MgmtWidgets) window.MgmtWidgets.mount(document);
+  if (window.MktWidgets) window.MktWidgets.mount(document);
+})();
+</script>
+<script>
+(function(){
+const toggle=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+const key='study-notes-show-zh';
+function syncOptions(on){document.querySelectorAll('option[data-zh]').forEach(o=>{if(!o.dataset.en)o.dataset.en=o.textContent;o.textContent=o.dataset.en+(on&&o.dataset.zh?'／'+o.dataset.zh:'')})}
+function set(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';syncOptions(on);try{localStorage.setItem(key,on?'1':'0')}catch(e){}}
+let initial=false;try{initial=localStorage.getItem(key)==='1'}catch(e){}
+set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
+const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
+if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
+})();
+</script></body></html>

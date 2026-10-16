@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Working with Personality Types · Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+/* Layout: one light reading column with a sticky chapter rail; deliberately single (light) theme. */
+:root {
+  color-scheme: light;
+  --bg: #FDF9F9; --panel: #F8EEF0; --paper: #FFFFFF; --tint: #FAE9ED; --line: #EFDDE2;
+  --fg: #2F282B; --muted: #7E6F74; --accent: #C06C84; --accent-ink: #9C4862;
+  --demand: #3F5675; --supply: #C06C84; --ext: #6E3F55; --world: #8A7A5C; --policy: #3F7F7A;
+  --cs: #A7CDB6; --ps: #B2C4E3; --dwl: #D9674F; --rev: #E5C171; --rev2: #F1DCA8; --time: #DDB3CB; --ts: #BFDCC9;
+  --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; background: var(--bg); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.75; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(253, 249, 249, .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
+.top-in { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 14px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.02rem; white-space: nowrap; }
+.brand small { font-family: var(--sans); font-weight: 500; color: var(--muted); font-size: .76rem; margin-left: 6px; letter-spacing: .06em; }
+.sessions { display: flex; gap: 4px; margin-left: auto; }
+.crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
+.sessions a.pill {
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):hover,
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):focus-visible {
+  background: #fceef2;
+  border-color: #b86b7b;
+  color: #8e4357;
+}
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):focus-visible {
+  outline: 2px solid #b86b7b;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sessions a.pill { transition: none; }
+}
+.sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
+.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.sessions .pill.off { opacity: .5; cursor: not-allowed; }
+.toc-btn { display: none; font: 500 .85rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--fg); border-radius: 8px; padding: 5px 12px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 52px; }
+.rail { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow: auto; padding-block: 34px 40px; font-size: .86rem; line-height: 1.5; }
+.rail .lbl { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.rail ol { list-style: none; margin: 0; padding: 0; }
+.rail li a { display: block; padding: 4px 10px; color: var(--muted); text-decoration: none; border-radius: 6px; }
+.rail li a:hover { color: var(--fg); background: var(--tint); }
+.rail li.h3 a { padding-left: 22px; font-size: .8rem; }
+.rail li a.on { color: var(--accent-ink); background: var(--tint); font-weight: 500; }
+
+main { min-width: 0; padding-block: 30px 120px; }
+.doc { max-width: 780px; }
+.hero { padding-block: 8px 26px; border-bottom: 1px solid var(--line); }
+.kick { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px; font-weight: 500; }
+.hero h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.25; margin: 0 0 12px; text-wrap: balance; }
+.lead { margin: 0; font-size: 1.04rem; max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.doc h2 { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 3.4rem 0 .3rem; text-wrap: balance; }
+.doc h3 { font-size: 1.1rem; line-height: 1.45; margin: 2.2rem 0 .5rem; color: var(--accent-ink); text-wrap: balance; }
+.sub { margin: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
+.doc p, .doc li { max-width: 68ch; }
+.doc ul, .doc ol { padding-left: 1.25em; }
+.doc li { margin: .25rem 0; }
+.zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
+.hint { font-size: .9rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.hint b { flex: none; font-size: .72rem; color: #fff; background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
+.key { background: var(--tint); padding: 12px 16px; border-radius: 8px; font-weight: 500; }
+.note-small { font-size: .8rem; color: var(--muted); }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.pair > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.pair b { color: var(--accent-ink); }
+.pair p { margin: 4px 0 0; font-size: .92rem; }
+
+.matrix { display: grid; grid-template-columns: minmax(90px, .7fr) repeat(2, minmax(0, 1fr)); gap: 6px; margin: 1rem 0 1.2rem; font-size: .9rem; max-width: 620px; }
+.matrix .mh { font-weight: 700; font-size: .8rem; color: var(--muted); align-self: end; padding: 0 4px 2px; }
+.matrix .mh.side { align-self: center; }
+.matrix .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-weight: 500; }
+.matrix .cell.hi { background: var(--tint); border-color: var(--accent); }
+.matrix small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; margin-top: 2px; line-height: 1.45; }
+
+.map { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 1rem 0; }
+.mcol { display: flex; flex-direction: column; gap: 8px; }
+.mbox { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; display: flex; flex-direction: column; gap: 2px; }
+.mbox b { font-size: .9rem; } .mbox span { color: var(--muted); } .mbox em { font-style: normal; color: var(--accent-ink); font-size: .78rem; font-weight: 500; }
+.mbox.good { border-color: var(--cs); } .mbox.ask { background: var(--tint); border-color: var(--accent); }
+.marrow { color: var(--accent); font-weight: 700; }
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.flow span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; line-height: 1.45; }
+.flow i { font-style: normal; color: var(--accent); font-weight: 700; }
+.formula { font-family: var(--mono); font-size: .9rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; line-height: 1.9; overflow-x: auto; }
+.steps { counter-reset: s; list-style: none; padding-left: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 10px; }
+.steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .75rem/22px var(--sans); text-align: center; margin-top: 3px; }
+.assign { margin: 1.6rem 0; border: 1px dashed var(--accent); border-radius: 10px; padding: 14px 16px; background: var(--paper); }
+.assign p { margin: 6px 0 0; font-size: .92rem; }
+
+.tbl { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.doc table { border-collapse: collapse; width: 100%; font-size: .88rem; line-height: 1.55; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.doc th { background: var(--panel); font-weight: 700; }
+.doc tr:last-child td { border-bottom: 0; }
+.drill .ans { filter: blur(5px); cursor: pointer; user-select: none; transition: filter .2s; }
+.drill .ans.shown { filter: none; user-select: auto; }
+
+.traps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 1rem; }
+.traps > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: .88rem; line-height: 1.55; }
+.traps s { color: var(--muted); text-decoration-color: var(--dwl); }
+.traps p { margin: 6px 0 0; font-weight: 500; }
+
+.qa-tools { margin: .4rem 0 .8rem; }
+.qa-tools button { font: 500 .82rem var(--sans); border: 1px solid var(--accent); background: var(--paper); color: var(--accent-ink); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+.qa { display: flex; flex-direction: column; gap: 6px; }
+.qa details { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.qa summary { cursor: pointer; padding: 10px 14px; font-weight: 500; font-size: .93rem; list-style: none; display: flex; gap: 10px; }
+.qa summary::before { content: "Q"; color: var(--accent); font-weight: 700; }
+.qa details[open] summary { border-bottom: 1px dashed var(--line); }
+.qa details p { margin: 0; padding: 10px 14px 12px 36px; font-size: .9rem; }
+
+/* graphs */
+.graph { max-width: 900px; margin: 1.8rem 0 2.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; }
+.g-head h4 { font-family: var(--serif); font-size: 1.12rem; margin: 2px 0 2px; line-height: 1.45; }
+.g-head p { margin: 0 0 10px; color: var(--muted); font-size: .86rem; }
+.g-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+.g-body { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.g-plot svg { width: 100%; height: auto; display: block; }
+.g-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.g-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.sl label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); line-height: 1.3; }
+.sl output { font-family: var(--mono); color: var(--fg); font-size: .8rem; }
+.sl input { width: 100%; accent-color: var(--accent); margin: 4px 0 0; }
+.g-btn { align-self: flex-start; font: 500 .8rem var(--sans); border: 1px solid var(--accent); color: var(--accent-ink); background: transparent; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.g-btn:hover { background: var(--tint); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; align-self: flex-start; }
+.seg button { font: 500 .8rem var(--sans); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--paper); }
+.chk { display: flex; gap: 8px; align-items: center; font-size: .8rem; color: var(--muted); }
+.chk input { accent-color: var(--accent); }
+.g-stats { margin: 0; border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+.st { display: flex; justify-content: space-between; gap: 10px; font-size: .8rem; line-height: 1.45; }
+.st dt { color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.st dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.st.big dd { font-weight: 500; color: var(--accent-ink); font-size: .92rem; }
+.g-note { margin: 12px 0 0; padding: 9px 12px; background: var(--tint); border-radius: 6px; font-size: .85rem; line-height: 1.6; }
+
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; flex: none; }
+.sw.none { background: transparent; }
+.sw.a-cs { background: var(--cs); } .sw.a-ps { background: var(--ps); } .sw.a-ps2 { background: var(--ps); outline: 1px solid var(--demand); }
+.sw.a-dwl { background: repeating-linear-gradient(45deg, var(--dwl) 0 2px, transparent 2px 4px); outline: 1px solid var(--dwl); }
+.sw.a-rev { background: var(--rev); } .sw.a-rev2 { background: var(--rev2); } .sw.a-time { background: var(--time); } .sw.a-ts { background: var(--ts); }
+.sw.ln { height: 3px; border-radius: 2px; width: 16px; }
+
+svg .ax { stroke: var(--muted); stroke-width: 1.2; }
+svg .axl { fill: var(--muted); font: 500 11px var(--sans); }
+svg .tk { fill: var(--muted); font: 500 10.5px var(--mono); }
+svg .gd { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+svg .cv { stroke-width: 2.6; fill: none; stroke-linecap: round; }
+svg .cv.dash { stroke-dasharray: 7 5; stroke-width: 2; }
+svg .cvl { font: 700 11.5px var(--sans); }
+svg .c-d { stroke: var(--demand); fill: var(--demand); } svg .c-s { stroke: var(--supply); fill: var(--supply); }
+svg .c-x { stroke: var(--ext); fill: var(--ext); } svg .c-w { stroke: var(--world); fill: var(--world); } svg .c-t { stroke: var(--policy); fill: var(--policy); }
+svg text.cvl { stroke: none; }
+svg .pt { fill: var(--paper); stroke: var(--fg); stroke-width: 2; }
+svg .ptl { fill: var(--fg); font: 700 11px var(--sans); }
+svg .atag { fill: var(--fg); font: 700 11px var(--sans); opacity: .8; }
+svg .a-cs { fill: var(--cs); fill-opacity: .6; } svg .a-ps { fill: var(--ps); fill-opacity: .6; }
+svg .a-ps2 { fill: var(--ps); fill-opacity: .95; } svg .a-ts { fill: var(--ts); fill-opacity: .6; }
+svg .a-dwl { fill: url(#dwlHatch); stroke: var(--dwl); stroke-width: 1.2; }
+svg .a-rev { fill: var(--rev); fill-opacity: .75; } svg .a-rev2 { fill: var(--rev2); fill-opacity: .8; } svg .a-time { fill: var(--time); fill-opacity: .65; }
+
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .a-prof { fill: var(--cs); fill-opacity: .75; } svg .a-loss { fill: var(--dwl); fill-opacity: .35; }
+.sw.a-prof { background: var(--cs); } .sw.a-loss { background: var(--dwl); opacity: .5; }
+.twin { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tw-t { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.g-ctrl .g-btn + .g-btn { margin-top: -4px; }
+.graph.wide .g-body { grid-template-columns: minmax(0, 1fr); }
+.graph.wide .g-side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 700px) { .twin, .graph.wide .g-side { grid-template-columns: minmax(0, 1fr); } }
+svg polyline.cv { fill: none !important; }
+.seg { flex-wrap: wrap; }
+
+.graph { background: var(--paper); }
+.g-note { background: var(--tint); }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail { display: none; position: fixed; inset: 64px 0 0 0; max-height: none; background: var(--bg); z-index: 15; padding: 20px 16px 60px; }
+  .rail.open { display: block; }
+  .toc-btn { display: inline-block; }
+  .g-body { grid-template-columns: minmax(0, 1fr); }
+  .map { grid-template-columns: minmax(0, 1fr); }
+  .marrow { transform: rotate(90deg); justify-self: center; }
+}
+@media (max-width: 560px) { .pair, .traps { grid-template-columns: minmax(0, 1fr); } }
+/* Management components */
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.tcard { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.tcard .tnum { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font: 700 .78rem/24px var(--sans); text-align: center; }
+.tcard p { margin: 0; color: var(--muted); font-size: .88rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.tags span { font-size: .74rem; background: var(--tint); color: var(--accent-ink); padding: 1px 8px; border-radius: 999px; font-weight: 500; }
+.method, .loop, .cascade { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.method span, .loop span, .cascade span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 5px 11px; line-height: 1.4; }
+.method span.hi { background: var(--tint); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+.method i, .loop i, .cascade i { font-style: normal; color: var(--accent); font-weight: 700; }
+.loop i.back { font-size: 1.1rem; }
+.cascade { flex-direction: column; align-items: flex-start; gap: 2px; }
+.cascade span:nth-of-type(2) { margin-left: 18px; } .cascade span:nth-of-type(3) { margin-left: 36px; } .cascade span:nth-of-type(4) { margin-left: 54px; }
+.cascade i:nth-of-type(1) { margin-left: 14px; } .cascade i:nth-of-type(2) { margin-left: 32px; } .cascade i:nth-of-type(3) { margin-left: 50px; }
+.four { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.four > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+.four b { font-size: .9rem; color: var(--accent-ink); } .four p { margin: 4px 0 0; font-size: .84rem; color: var(--muted); line-height: 1.5; }
+
+.ladder { display: grid; grid-template-columns: minmax(0, 1fr) 118px 118px; grid-template-rows: repeat(5, auto); gap: 5px 8px; margin: 1rem 0 .3rem; max-width: 640px; }
+.lv { grid-column: 1; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; font-weight: 700; font-size: .9rem; line-height: 1.35; }
+.lv small { display: block; font-weight: 400; color: var(--muted); font-size: .78rem; }
+.lv.l5 { grid-row: 1; margin-inline: 22%; } .lv.l4 { grid-row: 2; margin-inline: 16%; } .lv.l3 { grid-row: 3; margin-inline: 10%; } .lv.l2 { grid-row: 4; margin-inline: 5%; } .lv.l1 { grid-row: 5; }
+.lv.l5, .lv.l4 { background: #F6E9F4; } .lv.l3 { background: var(--tint); } .lv.l2, .lv.l1 { background: #EAF2EE; }
+.erg { border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .84rem; text-align: center; padding: 6px; }
+.erg.g { grid-column: 2; grid-row: 1 / span 2; background: #EBD7EA; color: #6E3F6A; }
+.erg.r { grid-column: 3; grid-row: 2 / span 2; background: var(--tint); color: var(--accent-ink); }
+.erg.e { grid-column: 2; grid-row: 4 / span 2; background: #D9EBE1; color: #2F6B4F; }
+
+.mw { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 1.6rem 0 2rem; }
+.mw-body { margin-top: 10px; }
+.hz-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.hz-t { margin: 0 0 6px; font-weight: 700; font-size: .88rem; } .hz-t small { font-weight: 400; color: var(--muted); }
+.chips { display: flex; flex-direction: column; gap: 5px; }
+.chip { display: flex; justify-content: space-between; gap: 10px; font: 500 .84rem var(--sans); text-align: left; background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 7px; padding: 6px 10px; cursor: pointer; }
+.chip em { font-style: normal; font-size: .74rem; color: var(--muted); }
+.hz-cols > div:first-child .chip[aria-pressed="true"] { border-color: var(--dwl); background: #FCEDEA; }
+.hz-cols > div:first-child .chip[aria-pressed="true"] em { color: #A8432F; }
+.hz-cols > div:last-child .chip[aria-pressed="true"] { border-color: #6FAE8B; background: #EAF5EE; }
+.hz-cols > div:last-child .chip[aria-pressed="true"] em { color: #2F6B4F; }
+.scale { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 6px; margin-top: 18px; }
+.half { height: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; position: relative; overflow: hidden; }
+.half i { position: absolute; top: 0; bottom: 0; transition: width .25s; }
+.half.left i { right: 0; background: var(--dwl); } .half.right i { left: 0; background: #6FAE8B; }
+@media (prefers-reduced-motion: reduce) { .half i { transition: none; } }
+.zero { font: 700 .8rem var(--mono); color: var(--muted); }
+.scale-l { display: flex; justify-content: space-between; font-size: .74rem; color: var(--muted); margin-top: 4px; }
+
+.kpi-flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, .8fr) auto minmax(0, 1fr); gap: 8px; align-items: stretch; margin-top: 12px; font-size: .84rem; }
+.kpi-flow > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; line-height: 1.45; }
+.kpi-flow > i { font-style: normal; color: var(--accent); font-weight: 700; align-self: center; }
+.kpi-flow b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.kpi-flow p { margin: 3px 0 0; } .kpi-flow ul { margin: 3px 0 0; padding-left: 1.1em; }
+.kpi-flow .bad { border-color: var(--dwl); background: #FCEDEA; } .kpi-flow .good { border-color: #6FAE8B; background: #EAF5EE; }
+
+.cmp-sel { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: .84rem; color: var(--muted); }
+.cmp-sel select { font: 500 .88rem var(--sans); padding: 5px 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); color: var(--fg); }
+table.cmp td:first-child { font-weight: 700; color: var(--muted); width: 22%; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); }
+.tabs button { font: 500 .86rem var(--sans); background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); padding: 6px 12px; cursor: pointer; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--accent-ink); border-bottom-color: var(--accent); }
+.ev { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+.ev > div { display: grid; grid-template-columns: 190px auto minmax(0, 1fr); gap: 10px; align-items: baseline; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: .86rem; line-height: 1.5; }
+.ev p { margin: 0; }
+.tag { font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.tag.gap { background: #FCE3DD; color: #A8432F; } .tag.ok { background: #E3F2E9; color: #2F6B4F; }
+.tag.maybe { background: #FBF0D9; color: #8A6216; } .tag.na { background: #EEE9EB; color: var(--muted); }
+.issue { margin-top: 12px; background: var(--tint); border-radius: 8px; padding: 10px 14px; font-size: .9rem; }
+.issue p { margin: 4px 0 0; }
+
+.xgrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.xgrid > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 5px; font-size: .84rem; line-height: 1.4; }
+.xgrid small { color: var(--muted); font-size: .76rem; }
+.xgrid .ok, .xgrid .gap { align-self: flex-start; font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; }
+.xgrid .ok { background: #E3F2E9; color: #2F6B4F; } .xgrid .gap { background: #FCE3DD; color: #A8432F; }
+
+@media (max-width: 760px) {
+  .three, .four { grid-template-columns: minmax(0, 1fr); }
+  .xgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hz-cols { grid-template-columns: minmax(0, 1fr); }
+  .kpi-flow { grid-template-columns: minmax(0, 1fr); } .kpi-flow > i { transform: rotate(90deg); justify-self: center; }
+  .ev > div { grid-template-columns: minmax(0, 1fr); gap: 3px; } .ev .tag { justify-self: start; }
+  .ladder { grid-template-columns: minmax(0, 1fr) 84px 84px; }
+}
+
+/* Session 4 + case page */
+.tcard small.dont { color: var(--muted); font-size: .78rem; border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 4px; }
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: .6rem 0 1rem; }
+.quotes q { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-style: italic; color: var(--muted); font-size: .9rem; }
+.six { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.six > div { display: flex; gap: 10px; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .88rem; line-height: 1.5; }
+.six span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
+a.cta { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+a.cta:hover { background: var(--accent-ink); }
+blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; font-size: .92rem; line-height: 1.7; }
+.timeline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.timeline > div { background: var(--paper); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 10px; padding: 10px 14px; font-size: .88rem; line-height: 1.5; }
+.timeline time { font: 500 .76rem var(--mono); color: var(--accent-ink); display: block; }
+.timeline p { margin: 4px 0 0; color: var(--muted); }
+.score { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.score > div { border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; border: 1px solid var(--line); }
+.score .up { background: #EAF5EE; border-color: #A9D3BA; } .score .down { background: #FCEDEA; border-color: #EDC2B8; }
+.score b::after { margin-left: 6px; font-size: .78rem; } .score .up b::after { content: "improved"; color: #2F6B4F; } .score .down b::after { content: "worse"; color: #A8432F; }
+.score ul { margin: 6px 0 0; padding-left: 1.1em; }
+
+.jcm { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, .9fr); gap: 16px; }
+.jdims { display: flex; flex-direction: column; gap: 8px; }
+.jd.g0 label span { color: #6E3F6A; } .jd.g1 label span { color: var(--accent-ink); } .jd.g2 label span { color: #2F6B4F; }
+.jstates { display: flex; flex-direction: column; gap: 12px; padding-top: 4px; }
+.jst span { font-size: .8rem; font-weight: 500; }
+.jbar { height: 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); overflow: hidden; margin-top: 3px; }
+.jbar i { display: block; height: 100%; transition: width .25s; }
+.jst.g0 .jbar i { background: #B98AB5; } .jst.g1 .jbar i { background: var(--accent); } .jst.g2 .jbar i { background: #6FAE8B; }
+@media (prefers-reduced-motion: reduce) { .jbar i { transition: none; } }
+.jout ul { margin: 8px 0 0; padding-left: 1.1em; font-size: .82rem; color: var(--muted); }
+.jlvl { display: inline-block; font-weight: 700; padding: 3px 12px; border-radius: 999px; font-size: .86rem; }
+.jlvl.strong { background: #E3F2E9; color: #2F6B4F; } .jlvl.moderate { background: #FBF0D9; color: #8A6216; } .jlvl.weak { background: #FCE3DD; color: #A8432F; }
+.jgns { margin-top: 14px; }
+
+.qz-item { font-size: 1rem; font-weight: 500; margin: 4px 0 12px; }
+.qz-opts { display: grid; gap: 8px; }
+.qz-opts.grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 520px; }
+.qz-opts.row5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.qz-o { font: 500 .88rem var(--sans); background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 8px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; text-align: center; }
+.qz-o small { color: var(--muted); font-size: .74rem; font-weight: 400; }
+.qz-o:hover { border-color: var(--accent); }
+.qz-o.right { background: #E3F2E9; border-color: #6FAE8B; } .qz-o.wrong { background: #FCE3DD; border-color: var(--dwl); }
+.qz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: .8rem; color: var(--muted); }
+
+.rsteps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.rsteps > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: .85rem; line-height: 1.5; }
+.rsteps > div.g { background: var(--tint); border-color: var(--accent); }
+.rsteps b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.rsteps p { margin: 4px 0 0; }
+.risk { font-size: .88rem; } .risk b { font-size: .72rem; color: #fff; background: #B98A2E; padding: 1px 7px; border-radius: 4px; margin-right: 6px; }
+.sayd summary { cursor: pointer; font-weight: 500; color: var(--accent-ink); font-size: .9rem; }
+
+@media (max-width: 760px) {
+  .quotes, .six, .timeline, .rsteps { grid-template-columns: minmax(0, 1fr); }
+  .score { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jcm { grid-template-columns: minmax(0, 1fr); }
+  .qz-opts.row5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.qz-opts.row4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.mb-sel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; }
+.mb-sel small { display: block; font-size: .74rem; color: var(--muted); margin-bottom: 3px; }
+.mb-code { margin: 14px 0 8px; } .mb-code b { font: 700 1.6rem var(--serif); color: var(--accent-ink); letter-spacing: .06em; margin-right: 8px; } .mb-code span { color: var(--muted); font-size: .84rem; }
+.mb-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.mb-grid > div { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .82rem; line-height: 1.45; }
+.mb-grid > div > b { color: var(--accent-ink); } .mb-grid > div > p { margin: 4px 0 6px; color: var(--muted); }
+.mb-grid dl { margin: 0; } .mb-grid dt { font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-top: 6px; font-weight: 700; } .mb-grid dd { margin: 1px 0 0; }
+.al-ctl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 16px; }
+@media (max-width: 760px) { .mb-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .qz-opts.row4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .mb-sel, .mb-grid, .al-ctl { grid-template-columns: minmax(0, 1fr); } .mb-sel .seg button { padding: 5px 8px; } }
+/* Marketing components */
+.qz-opts.row3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pop-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 18px; align-items: start; }
+.pop-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.pb-h { margin: 6px 0 4px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.pb { display: grid; grid-template-columns: 96px minmax(0, 1fr) 76px; gap: 8px; align-items: center; font-size: .8rem; margin-bottom: 4px; }
+.pb b { font-family: var(--mono); font-weight: 500; text-align: right; }
+.pb-track { height: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; overflow: hidden; }
+.pb-track i { display: block; height: 100%; transition: width .25s; }
+.pb-track i.base { background: #CFD8E4; } .pb-track i.test { background: var(--accent); } .pb-track i.ctrl { background: #A7CDB6; }
+@media (prefers-reduced-motion: reduce) { .pb-track i { transition: none; } }
+.ladder2 { display: flex; flex-direction: column; gap: 4px; margin: 1rem 0; max-width: 560px; }
+.ladder2 > div { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: .88rem; line-height: 1.5; }
+.ladder2 > div b { display: block; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
+.ladder2 > i { font-style: normal; color: var(--accent); font-weight: 700; padding-left: 14px; line-height: 1; }
+.cf { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, .8fr); gap: 12px; align-items: center; margin: 1rem 0; max-width: 560px; }
+.cf-in { display: flex; flex-direction: column; gap: 6px; }
+.cf-in span, .cf-out { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; font-size: .86rem; }
+.cf-out { background: var(--tint); border-color: var(--accent); font-weight: 700; text-align: center; }
+.cf i { font-style: normal; color: var(--accent); font-weight: 700; font-size: 1.2rem; }
+.cf-lab { display: flex; justify-content: space-between; max-width: 560px; font-size: .74rem; color: var(--muted); }
+.targets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.targets > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; text-align: center; font-size: .8rem; line-height: 1.4; }
+.targets svg { width: 100%; max-width: 120px; height: auto; display: block; margin: 0 auto 6px; }
+.targets b { display: block; font-size: .84rem; }
+.targets small { color: var(--muted); }
+@media (max-width: 760px) {
+  .pop-grid { grid-template-columns: minmax(0, 1fr); }
+  .targets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .qz-opts.row3 { grid-template-columns: minmax(0, 1fr); }
+  .cf { grid-template-columns: minmax(0, 1fr); } .cf i { transform: rotate(90deg); justify-self: center; }
+}
+.ladder2 > i { font-size: .8rem; font-weight: 500; }
+
+</style><style>
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid #d5c6ca;border-radius:999px;background:#eee6e8;position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:white;border-radius:50%;box-shadow:0 1px 2px #7775}
+.topswitch input:checked{background:var(--accent)}
+.topswitch input:checked:after{left:14px}
+.topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+
+body.show-zh .mb-code>span{display:block}
+body.show-zh .mb-sel .seg button{white-space:normal}
+body.show-zh .ap-grid figcaption .zh-full{font-family:var(--sans);line-height:1.6}
+body.show-zh .g-stats .st{align-items:flex-start}
+</style><script>
+/* Bilingual content helpers: no text dictionary, observer or page-wide rescan. */
+(function(){
+  const scratch=document.createElement('div');
+  function read(s){scratch.innerHTML=String(s);const z=[...scratch.querySelectorAll('.zh-full,.zh-svg')].map(e=>e.textContent).join('');scratch.querySelectorAll('.zh-full,.zh-svg').forEach(e=>e.remove());return {en:scratch.textContent,zh:z};}
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  window.biPlain=s=>read(s).en;
+  window.biChinese=s=>read(s).zh;
+  window.biPair=(en,zh)=>esc(en)+'<span class="zh-full" lang="zh-Hant">'+esc(zh)+'</span>';
+  window.biEscape=s=>String(s).includes('class="zh-full"')?String(s):esc(s);
+  window.biSvgLabel=(s,x,zhX,below)=>{const a=read(s);return esc(a.en)+(a.zh?'<tspan class="zh-svg" lang="zh-Hant" text-anchor="end" x="'+zhX+'" dy="'+(below?12:0)+'">'+esc(a.zh)+'</tspan>':'')};
+  window.biSetSvg=(el,s)=>{const a=read(s);el.textContent=a.en;if(a.zh){const t=document.createElementNS('http://www.w3.org/2000/svg','tspan');t.setAttribute('class','zh-svg');t.setAttribute('lang','zh-Hant');t.setAttribute('x',el.getAttribute('x')||'0');t.setAttribute('dy','13');t.textContent=a.zh;el.appendChild(t);}};
+})();
+
+window.biRichPair=(en,zh)=>en+biPair('',zh);
+</script></head><body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<pattern id="dwlHatch" width="6" height="6" patternunits="userSpaceOnUse" patterntransform="rotate(45)">
+<rect width="6" height="6" style="fill:var(--dwl);fill-opacity:.12"></rect><rect width="2.2" height="6" style="fill:var(--dwl);fill-opacity:.75"></rect></pattern></defs></svg>
+
+<header class="top"><div class="top-in">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="management.html">Management<span class="zh-full" lang="zh-Hant">管理學</span></a><span>/</span><b>Session 1<span class="zh-full" lang="zh-Hant">第 1 堂</span></b></nav>
+  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
+  <nav class="sessions" aria-label="Sessions"><span class="pill" aria-current="page">S1</span><a class="pill" href="management-s2.html">S2</a><a class="pill" href="management-s3.html">S3</a><a class="pill" href="management-s4.html">S4</a></nav>
+<label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label></div></header>
+
+<div class="wrap">
+  <aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
+  <main><article class="doc"><div class="hero">
+  <p class="kick">Managing People in Organizations · Session 1<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 1 堂</span></p>
+  <h1>Working with Personality Types<span class="zh-full" lang="zh-Hant">與不同人格類型共事</span></h1>
+  <p class="lead">Performance is not decided by personality alone. Know your own preferences, see how they create strengths and blind spots, and adapt how you lead, communicate and build teams.<span class="zh-full" lang="zh-Hant">績效並非只由人格決定。了解自己的偏好，看見偏好帶來的優勢與盲點，再調整領導、溝通及組建團隊的方式。</span></p>
+</div>
+
+<h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
+<div class="method"><span>Preference<span class="zh-full" lang="zh-Hant">偏好</span></span><i>→</i><span>Strength<span class="zh-full" lang="zh-Hant">優勢</span></span><i>→</i><span>Blind spot when overused<span class="zh-full" lang="zh-Hant">過度使用時的盲點</span></span><i>→</i><span>Work context<span class="zh-full" lang="zh-Hant">工作情境</span></span><i>→</i><span class="hi">Adaptation<span class="zh-full" lang="zh-Hant">調整與適應</span></span><i>→</i><span>Performance and satisfaction<span class="zh-full" lang="zh-Hant">績效與滿意度</span></span></div>
+<p class="key">Personality type describes preferences, not abilities. Its management value is adaptation, not labeling.<span class="zh-full" lang="zh-Hant">人格類型描述偏好，而非能力。對管理的價值在於調整，而非貼標籤。</span></p>
+
+<!-- 1 -->
+<h2 id="pm">1. What people management is<span class="zh-full" lang="zh-Hant">1. 什麼是人員管理</span></h2>
+<p class="sub">How leaders manage people, teams and the organization to achieve goals and results.<span class="zh-full" lang="zh-Hant">領導者如何管理人員、團隊與組織，以達成目標與成果。</span></p>
+<div class="pair">
+  <div><b>Internal indicators<span class="zh-full" lang="zh-Hant">內部指標</span></b><p>Staff turnover <span class="zh">離職率</span>, satisfaction, morale <span class="zh">士氣</span>, absenteeism <span class="zh">缺勤</span>.<span class="zh-full" lang="zh-Hant">員工流動、滿意度、士氣、缺勤。</span></p></div>
+  <div><b>Outcome indicators<span class="zh-full" lang="zh-Hant">成果指標</span></b><p>Productivity and performance, profit, survival, customer satisfaction.<span class="zh-full" lang="zh-Hant">生產力與績效、利潤、存續、顧客滿意度。</span></p></div>
+</div>
+<h3 id="model">People Management Performance Model<span class="zh-full" lang="zh-Hant">人員管理績效模型</span></h3>
+<div class="cf">
+  <div class="cf-in"><span>Leader: personality, beliefs and values, knowledge and experience<span class="zh-full" lang="zh-Hant">領導者：人格、信念與價值觀、知識及經驗</span></span><span>People<span class="zh-full" lang="zh-Hant">人員</span></span><span>Work culture<span class="zh-full" lang="zh-Hant">工作文化</span></span><span>Work process<span class="zh-full" lang="zh-Hant">工作流程</span></span></div>
+  <i>→</i>
+  <div class="cf-out">Performance + satisfaction<span class="zh-full" lang="zh-Hant">績效＋滿意度</span></div>
+</div>
+<p class="cf-lab"><span>All inside the work context: national culture, organization, industry</span><span class="zh-full" lang="zh-Hant">以上都置於工作情境之中：國家文化、組織、產業</span></p>
+<p class="hint"><b>中文邏輯</b><span>Lek 常遲到，不能直接判定是「人格問題」；leader、team、流程、文化都可能是原因。</span></p>
+<p>Typical problems from the lecture: Lek often comes to work late; part-time workers are frequently absent; morale is low and nobody does more than asked; Jun keeps rating staff high after being told to raise the standard; a manager cannot get the boss to support a project; conflict slows innovation.<span class="zh-full" lang="zh-Hant">課堂中的典型問題：Lek 經常遲到；兼職人員經常缺勤；士氣低落，沒有人願意多做；Jun 已被要求提高標準，卻仍持續給員工高評分；主管無法取得上司對專案的支持；衝突使創新變慢。</span></p>
+<div class="three">
+  <div class="tcard"><b>Technical skill<span class="zh-full" lang="zh-Hant">技術技能</span></b><p>Doing the specialist work well.<span class="zh-full" lang="zh-Hant">把專業工作做好。</span></p></div>
+  <div class="tcard"><b>Conceptual skill<span class="zh-full" lang="zh-Hant">概念技能</span></b><p>Seeing the whole and analyzing problems.<span class="zh-full" lang="zh-Hant">看見全局並分析問題。</span></p></div>
+  <div class="tcard"><b>Human skill<span class="zh-full" lang="zh-Hant">人際技能</span></b><p>Working with and leading people. Personality type connects mainly here.<span class="zh-full" lang="zh-Hant">與人合作並帶領他人。人格類型主要與這項技能相關。</span></p></div>
+</div>
+
+<!-- 2 -->
+<h2 id="why">2. Why study personality at work<span class="zh-full" lang="zh-Hant">2. 為何在工作中研究人格</span></h2>
+<div class="six">
+  <div><span>1</span><p>Start with your own self-awareness <span class="zh">自我覺察</span>.<span class="zh-full" lang="zh-Hant">先從認識自己開始。</span></p></div>
+  <div><span>2</span><p>Adapt your leadership style to the work context.<span class="zh-full" lang="zh-Hant">依工作情境調整領導風格。</span></p></div>
+  <div><span>3</span><p>Complement your personal capabilities.<span class="zh-full" lang="zh-Hant">補足自己的能力。</span></p></div>
+  <div><span>4</span><p>Balance the composition of work teams.<span class="zh-full" lang="zh-Hant">平衡工作團隊的組成。</span></p></div>
+  <div><span>5</span><p>Adjust yourself to the needs of other people.<span class="zh-full" lang="zh-Hant">依他人的需要調整自己。</span></p></div>
+</div>
+<p class="note-small">Background: Carl Jung; Isabel Briggs Myers (Myers-Briggs Type Indicator, MBTI); David Keirsey. Four dimensions combine into 16 types. The slide calls it the most widely used instrument for selection, career counseling, coaching and team development.<span class="zh-full" lang="zh-Hant">背景人物：Carl Jung、Isabel Briggs Myers（Myers-Briggs Type Indicator，MBTI）、David Keirsey。四個維度組合成 16 種類型。投影片將其稱為在甄選、職涯諮詢、教練與團隊發展中最廣泛使用的工具。</span></p>
+
+<!-- 3 -->
+<h2 id="dims">3. The four preference pairs<span class="zh-full" lang="zh-Hant">3. 四組偏好</span></h2>
+<div class="tbl"><table>
+<thead><tr><th>Pair<span class="zh-full" lang="zh-Hant">偏好組合</span></th><th>Question<span class="zh-full" lang="zh-Hant">核心問題</span></th><th>First side<span class="zh-full" lang="zh-Hant">第一側</span></th><th>Second side<span class="zh-full" lang="zh-Hant">第二側</span></th></tr></thead>
+<tbody>
+<tr><td><b>E / I</b></td><td>How do you interact, and where do you get energy?<span class="zh-full" lang="zh-Hant">你如何互動，以及從哪裡獲得能量？</span></td><td>Extravert: processes verbally, seeks interaction, action-oriented. "Sociable."<span class="zh-full" lang="zh-Hant">外向：透過說話處理想法、尋求互動、行動導向。「喜歡社交」。</span></td><td>Introvert: processes internally, values privacy, prefers writing. "Territorial."<span class="zh-full" lang="zh-Hant">內向：在內心處理想法、重視私人空間、偏好書寫。「重視個人領域」。</span></td></tr>
+<tr><td><b>S / N</b></td><td>How do you gather and give information?<span class="zh-full" lang="zh-Hant">你如何蒐集與傳達資訊？</span></td><td>Sensing: details, data, here and now, sequential. "Perspiration."<span class="zh-full" lang="zh-Hant">實感：細節、資料、當下、依序處理。「靠實做與努力」。</span></td><td>Intuitive: patterns, possibilities, abstract, non-linear. "Inspiration."<span class="zh-full" lang="zh-Hant">直覺：模式、可能性、抽象、非線性。「靈感」。</span></td></tr>
+<tr><td><b>T / F</b></td><td>How do you make decisions?<span class="zh-full" lang="zh-Hant">你如何做決定？</span></td><td>Thinking: logic, facts, pros and cons, impact on measures. "Objective."<span class="zh-full" lang="zh-Hant">思考：邏輯、事實、利弊、對衡量指標的影響。「客觀」。</span></td><td>Feeling: personal values, impact on people and relationships. "Subjective."<span class="zh-full" lang="zh-Hant">情感：個人價值觀、對人與關係的影響。「主觀」。</span></td></tr>
+<tr><td><b>J / P</b></td><td>How do you prefer to live and work?<span class="zh-full" lang="zh-Hant">你偏好如何生活與工作？</span></td><td>Judging: structure, deadlines, plans, closure. "Settled."<span class="zh-full" lang="zh-Hant">判斷：結構、期限、計畫、定案。「確定下來」。</span></td><td>Perceiving: flexible, spontaneous, options open. "Open-ended."<span class="zh-full" lang="zh-Hant">知覺：彈性、隨機應變、保留選項。「保持開放」。</span></td></tr>
+</tbody></table></div>
+<div class="pair">
+  <div><b>Introvert ≠ shy<span class="zh-full" lang="zh-Hant">內向 ≠ 害羞</span></b><p>E/I is about processing and energy, not social skill. An introvert can present very well.<span class="zh-full" lang="zh-Hant">E／I 談的是處理方式與能量來源，而非社交技巧。內向者也可以很會簡報。</span></p></div>
+  <div><b>Thinking ≠ not caring<span class="zh-full" lang="zh-Hant">思考型 ≠ 不在乎他人</span></b><p>T and F are both rational; they differ in what they weigh first: criteria or people impact.<span class="zh-full" lang="zh-Hant">T 與 F 都是理性的，差別在於先衡量什麼：判準，或對人的影響。</span></p></div>
+</div>
+<div data-mw="mbti"></div>
+
+<!-- 4 -->
+<h2 id="overuse">4. Strength overused becomes weakness<span class="zh-full" lang="zh-Hant">4. 優勢過度使用會成為弱點</span></h2>
+<div class="tbl"><table>
+<thead><tr><th>Preference<span class="zh-full" lang="zh-Hant">偏好</span></th><th>Potential weakness (lecture)<span class="zh-full" lang="zh-Hant">潛在弱點（課堂內容）</span></th></tr></thead>
+<tbody>
+<tr><td><b>E</b></td><td>Easily distracted; may not think things through<span class="zh-full" lang="zh-Hant">容易分心；可能未充分思考</span></td></tr>
+<tr><td><b>I</b></td><td>May not seek out others' opinions<span class="zh-full" lang="zh-Hant">可能不主動徵求他人意見</span></td></tr>
+<tr><td><b>S</b></td><td>May lose sight of the big picture<span class="zh-full" lang="zh-Hant">可能忽略全局</span></td></tr>
+<tr><td><b>N</b></td><td>May ignore details; impatient<span class="zh-full" lang="zh-Hant">可能忽略細節；缺乏耐心</span></td></tr>
+<tr><td><b>T</b></td><td>May be judgmental; may not support people<span class="zh-full" lang="zh-Hant">可能急於評斷；對他人支持不足</span></td></tr>
+<tr><td><b>F</b></td><td>May avoid conflict; may struggle with criticism<span class="zh-full" lang="zh-Hant">可能迴避衝突；難以面對批評</span></td></tr>
+<tr><td><b>J</b></td><td>May decide too quickly; dislikes changing plans<span class="zh-full" lang="zh-Hant">可能太快下決定；不喜歡改變計畫</span></td></tr>
+<tr><td><b>P</b></td><td>May delay decisions; lacks follow-through<span class="zh-full" lang="zh-Hant">可能拖延決策；後續執行不足</span></td></tr>
+</tbody></table></div>
+<p class="key">The problem is usually not the preference itself, but overusing it. Strong N helps strategy but can neglect execution; strong P helps adaptability but can prevent closure.<span class="zh-full" lang="zh-Hant">問題通常不是偏好本身，而是過度使用。強 N 有助策略思考，卻可能忽略執行；強 P 有助適應，卻可能遲遲無法定案。</span></p>
+<div data-mw="overuse"></div>
+
+<h3 id="intp">Reading four letters as one pattern: INTP<span class="zh-full" lang="zh-Hant">把四個字母讀成一個整體模式：INTP</span></h3>
+<p>The lecture's likes and dislikes slide fits an INTP profile. Read the letters together, not separately.<span class="zh-full" lang="zh-Hant">課堂中喜歡與不喜歡的清單符合 INTP 輪廓。要把四個字母一起理解，而非分開看。</span></p>
+<div class="method"><span>I · think internally<span class="zh-full" lang="zh-Hant">I・在內心思考</span></span><i>→</i><span>N · find patterns<span class="zh-full" lang="zh-Hant">N・尋找模式</span></span><i>→</i><span>T · test logic<span class="zh-full" lang="zh-Hant">T・檢驗邏輯</span></span><i>→</i><span>P · keep options open<span class="zh-full" lang="zh-Hant">P・保留選項</span></span></div>
+<div class="pair">
+  <div><b>Combined strength<span class="zh-full" lang="zh-Hant">組合後的優勢</span></b><p>Understanding complex systems and the logic behind them. Likes: research, writing, designing systems, new methods, variety, independence, control over time.<span class="zh-full" lang="zh-Hant">理解複雜系統及其背後邏輯。喜歡：研究、寫作、設計系統、新方法、多樣性、獨立、自主掌控時間。</span></p></div>
+  <div><b>Combined risk<span class="zh-full" lang="zh-Hant">組合後的風險</span></b><p>Deep analysis → more alternatives → delayed closure → weak follow-through. Dislikes: interruptions, long meetings, routines, implementing policies, telling staff what to do, people problems.<span class="zh-full" lang="zh-Hant">深入分析 → 更多替代方案 → 延遲定案 → 後續執行不足。不喜歡：被打斷、冗長會議、例行工作、執行政策、指派員工工作、人際問題。</span></p></div>
+</div>
+<p class="hint"><b>中文邏輯</b><span>不要寫「INTP 討厭開會，所以不適合當主管」；這是把偏好當能力。要寫偏好可能讓哪些情境比較費力，需要怎麼調整。</span></p>
+
+<!-- 5 -->
+<h2 id="teams">5. Adapting and forming better teams<span class="zh-full" lang="zh-Hant">5. 調整自己並組成更好的團隊</span></h2>
+<p class="sub">The course does not ask which type is best. It asks you to adjust to the needs of other people.<span class="zh-full" lang="zh-Hant">課程不是問哪一型最好，而是要求你依他人的需要調整。</span></p>
+<div class="four">
+  <div><b>N</b><p>Generates the big-picture concept.<span class="zh-full" lang="zh-Hant">提出整體概念。</span></p></div>
+  <div><b>S</b><p>Spots missing operational details.<span class="zh-full" lang="zh-Hant">找出遺漏的作業細節。</span></p></div>
+  <div><b>T</b><p>Tests logic and trade-offs.<span class="zh-full" lang="zh-Hant">檢驗邏輯與取捨。</span></p></div>
+  <div><b>F</b><p>Identifies people consequences.<span class="zh-full" lang="zh-Hant">辨識對人的影響。</span></p></div>
+  <div><b>J</b><p>Creates closure and structure.<span class="zh-full" lang="zh-Hant">建立結構並促成定案。</span></p></div>
+  <div><b>P</b><p>Keeps flexibility when conditions change.<span class="zh-full" lang="zh-Hant">情況改變時保持彈性。</span></p></div>
+  <div><b>E</b><p>Brings discussion and action.<span class="zh-full" lang="zh-Hant">帶來討論與行動。</span></p></div>
+  <div><b>I</b><p>Brings reflection and written depth.<span class="zh-full" lang="zh-Hant">帶來反思與深入的書面思考。</span></p></div>
+</div>
+<p class="key">Balance team composition <span class="zh">團隊組成</span>. The useful question is "which perspective is missing from this discussion?", not "who is difficult?" More diversity helps only when the perspectives fit the task and the team can integrate them.<span class="zh-full" lang="zh-Hant">平衡團隊組成。有用的問題是「這次討論少了哪種觀點？」，而非「誰很難相處？」只有當不同觀點符合任務需要，而且團隊能整合它們時，多樣性才有幫助。</span></p>
+<h3 id="thai">Thailand note<span class="zh-full" lang="zh-Hant">泰國情境補充</span></h3>
+<p>The slide says personality is influenced by national culture. No scientific data on type distribution in Thailand was available; the lecturer <b>suggests</b> F and P may be more common than T and J. Treat this as a suggestion, not a statistic.<span class="zh-full" lang="zh-Hant">投影片指出人格受到國家文化影響。當時沒有泰國類型分布的科學資料；講師提出 F、P 可能比 T、J 常見。請視為一項看法，而非統計事實。</span></p>
+
+<!-- 6 -->
+<h2 id="traps">6. Do not mix these up<span class="zh-full" lang="zh-Hant">6. 不要混淆</span></h2>
+<div class="traps">
+  <div><s>Preference = ability.<span class="zh-full" lang="zh-Hant">偏好＝能力。</span></s><p>People can work against their preference when the context requires it.<span class="zh-full" lang="zh-Hant">當情境需要時，人們可以採取不符合平常偏好的做法。</span></p></div>
+  <div><s>Quiet means Introvert.<span class="zh-full" lang="zh-Hant">安靜就代表內向。</span></s><p>One visible behavior is not enough evidence.<span class="zh-full" lang="zh-Hant">單一可見行為不足以判定。</span></p></div>
+  <div><s>Performance problem = personality problem.<span class="zh-full" lang="zh-Hant">績效問題＝人格問題。</span></s><p>Check leader, people, culture, process and context.<span class="zh-full" lang="zh-Hant">檢查領導者、人員、文化、流程與情境。</span></p></div>
+  <div><s>Every team needs one of each type.<span class="zh-full" lang="zh-Hant">每個團隊都需要每種類型各一人。</span></s><p>Cover the blind spots the task actually needs.<span class="zh-full" lang="zh-Hant">補足任務真正需要處理的盲點。</span></p></div>
+  <div><s>Some types are better managers.<span class="zh-full" lang="zh-Hant">某些類型比較適合當主管。</span></s><p>Effectiveness comes from adaptation.<span class="zh-full" lang="zh-Hant">有效性來自調整與適應。</span></p></div>
+  <div><s>F and P are more common in Thailand.<span class="zh-full" lang="zh-Hant">泰國的 F、P 比較常見。</span></s><p>A lecturer's suggestion, not proven data.<span class="zh-full" lang="zh-Hant">這是講師的看法，沒有已證實的數據。</span></p></div>
+</div>
+
+<!-- 7 -->
+<h2 id="coldcall">7. Cold call practice<span class="zh-full" lang="zh-Hant">7. 課堂口答練習</span></h2>
+<div class="qa-tools"><button type="button" id="qaAll">Show all answers<span class="zh-full" lang="zh-Hant">顯示全部答案</span></button></div>
+<div class="qa">
+  <details><summary>An employee often arrives late. Why not call it a personality problem?<span class="zh-full" lang="zh-Hant">員工常遲到，為何不能直接歸因於人格問題？</span></summary><p>Performance also depends on the leader, other people, work culture, work process and the wider context.<span class="zh-full" lang="zh-Hant">績效也取決於領導者、其他人員、工作文化、工作流程及更廣泛的情境。</span></p></details>
+  <details><summary>Is the main use of personality awareness labeling or adaptation?<span class="zh-full" lang="zh-Hant">認識人格的主要用途是貼標籤，還是調整？</span></summary><p>Adaptation: understanding default preferences so you can adjust how you communicate and work with others.<span class="zh-full" lang="zh-Hant">調整：了解預設偏好，才能改變自己與他人溝通和合作的方式。</span></p></details>
+  <details><summary>An introvert gives excellent presentations. Does that contradict the theory?<span class="zh-full" lang="zh-Hant">內向者簡報非常出色，這與理論矛盾嗎？</span></summary><p>No. Introversion is a preference for internal processing and energy source, not a limit on ability.<span class="zh-full" lang="zh-Hant">不矛盾。內向是內在處理方式與能量來源的偏好，不是能力上限。</span></p></details>
+  <details><summary>Looking at the same sales report, what do S and N notice first?<span class="zh-full" lang="zh-Hant">看同一份銷售報表，S 與 N 會先注意什麼？</span></summary><p>S notices concrete facts and current data; N notices patterns, implications and possibilities.<span class="zh-full" lang="zh-Hant">S 注意具體事實與當前資料；N 注意模式、意涵與可能性。</span></p></details>
+  <details><summary>How would you adapt to an S, F, J colleague?<span class="zh-full" lang="zh-Hant">你會如何調整方式，與 S、F、J 的同事合作？</span></summary><p>Use concrete facts and steps, explain the people impact, and give structure, deadlines, ownership and closure.<span class="zh-full" lang="zh-Hant">提供具體事實與步驟，說明對人的影響，並給予結構、期限、權責歸屬與明確定案。</span></p></details>
+  <details><summary>Why is personality awareness useful for managers?<span class="zh-full" lang="zh-Hant">人格覺察為何對主管有用？</span></summary><p>It helps managers recognize their own blind spots and adapt their communication and leadership to different people and work contexts.<span class="zh-full" lang="zh-Hant">它能幫助主管看見自己的盲點，並因應不同人員與工作情境，調整溝通及領導方式。</span></p></details>
+</div>
+
+<h3 id="templates">Answer template<span class="zh-full" lang="zh-Hant">答題模板</span></h3>
+<div class="tbl"><table>
+<tbody>
+<tr><td><b>Personality in a case</b><span class="zh-full" lang="zh-Hant">個案中的人格分析</span></td><td>Preference (with evidence) → likely strength → blind spot if overused → what the context requires → specific management adjustment → other factors in the performance model<span class="zh-full" lang="zh-Hant">偏好（附證據）→ 可能的優勢 → 過度使用時的盲點 → 情境需求 → 具體管理調整 → 績效模型中的其他因素</span></td></tr>
+</tbody></table></div>
+</article></main>
+</div>
+
+<script>/* Management interactive components: Herzberg scale, KPI trap, framework comparator, LMS lens. */
+(function () {
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  let uid = 0;
+  function shell(host, kicker, title, sub) {
+    host.classList.add('mw');
+    host.innerHTML = '<div class="g-head"><span class="g-kicker">' + kicker + '</span><h4>' + title + '</h4>' + (sub ? '<p>' + sub + '</p>' : '') + '</div><div class="mw-body"></div>';
+    return host.querySelector('.mw-body');
+  }
+
+  const W = {};
+
+  function quiz(host, kicker, title, sub, items, opts, layout) {
+    const body = shell(host, kicker, title, sub);
+    body.innerHTML = '<p class="qz-item"></p><div class="qz-opts ' + (layout || '') + "\"></div><p class=\"g-note\"></p><div class=\"qz-nav\"><span class=\"qz-n\"></span><button type=\"button\" class=\"g-btn\">Next<span class=\"zh-full\" lang=\"zh-Hant\">下一題</span></button></div>";
+    const P = body.querySelector('.qz-item'), O = body.querySelector('.qz-opts'), N = body.querySelector('.g-note'), C = body.querySelector('.qz-n');
+    let i = 0, score = 0, done = 0;
+    opts.forEach(([k, lab, sub2]) => {
+      const b = document.createElement('button'); b.type = 'button'; b.dataset.k = k; b.className = 'qz-o';
+      b.innerHTML = '<b>' + lab + '</b>' + (sub2 ? '<small>' + sub2 + '</small>' : '');
+      b.addEventListener('click', () => {
+        if (O.dataset.answered) return; O.dataset.answered = 1;
+        const it = items[i], ok = k === it.a; done++; if (ok) score++;
+        O.querySelectorAll('button').forEach(x => x.classList.toggle('right', x.dataset.k === it.a));
+        if (!ok) b.classList.add('wrong');
+        N.innerHTML=biPair((ok?'Correct. ':'Not quite. ')+biPlain(it.why),(ok?'答對了。':'再想一下。')+biChinese(it.why)); N.hidden = false;
+        C.innerHTML=biPair(score+' / '+done+' correct',score+'／'+done+' 題答對');
+      });
+      O.appendChild(b);
+    });
+    function show() {
+      const it = items[i]; P.innerHTML=biPair('\u0022'+biPlain(it.q)+'\u0022',biChinese(it.q)); delete O.dataset.answered;
+      O.querySelectorAll('button').forEach(x => x.classList.remove('right', 'wrong')); N.hidden = true;
+    }
+    body.querySelector('.qz-nav button').addEventListener('click', () => { i = (i + 1) % items.length; show(); });
+    C.innerHTML=biPair(items.length+' items',items.length+' 題'); show();
+  }
+
+  const PREF = {
+    E: { n: "Extravert<span class=\"zh-full\" lang=\"zh-Hant\">外向型</span>", d: "Processes verbally; gains energy from people.<span class=\"zh-full\" lang=\"zh-Hant\">透過說話處理想法，從人際互動獲得能量。</span>", s: "Quick engagement and action.<span class=\"zh-full\" lang=\"zh-Hant\">迅速投入互動與行動。</span>", r: "Easily distracted; may not think things through.<span class=\"zh-full\" lang=\"zh-Hant\">容易分心；可能未充分思考。</span>", c: "Pause and think before committing.<span class=\"zh-full\" lang=\"zh-Hant\">承諾之前先停下來思考。</span>", w: "Discuss ideas aloud early; do not wait until your thinking is finished.<span class=\"zh-full\" lang=\"zh-Hant\">及早大聲討論想法，不必等到自己完全想清楚。</span>" },
+    I: { n: "Introvert<span class=\"zh-full\" lang=\"zh-Hant\">內向型</span>", d: "Processes internally; gains energy from the inner self.<span class=\"zh-full\" lang=\"zh-Hant\">在內心處理想法，從內在自我獲得能量。</span>", s: "Thinks before speaking; comfortable in writing.<span class=\"zh-full\" lang=\"zh-Hant\">先思考再說話，習慣以書面表達。</span>", r: "May not seek out the opinions of others.<span class=\"zh-full\" lang=\"zh-Hant\">可能不主動尋求他人意見。</span>", c: "Ask: what am I missing from the people closest to the problem?<span class=\"zh-full\" lang=\"zh-Hant\">問自己：最接近問題的人，有哪些觀點是我漏掉的？</span>", w: "Send material in advance and give time to think before asking for a view.<span class=\"zh-full\" lang=\"zh-Hant\">事先寄送資料，給對方思考時間，再詢問意見。</span>" },
+    S: { n: "Sensing<span class=\"zh-full\" lang=\"zh-Hant\">實感型</span>", d: "Concrete, here-and-now, detail and data.<span class=\"zh-full\" lang=\"zh-Hant\">重視具體事物、當下、細節與資料。</span>", s: "Accurate, practical execution.<span class=\"zh-full\" lang=\"zh-Hant\">執行準確且務實。</span>", r: "May lose sight of the big picture.<span class=\"zh-full\" lang=\"zh-Hant\">可能忽略全局。</span>", c: "Ask what pattern or implication the details point to.<span class=\"zh-full\" lang=\"zh-Hant\">問自己：這些細節指向什麼模式或意涵？</span>", w: "Translate concepts into facts, examples, sequence and steps.<span class=\"zh-full\" lang=\"zh-Hant\">把概念轉化為事實、例子、順序與步驟。</span>" },
+    N: { n: "Intuitive<span class=\"zh-full\" lang=\"zh-Hant\">直覺型</span>", d: "Patterns, possibilities, big-picture connections.<span class=\"zh-full\" lang=\"zh-Hant\">重視模式、可能性與全局連結。</span>", s: "Vision and system thinking.<span class=\"zh-full\" lang=\"zh-Hant\">具備願景與系統思考。</span>", r: "May ignore details; impatient.<span class=\"zh-full\" lang=\"zh-Hant\">可能忽略細節；缺乏耐心。</span>", c: "Ask which concrete facts could disprove the idea.<span class=\"zh-full\" lang=\"zh-Hant\">問自己：哪些具體事實可能推翻這個想法？</span>", w: "Start with the big picture and the why before the details.<span class=\"zh-full\" lang=\"zh-Hant\">先說全局與原因，再進入細節。</span>" },
+    T: { n: "Thinking<span class=\"zh-full\" lang=\"zh-Hant\">思考型</span>", d: "Decides by logic, facts and pros and cons.<span class=\"zh-full\" lang=\"zh-Hant\">依據邏輯、事實與利弊做決定。</span>", s: "Objective, consistent analysis.<span class=\"zh-full\" lang=\"zh-Hant\">分析客觀且一致。</span>", r: "May be judgmental; may not support people.<span class=\"zh-full\" lang=\"zh-Hant\">可能急於評斷；對他人支持不足。</span>", c: "Ask how the people involved will experience it and what support they need.<span class=\"zh-full\" lang=\"zh-Hant\">問自己：相關人員會如何感受？他們需要什麼支持？</span>", w: "Lead with logic, data and clear criteria.<span class=\"zh-full\" lang=\"zh-Hant\">先提供邏輯、資料與清楚的判準。</span>" },
+    F: { n: "Feeling<span class=\"zh-full\" lang=\"zh-Hant\">情感型</span>", d: "Decides by personal values and impact on people.<span class=\"zh-full\" lang=\"zh-Hant\">依據個人價值觀與對人的影響做決定。</span>", s: "Sees the human consequences.<span class=\"zh-full\" lang=\"zh-Hant\">看得見對人的後果。</span>", r: "May avoid conflict; may struggle with criticism.<span class=\"zh-full\" lang=\"zh-Hant\">可能迴避衝突；難以面對批評。</span>", c: "State the criteria and the hard trade-off openly.<span class=\"zh-full\" lang=\"zh-Hant\">公開說明判準與困難的取捨。</span>", w: "Explain how the decision affects people, not only why it is logical.<span class=\"zh-full\" lang=\"zh-Hant\">說明決定如何影響人，不只解釋它為何合乎邏輯。</span>" },
+    J: { n: "Judging<span class=\"zh-full\" lang=\"zh-Hant\">判斷型</span>", d: "Structure, deadlines, closure.<span class=\"zh-full\" lang=\"zh-Hant\">重視結構、期限與定案。</span>", s: "Decides and follows through.<span class=\"zh-full\" lang=\"zh-Hant\">做決定並貫徹執行。</span>", r: "May decide too quickly; dislikes changing plans.<span class=\"zh-full\" lang=\"zh-Hant\">可能太快下決定；不喜歡改變計畫。</span>", c: "Ask what new information would justify revising the plan.<span class=\"zh-full\" lang=\"zh-Hant\">問自己：什麼新資訊足以支持修改計畫？</span>", w: "Give deadlines, decisions, ownership and closure.<span class=\"zh-full\" lang=\"zh-Hant\">給予期限、決定、權責歸屬與明確定案。</span>" },
+    P: { n: "Perceiving<span class=\"zh-full\" lang=\"zh-Hant\">知覺型</span>", d: "Flexible, keeps options open.<span class=\"zh-full\" lang=\"zh-Hant\">保有彈性，讓選項保持開放。</span>", s: "Adapts when conditions change.<span class=\"zh-full\" lang=\"zh-Hant\">情況改變時能調整。</span>", r: "May delay decisions; lacks follow-through.<span class=\"zh-full\" lang=\"zh-Hant\">可能拖延決策；後續執行不足。</span>", c: "Ask what information would actually change the decision. If none, decide.<span class=\"zh-full\" lang=\"zh-Hant\">問自己：什麼資訊真的會改變決定？若沒有，就做決定。</span>", w: "Leave room for options, and explain why closure is needed now.<span class=\"zh-full\" lang=\"zh-Hant\">保留選項空間，並解釋為何現在需要定案。</span>" }
+  };
+  W.mbti = host => {
+    const body = shell(host, "Interactive<span class=\"zh-full\" lang=\"zh-Hant\">互動練習</span>", "Build a type, read it as a pattern<span class=\"zh-full\" lang=\"zh-Hant\">組合類型，理解整體模式</span>", "Pick one side of each pair. Every preference brings a strength, a risk when overused, and an adjustment.<span class=\"zh-full\" lang=\"zh-Hant\">每組選一側。每種偏好都帶來優勢、過度使用的風險，以及可採取的調整。</span>");
+    const pairs = [['E', 'I', "Energy and interaction<span class=\"zh-full\" lang=\"zh-Hant\">能量與互動</span>"], ['S', 'N', "Taking in information<span class=\"zh-full\" lang=\"zh-Hant\">接收資訊</span>"], ['T', 'F', "Making decisions<span class=\"zh-full\" lang=\"zh-Hant\">做決定</span>"], ['J', 'P', "Organizing work<span class=\"zh-full\" lang=\"zh-Hant\">安排工作</span>"]];
+    const cur = ['I', 'N', 'T', 'P'];
+    body.innerHTML = '<div class="mb-sel">' + pairs.map((p, k) => '<div><small>' + p[2] + '</small><div class="seg" role="radiogroup" data-k="' + k + '">' + p.slice(0, 2).map(x => '<button type="button" role="radio" data-v="' + x + '">' + x + ' · ' + PREF[x].n + '</button>').join('') + '</div></div>').join('') +
+      '</div><p class="mb-code"></p><div class="mb-grid"></div><p class="g-note"></p>';
+    const grid = body.querySelector('.mb-grid'), code = body.querySelector('.mb-code'), note = body.querySelector('.g-note');
+    function draw() {
+      body.querySelectorAll('.seg').forEach(s => s.querySelectorAll('button').forEach(b => b.setAttribute('aria-checked', b.dataset.v === cur[+s.dataset.k])));
+      code.innerHTML = '<b>' + cur.join('') + '</b> <span>' + biPair(cur.map(x=>biPlain(PREF[x].n)).join(' · '),cur.map(x=>biChinese(PREF[x].n)).join('・')) + '</span>';
+      grid.innerHTML = cur.map((x, k) => {
+        const p = PREF[x], o = PREF[pairs[k][x === pairs[k][0] ? 1 : 0]];
+        return '<div><b>' + x + ' · ' + p.n + '</b><p>' + p.d + "</p><dl><dt>Strength<span class=\"zh-full\" lang=\"zh-Hant\">優勢</span></dt><dd>" + p.s + "</dd><dt>If overused<span class=\"zh-full\" lang=\"zh-Hant\">過度使用時</span></dt><dd>" + p.r + "</dd><dt>Adjustment<span class=\"zh-full\" lang=\"zh-Hant\">調整方式</span></dt><dd>" + p.c + '</dd><dt>' + biPair('Working with '+biPlain(o.n)+' colleagues','與'+biChinese(o.n)+'同事共事') + '</dt><dd>' + o.w + '</dd></dl></div>';
+      }).join('');
+      note.innerHTML = "Preferences, not abilities. Use the type to adapt, not to label. Weaknesses come from the lecture; adjustments and working tips extend the lecture definitions.<span class=\"zh-full\" lang=\"zh-Hant\">偏好不是能力。運用類型來調整，而非貼標籤。弱點來自課堂；調整方法與共事技巧則是課堂定義的延伸補充。</span>";
+    }
+    body.querySelectorAll('.seg').forEach(s => s.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { cur[+s.dataset.k] = b.dataset.v; draw(); })));
+    draw();
+  };
+
+  W.overuse = host => quiz(host, "Diagnose<span class=\"zh-full\" lang=\"zh-Hant\">診斷</span>", "Which preference is being overused?<span class=\"zh-full\" lang=\"zh-Hant\">哪種偏好被過度使用了？</span>", "Name the preference, then think of one adjustment.<span class=\"zh-full\" lang=\"zh-Hant\">指出偏好，再想一項調整方法。</span>", [
+    { q: "The manager keeps generating new options and still will not decide, even with the deadline close.<span class=\"zh-full\" lang=\"zh-Hant\">即使期限逼近，主管仍持續產生新選項，遲遲不做決定。</span>", a: 'P', why: "P overused. Set a decision boundary: what information would actually change the decision?<span class=\"zh-full\" lang=\"zh-Hant\">P 過度使用。設定決策界線：什麼資訊真的會改變決定？</span>" },
+    { q: "The strategy is conceptually excellent, but implementation details are missed again and again.<span class=\"zh-full\" lang=\"zh-Hant\">策略概念非常出色，但執行細節一再遺漏。</span>", a: 'N', why: "N overused. Add a concrete detail and implementation check.<span class=\"zh-full\" lang=\"zh-Hant\">N 過度使用。加入具體細節與執行檢查。</span>" },
+    { q: "The decision is logically sound, but the team feels ignored and unsupported.<span class=\"zh-full\" lang=\"zh-Hant\">決定在邏輯上合理，但團隊覺得被忽視、缺乏支持。</span>", a: 'T', why: "T overused. Add a people-impact check and communicate support.<span class=\"zh-full\" lang=\"zh-Hant\">T 過度使用。檢查對人的影響，並傳達支持。</span>" },
+    { q: "The manager reaches a conclusion alone and never asks frontline staff for input.<span class=\"zh-full\" lang=\"zh-Hant\">主管獨自下結論，從不詢問第一線員工的意見。</span>", a: 'I', why: "I overused. Seek input before finalizing.<span class=\"zh-full\" lang=\"zh-Hant\">I 過度使用。定案前先徵詢意見。</span>" },
+    { q: "The plan was locked in week one; new market data arrives, but the manager refuses to adjust.<span class=\"zh-full\" lang=\"zh-Hant\">計畫在第一週就定案；新市場資料出現，主管卻拒絕調整。</span>", a: 'J', why: "J overused. Decide in advance what new information would justify revising the plan.<span class=\"zh-full\" lang=\"zh-Hant\">J 過度使用。事先決定哪些新資訊足以支持修改計畫。</span>" },
+    { q: "To keep harmony, the manager avoids giving a team member critical feedback the project needs.<span class=\"zh-full\" lang=\"zh-Hant\">為了維持和諧，主管避免給團隊成員專案所需的關鍵改進回饋。</span>", a: 'F', why: "F overused. Conflict avoidance; state the criteria and the issue openly.<span class=\"zh-full\" lang=\"zh-Hant\">F 過度使用。這是迴避衝突；應公開說明判準與問題。</span>" },
+    { q: "He talks through ideas in the meeting and commits the team before thinking them through.<span class=\"zh-full\" lang=\"zh-Hant\">他在會議中邊說邊想，尚未想清楚就替團隊做出承諾。</span>", a: 'E', why: "E overused. Pause and think before committing.<span class=\"zh-full\" lang=\"zh-Hant\">E 過度使用。承諾之前先停下來思考。</span>" },
+    { q: "The team is buried in operational detail; nobody can explain where the project is heading.<span class=\"zh-full\" lang=\"zh-Hant\">團隊埋首作業細節，沒有人能說清楚專案的方向。</span>", a: 'S', why: "S overused. Step back to the big picture.<span class=\"zh-full\" lang=\"zh-Hant\">S 過度使用。退一步看全局。</span>" }
+  ], ['E', 'I', 'S', 'N', 'T', 'F', 'J', 'P'].map(x => [x, x, PREF[x].n]), 'row4');
+
+  window.MgmtWidgets = { mount(root) { root.querySelectorAll('[data-mw]').forEach(h => { if (!h.dataset.ready && W[h.dataset.mw]) { h.dataset.ready = 1; W[h.dataset.mw](h); } }); } };
+})();
+</script>
+<script>
+(function () {
+  const toc = document.getElementById('toc'), rail = document.getElementById('rail');
+  const hs = [...document.querySelectorAll('.doc > h2, .doc > h3')];
+  hs.forEach(h => {
+    const li = document.createElement('li'); li.className = h.tagName.toLowerCase(); li.dataset.id = h.id;
+    const a = document.createElement('a'); a.href = '#' + h.id; a.innerHTML=biPair(h.childNodes[0].textContent.trim(),h.querySelector(':scope > .zh-full')?.textContent||'');
+    li.appendChild(a); toc.appendChild(li);
+  });
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    toc.querySelectorAll('a.on').forEach(a => a.classList.remove('on'));
+    const a = toc.querySelector('li[data-id="' + e.target.id + '"] a'); if (a) a.classList.add('on');
+  }), { rootMargin: '-80px 0px -70% 0px' });
+  hs.forEach(h => spy.observe(h));
+
+  const tb = document.getElementById('tocBtn');
+  tb.addEventListener('click', () => { const o = rail.classList.toggle('open'); tb.setAttribute('aria-expanded', o); });
+  toc.addEventListener('click', e => { if (e.target.closest('a')) { rail.classList.remove('open'); tb.setAttribute('aria-expanded', false); } });
+
+  const all = document.getElementById('qaAll');
+  if (all) all.addEventListener('click', () => {
+    const ds = document.querySelectorAll('.qa details'), open = ![...ds].every(d => d.open);
+    ds.forEach(d => d.open = open); all.innerHTML=biPair(open?'Hide all answers':'Show all answers',open?'收合全部答案':'顯示全部答案');
+  });
+  document.querySelectorAll('.drill .ans').forEach(s => s.addEventListener('click', () => s.classList.toggle('shown')));
+
+  if (window.EconWidgets) window.EconWidgets.mount(document);
+  if (window.MgmtWidgets) window.MgmtWidgets.mount(document);
+  if (window.MktWidgets) window.MktWidgets.mount(document);
+})();
+</script>
+<script>
+(function(){
+const toggle=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+const key='study-notes-show-zh';
+function syncOptions(on){document.querySelectorAll('option[data-zh]').forEach(o=>{if(!o.dataset.en)o.dataset.en=o.textContent;o.textContent=o.dataset.en+(on&&o.dataset.zh?'／'+o.dataset.zh:'')})}
+function set(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';syncOptions(on);try{localStorage.setItem(key,on?'1':'0')}catch(e){}}
+let initial=false;try{initial=localStorage.getItem(key)==='1'}catch(e){}
+set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
+const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
+if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
+})();
+</script></body></html>

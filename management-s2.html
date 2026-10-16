@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Values and Attitudes in the Workplace · Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+/* Layout: one light reading column with a sticky chapter rail; deliberately single (light) theme. */
+:root {
+  color-scheme: light;
+  --bg: #FDF9F9; --panel: #F8EEF0; --paper: #FFFFFF; --tint: #FAE9ED; --line: #EFDDE2;
+  --fg: #2F282B; --muted: #7E6F74; --accent: #C06C84; --accent-ink: #9C4862;
+  --demand: #3F5675; --supply: #C06C84; --ext: #6E3F55; --world: #8A7A5C; --policy: #3F7F7A;
+  --cs: #A7CDB6; --ps: #B2C4E3; --dwl: #D9674F; --rev: #E5C171; --rev2: #F1DCA8; --time: #DDB3CB; --ts: #BFDCC9;
+  --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; background: var(--bg); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.75; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(253, 249, 249, .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
+.top-in { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 14px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.02rem; white-space: nowrap; }
+.brand small { font-family: var(--sans); font-weight: 500; color: var(--muted); font-size: .76rem; margin-left: 6px; letter-spacing: .06em; }
+.sessions { display: flex; gap: 4px; margin-left: auto; }
+.crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
+.sessions a.pill {
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):hover,
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):focus-visible {
+  background: #fceef2;
+  border-color: #b86b7b;
+  color: #8e4357;
+}
+.sessions a.pill[href]:not(.off):not([aria-disabled="true"]):not([aria-current="page"]):focus-visible {
+  outline: 2px solid #b86b7b;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sessions a.pill { transition: none; }
+}
+.sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
+.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.sessions .pill.off { opacity: .5; cursor: not-allowed; }
+.toc-btn { display: none; font: 500 .85rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--fg); border-radius: 8px; padding: 5px 12px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 52px; }
+.rail { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow: auto; padding-block: 34px 40px; font-size: .86rem; line-height: 1.5; }
+.rail .lbl { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.rail ol { list-style: none; margin: 0; padding: 0; }
+.rail li a { display: block; padding: 4px 10px; color: var(--muted); text-decoration: none; border-radius: 6px; }
+.rail li a:hover { color: var(--fg); background: var(--tint); }
+.rail li.h3 a { padding-left: 22px; font-size: .8rem; }
+.rail li a.on { color: var(--accent-ink); background: var(--tint); font-weight: 500; }
+
+main { min-width: 0; padding-block: 30px 120px; }
+.doc { max-width: 780px; }
+.hero { padding-block: 8px 26px; border-bottom: 1px solid var(--line); }
+.kick { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px; font-weight: 500; }
+.hero h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.25; margin: 0 0 12px; text-wrap: balance; }
+.lead { margin: 0; font-size: 1.04rem; max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.doc h2 { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 3.4rem 0 .3rem; text-wrap: balance; }
+.doc h3 { font-size: 1.1rem; line-height: 1.45; margin: 2.2rem 0 .5rem; color: var(--accent-ink); text-wrap: balance; }
+.sub { margin: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
+.doc p, .doc li { max-width: 68ch; }
+.doc ul, .doc ol { padding-left: 1.25em; }
+.doc li { margin: .25rem 0; }
+.zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
+.hint { font-size: .9rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.hint b { flex: none; font-size: .72rem; color: #fff; background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
+.key { background: var(--tint); padding: 12px 16px; border-radius: 8px; font-weight: 500; }
+.note-small { font-size: .8rem; color: var(--muted); }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.pair > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.pair b { color: var(--accent-ink); }
+.pair p { margin: 4px 0 0; font-size: .92rem; }
+
+.matrix { display: grid; grid-template-columns: minmax(90px, .7fr) repeat(2, minmax(0, 1fr)); gap: 6px; margin: 1rem 0 1.2rem; font-size: .9rem; max-width: 620px; }
+.matrix .mh { font-weight: 700; font-size: .8rem; color: var(--muted); align-self: end; padding: 0 4px 2px; }
+.matrix .mh.side { align-self: center; }
+.matrix .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-weight: 500; }
+.matrix .cell.hi { background: var(--tint); border-color: var(--accent); }
+.matrix small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; margin-top: 2px; line-height: 1.45; }
+
+.map { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 1rem 0; }
+.mcol { display: flex; flex-direction: column; gap: 8px; }
+.mbox { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; display: flex; flex-direction: column; gap: 2px; }
+.mbox b { font-size: .9rem; } .mbox span { color: var(--muted); } .mbox em { font-style: normal; color: var(--accent-ink); font-size: .78rem; font-weight: 500; }
+.mbox.good { border-color: var(--cs); } .mbox.ask { background: var(--tint); border-color: var(--accent); }
+.marrow { color: var(--accent); font-weight: 700; }
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.flow span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; line-height: 1.45; }
+.flow i { font-style: normal; color: var(--accent); font-weight: 700; }
+.formula { font-family: var(--mono); font-size: .9rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; line-height: 1.9; overflow-x: auto; }
+.steps { counter-reset: s; list-style: none; padding-left: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 10px; }
+.steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .75rem/22px var(--sans); text-align: center; margin-top: 3px; }
+.assign { margin: 1.6rem 0; border: 1px dashed var(--accent); border-radius: 10px; padding: 14px 16px; background: var(--paper); }
+.assign p { margin: 6px 0 0; font-size: .92rem; }
+
+.tbl { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.doc table { border-collapse: collapse; width: 100%; font-size: .88rem; line-height: 1.55; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.doc th { background: var(--panel); font-weight: 700; }
+.doc tr:last-child td { border-bottom: 0; }
+.drill .ans { filter: blur(5px); cursor: pointer; user-select: none; transition: filter .2s; }
+.drill .ans.shown { filter: none; user-select: auto; }
+
+.traps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 1rem; }
+.traps > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: .88rem; line-height: 1.55; }
+.traps s { color: var(--muted); text-decoration-color: var(--dwl); }
+.traps p { margin: 6px 0 0; font-weight: 500; }
+
+.qa-tools { margin: .4rem 0 .8rem; }
+.qa-tools button { font: 500 .82rem var(--sans); border: 1px solid var(--accent); background: var(--paper); color: var(--accent-ink); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+.qa { display: flex; flex-direction: column; gap: 6px; }
+.qa details { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.qa summary { cursor: pointer; padding: 10px 14px; font-weight: 500; font-size: .93rem; list-style: none; display: flex; gap: 10px; }
+.qa summary::before { content: "Q"; color: var(--accent); font-weight: 700; }
+.qa details[open] summary { border-bottom: 1px dashed var(--line); }
+.qa details p { margin: 0; padding: 10px 14px 12px 36px; font-size: .9rem; }
+
+/* graphs */
+.graph { max-width: 900px; margin: 1.8rem 0 2.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; }
+.g-head h4 { font-family: var(--serif); font-size: 1.12rem; margin: 2px 0 2px; line-height: 1.45; }
+.g-head p { margin: 0 0 10px; color: var(--muted); font-size: .86rem; }
+.g-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+.g-body { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.g-plot svg { width: 100%; height: auto; display: block; }
+.g-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.g-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.sl label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); line-height: 1.3; }
+.sl output { font-family: var(--mono); color: var(--fg); font-size: .8rem; }
+.sl input { width: 100%; accent-color: var(--accent); margin: 4px 0 0; }
+.g-btn { align-self: flex-start; font: 500 .8rem var(--sans); border: 1px solid var(--accent); color: var(--accent-ink); background: transparent; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.g-btn:hover { background: var(--tint); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; align-self: flex-start; }
+.seg button { font: 500 .8rem var(--sans); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--paper); }
+.chk { display: flex; gap: 8px; align-items: center; font-size: .8rem; color: var(--muted); }
+.chk input { accent-color: var(--accent); }
+.g-stats { margin: 0; border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+.st { display: flex; justify-content: space-between; gap: 10px; font-size: .8rem; line-height: 1.45; }
+.st dt { color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.st dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.st.big dd { font-weight: 500; color: var(--accent-ink); font-size: .92rem; }
+.g-note { margin: 12px 0 0; padding: 9px 12px; background: var(--tint); border-radius: 6px; font-size: .85rem; line-height: 1.6; }
+
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; flex: none; }
+.sw.none { background: transparent; }
+.sw.a-cs { background: var(--cs); } .sw.a-ps { background: var(--ps); } .sw.a-ps2 { background: var(--ps); outline: 1px solid var(--demand); }
+.sw.a-dwl { background: repeating-linear-gradient(45deg, var(--dwl) 0 2px, transparent 2px 4px); outline: 1px solid var(--dwl); }
+.sw.a-rev { background: var(--rev); } .sw.a-rev2 { background: var(--rev2); } .sw.a-time { background: var(--time); } .sw.a-ts { background: var(--ts); }
+.sw.ln { height: 3px; border-radius: 2px; width: 16px; }
+
+svg .ax { stroke: var(--muted); stroke-width: 1.2; }
+svg .axl { fill: var(--muted); font: 500 11px var(--sans); }
+svg .tk { fill: var(--muted); font: 500 10.5px var(--mono); }
+svg .gd { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+svg .cv { stroke-width: 2.6; fill: none; stroke-linecap: round; }
+svg .cv.dash { stroke-dasharray: 7 5; stroke-width: 2; }
+svg .cvl { font: 700 11.5px var(--sans); }
+svg .c-d { stroke: var(--demand); fill: var(--demand); } svg .c-s { stroke: var(--supply); fill: var(--supply); }
+svg .c-x { stroke: var(--ext); fill: var(--ext); } svg .c-w { stroke: var(--world); fill: var(--world); } svg .c-t { stroke: var(--policy); fill: var(--policy); }
+svg text.cvl { stroke: none; }
+svg .pt { fill: var(--paper); stroke: var(--fg); stroke-width: 2; }
+svg .ptl { fill: var(--fg); font: 700 11px var(--sans); }
+svg .atag { fill: var(--fg); font: 700 11px var(--sans); opacity: .8; }
+svg .a-cs { fill: var(--cs); fill-opacity: .6; } svg .a-ps { fill: var(--ps); fill-opacity: .6; }
+svg .a-ps2 { fill: var(--ps); fill-opacity: .95; } svg .a-ts { fill: var(--ts); fill-opacity: .6; }
+svg .a-dwl { fill: url(#dwlHatch); stroke: var(--dwl); stroke-width: 1.2; }
+svg .a-rev { fill: var(--rev); fill-opacity: .75; } svg .a-rev2 { fill: var(--rev2); fill-opacity: .8; } svg .a-time { fill: var(--time); fill-opacity: .65; }
+
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .a-prof { fill: var(--cs); fill-opacity: .75; } svg .a-loss { fill: var(--dwl); fill-opacity: .35; }
+.sw.a-prof { background: var(--cs); } .sw.a-loss { background: var(--dwl); opacity: .5; }
+.twin { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tw-t { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.g-ctrl .g-btn + .g-btn { margin-top: -4px; }
+.graph.wide .g-body { grid-template-columns: minmax(0, 1fr); }
+.graph.wide .g-side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 700px) { .twin, .graph.wide .g-side { grid-template-columns: minmax(0, 1fr); } }
+svg polyline.cv { fill: none !important; }
+.seg { flex-wrap: wrap; }
+
+.graph { background: var(--paper); }
+.g-note { background: var(--tint); }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail { display: none; position: fixed; inset: 64px 0 0 0; max-height: none; background: var(--bg); z-index: 15; padding: 20px 16px 60px; }
+  .rail.open { display: block; }
+  .toc-btn { display: inline-block; }
+  .g-body { grid-template-columns: minmax(0, 1fr); }
+  .map { grid-template-columns: minmax(0, 1fr); }
+  .marrow { transform: rotate(90deg); justify-self: center; }
+}
+@media (max-width: 560px) { .pair, .traps { grid-template-columns: minmax(0, 1fr); } }
+/* Management components */
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.tcard { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.tcard .tnum { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font: 700 .78rem/24px var(--sans); text-align: center; }
+.tcard p { margin: 0; color: var(--muted); font-size: .88rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.tags span { font-size: .74rem; background: var(--tint); color: var(--accent-ink); padding: 1px 8px; border-radius: 999px; font-weight: 500; }
+.method, .loop, .cascade { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.method span, .loop span, .cascade span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 5px 11px; line-height: 1.4; }
+.method span.hi { background: var(--tint); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+.method i, .loop i, .cascade i { font-style: normal; color: var(--accent); font-weight: 700; }
+.loop i.back { font-size: 1.1rem; }
+.cascade { flex-direction: column; align-items: flex-start; gap: 2px; }
+.cascade span:nth-of-type(2) { margin-left: 18px; } .cascade span:nth-of-type(3) { margin-left: 36px; } .cascade span:nth-of-type(4) { margin-left: 54px; }
+.cascade i:nth-of-type(1) { margin-left: 14px; } .cascade i:nth-of-type(2) { margin-left: 32px; } .cascade i:nth-of-type(3) { margin-left: 50px; }
+.four { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.four > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+.four b { font-size: .9rem; color: var(--accent-ink); } .four p { margin: 4px 0 0; font-size: .84rem; color: var(--muted); line-height: 1.5; }
+
+.ladder { display: grid; grid-template-columns: minmax(0, 1fr) 118px 118px; grid-template-rows: repeat(5, auto); gap: 5px 8px; margin: 1rem 0 .3rem; max-width: 640px; }
+.lv { grid-column: 1; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; font-weight: 700; font-size: .9rem; line-height: 1.35; }
+.lv small { display: block; font-weight: 400; color: var(--muted); font-size: .78rem; }
+.lv.l5 { grid-row: 1; margin-inline: 22%; } .lv.l4 { grid-row: 2; margin-inline: 16%; } .lv.l3 { grid-row: 3; margin-inline: 10%; } .lv.l2 { grid-row: 4; margin-inline: 5%; } .lv.l1 { grid-row: 5; }
+.lv.l5, .lv.l4 { background: #F6E9F4; } .lv.l3 { background: var(--tint); } .lv.l2, .lv.l1 { background: #EAF2EE; }
+.erg { border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .84rem; text-align: center; padding: 6px; }
+.erg.g { grid-column: 2; grid-row: 1 / span 2; background: #EBD7EA; color: #6E3F6A; }
+.erg.r { grid-column: 3; grid-row: 2 / span 2; background: var(--tint); color: var(--accent-ink); }
+.erg.e { grid-column: 2; grid-row: 4 / span 2; background: #D9EBE1; color: #2F6B4F; }
+
+.mw { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 1.6rem 0 2rem; }
+.mw-body { margin-top: 10px; }
+.hz-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.hz-t { margin: 0 0 6px; font-weight: 700; font-size: .88rem; } .hz-t small { font-weight: 400; color: var(--muted); }
+.chips { display: flex; flex-direction: column; gap: 5px; }
+.chip { display: flex; justify-content: space-between; gap: 10px; font: 500 .84rem var(--sans); text-align: left; background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 7px; padding: 6px 10px; cursor: pointer; }
+.chip em { font-style: normal; font-size: .74rem; color: var(--muted); }
+.hz-cols > div:first-child .chip[aria-pressed="true"] { border-color: var(--dwl); background: #FCEDEA; }
+.hz-cols > div:first-child .chip[aria-pressed="true"] em { color: #A8432F; }
+.hz-cols > div:last-child .chip[aria-pressed="true"] { border-color: #6FAE8B; background: #EAF5EE; }
+.hz-cols > div:last-child .chip[aria-pressed="true"] em { color: #2F6B4F; }
+.scale { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 6px; margin-top: 18px; }
+.half { height: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; position: relative; overflow: hidden; }
+.half i { position: absolute; top: 0; bottom: 0; transition: width .25s; }
+.half.left i { right: 0; background: var(--dwl); } .half.right i { left: 0; background: #6FAE8B; }
+@media (prefers-reduced-motion: reduce) { .half i { transition: none; } }
+.zero { font: 700 .8rem var(--mono); color: var(--muted); }
+.scale-l { display: flex; justify-content: space-between; font-size: .74rem; color: var(--muted); margin-top: 4px; }
+
+.kpi-flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, .8fr) auto minmax(0, 1fr); gap: 8px; align-items: stretch; margin-top: 12px; font-size: .84rem; }
+.kpi-flow > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; line-height: 1.45; }
+.kpi-flow > i { font-style: normal; color: var(--accent); font-weight: 700; align-self: center; }
+.kpi-flow b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.kpi-flow p { margin: 3px 0 0; } .kpi-flow ul { margin: 3px 0 0; padding-left: 1.1em; }
+.kpi-flow .bad { border-color: var(--dwl); background: #FCEDEA; } .kpi-flow .good { border-color: #6FAE8B; background: #EAF5EE; }
+
+.cmp-sel { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: .84rem; color: var(--muted); }
+.cmp-sel select { font: 500 .88rem var(--sans); padding: 5px 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); color: var(--fg); }
+table.cmp td:first-child { font-weight: 700; color: var(--muted); width: 22%; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); }
+.tabs button { font: 500 .86rem var(--sans); background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); padding: 6px 12px; cursor: pointer; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--accent-ink); border-bottom-color: var(--accent); }
+.ev { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+.ev > div { display: grid; grid-template-columns: 190px auto minmax(0, 1fr); gap: 10px; align-items: baseline; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: .86rem; line-height: 1.5; }
+.ev p { margin: 0; }
+.tag { font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.tag.gap { background: #FCE3DD; color: #A8432F; } .tag.ok { background: #E3F2E9; color: #2F6B4F; }
+.tag.maybe { background: #FBF0D9; color: #8A6216; } .tag.na { background: #EEE9EB; color: var(--muted); }
+.issue { margin-top: 12px; background: var(--tint); border-radius: 8px; padding: 10px 14px; font-size: .9rem; }
+.issue p { margin: 4px 0 0; }
+
+.xgrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.xgrid > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 5px; font-size: .84rem; line-height: 1.4; }
+.xgrid small { color: var(--muted); font-size: .76rem; }
+.xgrid .ok, .xgrid .gap { align-self: flex-start; font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; }
+.xgrid .ok { background: #E3F2E9; color: #2F6B4F; } .xgrid .gap { background: #FCE3DD; color: #A8432F; }
+
+@media (max-width: 760px) {
+  .three, .four { grid-template-columns: minmax(0, 1fr); }
+  .xgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hz-cols { grid-template-columns: minmax(0, 1fr); }
+  .kpi-flow { grid-template-columns: minmax(0, 1fr); } .kpi-flow > i { transform: rotate(90deg); justify-self: center; }
+  .ev > div { grid-template-columns: minmax(0, 1fr); gap: 3px; } .ev .tag { justify-self: start; }
+  .ladder { grid-template-columns: minmax(0, 1fr) 84px 84px; }
+}
+
+/* Session 4 + case page */
+.tcard small.dont { color: var(--muted); font-size: .78rem; border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 4px; }
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: .6rem 0 1rem; }
+.quotes q { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-style: italic; color: var(--muted); font-size: .9rem; }
+.six { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.six > div { display: flex; gap: 10px; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .88rem; line-height: 1.5; }
+.six span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
+a.cta { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+a.cta:hover { background: var(--accent-ink); }
+blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; font-size: .92rem; line-height: 1.7; }
+.timeline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.timeline > div { background: var(--paper); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 10px; padding: 10px 14px; font-size: .88rem; line-height: 1.5; }
+.timeline time { font: 500 .76rem var(--mono); color: var(--accent-ink); display: block; }
+.timeline p { margin: 4px 0 0; color: var(--muted); }
+.score { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.score > div { border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; border: 1px solid var(--line); }
+.score .up { background: #EAF5EE; border-color: #A9D3BA; } .score .down { background: #FCEDEA; border-color: #EDC2B8; }
+.score b::after { margin-left: 6px; font-size: .78rem; } .score .up b::after { content: "improved"; color: #2F6B4F; } .score .down b::after { content: "worse"; color: #A8432F; }
+.score ul { margin: 6px 0 0; padding-left: 1.1em; }
+
+.jcm { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, .9fr); gap: 16px; }
+.jdims { display: flex; flex-direction: column; gap: 8px; }
+.jd.g0 label span { color: #6E3F6A; } .jd.g1 label span { color: var(--accent-ink); } .jd.g2 label span { color: #2F6B4F; }
+.jstates { display: flex; flex-direction: column; gap: 12px; padding-top: 4px; }
+.jst span { font-size: .8rem; font-weight: 500; }
+.jbar { height: 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); overflow: hidden; margin-top: 3px; }
+.jbar i { display: block; height: 100%; transition: width .25s; }
+.jst.g0 .jbar i { background: #B98AB5; } .jst.g1 .jbar i { background: var(--accent); } .jst.g2 .jbar i { background: #6FAE8B; }
+@media (prefers-reduced-motion: reduce) { .jbar i { transition: none; } }
+.jout ul { margin: 8px 0 0; padding-left: 1.1em; font-size: .82rem; color: var(--muted); }
+.jlvl { display: inline-block; font-weight: 700; padding: 3px 12px; border-radius: 999px; font-size: .86rem; }
+.jlvl.strong { background: #E3F2E9; color: #2F6B4F; } .jlvl.moderate { background: #FBF0D9; color: #8A6216; } .jlvl.weak { background: #FCE3DD; color: #A8432F; }
+.jgns { margin-top: 14px; }
+
+.qz-item { font-size: 1rem; font-weight: 500; margin: 4px 0 12px; }
+.qz-opts { display: grid; gap: 8px; }
+.qz-opts.grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 520px; }
+.qz-opts.row5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.qz-o { font: 500 .88rem var(--sans); background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 8px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; text-align: center; }
+.qz-o small { color: var(--muted); font-size: .74rem; font-weight: 400; }
+.qz-o:hover { border-color: var(--accent); }
+.qz-o.right { background: #E3F2E9; border-color: #6FAE8B; } .qz-o.wrong { background: #FCE3DD; border-color: var(--dwl); }
+.qz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: .8rem; color: var(--muted); }
+
+.rsteps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.rsteps > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: .85rem; line-height: 1.5; }
+.rsteps > div.g { background: var(--tint); border-color: var(--accent); }
+.rsteps b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.rsteps p { margin: 4px 0 0; }
+.risk { font-size: .88rem; } .risk b { font-size: .72rem; color: #fff; background: #B98A2E; padding: 1px 7px; border-radius: 4px; margin-right: 6px; }
+.sayd summary { cursor: pointer; font-weight: 500; color: var(--accent-ink); font-size: .9rem; }
+
+@media (max-width: 760px) {
+  .quotes, .six, .timeline, .rsteps { grid-template-columns: minmax(0, 1fr); }
+  .score { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jcm { grid-template-columns: minmax(0, 1fr); }
+  .qz-opts.row5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.qz-opts.row4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.mb-sel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; }
+.mb-sel small { display: block; font-size: .74rem; color: var(--muted); margin-bottom: 3px; }
+.mb-code { margin: 14px 0 8px; } .mb-code b { font: 700 1.6rem var(--serif); color: var(--accent-ink); letter-spacing: .06em; margin-right: 8px; } .mb-code span { color: var(--muted); font-size: .84rem; }
+.mb-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.mb-grid > div { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .82rem; line-height: 1.45; }
+.mb-grid > div > b { color: var(--accent-ink); } .mb-grid > div > p { margin: 4px 0 6px; color: var(--muted); }
+.mb-grid dl { margin: 0; } .mb-grid dt { font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-top: 6px; font-weight: 700; } .mb-grid dd { margin: 1px 0 0; }
+.al-ctl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 16px; }
+@media (max-width: 760px) { .mb-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .qz-opts.row4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .mb-sel, .mb-grid, .al-ctl { grid-template-columns: minmax(0, 1fr); } .mb-sel .seg button { padding: 5px 8px; } }
+/* Marketing components */
+.qz-opts.row3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pop-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 18px; align-items: start; }
+.pop-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.pb-h { margin: 6px 0 4px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.pb { display: grid; grid-template-columns: 96px minmax(0, 1fr) 76px; gap: 8px; align-items: center; font-size: .8rem; margin-bottom: 4px; }
+.pb b { font-family: var(--mono); font-weight: 500; text-align: right; }
+.pb-track { height: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; overflow: hidden; }
+.pb-track i { display: block; height: 100%; transition: width .25s; }
+.pb-track i.base { background: #CFD8E4; } .pb-track i.test { background: var(--accent); } .pb-track i.ctrl { background: #A7CDB6; }
+@media (prefers-reduced-motion: reduce) { .pb-track i { transition: none; } }
+.ladder2 { display: flex; flex-direction: column; gap: 4px; margin: 1rem 0; max-width: 560px; }
+.ladder2 > div { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: .88rem; line-height: 1.5; }
+.ladder2 > div b { display: block; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
+.ladder2 > i { font-style: normal; color: var(--accent); font-weight: 700; padding-left: 14px; line-height: 1; }
+.cf { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, .8fr); gap: 12px; align-items: center; margin: 1rem 0; max-width: 560px; }
+.cf-in { display: flex; flex-direction: column; gap: 6px; }
+.cf-in span, .cf-out { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; font-size: .86rem; }
+.cf-out { background: var(--tint); border-color: var(--accent); font-weight: 700; text-align: center; }
+.cf i { font-style: normal; color: var(--accent); font-weight: 700; font-size: 1.2rem; }
+.cf-lab { display: flex; justify-content: space-between; max-width: 560px; font-size: .74rem; color: var(--muted); }
+.targets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.targets > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; text-align: center; font-size: .8rem; line-height: 1.4; }
+.targets svg { width: 100%; max-width: 120px; height: auto; display: block; margin: 0 auto 6px; }
+.targets b { display: block; font-size: .84rem; }
+.targets small { color: var(--muted); }
+@media (max-width: 760px) {
+  .pop-grid { grid-template-columns: minmax(0, 1fr); }
+  .targets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .qz-opts.row3 { grid-template-columns: minmax(0, 1fr); }
+  .cf { grid-template-columns: minmax(0, 1fr); } .cf i { transform: rotate(90deg); justify-self: center; }
+}
+.ladder2 > i { font-size: .8rem; font-weight: 500; }
+
+</style><style>
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid #d5c6ca;border-radius:999px;background:#eee6e8;position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:white;border-radius:50%;box-shadow:0 1px 2px #7775}
+.topswitch input:checked{background:var(--accent)}
+.topswitch input:checked:after{left:14px}
+.topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+
+body.show-zh .mb-code>span{display:block}
+body.show-zh .mb-sel .seg button{white-space:normal}
+body.show-zh .ap-grid figcaption .zh-full{font-family:var(--sans);line-height:1.6}
+body.show-zh .g-stats .st{align-items:flex-start}
+</style><script>
+/* Bilingual content helpers: no text dictionary, observer or page-wide rescan. */
+(function(){
+  const scratch=document.createElement('div');
+  function read(s){scratch.innerHTML=String(s);const z=[...scratch.querySelectorAll('.zh-full,.zh-svg')].map(e=>e.textContent).join('');scratch.querySelectorAll('.zh-full,.zh-svg').forEach(e=>e.remove());return {en:scratch.textContent,zh:z};}
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  window.biPlain=s=>read(s).en;
+  window.biChinese=s=>read(s).zh;
+  window.biPair=(en,zh)=>esc(en)+'<span class="zh-full" lang="zh-Hant">'+esc(zh)+'</span>';
+  window.biEscape=s=>String(s).includes('class="zh-full"')?String(s):esc(s);
+  window.biSvgLabel=(s,x,zhX,below)=>{const a=read(s);return esc(a.en)+(a.zh?'<tspan class="zh-svg" lang="zh-Hant" text-anchor="end" x="'+zhX+'" dy="'+(below?12:0)+'">'+esc(a.zh)+'</tspan>':'')};
+  window.biSetSvg=(el,s)=>{const a=read(s);el.textContent=a.en;if(a.zh){const t=document.createElementNS('http://www.w3.org/2000/svg','tspan');t.setAttribute('class','zh-svg');t.setAttribute('lang','zh-Hant');t.setAttribute('x',el.getAttribute('x')||'0');t.setAttribute('dy','13');t.textContent=a.zh;el.appendChild(t);}};
+})();
+
+window.biRichPair=(en,zh)=>en+biPair('',zh);
+</script></head><body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<pattern id="dwlHatch" width="6" height="6" patternunits="userSpaceOnUse" patterntransform="rotate(45)">
+<rect width="6" height="6" style="fill:var(--dwl);fill-opacity:.12"></rect><rect width="2.2" height="6" style="fill:var(--dwl);fill-opacity:.75"></rect></pattern></defs></svg>
+
+<header class="top"><div class="top-in">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="management.html">Management<span class="zh-full" lang="zh-Hant">管理學</span></a><span>/</span><b>Session 2<span class="zh-full" lang="zh-Hant">第 2 堂</span></b></nav>
+  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
+  <nav class="sessions" aria-label="Sessions"><a class="pill" href="management-s1.html">S1</a><span class="pill" aria-current="page">S2</span><a class="pill" href="management-s3.html">S3</a><a class="pill" href="management-s4.html">S4</a></nav>
+<label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label></div></header>
+
+<div class="wrap">
+  <aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
+  <main><article class="doc"><div class="hero">
+  <p class="kick">Managing People in Organizations · Session 2<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 2 堂</span></p>
+  <h1>Values and Attitudes in the Workplace<span class="zh-full" lang="zh-Hant">職場中的價值觀與態度</span></h1>
+  <p class="lead">Why do different employees react differently to the same workplace? Personal values meet corporate values and real management practice. The fit shapes attitudes, which may then shape behavior.<span class="zh-full" lang="zh-Hant">為何不同員工面對同一職場，反應卻不同？個人價值觀會與企業價值觀及實際管理作法相遇。兩者的契合程度形塑態度，態度又可能影響行為。</span></p>
+</div>
+
+<h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
+<div class="method"><span>Values<span class="zh-full" lang="zh-Hant">價值觀</span></span><i>→</i><span>Fit and workplace experience<span class="zh-full" lang="zh-Hant">契合程度與職場經驗</span></span><i>→</i><span>Attitudes<span class="zh-full" lang="zh-Hant">態度</span></span><i>→</i><span>Behavior<span class="zh-full" lang="zh-Hant">行為</span></span><i>→</i><span class="hi">Management response<span class="zh-full" lang="zh-Hant">管理回應</span></span></div>
+<p class="hint"><b>中文邏輯</b><span>每一個箭頭都需要 case 的證據；values 「可能」影響 attitude 和 behavior，不是直接決定。答題用 may / could，不用 will。</span></p>
+
+<!-- 1 -->
+<h2 id="values">1. Values<span class="zh-full" lang="zh-Hant">1. 價值觀</span></h2>
+<p class="sub">Personal beliefs or convictions about what is right or wrong, good or bad, proper or improper.<span class="zh-full" lang="zh-Hant">對何者正確或錯誤、好或壞、適當或不適當的個人信念或確信。</span></p>
+<div class="pair">
+  <div><b>Content<span class="zh-full" lang="zh-Hant">內容</span></b><p>What we consider important.<span class="zh-full" lang="zh-Hant">我們認為什麼重要。</span></p></div>
+  <div><b>Intensity<span class="zh-full" lang="zh-Hant">強度</span></b> <span class="zh">強度</span><p>How important it is. Two people both value autonomy; the one who values it more reacts more strongly to micromanagement.<span class="zh-full" lang="zh-Hant">它有多重要。兩人都重視自主，但更重視自主的人，面對微觀管理時反應更強烈。</span></p></div>
+</div>
+<p>Values are fairly stable, shaped by family, school, friends and experience, vary across cultures, and are difficult to change. How people allocate their time reveals what they value; the professor's example was his years of long-distance running.<span class="zh-full" lang="zh-Hant">價值觀相當穩定，受到家庭、學校、朋友及經驗形塑，跨文化有所差異，也不容易改變。人們如何分配時間，會透露他們重視什麼；教授舉的是自己多年長跑的例子。</span></p>
+<p class="key">When a value conflict appears, first examine job design, management style and the reward system, not how to change the employee.<span class="zh-full" lang="zh-Hant">出現價值衝突時，先檢查工作設計、管理風格與獎酬制度，而非先想如何改變員工。</span></p>
+<h3 id="tiv">Terminal versus instrumental<span class="zh-full" lang="zh-Hant">終極價值與工具性價值</span></h3>
+<div class="pair">
+  <div><b>Terminal<span class="zh-full" lang="zh-Hant">終極價值</span></b> <span class="zh">終極價值</span><p>The destination. Freedom, happiness, harmony, self-respect, wealth, recognition, wisdom, social contribution, world peace.<span class="zh-full" lang="zh-Hant">目的地：自由、快樂、和諧、自尊、財富、認可、智慧、社會貢獻、世界和平。</span></p></div>
+  <div><b>Instrumental<span class="zh-full" lang="zh-Hant">工具性價值</span></b> <span class="zh">工具性價值</span><p>How you get there. Ambitious, self-disciplined, honest, sincere, logical, obedient, risk-taking, clean, imaginative.<span class="zh-full" lang="zh-Hant">達成目的的方法：有抱負、自律、誠實、真誠、合乎邏輯、服從、勇於冒險、整潔、有想像力。</span></p></div>
+</div>
+<div data-mw="tiv"></div>
+
+<!-- 2 -->
+<h2 id="fit">2. Fit and corporate values<span class="zh-full" lang="zh-Hant">2. 契合與企業價值觀</span></h2>
+<div class="flow"><span>Corporate values<span class="zh-full" lang="zh-Hant">企業價值觀</span></span><i>+</i><span>Personal values<span class="zh-full" lang="zh-Hant">個人價值觀</span></span><i>→</i><span>Employee attitudes and behavior<span class="zh-full" lang="zh-Hant">員工態度與行為</span></span></div>
+<ul>
+  <li>Person-organization fit <span class="zh">人與組織契合</span> concerns values as well as personality.<span class="zh-full" lang="zh-Hant">人與組織契合不只涉及人格，也涉及價值觀。</span></li>
+  <li>Value alignment affects job satisfaction.<span class="zh-full" lang="zh-Hant">價值觀一致程度會影響工作滿意度。</span></li>
+  <li>People tend to select organizations whose values align, or leave.<span class="zh-full" lang="zh-Hant">人們傾向選擇價值觀契合的組織，或選擇離開。</span></li>
+</ul>
+<p>Kantabutra (2022): sustainable corporations see themselves as a "special" place to work where individual and corporate values are aligned. Fit means meaningful alignment, not identical people.<span class="zh-full" lang="zh-Hant">Kantabutra（2022）：永續企業視自己為「特別」的工作場所，讓個人與企業價值觀契合。契合是有意義的一致，不是人人相同。</span></p>
+<p class="key">A strong culture aligns members' values and attitudes with the organization's values. It does not mean everyone has the same personality.<span class="zh-full" lang="zh-Hant">強文化會使成員的價值觀與態度和組織價值觀一致，不代表每個人都有相同人格。</span></p>
+<div class="tbl"><table>
+<thead><tr><th>Organization<span class="zh-full" lang="zh-Hant">組織</span></th><th>Core value<span class="zh-full" lang="zh-Hant">核心價值</span></th><th>Evidence from the slides<span class="zh-full" lang="zh-Hant">投影片中的證據</span></th></tr></thead>
+<tbody>
+<tr><td><b>SCG</b><span class="zh-full" lang="zh-Hant">SCG</span></td><td>Virtuous values<span class="zh-full" lang="zh-Hant">美德價值</span></td><td>The Lampang community praised SCG people for sharing the same good character.<span class="zh-full" lang="zh-Hant">南邦社區稱讚 SCG 人員具有共同的良好品格。</span></td></tr>
+<tr><td><b>Mahidol University</b><span class="zh-full" lang="zh-Hant">瑪希敦大學</span></td><td>Altruism<span class="zh-full" lang="zh-Hant">利他精神</span></td><td>Reinforced on Mahidol Day through Prince Mahidol's message.<span class="zh-full" lang="zh-Hant">在 Mahidol Day 透過瑪希敦親王的話語反覆強化。</span></td></tr>
+<tr><td><b>PlanToys</b><span class="zh-full" lang="zh-Hant">PlanToys</span></td><td>Social and environmental responsibility<span class="zh-full" lang="zh-Hant">社會與環境責任</span></td><td>Core to the business.<span class="zh-full" lang="zh-Hant">屬於企業核心。</span></td></tr>
+</tbody></table></div>
+<p>Values common in sustainable enterprises: virtuous values (perseverance, moderation, generosity, honesty, integrity, ethics), social and environmental responsibility, and innovation. A manager's own values also shape what they see, what they think is important, how they spend time and what they decide.<span class="zh-full" lang="zh-Hant">永續企業常見的價值觀：美德價值（堅毅、適度、慷慨、誠實、正直、倫理）、社會與環境責任，以及創新。主管本人的價值觀，也會影響他注意什麼、認為什麼重要、如何分配時間，以及做出何種決定。</span></p>
+
+<!-- 3 -->
+<h2 id="discrepancy">3. Value mismatch versus stated-practice discrepancy<span class="zh-full" lang="zh-Hant">3. 價值觀不契合與宣稱／實務落差</span></h2>
+<p class="sub">A key distinction from the Ken case discussion.<span class="zh-full" lang="zh-Hant">這是 Ken 個案討論中的關鍵區分。</span></p>
+<div class="pair">
+  <div><b>Value mismatch<span class="zh-full" lang="zh-Hant">價值觀不契合</span></b><p>The employee genuinely values something different. The employee values autonomy; the organization emphasizes control.<span class="zh-full" lang="zh-Hant">員工確實重視不同的事物。例如員工重視自主，組織卻強調控制。</span></p></div>
+  <div><b>Stated-practice discrepancy<span class="zh-full" lang="zh-Hant">宣稱與實務落差</span></b> <span class="zh">說做不一</span><p>The employee may agree with the stated value, but practice rewards something else. "We value work-life balance," yet promotions go to people who work late.<span class="zh-full" lang="zh-Hant">員工可能同意組織宣稱的價值，但實際作法獎勵另一件事。例如宣稱「我們重視工作與生活平衡」，升遷卻給經常加班的人。</span></p></div>
+</div>
+<div data-mw="align"></div>
+<p>For a value to feel real, it must appear in four layers: the stated value, leader behavior, rewards and policy, and repeated communication.<span class="zh-full" lang="zh-Hant">價值觀要讓人感到真實，必須出現在四個層面：宣稱的價值、領導者行為、獎酬與政策，以及反覆溝通。</span></p>
+
+<!-- 4 -->
+<h2 id="attitudes">4. Attitudes<span class="zh-full" lang="zh-Hant">4. 態度</span></h2>
+<p class="sub">Judgments we make about objects, people or events. "I like my job."<span class="zh-full" lang="zh-Hant">我們對事物、人物或事件所做的評價。例如：「我喜歡我的工作。」</span></p>
+<div class="pair">
+  <div><b>Value<span class="zh-full" lang="zh-Hant">價值觀</span></b><p>What matters to me? Broad and stable. "Honesty is important to me."<span class="zh-full" lang="zh-Hant">什麼對我重要？廣泛且穩定。例如：「誠實對我很重要。」</span></p></div>
+  <div><b>Attitude<span class="zh-full" lang="zh-Hant">態度</span></b><p>How do I evaluate this? Specific. "I don't trust my manager."<span class="zh-full" lang="zh-Hant">我如何評價這個對象？針對特定對象。例如：「我不信任我的主管。」</span></p></div>
+</div>
+<div class="three">
+  <div class="tcard"><span class="tnum">C</span><b>Cognitive<span class="zh-full" lang="zh-Hant">認知成分</span></b><p>Opinion or belief: "My boss is a mean person."<span class="zh-full" lang="zh-Hant">意見或信念：「我的主管是個刻薄的人。」</span></p></div>
+  <div class="tcard"><span class="tnum">A</span><b>Affective<span class="zh-full" lang="zh-Hant">情感成分</span></b><p>Emotion: "I am angry because my boss is mean."<span class="zh-full" lang="zh-Hant">情緒：「因為主管刻薄，我感到生氣。」</span></p></div>
+  <div class="tcard"><span class="tnum">B</span><b>Behavioral<span class="zh-full" lang="zh-Hant">行為成分</span></b><p>Intention to act: "I am going to report my boss to HR."<span class="zh-full" lang="zh-Hant">行動意圖：「我要向人資檢舉主管。」</span></p></div>
+</div>
+<div data-mw="abc"></div>
+
+<h3 id="work">Workplace attitudes<span class="zh-full" lang="zh-Hant">職場態度</span></h3>
+<div class="tbl"><table>
+<thead><tr><th>Concept<span class="zh-full" lang="zh-Hant">概念</span></th><th>Definition<span class="zh-full" lang="zh-Hant">定義</span></th><th>Diagnostic question<span class="zh-full" lang="zh-Hant">診斷問題</span></th></tr></thead>
+<tbody>
+<tr><td><b>Job satisfaction</b><span class="zh-full" lang="zh-Hant">工作滿意度</span></td><td>Attitude of fulfillment toward the job<span class="zh-full" lang="zh-Hant">對工作感到滿足的態度</span></td><td>Am I satisfied with this job?<span class="zh-full" lang="zh-Hant">我對這份工作滿意嗎？</span></td></tr>
+<tr><td><b>Job involvement</b> <span class="zh">工作投入</span><span class="zh-full" lang="zh-Hant">工作投入</span></td><td>Identification with the job<span class="zh-full" lang="zh-Hant">對工作的認同</span></td><td>Is this job part of who I am?<span class="zh-full" lang="zh-Hant">這份工作是我自我認同的一部分嗎？</span></td></tr>
+<tr><td><b>Organizational commitment</b> <span class="zh">組織承諾</span><span class="zh-full" lang="zh-Hant">組織承諾</span></td><td>Identification with organizational goals; desire to remain a member<span class="zh-full" lang="zh-Hant">認同組織目標，並希望繼續成為其成員</span></td><td>Do I believe in this organization and want to stay?<span class="zh-full" lang="zh-Hant">我認同這個組織，並希望留下嗎？</span></td></tr>
+<tr><td><b>Organizational citizenship (OCB)</b><span class="zh-full" lang="zh-Hant">組織公民行為（OCB）</span></td><td>Discretionary behavior that helps the organization<span class="zh-full" lang="zh-Hant">出於自願、對組織有幫助的行為</span></td><td>Do I voluntarily do extra-role work?<span class="zh-full" lang="zh-Hant">我是否自願做角色要求以外的工作？</span></td></tr>
+</tbody></table></div>
+<div class="pair">
+  <div><b>Satisfaction ≠ commitment<span class="zh-full" lang="zh-Hant">滿意度 ≠ 組織承諾</span></b><p>"I love being a designer, but I no longer believe in this company." Satisfaction may stay high while commitment falls.<span class="zh-full" lang="zh-Hant">「我喜歡當設計師，但已不再認同這家公司。」滿意度可能仍高，組織承諾卻下降。</span></p></div>
+  <div><b>OCB is a behavior<span class="zh-full" lang="zh-Hant">OCB 是行為</span></b><p>An employee who stops helping new colleagues shows lower OCB, not automatically lower task performance.<span class="zh-full" lang="zh-Hant">員工不再協助新同事，表示 OCB 降低，不自動代表本職任務績效下降。</span></p></div>
+</div>
+<div data-mw="wattitude"></div>
+
+<!-- 5 -->
+<h2 id="typeab">5. Type A and Type B<span class="zh-full" lang="zh-Hant">5. A 型與 B 型</span></h2>
+<div class="pair">
+  <div><b>Type A<span class="zh-full" lang="zh-Hant">A 型</span></b><p>Aggressive, impatient, goal and outcome driven, time conscious, multitasks.<span class="zh-full" lang="zh-Hant">積極進取、缺乏耐心、目標與結果導向、重視時間、同時處理多項工作。</span></p></div>
+  <div><b>Type B<span class="zh-full" lang="zh-Hant">B 型</span></b><p>Little urgency, no need to display achievement, takes time, plays for fun, relaxes easily.<span class="zh-full" lang="zh-Hant">急迫感較低、不需要展示成就、從容行事、為樂趣而玩、容易放鬆。</span></p></div>
+</div>
+<div class="tbl"><table>
+<thead><tr><th>Slide conclusion<span class="zh-full" lang="zh-Hant">投影片結論</span></th><th>Type A<span class="zh-full" lang="zh-Hant">A 型</span></th><th>Type B<span class="zh-full" lang="zh-Hant">B 型</span></th></tr></thead>
+<tbody>
+<tr><td>Work focus<span class="zh-full" lang="zh-Hant">工作重點</span></td><td>May focus on quantity over quality<span class="zh-full" lang="zh-Hant">可能重視數量勝於品質</span></td><td>May look for more innovative solutions<span class="zh-full" lang="zh-Hant">可能尋找更有創意的解法</span></td></tr>
+<tr><td>Health<span class="zh-full" lang="zh-Hant">健康</span></td><td>More stress-related disease and burnout<span class="zh-full" lang="zh-Hant">較多壓力相關疾病與倦怠</span></td><td></td></tr>
+<tr><td>Roles<span class="zh-full" lang="zh-Hant">角色</span></td><td>Better in sales<span class="zh-full" lang="zh-Hant">在銷售上較有優勢</span></td><td>More common in senior management<span class="zh-full" lang="zh-Hant">在高階管理層較常見</span></td></tr>
+</tbody></table></div>
+<p>Type A and B relate to national culture: competitive versus cooperative. These are tendencies; a time-conscious employee will not definitely burn out without evidence.<span class="zh-full" lang="zh-Hant">A、B 型也與國家文化的競爭或合作傾向有關。這些只是傾向；沒有證據時，不能斷言重視時間的員工一定會倦怠。</span></p>
+
+<!-- 6 -->
+<h2 id="change">6. Changing attitudes and building culture<span class="zh-full" lang="zh-Hant">6. 改變態度與建立文化</span></h2>
+<p class="sub">Can you change other people's attitudes? It depends on three things.<span class="zh-full" lang="zh-Hant">能否改變別人的態度？取決於三項條件。</span></p>
+<div class="three">
+  <div class="tcard"><span class="tnum">1</span><b>Their attitude<span class="zh-full" lang="zh-Hant">對方的態度</span></b><p>How committed they are to it, how aware they are of their position, how big the change is.<span class="zh-full" lang="zh-Hant">對原有立場有多堅定、對立場有多清楚，以及需要改變的幅度。</span></p></div>
+  <div class="tcard"><span class="tnum">2</span><b>You<span class="zh-full" lang="zh-Hant">你本身</span></b><p>Trust and credibility, expertise and influence, perceived honesty and fairness.<span class="zh-full" lang="zh-Hant">信任與可信度、專業與影響力，以及對方感受到的誠實與公平。</span></p></div>
+  <div class="tcard"><span class="tnum">3</span><b>Your strategy<span class="zh-full" lang="zh-Hant">你的策略</span></b><p>Understand their values and personality, use social influence, give training and moral support, provide incentives.<span class="zh-full" lang="zh-Hant">理解對方的價值觀與人格、運用社會影響、提供訓練與精神支持、給予誘因。</span></p></div>
+</div>
+<p>Workforce diversity in age, experience, culture, gender, race and religion is a strength through variation in ideas, attitudes and knowledge.<span class="zh-full" lang="zh-Hant">員工在年齡、經驗、文化、性別、種族與宗教上的多樣性，能透過不同想法、態度與知識形成優勢。</span></p>
+<h3 id="framework">Culture Development Framework<span class="zh-full" lang="zh-Hant">文化發展架構</span></h3>
+<p class="note-small">Ketprapakorn and Kantabutra (2019)<span class="zh-full" lang="zh-Hant">Ketprapakorn 與 Kantabutra（2019）</span></p>
+<div class="cf">
+  <div class="cf-in"><span>Act as a role model<span class="zh-full" lang="zh-Hant">以身作則</span></span><span>Promote from within<span class="zh-full" lang="zh-Hant">從內部晉升</span></span><span>Design value communication channels<span class="zh-full" lang="zh-Hant">設計價值觀溝通管道</span></span><span>Use core values to recruit<span class="zh-full" lang="zh-Hant">依核心價值招募</span></span><span>Avoid employee layoff<span class="zh-full" lang="zh-Hant">避免裁員</span></span></div>
+  <i>→</i>
+  <div class="cf-out">Sustainability culture<span class="zh-full" lang="zh-Hant">永續文化</span></div>
+</div>
+<p class="cf-lab"><span>Starting point: identify core values</span><span class="zh-full" lang="zh-Hant">起點：辨識核心價值</span></p>
+<p class="key">The common function: turn abstract values into repeated, visible and consistent workplace signals. Role modeling shows the value; promoting from within shows what gets rewarded; value-based recruiting starts with better fit.<span class="zh-full" lang="zh-Hant">共同作用是把抽象價值變成反覆、可見且一致的職場訊號。以身作則讓人看見價值；內部晉升顯示什麼受到獎勵；以價值為基礎的招募，從一開始提高契合度。</span></p>
+<div class="tbl"><table>
+<thead><tr><th>Company<span class="zh-full" lang="zh-Hant">公司</span></th><th>Communication channel from the slides<span class="zh-full" lang="zh-Hant">投影片中的溝通管道</span></th></tr></thead>
+<tbody>
+<tr><td><b>Thai President Foods</b> (Mama)<span class="zh-full" lang="zh-Hant">Thai President Foods（Mama）</span></td><td>Leaders model a long-term view; policy avoids short-term gain.<span class="zh-full" lang="zh-Hant">領導者示範長期觀點，政策避免追求短期利益。</span></td></tr>
+<tr><td><b>Phung Noi Bakery</b><span class="zh-full" lang="zh-Hant">Phung Noi Bakery</span></td><td>The MD teaches core values through songs and poems.<span class="zh-full" lang="zh-Hant">總經理透過歌曲與詩歌傳授核心價值。</span></td></tr>
+<tr><td><b>PlanToys</b><span class="zh-full" lang="zh-Hant">PlanToys</span></td><td>"Fresh Up in the Morning" every Wednesday: department heads take turns sharing knowledge for about 15 minutes.<span class="zh-full" lang="zh-Hant">每週三舉辦「Fresh Up in the Morning」：各部門主管輪流分享約 15 分鐘的知識。</span></td></tr>
+</tbody></table></div>
+
+<!-- 7 -->
+<h2 id="case">7. Six-step case analysis<span class="zh-full" lang="zh-Hant">7. 六步個案分析</span></h2>
+<div class="steps">
+  <div><b>1 · Value<span class="zh-full" lang="zh-Hant">1・價值觀</span></b><p>What matters to this employee?<span class="zh-full" lang="zh-Hant">這名員工重視什麼？</span></p></div>
+  <div><b>2 · Fit / experience<span class="zh-full" lang="zh-Hant">2・契合／經驗</span></b><p>Does the organization support or contradict it?<span class="zh-full" lang="zh-Hant">組織支持還是違背這項價值？</span></p></div>
+  <div><b>3 · Attitude<span class="zh-full" lang="zh-Hant">3・態度</span></b><p>Satisfaction? Commitment?<span class="zh-full" lang="zh-Hant">工作滿意度？組織承諾？</span></p></div>
+  <div><b>4 · Evidence<span class="zh-full" lang="zh-Hant">4・證據</span></b><p>What behavior is observed: OCB, turnover intention, performance?<span class="zh-full" lang="zh-Hant">觀察到什麼行為：OCB、離職意圖、績效？</span></p></div>
+  <div><b>5 · Boundary<span class="zh-full" lang="zh-Hant">5・推論界線</span></b><p>What can we not conclude yet?<span class="zh-full" lang="zh-Hant">目前還不能下什麼結論？</span></p></div>
+  <div><b>6 · Response<span class="zh-full" lang="zh-Hant">6・回應</span></b><p>Which practice, leader behavior or reward should management examine?<span class="zh-full" lang="zh-Hant">管理者應檢查哪種作法、領導者行為或獎酬？</span></p></div>
+</div>
+<blockquote class="say">Worked example: an employee values autonomy; the company claims empowerment, but every small decision needs approval. "I still like my profession, but I don't trust this company," and she has stopped helping coworkers. This is a stated-practice discrepancy that may reduce commitment and OCB, while job satisfaction may hold. The case gives no evidence she will resign. Management should first examine its own control practices and rewards.<span class="zh-full" lang="zh-Hant">示範個案：員工重視自主；公司宣稱賦權，但每個小決定都要批准。她說「我仍喜歡我的專業，但不信任這家公司」，也停止協助同事。這是宣稱與實務落差，可能降低組織承諾與 OCB，而工作滿意度可能維持。個案沒有證據顯示她會辭職。管理者應先檢查自身控制作法與獎酬制度。</span></blockquote>
+
+<!-- 8 -->
+<h2 id="traps">8. Do not mix these up<span class="zh-full" lang="zh-Hant">8. 不要混淆</span></h2>
+<div class="traps">
+  <div><s>Values determine behavior.<span class="zh-full" lang="zh-Hant">價值觀決定行為。</span></s><p>Values may influence attitudes, which may influence behavior.<span class="zh-full" lang="zh-Hant">價值觀可能影響態度，態度又可能影響行為。</span></p></div>
+  <div><s>Poor fit means he will leave.<span class="zh-full" lang="zh-Hant">不契合就代表他會離職。</span></s><p>Need evidence of turnover intention or leaving.<span class="zh-full" lang="zh-Hant">需要離職意圖或實際離職的證據。</span></p></div>
+  <div><s>Fix value conflicts by changing the employee.<span class="zh-full" lang="zh-Hant">透過改變員工來解決價值衝突。</span></s><p>Check job design, management and rewards first.<span class="zh-full" lang="zh-Hant">先檢查工作設計、管理與獎酬。</span></p></div>
+  <div><s>Strong culture = same personality.<span class="zh-full" lang="zh-Hant">強文化＝相同人格。</span></s><p>It means aligned values and attitudes.<span class="zh-full" lang="zh-Hant">意思是價值觀與態度一致。</span></p></div>
+  <div><s>"I don't trust my manager" is a value.<span class="zh-full" lang="zh-Hant">「我不信任主管」是一項價值觀。</span></s><p>It is an attitude toward a specific person.<span class="zh-full" lang="zh-Hant">這是對特定人物的態度。</span></p></div>
+  <div><s>Satisfied = committed.<span class="zh-full" lang="zh-Hant">滿意＝有組織承諾。</span></s><p>Job and organization are different targets.<span class="zh-full" lang="zh-Hant">工作與組織是不同評價對象。</span></p></div>
+  <div><s>OCB is an attitude.<span class="zh-full" lang="zh-Hant">OCB 是一種態度。</span></s><p>It is an observable, optional behavior.<span class="zh-full" lang="zh-Hant">它是可觀察、出於自願的行為。</span></p></div>
+  <div><s>Incentives change attitudes.<span class="zh-full" lang="zh-Hant">誘因會改變態度。</span></s><p>Also depends on the person and your credibility.<span class="zh-full" lang="zh-Hant">還取決於對方本身與你的可信度。</span></p></div>
+</div>
+
+<!-- 9 -->
+<h2 id="coldcall">9. Cold call practice<span class="zh-full" lang="zh-Hant">9. 課堂口答練習</span></h2>
+<div class="qa-tools"><button type="button" id="qaAll">Show all answers<span class="zh-full" lang="zh-Hant">顯示全部答案</span></button></div>
+<div class="qa">
+  <details><summary>Why should managers care about value intensity, not just content?<span class="zh-full" lang="zh-Hant">主管為何不只要了解價值內容，也要了解強度？</span></summary><p>Stronger values produce stronger reactions when the workplace supports or violates them.<span class="zh-full" lang="zh-Hant">價值越強烈，職場支持或違背它時，反應也越強烈。</span></p></details>
+  <details><summary>Freedom or honest: which is terminal?<span class="zh-full" lang="zh-Hant">自由與誠實，哪個是終極價值？</span></summary><p>Freedom is a desired end state (terminal); honest is a way of behaving (instrumental).<span class="zh-full" lang="zh-Hant">自由是希望達到的最終狀態（終極價值）；誠實是行為方式（工具性價值）。</span></p></details>
+  <details><summary>A firm says sustainability is core, but KPIs reward only short-term sales. Mismatch or discrepancy?<span class="zh-full" lang="zh-Hant">公司宣稱永續是核心，但 KPI 只獎勵短期銷售。這是不契合還是落差？</span></summary><p>Stated-practice discrepancy: the reward system contradicts the stated value.<span class="zh-full" lang="zh-Hant">宣稱與實務落差：獎酬制度違背宣稱的價值。</span></p></details>
+  <details><summary>"My boss is unfair" → "I feel angry" → "I will report this." Classify.<span class="zh-full" lang="zh-Hant">「主管不公平」→「我生氣」→「我要檢舉」。如何分類？</span></summary><p>Cognitive, affective, behavioral intention.<span class="zh-full" lang="zh-Hant">認知成分、情感成分、行為意圖。</span></p></details>
+  <details><summary>Is Type A always better than Type B?<span class="zh-full" lang="zh-Hant">A 型一定比 B 型好嗎？</span></summary><p>No. Type A suits sales and goal focus but risks burnout and quantity over quality; Type B may innovate and is more common in senior management but has less urgency.<span class="zh-full" lang="zh-Hant">不一定。A 型適合銷售與目標導向，但有倦怠及重量不重質的風險；B 型可能較具創新，且在高階管理層較常見，但急迫感較低。</span></p></details>
+  <details><summary>Why might the same message work from a trusted manager but not a consultant?<span class="zh-full" lang="zh-Hant">為何同樣的訊息，由受信任的主管傳達可能有效，由顧問傳達卻未必？</span></summary><p>Trust and credibility increase influence over attitudes.<span class="zh-full" lang="zh-Hant">信任與可信度會提高對態度的影響力。</span></p></details>
+  <details><summary>What do the five culture-development techniques have in common?<span class="zh-full" lang="zh-Hant">五種文化發展技巧有何共同點？</span></summary><p>They make core values repeated, observable and consistent signals.<span class="zh-full" lang="zh-Hant">它們都讓核心價值成為反覆出現、可觀察且一致的訊號。</span></p></details>
+</div>
+</article></main>
+</div>
+
+<script>/* Management interactive components: Herzberg scale, KPI trap, framework comparator, LMS lens. */
+(function () {
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  let uid = 0;
+  function shell(host, kicker, title, sub) {
+    host.classList.add('mw');
+    host.innerHTML = '<div class="g-head"><span class="g-kicker">' + kicker + '</span><h4>' + title + '</h4>' + (sub ? '<p>' + sub + '</p>' : '') + '</div><div class="mw-body"></div>';
+    return host.querySelector('.mw-body');
+  }
+
+  const W = {};
+
+  function quiz(host, kicker, title, sub, items, opts, layout) {
+    const body = shell(host, kicker, title, sub);
+    body.innerHTML = '<p class="qz-item"></p><div class="qz-opts ' + (layout || '') + "\"></div><p class=\"g-note\"></p><div class=\"qz-nav\"><span class=\"qz-n\"></span><button type=\"button\" class=\"g-btn\">Next<span class=\"zh-full\" lang=\"zh-Hant\">下一題</span></button></div>";
+    const P = body.querySelector('.qz-item'), O = body.querySelector('.qz-opts'), N = body.querySelector('.g-note'), C = body.querySelector('.qz-n');
+    let i = 0, score = 0, done = 0;
+    opts.forEach(([k, lab, sub2]) => {
+      const b = document.createElement('button'); b.type = 'button'; b.dataset.k = k; b.className = 'qz-o';
+      b.innerHTML = '<b>' + lab + '</b>' + (sub2 ? '<small>' + sub2 + '</small>' : '');
+      b.addEventListener('click', () => {
+        if (O.dataset.answered) return; O.dataset.answered = 1;
+        const it = items[i], ok = k === it.a; done++; if (ok) score++;
+        O.querySelectorAll('button').forEach(x => x.classList.toggle('right', x.dataset.k === it.a));
+        if (!ok) b.classList.add('wrong');
+        N.innerHTML=biPair((ok?'Correct. ':'Not quite. ')+biPlain(it.why),(ok?'答對了。':'再想一下。')+biChinese(it.why)); N.hidden = false;
+        C.innerHTML=biPair(score+' / '+done+' correct',score+'／'+done+' 題答對');
+      });
+      O.appendChild(b);
+    });
+    function show() {
+      const it = items[i]; P.innerHTML=biPair('\u0022'+biPlain(it.q)+'\u0022',biChinese(it.q)); delete O.dataset.answered;
+      O.querySelectorAll('button').forEach(x => x.classList.remove('right', 'wrong')); N.hidden = true;
+    }
+    body.querySelector('.qz-nav button').addEventListener('click', () => { i = (i + 1) % items.length; show(); });
+    C.innerHTML=biPair(items.length+' items',items.length+' 題'); show();
+  }
+
+  W.tiv = host => quiz(host, "Classify<span class=\"zh-full\" lang=\"zh-Hant\">分類練習</span>", "Terminal or instrumental value?<span class=\"zh-full\" lang=\"zh-Hant\">終極價值還是工具性價值？</span>", "Terminal = the destination. Instrumental = how you travel there.<span class=\"zh-full\" lang=\"zh-Hant\">終極價值＝目的地；工具性價值＝前往目的地的方法。</span>", [
+    { q: "Freedom<span class=\"zh-full\" lang=\"zh-Hant\">自由</span>", a: 't', why: "A desired end state.<span class=\"zh-full\" lang=\"zh-Hant\">希望達到的最終狀態。</span>" }, { q: "Honest<span class=\"zh-full\" lang=\"zh-Hant\">誠實</span>", a: 'i', why: "A way of behaving.<span class=\"zh-full\" lang=\"zh-Hant\">一種行為方式。</span>" },
+    { q: "Wealth<span class=\"zh-full\" lang=\"zh-Hant\">財富</span>", a: 't', why: "A desired end state.<span class=\"zh-full\" lang=\"zh-Hant\">希望達到的最終狀態。</span>" }, { q: "Ambitious<span class=\"zh-full\" lang=\"zh-Hant\">有抱負</span>", a: 'i', why: "A way of behaving that can lead to wealth or recognition.<span class=\"zh-full\" lang=\"zh-Hant\">可能帶來財富或認可的行為方式。</span>" },
+    { q: "Self-respect<span class=\"zh-full\" lang=\"zh-Hant\">自尊</span>", a: 't', why: "A desired end state.<span class=\"zh-full\" lang=\"zh-Hant\">希望達到的最終狀態。</span>" }, { q: "Logical<span class=\"zh-full\" lang=\"zh-Hant\">合乎邏輯</span>", a: 'i', why: "A way of thinking and acting.<span class=\"zh-full\" lang=\"zh-Hant\">一種思考與行動方式。</span>" },
+    { q: "Social contribution<span class=\"zh-full\" lang=\"zh-Hant\">社會貢獻</span>", a: 't', why: "A desired end state.<span class=\"zh-full\" lang=\"zh-Hant\">希望達到的最終狀態。</span>" }, { q: "Self-disciplined<span class=\"zh-full\" lang=\"zh-Hant\">自律</span>", a: 'i', why: "A way of behaving.<span class=\"zh-full\" lang=\"zh-Hant\">一種行為方式。</span>" },
+    { q: "Recognition<span class=\"zh-full\" lang=\"zh-Hant\">肯定</span>", a: 't', why: "A desired end state.<span class=\"zh-full\" lang=\"zh-Hant\">希望達到的最終狀態。</span>" }, { q: "Imaginative / creative<span class=\"zh-full\" lang=\"zh-Hant\">有想像力／創意</span>", a: 'i', why: "A way of working.<span class=\"zh-full\" lang=\"zh-Hant\">一種工作方式。</span>" }
+  ], [['t', "Terminal<span class=\"zh-full\" lang=\"zh-Hant\">終極價值</span>", "Destination: a noun-like end state<span class=\"zh-full\" lang=\"zh-Hant\">目的地：類似名詞的最終狀態</span>"], ['i', "Instrumental<span class=\"zh-full\" lang=\"zh-Hant\">工具性價值</span>", "Path: a way of behaving<span class=\"zh-full\" lang=\"zh-Hant\">路徑：一種行為方式</span>"]], 'grid2');
+
+  W.abc = host => quiz(host, "Classify<span class=\"zh-full\" lang=\"zh-Hant\">分類練習</span>", "Which attitude component?<span class=\"zh-full\" lang=\"zh-Hant\">這是哪個態度成分？</span>", "Belief, feeling, or intention to act.<span class=\"zh-full\" lang=\"zh-Hant\">信念、感受，還是行動意圖？</span>", [
+    { q: "My boss is a mean person.<span class=\"zh-full\" lang=\"zh-Hant\">我的主管是個刻薄的人。</span>", a: 'c', why: "Cognitive: an opinion or belief.<span class=\"zh-full\" lang=\"zh-Hant\">認知成分：一項意見或信念。</span>" },
+    { q: "I am angry because my boss is mean.<span class=\"zh-full\" lang=\"zh-Hant\">因為主管刻薄，我感到生氣。</span>", a: 'a', why: "Affective: an emotion.<span class=\"zh-full\" lang=\"zh-Hant\">情感成分：一種情緒。</span>" },
+    { q: "I am going to go to HR and report my mean boss.<span class=\"zh-full\" lang=\"zh-Hant\">我要去向人資檢舉刻薄的主管。</span>", a: 'b', why: "Behavioral: an intention to act.<span class=\"zh-full\" lang=\"zh-Hant\">行為成分：行動意圖。</span>" },
+    { q: "This new overtime policy is unfair to junior staff.<span class=\"zh-full\" lang=\"zh-Hant\">這項新的加班政策對資淺員工不公平。</span>", a: 'c', why: "Cognitive: a judgment or belief.<span class=\"zh-full\" lang=\"zh-Hant\">認知成分：一項評價或信念。</span>" },
+    { q: "I feel anxious every Sunday night before work.<span class=\"zh-full\" lang=\"zh-Hant\">每逢上班前的週日晚上，我都感到焦慮。</span>", a: 'a', why: "Affective: a feeling.<span class=\"zh-full\" lang=\"zh-Hant\">情感成分：一種感受。</span>" },
+    { q: "I plan to ask for a transfer next quarter.<span class=\"zh-full\" lang=\"zh-Hant\">我計畫下季申請調職。</span>", a: 'b', why: "Behavioral: an intention, not yet the behavior itself.<span class=\"zh-full\" lang=\"zh-Hant\">行為成分：這是意圖，尚不是行為本身。</span>" }
+  ], [['c', "Cognitive<span class=\"zh-full\" lang=\"zh-Hant\">認知成分</span>", "Opinion or belief<span class=\"zh-full\" lang=\"zh-Hant\">意見或信念</span>"], ['a', "Affective<span class=\"zh-full\" lang=\"zh-Hant\">情感成分</span>", "Emotion or feeling<span class=\"zh-full\" lang=\"zh-Hant\">情緒或感受</span>"], ['b', "Behavioral<span class=\"zh-full\" lang=\"zh-Hant\">行為成分</span>", "Intention to act<span class=\"zh-full\" lang=\"zh-Hant\">行動意圖</span>"]], 'row3');
+
+  W.wattitude = host => quiz(host, "Classify<span class=\"zh-full\" lang=\"zh-Hant\">分類練習</span>", "Which workplace attitude or behavior?<span class=\"zh-full\" lang=\"zh-Hant\">這是哪種職場態度或行為？</span>", "Job, identity, organization, or optional extra effort?<span class=\"zh-full\" lang=\"zh-Hant\">對工作、自我認同、組織的態度，還是自願的額外付出？</span>", [
+    { q: "I am fulfilled by my day-to-day work here.<span class=\"zh-full\" lang=\"zh-Hant\">我對這裡每天的工作感到滿足。</span>", a: 'sat', why: "Job satisfaction: fulfillment toward the job.<span class=\"zh-full\" lang=\"zh-Hant\">工作滿意度：對工作感到滿足。</span>" },
+    { q: "Being a nurse is part of who I am.<span class=\"zh-full\" lang=\"zh-Hant\">當護理師是我自我認同的一部分。</span>", a: 'inv', why: "Job involvement: identification with the job.<span class=\"zh-full\" lang=\"zh-Hant\">工作投入：對工作的認同。</span>" },
+    { q: "I believe in where this company is going and want to stay a member.<span class=\"zh-full\" lang=\"zh-Hant\">我認同這家公司的方向，也希望繼續成為其中一員。</span>", a: 'com', why: "Organizational commitment: identification with goals, desire for membership.<span class=\"zh-full\" lang=\"zh-Hant\">組織承諾：認同目標，並希望維持成員身分。</span>" },
+    { q: "She stays late to help a new colleague learn the system, though no one asked her to.<span class=\"zh-full\" lang=\"zh-Hant\">雖然沒人要求，她仍留下來教新同事使用系統。</span>", a: 'ocb', why: "OCB: discretionary behavior that helps the organization. A behavior, not an attitude.<span class=\"zh-full\" lang=\"zh-Hant\">OCB：出於自願、對組織有幫助的行為。這是行為，而非態度。</span>" },
+    { q: "I would rather stay here than move to a rival paying slightly more.<span class=\"zh-full\" lang=\"zh-Hant\">與其到薪資稍高的競爭公司，我更願意留在這裡。</span>", a: 'com', why: "Desire to remain a member points to organizational commitment.<span class=\"zh-full\" lang=\"zh-Hant\">希望維持成員身分，指向組織承諾。</span>" },
+    { q: "He volunteers to organize the department training day.<span class=\"zh-full\" lang=\"zh-Hant\">他自願籌辦部門訓練日。</span>", a: 'ocb', why: "Optional extra-role behavior: OCB.<span class=\"zh-full\" lang=\"zh-Hant\">自願、角色要求以外的行為：OCB。</span>" }
+  ], [['sat', "Job satisfaction<span class=\"zh-full\" lang=\"zh-Hant\">工作滿意度</span>"], ['inv', "Job involvement<span class=\"zh-full\" lang=\"zh-Hant\">工作投入</span>"], ['com', "Org. commitment<span class=\"zh-full\" lang=\"zh-Hant\">組織承諾</span>"], ['ocb', "OCB<span class=\"zh-full\" lang=\"zh-Hant\">組織公民行為（OCB）</span>"]], 'row4');
+
+  W.align = host => {
+    const body = shell(host, "Interactive<span class=\"zh-full\" lang=\"zh-Hant\">互動練習</span>", "Value mismatch or stated-practice gap?<span class=\"zh-full\" lang=\"zh-Hant\">價值觀不契合，還是宣稱／實務落差？</span>", "The company says it values empowerment. Switch each layer on or off and read the diagnosis.<span class=\"zh-full\" lang=\"zh-Hant\">公司宣稱重視賦權。切換各層面的設定，再閱讀診斷。</span>");
+    const L = [['emp', "Employee personally values autonomy<span class=\"zh-full\" lang=\"zh-Hant\">員工本人重視自主</span>", true], ['lead', "Leader behavior models empowerment<span class=\"zh-full\" lang=\"zh-Hant\">領導者行為示範賦權</span>", false], ['rew', "Rewards and promotions follow it<span class=\"zh-full\" lang=\"zh-Hant\">獎酬與晉升遵循這項價值</span>", false], ['com', "The value is communicated repeatedly<span class=\"zh-full\" lang=\"zh-Hant\">這項價值被反覆溝通</span>", true]];
+    body.innerHTML = '<div class="al-ctl">' + L.map(l => '<label class="chk"><input type="checkbox" data-k="' + l[0] + '"' + (l[2] ? ' checked' : '') + '><span>' + l[1] + '</span></label>').join('') + '</div><div class="ev"></div><div class="issue"></div>';
+    const ev = body.querySelector('.ev'), out = body.querySelector('.issue');
+    function draw() {
+      const v = {}; body.querySelectorAll('input').forEach(x => v[x.dataset.k] = x.checked);
+      const rows = [["Stated value<span class=\"zh-full\" lang=\"zh-Hant\">宣稱的價值</span>", "Empowerment<span class=\"zh-full\" lang=\"zh-Hant\">賦權</span>", true], ["Leader behavior<span class=\"zh-full\" lang=\"zh-Hant\">領導者行為</span>", v.lead ? "Delegates decisions<span class=\"zh-full\" lang=\"zh-Hant\">授權他人做決定</span>" : "Approval needed for every small decision<span class=\"zh-full\" lang=\"zh-Hant\">每個小決定都要核准</span>", v.lead], ["Reward / policy<span class=\"zh-full\" lang=\"zh-Hant\">獎酬／政策</span>", v.rew ? "Promotes people who empower others<span class=\"zh-full\" lang=\"zh-Hant\">晉升願意賦權他人的員工</span>" : "Rewards control and compliance<span class=\"zh-full\" lang=\"zh-Hant\">獎勵控制與服從</span>", v.rew], ["Communication<span class=\"zh-full\" lang=\"zh-Hant\">溝通</span>", v.com ? "Repeated in meetings and channels<span class=\"zh-full\" lang=\"zh-Hant\">在會議與各種管道反覆傳達</span>" : "Rarely mentioned<span class=\"zh-full\" lang=\"zh-Hant\">很少被提及</span>", v.com], ["Employee value<span class=\"zh-full\" lang=\"zh-Hant\">員工價值觀</span>", v.emp ? "Values autonomy<span class=\"zh-full\" lang=\"zh-Hant\">重視自主</span>" : "Prefers close direction<span class=\"zh-full\" lang=\"zh-Hant\">偏好明確而密切的指導</span>", v.emp]];
+      ev.innerHTML = rows.map(r => '<div><b>' + r[0] + '</b><span class="tag ' + (r[2] ? 'ok' : 'gap') + '">' + (r[2] ? "Aligned<span class=\"zh-full\" lang=\"zh-Hant\">一致</span>" : "Gap<span class=\"zh-full\" lang=\"zh-Hant\">缺口</span>") + '</span><p>' + r[1] + '</p></div>').join('');
+      let h;
+      if (!v.lead || !v.rew) h = '<b>'+biPair('Stated-practice discrepancy.','宣稱與實務落差。')+'</b><p>'+biPair('The company says empowerment but its practices reward something else. Fix leader behavior and rewards first'+(v.emp?'; the employee already agrees with the stated value, so changing the employee is the wrong target.':'.'),'公司宣稱賦權，實際作法卻獎勵其他事情。先改善領導者行為與獎酬'+(v.emp?'；員工本來就同意宣稱的價值，因此改變員工找錯了對象。':'。'))+'</p>';
+      else if (!v.emp) h = "<b>Value mismatch.<span class=\"zh-full\" lang=\"zh-Hant\">價值觀不契合。</span></b><p>The organization practices its value, but the employee values something different. Check person-organization fit, role design and recruitment; values are hard to change.<span class=\"zh-full\" lang=\"zh-Hant\">組織實踐了自身價值，但員工重視不同的事。檢查人與組織契合、角色設計及招募；價值觀不容易改變。</span></p>";
+      else if (!v.com) h = "<b>Practice is aligned, the signal is weak.<span class=\"zh-full\" lang=\"zh-Hant\">作法一致，但訊號薄弱。</span></b><p>Add communication channels so employees recognize the value consistently.<span class=\"zh-full\" lang=\"zh-Hant\">增加溝通管道，讓員工持續辨識這項價值。</span></p>";
+      else h = "<b>Consistent signal.<span class=\"zh-full\" lang=\"zh-Hant\">一致的訊號。</span></b><p>Stated value, leader behavior, rewards and communication agree with the employee. This is how a strong culture aligns values.<span class=\"zh-full\" lang=\"zh-Hant\">宣稱的價值、領導者行為、獎酬及溝通，都與員工價值觀相符。強文化正是透過這種方式使價值觀一致。</span></p>";
+      out.innerHTML = h + "<p class=\"note-small\">Boundary: none of these settings proves the employee will leave. That needs evidence of turnover intention or actual leaving.<span class=\"zh-full\" lang=\"zh-Hant\">推論界線：任何一組設定都不足以證明員工會離職；仍需要離職意圖或實際離職的證據。</span></p>";
+    }
+    body.querySelectorAll('input').forEach(x => x.addEventListener('change', draw)); draw();
+  };
+
+  window.MgmtWidgets = { mount(root) { root.querySelectorAll('[data-mw]').forEach(h => { if (!h.dataset.ready && W[h.dataset.mw]) { h.dataset.ready = 1; W[h.dataset.mw](h); } }); } };
+})();
+</script>
+<script>
+(function () {
+  const toc = document.getElementById('toc'), rail = document.getElementById('rail');
+  const hs = [...document.querySelectorAll('.doc > h2, .doc > h3')];
+  hs.forEach(h => {
+    const li = document.createElement('li'); li.className = h.tagName.toLowerCase(); li.dataset.id = h.id;
+    const a = document.createElement('a'); a.href = '#' + h.id; a.innerHTML=biPair(h.childNodes[0].textContent.trim(),h.querySelector(':scope > .zh-full')?.textContent||'');
+    li.appendChild(a); toc.appendChild(li);
+  });
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    toc.querySelectorAll('a.on').forEach(a => a.classList.remove('on'));
+    const a = toc.querySelector('li[data-id="' + e.target.id + '"] a'); if (a) a.classList.add('on');
+  }), { rootMargin: '-80px 0px -70% 0px' });
+  hs.forEach(h => spy.observe(h));
+
+  const tb = document.getElementById('tocBtn');
+  tb.addEventListener('click', () => { const o = rail.classList.toggle('open'); tb.setAttribute('aria-expanded', o); });
+  toc.addEventListener('click', e => { if (e.target.closest('a')) { rail.classList.remove('open'); tb.setAttribute('aria-expanded', false); } });
+
+  const all = document.getElementById('qaAll');
+  if (all) all.addEventListener('click', () => {
+    const ds = document.querySelectorAll('.qa details'), open = ![...ds].every(d => d.open);
+    ds.forEach(d => d.open = open); all.innerHTML=biPair(open?'Hide all answers':'Show all answers',open?'收合全部答案':'顯示全部答案');
+  });
+  document.querySelectorAll('.drill .ans').forEach(s => s.addEventListener('click', () => s.classList.toggle('shown')));
+
+  if (window.EconWidgets) window.EconWidgets.mount(document);
+  if (window.MgmtWidgets) window.MgmtWidgets.mount(document);
+  if (window.MktWidgets) window.MktWidgets.mount(document);
+})();
+</script>
+<script>
+(function(){
+const toggle=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+const key='study-notes-show-zh';
+function syncOptions(on){document.querySelectorAll('option[data-zh]').forEach(o=>{if(!o.dataset.en)o.dataset.en=o.textContent;o.textContent=o.dataset.en+(on&&o.dataset.zh?'／'+o.dataset.zh:'')})}
+function set(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';syncOptions(on);try{localStorage.setItem(key,on?'1':'0')}catch(e){}}
+let initial=false;try{initial=localStorage.getItem(key)==='1'}catch(e){}
+set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
+const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
+if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
+})();
+</script></body></html>
