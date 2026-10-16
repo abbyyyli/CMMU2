@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light"><title>STP, Competition &amp; Marketing Ethics · Marketing Session 5</title><style>
+/* Layout: one light reading column with a sticky chapter rail; deliberately single (light) theme. */
+:root {
+  color-scheme: light;
+  --bg: #FDF9F9; --panel: #F8EEF0; --paper: #FFFFFF; --tint: #FAE9ED; --line: #EFDDE2;
+  --fg: #2F282B; --muted: #7E6F74; --accent: #C06C84; --accent-ink: #9C4862;
+  --demand: #3F5675; --supply: #C06C84; --ext: #6E3F55; --world: #8A7A5C; --policy: #3F7F7A;
+  --cs: #A7CDB6; --ps: #B2C4E3; --dwl: #D9674F; --rev: #E5C171; --rev2: #F1DCA8; --time: #DDB3CB; --ts: #BFDCC9;
+  --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; background: var(--bg); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.75; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(253, 249, 249, .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
+.top-in { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 14px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.02rem; white-space: nowrap; }
+.brand small { font-family: var(--sans); font-weight: 500; color: var(--muted); font-size: .76rem; margin-left: 6px; letter-spacing: .06em; }
+.sessions { display: flex; gap: 4px; margin-left: auto; }
+.crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
+.sessions a.pill { text-decoration: none; }
+.sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
+.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.sessions .pill.off { opacity: .5; cursor: not-allowed; }
+.toc-btn { display: none; font: 500 .85rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--fg); border-radius: 8px; padding: 5px 12px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 52px; }
+.rail { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow: auto; padding-block: 34px 40px; font-size: .86rem; line-height: 1.5; }
+.rail .lbl { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.rail ol { list-style: none; margin: 0; padding: 0; }
+.rail li a { display: block; padding: 4px 10px; color: var(--muted); text-decoration: none; border-radius: 6px; }
+.rail li a:hover { color: var(--fg); background: var(--tint); }
+.rail li.h3 a { padding-left: 22px; font-size: .8rem; }
+.rail li a.on { color: var(--accent-ink); background: var(--tint); font-weight: 500; }
+
+main { min-width: 0; padding-block: 30px 120px; }
+.doc { max-width: 780px; }
+.hero { padding-block: 8px 26px; border-bottom: 1px solid var(--line); }
+.kick { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px; font-weight: 500; }
+.hero h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.25; margin: 0 0 12px; text-wrap: balance; }
+.lead { margin: 0; font-size: 1.04rem; max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.doc h2 { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 3.4rem 0 .3rem; text-wrap: balance; }
+.doc h3 { font-size: 1.1rem; line-height: 1.45; margin: 2.2rem 0 .5rem; color: var(--accent-ink); text-wrap: balance; }
+.sub { margin: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
+.doc p, .doc li { max-width: 68ch; }
+.doc ul, .doc ol { padding-left: 1.25em; }
+.doc li { margin: .25rem 0; }
+.zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
+.hint { font-size: .9rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.hint b { flex: none; font-size: .72rem; color: #fff; background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
+.key { background: var(--tint); padding: 12px 16px; border-radius: 8px; font-weight: 500; }
+.note-small { font-size: .8rem; color: var(--muted); }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.pair > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.pair b { color: var(--accent-ink); }
+.pair p { margin: 4px 0 0; font-size: .92rem; }
+
+.matrix { display: grid; grid-template-columns: minmax(90px, .7fr) repeat(2, minmax(0, 1fr)); gap: 6px; margin: 1rem 0 1.2rem; font-size: .9rem; max-width: 620px; }
+.matrix .mh { font-weight: 700; font-size: .8rem; color: var(--muted); align-self: end; padding: 0 4px 2px; }
+.matrix .mh.side { align-self: center; }
+.matrix .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-weight: 500; }
+.matrix .cell.hi { background: var(--tint); border-color: var(--accent); }
+.matrix small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; margin-top: 2px; line-height: 1.45; }
+
+.map { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 1rem 0; }
+.mcol { display: flex; flex-direction: column; gap: 8px; }
+.mbox { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; display: flex; flex-direction: column; gap: 2px; }
+.mbox b { font-size: .9rem; } .mbox span { color: var(--muted); } .mbox em { font-style: normal; color: var(--accent-ink); font-size: .78rem; font-weight: 500; }
+.mbox.good { border-color: var(--cs); } .mbox.ask { background: var(--tint); border-color: var(--accent); }
+.marrow { color: var(--accent); font-weight: 700; }
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.flow span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; line-height: 1.45; }
+.flow i { font-style: normal; color: var(--accent); font-weight: 700; }
+.formula { font-family: var(--mono); font-size: .9rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; line-height: 1.9; overflow-x: auto; }
+.steps { counter-reset: s; list-style: none; padding-left: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 10px; }
+.steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .75rem/22px var(--sans); text-align: center; margin-top: 3px; }
+.assign { margin: 1.6rem 0; border: 1px dashed var(--accent); border-radius: 10px; padding: 14px 16px; background: var(--paper); }
+.assign p { margin: 6px 0 0; font-size: .92rem; }
+
+.tbl { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.doc table { border-collapse: collapse; width: 100%; font-size: .88rem; line-height: 1.55; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.doc th { background: var(--panel); font-weight: 700; }
+.doc tr:last-child td { border-bottom: 0; }
+.drill .ans { filter: blur(5px); cursor: pointer; user-select: none; transition: filter .2s; }
+.drill .ans.shown { filter: none; user-select: auto; }
+
+.traps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 1rem; }
+.traps > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: .88rem; line-height: 1.55; }
+.traps s { color: var(--muted); text-decoration-color: var(--dwl); }
+.traps p { margin: 6px 0 0; font-weight: 500; }
+
+.qa-tools { margin: .4rem 0 .8rem; }
+.qa-tools button { font: 500 .82rem var(--sans); border: 1px solid var(--accent); background: var(--paper); color: var(--accent-ink); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+.qa { display: flex; flex-direction: column; gap: 6px; }
+.qa details { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.qa summary { cursor: pointer; padding: 10px 14px; font-weight: 500; font-size: .93rem; list-style: none; display: flex; gap: 10px; }
+.qa summary::before { content: "Q"; color: var(--accent); font-weight: 700; }
+.qa details[open] summary { border-bottom: 1px dashed var(--line); }
+.qa details p { margin: 0; padding: 10px 14px 12px 36px; font-size: .9rem; }
+
+/* graphs */
+.graph { max-width: 900px; margin: 1.8rem 0 2.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; }
+.g-head h4 { font-family: var(--serif); font-size: 1.12rem; margin: 2px 0 2px; line-height: 1.45; }
+.g-head p { margin: 0 0 10px; color: var(--muted); font-size: .86rem; }
+.g-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+.g-body { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.g-plot svg { width: 100%; height: auto; display: block; }
+.g-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.g-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.sl label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); line-height: 1.3; }
+.sl output { font-family: var(--mono); color: var(--fg); font-size: .8rem; }
+.sl input { width: 100%; accent-color: var(--accent); margin: 4px 0 0; }
+.g-btn { align-self: flex-start; font: 500 .8rem var(--sans); border: 1px solid var(--accent); color: var(--accent-ink); background: transparent; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.g-btn:hover { background: var(--tint); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; align-self: flex-start; }
+.seg button { font: 500 .8rem var(--sans); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--paper); }
+.chk { display: flex; gap: 8px; align-items: center; font-size: .8rem; color: var(--muted); }
+.chk input { accent-color: var(--accent); }
+.g-stats { margin: 0; border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+.st { display: flex; justify-content: space-between; gap: 10px; font-size: .8rem; line-height: 1.45; }
+.st dt { color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.st dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.st.big dd { font-weight: 500; color: var(--accent-ink); font-size: .92rem; }
+.g-note { margin: 12px 0 0; padding: 9px 12px; background: var(--tint); border-radius: 6px; font-size: .85rem; line-height: 1.6; }
+
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; flex: none; }
+.sw.none { background: transparent; }
+.sw.a-cs { background: var(--cs); } .sw.a-ps { background: var(--ps); } .sw.a-ps2 { background: var(--ps); outline: 1px solid var(--demand); }
+.sw.a-dwl { background: repeating-linear-gradient(45deg, var(--dwl) 0 2px, transparent 2px 4px); outline: 1px solid var(--dwl); }
+.sw.a-rev { background: var(--rev); } .sw.a-rev2 { background: var(--rev2); } .sw.a-time { background: var(--time); } .sw.a-ts { background: var(--ts); }
+.sw.ln { height: 3px; border-radius: 2px; width: 16px; }
+
+svg .ax { stroke: var(--muted); stroke-width: 1.2; }
+svg .axl { fill: var(--muted); font: 500 11px var(--sans); }
+svg .tk { fill: var(--muted); font: 500 10.5px var(--mono); }
+svg .gd { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+svg .cv { stroke-width: 2.6; fill: none; stroke-linecap: round; }
+svg .cv.dash { stroke-dasharray: 7 5; stroke-width: 2; }
+svg .cvl { font: 700 11.5px var(--sans); }
+svg .c-d { stroke: var(--demand); fill: var(--demand); } svg .c-s { stroke: var(--supply); fill: var(--supply); }
+svg .c-x { stroke: var(--ext); fill: var(--ext); } svg .c-w { stroke: var(--world); fill: var(--world); } svg .c-t { stroke: var(--policy); fill: var(--policy); }
+svg text.cvl { stroke: none; }
+svg .pt { fill: var(--paper); stroke: var(--fg); stroke-width: 2; }
+svg .ptl { fill: var(--fg); font: 700 11px var(--sans); }
+svg .atag { fill: var(--fg); font: 700 11px var(--sans); opacity: .8; }
+svg .a-cs { fill: var(--cs); fill-opacity: .6; } svg .a-ps { fill: var(--ps); fill-opacity: .6; }
+svg .a-ps2 { fill: var(--ps); fill-opacity: .95; } svg .a-ts { fill: var(--ts); fill-opacity: .6; }
+svg .a-dwl { fill: url(#dwlHatch); stroke: var(--dwl); stroke-width: 1.2; }
+svg .a-rev { fill: var(--rev); fill-opacity: .75; } svg .a-rev2 { fill: var(--rev2); fill-opacity: .8; } svg .a-time { fill: var(--time); fill-opacity: .65; }
+
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .a-prof { fill: var(--cs); fill-opacity: .75; } svg .a-loss { fill: var(--dwl); fill-opacity: .35; }
+.sw.a-prof { background: var(--cs); } .sw.a-loss { background: var(--dwl); opacity: .5; }
+.twin { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tw-t { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.g-ctrl .g-btn + .g-btn { margin-top: -4px; }
+.graph.wide .g-body { grid-template-columns: minmax(0, 1fr); }
+.graph.wide .g-side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 700px) { .twin, .graph.wide .g-side { grid-template-columns: minmax(0, 1fr); } }
+svg polyline.cv { fill: none !important; }
+
+.graph { background: var(--paper); }
+.g-note { background: var(--tint); }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail { display: none; position: fixed; inset: 64px 0 0 0; max-height: none; background: var(--bg); z-index: 15; padding: 20px 16px 60px; }
+  .rail.open { display: block; }
+  .toc-btn { display: inline-block; }
+  .g-body { grid-template-columns: minmax(0, 1fr); }
+  .map { grid-template-columns: minmax(0, 1fr); }
+  .marrow { transform: rotate(90deg); justify-self: center; }
+}
+@media (max-width: 560px) { .pair, .traps { grid-template-columns: minmax(0, 1fr); } }
+/* Management components */
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.tcard { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.tcard .tnum { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font: 700 .78rem/24px var(--sans); text-align: center; }
+.tcard p { margin: 0; color: var(--muted); font-size: .88rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.tags span { font-size: .74rem; background: var(--tint); color: var(--accent-ink); padding: 1px 8px; border-radius: 999px; font-weight: 500; }
+.method, .loop, .cascade { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.method span, .loop span, .cascade span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 5px 11px; line-height: 1.4; }
+.method span.hi { background: var(--tint); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+.method i, .loop i, .cascade i { font-style: normal; color: var(--accent); font-weight: 700; }
+.loop i.back { font-size: 1.1rem; }
+.cascade { flex-direction: column; align-items: flex-start; gap: 2px; }
+.cascade span:nth-of-type(2) { margin-left: 18px; } .cascade span:nth-of-type(3) { margin-left: 36px; } .cascade span:nth-of-type(4) { margin-left: 54px; }
+.cascade i:nth-of-type(1) { margin-left: 14px; } .cascade i:nth-of-type(2) { margin-left: 32px; } .cascade i:nth-of-type(3) { margin-left: 50px; }
+.four { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.four > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+.four b { font-size: .9rem; color: var(--accent-ink); } .four p { margin: 4px 0 0; font-size: .84rem; color: var(--muted); line-height: 1.5; }
+
+.ladder { display: grid; grid-template-columns: minmax(0, 1fr) 118px 118px; grid-template-rows: repeat(5, auto); gap: 5px 8px; margin: 1rem 0 .3rem; max-width: 640px; }
+.lv { grid-column: 1; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; font-weight: 700; font-size: .9rem; line-height: 1.35; }
+.lv small { display: block; font-weight: 400; color: var(--muted); font-size: .78rem; }
+.lv.l5 { grid-row: 1; margin-inline: 22%; } .lv.l4 { grid-row: 2; margin-inline: 16%; } .lv.l3 { grid-row: 3; margin-inline: 10%; } .lv.l2 { grid-row: 4; margin-inline: 5%; } .lv.l1 { grid-row: 5; }
+.lv.l5, .lv.l4 { background: #F6E9F4; } .lv.l3 { background: var(--tint); } .lv.l2, .lv.l1 { background: #EAF2EE; }
+.erg { border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .84rem; text-align: center; padding: 6px; }
+.erg.g { grid-column: 2; grid-row: 1 / span 2; background: #EBD7EA; color: #6E3F6A; }
+.erg.r { grid-column: 3; grid-row: 2 / span 2; background: var(--tint); color: var(--accent-ink); }
+.erg.e { grid-column: 2; grid-row: 4 / span 2; background: #D9EBE1; color: #2F6B4F; }
+
+.mw { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 1.6rem 0 2rem; }
+.mw-body { margin-top: 10px; }
+.hz-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.hz-t { margin: 0 0 6px; font-weight: 700; font-size: .88rem; } .hz-t small { font-weight: 400; color: var(--muted); }
+.chips { display: flex; flex-direction: column; gap: 5px; }
+.chip { display: flex; justify-content: space-between; gap: 10px; font: 500 .84rem var(--sans); text-align: left; background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 7px; padding: 6px 10px; cursor: pointer; }
+.chip em { font-style: normal; font-size: .74rem; color: var(--muted); }
+.hz-cols > div:first-child .chip[aria-pressed="true"] { border-color: var(--dwl); background: #FCEDEA; }
+.hz-cols > div:first-child .chip[aria-pressed="true"] em { color: #A8432F; }
+.hz-cols > div:last-child .chip[aria-pressed="true"] { border-color: #6FAE8B; background: #EAF5EE; }
+.hz-cols > div:last-child .chip[aria-pressed="true"] em { color: #2F6B4F; }
+.scale { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 6px; margin-top: 18px; }
+.half { height: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; position: relative; overflow: hidden; }
+.half i { position: absolute; top: 0; bottom: 0; transition: width .25s; }
+.half.left i { right: 0; background: var(--dwl); } .half.right i { left: 0; background: #6FAE8B; }
+@media (prefers-reduced-motion: reduce) { .half i { transition: none; } }
+.zero { font: 700 .8rem var(--mono); color: var(--muted); }
+.scale-l { display: flex; justify-content: space-between; font-size: .74rem; color: var(--muted); margin-top: 4px; }
+
+.kpi-flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, .8fr) auto minmax(0, 1fr); gap: 8px; align-items: stretch; margin-top: 12px; font-size: .84rem; }
+.kpi-flow > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; line-height: 1.45; }
+.kpi-flow > i { font-style: normal; color: var(--accent); font-weight: 700; align-self: center; }
+.kpi-flow b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.kpi-flow p { margin: 3px 0 0; } .kpi-flow ul { margin: 3px 0 0; padding-left: 1.1em; }
+.kpi-flow .bad { border-color: var(--dwl); background: #FCEDEA; } .kpi-flow .good { border-color: #6FAE8B; background: #EAF5EE; }
+
+.cmp-sel { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: .84rem; color: var(--muted); }
+.cmp-sel select { font: 500 .88rem var(--sans); padding: 5px 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); color: var(--fg); }
+table.cmp td:first-child { font-weight: 700; color: var(--muted); width: 22%; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); }
+.tabs button { font: 500 .86rem var(--sans); background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); padding: 6px 12px; cursor: pointer; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--accent-ink); border-bottom-color: var(--accent); }
+.ev { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+.ev > div { display: grid; grid-template-columns: 190px auto minmax(0, 1fr); gap: 10px; align-items: baseline; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: .86rem; line-height: 1.5; }
+.ev p { margin: 0; }
+.tag { font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.tag.gap { background: #FCE3DD; color: #A8432F; } .tag.ok { background: #E3F2E9; color: #2F6B4F; }
+.tag.maybe { background: #FBF0D9; color: #8A6216; } .tag.na { background: #EEE9EB; color: var(--muted); }
+.issue { margin-top: 12px; background: var(--tint); border-radius: 8px; padding: 10px 14px; font-size: .9rem; }
+.issue p { margin: 4px 0 0; }
+
+.xgrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.xgrid > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 5px; font-size: .84rem; line-height: 1.4; }
+.xgrid small { color: var(--muted); font-size: .76rem; }
+.xgrid .ok, .xgrid .gap { align-self: flex-start; font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; }
+.xgrid .ok { background: #E3F2E9; color: #2F6B4F; } .xgrid .gap { background: #FCE3DD; color: #A8432F; }
+
+@media (max-width: 760px) {
+  .three, .four { grid-template-columns: minmax(0, 1fr); }
+  .xgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hz-cols { grid-template-columns: minmax(0, 1fr); }
+  .kpi-flow { grid-template-columns: minmax(0, 1fr); } .kpi-flow > i { transform: rotate(90deg); justify-self: center; }
+  .ev > div { grid-template-columns: minmax(0, 1fr); gap: 3px; } .ev .tag { justify-self: start; }
+  .ladder { grid-template-columns: minmax(0, 1fr) 84px 84px; }
+}
+
+/* Session 4 + case page */
+.tcard small.dont { color: var(--muted); font-size: .78rem; border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 4px; }
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: .6rem 0 1rem; }
+.quotes q { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-style: italic; color: var(--muted); font-size: .9rem; }
+.six { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.six > div { display: flex; gap: 10px; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .88rem; line-height: 1.5; }
+.six span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
+a.cta { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+a.cta:hover { background: var(--accent-ink); }
+blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; font-size: .92rem; line-height: 1.7; }
+.timeline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.timeline > div { background: var(--paper); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 10px; padding: 10px 14px; font-size: .88rem; line-height: 1.5; }
+.timeline time { font: 500 .76rem var(--mono); color: var(--accent-ink); display: block; }
+.timeline p { margin: 4px 0 0; color: var(--muted); }
+.score { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.score > div { border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; border: 1px solid var(--line); }
+.score .up { background: #EAF5EE; border-color: #A9D3BA; } .score .down { background: #FCEDEA; border-color: #EDC2B8; }
+.score b::after { margin-left: 6px; font-size: .78rem; } .score .up b::after { content: "improved"; color: #2F6B4F; } .score .down b::after { content: "worse"; color: #A8432F; }
+.score ul { margin: 6px 0 0; padding-left: 1.1em; }
+
+.jcm { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, .9fr); gap: 16px; }
+.jdims { display: flex; flex-direction: column; gap: 8px; }
+.jd.g0 label span { color: #6E3F6A; } .jd.g1 label span { color: var(--accent-ink); } .jd.g2 label span { color: #2F6B4F; }
+.jstates { display: flex; flex-direction: column; gap: 12px; padding-top: 4px; }
+.jst span { font-size: .8rem; font-weight: 500; }
+.jbar { height: 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); overflow: hidden; margin-top: 3px; }
+.jbar i { display: block; height: 100%; transition: width .25s; }
+.jst.g0 .jbar i { background: #B98AB5; } .jst.g1 .jbar i { background: var(--accent); } .jst.g2 .jbar i { background: #6FAE8B; }
+@media (prefers-reduced-motion: reduce) { .jbar i { transition: none; } }
+.jout ul { margin: 8px 0 0; padding-left: 1.1em; font-size: .82rem; color: var(--muted); }
+.jlvl { display: inline-block; font-weight: 700; padding: 3px 12px; border-radius: 999px; font-size: .86rem; }
+.jlvl.strong { background: #E3F2E9; color: #2F6B4F; } .jlvl.moderate { background: #FBF0D9; color: #8A6216; } .jlvl.weak { background: #FCE3DD; color: #A8432F; }
+.jgns { margin-top: 14px; }
+
+.qz-item { font-size: 1rem; font-weight: 500; margin: 4px 0 12px; }
+.qz-opts { display: grid; gap: 8px; }
+.qz-opts.grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 520px; }
+.qz-opts.row5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.qz-o { font: 500 .88rem var(--sans); background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 8px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; text-align: center; }
+.qz-o small { color: var(--muted); font-size: .74rem; font-weight: 400; }
+.qz-o:hover { border-color: var(--accent); }
+.qz-o.right { background: #E3F2E9; border-color: #6FAE8B; } .qz-o.wrong { background: #FCE3DD; border-color: var(--dwl); }
+.qz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: .8rem; color: var(--muted); }
+
+.rsteps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.rsteps > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: .85rem; line-height: 1.5; }
+.rsteps > div.g { background: var(--tint); border-color: var(--accent); }
+.rsteps b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.rsteps p { margin: 4px 0 0; }
+.risk { font-size: .88rem; } .risk b { font-size: .72rem; color: #fff; background: #B98A2E; padding: 1px 7px; border-radius: 4px; margin-right: 6px; }
+.sayd summary { cursor: pointer; font-weight: 500; color: var(--accent-ink); font-size: .9rem; }
+
+@media (max-width: 760px) {
+  .quotes, .six, .timeline, .rsteps { grid-template-columns: minmax(0, 1fr); }
+  .score { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jcm { grid-template-columns: minmax(0, 1fr); }
+  .qz-opts.row5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+
+
+/* Marketing interactions: same CMMU palette, different learning mechanics */
+body {margin:0}
+.doc h2 {border-top:1px solid var(--line);padding-top:1.35rem;margin-top:2.5rem}
+.doc h2#map {border-top:0;padding-top:0}
+.doc h3 {margin-top:1.7rem}
+.doc > .hero {border-bottom:1px solid var(--line)}
+.hero .lead {max-width:68ch}
+.m-widget {background:var(--paper);border:1px solid var(--line);border-radius:12px;margin:1.3rem 0 1.6rem;padding:18px}
+.m-widget h4 {font-family:var(--serif);font-size:1.12rem;margin:0 0 3px}
+.m-widget .mw-sub {margin:0 0 14px;color:var(--muted);font-size:.88rem}
+.m-widget .m-grid {display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:22px;align-items:start}
+.m-control {margin:.6rem 0 1.1rem}
+.m-control label{display:flex;gap:8px;align-items:baseline;justify-content:space-between;font-size:.88rem;font-weight:500}
+.m-control output{font-family:var(--mono);color:var(--accent-ink);font-weight:700}
+.m-control input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;min-height:23px}
+.m-pillrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.m-pillrow button,.m-action,.flash button {font:500 .85rem var(--sans);padding:9px 12px;border:1px solid var(--line);border-radius:8px;color:var(--fg);background:var(--paper);cursor:pointer}
+.m-pillrow button:hover,.m-action:hover,.flash button:hover{border-color:var(--accent)}
+.m-pillrow button[aria-pressed=true] {background:var(--accent);color:#fff;border-color:var(--accent)}
+.m-action {border-color:var(--accent);color:var(--accent-ink)}
+.m-action.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.m-answer{background:var(--tint);padding:13px 15px;border-radius:9px;line-height:1.6;font-size:.88rem}
+.m-answer b{color:var(--accent-ink)}
+.m-answer p{margin:5px 0 0}
+.m-two {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.m-two>div {background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 13px}
+.m-two strong{display:block;color:var(--accent-ink)}
+.m-two small{color:var(--muted)}
+.m-interact-note{font-size:.78rem;color:var(--muted);margin-top:12px;line-height:1.55}
+.bcg-svg {width:100%;height:auto;display:block;touch-action:none;cursor:crosshair;border:1px solid var(--line);border-radius:8px;background:#fff}
+.bcg-svg text{font-family:var(--sans)}
+.bcg-svg .bq-label{font-weight:700;font-size:13px;fill:#3a2830}
+.bcg-svg .bq-axis{font-size:10px;fill:#77636e}
+.bcg-point{stroke:#fff;stroke-width:3;filter:drop-shadow(0 1px 2px #876)}
+.m-feedback{min-height:65px;margin:12px 0;padding:12px 14px;border-radius:8px;border:1px solid var(--line);background:var(--bg);font-size:.9rem}
+.m-feedback.good{border-color:#88bb9c;background:#eff9f1}
+.m-feedback.bad{border-color:#dfb6ac;background:#fff3ee}
+.m-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
+.m-choices button{font:500 .89rem var(--sans);border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:8px;padding:12px 9px;cursor:pointer;min-height:50px}
+.m-choices button:hover,.m-choices button:focus-visible{border-color:var(--accent)}
+.m-choices button.correct{border-color:#70ae85;background:#eff9f1}
+.m-choices button.incorrect{border-color:#cf8877;background:#fff1ed}
+.m-choices button:disabled{cursor:default;opacity:.88}
+.m-progress{font-size:.81rem;color:var(--muted)}
+.decision-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:16px 0}
+.decision-step{font:500 .79rem var(--sans);color:var(--fg);border:1px solid var(--line);border-top:4px solid #B5A4A9;background:#fff;border-radius:8px;min-height:95px;padding:10px 7px;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;line-height:1.4}
+.decision-step b{color:var(--accent-ink);font-size:.75rem}
+.decision-step span{font-size:.74rem;color:var(--muted)}
+.decision-step.active{border-color:var(--accent);background:var(--tint)}
+.decision-step.long{border-top-color:#53866c}
+.decision-step.quick{border-top-color:#d6ba68}
+.decision-step.optional{border-top-color:#c7bcc0}
+.weight-row{display:grid;grid-template-columns:140px minmax(0,1fr) 52px;align-items:center;gap:8px;font-size:.85rem;margin:10px 0}
+.weight-track{height:17px;border-radius:6px;background:var(--panel);overflow:hidden}
+.weight-fill{height:100%;width:0;background:var(--accent);border-radius:6px;transition:width .25s}
+.weight-row:nth-of-type(2) .weight-fill{background:#6f99ba}
+.weight-row:nth-of-type(3) .weight-fill{background:#86ad95}
+.weight-row:nth-of-type(4) .weight-fill{background:#ceb17d}
+.m-funnel{display:flex;flex-direction:column;align-items:center;gap:9px;margin:14px 0}
+.funnel-level{background:var(--accent);min-width:16%;max-width:100%;height:57px;color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;gap:12px;transition:width .25s;white-space:nowrap;padding:0 5px;text-align:center}
+.funnel-level:nth-child(2){background:#ba8299}
+.funnel-level:nth-child(3){background:#987a92}
+.funnel-level strong{font-size:1.06rem}
+.flash-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0 18px}
+.flash{min-height:102px;perspective:700px}
+.flash button{height:100%;width:100%;text-align:left;padding:14px 16px;display:block;transition:background .15s}
+.flash button[aria-pressed=true]{background:var(--tint);border-color:var(--accent)}
+.flash .front{display:block;font-weight:700;color:var(--accent-ink);font-size:.94rem}
+.flash .back{display:none;font-weight:400;margin-top:8px;font-size:.83rem;color:var(--fg);line-height:1.5}
+.flash button[aria-pressed=true] .back{display:block}
+.flash button[aria-pressed=true] .front{color:var(--fg)}
+.mnemonic{padding:10px 13px;border-left:3px solid var(--accent);margin:.9rem 0;background:var(--paper)}
+.zhtext{color:var(--accent-ink)}
+.doc .note-small{font-size:.8rem}
+.chapterline{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:12px 0}
+.chapterline span{font-size:.81rem;border:1px solid var(--line);border-radius:99px;background:#fff;padding:5px 9px}
+.chapterline i{font-style:normal;color:var(--accent)}
+@media(max-width:760px){
+ .m-widget{padding:13px}
+ .m-widget .m-grid,.m-two,.flash-grid{grid-template-columns:minmax(0,1fr)}
+ .decision-flow{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .weight-row{grid-template-columns:111px minmax(0,1fr) 36px;font-size:.76rem}
+ .m-choices{grid-template-columns:minmax(0,1fr)}
+ .decision-step{min-height:66px}
+ .funnel-level{font-size:.78rem}
+}
+@media(max-width:460px){.hero h1{font-size:1.7rem}.decision-flow{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){.weight-fill,.funnel-level{transition:none}}
+
+/* Small, restrained retrieval disclosures; Chinese glossary remains persistent. */
+.m-reveal{background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:10px 14px;margin:12px 0;font-size:.91rem}
+.m-reveal summary{cursor:pointer;color:var(--accent-ink);font-weight:600;line-height:1.55}
+.m-reveal p{margin:10px 0 2px;font-size:.91rem;line-height:1.7}
+
+.sessions a.pill[href]:not([aria-current=page]):hover,
+.sessions a.pill[href]:not([aria-current=page]):focus-visible{
+ background:#fceef2;border-color:#b86b7b;color:#8e4357;
+}
+.sessions a.pill[href]:not([aria-current=page]):focus-visible{outline:2px solid #b86b7b;outline-offset:2px}
+
+
+/* These elements extend the existing S4 design rather than replacing it. */
+.doc h2{scroll-margin-top:90px}.doc h3{scroll-margin-top:95px}
+.chapterline{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:1.1rem 0;font-size:.84rem}
+.chapterline>span{background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:7px 11px;font-weight:500}
+.chapterline>i{font-style:normal;color:var(--accent);font-weight:800}
+.s5-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:1rem 0}
+.s5-cards>div{background:var(--paper);border:1px solid var(--line);padding:13px 15px;border-radius:10px}
+.s5-cards b{display:block;color:var(--accent-ink)}.s5-cards p{font-size:.87rem;line-height:1.55;margin:5px 0 0}
+.mw{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:17px 18px;margin:1.3rem 0 1.7rem}
+.mw h4{font-family:var(--serif);font-size:1.05rem;margin:0 0 4px}
+.mw>.sub{font-size:.86rem;margin:0 0 12px}
+.mw-label{color:var(--accent-ink);text-transform:uppercase;letter-spacing:.13em;font-size:.68rem;font-weight:700;margin:0 0 4px}
+.s5-muted{font-size:.82rem;color:var(--muted)}
+.s5-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.s5-grid .field{min-width:0}
+.s5-grid label{font-size:.81rem;color:var(--muted);display:block;margin-bottom:5px}
+.s5-grid input[type=number],.s5-grid select{width:100%;min-width:0;border:1px solid var(--line);border-radius:7px;padding:8px 10px;background:var(--bg);font:500 .93rem var(--sans);color:var(--fg)}
+.mw select{font:500 .88rem var(--sans);border:1px solid var(--line);padding:7px 9px;background:var(--paper);border-radius:7px;color:var(--fg)}
+.result{background:var(--tint);border-radius:9px;padding:11px 14px;margin-top:12px}
+.result strong{color:var(--accent-ink);font-variant-numeric:tabular-nums}
+.result p{margin:0;font-size:.86rem;line-height:1.55}
+.result .big{font:700 1.2rem var(--serif);margin-bottom:5px}
+.buttonrow{display:flex;flex-wrap:wrap;gap:7px;margin:9px 0 12px}
+.buttonrow button{font:500 .8rem var(--sans);border:1px solid var(--line);color:var(--muted);padding:7px 10px;border-radius:7px;background:var(--paper);cursor:pointer}
+.buttonrow button:hover,.buttonrow button:focus-visible{background:var(--tint);border-color:var(--accent);color:var(--accent-ink)}
+.buttonrow button[aria-pressed=true]{background:var(--accent);color:white;border-color:var(--accent)}
+.seg-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:1rem 0}
+.seg-flow>div{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 9px;text-align:center}
+.seg-flow>b{display:none}
+.seg-flow strong{display:block;color:var(--accent-ink);font-size:.88rem}.seg-flow small{display:block;color:var(--muted);margin-top:4px;font-size:.77rem;line-height:1.45}
+.mapbox{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(170px,1fr);gap:12px;align-items:start;margin-top:10px}
+.mapbox svg{width:100%;height:auto;display:block;background:var(--bg);border:1px solid var(--line);border-radius:10px}
+.mapbox .mapexplainer{font-size:.84rem;line-height:1.55}.mapbox .mapexplainer p{margin:.25rem 0 .8rem}
+.mapbox .mapexplainer b{color:var(--accent-ink)}
+.mapbox text{font-family:var(--sans);fill:var(--fg)}
+.mapbox .axis{stroke:var(--muted);stroke-width:1.5}.mapbox .gridline{stroke:var(--line);stroke-dasharray:4 5}
+.mapbox .axislabel{fill:var(--muted);font-size:11px}.mapbox .brandlabel{font-size:12px;font-weight:600}
+.mapbox circle{stroke:#fff;stroke-width:2;filter:drop-shadow(0 1px 1px #0003)}
+.value-chain{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin:8px 0 12px;font-size:.84rem}
+.value-chain span{background:var(--tint);border:1px solid var(--line);border-radius:7px;padding:6px 9px}
+.value-chain i{font-style:normal;color:var(--accent);font-weight:700}
+.kpi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:11px 0}
+.kpi div{background:var(--bg);border:1px solid var(--line);padding:10px;border-radius:8px;font-size:.8rem;color:var(--muted)}
+.kpi b{display:block;color:var(--fg);font-size:1.03rem;font-variant-numeric:tabular-nums}
+.flashgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}
+.flash button{display:block;width:100%;text-align:left;cursor:pointer;min-height:97px;background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:12px;color:var(--fg);font:500 .87rem/1.5 var(--sans)}
+.flash button:hover,.flash button:focus-visible{border-color:var(--accent);background:var(--tint)}
+.flash .front{display:block}.flash .back{display:none;font-weight:400}
+.flash button[aria-pressed=true]{background:var(--tint);border-color:var(--accent)}
+.flash button[aria-pressed=true] .front{display:none}.flash button[aria-pressed=true] .back{display:block}
+.flash .back strong{color:var(--accent-ink)}
+.qa{display:flex;flex-direction:column;gap:6px}
+.qa details{background:var(--paper);border:1px solid var(--line);border-radius:8px}
+.qa summary{cursor:pointer;padding:10px 14px;font-weight:500;font-size:.92rem;list-style:none;display:flex;gap:9px}
+.qa summary::before{content:'Q';color:var(--accent);font-weight:700}
+.qa details[open] summary{border-bottom:1px dashed var(--line)}
+.qa details p{margin:0;padding:10px 16px 12px 36px;font-size:.88rem}
+.qa-tools{margin:.6rem 0}
+.qa-tools button{font:500 .8rem var(--sans);border:1px solid var(--accent);border-radius:7px;background:var(--paper);padding:7px 11px;color:var(--accent-ink);cursor:pointer}
+.practice{border:1px dashed var(--accent);padding:12px 15px;border-radius:10px;background:var(--paper);margin:17px 0}
+.practice b{color:var(--accent-ink)}.practice p{margin:4px 0;font-size:.91rem}
+.note-small{font-size:.8rem;color:var(--muted)}
+@media(max-width:900px){.rail{inset:var(--header-height,64px) 0 0 0!important;max-height:calc(100vh - var(--header-height,64px))!important}}
+@media(max-width:700px){.mapbox{grid-template-columns:1fr}.s5-cards,.kpi{grid-template-columns:1fr 1fr}.seg-flow{grid-template-columns:1fr 1fr}}
+@media(max-width:510px){.s5-cards,.kpi,.s5-grid,.flashgrid{grid-template-columns:1fr}}
+@media print{.rail,.toc-btn,.buttonrow,.qa-tools{display:none!important}.wrap{display:block}.doc{max-width:none}.mw,.mapbox{break-inside:avoid}.flash .back{display:block}.flash .front{display:none}}
+</style></head><body>
+<header class="top"><div class="top-in">
+ <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes</a><span>/</span><a href="marketing.html">Marketing</a><span>/</span><b>Session 5</b></nav>
+ <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false" aria-controls="rail">Contents</button>
+ <nav class="sessions" aria-label="Sessions 5–8"><span class="pill" aria-current="page">S5</span><a class="pill" href="marketing-s6.html">S6</a><a class="pill" href="marketing-s7.html">S7</a><a class="pill" href="marketing-s8.html">S8</a></nav>
+</div></header>
+<div class="wrap"><aside class="rail" id="rail" aria-label="Chapter navigation"><p class="lbl">Contents</p><ol id="toc"></ol></aside>
+<main><article class="doc">
+<div class="hero"><p class="kick">Strategic Marketing Management · Session 5</p>
+<h1>STP, Competition &amp; Marketing Ethics</h1>
+<p class="lead">A brand must stand for something, but customers can choose across brands and categories. Start with needs and occasions, test competitors and substitutes, and check incremental profit without losing customer trust.</p>
+<div class="legend"><span><i class="sw ln" style="background:var(--supply)"></i>STP: strategic focus</span><span><i class="sw ln" style="background:var(--demand)"></i>Competition: alternatives</span><span><i class="sw ln" style="background:var(--policy)"></i>Profit and ethics: reality check</span></div>
+</div>
+
+<h2 id="map">Chapter map · One customer decision, three questions</h2>
+<div class="s5-cards"><div><b>5a · STP</b><p>Whose needs matter? Which segments are worth pursuing? What should the brand mean?</p></div><div><b>5b · Competition</b><p>What else could the customer choose? Which channels and strategies create value?</p></div><div><b>Decision test</b><p>Will behavior change, will the business earn incremental profit, and is the offer fair?</p></div></div>
+<div class="chapterline"><span>5Cs + research</span><i>→</i><span>Segment</span><i>→</i><span>Target</span><i>→</i><span>Position</span><i>→</i><span>4Ps</span><i>→</i><span>Choice &amp; substitutes</span><i>→</i><span>Incremental profit + trust</span></div>
+<p class="key">The lecturer's central caution: STP is useful, but consumers are not permanently locked into a single segment or a single brand. A successful position needs evidence and consistent delivery.</p>
+<h3 id="continuity">Connect Session 5 to earlier sessions</h3>
+<div class="four"><div><b>Session 1</b><p>Customer needs, value and brand meaning</p></div><div><b>Session 2</b><p>CRM, repertoire, data and actual purchase</p></div><div><b>Session 3</b><p>Research designs and evidence limits</p></div><div><b>Session 4</b><p>Strategy, motivations and consumer choice</p></div></div>
+<p class="note-small">Source scope: Dr. Randall Shannon's Session 5a STP and 5b Competition slides, their lecture recordings, and the supplementary A Taste of Marketing video. Historical examples are lecturer illustrations, not verified current market performance. Interactive numbers below are teaching assumptions.</p>
+
+<h2 id="segmentation">1. Segmentation · Start with meaningful differences</h2>
+<p class="sub">Segmentation divides a diverse market into groups that share needs, characteristics or usage conditions. The challenge is choosing a difference that actually affects value or behavior.</p>
+<p class="hint"><b>中文邏輯</b><span>分群要依「需求和使用情境」的差異，不是只看年齡性別；同一個人也可能跨群、買多個品牌。</span></p>
+<div class="four"><div><b>Geographic</b><p>Country, region, access, climate; where the offer is feasible.</p></div><div><b>Demographic</b><p>Age, income, family stage; describes who, not necessarily why.</p></div><div><b>Psychographic</b> <span class="zh">心理特徵</span><p>Motives, interests, values and lifestyle; the reason benefits may matter.</p></div><div><b>Behavioral</b><p>Occasion, frequency, brand repertoire, benefit sought and switching.</p></div></div>
+<h3 id="effective">Four tests for an effective segment</h3>
+<div class="seg-flow"><div><strong>Measurable</strong><small>Can you size or describe the opportunity?</small></div><div><strong>Accessible</strong><small>Can your channels and message reach it?</small></div><div><strong>Substantial</strong><small>Is demand large and valuable enough?</small></div><div><strong>Actionable</strong><small>Can you serve it with a viable offer?</small></div></div>
+<p>A platform reporting 500,000 people with an interest does <b>not</b> show that 500,000 will buy. Similarly, the lecturer's left-handed-consumer example shows that a countable group is not automatically a relevant market for every product.</p>
+<div class="mw" id="segLab"><p class="mw-label">Decision lab · Segment before you target</p><h4>Would you launch a special product for this group?</h4><p class="sub">Change the proposed segment. Identify which unanswered question could invalidate the business case.</p><div class="buttonrow" role="group" aria-label="Segment example"><button type="button" data-seg="0" aria-pressed="true">People aged 20–30</button><button type="button" data-seg="1" aria-pressed="false">After-gym hydration</button><button type="button" data-seg="2" aria-pressed="false">Water-exercise shoes</button></div><div class="result" aria-live="polite"><p class="big" id="segTitle">Age is a description, not a need.</p><p id="segBody">Research the benefit, purchasing occasion and substitutes; age alone does not establish a separate product requirement.</p></div></div>
+<div class="practice"><b>Pause and answer aloud</b><p>Why can a large measurable segment still be a poor target market? Give an example of a better behavioral variable.</p></div>
+
+<h2 id="targeting">2. Targeting · More variants can mean less profit</h2>
+<p class="sub">Targeting chooses segments the company can reach, satisfy and serve sustainably. No strategy is automatically best: balance coverage, specialization, costs and competitive response.</p>
+<p class="hint"><b>中文邏輯</b><span>多推一個口味不等於多賺：要扣掉自家產品被搶走的銷量和新增成本，看的是增量利潤。</span></p>
+<div class="three"><div class="tcard"><b>Undifferentiated</b><p>One broad offer for many buyers; simpler to produce and communicate, but may be too generic.</p><div class="tags"><span>Candy / basic gum</span></div></div><div class="tcard"><b>Differentiated</b><p>Multiple products or messages for different benefits; potentially higher sales, complexity and cannibalization <span class="zh">自家互搶</span>.</p><div class="tags"><span>Breeze / Omo / shampoo lines</span></div></div><div class="tcard"><b>Concentrated / niche</b> <span class="zh">利基</span><p>Deep focus on a small group; strong fit, but limited customer pool and purchase frequency.</p><div class="tags"><span>Ryka pool shoes / Jolt Cola</span></div></div></div>
+<h3 id="cannibalization">Product line proliferation · Sales are not incremental profit</h3>
+<p>Variant launches can produce trial and fill shelf space, yet some purchases simply move from an existing company brand. The lecturer uses Breeze versions, shampoo variants, unusual Pepsi flavors and Lay's/Pringles choices to ask whether added SKUs truly create demand.</p>
+<div class="mw" id="cannibalLab"><p class="mw-label">Interactive · Cannibalization economics</p><h4>What did the company actually gain?</h4><p class="sub">Hypothetical launch. The new product's margin is counted on every new sale, but existing contribution lost from diverted sales must be deducted.</p>
+<div class="s5-grid"><div class="field"><label for="newUnits">New-product units sold</label><input id="newUnits" type="number" min="0" max="1000000" value="1000" step="100"></div><div class="field"><label for="diverted">Units diverted from existing product</label><input id="diverted" type="number" min="0" max="1000000" value="700" step="100"></div><div class="field"><label for="newMargin">New product contribution per unit (THB)</label><input id="newMargin" type="number" min="0" max="10000" value="30" step="5"></div><div class="field"><label for="oldMargin">Lost old-product contribution per unit (THB)</label><input id="oldMargin" type="number" min="0" max="10000" value="20" step="5"></div><div class="field"><label for="launchCost">Additional launch / operating costs (THB)</label><input id="launchCost" type="number" min="0" max="10000000" value="6000" step="1000"></div></div>
+<div class="kpi"><div>Gross new SKU units<b id="grossUnits">1,000</b></div><div>Truly additional units (assumed)<b id="netUnits">300</b></div><div>Incremental operating contribution<b id="netProfit">+THB 10,000</b></div></div><p class="s5-muted" id="cannibFormula"></p></div>
+<p>A specialty niche has a related problem: even if every customer is interested, <b>potential buyers × buying frequency</b> may be too small. Being a highly distinctive product is not proof of commercial viability.</p>
+<h3 id="repertoire">A Taste of Marketing · Repertoire is not the absence of preference</h3>
+<div class="pair"><div><b>Single-month observation</b><p>A customer visits one Indian restaurant exactly once. That outlet has 100% of their observed Indian-restaurant visits that month.</p></div><div><b>What the observation cannot prove</b><p>Permanent loyalty, no future switching, or an exclusive consumer segment. Test a longer period and other occasions.</p></div></div>
+<p>The lecturer points out that the same individual can use an Apple and a Samsung device, or own a Volvo and a sports car. One person can belong to several apparent psychographic profiles. <b>A target does not exclude other buyers.</b></p>
+<div class="practice"><b>Pause and answer aloud</b><p>Why might differentiated marketing increase total sales but reduce net profit? How does observed share over one month differ from customer loyalty?</p></div>
+
+<h2 id="positioning">3. Positioning · What the customer actually thinks</h2>
+<p class="sub">Positioning is the place a brand occupies in consumers' minds relative to alternatives. A firm's intended slogan is not the same as the associations that shoppers actually form.</p>
+<p class="hint"><b>中文邏輯</b><span>定位由顧客心中的印象決定，不是公司寫的標語；4Ps 要一致，否則就是定位混亂。</span></p>
+<div class="method"><span>Find a meaningful advantage</span><i>→</i><span>Select a credible promise</span><i>→</i><span>Deliver with the 4Ps</span><i>→</i><span>Research the perceived result</span></div>
+<div class="tbl"><table><thead><tr><th>Failure</th><th>What it looks like</th><th>Class illustration</th></tr></thead><tbody>
+<tr><td><b>Underpositioning</b> <span class="zh">定位不足</span></td><td>Consumers recognize the name but cannot say what the brand stands for.</td><td>Weak or fuzzy associations.</td></tr>
+<tr><td><b>Overpositioning</b> <span class="zh">定位過窄</span></td><td>The promise is so narrow that other relevant buyers or uses feel excluded.</td><td>Cooler Club's gendered message in the lecturer's discussion.</td></tr>
+<tr><td><b>Confused positioning</b> <span class="zh">定位混亂</span></td><td>Product, price, placement and communication send different signals.</td><td>Lux: celebrity luxury image versus low shelf placement and discounting in the class anecdote.</td></tr>
+</tbody></table></div>
+<p>Meaningful differentiation can come from the product, service, employees or recognizable brand assets. A scientific-sounding <b>reason to believe (RTB)</b> <span class="zh">理由支撐</span> or a "No. 1" claim is not proof that customers value the advantage. Always ask <b>No. 1 in which defined market and measured how?</b></p>
+<h3 id="perceptual">Perceptual map · The axes determine the comparison</h3>
+<p>A map locates perceived brand positions on <b>two consumer-relevant dimensions</b>. Identify the shopping occasion, label directions, plot plausible rivals and indicate whether coordinates are survey-based or hypotheses.</p>
+<div class="mw" id="mapLab"><p class="mw-label">Interactive · Perceptual mapping lab</p><h4>Switch the decision context</h4><p class="sub">These coordinates are invented to demonstrate mapping; they are not measured consumer perceptions or market shares.</p>
+<div class="buttonrow" role="group" aria-label="Perceptual map context"><button type="button" data-map="lecture" aria-pressed="true">Class A–E schematic</button><button type="button" data-map="sports" aria-pressed="false">Post-tennis drinks</button><button type="button" data-map="cars" aria-pressed="false">Premium cars</button></div>
+<div class="mapbox"><svg id="perceptualSVG" role="img" aria-label="Illustrative perceptual map with two labeled axes" viewBox="0 0 640 355">
+<line class="gridline" x1="320" y1="50" x2="320" y2="300"/><line class="gridline" x1="65" y1="175" x2="575" y2="175"/>
+<line class="axis" x1="65" y1="175" x2="575" y2="175"/><line class="axis" x1="320" y1="300" x2="320" y2="50"/>
+<text class="axislabel" id="axisLeft" x="64" y="331">Everyday use</text><text class="axislabel" id="axisRight" x="572" y="331" text-anchor="end">Specialized use</text><text class="axislabel" id="axisTop" x="322" y="20" text-anchor="middle">High functional support</text><text class="axislabel" id="axisBottom" x="322" y="350" text-anchor="middle">Low functional support</text>
+<g id="plotBrands"></g></svg>
+<div class="mapexplainer"><b id="mapHeading">The class's age and image positioning dimensions</b><p id="mapExplanation">The lecture plots A–E on old-fashioned versus modern and older versus younger perceived-image axes. These positions are only a teaching adaptation, not a reproduction of precise slide coordinates.</p><p class="note-small">Perceived position is not necessarily actual quality. An empty area on the map is not proven demand.</p></div></div></div>
+<p><b>Source boundary:</b> The original lecture map places hypothetical brands A–E on Old-fashioned / Modern and Older / Younger axes. Our schematic reproduces the instructional idea; see the original slide for the exact placement.</p>
+<p><b>Professor's example:</b> BMW and Mercedes may appear close together on a broad "luxury" map, but separate when the horizontal dimension becomes performance versus luxury. Changing axes changes the story; it does not change historical sales.</p>
+<div class="practice"><b>Pause and answer aloud</b><p>How would you defend your two chosen axes? Why is an empty position not automatically a viable market opportunity?</p></div>
+
+<h2 id="cases">4. Positioning and targeting · The lecturer's case gallery</h2>
+<p class="sub">Use these examples to identify the claim, the competing consumer interpretation, and what evidence would be needed. They illustrate concepts; they are not up-to-date product-performance rankings.</p>
+<div class="tbl"><table><thead><tr><th>Classroom case</th><th>Analytical question</th><th>Lesson</th></tr></thead><tbody>
+<tr><td><b>Breeze / Breeze Excel / Breeze Color / Omo</b></td><td>Do users recognize and pay for distinct benefits?</td><td>Variants, portfolio overlap, category management and cannibalization.</td></tr>
+<tr><td><b>Sunsilk / Dove / Clinic</b></td><td>Is scent, moisture or dandruff relief an actionable difference?</td><td>Product functionality versus distinct brand associations.</td></tr>
+<tr><td><b>Pepsi Fire / Ice; Lay's local flavors</b></td><td>Does novelty create sustained incremental demand?</td><td>Trial, product line costs and market size.</td></tr>
+<tr><td><b>Ryka pool shoes; Jolt Cola</b></td><td>How many relevant use occasions exist?</td><td>Niche size and purchase-frequency ceilings.</td></tr>
+<tr><td><b>Lux / Cooler Club</b></td><td>Do shelf reality and messages match; are buyers excluded?</td><td>Confused versus overly narrow positioning.</td></tr>
+<tr><td><b>Volvo / BMW / Mercedes</b></td><td>Are safety, performance and status distinguished by the right axes?</td><td>Perceived positioning changes with dimensions and competition.</td></tr>
+<tr><td><b>Gatorade / Propel</b></td><td>Are adjacent portfolio brands substituting for the same occasion?</td><td>Manager-defined segments can differ from buyer choices.</td></tr>
+<tr><td><b>Dove moisturizing bar; Gloria Jean's coffee</b></td><td>Is a technical claim both credible and valued?</td><td>RTB, product format and communicating benefits.</td></tr>
+<tr><td><b>Srichand; gendered grooming</b></td><td>Is segmentation based on genuine need or packaging stereotypes?</td><td>Behavioral evidence matters more than gender labels alone.</td></tr>
+</tbody></table></div>
+<p class="key">Marketing reasoning: A unique product feature is not a successful positioning until buyers notice it, value it, believe it and experience consistent delivery.</p>
+
+<h2 id="channels">5. Disintermediation · Cutting out the middleman is not free</h2>
+<p class="sub">Disintermediation <span class="zh">去中間化</span> bypasses intermediaries. Vertical integration <span class="zh">垂直整合</span> brings an activity under ownership or control; the two can overlap, but are not synonyms.</p>
+<p class="hint"><b>中文邏輯</b><span>去掉中間商，中間商做的倉儲、配送、售後工作不會消失，只是變成自己的成本。</span></p>
+<div class="value-chain"><span>Manufacturer</span><i>→</i><span>Wholesaler</span><i>→</i><span>Retailer</span><i>→</i><span>Customer</span></div>
+<div class="value-chain"><span>Manufacturer</span><i>→</i><span>Direct web / delivery</span><i>→</i><span>Customer</span></div>
+<p>Direct sales may improve customer relationships and pricing control, but the producer must now handle acquisition, fulfillment, service, returns and possible retailer conflict. The middleman's markup is not pure free profit.</p>
+<div class="mw" id="d2cLab"><p class="mw-label">Interactive · Distribution economics</p><h4>Does direct-to-consumer improve contribution?</h4><p class="sub">Two illustrative per-unit business models at the <em>same assumed volume</em>. Change the D2C acquisition cost; real demand and channel conflict may also change.</p>
+<div class="s5-grid"><div class="field"><label for="d2cCost">Direct customer acquisition cost per order (THB)</label><input id="d2cCost" type="number" value="35" min="0" max="1000" step="5"></div><div class="field"><label for="unitsChannel">Units sold (assumed same both channels)</label><input id="unitsChannel" type="number" value="500" min="1" max="100000" step="100"></div></div>
+<div class="kpi"><div>Retail route: (100 − 65)/unit<b id="retailProfit">THB 17,500</b></div><div>Direct: (160 − 65 − 20 − acquisition − 8)/unit<b id="directProfit">THB 16,000</b></div><div>D2C minus retailer route<b id="d2cDifference">−THB 1,500</b></div></div><p class="note-small">THB 100 and THB 160 are assumed prices received by the producer; THB 65 product cost, THB 20 fulfillment and THB 8 service/returns are hypothetical. This is a sensitivity model, not data about Amazon or Agoda.</p></div>
+<div class="tbl"><table><thead><tr><th>Lecture illustration</th><th>What it changes</th></tr></thead><tbody>
+<tr><td>Indian villages and telephones</td><td>Better price information can weaken an intermediary's bargaining advantage even without physically removing it.</td></tr>
+<tr><td>Travel agencies versus Expedia / Travelocity / Agoda</td><td>Self-booking replaces some agency tasks; complex itinerary services may remain valuable.</td></tr>
+<tr><td>Amazon logistics and delivery capacity</td><td>Owning capabilities can improve control but compete with previous logistics partners.</td></tr>
+<tr><td>Buy.com direct selling / DuPont Stainmaster anecdote</td><td>Channel partners can oppose moves that threaten their margins or repeat replacement revenue.</td></tr>
+</tbody></table></div>
+<p>Entry barriers <span class="zh">進入障礙</span> (capital, technology, distribution) differ from exit barriers <span class="zh">退出障礙</span> (warranties, contracts, obligations to existing customers). The lecturer introduces the following market structures as context, not as a full Porter Five Forces exercise.</p>
+<div class="tbl"><table><thead><tr><th>Market structure</th><th>Competitive situation</th><th>Marketing implication</th></tr></thead><tbody>
+<tr><td>Pure monopoly</td><td>One seller in the defined market, with no close substitutes.</td><td>More pricing power; legal constraints may apply.</td></tr>
+<tr><td>Oligopoly</td><td>A few large interdependent sellers.</td><td>Pay close attention to likely rival response.</td></tr>
+<tr><td>Monopolistic competition</td><td>Many differentiated offers.</td><td>Brand image and unique value can matter.</td></tr>
+<tr><td>Pure competition</td><td>Many sellers of near-identical products.</td><td>Individual firms have very little price control.</td></tr>
+</tbody></table></div>
+<div class="practice"><b>Pause and answer aloud</b><p>Why might removing a retailer reduce producer profit? Give two new costs and one possible relationship cost.</p></div>
+
+<h2 id="competition">6. Direct vs. indirect competition · Define the category first</h2>
+<p class="sub">In the lecturer's category-based definition, direct competitors sell the same product/service type. Indirect competitors come from another category but can satisfy the same need, occasion, budget or time constraint.</p>
+<p class="hint"><b>中文邏輯</b><span>先用品類定義分直接或間接競爭，再從顧客「同一個場合、同一筆預算」看真正的替代品。</span></p>
+<div class="pair"><div><b>Direct competition</b><p>Coke versus Pepsi; one coffee brand versus another; one pretzel seller versus another.</p></div><div><b>Indirect competition</b><p>Auntie Anne's versus a Dairy Queen snack option; sports drinks versus water; mouth strips versus chewing gum.</p></div></div>
+<h3 id="auntie">Case · Auntie Anne's vs. Dairy Queen</h3>
+<p>The lecturer describes research in Thailand suggesting that a pretzel stand's practical rival could be a different-category snack sold at a comparable price in the same mall. The customer asks <em>"What can I eat here and now with this budget?"</em> rather than <em>"Which pretzel brand exists?"</em> This is a class research anecdote, not a current national market-share claim.</p>
+<div class="method"><span>Consumer job</span><i>→</i><span>Alternative offers</span><i>→</i><span>Realistic same-occasion substitution</span><i>→</i><span>Direct / indirect label</span></div>
+<div class="mw" id="compLab"><p class="mw-label">Interactive · Classification practice</p><h4 id="compQuestion">Auntie Anne's pretzel vs. Dairy Queen snack set</h4><p class="sub">Classify by the lecturer's category-based definition. Then consider whether actual switching is plausible.</p><div class="buttonrow"><button type="button" id="chooseDirect">Direct</button><button type="button" id="chooseIndirect">Indirect</button><button type="button" id="nextComp">Next scenario →</button></div><div class="result" id="compFeedback" aria-live="polite"><p>Choose an answer to see the reasoning.</p></div><p class="s5-muted" id="compCount">Scenario 1 of 7</p></div>
+<p>Classification always depends on the market definition. The lecturer treats BTS and MRT as similar types of urban rail transport, whereas rail versus taxi is a different transport mode. A product can be <b>indirect by category yet a powerful practical rival</b>.</p>
+<h3 id="customer-value">Customer Value Analysis · Benefits and costs from the buyer's view</h3>
+<p>Value is a comparison of perceived benefits and sacrifices: money, time, effort, risk and social meaning. It is not merely the cheapest option, nor proof that consumers always optimize rationally. Competitive intelligence should reduce decision uncertainty without waiting forever for perfect data.</p>
+<div class="key">Microwave-popcorn lesson: before estimating Thai demand for microwave popcorn, ask how many accessible households have a usable microwave. A large population is not a large addressable market when a necessary condition is missing.</div>
+<div class="practice"><b>Pause and answer aloud</b><p>Could a product outside your official category take the customer's purchase? Give the category, the common job, and the evidence you would collect.</p></div>
+
+<h2 id="growth">7. Competitive growth · New users, new uses, more usage</h2>
+<p class="sub">The lecturer uses these three paths as questions, not promises. Each path requires a realistic source of demand and an ethical check.</p>
+<div class="three"><div class="tcard"><b>New users</b><p>Increase category penetration <span class="zh">品類滲透率</span> by converting non-users. The potential depends on current penetration and access.</p><div class="tags"><span>Floor cleaner</span><span>Shampoo</span></div></div><div class="tcard"><b>New uses</b><p>Find additional valuable uses or formats. Customers may discover uses before marketers do.</p><div class="tags"><span>Baking soda</span><span>Utaitip → Utip</span></div></div><div class="tcard"><b>More usage</b><p>Raise use frequency or quantity. Investigate pantry loading, occasion framing and responsible quantities.</p><div class="tags"><span>Multipacks</span><span>Shampoo dispensers</span></div></div></div>
+<h3 id="growth-cases">Growth examples and caveats</h3>
+<div class="tbl"><table><thead><tr><th>Case</th><th>Growth mechanism</th><th>Question worth asking</th></tr></thead><tbody>
+<tr><td><b>Baking soda</b></td><td>From baking to deodorizing refrigerators, freezer spaces, carpets and litter boxes.</td><td>Do the benefits create additional repeat occasions?</td></tr>
+<tr><td><b>Utaitip → Utip</b></td><td>Consumer-discovered lip/cheek use inspired a distinct cosmetic format, as recounted in class.</td><td>Does the new product meet the usage and regulatory context?</td></tr>
+<tr><td><b>Toothpaste / shampoo</b></td><td>Packaging or advertising might encourage using more per occasion.</td><td>Is additional usage useful or wasteful?</td></tr>
+<tr><td><b>Champagne</b></td><td>A celebration-focused position supports prestige but narrows everyday occasions.</td><td>Can the brand broaden usage without destroying the existing image?</td></tr>
+<tr><td><b>Listerine formats</b></td><td>Mouthwash, strips and spray may address portability or fresh-breath occasions.</td><td>Are new sales incremental or merely switching formats?</td></tr>
+</tbody></table></div>
+<h3 id="obsolescence">Innovation vs. planned obsolescence</h3>
+<p>Gillette's moves from single to multiple blades illustrate new features, consumable refills, copycat competition and the possibility of higher prices. More blades or a scientific-sounding enhancement do not necessarily increase value for everyone.</p>
+<div class="pair"><div><b>Useful innovation</b><p>A demonstrable performance, durability, service or convenience improvement that helps relevant buyers.</p></div><div><b>Planned obsolescence</b><p>Deliberately engineering premature replacement. This can generate turnover at the expense of consumer welfare and trust.</p></div></div>
+<p>The lecturer also discusses <em>The Best a Man Can Get</em> as broad advertising puffery, distinct from a specific factual claim requiring evidence. Health-related repurposing anecdotes in the lecture are not medical advice.</p>
+
+<h2 id="downsizing">8. Downsizing · Same shelf price, less product</h2>
+<p class="sub">Downsizing (shrinkflation) reduces net quantity without a proportional price reduction. The shelf label can stay unchanged while the unit price rises.</p>
+<p class="hint"><b>中文邏輯</b><span>同價縮量：數量減少的百分比用舊容量當分母，單位價格上漲的百分比會更大。</span></p>
+<div class="mw" id="shrinkLab"><p class="mw-label">Interactive · Unit price calculator</p><h4>Quantity reduction is not the same % as unit-price increase</h4><p class="sub">The 355, 330 and 320 mL examples come from lecture discussions; the sample shelf price is hypothetical.</p>
+<div class="s5-grid"><div class="field"><label for="oldSize">Original net amount (mL)</label><input id="oldSize" type="number" min="1" max="1000000" value="355" step="5"></div><div class="field"><label for="newSize">New net amount (mL)</label><input id="newSize" type="number" min="1" max="1000000" value="320" step="5"></div><div class="field"><label for="packPrice">Unchanged package price (THB)</label><input id="packPrice" type="number" min="0.01" max="1000000" value="30" step="5"></div></div>
+<div class="kpi"><div>Quantity change<b id="sizeChange">−9.86%</b></div><div>Unit-price change<b id="unitChange">+10.94%</b></div><div>New price per 100 mL<b id="newUnitPrice">THB 9.38</b></div></div><p class="s5-muted" id="shrinkFormula"></p></div>
+<div class="pair"><div><b>What shoppers should check</b><p>Actual net weight or mL, unit price, package count and date/variant. Similar-looking boxes can hold different amounts.</p></div><div><b>What managers should check</b><p>Consumer disclosure, complaint rates, repeat behavior, unit margin, reputation and whether the portion serves a real need.</p></div></div>
+<p>The lecturer's packaging comparisons include beer/can formats, Nestlé versus differently sized packs (such as 800 versus 830 mL), bottled water and snack packages. A photograph or similar package silhouette alone cannot establish today's net amount: compare a dated, labeled product with the same variant and market.</p>
+<p>Not every smaller package is unethical. Clearly disclosed smaller portions may have legitimate convenience or waste-reduction benefits. The lecture's concern is concealed quantity changes that mislead buyers about value. Cost savings alone do not prove higher net profit.</p>
+<div class="practice"><b>Pause and answer aloud</b><p>A package shrinks from 355 to 320 mL at an unchanged price. Which denominator belongs in the quantity-reduction calculation, and why is unit-price inflation a different percentage?</p></div>
+
+<h2 id="traps">9. Do not mix these up · Flip-to-check cards</h2>
+<p class="sub">Click any misconception to reveal the distinction. Practice stating a short example before flipping it.</p>
+<div class="flashgrid" id="flipCards"></div>
+
+<h2 id="coldcall">10. Cold call &amp; integrated case practice</h2>
+<p class="sub">Answer aloud in English first, then open the answer. These are exam-ready formulations grounded in the supplied Review note, not direct lecturer quotations.</p>
+<div class="qa-tools"><button type="button" id="qaAll" aria-expanded="false">Show all answers</button></div><div class="qa" id="qaBox"><details><summary>What is STP?</summary><p>Segmentation divides the market by relevant differences, targeting selects attractive and feasible groups, and positioning builds the intended brand meaning relative to alternatives.</p></details>
+<details><summary>Why does the professor criticize strict STP?</summary><p>One person can buy across brands, categories and apparent segments. Segments guide decisions but do not dictate behavior.</p></details>
+<details><summary>What makes segmentation effective?</summary><p>Measurability, accessibility, substantiality and actionability.</p></details>
+<details><summary>What is a niche&#x27;s biggest risk?</summary><p>A specialized group may be too small or buy too infrequently; rivals can divide the limited demand further.</p></details>
+<details><summary>What is cannibalization?</summary><p>A firm&#x27;s new product takes sales from its existing products instead of attracting genuinely additional purchases.</p></details>
+<details><summary>What is positioning?</summary><p>The meaning or place a brand occupies in consumers&#x27; minds relative to competitors. Managers can intend a position, but consumers form the actual perception.</p></details>
+<details><summary>What is differentiation?</summary><p>A meaningful, credible distinction that customers value and that the company can deliver. Difference alone is not enough.</p></details>
+<details><summary>How do you create one?</summary><p>Define the consumer occasion, select meaningful axes, label the directions, plot relevant brands using evidence or explicitly marked hypotheses, and interpret the alternatives.</p></details>
+<details><summary>What is underpositioning?</summary><p>Consumers do not have a sufficiently clear association with the brand.</p></details>
+<details><summary>What is overpositioning?</summary><p>A brand is perceived too narrowly, potentially excluding other relevant users or occasions.</p></details>
+<details><summary>What is confused positioning?</summary><p>Customers receive inconsistent messages from communication, pricing, distribution or actual experience.</p></details>
+<details><summary>Can an empty map area be an opportunity?</summary><p>Possibly, but it may also represent a combination customers do not want. Validate demand and economics first.</p></details>
+<details><summary>Direct vs. indirect competition?</summary><p>Direct competitors belong to the same product/service category; indirect competitors come from different categories but can substitute for a similar need or occasion.</p></details>
+<details><summary>Why is indirect competition important?</summary><p>Customers choose based on needs, money, time and availability, not always the category definitions managers use.</p></details>
+<details><summary>What is disintermediation?</summary><p>Removing intermediaries between producers and users, often by selling or delivering directly.</p></details>
+<details><summary>Disintermediation vs. vertical integration?</summary><p>Disintermediation removes a stage; integration takes control of a stage. They may overlap but are not identical.</p></details>
+<details><summary>Why can D2C fail?</summary><p>A producer may underestimate fulfillment, acquisition and service costs or provoke conflict with existing retailers.</p></details>
+<details><summary>What are entry and exit barriers?</summary><p>Entry barriers make it hard to start competing; exit barriers make it costly or difficult to leave, such as long-term service obligations.</p></details>
+<details><summary>What are three consumption-growth strategies?</summary><p>Attract new category users, find new uses or occasions, and increase the volume or frequency of use.</p></details>
+<details><summary>What is planned obsolescence?</summary><p>Deliberately designing products to wear out or become replaceable sooner; this differs from useful innovation and raises ethical concerns.</p></details>
+<details><summary>What is downsizing?</summary><p>Reducing net quantity without a proportionate reduction in selling price, increasing the effective unit price.</p></details>
+<details><summary>Why is hidden downsizing problematic?</summary><p>Consumers may misjudge value if package size changes are concealed; trust and future repeat purchases may suffer.</p></details>
+<details><summary>Why is revenue not enough?</summary><p>Sales can shift across the firm&#x27;s products or be generated through high costs. We must evaluate truly incremental contribution and profit.</p></details></div>
+<h3 id="casework">Integrated mini-case · New drink for Bangkok gym-goers</h3>
+<div class="assign"><p><b>Fictional scenario:</b> A startup wants to sell lightly flavored water to young gym-goers. It cites 400,000 social-media interests as proven buyers, claims to have no competitors because its flavor is unique, and plans to position as premium while offering heavy discounts. It also considers shrinking the pack later without highlighting the change.</p></div>
+<div class="method"><span>Decision</span><i>→</i><span>Concept</span><i>→</i><span>Case evidence</span><i>→</i><span>Mechanism</span><i>→</i><span>Trade-off</span><i>→</i><span>Test &amp; metric</span></div>
+<div class="qa"><details><summary>What is wrong with using 400,000 interests as demand?</summary><p>Interests are an audience estimate, not proof of willingness to pay, category frequency, retail availability or repeat behavior. Qualify a real segment and test trial and retention with representative research.</p></details><details><summary>Who are the direct and indirect competitors?</summary><p>Direct competitors may include other flavored hydration or sports-water products in the defined category. Indirect competitors could include bottled water, fruit juice or other refreshments that serve the same post-exercise occasion. Confirm substitution with actual buyer evidence.</p></details><details><summary>Does premium positioning fit heavy discounting?</summary><p>It may produce confused signals if price, product, packaging, retail environment and advertising conflict. Research perceived value and use a coherent pricing strategy, while recognizing that not all temporary promotions necessarily damage a premium brand.</p></details><details><summary>What should the manager decide about undisclosed downsizing?</summary><p>Reject concealed reductions. Price and quantity changes should be transparent, with clear net-content disclosure and realistic assessment of long-term customer trust, repeat purchase and profitability.</p></details></div>
+<h3 id="finalmodel">Final decision framework</h3>
+<div class="chapterline"><span>Customer + occasion</span><i>→</i><span>Meaningful segment</span><i>→</i><span>Credible position</span><i>→</i><span>Direct + indirect rivals</span><i>→</i><span>Incremental profit</span><i>→</i><span>Fair, testable decision</span></div>
+<p class="note-small">Recorded assignment and midterm comments in the lecture are historical instructions, not verified current LMS deadlines or exam rules. Check official course announcements for present requirements. The accompanying Markdown files retain the complete lecture-derived explanations and checkpoint answer key.</p>
+</article></main></div>
+<script>
+'use strict';
+(function(){
+ const $=(id)=>document.getElementById(id);
+ const fmt=new Intl.NumberFormat('en-US',{maximumFractionDigits:0});
+ const baht=v=>'THB '+fmt.format(Math.abs(v));
+ const asNum=(id)=>{const n=Number($(id).value);return Number.isFinite(n)?Math.max(0,n):0};
+ // Match the chapter rail and mobile contents behavior of Marketing S4.
+ const rail=$('rail'), toc=$('toc'), toggle=$('tocBtn');
+ const updateHeader=()=>document.documentElement.style.setProperty('--header-height',Math.ceil(document.querySelector('.top').getBoundingClientRect().height)+'px');updateHeader();window.addEventListener('resize',updateHeader);
+ const hs=[...document.querySelectorAll('.doc > h2, .doc > h3')];
+ hs.forEach(h=>{const li=document.createElement('li');li.className=h.tagName.toLowerCase();li.dataset.id=h.id;const a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent.trim().replace(/\s+/g,' ');li.appendChild(a);toc.appendChild(li)});
+ if('IntersectionObserver' in window){const ob=new IntersectionObserver(entries=>{for(const entry of entries){if(!entry.isIntersecting)continue;toc.querySelectorAll('a.on').forEach(a=>a.classList.remove('on'));const current=toc.querySelector('li[data-id="'+entry.target.id+'"] a');if(current)current.classList.add('on')}},{rootMargin:'-80px 0px -70% 0px'});hs.forEach(h=>ob.observe(h))}
+ toggle.addEventListener('click',()=>{const v=rail.classList.toggle('open');toggle.setAttribute('aria-expanded',String(v))});
+ toc.addEventListener('click',e=>{if(e.target.closest('a')){rail.classList.remove('open');toggle.setAttribute('aria-expanded','false')}});
+ const segments=[
+ ['Age is a description, not a need.','The proposed age segment is measurable, but the product-related needs and buying occasions have not been established. Test whether younger shoppers actually behave differently in this category.'],
+ ['The occasion provides a plausible benefit.','After-gym users may seek hydration, convenience or flavor. Check usage frequency, accessible venues, substitutes and willingness to pay before treating interest as demand.'],
+ ['A strong niche may still be a tiny market.','Water-exercise shoes could solve a specific performance problem, but the buyer pool and frequency of shoe replacement may cap sales even with high product relevance.']
+ ];
+ document.querySelectorAll('[data-seg]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-seg]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));const [a,b]=segments[+btn.dataset.seg];$('segTitle').textContent=a;$('segBody').textContent=b}));
+ // Contribution calculation: cannot count diverted sales as wholly new.
+ function cannib(){const sold=asNum('newUnits'),div=Math.min(sold,asNum('diverted')),mNew=asNum('newMargin'),mOld=asNum('oldMargin'),cost=asNum('launchCost');const v=sold*mNew-div*mOld-cost;$('grossUnits').textContent=fmt.format(sold);$('netUnits').textContent=fmt.format(sold-div);$('netProfit').textContent=(v>=0?'+':'−')+baht(v);$('cannibFormula').textContent=`${fmt.format(sold)} × ${fmt.format(mNew)} − ${fmt.format(div)} × ${fmt.format(mOld)} − ${fmt.format(cost)} = ${v>=0?'+':'−'}${baht(v)}. Assumes diverted sales would otherwise have occurred and all listed unit contributions are comparable.`}
+ ['newUnits','diverted','newMargin','oldMargin','launchCost'].forEach(id=>$(id).addEventListener('input',cannib));cannib();
+ // Illustrative perceptual map. All plots explicitly hypothetical, never market estimates.
+ const maps={lecture:{labels:['Old-fashioned','Modern','Older perceived image','Younger perceived image'],points:[['A',139,92,'#C06C84'],['B',278,103,'#3F5675'],['C',471,235,'#3F7F7A'],['D',306,205,'#8A7A5C'],['E',196,260,'#7657A8']],heading:'The class\'s age and image positioning dimensions',text:'The lecture plots A–E using Old-fashioned vs. Modern and Older vs. Younger perceived-image axes. These are approximate teaching coordinates, not the professor\'s exact slide geometry or measured consumer data.'},sports:{labels:['Everyday / generic','Specialized for sport','Higher performance association','Lower performance association'],points:[['Gatorade',428,92,'#C06C84'],['Propel',446,148,'#3F5675'],['Water',165,249,'#3F7F7A'],['Fruit juice',223,212,'#8A7A5C']],heading:'What does the sports-drink map suggest?',text:'Gatorade and Propel can compete in adjacent functional beverage categories, while water and juice may be indirect alternatives for the post-tennis occasion. Their positions are invented.'},cars:{labels:['Traditional image','Sporty / modern image','Higher perceived luxury','Lower perceived luxury'],points:[['Mercedes',241,103,'#C06C84'],['BMW',431,121,'#3F5675'],['Volvo',230,209,'#3F7F7A'],['Compact car',466,263,'#8A7A5C']],heading:'Why do changing axes change the conclusion?',text:'When one axis measures perceived performance and another luxury, brands that seem similar on a generic price chart may separate. These positions are illustrative, not actual consumer data.'}};
+ function drawMap(key){const m=maps[key];['axisLeft','axisRight','axisTop','axisBottom'].forEach((id,i)=>$(id).textContent=m.labels[i]);$('mapHeading').textContent=m.heading;$('mapExplanation').textContent=m.text;const ns='http://www.w3.org/2000/svg',g=$('plotBrands');g.replaceChildren();m.points.forEach(([name,x,y,color])=>{let c=document.createElementNS(ns,'circle');c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',7);c.setAttribute('fill',color);const title=document.createElementNS(ns,'title');title.textContent=name+' (hypothetical position)';c.appendChild(title);g.appendChild(c);let t=document.createElementNS(ns,'text');t.setAttribute('x',x+10);t.setAttribute('y',y-11);t.setAttribute('class','brandlabel');t.textContent=name;g.appendChild(t)})}
+ document.querySelectorAll('[data-map]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-map]').forEach(q=>q.setAttribute('aria-pressed',String(q===b)));drawMap(b.dataset.map)}));drawMap('lecture');
+ // Constant-volume channel experiment; sensitive to acquisition costs.
+ function d2c(){let n=Math.max(1,asNum('unitsChannel')),ac=asNum('d2cCost'),ret=35*n,dir=(160-65-20-ac-8)*n,delta=dir-ret;$('retailProfit').textContent=baht(ret);$('directProfit').textContent=(dir<0?'−':'')+baht(dir);$('d2cDifference').textContent=(delta>=0?'+':'−')+baht(delta)}
+ ['d2cCost','unitsChannel'].forEach(id=>$(id).addEventListener('input',d2c));d2c();
+ const scenarios=[
+ ['Auntie Anne\'s pretzel vs. Dairy Queen snack set','Indirect','Different product categories but a competing mall-snack occasion and similar buyer budget in the lecturer\'s anecdote.'],
+ ['Coke vs. Pepsi','Direct','Both are cola brands within the same product category.'],
+ ['Listerine breath strips vs. chewing gum','Indirect','Different product categories; both may serve the fresh-breath job.'],
+ ['A pretzel seller vs. another pretzel seller','Direct','The same broad pretzel category.'],
+ ['BTS urban rail vs. a taxi','Indirect','Different transport modes serving a similar journey.'],
+ ['MRT urban rail vs. BTS urban rail','Direct','The lecturer generally treats both as urban rail transport, though a stricter definition could alter the classification.'],
+ ['Gatorade sports drink vs. fruit juice','Indirect','Different beverage categories but possible substitutes after exercise.']
+ ];let scenarioIndex=0,answered=false;
+ function renderScenario(){answered=false;const [q]=scenarios[scenarioIndex];$('compQuestion').textContent=q;$('compCount').textContent=`Scenario ${scenarioIndex+1} of ${scenarios.length}`;$('compFeedback').innerHTML='<p>Choose an answer to see the reasoning.</p>';['chooseDirect','chooseIndirect'].forEach(id=>{$(id).disabled=false;$(id).setAttribute('aria-pressed','false')})}
+ function pick(answer){const [,correct,why]=scenarios[scenarioIndex];answered=true;$('compFeedback').textContent=(correct===answer?'Correct. ':'Reconsider. ')+why;['chooseDirect','chooseIndirect'].forEach(id=>{$(id).setAttribute('aria-pressed',String((id==='chooseDirect'?'Direct':'Indirect')===answer))})}
+ $('chooseDirect').addEventListener('click',()=>pick('Direct'));$('chooseIndirect').addEventListener('click',()=>pick('Indirect'));$('nextComp').addEventListener('click',()=>{scenarioIndex=(scenarioIndex+1)%scenarios.length;renderScenario()});renderScenario();
+ function shrink(){const old=asNum('oldSize'),now=asNum('newSize'),price=asNum('packPrice');if(old<=0||now<=0){$('sizeChange').textContent='n/a';$('unitChange').textContent='n/a';$('newUnitPrice').textContent='n/a';return}const q=(now/old-1)*100,u=(old/now-1)*100;const s=(v)=>v>0?'+':v<0?'−':'';$('sizeChange').textContent=s(q)+Math.abs(q).toFixed(2)+'%';$('unitChange').textContent=s(u)+Math.abs(u).toFixed(2)+'%';$('newUnitPrice').textContent='THB '+(price/now*100).toFixed(2);$('shrinkFormula').textContent=`Quantity change = (${now} / ${old} − 1) × 100. Unit price change at constant shelf price = (${old} / ${now} − 1) × 100. Original unit price: THB ${(price/old*100).toFixed(2)} per 100 mL.`}
+ ['oldSize','newSize','packPrice'].forEach(id=>$(id).addEventListener('input',shrink));shrink();
+ const misconceptions=[
+ ['Large audience = real demand','<strong>Reach is not conversion.</strong> Test actual needs, ability to buy, access and repeat.'],
+ ['A customer belongs to only one segment','<strong>Segments are decision tools.</strong> People can purchase across brands and occasions.'],
+ ['More variants = more company profit','<strong>Check cannibalization and cost.</strong> A new SKU can divert existing sales.'],
+ ['100% of this month\'s purchases = loyal forever','<strong>Observation window matters.</strong> One purchase cannot establish durable loyalty.'],
+ ['Positioning = the slogan we choose','<strong>Positioning exists in consumers\' minds.</strong> Research what the shopper perceives.'],
+ ['A perceptual-map gap = market opportunity','<strong>Empty space can mean no demand.</strong> Validate need, willingness to pay and feasibility.'],
+ ['Different product category = no competition','<strong>Indirect substitutes matter.</strong> Compare the job, occasion, budget and time.'],
+ ['Remove retailer = capture all retailer margin','<strong>Costs shift, they do not disappear.</strong> Include fulfillment, acquisition and returns.'],
+ ['More product usage = value creation','<strong>Customer welfare matters.</strong> Extra quantity might mean waste or earlier purchases.'],
+ ['New feature = better for every consumer','<strong>Improvement must matter.</strong> Test actual comfort, performance and repeat response.'],
+ ['9.86% less content = 9.86% unit-price rise','<strong>Different denominators.</strong> 355 → 320 mL means a 10.94% unit-price increase.'],
+ ['Revenue = profit','<strong>Profit includes costs and substitution.</strong> Measure truly incremental contribution.']
+ ];
+ const cards=$('flipCards');misconceptions.forEach(([bad,good])=>{const d=document.createElement('div');d.className='flash';const b=document.createElement('button');b.type='button';b.setAttribute('aria-pressed','false');const f=document.createElement('span'),a=document.createElement('span');f.className='front';a.className='back';f.textContent=bad;a.innerHTML=good;b.append(f,a);b.addEventListener('click',()=>b.setAttribute('aria-pressed',String(b.getAttribute('aria-pressed')!=='true')));d.appendChild(b);cards.appendChild(d)});
+ const all=$('qaAll');all.addEventListener('click',()=>{const ds=[...document.querySelectorAll('#qaBox details')],open=!ds.every(d=>d.open);ds.forEach(d=>d.open=open);all.textContent=open?'Hide all answers':'Show all answers';all.setAttribute('aria-expanded',String(open))});
+})();
+</script></body></html>
