@@ -353,6 +353,14 @@ blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); 
   .qz-opts.row5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
+
+.page-tools{display:flex;align-items:center;gap:14px;margin-left:8px;flex-shrink:0}
+.page-tools .topswitch{margin-left:0}
+.page-tools .practice-toggle{font-size:.72rem;padding:5px 10px}
+.page-tools .practice-toggle>.zh-full{display:none!important}
+body.show-zh .page-tools .practice-toggle{white-space:normal}
+@media(max-width:560px){.top-in .sessions{order:2}.top-in .page-tools{order:3;flex-basis:100%;margin-left:0;justify-content:flex-end;padding-bottom:3px;gap:14px}.top-in .page-tools .topswitch{margin-left:0}.top-in{row-gap:6px}}
+@media print{.page-tools{display:none}}
 </style><style>
 /* Full Chinese support is additive; existing short Chinese aides remain. */
 body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
@@ -423,7 +431,7 @@ body.show-zh .cmp-sel select{max-width:100%}
 <a class="pill" href="management-s2.html">S2</a>
 <span class="pill" aria-current="page">S3</span>
 <a class="pill" href="management-s4.html">S4</a></nav>
-<label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label></div></header>
+<div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
 
 <div class="wrap">
   <aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
@@ -431,7 +439,7 @@ body.show-zh .cmp-sel select{max-width:100%}
   <p class="kick">Managing People in Organizations · Session 3<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 3 堂</span></p>
   <h1>Motivation and Human Behavior<span class="zh-full" lang="zh-Hant">動機與人類行為</span></h1>
   <p class="lead">Before fixing a motivation problem, decide what kind of problem it is: unmet needs, management style, or the goal system. Then choose the one framework that best explains the evidence.<span class="zh-full" lang="zh-Hant">處理動機問題前，先判斷問題屬於未滿足的需求、管理方式，還是目標制度，再選出最能解釋證據的一個架構。</span></p>
-<div class="practice-toolbar"><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div>
+
 </div>
 
 <h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>

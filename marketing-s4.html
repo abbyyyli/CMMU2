@@ -457,6 +457,14 @@ body {margin:0}
 .practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
 .practice-prompt p{margin:0}
 @media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
+
+.page-tools{display:flex;align-items:center;gap:14px;margin-left:8px;flex-shrink:0}
+.page-tools .topswitch{margin-left:0}
+.page-tools .practice-toggle{font-size:.72rem;padding:5px 10px}
+.page-tools .practice-toggle>.zh-full{display:none!important}
+body.show-zh .page-tools .practice-toggle{white-space:normal}
+@media(max-width:560px){.top-in .sessions{order:2}.top-in .page-tools{order:3;flex-basis:100%;margin-left:0;justify-content:flex-end;padding-bottom:3px;gap:14px}.top-in .page-tools .topswitch{margin-left:0}.top-in{row-gap:6px}}
+@media print{.page-tools{display:none}}
 </style><style>
 /* Full Chinese support is additive; existing short Chinese aides remain. */
 body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
@@ -532,14 +540,14 @@ body.show-zh .score .down b:after{content:'惡化'}
  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false" aria-controls="rail">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
  
  <nav class="sessions" aria-label="Sessions"><a class="pill" href="marketing-s1.html">S1</a><a class="pill" href="marketing-s2.html">S2</a><a class="pill" href="marketing-s3.html">S3</a><span class="pill" aria-current="page">S4</span></nav>
-<label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label></div></header>
+<div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
 <div class="wrap"><aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
 <main><article class="doc">
  <div class="hero"><p class="kick">Strategic Marketing Management · Session 4<span class="zh-full" lang="zh-Hant">策略行銷管理・第 4 堂</span></p>
  <h1>Strategic Planning &amp; Consumer Behavior<span class="zh-full" lang="zh-Hant">策略規劃與消費者行為</span></h1>
  <p class="lead">A company chooses where to compete and what value to promise. Consumers decide which brands deserve their attention, trust and money. Practice the judgment connecting the two.<span class="zh-full" lang="zh-Hant">企業決定要在哪裡競爭，以及承諾提供什麼價值；消費者則決定哪些品牌值得他們投入注意力、信任與金錢。透過練習，學會做出能連結這兩端的判斷。</span></p>
  <div class="legend"><span>Strategy → action → metric<span class="zh-full" lang="zh-Hant">策略 → 行動 → 指標</span></span><span>Customer → motive → choice<span class="zh-full" lang="zh-Hant">顧客 → 動機 → 選擇</span></span><span>English-first <span class="zh">中文輔助常駐</span><span class="zh-full" lang="zh-Hant">以英文為主</span></span></div>
- <div class="practice-toolbar"><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div>
+ 
 </div>
  <h2 id="map">Chapter map · Two questions, one marketing decision<span class="zh-full" lang="zh-Hant">本章地圖｜兩個問題，一項行銷決策</span></h2>
  <div class="m-two"><div><strong>1 · Company direction<span class="zh-full" lang="zh-Hant">1｜公司方向</span></strong><p>Vision → mission → objectives → coordinated brand delivery.<span class="zh-full" lang="zh-Hant">願景 → 使命 → 目標 → 一致的品牌執行。</span></p><small>Portfolio, growth options and environmental fit<span class="zh-full" lang="zh-Hant">事業組合、成長選項與外部環境的契合度</span></small></div><div><strong>2 · Consumer choice<span class="zh-full" lang="zh-Hant">2｜消費者選擇</span></strong><p>Need → involvement → alternatives → purchase → postpurchase.<span class="zh-full" lang="zh-Hant">需要 → 涉入程度 → 替代方案 → 購買 → 購後反應。</span></p><small>Benefits, situation, trust, social context<span class="zh-full" lang="zh-Hant">利益、情境、信任、社會脈絡</span></small></div></div>

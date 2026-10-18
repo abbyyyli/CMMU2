@@ -399,6 +399,14 @@ blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); 
 .practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
 .practice-prompt p{margin:0}
 @media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
+
+.page-tools{display:flex;align-items:center;gap:14px;margin-left:8px;flex-shrink:0}
+.page-tools .topswitch{margin-left:0}
+.page-tools .practice-toggle{font-size:.72rem;padding:5px 10px}
+.page-tools .practice-toggle>.zh-full{display:none!important}
+body.show-zh .page-tools .practice-toggle{white-space:normal}
+@media(max-width:560px){.top-in .sessions{order:2}.top-in .page-tools{order:3;flex-basis:100%;margin-left:0;justify-content:flex-end;padding-bottom:3px;gap:14px}.top-in .page-tools .topswitch{margin-left:0}.top-in{row-gap:6px}}
+@media print{.page-tools{display:none}}
 </style><style>
 /* Full Chinese support is additive; existing short Chinese aides remain. */
 body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
@@ -454,7 +462,7 @@ body.show-zh .cmp-sel select{max-width:100%}
   <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="marketing.html">Marketing<span class="zh-full" lang="zh-Hant">行銷學</span></a><span>/</span><b>Session 3<span class="zh-full" lang="zh-Hant">第 3 堂</span></b></nav>
   <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
   <nav class="sessions" aria-label="Sessions"><a class="pill" href="marketing-s1.html">S1</a><a class="pill" href="marketing-s2.html">S2</a><span class="pill" aria-current="page">S3</span><a class="pill" href="marketing-s4.html">S4</a></nav>
-<label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label></div></header>
+<div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
 
 <div class="wrap">
   <aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
@@ -462,7 +470,7 @@ body.show-zh .cmp-sel select{max-width:100%}
   <p class="kick">Strategic Marketing Management · Session 3<span class="zh-full" lang="zh-Hant">策略行銷管理・第 3 堂</span></p>
   <h1>Marketing Research<span class="zh-full" lang="zh-Hant">行銷研究</span></h1>
   <p class="lead">Research reduces uncertainty; it does not eliminate it. Start from the management decision, choose the method the question needs, study the right people, and never claim more than the evidence supports.<span class="zh-full" lang="zh-Hant">研究能減少不確定性，卻不能消除它。從管理決策出發，依問題選方法，研究對的人，並且不做超出證據支持範圍的主張。</span></p>
-<div class="practice-toolbar"><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div>
+
 </div>
 
 <h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>

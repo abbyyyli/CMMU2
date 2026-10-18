@@ -1,14 +1,647 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Management Session 6 · Study Notes</title>
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/><title>Cross-Cultural Management · Management</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#FDF9F9;--paper:#FFFFFF;--tint:#FAE9ED;--line:#EFDDE2;--fg:#2F282B;--muted:#7E6F74;--accent:#C06C84;--accent-ink:#9C4862;--sans:"Noto Sans TC","PingFang TC",system-ui,sans-serif;--serif:"Noto Serif TC",Georgia,serif}
-*{box-sizing:border-box}html{color-scheme:light;background:var(--bg)}body{margin:0;font:16px/1.75 var(--sans);color:var(--fg)}a{color:var(--accent-ink)}:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-header{border-bottom:1px solid var(--line);background:rgba(253,249,249,.96)}.top{max-width:1160px;margin:auto;padding:13px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
-.crumbs{font-size:.86rem;display:flex;align-items:center;flex-wrap:wrap;gap:8px;color:var(--muted)}.crumbs a{text-decoration:none;color:var(--muted)}.crumbs a:hover{color:var(--accent-ink)}
-.sessions{display:flex;gap:5px;margin-left:auto}.pill{font:.85rem var(--sans);text-decoration:none;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--muted)}.pill[aria-current="page"]{background:var(--accent);border-color:var(--accent);color:#fff}.sessions a.pill:hover,.sessions a.pill:focus-visible{background:#fceef2;border-color:#b86b7b;color:#8e4357}
-main{max-width:780px;margin:0 auto;padding:74px 22px 120px}.kick{color:var(--accent-ink);letter-spacing:.15em;text-transform:uppercase;font-size:.76rem;font-weight:700}h1{font:700 clamp(2.2rem,5vw,3.2rem)/1.23 var(--serif);margin:6px 0 16px}.note{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin-top:30px}.label{font-weight:700;color:var(--accent-ink);font-size:.82rem;letter-spacing:.07em;text-transform:uppercase}.note p{margin:9px 0 0}.back{display:inline-block;margin-top:22px;text-decoration:none;border-bottom:1px solid var(--accent);font-weight:600}
-@media(max-width:520px){.sessions{margin-left:0}main{padding-top:50px}.note{padding:20px}}
-</style></head><body>
-<header><div class="top"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes</a><span>/</span><a href="management.html">Management</a><span>/</span><b>Session 6</b></nav><nav class="sessions" aria-label="Sessions 5–8"><a class="pill" href="management-s5.html">S5</a><span class="pill" aria-current="page">S6</span><a class="pill" href="management-s7.html">S7</a><a class="pill" href="management-s8.html">S8</a></nav></div></header>
-<main><p class="kick">CMMU · Session 6</p><h1>Management — Session 6</h1><section class="note"><div class="label">Coming soon</div><p>This lesson is not published yet. This reserved page keeps the S5–S8 navigation working in the meantime.</p><p>When the lesson is ready, the completed HTML can replace this file directly.</p></section><a class="back" href="management.html">← Back to Management sessions</a></main></body></html>
+/* Layout: one light reading column with a sticky chapter rail; deliberately single (light) theme. */
+:root {
+  color-scheme: light;
+  --bg: #FDF9F9; --panel: #F8EEF0; --paper: #FFFFFF; --tint: #FAE9ED; --line: #EFDDE2;
+  --fg: #2F282B; --muted: #7E6F74; --accent: #C06C84; --accent-ink: #9C4862;
+  --demand: #3F5675; --supply: #C06C84; --ext: #6E3F55; --world: #8A7A5C; --policy: #3F7F7A;
+  --cs: #A7CDB6; --ps: #B2C4E3; --dwl: #D9674F; --rev: #E5C171; --rev2: #F1DCA8; --time: #DDB3CB; --ts: #BFDCC9;
+  --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; background: var(--bg); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.75; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(253, 249, 249, .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
+.top-in { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 14px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.02rem; white-space: nowrap; }
+.brand small { font-family: var(--sans); font-weight: 500; color: var(--muted); font-size: .76rem; margin-left: 6px; letter-spacing: .06em; }
+.sessions { display: flex; gap: 4px; margin-left: auto; }
+.crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
+.sessions a.pill { text-decoration: none; transition: border-color .15s, color .15s; }
+.sessions a.pill:hover, .sessions a.pill:focus-visible { border-color: var(--accent); color: var(--accent-ink); background: var(--tint); }
+.sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
+.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.sessions .pill.off { opacity: .5; cursor: not-allowed; }
+.toc-btn { display: none; font: 500 .85rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--fg); border-radius: 8px; padding: 5px 12px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 52px; }
+.rail { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow: auto; padding-block: 34px 40px; font-size: .86rem; line-height: 1.5; }
+.rail .lbl { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.rail ol { list-style: none; margin: 0; padding: 0; }
+.rail li a { display: block; padding: 4px 10px; color: var(--muted); text-decoration: none; border-radius: 6px; }
+.rail li a:hover { color: var(--fg); background: var(--tint); }
+.rail li.h3 a { padding-left: 22px; font-size: .8rem; }
+.rail li a.on { color: var(--accent-ink); background: var(--tint); font-weight: 500; }
+
+main { min-width: 0; padding-block: 30px 120px; }
+.doc { max-width: 780px; }
+.hero { padding-block: 8px 26px; border-bottom: 1px solid var(--line); }
+.kick { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px; font-weight: 500; }
+.hero h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.25; margin: 0 0 12px; text-wrap: balance; }
+.lead { margin: 0; font-size: 1.04rem; max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.doc h2 { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 3.4rem 0 .3rem; text-wrap: balance; }
+.doc h3 { font-size: 1.1rem; line-height: 1.45; margin: 2.2rem 0 .5rem; color: var(--accent-ink); text-wrap: balance; }
+.sub { margin: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
+.doc p, .doc li { max-width: 68ch; }
+.doc ul, .doc ol { padding-left: 1.25em; }
+.doc li { margin: .25rem 0; }
+.zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
+.hint { font-size: .9rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.hint b { flex: none; font-size: .72rem; color: #fff; background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
+.key { background: var(--tint); padding: 12px 16px; border-radius: 8px; font-weight: 500; }
+.note-small { font-size: .8rem; color: var(--muted); }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.pair > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.pair b { color: var(--accent-ink); }
+.pair p { margin: 4px 0 0; font-size: .92rem; }
+
+.matrix { display: grid; grid-template-columns: minmax(90px, .7fr) repeat(2, minmax(0, 1fr)); gap: 6px; margin: 1rem 0 1.2rem; font-size: .9rem; max-width: 620px; }
+.matrix .mh { font-weight: 700; font-size: .8rem; color: var(--muted); align-self: end; padding: 0 4px 2px; }
+.matrix .mh.side { align-self: center; }
+.matrix .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-weight: 500; }
+.matrix .cell.hi { background: var(--tint); border-color: var(--accent); }
+.matrix small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; margin-top: 2px; line-height: 1.45; }
+
+.map { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 1rem 0; }
+.mcol { display: flex; flex-direction: column; gap: 8px; }
+.mbox { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; display: flex; flex-direction: column; gap: 2px; }
+.mbox b { font-size: .9rem; } .mbox span { color: var(--muted); } .mbox em { font-style: normal; color: var(--accent-ink); font-size: .78rem; font-weight: 500; }
+.mbox.good { border-color: var(--cs); } .mbox.ask { background: var(--tint); border-color: var(--accent); }
+.marrow { color: var(--accent); font-weight: 700; }
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.flow span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; line-height: 1.45; }
+.flow i { font-style: normal; color: var(--accent); font-weight: 700; }
+.formula { font-family: var(--mono); font-size: .9rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; line-height: 1.9; overflow-x: auto; }
+.steps { counter-reset: s; list-style: none; padding-left: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 10px; }
+.steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .75rem/22px var(--sans); text-align: center; margin-top: 3px; }
+.assign { margin: 1.6rem 0; border: 1px dashed var(--accent); border-radius: 10px; padding: 14px 16px; background: var(--paper); }
+.assign p { margin: 6px 0 0; font-size: .92rem; }
+
+.tbl { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.doc table { border-collapse: collapse; width: 100%; font-size: .88rem; line-height: 1.55; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.doc th { background: var(--panel); font-weight: 700; }
+.doc tr:last-child td { border-bottom: 0; }
+.drill .ans { filter: blur(5px); cursor: pointer; user-select: none; transition: filter .2s; }
+.drill .ans.shown { filter: none; user-select: auto; }
+
+.traps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 1rem; }
+.traps > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: .88rem; line-height: 1.55; }
+.traps s { color: var(--muted); text-decoration-color: var(--dwl); }
+.traps p { margin: 6px 0 0; font-weight: 500; }
+
+.qa-tools { margin: .4rem 0 .8rem; }
+.qa-tools button { font: 500 .82rem var(--sans); border: 1px solid var(--accent); background: var(--paper); color: var(--accent-ink); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+.qa { display: flex; flex-direction: column; gap: 6px; }
+.qa details { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.qa summary { cursor: pointer; padding: 10px 14px; font-weight: 500; font-size: .93rem; list-style: none; display: flex; gap: 10px; }
+.qa summary::before { content: "Q"; color: var(--accent); font-weight: 700; }
+.qa details[open] summary { border-bottom: 1px dashed var(--line); }
+.qa details p { margin: 0; padding: 10px 14px 12px 36px; font-size: .9rem; }
+
+/* graphs */
+.graph { max-width: 900px; margin: 1.8rem 0 2.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; }
+.g-head h4 { font-family: var(--serif); font-size: 1.12rem; margin: 2px 0 2px; line-height: 1.45; }
+.g-head p { margin: 0 0 10px; color: var(--muted); font-size: .86rem; }
+.g-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+.g-body { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.g-plot svg { width: 100%; height: auto; display: block; }
+.g-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.g-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.sl label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); line-height: 1.3; }
+.sl output { font-family: var(--mono); color: var(--fg); font-size: .8rem; }
+.sl input { width: 100%; accent-color: var(--accent); margin: 4px 0 0; }
+.g-btn { align-self: flex-start; font: 500 .8rem var(--sans); border: 1px solid var(--accent); color: var(--accent-ink); background: transparent; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.g-btn:hover { background: var(--tint); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; align-self: flex-start; }
+.seg button { font: 500 .8rem var(--sans); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--paper); }
+.chk { display: flex; gap: 8px; align-items: center; font-size: .8rem; color: var(--muted); }
+.chk input { accent-color: var(--accent); }
+.g-stats { margin: 0; border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+.st { display: flex; justify-content: space-between; gap: 10px; font-size: .8rem; line-height: 1.45; }
+.st dt { color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.st dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.st.big dd { font-weight: 500; color: var(--accent-ink); font-size: .92rem; }
+.g-note { margin: 12px 0 0; padding: 9px 12px; background: var(--tint); border-radius: 6px; font-size: .85rem; line-height: 1.6; }
+
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; flex: none; }
+.sw.none { background: transparent; }
+.sw.a-cs { background: var(--cs); } .sw.a-ps { background: var(--ps); } .sw.a-ps2 { background: var(--ps); outline: 1px solid var(--demand); }
+.sw.a-dwl { background: repeating-linear-gradient(45deg, var(--dwl) 0 2px, transparent 2px 4px); outline: 1px solid var(--dwl); }
+.sw.a-rev { background: var(--rev); } .sw.a-rev2 { background: var(--rev2); } .sw.a-time { background: var(--time); } .sw.a-ts { background: var(--ts); }
+.sw.ln { height: 3px; border-radius: 2px; width: 16px; }
+
+svg .ax { stroke: var(--muted); stroke-width: 1.2; }
+svg .axl { fill: var(--muted); font: 500 11px var(--sans); }
+svg .tk { fill: var(--muted); font: 500 10.5px var(--mono); }
+svg .gd { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+svg .cv { stroke-width: 2.6; fill: none; stroke-linecap: round; }
+svg .cv.dash { stroke-dasharray: 7 5; stroke-width: 2; }
+svg .cvl { font: 700 11.5px var(--sans); }
+svg .c-d { stroke: var(--demand); fill: var(--demand); } svg .c-s { stroke: var(--supply); fill: var(--supply); }
+svg .c-x { stroke: var(--ext); fill: var(--ext); } svg .c-w { stroke: var(--world); fill: var(--world); } svg .c-t { stroke: var(--policy); fill: var(--policy); }
+svg text.cvl { stroke: none; }
+svg .pt { fill: var(--paper); stroke: var(--fg); stroke-width: 2; }
+svg .ptl { fill: var(--fg); font: 700 11px var(--sans); }
+svg .atag { fill: var(--fg); font: 700 11px var(--sans); opacity: .8; }
+svg .a-cs { fill: var(--cs); fill-opacity: .6; } svg .a-ps { fill: var(--ps); fill-opacity: .6; }
+svg .a-ps2 { fill: var(--ps); fill-opacity: .95; } svg .a-ts { fill: var(--ts); fill-opacity: .6; }
+svg .a-dwl { fill: url(#dwlHatch); stroke: var(--dwl); stroke-width: 1.2; }
+svg .a-rev { fill: var(--rev); fill-opacity: .75; } svg .a-rev2 { fill: var(--rev2); fill-opacity: .8; } svg .a-time { fill: var(--time); fill-opacity: .65; }
+
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .a-prof { fill: var(--cs); fill-opacity: .75; } svg .a-loss { fill: var(--dwl); fill-opacity: .35; }
+.sw.a-prof { background: var(--cs); } .sw.a-loss { background: var(--dwl); opacity: .5; }
+.twin { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tw-t { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.g-ctrl .g-btn + .g-btn { margin-top: -4px; }
+.graph.wide .g-body { grid-template-columns: minmax(0, 1fr); }
+.graph.wide .g-side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 700px) { .twin, .graph.wide .g-side { grid-template-columns: minmax(0, 1fr); } }
+svg polyline.cv { fill: none !important; }
+
+.graph { background: var(--paper); }
+.g-note { background: var(--tint); }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail { display: none; position: fixed; inset: 64px 0 0 0; max-height: none; background: var(--bg); z-index: 15; padding: 20px 16px 60px; }
+  .rail.open { display: block; }
+  .toc-btn { display: inline-block; }
+  .g-body { grid-template-columns: minmax(0, 1fr); }
+  .map { grid-template-columns: minmax(0, 1fr); }
+  .marrow { transform: rotate(90deg); justify-self: center; }
+}
+@media (max-width: 560px) { .pair, .traps { grid-template-columns: minmax(0, 1fr); } }
+/* Management components */
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.tcard { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.tcard .tnum { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font: 700 .78rem/24px var(--sans); text-align: center; }
+.tcard p { margin: 0; color: var(--muted); font-size: .88rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.tags span { font-size: .74rem; background: var(--tint); color: var(--accent-ink); padding: 1px 8px; border-radius: 999px; font-weight: 500; }
+.method, .loop, .cascade { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.method span, .loop span, .cascade span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 5px 11px; line-height: 1.4; }
+.method span.hi { background: var(--tint); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+.method i, .loop i, .cascade i { font-style: normal; color: var(--accent); font-weight: 700; }
+.loop i.back { font-size: 1.1rem; }
+.cascade { flex-direction: column; align-items: flex-start; gap: 2px; }
+.cascade span:nth-of-type(2) { margin-left: 18px; } .cascade span:nth-of-type(3) { margin-left: 36px; } .cascade span:nth-of-type(4) { margin-left: 54px; }
+.cascade i:nth-of-type(1) { margin-left: 14px; } .cascade i:nth-of-type(2) { margin-left: 32px; } .cascade i:nth-of-type(3) { margin-left: 50px; }
+.four { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.four > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+.four b { font-size: .9rem; color: var(--accent-ink); } .four p { margin: 4px 0 0; font-size: .84rem; color: var(--muted); line-height: 1.5; }
+
+.ladder { display: grid; grid-template-columns: minmax(0, 1fr) 118px 118px; grid-template-rows: repeat(5, auto); gap: 5px 8px; margin: 1rem 0 .3rem; max-width: 640px; }
+.lv { grid-column: 1; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; font-weight: 700; font-size: .9rem; line-height: 1.35; }
+.lv small { display: block; font-weight: 400; color: var(--muted); font-size: .78rem; }
+.lv.l5 { grid-row: 1; margin-inline: 22%; } .lv.l4 { grid-row: 2; margin-inline: 16%; } .lv.l3 { grid-row: 3; margin-inline: 10%; } .lv.l2 { grid-row: 4; margin-inline: 5%; } .lv.l1 { grid-row: 5; }
+.lv.l5, .lv.l4 { background: #F6E9F4; } .lv.l3 { background: var(--tint); } .lv.l2, .lv.l1 { background: #EAF2EE; }
+.erg { border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .84rem; text-align: center; padding: 6px; }
+.erg.g { grid-column: 2; grid-row: 1 / span 2; background: #EBD7EA; color: #6E3F6A; }
+.erg.r { grid-column: 3; grid-row: 2 / span 2; background: var(--tint); color: var(--accent-ink); }
+.erg.e { grid-column: 2; grid-row: 4 / span 2; background: #D9EBE1; color: #2F6B4F; }
+
+.mw { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 1.6rem 0 2rem; }
+.mw-body { margin-top: 10px; }
+.hz-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.hz-t { margin: 0 0 6px; font-weight: 700; font-size: .88rem; } .hz-t small { font-weight: 400; color: var(--muted); }
+.chips { display: flex; flex-direction: column; gap: 5px; }
+.chip { display: flex; justify-content: space-between; gap: 10px; font: 500 .84rem var(--sans); text-align: left; background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 7px; padding: 6px 10px; cursor: pointer; }
+.chip em { font-style: normal; font-size: .74rem; color: var(--muted); }
+.hz-cols > div:first-child .chip[aria-pressed="true"] { border-color: var(--dwl); background: #FCEDEA; }
+.hz-cols > div:first-child .chip[aria-pressed="true"] em { color: #A8432F; }
+.hz-cols > div:last-child .chip[aria-pressed="true"] { border-color: #6FAE8B; background: #EAF5EE; }
+.hz-cols > div:last-child .chip[aria-pressed="true"] em { color: #2F6B4F; }
+.scale { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 6px; margin-top: 18px; }
+.half { height: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; position: relative; overflow: hidden; }
+.half i { position: absolute; top: 0; bottom: 0; transition: width .25s; }
+.half.left i { right: 0; background: var(--dwl); } .half.right i { left: 0; background: #6FAE8B; }
+@media (prefers-reduced-motion: reduce) { .half i { transition: none; } }
+.zero { font: 700 .8rem var(--mono); color: var(--muted); }
+.scale-l { display: flex; justify-content: space-between; font-size: .74rem; color: var(--muted); margin-top: 4px; }
+
+.kpi-flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, .8fr) auto minmax(0, 1fr); gap: 8px; align-items: stretch; margin-top: 12px; font-size: .84rem; }
+.kpi-flow > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; line-height: 1.45; }
+.kpi-flow > i { font-style: normal; color: var(--accent); font-weight: 700; align-self: center; }
+.kpi-flow b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.kpi-flow p { margin: 3px 0 0; } .kpi-flow ul { margin: 3px 0 0; padding-left: 1.1em; }
+.kpi-flow .bad { border-color: var(--dwl); background: #FCEDEA; } .kpi-flow .good { border-color: #6FAE8B; background: #EAF5EE; }
+
+.cmp-sel { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: .84rem; color: var(--muted); }
+.cmp-sel select { font: 500 .88rem var(--sans); padding: 5px 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); color: var(--fg); }
+table.cmp td:first-child { font-weight: 700; color: var(--muted); width: 22%; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); }
+.tabs button { font: 500 .86rem var(--sans); background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); padding: 6px 12px; cursor: pointer; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--accent-ink); border-bottom-color: var(--accent); }
+.ev { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+.ev > div { display: grid; grid-template-columns: 190px auto minmax(0, 1fr); gap: 10px; align-items: baseline; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: .86rem; line-height: 1.5; }
+.ev p { margin: 0; }
+.tag { font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.tag.gap { background: #FCE3DD; color: #A8432F; } .tag.ok { background: #E3F2E9; color: #2F6B4F; }
+.tag.maybe { background: #FBF0D9; color: #8A6216; } .tag.na { background: #EEE9EB; color: var(--muted); }
+.issue { margin-top: 12px; background: var(--tint); border-radius: 8px; padding: 10px 14px; font-size: .9rem; }
+.issue p { margin: 4px 0 0; }
+
+.xgrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.xgrid > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 5px; font-size: .84rem; line-height: 1.4; }
+.xgrid small { color: var(--muted); font-size: .76rem; }
+.xgrid .ok, .xgrid .gap { align-self: flex-start; font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; }
+.xgrid .ok { background: #E3F2E9; color: #2F6B4F; } .xgrid .gap { background: #FCE3DD; color: #A8432F; }
+
+@media (max-width: 760px) {
+  .three, .four { grid-template-columns: minmax(0, 1fr); }
+  .xgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hz-cols { grid-template-columns: minmax(0, 1fr); }
+  .kpi-flow { grid-template-columns: minmax(0, 1fr); } .kpi-flow > i { transform: rotate(90deg); justify-self: center; }
+  .ev > div { grid-template-columns: minmax(0, 1fr); gap: 3px; } .ev .tag { justify-self: start; }
+  .ladder { grid-template-columns: minmax(0, 1fr) 84px 84px; }
+}
+
+/* Session 4 + case page */
+.tcard small.dont { color: var(--muted); font-size: .78rem; border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 4px; }
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: .6rem 0 1rem; }
+.quotes q { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-style: italic; color: var(--muted); font-size: .9rem; }
+.six { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.six > div { display: flex; gap: 10px; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .88rem; line-height: 1.5; }
+.six span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
+a.cta { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+a.cta:hover { background: var(--accent-ink); }
+blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; font-size: .92rem; line-height: 1.7; }
+.timeline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.timeline > div { background: var(--paper); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 10px; padding: 10px 14px; font-size: .88rem; line-height: 1.5; }
+.timeline time { font: 500 .76rem var(--mono); color: var(--accent-ink); display: block; }
+.timeline p { margin: 4px 0 0; color: var(--muted); }
+.score { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.score > div { border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; border: 1px solid var(--line); }
+.score .up { background: #EAF5EE; border-color: #A9D3BA; } .score .down { background: #FCEDEA; border-color: #EDC2B8; }
+.score b::after { margin-left: 6px; font-size: .78rem; } .score .up b::after { content: "improved"; color: #2F6B4F; } .score .down b::after { content: "worse"; color: #A8432F; }
+.score ul { margin: 6px 0 0; padding-left: 1.1em; }
+
+.jcm { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, .9fr); gap: 16px; }
+.jdims { display: flex; flex-direction: column; gap: 8px; }
+.jd.g0 label span { color: #6E3F6A; } .jd.g1 label span { color: var(--accent-ink); } .jd.g2 label span { color: #2F6B4F; }
+.jstates { display: flex; flex-direction: column; gap: 12px; padding-top: 4px; }
+.jst span { font-size: .8rem; font-weight: 500; }
+.jbar { height: 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); overflow: hidden; margin-top: 3px; }
+.jbar i { display: block; height: 100%; transition: width .25s; }
+.jst.g0 .jbar i { background: #B98AB5; } .jst.g1 .jbar i { background: var(--accent); } .jst.g2 .jbar i { background: #6FAE8B; }
+@media (prefers-reduced-motion: reduce) { .jbar i { transition: none; } }
+.jout ul { margin: 8px 0 0; padding-left: 1.1em; font-size: .82rem; color: var(--muted); }
+.jlvl { display: inline-block; font-weight: 700; padding: 3px 12px; border-radius: 999px; font-size: .86rem; }
+.jlvl.strong { background: #E3F2E9; color: #2F6B4F; } .jlvl.moderate { background: #FBF0D9; color: #8A6216; } .jlvl.weak { background: #FCE3DD; color: #A8432F; }
+.jgns { margin-top: 14px; }
+
+.qz-item { font-size: 1rem; font-weight: 500; margin: 4px 0 12px; }
+.qz-opts { display: grid; gap: 8px; }
+.qz-opts.grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 520px; }
+.qz-opts.row5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.qz-o { font: 500 .88rem var(--sans); background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 8px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; text-align: center; }
+.qz-o small { color: var(--muted); font-size: .74rem; font-weight: 400; }
+.qz-o:hover { border-color: var(--accent); }
+.qz-o.right { background: #E3F2E9; border-color: #6FAE8B; } .qz-o.wrong { background: #FCE3DD; border-color: var(--dwl); }
+.qz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: .8rem; color: var(--muted); }
+
+.rsteps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.rsteps > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: .85rem; line-height: 1.5; }
+.rsteps > div.g { background: var(--tint); border-color: var(--accent); }
+.rsteps b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.rsteps p { margin: 4px 0 0; }
+.risk { font-size: .88rem; } .risk b { font-size: .72rem; color: #fff; background: #B98A2E; padding: 1px 7px; border-radius: 4px; margin-right: 6px; }
+.sayd summary { cursor: pointer; font-weight: 500; color: var(--accent-ink); font-size: .9rem; }
+
+@media (max-width: 760px) {
+  .quotes, .six, .timeline, .rsteps { grid-template-columns: minmax(0, 1fr); }
+  .score { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jcm { grid-template-columns: minmax(0, 1fr); }
+  .qz-opts.row5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+
+.eq-controls{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}.eq-controls button,.eq-controls select{font:500 .86rem var(--sans);color:var(--accent-ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 12px;max-width:100%;cursor:pointer}.eq-controls button[aria-pressed="true"]{background:var(--tint);border-color:var(--accent)}.eq-result{background:var(--tint);border-radius:8px;padding:14px;min-height:100px}.eq-result p{margin:5px 0}.eq-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.eq-grid>div{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--paper)}.eq-grid b{color:var(--accent-ink)}.eq-num{font:500 1.8rem var(--mono);display:block;color:var(--accent-ink)}.eq-map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.eq-map>div{padding:16px;background:var(--paper);border:1px solid var(--line);border-radius:10px}.eq-map p{margin:6px 0}body{margin:0}.hint span{min-width:0} @media(max-width:600px){.eq-grid,.eq-map{grid-template-columns:minmax(0,1fr)}.hint{flex-wrap:wrap}.mw{padding:14px}.doc{overflow-wrap:break-word}}
+
+html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}@media(max-width:900px){.rail.open{top:var(--header-height,64px);max-height:calc(100vh - var(--header-height,64px));bottom:0}}
+.culture-rows{display:grid;gap:18px;margin:18px 0}.culture-row{border-bottom:1px solid var(--line);padding-bottom:12px}.culture-row:last-child{border:0}.culture-dimension{font-weight:700;font-size:.88rem;margin-bottom:6px;color:var(--accent-ink)}.culture-bar{display:grid;grid-template-columns:100px minmax(0,1fr) 30px;gap:9px;align-items:center;margin:5px 0;font-size:.8rem}.culture-track{height:11px;background:var(--bg);border-radius:99px;overflow:hidden}.culture-track i{display:block;height:100%;background:var(--accent);border-radius:99px}.culture-bar.comparison .culture-track i{background:var(--demand)}.culture-bar output{font-family:var(--mono);text-align:right}.culture-cue{font:500 .8rem var(--mono);color:var(--accent-ink);margin-top:5px}.culture-compact p{margin:.4rem 0}.culture-answer{padding:14px;background:var(--tint);border-radius:8px;min-height:84px}.culture-answer p{margin:4px 0}.culture-count{font-size:.78rem;color:var(--muted)}.culture-roles{display:flex;flex-wrap:wrap;gap:6px}.culture-roles button{font-size:.8rem}.eq-controls label{min-width:0;max-width:100%}.eq-controls select{display:block;width:100%;max-width:100%;margin-top:5px}.source{margin-top:1rem}@media(max-width:560px){.culture-bar{grid-template-columns:82px minmax(0,1fr) 25px;gap:7px}.eq-controls button{padding:7px 9px}.hint{flex-wrap:wrap}.doc td,.doc th{padding:8px}}
+
+.context-diagram .flow{align-items:center;gap:5px;font-size:.8rem;margin:.8rem 0}.context-diagram .flow span{padding:4px 7px}.context-diagram small{display:block;color:var(--muted);font-size:.8rem;margin-top:7px}
+.message-chain{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:9px;margin:1rem 0}.message-chain>div{border:1px solid var(--line);background:var(--paper);border-radius:9px;padding:13px}.message-chain>div.hi{background:var(--tint);border-color:var(--accent)}.message-chain b{font-size:.83rem;color:var(--accent-ink)}.message-chain p{margin:5px 0 0;font-size:.9rem}.message-chain>i{font-style:normal;color:var(--accent)}
+.culture-map{margin:1.2rem 0 1.7rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px}.chart-axis-label,.culture-map figcaption{font:500 .8rem/1.6 var(--sans);color:var(--muted)}.pd-ua-chart{width:100%;max-width:560px;height:auto;display:block;margin:5px auto}.chart-grid{stroke:var(--line);stroke-width:1;fill:none}.chart-axis{stroke:var(--muted);stroke-width:1.3;fill:none}.chart-tick{fill:var(--muted);font:400 14px var(--mono)}.chart-country{font:500 16px var(--sans)}
+.culture-cue{font-family:var(--sans)}
+@media(max-width:560px){.message-chain{grid-template-columns:minmax(0,1fr);gap:6px}.message-chain>i{text-align:center;transform:rotate(90deg)}.culture-map{padding:10px}.chart-country{font-size:18px}}
+
+#map + .sub + .three > .tcard > .zh, .three > .tcard > .zh { align-self: flex-start; }
+
+.qz-o:focus-visible,.qz-nav .g-btn:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px}
+.qz-o[aria-disabled="true"]{cursor:default}
+
+
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid #d5c6ca;border-radius:999px;background:#eee6e8;position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:white;border-radius:50%;box-shadow:0 1px 2px #7775}
+.topswitch input:checked{background:var(--accent)}
+.topswitch input:checked:after{left:14px}
+.topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+
+/* Shared reading rhythm, with room for each chapter's own teaching tools. */
+.doc select{font-family:var(--sans);font-size:.88rem}
+html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
+@media(max-width:900px){.rail.open{top:var(--header-height,64px);bottom:0;inset-inline:0;max-height:calc(100vh - var(--header-height,64px))}}
+body.show-zh .legend>span,body.show-zh .steps li,body.show-zh .six>div,body.show-zh .qa summary,body.show-zh .chk{flex-wrap:wrap}
+body.show-zh .legend>span>.zh-full,body.show-zh .steps li>.zh-full,body.show-zh .six>div>.zh-full,body.show-zh .qa summary>.zh-full,body.show-zh .chk>.zh-full{flex:0 0 100%;min-width:0}
+body.show-zh .steps li{display:list-item;list-style:none}
+body.show-zh .steps li:before{display:inline-block;margin-right:10px;vertical-align:middle}
+body.show-zh .six>div>.zh-full{margin-left:34px;flex-basis:calc(100% - 34px)}
+body.show-zh .seg{flex-wrap:wrap;max-width:100%}
+body.show-zh .seg button{min-width:0;white-space:normal}
+body.show-zh .spectrum{min-width:0}
+body.show-zh .spectrum>span{min-width:0;overflow-wrap:anywhere}
+body.show-zh .formula>.zh-full{white-space:normal;font-family:var(--sans)}
+body.show-zh .mw .tabs button,body.show-zh .mw .qz-o,body.show-zh .graph .g-btn{overflow-wrap:anywhere}
+body.show-zh .funnel-level{height:auto;min-height:68px;flex-direction:column;gap:1px;white-space:normal;line-height:1.3}
+body.show-zh .funnel-level .zh-full{color:inherit;margin-top:0;font-size:.75em}
+body.show-zh .decision-step{height:auto;min-height:100px}
+body.show-zh .m-control label{flex-wrap:wrap}
+body.show-zh .m-control label .zh-full{flex-basis:100%;text-align:left}
+body.show-zh .decision-step>.zh-full{font-size:.8em;line-height:1.45}
+body.show-zh .score .up b:after{content:'改善'}
+body.show-zh .score .down b:after{content:'惡化'}
+@media(max-width:560px){body.show-zh .spectrum{grid-template-columns:minmax(0,1fr)}body.show-zh .m-choices button{min-height:65px}}
+
+/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
+
+.page-tools{display:flex;align-items:center;gap:14px;margin-left:8px;flex-shrink:0}
+.page-tools .topswitch{margin-left:0}
+.page-tools .practice-toggle{font-size:.72rem;padding:5px 10px}
+.page-tools .practice-toggle>.zh-full{display:none!important}
+body.show-zh .page-tools .practice-toggle{white-space:normal}
+.eq-controls label{min-width:0;max-width:100%}
+.eq-controls select{display:block;max-width:100%;margin-top:5px}
+body.show-zh .eq-controls button .zh-full{color:inherit}
+@media(max-width:560px){.top-in .sessions{order:2}.top-in .page-tools{order:3;flex-basis:100%;margin-left:0;justify-content:flex-end;padding-bottom:3px;gap:14px}.top-in .page-tools .topswitch{margin-left:0}.top-in{row-gap:6px}}
+@media print{.page-tools{display:none}}
+
+
+body.show-zh .culture-roles button{min-width:0;white-space:normal}
+body.show-zh .culture-cue .zh-full{font-family:var(--sans)}
+.chart-zh-key{font-size:.78rem;line-height:1.7;margin-top:8px}
+</style></head><body><header class="top"><div class="top-in"><nav aria-label="Breadcrumb" class="crumbs"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="management.html">Management<span class="zh-full" lang="zh-Hant">管理學</span></a><span>/</span><b>Session 6<span class="zh-full" lang="zh-Hant">第 6 堂</span></b></nav><button aria-expanded="false" class="toc-btn" id="tocBtn" type="button">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button><nav aria-label="Sessions" class="sessions"><a class="pill" href="management-s5.html">S5</a><span aria-current="page" class="pill">S6</span><span class="pill off">S7</span><span class="pill off">S8</span></nav><div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input aria-label="顯示完整繁體中文對照" id="zhToggle" role="switch" type="checkbox"/>中文 <span id="zhModeLabel">OFF</span></label><button aria-pressed="false" class="practice-toggle" id="practiceToggle" title="Show or hide short questions within chapters" type="button">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" id="practiceChinese" lang="zh-Hant">練習模式：關閉</span></button></div></div></header><div class="wrap"><aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside><main><article class="doc"><div class="hero"><p class="kick">Managing People in Organizations · Session 6<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 6 堂</span></p><h1>Cross-Cultural Management<span class="zh-full" lang="zh-Hant">跨文化管理</span></h1><p class="lead">Use cultural differences to ask better questions, then adapt to the person and the workplace.<span class="zh-full" lang="zh-Hant">運用文化差異提出更好的問題，再依對方與工作情境調整做法。</span></p></div>
+<h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
+<div class="three"><div class="tcard"><b>Read the message<span class="zh-full" lang="zh-Hant">讀懂訊息</span></b><p>Culture and high/low context<span class="zh-full" lang="zh-Hant">文化與高／低情境</span></p><span class="zh">理解情境</span></div><div class="tcard"><b>Choose a lens<span class="zh-full" lang="zh-Hant">選擇分析構面</span></b><p>Five dimensions and Thai illustrations<span class="zh-full" lang="zh-Hant">五個構面與泰國例子</span></p><span class="zh">辨認構面</span></div><div class="tcard"><b>Check and adapt<span class="zh-full" lang="zh-Hant">確認與調整</span></b><p>Country comparison, boss preparation and case answers<span class="zh-full" lang="zh-Hant">國家比較、與主管共事的準備及個案作答</span></p><span class="zh">驗證與調整</span></div></div>
+<div class="method"><span>Framework<span class="zh-full" lang="zh-Hant">框架</span></span><i>→</i><span>Actual evidence<span class="zh-full" lang="zh-Hant">實際證據</span></span><i>→</i><span>Possible gap<span class="zh-full" lang="zh-Hant">可能的落差</span></span><i>→</i><span class="hi">Adapt and check<span class="zh-full" lang="zh-Hant">調整並檢查</span></span></div>
+<h2 id="culture">1. Culture and communication context<span class="zh-full" lang="zh-Hant">1. 文化與溝通情境</span></h2>
+<p>In <b>Hofstede's definition</b>, culture is collective mental programming learned through shared education and life experience. Family, institutions and repeated experience turn expectations into habits. A new “speak up” policy can therefore arrive faster than employees' willingness to challenge a senior person.<span class="zh-full" lang="zh-Hant">依 Hofstede 的定義，文化是透過共同教育與生活經驗學得的集體心智模式。家庭、制度與反覆經驗會使期待成為習慣，因此新的「鼓勵發言」政策可能已經推出，員工卻還沒準備好質疑資深者。</span></p>
+<p class="key">Use cultural patterns to identify expectations; use actual behavior to explain the person.<span class="zh-full" lang="zh-Hant">用文化模式辨認期待，再用實際行為理解個人。</span></p>
+<div class="pair context-diagram">
+<div><b>High context<span class="zh-full" lang="zh-Hant">高情境</span></b> <span class="zh">高情境</span><div class="flow"><span>Words<span class="zh-full" lang="zh-Hant">話語</span></span><i>+</i><span>Relationship<span class="zh-full" lang="zh-Hant">關係</span></span><i>+</i><span>Situation and tone<span class="zh-full" lang="zh-Hant">情境與語氣</span></span></div><p>Meaning depends heavily on shared context.<span class="zh-full" lang="zh-Hant">訊息的意思高度依賴雙方共享的情境。</span></p><small>Lecture examples: Thai smile and Wai.<span class="zh-full" lang="zh-Hant">課堂例子：泰式微笑與合十禮（Wai）。</span></small></div>
+<div><b>Low context<span class="zh-full" lang="zh-Hant">低情境</span></b> <span class="zh">低情境</span><div class="flow"><span>Explicit words<span class="zh-full" lang="zh-Hant">明確的話語</span></span><i>+</i><span>Clear detail<span class="zh-full" lang="zh-Hant">清楚的細節</span></span><i>→</i><span>Message<span class="zh-full" lang="zh-Hant">訊息</span></span></div><p>More of the meaning is stated directly.<span class="zh-full" lang="zh-Hant">更多意思直接透過話語說清楚。</span></p><small>Lecture example: USA.<span class="zh-full" lang="zh-Hant">課堂例子：美國。</span></small></div>
+</div>
+<h3 id="misreading">How a message gets misread<span class="zh-full" lang="zh-Hant">訊息如何被誤解</span></h3>
+<div class="message-chain"><div><b>Boss asks<span class="zh-full" lang="zh-Hant">主管詢問</span></b><p>“Any objections?”<span class="zh-full" lang="zh-Hant">「有任何異議嗎？」</span></p></div><i>→</i><div><b>Employee responds<span class="zh-full" lang="zh-Hant">員工回應</span></b><p>A smile and silence.<span class="zh-full" lang="zh-Hant">微笑，然後保持沉默。</span></p></div><i>→</i><div class="hi"><b>Boss assumes<span class="zh-full" lang="zh-Hant">主管認為</span></b><p>“Everyone agrees.”<span class="zh-full" lang="zh-Hant">「大家都同意。」</span></p></div></div>
+<p>The missing step is checking meaning. Ask for one concern or risk, and offer a private or written reply. Agreement, politeness and hesitation can look similar from the outside.<span class="zh-full" lang="zh-Hant">缺少的步驟是確認意思。可以請對方提出一項疑慮或風險，並提供私下或書面回覆的管道。同意、禮貌與猶豫，從外表看來可能很相似。</span></p>
+<p class="hint"><b>中文邏輯</b><span>訊號不等於完整意思；先確認對方怎麼理解，再把決定說清楚。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A company introduces an open-door policy, but employees still hesitate to challenge senior staff. What repeated management actions could make the policy credible, and what evidence would show that speaking up has become safer?<span class="zh-full" lang="zh-Hant">公司推出開放溝通政策，員工仍不敢質疑資深者。主管可以持續採取哪些行動，讓政策可信？哪些證據能顯示發言變得更安全？</span></p><p class="note-small">Study scenario.<span class="zh-full" lang="zh-Hant">學習情境。</span></p></aside><h2 id="dimensions">2. Five dimensions: definition and application<span class="zh-full" lang="zh-Hant">2. 五個構面：定義與應用</span></h2>
+<p>The five main dimensions compare different cultural expectations. The lecture also introduces <b>Indulgence/Restraint</b>: how desires and impulses are regulated.<span class="zh-full" lang="zh-Hant">五個主要構面比較不同的文化期待。課堂也介紹「享樂／克制」（Indulgence/Restraint），指對慾望與衝動的調節方式。</span></p>
+<div class="tbl"><table><thead><tr><th>Dimension<span class="zh-full" lang="zh-Hant">構面</span></th><th>Definition and contrast<span class="zh-full" lang="zh-Hant">定義與高低差異</span></th><th>Workplace example<span class="zh-full" lang="zh-Hant">職場例子</span></th><th>Do not confuse with<span class="zh-full" lang="zh-Hant">不要混淆</span></th></tr></thead><tbody>
+<tr><td><b>Power Distance (PD)</b> <span class="zh">權力距離</span><span class="zh-full" lang="zh-Hant">權力距離（PD）</span></td><td>Acceptance of differences in authority and status.<br/><b>Higher:</b> greater deference to rank.<br/><b>Lower:</b> smaller status differences.<span class="zh-full" lang="zh-Hant">對權威與地位差異的接受程度。較高：更尊重位階。較低：地位差異較小。</span></td><td>A junior employee prefers to question a senior manager privately rather than in a meeting.<span class="zh-full" lang="zh-Hant">資淺員工偏好私下向資深主管提出質疑，而不是在會議上公開提問。</span></td><td>Aggression or technical ability<span class="zh-full" lang="zh-Hant">攻擊性或專業技能</span></td></tr>
+<tr><td><b>Individualism (IDV)</b> <span class="zh">個人／集體</span><span class="zh-full" lang="zh-Hant">個人主義（IDV）</span></td><td>Individual versus group-centered identity and obligations.<br/><b>Higher:</b> personal independence and goals.<br/><b>Lower:</b> belonging, duties and “we.”<span class="zh-full" lang="zh-Hant">以個人或群體為中心的認同與責任。較高：重視個人獨立與目標。較低：重視歸屬、群體義務與「我們」。</span></td><td>Agree whether recognition should emphasize individual ownership, team success or both.<span class="zh-full" lang="zh-Hant">先確認表揚制度要強調個人責任、團隊成果，還是兩者兼顧。</span></td><td>Introversion or refusing teamwork<span class="zh-full" lang="zh-Hant">內向或拒絕團隊合作</span></td></tr>
+<tr><td><b>Uncertainty Avoidance (UA)</b> <span class="zh">不確定性規避</span><span class="zh-full" lang="zh-Hant">不確定性規避（UA）</span></td><td>Preference for structure over ambiguity.<br/><b>Higher:</b> rules, expertise and predictability.<br/><b>Lower:</b> more room for experimentation.<span class="zh-full" lang="zh-Hant">相較於模糊，更偏好明確結構的程度。較高：重視規則、專業與可預期性。較低：給予更多試驗空間。</span></td><td>Before a new process launches, staff ask for clear roles, written procedures and a review point.<span class="zh-full" lang="zh-Hant">新流程上線前，員工要求清楚的角色分工、書面程序與檢討時點。</span></td><td>Hierarchy or J/P preference<span class="zh-full" lang="zh-Hant">階層關係或 J／P 人格偏好</span></td></tr>
+<tr><td><b>Masculinity (MAS)</b> <span class="zh">成就／關懷</span><span class="zh-full" lang="zh-Hant">成就導向／關懷導向（MAS）</span></td><td>Achievement versus care and quality of life.<br/><b>Higher:</b> competition, money and assertiveness.<br/><b>Lower:</b> harmony, care and life quality.<span class="zh-full" lang="zh-Hant">成就相對於關懷與生活品質的取向。較高：重視競爭、金錢與果斷。較低：重視和諧、關懷與生活品質。</span></td><td>A reward discussion balances performance targets with employee well-being and relationships.<span class="zh-full" lang="zh-Hant">討論獎勵時，平衡績效目標、員工福祉與人際關係。</span></td><td>Biological sex, intelligence or EQ<span class="zh-full" lang="zh-Hant">生理性別、智力或 EQ</span></td></tr>
+<tr><td><b>Time Orientation (LTO)</b> <span class="zh">時間取向</span><span class="zh-full" lang="zh-Hant">時間取向（LTO）</span></td><td>Longer-run versus shorter-run focus.<br/><b>Higher:</b> long-term orientation on the index.<br/><b>Lower:</b> shorter-term priorities.<span class="zh-full" lang="zh-Hant">長期相對於短期的關注重點。指數較高：較偏長期導向。指數較低：較重視短期優先事項。</span></td><td>Clarify how an immediate milestone contributes to a longer development plan.<span class="zh-full" lang="zh-Hant">說明眼前的里程碑如何促進較長期的發展計畫。</span></td><td>Planning ability or an MBO deadline<span class="zh-full" lang="zh-Hant">規劃能力或 MBO 的截止期限</span></td></tr>
+</tbody></table></div>
+<div class="pair"><div><b>PD: how is rank accepted?<span class="zh-full" lang="zh-Hant">PD：如何接受位階差異？</span></b><p>Who may challenge whom, and how should disagreement be raised?<span class="zh-full" lang="zh-Hant">誰可以質疑誰？不同意見應如何提出？</span></p></div><div><b>UA: how is uncertainty handled?<span class="zh-full" lang="zh-Hant">UA：如何面對不確定性？</span></b><p>How much structure is needed before people can act?<span class="zh-full" lang="zh-Hant">採取行動之前，需要多少明確結構？</span></p></div></div>
+<div data-mw="culture-sort"></div>
+<h2 id="thai">3. Thai illustrations in the lecture<span class="zh-full" lang="zh-Hant">3. 課堂中的泰國例子</span></h2>
+<div class="tbl"><table><thead><tr><th>Concept<span class="zh-full" lang="zh-Hant">概念</span></th><th>What it illustrates<span class="zh-full" lang="zh-Hant">呈現的文化現象</span></th><th>Management implication<span class="zh-full" lang="zh-Hant">管理上的應用</span></th></tr></thead><tbody>
+<tr><td><b>Sakdi Na; Pi/Nong</b> <span class="zh">等級與長幼</span><span class="zh-full" lang="zh-Hant">Sakdi Na 等級制度；Pi／Nong 長幼關係</span></td><td>Status hierarchy, ranks linked to birth, and senior/junior expectations. The slide dates Sakdi Na to 1454 and abolition to 1932.<span class="zh-full" lang="zh-Hant">地位階層、與出身連結的等級，以及長幼之間的期待。投影片將 Sakdi Na 的起源標為 1454 年，廢除標為 1932 年。</span></td><td>Clarify seniority, approvals and how concerns should be raised<span class="zh-full" lang="zh-Hant">確認資歷、核准權限及提出疑慮的方式。</span></td></tr>
+<tr><td><b>Patron–client</b><span class="zh-full" lang="zh-Hant">庇護者與受庇護者關係</span></td><td>The lecturer describes voluntary, mutually beneficial support across status levels<span class="zh-full" lang="zh-Hant">老師將其描述為跨越地位層級、自願且互利的支持關係。</span></td><td>Understand the expected support and reciprocal obligations<span class="zh-full" lang="zh-Hant">了解彼此期待的支持與相互義務。</span></td></tr>
+<tr><td><b>Jai Yen</b> <span class="zh">沉著／耐心</span><span class="zh-full" lang="zh-Hant">Jai Yen：冷靜與耐心</span></td><td>Restraint, patience, politeness, moderation, win-win solutions, face and harmony; a Buddhist middle-way reference<span class="zh-full" lang="zh-Hant">克制、耐心、禮貌、適度、雙贏解方、面子與和諧，並連結佛教中道觀念。</span></td><td>Offer feedback tactfully and confirm the actual decision<span class="zh-full" lang="zh-Hant">有技巧地提供回饋，並確認實際決定。</span></td></tr>
+<tr><td><b>Jai Ron</b> <span class="zh">心急／急躁</span><span class="zh-full" lang="zh-Hant">Jai Ron：急躁與直接</span></td><td>Visible emotion, direct criticism, confrontation, win-lose emphasis and results/merit over seniority<span class="zh-full" lang="zh-Hant">情緒外顯、直接批評、正面衝突、強調輸贏，並把成果與能力看得比資歷重要。</span></td><td>Be specific about the work and the required result<span class="zh-full" lang="zh-Hant">具體說明工作問題與要求的結果。</span></td></tr>
+<tr><td><b>Sanuk</b> <span class="zh">工作與樂趣</span><span class="zh-full" lang="zh-Hant">Sanuk：樂趣與關係</span></td><td>Enjoyment, freedom, social relationships and “work to live”<span class="zh-full" lang="zh-Hant">享受、自由、人際關係，以及「工作是為了生活」。</span></td><td>Build cooperation through relationships and shared activities<span class="zh-full" lang="zh-Hant">透過人際關係與共同活動建立合作。</span></td></tr>
+</tbody></table></div>
+<p class="note-small">Patron–client reference: Holmes and Tangtongtavy (2003), cited on lecture p.9.<span class="zh-full" lang="zh-Hant">庇護關係文獻：Holmes 與 Tangtongtavy（2003），引自課堂投影片第 9 頁。</span></p>
+<p>The teaching comparisons place Thailand toward hierarchy, collectivism, moderate UA and care/harmony relative to the USA, Britain and Australia. The UA slide also says clear rules may be welcomed while overly restrictive rules are resisted.<span class="zh-full" lang="zh-Hant">課堂比較中，相對於美國、英國與澳洲，泰國較偏向階層、集體主義、中度不確定性規避，以及關懷與和諧。UA 投影片也指出：人們可能歡迎清楚規則，同時抗拒過度限制的規則。</span></p>
+<h2 id="conflict">4. Conflict: different assumptions<span class="zh-full" lang="zh-Hant">4. 對衝突的不同假設</span></h2>
+<div class="pair"><div><b>“Western” assumptions on the slide<span class="zh-full" lang="zh-Hant">投影片中的「西方」假設</span></b><p>Productivity is central. Managed conflict, collaboration and confrontation can improve solutions; face-saving may weaken effectiveness.<span class="zh-full" lang="zh-Hant">生產力是核心。妥善管理衝突、合作與正面討論可以改善解方；過度顧全面子可能削弱成效。</span></p></div><div><b>“Thai” assumptions on the slide<span class="zh-full" lang="zh-Hant">投影片中的「泰國」假設</span></b><p>Harmony, face and boss loyalty matter. Relationships and hierarchy may take priority; unspoken conflict can remain even when confrontation is avoided.<span class="zh-full" lang="zh-Hant">重視和諧、面子與對主管的忠誠。關係與階層可能被優先考量；即使避免正面衝突，未說出口的分歧仍可能存在。</span></p></div></div>
+<p class="note-small">Source: Roongrengsuke and Chansuthus (1998), cited on lecture pp.20–21.<span class="zh-full" lang="zh-Hant">來源：Roongrengsuke 與 Chansuthus（1998），引自課堂投影片第 20–21 頁。</span></p>
+<div class="flow"><span>Invite concerns<span class="zh-full" lang="zh-Hant">邀請提出疑慮</span></span><i>→</i><span>Offer a suitable channel<span class="zh-full" lang="zh-Hant">提供合適管道</span></span><i>→</i><span>Discuss evidence<span class="zh-full" lang="zh-Hant">討論證據</span></span><i>→</i><span>Confirm the decision<span class="zh-full" lang="zh-Hant">確認決定</span></span></div>
+<p class="hint"><b>中文邏輯</b><span>沒有公開衝突，不代表沒有問題；直接討論，也不等於可以羞辱對方。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Two departments avoid open confrontation but continue blocking each other’s work. How could the manager preserve face while surfacing the disagreement, correcting errors and agreeing accountability?<span class="zh-full" lang="zh-Hant">兩個部門避免公開衝突，卻持續阻礙彼此工作。主管如何兼顧面子，同時找出分歧、修正錯誤並確認責任？</span></p><p class="note-small">Study scenario.<span class="zh-full" lang="zh-Hant">學習情境。</span></p></aside><h2 id="time-personality">5. Time orientation and personality<span class="zh-full" lang="zh-Hant">5. 時間取向與人格</span></h2>
+<div class="tbl"><table><thead><tr><th>Lecture illustration<span class="zh-full" lang="zh-Hant">課堂例子</span></th><th>Emphasis<span class="zh-full" lang="zh-Hant">重點</span></th></tr></thead><tbody>
+<tr><td>Japan: longer term<span class="zh-full" lang="zh-Hant">日本：較長期</span></td><td>Thrift, future savings, persistence and connections across time<span class="zh-full" lang="zh-Hant">節儉、為未來儲蓄、堅持，以及跨越時間的連結。</span></td></tr>
+<tr><td>USA/Britain/Australia: shorter term<span class="zh-full" lang="zh-Hant">美國／英國／澳洲：較短期</span></td><td>Task schedules, urgency and getting things done<span class="zh-full" lang="zh-Hant">工作時程、急迫感與完成任務。</span></td></tr>
+<tr><td>Thailand: mixed<span class="zh-full" lang="zh-Hant">泰國：混合取向</span></td><td>Quick results alongside a longer view in Buddhist thinking<span class="zh-full" lang="zh-Hant">追求快速成果，也保有佛教思想中的較長期觀點。</span></td></tr>
+</tbody></table></div>
+<p>Long- and short-term tendencies can coexist. The lecture links the longer view to patience, cycles and less emphasis on immediate goals. In practice, connect persistence toward a longer purpose with milestones for current work.<span class="zh-full" lang="zh-Hant">長期與短期傾向可以並存。課堂將較長遠的觀點連到耐心、循環，以及較不強調立即目標。實務上，可把長期目的與眼前工作的里程碑連起來。</span></p>
+<p><b>Culture and personality operate at different levels.</b> The lecturer suggests I could weaken presumed group orientation and J could strengthen performance emphasis in a Thai example. Use this as an interaction idea: ask how the individual prefers to process information, decide and work with others.<span class="zh-full" lang="zh-Hant">文化與人格作用於不同層次。老師以泰國為例，提出 I 偏好可能減弱預設的群體取向，J 偏好可能強化績效重點。可用這種交互作用來提問：對方偏好如何處理資訊、做決定，以及與他人共事？</span></p>
+<div class="flow"><span>Country norms<span class="zh-full" lang="zh-Hant">國家文化規範</span></span><i>+</i><span>Individual preferences<span class="zh-full" lang="zh-Hant">個人偏好</span></span><i>+</i><span>Workplace situation<span class="zh-full" lang="zh-Hant">工作情境</span></span><i>→</i><span>Observe the actual response<span class="zh-full" lang="zh-Hant">觀察實際回應</span></span></div>
+<p class="hint"><b>中文邏輯</b><span>人格偏好可能影響文化傾向的表現，但不能用四個字母換算國家構面分數。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>An INTJ employee prefers written alternatives but expects major decisions to receive senior approval. Why can both preferences coexist, and what should the manager ask before changing the decision process?<span class="zh-full" lang="zh-Hant">一位 INTJ 員工偏好書面選項，但期待重大決策先經資深者核准。為什麼兩者可以並存？主管調整決策流程前應先問什麼？</span></p><p class="note-small">Study scenario.<span class="zh-full" lang="zh-Hant">學習情境。</span></p></aside><h2 id="countries">6. Read the four-country chart<span class="zh-full" lang="zh-Hant">6. 讀懂四國比較圖</span></h2>
+<div class="tbl"><table><thead><tr><th>Index<span class="zh-full" lang="zh-Hant">指數</span></th><th>China<span class="zh-full" lang="zh-Hant">中國</span></th><th>Russia<span class="zh-full" lang="zh-Hant">俄羅斯</span></th><th>Switzerland<span class="zh-full" lang="zh-Hant">瑞士</span></th><th>Thailand<span class="zh-full" lang="zh-Hant">泰國</span></th></tr></thead><tbody>
+<tr><td>PD</td><td>80</td><td>93</td><td>34</td><td>64</td></tr>
+<tr><td>IDV</td><td>43</td><td>46</td><td>79</td><td>19</td></tr>
+<tr><td>MAS</td><td>66</td><td>36</td><td>70</td><td>34</td></tr>
+<tr><td>UA</td><td>30</td><td>95</td><td>58</td><td>64</td></tr>
+<tr><td>LTO</td><td>77</td><td>58</td><td>42</td><td>67</td></tr>
+</tbody></table></div>
+<p class="note-small">Source: lecturer's four-country comparison, p.25.<span class="zh-full" lang="zh-Hant">來源：老師的四國比較圖，投影片第 25 頁。</span></p>
+<h3 id="pd-ua-map">PD × UA: two different questions<span class="zh-full" lang="zh-Hant">PD × UA：兩個不同的問題</span></h3><figure class="culture-map"><div class="chart-axis-label">Higher UA: more structure and predictability<span class="zh-full" lang="zh-Hant">UA 越高：越重視明確結構與可預期性。</span></div><svg aria-labelledby="pd-ua-title pd-ua-desc" class="pd-ua-chart" role="img" viewbox="0 0 500 310"><title id="pd-ua-title">Power Distance and Uncertainty Avoidance</title><desc id="pd-ua-desc">China: PD 80, UA 30. Russia: PD 93, UA 95. Switzerland: PD 34, UA 58. Thailand: PD 64, UA 64. Higher power distance does not imply the same uncertainty avoidance.</desc><path class="chart-grid" d="M 42.0 30 V 275 M 42 275.0 H 460"></path><text class="chart-tick" text-anchor="middle" x="42.0" y="298">0</text><text class="chart-tick" text-anchor="end" x="31" y="280.0">0</text><path class="chart-grid" d="M 146.5 30 V 275 M 42 213.75 H 460"></path><text class="chart-tick" text-anchor="middle" x="146.5" y="298">25</text><text class="chart-tick" text-anchor="end" x="31" y="218.75">25</text><path class="chart-grid" d="M 251.0 30 V 275 M 42 152.5 H 460"></path><text class="chart-tick" text-anchor="middle" x="251.0" y="298">50</text><text class="chart-tick" text-anchor="end" x="31" y="157.5">50</text><path class="chart-grid" d="M 355.5 30 V 275 M 42 91.25 H 460"></path><text class="chart-tick" text-anchor="middle" x="355.5" y="298">75</text><text class="chart-tick" text-anchor="end" x="31" y="96.25">75</text><path class="chart-grid" d="M 460.0 30 V 275 M 42 29.99999999999997 H 460"></path><text class="chart-tick" text-anchor="middle" x="460.0" y="298">100</text><text class="chart-tick" text-anchor="end" x="31" y="34.99999999999997">100</text><path class="chart-axis" d="M 42 30 V 275 H 460"></path><g><title>China: PD 80, UA 30</title><circle cx="376.4" cy="201.5" fill="#C06C84" r="6"></circle><text class="chart-country" fill="#C06C84" text-anchor="end" x="367.4" y="191.5">China (80, 30)</text></g><g><title>Russia: PD 93, UA 95</title><circle cx="430.73999999999995" cy="42.24999999999997" fill="#9C4862" r="6"></circle><text class="chart-country" fill="#9C4862" text-anchor="end" x="421.73999999999995" y="31.24999999999997">Russia (93, 95)</text></g><g><title>Switzerland: PD 34, UA 58</title><circle cx="184.12" cy="132.89999999999998" fill="#3F5675" r="6"></circle><text class="chart-country" fill="#3F5675" text-anchor="start" x="193.12" y="156.9">Switzerland (34, 58)</text></g><g><title>Thailand: PD 64, UA 64</title><circle cx="309.52" cy="118.19999999999999" fill="#7E6F74" r="6"></circle><text class="chart-country" fill="#7E6F74" text-anchor="start" x="318.52" y="108.19999999999999">Thailand (64, 64)</text></g></svg><figcaption>Horizontal axis: Power Distance →<br/>Country labels show (PD, UA).<span class="zh-full" lang="zh-Hant">橫軸為權力距離（PD），往右越高；國家標籤依序顯示（PD，UA）。</span></figcaption><div class="zh-full chart-zh-key" lang="zh-Hant">圖中標籤（PD，UA）：中國（80，30）、俄羅斯（93，95）、瑞士（34，58）、泰國（64，64）。</div></figure>
+<div data-mw="culture-chart"></div>
+<p><b>Read the contrast:</b> China and Russia both have high PD, yet UA is <b>30 versus 95</b>. Hierarchy and demand for predictability are separate. Switzerland's largest gap from Thailand is IDV: <b>+60 points</b>.<span class="zh-full" lang="zh-Hant">比較重點：中國與俄羅斯的 PD 都高，但 UA 分別為 30 與 95。接受階層與要求可預期性是兩件事。瑞士與泰國最大的差距在 IDV，相差 60 點。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A Swiss boss rewards individual targets while a Thai employee prioritizes helping the team. What expectations should they clarify before treating this as a cultural mismatch, and what actual behavior would support the diagnosis?<span class="zh-full" lang="zh-Hant">瑞士主管獎勵個人目標，泰國員工則優先協助團隊。在判定文化落差之前，雙方應先確認哪些期待？哪些實際行為能支持這個診斷？</span></p><p class="note-small">Study scenario.<span class="zh-full" lang="zh-Hant">學習情境。</span></p></aside><h2 id="bosses">7. Four-boss preparation activity<span class="zh-full" lang="zh-Hant">7. 與四種主管共事的準備活動</span></h2>
+<p>Choose <b>one</b> boss and present how a hypothetical “typical Thai” employee should prepare: <b>Chinese, Russian, Swiss or INTJ Thai</b>. Use a relevant dimension, explain a possible mismatch, and ask about actual expectations.<span class="zh-full" lang="zh-Hant">選擇一位主管，說明假設的「典型泰國」員工應如何準備：中國、俄羅斯、瑞士，或 INTJ 泰國主管。運用相關構面，解釋可能的落差，並詢問實際期待。</span></p>
+<div data-mw="culture-boss"></div>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A colleague stays calm while a project falls behind. What evidence would distinguish self-control, concealed disagreement and job dissatisfaction? How would the distinction change the management response?<span class="zh-full" lang="zh-Hant">同事在專案落後時仍保持冷靜。哪些證據能區分自我調節、隱藏分歧與工作不滿？不同判斷會如何改變管理回應？</span></p><p class="note-small">Study scenario.<span class="zh-full" lang="zh-Hant">學習情境。</span></p></aside><h2 id="traps">8. Do not mix these up<span class="zh-full" lang="zh-Hant">8. 易混淆概念</span></h2>
+<div class="traps"><div><s>PD 80 means 80% of managers are authoritarian.<span class="zh-full" lang="zh-Hant">PD 80 代表八成主管都很專制。</span></s><p>PD is a country-level index of accepted authority differences, not a percentage or a personal score.<span class="zh-full" lang="zh-Hant">PD 是國家層次、反映權威差異接受程度的指數，不是百分比，也不是個人分數。</span></p></div><div><s>High context and high PD describe the same thing.<span class="zh-full" lang="zh-Hant">高情境與高權力距離描述的是同一件事。</span></s><p>Context asks where meaning comes from; PD asks how authority differences are accepted. Reading a smile and challenging a boss are different questions.<span class="zh-full" lang="zh-Hant">情境問的是意思從何而來；PD 問的是如何接受權威差異。解讀微笑與能否質疑主管，是不同問題。</span></p></div><div><s>High PD means high UA.<span class="zh-full" lang="zh-Hant">PD 高，UA 就一定高。</span></s><p>PD concerns rank; UA concerns ambiguity. China and Russia both have high PD, but their UA scores are 30 and 95.<span class="zh-full" lang="zh-Hant">PD 關心位階，UA 關心模糊性。中國與俄羅斯的 PD 都高，但 UA 分別為 30 與 95。</span></p></div><div><s>Individualism means introversion or refusing teamwork.<span class="zh-full" lang="zh-Hant">個人主義就是內向，或不願團隊合作。</span></s><p>IDV contrasts individual and group obligations. E/I describes personal energy and processing preferences; individual ownership can coexist with teamwork.<span class="zh-full" lang="zh-Hant">IDV 比較個人與群體的義務；E／I 描述個人的能量與資訊處理偏好。個人責任與團隊合作可以並存。</span></p></div><div><s>Masculinity measures biological sex or emotional skill.<span class="zh-full" lang="zh-Hant">Masculinity 衡量生理性別或情緒能力。</span></s><p>MAS contrasts achievement and assertiveness with care and quality of life. It is a cultural value orientation, not a gender or EQ test.<span class="zh-full" lang="zh-Hant">MAS 比較成就與果斷，相對於關懷與生活品質。它是文化價值取向，不是性別或 EQ 測驗。</span></p></div><div><s>Long-term orientation means better planning.<span class="zh-full" lang="zh-Hant">長期導向代表比較會規劃。</span></s><p>LTO compares time horizons. A short-term deadline is a task requirement; it does not measure a worker’s cultural orientation.<span class="zh-full" lang="zh-Hant">LTO 比較時間範圍。短期截止日是工作要求，不能用來衡量員工的文化取向。</span></p></div><div><s>A calm employee agrees and is satisfied.<span class="zh-full" lang="zh-Hant">員工保持冷靜，就代表同意而且滿意。</span></s><p>Calm conduct can coexist with unspoken conflict. Check the employee’s meaning, concerns and work attitudes before treating silence as agreement.<span class="zh-full" lang="zh-Hant">冷靜的表現也可能伴隨未說出口的衝突。把沉默當成同意之前，應先確認對方的意思、疑慮與工作態度。</span></p></div><div><s>INTJ identifies a manager’s Hofstede scores.<span class="zh-full" lang="zh-Hant">知道主管是 INTJ，就能判定他的 Hofstede 分數。</span></s><p>INTJ describes individual preferences; country indices describe shared patterns. Use both to frame questions, then check the person’s actual expectations.<span class="zh-full" lang="zh-Hant">INTJ 描述個人偏好；國家指數描述群體模式。兩者可用來提出問題，再確認對方的實際期待。</span></p></div></div>
+<h2 id="coldcall">9. Cold call practice<span class="zh-full" lang="zh-Hant">9. 課堂問答練習</span></h2>
+<div class="qa-tools"><button id="qaAll" type="button">Show all answers<span class="zh-full" lang="zh-Hant">展開全部答案</span></button></div><div class="qa">
+<details><summary>What is culture, and why can it resist change?<span class="zh-full" lang="zh-Hant">什麼是文化？為什麼文化不容易改變？</span></summary><p>Collective mental programming shaped by shared learning and experience. Early habits and institutions reinforce expectations.<span class="zh-full" lang="zh-Hant">由共同學習與經驗形成的集體心智模式。早期習慣與制度會持續強化既有期待。</span></p></details>
+<details><summary>High context versus low context?<span class="zh-full" lang="zh-Hant">高情境與低情境有何不同？</span></summary><p>High context relies more on shared knowledge and situational cues; low context communicates more explicitly. Neither is inherently better.<span class="zh-full" lang="zh-Hant">高情境較依賴共享知識與情境線索，低情境則把意思表達得更明確，兩者沒有天生優劣。</span></p></details>
+<details><summary>Name the five core dimensions in lecture order.<span class="zh-full" lang="zh-Hant">依課堂順序說出五個核心構面。</span></summary><p>Power Distance, Individualism/Collectivism, Uncertainty Avoidance, Masculinity/Femininity and Time Orientation. Indulgence/Restraint is additional.<span class="zh-full" lang="zh-Hant">權力距離、個人／集體主義、不確定性規避、成就／關懷取向、時間取向；另有享樂／克制構面。</span></p></details>
+<details><summary>What do Jai Yen, Jai Ron and Sanuk illustrate?<span class="zh-full" lang="zh-Hant">Jai Yen、Jai Ron 與 Sanuk 分別呈現什麼？</span></summary><p>Respectively, restraint and harmony; directness, visible emotion and results; enjoyment and relationships in work/life.<span class="zh-full" lang="zh-Hant">依序為克制與和諧；直接、情緒外顯與成果；工作和生活中的樂趣與人際關係。</span></p></details>
+<details><summary>Why can clear rules coexist with resistance to restrictions?<span class="zh-full" lang="zh-Hant">為什麼歡迎清楚規則，也可能抗拒限制？</span></summary><p>Predictability can be helpful while excessive controls still limit freedom. UA does not imply approval of every rule.<span class="zh-full" lang="zh-Hant">可預期性有幫助，但過度控制仍會限制自由。UA 不代表認同每一項規則。</span></p></details>
+<details><summary>Can INTJ establish cultural scores or EQ?<span class="zh-full" lang="zh-Hant">INTJ 能判定文化分數或 EQ 嗎？</span></summary><p>No. Personality preferences, country indices and emotional skills are different constructs.<span class="zh-full" lang="zh-Hant">不能。人格偏好、國家文化指數與情緒能力是不同概念。</span></p></details>
+</div>
+<h2 id="templates">10. Answer templates<span class="zh-full" lang="zh-Hant">10. 答題模板</span></h2>
+<div class="pair"><div><b>Observed case<span class="zh-full" lang="zh-Hant">已觀察到的個案</span></b><p>“The relevant framework is ___. It explains ___. The case shows ___. The gap is ___ because ___. The management issue is ___.”<span class="zh-full" lang="zh-Hant">「相關框架是＿＿，解釋的是＿＿。個案顯示＿＿，由於＿＿而出現＿＿落差，因此管理問題是＿＿。」</span></p></div><div><b>Boss preparation<span class="zh-full" lang="zh-Hant">與主管共事的準備</span></b><p>“The chart places ___ at ___ versus Thailand's ___. The key difference is ___. I would confirm ___, adapt ___ and check ___.”<span class="zh-full" lang="zh-Hant">「圖中＿＿的分數為＿＿，泰國則為＿＿。關鍵差異是＿＿。我會先確認＿＿，調整＿＿，並檢查＿＿。」</span></p></div></div>
+<p class="note-small source">Source: S6 lecture slides, pp.3–26.<span class="zh-full" lang="zh-Hant">來源：S6 課堂投影片第 3–26 頁。</span></p>
+</article></main></div>
+<script>
+/* Shared bilingual feedback: one compact note for the selected answer. */
+window.MgmtZh = {"Study Notes": "學習筆記", "Management": "管理學", "Session 6": "第 6 堂", "Contents": "目錄", "Managing People in Organizations · Session 6": "組織中的人員管理・第 6 堂", "Cross-Cultural Management": "跨文化管理", "Use cultural differences to ask better questions, then adapt to the person and the workplace.": "運用文化差異提出更好的問題，再依對方與工作情境調整做法。", "Chapter map": "章節地圖", "Read the message": "讀懂訊息", "Culture and high/low context": "文化與高／低情境", "Choose a lens": "選擇分析構面", "Five dimensions and Thai illustrations": "五個構面與泰國例子", "Check and adapt": "確認與調整", "Country comparison, boss preparation and case answers": "國家比較、與主管共事的準備及個案作答", "Framework": "框架", "Actual evidence": "實際證據", "Possible gap": "可能的落差", "Adapt and check": "調整並檢查", "1. Culture and communication context": "1. 文化與溝通情境", "In Hofstede's definition, culture is collective mental programming learned through shared education and life experience. Family, institutions and repeated experience turn expectations into habits. A new “speak up” policy can therefore arrive faster than employees' willingness to challenge a senior person.": "依 Hofstede 的定義，文化是透過共同教育與生活經驗學得的集體心智模式。家庭、制度與反覆經驗會使期待成為習慣，因此新的「鼓勵發言」政策可能已經推出，員工卻還沒準備好質疑資深者。", "Use cultural patterns to identify expectations; use actual behavior to explain the person.": "用文化模式辨認期待，再用實際行為理解個人。", "High context": "高情境", "Words": "話語", "Relationship": "關係", "Situation and tone": "情境與語氣", "Meaning depends heavily on shared context.": "訊息的意思高度依賴雙方共享的情境。", "Lecture examples: Thai smile and Wai.": "課堂例子：泰式微笑與合十禮（Wai）。", "Low context": "低情境", "Explicit words": "明確的話語", "Clear detail": "清楚的細節", "Message": "訊息", "More of the meaning is stated directly.": "更多意思直接透過話語說清楚。", "Lecture example: USA.": "課堂例子：美國。", "How a message gets misread": "訊息如何被誤解", "Boss asks": "主管詢問", "“Any objections?”": "「有任何異議嗎？」", "Employee responds": "員工回應", "A smile and silence.": "微笑，然後保持沉默。", "Boss assumes": "主管認為", "“Everyone agrees.”": "「大家都同意。」", "The missing step is checking meaning. Ask for one concern or risk, and offer a private or written reply. Agreement, politeness and hesitation can look similar from the outside.": "缺少的步驟是確認意思。可以請對方提出一項疑慮或風險，並提供私下或書面回覆的管道。同意、禮貌與猶豫，從外表看來可能很相似。", "2. Five dimensions: definition and application": "2. 五個構面：定義與應用", "The five main dimensions compare different cultural expectations. The lecture also introduces Indulgence/Restraint: how desires and impulses are regulated.": "五個主要構面比較不同的文化期待。課堂也介紹「享樂／克制」（Indulgence/Restraint），指對慾望與衝動的調節方式。", "Dimension": "構面", "Definition and contrast": "定義與高低差異", "Workplace example": "職場例子", "Do not confuse with": "不要混淆", "Power Distance (PD)": "權力距離（PD）", "Acceptance of differences in authority and status. Higher: greater deference to rank. Lower: smaller status differences.": "對權威與地位差異的接受程度。較高：更尊重位階。較低：地位差異較小。", "A junior employee prefers to question a senior manager privately rather than in a meeting.": "資淺員工偏好私下向資深主管提出質疑，而不是在會議上公開提問。", "Aggression or technical ability": "攻擊性或專業技能", "Individualism (IDV)": "個人主義（IDV）", "Individual versus group-centered identity and obligations. Higher: personal independence and goals. Lower: belonging, duties and “we.”": "以個人或群體為中心的認同與責任。較高：重視個人獨立與目標。較低：重視歸屬、群體義務與「我們」。", "Agree whether recognition should emphasize individual ownership, team success or both.": "先確認表揚制度要強調個人責任、團隊成果，還是兩者兼顧。", "Introversion or refusing teamwork": "內向或拒絕團隊合作", "Uncertainty Avoidance (UA)": "不確定性規避（UA）", "Preference for structure over ambiguity. Higher: rules, expertise and predictability. Lower: more room for experimentation.": "相較於模糊，更偏好明確結構的程度。較高：重視規則、專業與可預期性。較低：給予更多試驗空間。", "Before a new process launches, staff ask for clear roles, written procedures and a review point.": "新流程上線前，員工要求清楚的角色分工、書面程序與檢討時點。", "Hierarchy or J/P preference": "階層關係或 J／P 人格偏好", "Masculinity (MAS)": "成就導向／關懷導向（MAS）", "Achievement versus care and quality of life. Higher: competition, money and assertiveness. Lower: harmony, care and life quality.": "成就相對於關懷與生活品質的取向。較高：重視競爭、金錢與果斷。較低：重視和諧、關懷與生活品質。", "A reward discussion balances performance targets with employee well-being and relationships.": "討論獎勵時，平衡績效目標、員工福祉與人際關係。", "Biological sex, intelligence or EQ": "生理性別、智力或 EQ", "Time Orientation (LTO)": "時間取向（LTO）", "Longer-run versus shorter-run focus. Higher: long-term orientation on the index. Lower: shorter-term priorities.": "長期相對於短期的關注重點。指數較高：較偏長期導向。指數較低：較重視短期優先事項。", "Clarify how an immediate milestone contributes to a longer development plan.": "說明眼前的里程碑如何促進較長期的發展計畫。", "Planning ability or an MBO deadline": "規劃能力或 MBO 的截止期限", "PD: how is rank accepted?": "PD：如何接受位階差異？", "Who may challenge whom, and how should disagreement be raised?": "誰可以質疑誰？不同意見應如何提出？", "UA: how is uncertainty handled?": "UA：如何面對不確定性？", "How much structure is needed before people can act?": "採取行動之前，需要多少明確結構？", "3. Thai illustrations in the lecture": "3. 課堂中的泰國例子", "Concept": "概念", "What it illustrates": "呈現的文化現象", "Management implication": "管理上的應用", "Sakdi Na; Pi/Nong": "Sakdi Na 等級制度；Pi／Nong 長幼關係", "Status hierarchy, ranks linked to birth, and senior/junior expectations. The slide dates Sakdi Na to 1454 and abolition to 1932.": "地位階層、與出身連結的等級，以及長幼之間的期待。投影片將 Sakdi Na 的起源標為 1454 年，廢除標為 1932 年。", "Clarify seniority, approvals and how concerns should be raised": "確認資歷、核准權限及提出疑慮的方式。", "Patron–client": "庇護者與受庇護者關係", "The lecturer describes voluntary, mutually beneficial support across status levels": "老師將其描述為跨越地位層級、自願且互利的支持關係。", "Understand the expected support and reciprocal obligations": "了解彼此期待的支持與相互義務。", "Jai Yen": "Jai Yen：冷靜與耐心", "Restraint, patience, politeness, moderation, win-win solutions, face and harmony; a Buddhist middle-way reference": "克制、耐心、禮貌、適度、雙贏解方、面子與和諧，並連結佛教中道觀念。", "Offer feedback tactfully and confirm the actual decision": "有技巧地提供回饋，並確認實際決定。", "Jai Ron": "Jai Ron：急躁與直接", "Visible emotion, direct criticism, confrontation, win-lose emphasis and results/merit over seniority": "情緒外顯、直接批評、正面衝突、強調輸贏，並把成果與能力看得比資歷重要。", "Be specific about the work and the required result": "具體說明工作問題與要求的結果。", "Sanuk": "Sanuk：樂趣與關係", "Enjoyment, freedom, social relationships and “work to live”": "享受、自由、人際關係，以及「工作是為了生活」。", "Build cooperation through relationships and shared activities": "透過人際關係與共同活動建立合作。", "Patron–client reference: Holmes and Tangtongtavy (2003), cited on lecture p.9.": "庇護關係文獻：Holmes 與 Tangtongtavy（2003），引自課堂投影片第 9 頁。", "The teaching comparisons place Thailand toward hierarchy, collectivism, moderate UA and care/harmony relative to the USA, Britain and Australia. The UA slide also says clear rules may be welcomed while overly restrictive rules are resisted.": "課堂比較中，相對於美國、英國與澳洲，泰國較偏向階層、集體主義、中度不確定性規避，以及關懷與和諧。UA 投影片也指出：人們可能歡迎清楚規則，同時抗拒過度限制的規則。", "4. Conflict: different assumptions": "4. 對衝突的不同假設", "“Western” assumptions on the slide": "投影片中的「西方」假設", "Productivity is central. Managed conflict, collaboration and confrontation can improve solutions; face-saving may weaken effectiveness.": "生產力是核心。妥善管理衝突、合作與正面討論可以改善解方；過度顧全面子可能削弱成效。", "“Thai” assumptions on the slide": "投影片中的「泰國」假設", "Harmony, face and boss loyalty matter. Relationships and hierarchy may take priority; unspoken conflict can remain even when confrontation is avoided.": "重視和諧、面子與對主管的忠誠。關係與階層可能被優先考量；即使避免正面衝突，未說出口的分歧仍可能存在。", "Source: Roongrengsuke and Chansuthus (1998), cited on lecture pp.20–21.": "來源：Roongrengsuke 與 Chansuthus（1998），引自課堂投影片第 20–21 頁。", "Invite concerns": "邀請提出疑慮", "Offer a suitable channel": "提供合適管道", "Discuss evidence": "討論證據", "Confirm the decision": "確認決定", "5. Time orientation and personality": "5. 時間取向與人格", "Lecture illustration": "課堂例子", "Emphasis": "重點", "Japan: longer term": "日本：較長期", "Thrift, future savings, persistence and connections across time": "節儉、為未來儲蓄、堅持，以及跨越時間的連結。", "USA/Britain/Australia: shorter term": "美國／英國／澳洲：較短期", "Task schedules, urgency and getting things done": "工作時程、急迫感與完成任務。", "Thailand: mixed": "泰國：混合取向", "Quick results alongside a longer view in Buddhist thinking": "追求快速成果，也保有佛教思想中的較長期觀點。", "Long- and short-term tendencies can coexist. The lecture links the longer view to patience, cycles and less emphasis on immediate goals. In practice, connect persistence toward a longer purpose with milestones for current work.": "長期與短期傾向可以並存。課堂將較長遠的觀點連到耐心、循環，以及較不強調立即目標。實務上，可把長期目的與眼前工作的里程碑連起來。", "Culture and personality operate at different levels. The lecturer suggests I could weaken presumed group orientation and J could strengthen performance emphasis in a Thai example. Use this as an interaction idea: ask how the individual prefers to process information, decide and work with others.": "文化與人格作用於不同層次。老師以泰國為例，提出 I 偏好可能減弱預設的群體取向，J 偏好可能強化績效重點。可用這種交互作用來提問：對方偏好如何處理資訊、做決定，以及與他人共事？", "Country norms": "國家文化規範", "Individual preferences": "個人偏好", "Workplace situation": "工作情境", "Observe the actual response": "觀察實際回應", "6. Read the four-country chart": "6. 讀懂四國比較圖", "Index": "指數", "China": "中國", "Russia": "俄羅斯", "Switzerland": "瑞士", "Thailand": "泰國", "Source: lecturer's four-country comparison, p.25.": "來源：老師的四國比較圖，投影片第 25 頁。", "PD × UA: two different questions": "PD × UA：兩個不同的問題", "Higher UA: more structure and predictability": "UA 越高：越重視明確結構與可預期性。", "Horizontal axis: Power Distance → Country labels show (PD, UA).": "橫軸為權力距離（PD），往右越高；國家標籤依序顯示（PD，UA）。", "Read the contrast: China and Russia both have high PD, yet UA is 30 versus 95. Hierarchy and demand for predictability are separate. Switzerland's largest gap from Thailand is IDV: +60 points.": "比較重點：中國與俄羅斯的 PD 都高，但 UA 分別為 30 與 95。接受階層與要求可預期性是兩件事。瑞士與泰國最大的差距在 IDV，相差 60 點。", "7. Four-boss preparation activity": "7. 與四種主管共事的準備活動", "Choose one boss and present how a hypothetical “typical Thai” employee should prepare: Chinese, Russian, Swiss or INTJ Thai. Use a relevant dimension, explain a possible mismatch, and ask about actual expectations.": "選擇一位主管，說明假設的「典型泰國」員工應如何準備：中國、俄羅斯、瑞士，或 INTJ 泰國主管。運用相關構面，解釋可能的落差，並詢問實際期待。", "8. Do not mix these up": "8. 易混淆概念", "Group index / person": "群體指數／個人", "A country score cannot diagnose one manager.": "不能用國家分數直接判斷一位主管。", "Context / PD": "情境／權力距離", "How meaning travels differs from acceptance of hierarchy.": "意思如何傳遞，與是否接受階層不同。", "PD / UA": "權力距離／不確定性規避", "Authority and ambiguity are separate questions.": "權威與模糊性是不同問題。", "Calm / agreement": "冷靜／同意", "Face-saving can coexist with unspoken conflict.": "顧全面子與未說出口的衝突可以同時存在。", "MAS / sex": "成就取向／生理性別", "The index names values, not biological sex.": "這個指數描述價值取向，不是生理性別。", "Possible gap / event": "可能的落差／已發生的事件", "The boss role-play supplies a scenario, not a conflict that already occurred.": "主管角色扮演提供的是假設情境，不是已經發生的衝突。", "9. Cold call practice": "9. 課堂問答練習", "Show all answers": "展開全部答案", "Hide all answers": "收合全部答案", "What is culture, and why can it resist change?": "什麼是文化？為什麼文化不容易改變？", "Collective mental programming shaped by shared learning and experience. Early habits and institutions reinforce expectations.": "由共同學習與經驗形成的集體心智模式。早期習慣與制度會持續強化既有期待。", "High context versus low context?": "高情境與低情境有何不同？", "High context relies more on shared knowledge and situational cues; low context communicates more explicitly. Neither is inherently better.": "高情境較依賴共享知識與情境線索，低情境則把意思表達得更明確，兩者沒有天生優劣。", "Name the five core dimensions in lecture order.": "依課堂順序說出五個核心構面。", "Power Distance, Individualism/Collectivism, Uncertainty Avoidance, Masculinity/Femininity and Time Orientation. Indulgence/Restraint is additional.": "權力距離、個人／集體主義、不確定性規避、成就／關懷取向、時間取向；另有享樂／克制構面。", "What do Jai Yen, Jai Ron and Sanuk illustrate?": "Jai Yen、Jai Ron 與 Sanuk 分別呈現什麼？", "Respectively, restraint and harmony; directness, visible emotion and results; enjoyment and relationships in work/life.": "依序為克制與和諧；直接、情緒外顯與成果；工作和生活中的樂趣與人際關係。", "Why can clear rules coexist with resistance to restrictions?": "為什麼歡迎清楚規則，也可能抗拒限制？", "Predictability can be helpful while excessive controls still limit freedom. UA does not imply approval of every rule.": "可預期性有幫助，但過度控制仍會限制自由。UA 不代表認同每一項規則。", "Can INTJ establish cultural scores or EQ?": "INTJ 能判定文化分數或 EQ 嗎？", "No. Personality preferences, country indices and emotional skills are different constructs.": "不能。人格偏好、國家文化指數與情緒能力是不同概念。", "10. Answer templates": "10. 答題模板", "Observed case": "已觀察到的個案", "“The relevant framework is ___. It explains ___. The case shows ___. The gap is ___ because ___. The management issue is ___.”": "「相關框架是＿＿，解釋的是＿＿。個案顯示＿＿，由於＿＿而出現＿＿落差，因此管理問題是＿＿。」", "Boss preparation": "與主管共事的準備", "“The chart places ___ at ___ versus Thailand's ___. The key difference is ___. I would confirm ___, adapt ___ and check ___.”": "「圖中＿＿的分數為＿＿，泰國則為＿＿。關鍵差異是＿＿。我會先確認＿＿，調整＿＿，並檢查＿＿。」", "Source: S6 lecture slides, pp.3–26.": "來源：S6 課堂投影片第 3–26 頁。", "Classify": "分類練習", "Choose the relevant lens": "選擇最相關的分析構面", "Read the situation, then choose the concept that best explains the stated cue.": "閱讀情境，再選擇最能解釋題目線索的概念。", "Next": "下一題", "Uncertainty Avoidance": "不確定性規避", "Power Distance": "權力距離", "Individualism": "個人主義", "Masculinity": "成就導向", "Long-term orientation": "長期導向", "Introversion": "內向偏好", "Time orientation": "時間取向", "Masculinity/Femininity": "成就／關懷取向", "A team asks for written roles and a test plan before trying an unfamiliar system. Which lens most directly addresses this request?": "團隊試用陌生系統前，要求書面角色分工與測試計畫。哪個構面最直接對應這項要求？", "Staff say it is inappropriate to contradict a senior manager because of rank. Which lens is most direct?": "員工認為，由於位階不同，不應反駁資深主管。哪個構面最直接相關？", "A message cannot be understood without knowing the relationship, tone and setting. Which concept fits?": "若不知道關係、語氣與場合，就無法理解一則訊息。哪個概念最符合？", "A team values individual ownership and personal achievement over obligations to the group. Which dimension addresses the I-versus-we distinction?": "團隊把個人責任與個人成就看得比群體義務重要。哪個構面處理「我與我們」的差別？", "A manager chooses a competitive earnings target over an initiative focused on care and quality of life. Which cultural value contrast is most relevant?": "主管選擇競爭性的獲利目標，沒有採用重視關懷與生活品質的方案。哪組文化價值差異最相關？", "Interactive · Compare with Thailand": "互動：與泰國比較", "Comparison country": "比較國家", "Long-Term Orientation (LTO)": "長期取向（LTO）", "Interactive · Four-boss preparation": "互動：與四種主管共事的準備", "Chinese": "中國主管", "Russian": "俄羅斯主管", "Swiss": "瑞士主管", "INTJ Thai": "INTJ 泰國主管", "Starting contrast:": "比較起點：", "Preparation:": "準備方向：", "Ask:": "提問：", "Check:": "檢查：", "MAS 66 vs. 34; UA 30 vs. 64.": "MAS 為 66 對 34；UA 為 30 對 64。", "Clarify performance priorities, decision speed and how much discretion is expected.": "確認績效優先事項、決策速度，以及預期的自主裁量空間。", "How should I report a performance problem, and which decisions can I make with incomplete information?": "應如何回報績效問題？資訊不完整時，哪些決定可以自行處理？", "Check agreed targets, decision rights and whether rework or delays fall.": "檢查雙方約定的目標、決策權限，以及返工或延誤是否減少。", "PD 93 vs. 64; UA 95 vs. 64.": "PD 為 93 對 64；UA 為 95 對 64。", "Confirm approval responsibilities, written standards and escalation rules.": "確認核准責任、書面標準與向上呈報規則。", "Which decisions need approval, and what documentation is expected before implementation?": "哪些決定需要核准？執行前應準備哪些文件？", "Check approval clarity, avoidable revisions and escalation timeliness.": "檢查核准權限是否清楚、可避免的修改，以及向上呈報是否及時。", "IDV 79 vs. 19; MAS 70 vs. 34; PD 34 vs. 64.": "IDV 為 79 對 19；MAS 為 70 對 34；PD 為 34 對 64。", "Clarify individual ownership, performance criteria and expectations for evidence-based input.": "確認個人責任、績效標準，以及如何依證據提出意見。", "How independently should I take responsibility, and how should I challenge a proposal?": "應獨立承擔多少責任？對提案有異議時，應如何提出？", "Check ownership, accepted feedback channels and reliable follow-through.": "檢查責任歸屬、雙方接受的回饋管道，以及後續執行是否可靠。", "Individual preferences alongside the Thai cultural context.": "同時考慮個人偏好與泰國文化情境。", "Prepare structured strategic alternatives, then verify this person’s actual preferences.": "準備有結構的策略選項，再確認這位主管的實際偏好。", "How do you prefer to review options, decide and receive updates?": "你偏好如何檢視選項、做決定與接收進度？", "Check whether the agreed format improves decisions and coordination.": "檢查雙方約定的溝通格式是否改善決策與協調。", "Study scenario.": "學習情境。", "Written roles and a test plan create predictability before an unfamiliar task, addressing uncertainty and ambiguity.": "書面分工與測試計畫讓陌生任務更可預期，直接處理不確定性與模糊。", "Power Distance concerns authority and acceptance of rank differences; the request does not identify who should decide.": "權力距離關心權威與是否接受位階差異；這項要求沒有指出由誰決定。", "Individualism concerns personal versus group priorities; wanting a plan does not identify that preference.": "個人主義關心個人與群體的優先順序；要求計畫本身看不出這種偏好。", "Masculinity concerns achievement and assertiveness versus care and quality of life; the cue here is rank.": "成就導向比較成就、果斷與關懷、生活品質；這題的線索是位階。", "The stated objection is to contradicting a senior person because of rank, directly linking to acceptance of unequal authority.": "反對的理由是對方較資深、位階較高，直接連到對不平等權威的接受。", "Low context emphasizes explicit messages; the issue here is the right to challenge authority, not where a message gets its meaning.": "低情境強調明確訊息；此題關心能否挑戰權威，而不是訊息的意思從何而來。", "Meaning depends on the relationship, tone and setting, which is the defining cue for High context.": "訊息意思取決於關係、語氣與場合，正是高情境的核心線索。", "Uncertainty Avoidance concerns comfort with ambiguity and unpredictability; the question asks where meaning comes from.": "不確定性規避關心對模糊與不可預期的接受程度；此題問的是意思從何而來。", "Long-term orientation concerns priorities across time; no future-versus-present choice appears here.": "長期導向關心不同時間範圍的優先事項；此題沒有未來與現在的取捨。", "Power Distance concerns unequal authority; the question contrasts individual with group priorities.": "權力距離關心不平等的權威；此題比較的是個人與群體優先事項。", "The I-versus-we contrast directly concerns individual ownership and obligations to the group.": "「我與我們」的差別，直接涉及個人責任與對群體的義務。", "Introversion is an individual personality preference concerning inward focus; it is separate from a cultural I-versus-we value.": "內向是偏重內在處理的個人人格偏好，與文化上的個人／群體價值不同。", "Uncertainty Avoidance concerns ambiguity and predictability; the choice here compares achievement with care.": "不確定性規避關心模糊與可預期性；這題比較的是成就與關懷。", "Time orientation concerns present and future priorities; no time-horizon contrast is stated.": "時間取向關心現在與未來的優先事項；此題沒有時間範圍的對比。", "Competitive earnings versus care and quality of life directly matches the Masculinity/Femininity value contrast.": "競爭性獲利與關懷、生活品質的對比，直接對應成就／關懷取向。"};
+window.MgmtSetText = function(el, en, zh) {
+  el.textContent = en;
+  if (zh === undefined) zh = window.MgmtZh[en.trim()];
+  if (!zh && /^[-+]?\d+ index points vs\. Thailand$/.test(en)) zh = '相較泰國：'+en.split(' ')[0]+' 個指數點';
+  if (!zh) {
+    const m = en.match(/^Item (\d+) of (\d+)(?: · (\d+) \/ (\d+) correct)?$/);
+    if (m) zh = '第 '+m[1]+'／'+m[2]+' 題'+(m[3] ? '・'+m[3]+'／'+m[4]+' 題答對' : '');
+  }
+  if (zh) { const z=document.createElement('span'); z.className='zh-full'; z.lang='zh-Hant'; z.textContent=zh; el.append(z); }
+};
+window.MgmtQuizExplain = function(panel, labels, reasons, correct, chosen) {
+  const ok = chosen === correct;
+  const english = ok ? 'Correct. '+reasons[chosen] : 'Not quite. Best answer: '+labels[correct]+'. '+reasons[chosen];
+  const chinese = ok ? '答對了。'+window.MgmtZh[reasons[chosen]] : '答錯了。正確答案：'+window.MgmtZh[labels[correct]]+'。'+window.MgmtZh[reasons[chosen]];
+  window.MgmtSetText(panel, english, chinese); panel.hidden=false;
+};
+</script>
+<script>
+/* Shared Management classification cards, adapted from the Session 4 quiz. */
+window.MgmtQuiz = function(host, title, instruction, items) {
+  const make = (tag, text, cls) => { const e = document.createElement(tag); if (text) window.MgmtSetText(e, text); if (cls) e.className = cls; return e; };
+  host.classList.add('mw');
+  const head = make('div', null, 'g-head');
+  head.append(make('span', 'Classify', 'g-kicker'), make('h4', title), make('p', instruction));
+  const body = make('div', null, 'mw-body'), question = make('p', null, 'qz-item'), options = make('div', null, 'qz-opts grid2'), note = make('div', null, 'g-note'), nav = make('div', null, 'qz-nav'), count = make('span'), next = make('button', 'Next', 'g-btn');
+  note.setAttribute('aria-live', 'polite'); next.type = 'button';
+  nav.append(count, next); body.append(question, options, note, nav); host.append(head, body);
+  let index = 0, score = 0, done = 0, answered = false;
+  function show() {
+    const item = items[index]; answered = false; window.MgmtSetText(question, item.q); options.replaceChildren(); note.textContent = ''; note.hidden = true;
+    window.MgmtSetText(count, 'Item ' + (index + 1) + ' of ' + items.length + (done ? ' · ' + score + ' / ' + done + ' correct' : ''));
+    item.options.forEach((option, choice) => {
+      const button = make('button', null, 'qz-o'); button.type = 'button'; button.append(make('b', option));
+      button.addEventListener('click', () => {
+        if (answered) return; answered = true; done++; const correct = choice === item.answer; if (correct) score++;
+        options.querySelectorAll('button').forEach((b, i) => { b.classList.toggle('right', i === item.answer); b.setAttribute('aria-disabled', 'true'); });
+        if (!correct) button.classList.add('wrong');
+        window.MgmtQuizExplain(note, item.explanationLabels || item.options, item.explanations, item.answer, choice);
+        window.MgmtSetText(count, 'Item ' + (index + 1) + ' of ' + items.length + ' · ' + score + ' / ' + done + ' correct');
+      });
+      options.append(button);
+    });
+  }
+  next.addEventListener('click', () => { index = (index + 1) % items.length; show(); }); show();
+};
+</script>
+<script>
+(function(){
+ const countries={China:[80,43,66,30,77],Russia:[93,46,36,95,58],Switzerland:[34,79,70,58,42],Thailand:[64,19,34,64,67]};
+ const dimensions=['Power Distance (PD)','Individualism (IDV)','Masculinity (MAS)','Uncertainty Avoidance (UA)','Long-Term Orientation (LTO)'];
+ const create=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined&&text!==null){if(tag==='option'){e.textContent=text;e.dataset.en=text;e.dataset.zh=window.MgmtZh[text]||'';}else window.MgmtSetText(e,text);}if(cls)e.className=cls;return e};
+ function shell(host,title){host.classList.add('mw');host.append(create('p','Interactive · '+title,'mw-label'));const body=create('div');host.append(body);return body}
+ function paragraph(host,label,text){const p=create('p'),b=document.createElement('b');b.textContent=label+' ';p.append(b,document.createTextNode(text));const z=document.createElement('span');z.className='zh-full';z.lang='zh-Hant';z.textContent=window.MgmtZh[label]+' '+window.MgmtZh[text];p.append(z);host.append(p)}
+ const W={};
+ W['culture-chart']=host=>{
+  const body=shell(host,'Compare with Thailand'),controls=create('div',null,'eq-controls'),label=create('label','Comparison country'),select=create('select');select.setAttribute('aria-label','Comparison country');
+  Object.keys(countries).filter(n=>n!=='Thailand').forEach(n=>{const o=create('option',n);o.value=n;select.append(o)});label.append(select);controls.append(label);const rows=create('div',null,'culture-rows');rows.setAttribute('aria-live','polite');body.append(controls,rows);
+  function draw(){rows.replaceChildren();dimensions.forEach((name,i)=>{const row=create('div',null,'culture-row');row.append(create('div',name,'culture-dimension'));[['Thailand',countries.Thailand[i]], [select.value,countries[select.value][i]]].forEach(([country,value],j)=>{const b=create('div',null,'culture-bar'+(j?' comparison':'')),track=create('div',null,'culture-track'),fill=create('i');fill.style.width=value+'%';track.setAttribute('aria-hidden','true');track.append(fill);b.append(create('span',country),track,create('output',String(value)));row.append(b)});const delta=countries[select.value][i]-countries.Thailand[i];row.append(create('div',(delta>0?'+':'')+delta+' index points vs. Thailand','culture-cue'));rows.append(row)})}
+  select.addEventListener('change',draw);draw();
+ };
+ const scenarios=[
+  ['A team asks for written roles and a test plan before trying an unfamiliar system. Which lens most directly addresses this request?',['Uncertainty Avoidance','Power Distance','Individualism'],0,'The request concerns predictability and ambiguity. It does not tell us who should have authority.'],
+  ['Staff say it is inappropriate to contradict a senior manager because of rank. Which lens is most direct?',['Masculinity','Power Distance','Low context'],1,'The stated reason is rank: the employee treats authority differences as important.'],
+  ['A message cannot be understood without knowing the relationship, tone and setting. Which concept fits?',['High context','Uncertainty Avoidance','Long-term orientation'],0,'The issue is where meaning comes from, rather than hierarchy, rules or time horizon.'],
+  ['A team values individual ownership and personal achievement over obligations to the group. Which dimension addresses the I-versus-we distinction?',['Power Distance','Individualism','Introversion'],1,'IDV concerns cultural expectations around individual versus group priorities. Introversion is a separate personality preference.'],
+  ['A manager chooses a competitive earnings target over an initiative focused on care and quality of life. Which cultural value contrast is most relevant?',['Uncertainty Avoidance','Time orientation','Masculinity/Femininity'],2,'MAS contrasts achievement and assertiveness with care and quality of life.']
+ ];
+ const cultureExplanations=[["Written roles and a test plan create predictability before an unfamiliar task, addressing uncertainty and ambiguity.", "Power Distance concerns authority and acceptance of rank differences; the request does not identify who should decide.", "Individualism concerns personal versus group priorities; wanting a plan does not identify that preference."], ["Masculinity concerns achievement and assertiveness versus care and quality of life; the cue here is rank.", "The stated objection is to contradicting a senior person because of rank, directly linking to acceptance of unequal authority.", "Low context emphasizes explicit messages; the issue here is the right to challenge authority, not where a message gets its meaning."], ["Meaning depends on the relationship, tone and setting, which is the defining cue for High context.", "Uncertainty Avoidance concerns comfort with ambiguity and unpredictability; the question asks where meaning comes from.", "Long-term orientation concerns priorities across time; no future-versus-present choice appears here."], ["Power Distance concerns unequal authority; the question contrasts individual with group priorities.", "The I-versus-we contrast directly concerns individual ownership and obligations to the group.", "Introversion is an individual personality preference concerning inward focus; it is separate from a cultural I-versus-we value."], ["Uncertainty Avoidance concerns ambiguity and predictability; the choice here compares achievement with care.", "Time orientation concerns present and future priorities; no time-horizon contrast is stated.", "Competitive earnings versus care and quality of life directly matches the Masculinity/Femininity value contrast."]];
+ W['culture-sort']=host=>window.MgmtQuiz(host,'Choose the relevant lens','Read the situation, then choose the concept that best explains the stated cue.',scenarios.map((v,i)=>({q:v[0],options:v[1],answer:v[2],why:v[3],explanations:cultureExplanations[i]})));
+ const bosses=[
+ ['Chinese','MAS 66 vs. 34; UA 30 vs. 64.','Clarify performance priorities, decision speed and how much discretion is expected.','How should I report a performance problem, and which decisions can I make with incomplete information?','Check agreed targets, decision rights and whether rework or delays fall.'],
+ ['Russian','PD 93 vs. 64; UA 95 vs. 64.','Confirm approval responsibilities, written standards and escalation rules.','Which decisions need approval, and what documentation is expected before implementation?','Check approval clarity, avoidable revisions and escalation timeliness.'],
+ ['Swiss','IDV 79 vs. 19; MAS 70 vs. 34; PD 34 vs. 64.','Clarify individual ownership, performance criteria and expectations for evidence-based input.','How independently should I take responsibility, and how should I challenge a proposal?','Check ownership, accepted feedback channels and reliable follow-through.'],
+ ['INTJ Thai','Individual preferences alongside the Thai cultural context.','Prepare structured strategic alternatives, then verify this person’s actual preferences.','How do you prefer to review options, decide and receive updates?','Check whether the agreed format improves decisions and coordination.']
+ ];
+ W['culture-boss']=host=>{const body=shell(host,'Four-boss preparation'),controls=create('div',null,'eq-controls culture-roles'),panel=create('div',null,'eq-result culture-compact');panel.setAttribute('aria-live','polite');body.append(controls,panel);bosses.forEach(v=>{const b=create('button',v[0]);b.type='button';b.addEventListener('click',()=>{controls.querySelectorAll('button').forEach(n=>n.setAttribute('aria-pressed',String(n===b)));panel.replaceChildren();paragraph(panel,'Starting contrast:',v[1]);paragraph(panel,'Preparation:',v[2]);paragraph(panel,'Ask:',v[3]);paragraph(panel,'Check:',v[4])});controls.append(b)});controls.firstChild.click()};
+ const header=document.querySelector('.top');function measureHeader(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}if('ResizeObserver'in window)new ResizeObserver(measureHeader).observe(header);measureHeader();
+ window.MgmtWidgets={mount(root){root.querySelectorAll('[data-mw]').forEach(host=>{if(!host.dataset.ready&&W[host.dataset.mw]){host.dataset.ready='1';W[host.dataset.mw](host)}})}};
+})();
+</script>
+<script>
+(function () {
+  const toc = document.getElementById('toc'), rail = document.getElementById('rail');
+  const hs = [...document.querySelectorAll('.doc > h2, .doc > h3')];
+  hs.forEach(h => {
+    const li = document.createElement('li'); li.className = h.tagName.toLowerCase(); li.dataset.id = h.id;
+    const a = document.createElement('a'); a.href = '#' + h.id; a.textContent = h.childNodes[0].textContent.trim(); const z=h.querySelector(':scope > .zh-full'); if(z)a.append(z.cloneNode(true));
+    li.appendChild(a); toc.appendChild(li);
+  });
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    toc.querySelectorAll('a.on').forEach(a => a.classList.remove('on'));
+    const a = toc.querySelector('li[data-id="' + e.target.id + '"] a'); if (a) a.classList.add('on');
+  }), { rootMargin: '-80px 0px -70% 0px' });
+  hs.forEach(h => spy.observe(h));
+
+  const tb = document.getElementById('tocBtn');
+  tb.addEventListener('click', () => { const o = rail.classList.toggle('open'); tb.setAttribute('aria-expanded', o); });
+  toc.addEventListener('click', e => { if (e.target.closest('a')) { rail.classList.remove('open'); tb.setAttribute('aria-expanded', false); } });
+
+  const all = document.getElementById('qaAll');
+  if (all) all.addEventListener('click', () => {
+    const ds = document.querySelectorAll('.qa details'), open = ![...ds].every(d => d.open);
+    ds.forEach(d => d.open = open); window.MgmtSetText(all, open ? 'Hide all answers' : 'Show all answers');
+  });
+  document.querySelectorAll('.drill .ans').forEach(s => s.addEventListener('click', () => s.classList.toggle('shown')));
+
+  if (window.EconWidgets) window.EconWidgets.mount(document);
+  if (window.MgmtWidgets) window.MgmtWidgets.mount(document);
+})();
+</script>
+<script>
+(function(){
+ const zh=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+ function syncOptions(){document.querySelectorAll('option[data-en]').forEach(o=>o.textContent=o.dataset.en+(zh.checked&&o.dataset.zh?'／'+o.dataset.zh:''))}
+ function setChinese(on){zh.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';syncOptions()}
+ setChinese(false);zh.addEventListener('change',()=>setChinese(zh.checked));
+ const practice=document.getElementById('practiceToggle'),state=document.getElementById('practiceState'),stateZh=document.getElementById('practiceChinese');
+ practice.addEventListener('click',()=>{const on=practice.getAttribute('aria-pressed')!=='true';practice.setAttribute('aria-pressed',String(on));state.textContent=on?'On':'Off';stateZh.textContent=on?'練習模式：開啟':'練習模式：關閉';document.querySelectorAll('.practice-prompt').forEach(p=>p.hidden=!on)});
+})();
+</script></body></html>

@@ -1,8 +1,9 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Working with Personality Types · Management</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/><title>Working with Personality Types · Management</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
 /* Layout: one light reading column with a sticky chapter rail; deliberately single (light) theme. */
 :root {
@@ -447,6 +448,19 @@ body.show-zh .g-stats .st{align-items:flex-start}
 .practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
 .practice-prompt p{margin:0}
 @media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
+
+.page-tools{display:flex;align-items:center;gap:14px;margin-left:8px;flex-shrink:0}
+.page-tools .topswitch{margin-left:0}
+.page-tools .practice-toggle{font-size:.72rem;padding:5px 10px}
+.page-tools .practice-toggle>.zh-full{display:none!important}
+body.show-zh .page-tools .practice-toggle{white-space:normal}
+.eq-controls label{min-width:0;max-width:100%}
+.eq-controls select{display:block;max-width:100%;margin-top:5px}
+body.show-zh .eq-controls button .zh-full{color:inherit}
+@media(max-width:560px){.top-in .sessions{order:2}.top-in .page-tools{order:3;flex-basis:100%;margin-left:0;justify-content:flex-end;padding-bottom:3px;gap:14px}.top-in .page-tools .topswitch{margin-left:0}.top-in{row-gap:6px}}
+@media print{.page-tools{display:none}}
+
+#why + .six > div > p{margin:0}
 </style><script>
 /* Bilingual content helpers: no text dictionary, observer or page-wide rescan. */
 (function(){
@@ -463,69 +477,57 @@ body.show-zh .g-stats .st{align-items:flex-start}
 
 window.biRichPair=(en,zh)=>en+biPair('',zh);
 </script></head><body>
-
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-<pattern id="dwlHatch" width="6" height="6" patternunits="userSpaceOnUse" patterntransform="rotate(45)">
-<rect width="6" height="6" style="fill:var(--dwl);fill-opacity:.12"></rect><rect width="2.2" height="6" style="fill:var(--dwl);fill-opacity:.75"></rect></pattern></defs></svg>
-
+<svg aria-hidden="true" height="0" style="position:absolute" width="0"><defs>
+<pattern height="6" id="dwlHatch" patterntransform="rotate(45)" patternunits="userSpaceOnUse" width="6">
+<rect height="6" style="fill:var(--dwl);fill-opacity:.12" width="6"></rect><rect height="6" style="fill:var(--dwl);fill-opacity:.75" width="2.2"></rect></pattern></defs></svg>
 <header class="top"><div class="top-in">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="management.html">Management<span class="zh-full" lang="zh-Hant">管理學</span></a><span>/</span><b>Session 1<span class="zh-full" lang="zh-Hant">第 1 堂</span></b></nav>
-  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
-  <nav class="sessions" aria-label="Sessions"><span class="pill" aria-current="page">S1</span><a class="pill" href="management-s2.html">S2</a><a class="pill" href="management-s3.html">S3</a><a class="pill" href="management-s4.html">S4</a></nav>
-<label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label></div></header>
-
+<nav aria-label="Breadcrumb" class="crumbs"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="management.html">Management<span class="zh-full" lang="zh-Hant">管理學</span></a><span>/</span><b>Session 1<span class="zh-full" lang="zh-Hant">第 1 堂</span></b></nav>
+<button aria-expanded="false" class="toc-btn" id="tocBtn" type="button">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
+<nav aria-label="Sessions" class="sessions"><span aria-current="page" class="pill">S1</span><a class="pill" href="management-s2.html">S2</a><a class="pill" href="management-s3.html">S3</a><a class="pill" href="management-s4.html">S4</a></nav>
+<div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input aria-label="顯示完整繁體中文對照" id="zhToggle" role="switch" type="checkbox"/>中文 <span id="zhModeLabel">OFF</span></label><button aria-pressed="false" class="practice-toggle" id="practiceToggle" title="Show or hide short questions within chapters" type="button">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
 <div class="wrap">
-  <aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
-  <main><article class="doc"><div class="hero">
-  <p class="kick">Managing People in Organizations · Session 1<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 1 堂</span></p>
-  <h1>Working with Personality Types<span class="zh-full" lang="zh-Hant">與不同人格類型共事</span></h1>
-  <p class="lead">Performance is not decided by personality alone. Know your own preferences, see how they create strengths and blind spots, and adapt how you lead, communicate and build teams.<span class="zh-full" lang="zh-Hant">績效並非只由人格決定。了解自己的偏好，看見偏好帶來的優勢與盲點，再調整領導、溝通及組建團隊的方式。</span></p>
-<div class="practice-toolbar"><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div>
+<aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
+<main><article class="doc"><div class="hero">
+<p class="kick">Managing People in Organizations · Session 1<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 1 堂</span></p>
+<h1>Working with Personality Types<span class="zh-full" lang="zh-Hant">與不同人格類型共事</span></h1>
+<p class="lead">Performance is not decided by personality alone. Know your own preferences, see how they create strengths and blind spots, and adapt how you lead, communicate and build teams.<span class="zh-full" lang="zh-Hant">績效並非只由人格決定。了解自己的偏好，看見偏好帶來的優勢與盲點，再調整領導、溝通及組建團隊的方式。</span></p>
 </div>
-
 <h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
 <div class="method"><span>Preference<span class="zh-full" lang="zh-Hant">偏好</span></span><i>→</i><span>Strength<span class="zh-full" lang="zh-Hant">優勢</span></span><i>→</i><span>Blind spot when overused<span class="zh-full" lang="zh-Hant">過度使用時的盲點</span></span><i>→</i><span>Work context<span class="zh-full" lang="zh-Hant">工作情境</span></span><i>→</i><span class="hi">Adaptation<span class="zh-full" lang="zh-Hant">調整與適應</span></span><i>→</i><span>Performance and satisfaction<span class="zh-full" lang="zh-Hant">績效與滿意度</span></span></div>
 <p class="key">Personality type describes preferences, not abilities. Its management value is adaptation, not labeling.<span class="zh-full" lang="zh-Hant">人格類型描述偏好，而非能力。對管理的價值在於調整，而非貼標籤。</span></p>
-
 <!-- 1 -->
 <h2 id="pm">1. What people management is<span class="zh-full" lang="zh-Hant">1. 什麼是人員管理</span></h2>
 <p class="sub">How leaders manage people, teams and the organization to achieve goals and results.<span class="zh-full" lang="zh-Hant">領導者如何管理人員、團隊與組織，以達成目標與成果。</span></p>
 <div class="pair">
-  <div><b>Internal indicators<span class="zh-full" lang="zh-Hant">內部指標</span></b><p>Staff turnover <span class="zh">離職率</span>, satisfaction, morale <span class="zh">士氣</span>, absenteeism <span class="zh">缺勤</span>.<span class="zh-full" lang="zh-Hant">員工流動、滿意度、士氣、缺勤。</span></p></div>
-  <div><b>Outcome indicators<span class="zh-full" lang="zh-Hant">成果指標</span></b><p>Productivity and performance, profit, survival, customer satisfaction.<span class="zh-full" lang="zh-Hant">生產力與績效、利潤、存續、顧客滿意度。</span></p></div>
+<div><b>Internal indicators<span class="zh-full" lang="zh-Hant">內部指標</span></b><p>Staff turnover <span class="zh">離職率</span>, satisfaction, morale <span class="zh">士氣</span>, absenteeism <span class="zh">缺勤</span>.<span class="zh-full" lang="zh-Hant">員工流動、滿意度、士氣、缺勤。</span></p></div>
+<div><b>Outcome indicators<span class="zh-full" lang="zh-Hant">成果指標</span></b><p>Productivity and performance, profit, survival, customer satisfaction.<span class="zh-full" lang="zh-Hant">生產力與績效、利潤、存續、顧客滿意度。</span></p></div>
 </div>
 <h3 id="model">People Management Performance Model<span class="zh-full" lang="zh-Hant">人員管理績效模型</span></h3>
 <div class="cf">
-  <div class="cf-in"><span>Leader: personality, beliefs and values, knowledge and experience<span class="zh-full" lang="zh-Hant">領導者：人格、信念與價值觀、知識及經驗</span></span><span>People<span class="zh-full" lang="zh-Hant">人員</span></span><span>Work culture<span class="zh-full" lang="zh-Hant">工作文化</span></span><span>Work process<span class="zh-full" lang="zh-Hant">工作流程</span></span></div>
-  <i>→</i>
-  <div class="cf-out">Performance + satisfaction<span class="zh-full" lang="zh-Hant">績效＋滿意度</span></div>
+<div class="cf-in"><span>Leader: personality, beliefs and values, knowledge and experience<span class="zh-full" lang="zh-Hant">領導者：人格、信念與價值觀、知識及經驗</span></span><span>People<span class="zh-full" lang="zh-Hant">人員</span></span><span>Work culture<span class="zh-full" lang="zh-Hant">工作文化</span></span><span>Work process<span class="zh-full" lang="zh-Hant">工作流程</span></span></div>
+<i>→</i>
+<div class="cf-out">Performance + satisfaction<span class="zh-full" lang="zh-Hant">績效＋滿意度</span></div>
 </div>
 <p class="cf-lab"><span>All inside the work context: national culture, organization, industry</span><span class="zh-full" lang="zh-Hant">以上都置於工作情境之中：國家文化、組織、產業</span></p>
 <p class="hint"><b>中文邏輯</b><span>Lek 常遲到，不能直接判定是「人格問題」；leader、team、流程、文化都可能是原因。</span></p>
 <p>Typical problems from the lecture: Lek often comes to work late; part-time workers are frequently absent; morale is low and nobody does more than asked; Jun keeps rating staff high after being told to raise the standard; a manager cannot get the boss to support a project; conflict slows innovation.<span class="zh-full" lang="zh-Hant">課堂中的典型問題：Lek 經常遲到；兼職人員經常缺勤；士氣低落，沒有人願意多做；Jun 已被要求提高標準，卻仍持續給員工高評分；主管無法取得上司對專案的支持；衝突使創新變慢。</span></p>
 <div class="three">
-  <div class="tcard"><b>Technical skill<span class="zh-full" lang="zh-Hant">技術技能</span></b><p>Doing the specialist work well.<span class="zh-full" lang="zh-Hant">把專業工作做好。</span></p></div>
-  <div class="tcard"><b>Conceptual skill<span class="zh-full" lang="zh-Hant">概念技能</span></b><p>Seeing the whole and analyzing problems.<span class="zh-full" lang="zh-Hant">看見全局並分析問題。</span></p></div>
-  <div class="tcard"><b>Human skill<span class="zh-full" lang="zh-Hant">人際技能</span></b><p>Working with and leading people. Personality type connects mainly here.<span class="zh-full" lang="zh-Hant">與人合作並帶領他人。人格類型主要與這項技能相關。</span></p></div>
+<div class="tcard"><b>Technical skill<span class="zh-full" lang="zh-Hant">技術技能</span></b><p>Doing the specialist work well.<span class="zh-full" lang="zh-Hant">把專業工作做好。</span></p></div>
+<div class="tcard"><b>Conceptual skill<span class="zh-full" lang="zh-Hant">概念技能</span></b><p>Seeing the whole and analyzing problems.<span class="zh-full" lang="zh-Hant">看見全局並分析問題。</span></p></div>
+<div class="tcard"><b>Human skill<span class="zh-full" lang="zh-Hant">人際技能</span></b><p>Working with and leading people. Personality type connects mainly here.<span class="zh-full" lang="zh-Hant">與人合作並帶領他人。人格類型主要與這項技能相關。</span></p></div>
 </div>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Lek repeatedly arrives late. Which evidence would help distinguish an individual issue from work-process, leadership or context factors? What would show that a management response worked?<span class="zh-full" lang="zh-Hant">Lek 經常遲到。要區分個人因素與工作流程、領導或情境因素，還需要哪些證據？如何判斷管理措施是否有效？</span></p></aside>
-
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Lek repeatedly arrives late. Which evidence would help distinguish an individual issue from work-process, leadership or context factors? What would show that a management response worked?<span class="zh-full" lang="zh-Hant">Lek 經常遲到。要區分個人因素與工作流程、領導或情境因素，還需要哪些證據？如何判斷管理措施是否有效？</span></p></aside>
 <!-- 2 -->
 <h2 id="why">2. Why study personality at work<span class="zh-full" lang="zh-Hant">2. 為何在工作中研究人格</span></h2>
 <div class="six">
-  <div><span>1</span><p>Start with your own self-awareness <span class="zh">自我覺察</span>.<span class="zh-full" lang="zh-Hant">先從認識自己開始。</span></p></div>
-  <div><span>2</span><p>Adapt your leadership style to the work context.<span class="zh-full" lang="zh-Hant">依工作情境調整領導風格。</span></p></div>
-  <div><span>3</span><p>Complement your personal capabilities.<span class="zh-full" lang="zh-Hant">補足自己的能力。</span></p></div>
-  <div><span>4</span><p>Balance the composition of work teams.<span class="zh-full" lang="zh-Hant">平衡工作團隊的組成。</span></p></div>
-  <div><span>5</span><p>Adjust yourself to the needs of other people.<span class="zh-full" lang="zh-Hant">依他人的需要調整自己。</span></p></div>
+<div><span>1</span><p>Start with your own self-awareness.<span class="zh-full" lang="zh-Hant">先從認識自己開始。</span></p></div>
+<div><span>2</span><p>Adapt your leadership style to the work context.<span class="zh-full" lang="zh-Hant">依工作情境調整領導風格。</span></p></div>
+<div><span>3</span><p>Complement your personal capabilities.<span class="zh-full" lang="zh-Hant">補足自己的能力。</span></p></div>
+<div><span>4</span><p>Balance the composition of work teams.<span class="zh-full" lang="zh-Hant">平衡工作團隊的組成。</span></p></div>
+<div><span>5</span><p>Adjust yourself to the needs of other people.<span class="zh-full" lang="zh-Hant">依他人的需要調整自己。</span></p></div>
 </div>
 <p class="note-small">Background: Carl Jung; Isabel Briggs Myers (Myers-Briggs Type Indicator, MBTI); David Keirsey. Four dimensions combine into 16 types. The slide calls it the most widely used instrument for selection, career counseling, coaching and team development.<span class="zh-full" lang="zh-Hant">背景人物：Carl Jung、Isabel Briggs Myers（Myers-Briggs Type Indicator，MBTI）、David Keirsey。四個維度組合成 16 種類型。投影片將其稱為在甄選、職涯諮詢、教練與團隊發展中最廣泛使用的工具。</span></p>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A manager wants to use personality types to choose the team member with the highest ability. Why does a preference profile alone not support that decision, and what task evidence should be checked?<span class="zh-full" lang="zh-Hant">主管想用人格類型選出能力最高的隊員。為什麼偏好類型本身不足以支持這個決定？應補看哪些實際工作證據？</span></p></aside>
-
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A manager wants to use personality types to choose the team member with the highest ability. Why does a preference profile alone not support that decision, and what task evidence should be checked?<span class="zh-full" lang="zh-Hant">主管想用人格類型選出能力最高的隊員。為什麼偏好類型本身不足以支持這個決定？應補看哪些實際工作證據？</span></p></aside>
 <!-- 3 -->
 <h2 id="dims">3. The four preference pairs<span class="zh-full" lang="zh-Hant">3. 四組偏好</span></h2>
 <div class="tbl"><table>
@@ -537,14 +539,11 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 <tr><td><b>J / P</b></td><td>How do you prefer to live and work?<span class="zh-full" lang="zh-Hant">你偏好如何生活與工作？</span></td><td>Judging: structure, deadlines, plans, closure. "Settled."<span class="zh-full" lang="zh-Hant">判斷：結構、期限、計畫、定案。「確定下來」。</span></td><td>Perceiving: flexible, spontaneous, options open. "Open-ended."<span class="zh-full" lang="zh-Hant">知覺：彈性、隨機應變、保留選項。「保持開放」。</span></td></tr>
 </tbody></table></div>
 <div class="pair">
-  <div><b>Introvert ≠ shy<span class="zh-full" lang="zh-Hant">內向 ≠ 害羞</span></b><p>E/I is about processing and energy, not social skill. An introvert can present very well.<span class="zh-full" lang="zh-Hant">E／I 談的是處理方式與能量來源，而非社交技巧。內向者也可以很會簡報。</span></p></div>
-  <div><b>Thinking ≠ not caring<span class="zh-full" lang="zh-Hant">思考型 ≠ 不在乎他人</span></b><p>T and F are both rational; they differ in what they weigh first: criteria or people impact.<span class="zh-full" lang="zh-Hant">T 與 F 都是理性的，差別在於先衡量什麼：判準，或對人的影響。</span></p></div>
+<div><b>Introvert ≠ shy<span class="zh-full" lang="zh-Hant">內向 ≠ 害羞</span></b><p>E/I is about processing and energy, not social skill. An introvert can present very well.<span class="zh-full" lang="zh-Hant">E／I 談的是處理方式與能量來源，而非社交技巧。內向者也可以很會簡報。</span></p></div>
+<div><b>Thinking ≠ not caring<span class="zh-full" lang="zh-Hant">思考型 ≠ 不在乎他人</span></b><p>T and F are both rational; they differ in what they weigh first: criteria or people impact.<span class="zh-full" lang="zh-Hant">T 與 F 都是理性的，差別在於先衡量什麼：判準，或對人的影響。</span></p></div>
 </div>
 <div data-mw="mbti"></div>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>One colleague wants a detailed step-by-step plan; another prefers to keep options open as conditions change. Which preference dimension is relevant, and how could a manager combine both contributions without judging competence?<span class="zh-full" lang="zh-Hant">一位同事要清楚的逐步計畫；另一位希望情況變化時仍保留選項。這涉及哪個偏好維度？主管如何整合兩者，而不是評斷誰能力較好？</span></p></aside>
-
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>One colleague wants a detailed step-by-step plan; another prefers to keep options open as conditions change. Which preference dimension is relevant, and how could a manager combine both contributions without judging competence?<span class="zh-full" lang="zh-Hant">一位同事要清楚的逐步計畫；另一位希望情況變化時仍保留選項。這涉及哪個偏好維度？主管如何整合兩者，而不是評斷誰能力較好？</span></p></aside>
 <!-- 4 -->
 <h2 id="overuse">4. Strength overused becomes weakness<span class="zh-full" lang="zh-Hant">4. 優勢過度使用會成為弱點</span></h2>
 <div class="tbl"><table>
@@ -561,65 +560,54 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 </tbody></table></div>
 <p class="key">The problem is usually not the preference itself, but overusing it. Strong N helps strategy but can neglect execution; strong P helps adaptability but can prevent closure.<span class="zh-full" lang="zh-Hant">問題通常不是偏好本身，而是過度使用。強 N 有助策略思考，卻可能忽略執行；強 P 有助適應，卻可能遲遲無法定案。</span></p>
 <div data-mw="overuse"></div>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A manager makes a logically persuasive decision, yet staff feel that their concerns were ignored. Which useful preference might have been overused? What work-context evidence should be checked before making a personality-based diagnosis?<span class="zh-full" lang="zh-Hant">主管的決策邏輯充分，但員工覺得自己的顧慮被忽略。哪一項有用偏好可能被過度使用？在歸因人格之前，還應檢查哪些工作情境證據？</span></p></aside>
-
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A manager makes a logically persuasive decision, yet staff feel that their concerns were ignored. Which useful preference might have been overused? What work-context evidence should be checked before making a personality-based diagnosis?<span class="zh-full" lang="zh-Hant">主管的決策邏輯充分，但員工覺得自己的顧慮被忽略。哪一項有用偏好可能被過度使用？在歸因人格之前，還應檢查哪些工作情境證據？</span></p></aside>
 <h3 id="intp">Reading four letters as one pattern: INTP<span class="zh-full" lang="zh-Hant">把四個字母讀成一個整體模式：INTP</span></h3>
 <p>The lecture's likes and dislikes slide fits an INTP profile. Read the letters together, not separately.<span class="zh-full" lang="zh-Hant">課堂中喜歡與不喜歡的清單符合 INTP 輪廓。要把四個字母一起理解，而非分開看。</span></p>
 <div class="method"><span>I · think internally<span class="zh-full" lang="zh-Hant">I・在內心思考</span></span><i>→</i><span>N · find patterns<span class="zh-full" lang="zh-Hant">N・尋找模式</span></span><i>→</i><span>T · test logic<span class="zh-full" lang="zh-Hant">T・檢驗邏輯</span></span><i>→</i><span>P · keep options open<span class="zh-full" lang="zh-Hant">P・保留選項</span></span></div>
 <div class="pair">
-  <div><b>Combined strength<span class="zh-full" lang="zh-Hant">組合後的優勢</span></b><p>Understanding complex systems and the logic behind them. Likes: research, writing, designing systems, new methods, variety, independence, control over time.<span class="zh-full" lang="zh-Hant">理解複雜系統及其背後邏輯。喜歡：研究、寫作、設計系統、新方法、多樣性、獨立、自主掌控時間。</span></p></div>
-  <div><b>Combined risk<span class="zh-full" lang="zh-Hant">組合後的風險</span></b><p>Deep analysis → more alternatives → delayed closure → weak follow-through. Dislikes: interruptions, long meetings, routines, implementing policies, telling staff what to do, people problems.<span class="zh-full" lang="zh-Hant">深入分析 → 更多替代方案 → 延遲定案 → 後續執行不足。不喜歡：被打斷、冗長會議、例行工作、執行政策、指派員工工作、人際問題。</span></p></div>
+<div><b>Combined strength<span class="zh-full" lang="zh-Hant">組合後的優勢</span></b><p>Understanding complex systems and the logic behind them. Likes: research, writing, designing systems, new methods, variety, independence, control over time.<span class="zh-full" lang="zh-Hant">理解複雜系統及其背後邏輯。喜歡：研究、寫作、設計系統、新方法、多樣性、獨立、自主掌控時間。</span></p></div>
+<div><b>Combined risk<span class="zh-full" lang="zh-Hant">組合後的風險</span></b><p>Deep analysis → more alternatives → delayed closure → weak follow-through. Dislikes: interruptions, long meetings, routines, implementing policies, telling staff what to do, people problems.<span class="zh-full" lang="zh-Hant">深入分析 → 更多替代方案 → 延遲定案 → 後續執行不足。不喜歡：被打斷、冗長會議、例行工作、執行政策、指派員工工作、人際問題。</span></p></div>
 </div>
 <p class="hint"><b>中文邏輯</b><span>不要寫「INTP 討厭開會，所以不適合當主管」；這是把偏好當能力。要寫偏好可能讓哪些情境比較費力，需要怎麼調整。</span></p>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A highly analytical team keeps generating possibilities and postpones a decision. What specific boundary or handoff would preserve good analysis while improving follow-through?<span class="zh-full" lang="zh-Hant">分析能力很強的團隊一直提出新可能性、遲遲不做決定。可以設定什麼具體的決策界線或工作交接，既保留分析品質又改善執行？</span></p></aside>
-
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A highly analytical team keeps generating possibilities and postpones a decision. What specific boundary or handoff would preserve good analysis while improving follow-through?<span class="zh-full" lang="zh-Hant">分析能力很強的團隊一直提出新可能性、遲遲不做決定。可以設定什麼具體的決策界線或工作交接，既保留分析品質又改善執行？</span></p></aside>
 <!-- 5 -->
 <h2 id="teams">5. Adapting and forming better teams<span class="zh-full" lang="zh-Hant">5. 調整自己並組成更好的團隊</span></h2>
 <p class="sub">The course does not ask which type is best. It asks you to adjust to the needs of other people.<span class="zh-full" lang="zh-Hant">課程不是問哪一型最好，而是要求你依他人的需要調整。</span></p>
 <div class="four">
-  <div><b>N</b><p>Generates the big-picture concept.<span class="zh-full" lang="zh-Hant">提出整體概念。</span></p></div>
-  <div><b>S</b><p>Spots missing operational details.<span class="zh-full" lang="zh-Hant">找出遺漏的作業細節。</span></p></div>
-  <div><b>T</b><p>Tests logic and trade-offs.<span class="zh-full" lang="zh-Hant">檢驗邏輯與取捨。</span></p></div>
-  <div><b>F</b><p>Identifies people consequences.<span class="zh-full" lang="zh-Hant">辨識對人的影響。</span></p></div>
-  <div><b>J</b><p>Creates closure and structure.<span class="zh-full" lang="zh-Hant">建立結構並促成定案。</span></p></div>
-  <div><b>P</b><p>Keeps flexibility when conditions change.<span class="zh-full" lang="zh-Hant">情況改變時保持彈性。</span></p></div>
-  <div><b>E</b><p>Brings discussion and action.<span class="zh-full" lang="zh-Hant">帶來討論與行動。</span></p></div>
-  <div><b>I</b><p>Brings reflection and written depth.<span class="zh-full" lang="zh-Hant">帶來反思與深入的書面思考。</span></p></div>
+<div><b>N</b><p>Generates the big-picture concept.<span class="zh-full" lang="zh-Hant">提出整體概念。</span></p></div>
+<div><b>S</b><p>Spots missing operational details.<span class="zh-full" lang="zh-Hant">找出遺漏的作業細節。</span></p></div>
+<div><b>T</b><p>Tests logic and trade-offs.<span class="zh-full" lang="zh-Hant">檢驗邏輯與取捨。</span></p></div>
+<div><b>F</b><p>Identifies people consequences.<span class="zh-full" lang="zh-Hant">辨識對人的影響。</span></p></div>
+<div><b>J</b><p>Creates closure and structure.<span class="zh-full" lang="zh-Hant">建立結構並促成定案。</span></p></div>
+<div><b>P</b><p>Keeps flexibility when conditions change.<span class="zh-full" lang="zh-Hant">情況改變時保持彈性。</span></p></div>
+<div><b>E</b><p>Brings discussion and action.<span class="zh-full" lang="zh-Hant">帶來討論與行動。</span></p></div>
+<div><b>I</b><p>Brings reflection and written depth.<span class="zh-full" lang="zh-Hant">帶來反思與深入的書面思考。</span></p></div>
 </div>
 <p class="key">Balance team composition <span class="zh">團隊組成</span>. The useful question is "which perspective is missing from this discussion?", not "who is difficult?" More diversity helps only when the perspectives fit the task and the team can integrate them.<span class="zh-full" lang="zh-Hant">平衡團隊組成。有用的問題是「這次討論少了哪種觀點？」，而非「誰很難相處？」只有當不同觀點符合任務需要，而且團隊能整合它們時，多樣性才有幫助。</span></p>
 <h3 id="thai">Thailand note<span class="zh-full" lang="zh-Hant">泰國情境補充</span></h3>
 <p>The slide says personality is influenced by national culture. No scientific data on type distribution in Thailand was available; the lecturer <b>suggests</b> F and P may be more common than T and J. Treat this as a suggestion, not a statistic.<span class="zh-full" lang="zh-Hant">投影片指出人格受到國家文化影響。當時沒有泰國類型分布的科學資料；講師提出 F、P 可能比 T、J 常見。請視為一項看法，而非統計事實。</span></p>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A team creates original ideas but misses operational details and deadlines. Which missing perspectives or processes should a leader add? Why is recruiting one person of every personality type not a sufficient solution?<span class="zh-full" lang="zh-Hant">團隊有創意，卻漏掉執行細節與期限。領導者該補上哪些觀點或流程？為什麼找齊每種人格類型各一人仍不是充分的解法？</span></p></aside>
-
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A team creates original ideas but misses operational details and deadlines. Which missing perspectives or processes should a leader add? Why is recruiting one person of every personality type not a sufficient solution?<span class="zh-full" lang="zh-Hant">團隊有創意，卻漏掉執行細節與期限。領導者該補上哪些觀點或流程？為什麼找齊每種人格類型各一人仍不是充分的解法？</span></p></aside>
 <!-- 6 -->
 <h2 id="traps">6. Do not mix these up<span class="zh-full" lang="zh-Hant">6. 不要混淆</span></h2>
 <div class="traps">
-  <div><s>Preference = ability.<span class="zh-full" lang="zh-Hant">偏好＝能力。</span></s><p>People can work against their preference when the context requires it.<span class="zh-full" lang="zh-Hant">當情境需要時，人們可以採取不符合平常偏好的做法。</span></p></div>
-  <div><s>Quiet means Introvert.<span class="zh-full" lang="zh-Hant">安靜就代表內向。</span></s><p>One visible behavior is not enough evidence.<span class="zh-full" lang="zh-Hant">單一可見行為不足以判定。</span></p></div>
-  <div><s>Performance problem = personality problem.<span class="zh-full" lang="zh-Hant">績效問題＝人格問題。</span></s><p>Check leader, people, culture, process and context.<span class="zh-full" lang="zh-Hant">檢查領導者、人員、文化、流程與情境。</span></p></div>
-  <div><s>Every team needs one of each type.<span class="zh-full" lang="zh-Hant">每個團隊都需要每種類型各一人。</span></s><p>Cover the blind spots the task actually needs.<span class="zh-full" lang="zh-Hant">補足任務真正需要處理的盲點。</span></p></div>
-  <div><s>Some types are better managers.<span class="zh-full" lang="zh-Hant">某些類型比較適合當主管。</span></s><p>Effectiveness comes from adaptation.<span class="zh-full" lang="zh-Hant">有效性來自調整與適應。</span></p></div>
-  <div><s>F and P are more common in Thailand.<span class="zh-full" lang="zh-Hant">泰國的 F、P 比較常見。</span></s><p>A lecturer's suggestion, not proven data.<span class="zh-full" lang="zh-Hant">這是講師的看法，沒有已證實的數據。</span></p></div>
+<div><s>Preference = ability.<span class="zh-full" lang="zh-Hant">偏好＝能力。</span></s><p>People can work against their preference when the context requires it.<span class="zh-full" lang="zh-Hant">當情境需要時，人們可以採取不符合平常偏好的做法。</span></p></div>
+<div><s>Quiet means Introvert.<span class="zh-full" lang="zh-Hant">安靜就代表內向。</span></s><p>One visible behavior is not enough evidence.<span class="zh-full" lang="zh-Hant">單一可見行為不足以判定。</span></p></div>
+<div><s>Performance problem = personality problem.<span class="zh-full" lang="zh-Hant">績效問題＝人格問題。</span></s><p>Check leader, people, culture, process and context.<span class="zh-full" lang="zh-Hant">檢查領導者、人員、文化、流程與情境。</span></p></div>
+<div><s>Every team needs one of each type.<span class="zh-full" lang="zh-Hant">每個團隊都需要每種類型各一人。</span></s><p>Cover the blind spots the task actually needs.<span class="zh-full" lang="zh-Hant">補足任務真正需要處理的盲點。</span></p></div>
+<div><s>Some types are better managers.<span class="zh-full" lang="zh-Hant">某些類型比較適合當主管。</span></s><p>Effectiveness comes from adaptation.<span class="zh-full" lang="zh-Hant">有效性來自調整與適應。</span></p></div>
+<div><s>F and P are more common in Thailand.<span class="zh-full" lang="zh-Hant">泰國的 F、P 比較常見。</span></s><p>A lecturer's suggestion, not proven data.<span class="zh-full" lang="zh-Hant">這是講師的看法，沒有已證實的數據。</span></p></div>
 </div>
-
 <!-- 7 -->
 <h2 id="coldcall">7. Cold call practice<span class="zh-full" lang="zh-Hant">7. 課堂口答練習</span></h2>
-<div class="qa-tools"><button type="button" id="qaAll">Show all answers<span class="zh-full" lang="zh-Hant">顯示全部答案</span></button></div>
+<div class="qa-tools"><button id="qaAll" type="button">Show all answers<span class="zh-full" lang="zh-Hant">顯示全部答案</span></button></div>
 <div class="qa">
-  <details><summary>An employee often arrives late. Why not call it a personality problem?<span class="zh-full" lang="zh-Hant">員工常遲到，為何不能直接歸因於人格問題？</span></summary><p>Performance also depends on the leader, other people, work culture, work process and the wider context.<span class="zh-full" lang="zh-Hant">績效也取決於領導者、其他人員、工作文化、工作流程及更廣泛的情境。</span></p></details>
-  <details><summary>Is the main use of personality awareness labeling or adaptation?<span class="zh-full" lang="zh-Hant">認識人格的主要用途是貼標籤，還是調整？</span></summary><p>Adaptation: understanding default preferences so you can adjust how you communicate and work with others.<span class="zh-full" lang="zh-Hant">調整：了解預設偏好，才能改變自己與他人溝通和合作的方式。</span></p></details>
-  <details><summary>An introvert gives excellent presentations. Does that contradict the theory?<span class="zh-full" lang="zh-Hant">內向者簡報非常出色，這與理論矛盾嗎？</span></summary><p>No. Introversion is a preference for internal processing and energy source, not a limit on ability.<span class="zh-full" lang="zh-Hant">不矛盾。內向是內在處理方式與能量來源的偏好，不是能力上限。</span></p></details>
-  <details><summary>Looking at the same sales report, what do S and N notice first?<span class="zh-full" lang="zh-Hant">看同一份銷售報表，S 與 N 會先注意什麼？</span></summary><p>S notices concrete facts and current data; N notices patterns, implications and possibilities.<span class="zh-full" lang="zh-Hant">S 注意具體事實與當前資料；N 注意模式、意涵與可能性。</span></p></details>
-  <details><summary>How would you adapt to an S, F, J colleague?<span class="zh-full" lang="zh-Hant">你會如何調整方式，與 S、F、J 的同事合作？</span></summary><p>Use concrete facts and steps, explain the people impact, and give structure, deadlines, ownership and closure.<span class="zh-full" lang="zh-Hant">提供具體事實與步驟，說明對人的影響，並給予結構、期限、權責歸屬與明確定案。</span></p></details>
-  <details><summary>Why is personality awareness useful for managers?<span class="zh-full" lang="zh-Hant">人格覺察為何對主管有用？</span></summary><p>It helps managers recognize their own blind spots and adapt their communication and leadership to different people and work contexts.<span class="zh-full" lang="zh-Hant">它能幫助主管看見自己的盲點，並因應不同人員與工作情境，調整溝通及領導方式。</span></p></details>
+<details><summary>An employee often arrives late. Why not call it a personality problem?<span class="zh-full" lang="zh-Hant">員工常遲到，為何不能直接歸因於人格問題？</span></summary><p>Performance also depends on the leader, other people, work culture, work process and the wider context.<span class="zh-full" lang="zh-Hant">績效也取決於領導者、其他人員、工作文化、工作流程及更廣泛的情境。</span></p></details>
+<details><summary>Is the main use of personality awareness labeling or adaptation?<span class="zh-full" lang="zh-Hant">認識人格的主要用途是貼標籤，還是調整？</span></summary><p>Adaptation: understanding default preferences so you can adjust how you communicate and work with others.<span class="zh-full" lang="zh-Hant">調整：了解預設偏好，才能改變自己與他人溝通和合作的方式。</span></p></details>
+<details><summary>An introvert gives excellent presentations. Does that contradict the theory?<span class="zh-full" lang="zh-Hant">內向者簡報非常出色，這與理論矛盾嗎？</span></summary><p>No. Introversion is a preference for internal processing and energy source, not a limit on ability.<span class="zh-full" lang="zh-Hant">不矛盾。內向是內在處理方式與能量來源的偏好，不是能力上限。</span></p></details>
+<details><summary>Looking at the same sales report, what do S and N notice first?<span class="zh-full" lang="zh-Hant">看同一份銷售報表，S 與 N 會先注意什麼？</span></summary><p>S notices concrete facts and current data; N notices patterns, implications and possibilities.<span class="zh-full" lang="zh-Hant">S 注意具體事實與當前資料；N 注意模式、意涵與可能性。</span></p></details>
+<details><summary>How would you adapt to an S, F, J colleague?<span class="zh-full" lang="zh-Hant">你會如何調整方式，與 S、F、J 的同事合作？</span></summary><p>Use concrete facts and steps, explain the people impact, and give structure, deadlines, ownership and closure.<span class="zh-full" lang="zh-Hant">提供具體事實與步驟，說明對人的影響，並給予結構、期限、權責歸屬與明確定案。</span></p></details>
+<details><summary>Why is personality awareness useful for managers?<span class="zh-full" lang="zh-Hant">人格覺察為何對主管有用？</span></summary><p>It helps managers recognize their own blind spots and adapt their communication and leadership to different people and work contexts.<span class="zh-full" lang="zh-Hant">它能幫助主管看見自己的盲點，並因應不同人員與工作情境，調整溝通及領導方式。</span></p></details>
 </div>
-
 <h3 id="templates">Answer template<span class="zh-full" lang="zh-Hant">答題模板</span></h3>
 <div class="tbl"><table>
 <tbody>
@@ -627,7 +615,6 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 </tbody></table></div>
 </article></main>
 </div>
-
 <script>
 (function(){
 const $ = (id) => document.getElementById(id);
@@ -642,7 +629,6 @@ const $ = (id) => document.getElementById(id);
  });
 })();
 </script>
-
 <script>/* Management interactive components: Herzberg scale, KPI trap, framework comparator, LMS lens. */
 (function () {
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -762,9 +748,8 @@ const $ = (id) => document.getElementById(id);
 const toggle=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
 const key='study-notes-show-zh';
 function syncOptions(on){document.querySelectorAll('option[data-zh]').forEach(o=>{if(!o.dataset.en)o.dataset.en=o.textContent;o.textContent=o.dataset.en+(on&&o.dataset.zh?'／'+o.dataset.zh:'')})}
-function set(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';syncOptions(on);try{localStorage.setItem(key,on?'1':'0')}catch(e){}}
-let initial=false;try{initial=localStorage.getItem(key)==='1'}catch(e){}
-set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
+function set(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';syncOptions(on);}
+set(false);toggle.addEventListener('change',()=>set(toggle.checked));
 const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
 if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
 })();
