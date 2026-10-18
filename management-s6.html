@@ -5,13 +5,13 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
-/* Layout: one light reading column with a sticky chapter rail; deliberately single (light) theme. */
+/* Layout: one reading column with a sticky chapter rail; colors follow system appearance. */
 :root {
   color-scheme: light;
-  --bg: #FDF9F9; --panel: #F8EEF0; --paper: #FFFFFF; --tint: #FAE9ED; --line: #EFDDE2;
-  --fg: #2F282B; --muted: #7E6F74; --accent: #C06C84; --accent-ink: #9C4862;
-  --demand: #3F5675; --supply: #C06C84; --ext: #6E3F55; --world: #8A7A5C; --policy: #3F7F7A;
-  --cs: #A7CDB6; --ps: #B2C4E3; --dwl: #D9674F; --rev: #E5C171; --rev2: #F1DCA8; --time: #DDB3CB; --ts: #BFDCC9;
+  --bg: var(--tone-fdf9f9); --panel: var(--tone-f8eef0); --paper: var(--tone-ffffff); --tint: var(--tone-fae9ed); --line: var(--tone-efdde2);
+  --fg: var(--tone-2f282b); --muted: var(--tone-7e6f74); --accent: var(--tone-c06c84); --accent-ink: var(--tone-9c4862);
+  --demand: var(--tone-3f5675); --supply: var(--tone-c06c84); --ext: var(--tone-6e3f55); --world: var(--tone-8a7a5c); --policy: var(--tone-3f7f7a);
+  --cs: var(--tone-a7cdb6); --ps: var(--tone-b2c4e3); --dwl: var(--tone-d9674f); --rev: var(--tone-e5c171); --rev2: var(--tone-f1dca8); --time: var(--tone-ddb3cb); --ts: var(--tone-bfdcc9);
   --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
   --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
@@ -23,7 +23,7 @@ body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-s
 a { color: var(--accent-ink); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(253, 249, 249, .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(var(--header-rgb), .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
 .top-in { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 14px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
 .brand { font-family: var(--serif); font-weight: 700; font-size: 1.02rem; white-space: nowrap; }
 .brand small { font-family: var(--sans); font-weight: 500; color: var(--muted); font-size: .76rem; margin-left: 6px; letter-spacing: .06em; }
@@ -33,7 +33,7 @@ a { color: var(--accent-ink); }
 .sessions a.pill { text-decoration: none; transition: border-color .15s, color .15s; }
 .sessions a.pill:hover, .sessions a.pill:focus-visible { border-color: var(--accent); color: var(--accent-ink); background: var(--tint); }
 .sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
-.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--tone-ffffff); }
 .sessions .pill.off { opacity: .5; cursor: not-allowed; }
 .toc-btn { display: none; font: 500 .85rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--fg); border-radius: 8px; padding: 5px 12px; }
 
@@ -63,7 +63,7 @@ main { min-width: 0; padding-block: 30px 120px; }
 .doc li { margin: .25rem 0; }
 .zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
 .hint { font-size: .9rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
-.hint b { flex: none; font-size: .72rem; color: #fff; background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
+.hint b { flex: none; font-size: .72rem; color: var(--tone-ffffff); background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
 .key { background: var(--tint); padding: 12px 16px; border-radius: 8px; font-weight: 500; }
 .note-small { font-size: .8rem; color: var(--muted); }
 
@@ -196,7 +196,7 @@ svg polyline.cv { fill: none !important; }
 /* Management components */
 .three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
 .tcard { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
-.tcard .tnum { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font: 700 .78rem/24px var(--sans); text-align: center; }
+.tcard .tnum { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: var(--tone-ffffff); font: 700 .78rem/24px var(--sans); text-align: center; }
 .tcard p { margin: 0; color: var(--muted); font-size: .88rem; }
 .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
 .tags span { font-size: .74rem; background: var(--tint); color: var(--accent-ink); padding: 1px 8px; border-radius: 999px; font-weight: 500; }
@@ -216,11 +216,11 @@ svg polyline.cv { fill: none !important; }
 .lv { grid-column: 1; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; font-weight: 700; font-size: .9rem; line-height: 1.35; }
 .lv small { display: block; font-weight: 400; color: var(--muted); font-size: .78rem; }
 .lv.l5 { grid-row: 1; margin-inline: 22%; } .lv.l4 { grid-row: 2; margin-inline: 16%; } .lv.l3 { grid-row: 3; margin-inline: 10%; } .lv.l2 { grid-row: 4; margin-inline: 5%; } .lv.l1 { grid-row: 5; }
-.lv.l5, .lv.l4 { background: #F6E9F4; } .lv.l3 { background: var(--tint); } .lv.l2, .lv.l1 { background: #EAF2EE; }
+.lv.l5, .lv.l4 { background: var(--tone-f6e9f4); } .lv.l3 { background: var(--tint); } .lv.l2, .lv.l1 { background: var(--tone-eaf2ee); }
 .erg { border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .84rem; text-align: center; padding: 6px; }
-.erg.g { grid-column: 2; grid-row: 1 / span 2; background: #EBD7EA; color: #6E3F6A; }
+.erg.g { grid-column: 2; grid-row: 1 / span 2; background: var(--tone-ebd7ea); color: var(--tone-6e3f6a); }
 .erg.r { grid-column: 3; grid-row: 2 / span 2; background: var(--tint); color: var(--accent-ink); }
-.erg.e { grid-column: 2; grid-row: 4 / span 2; background: #D9EBE1; color: #2F6B4F; }
+.erg.e { grid-column: 2; grid-row: 4 / span 2; background: var(--tone-d9ebe1); color: var(--tone-2f6b4f); }
 
 .mw { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 1.6rem 0 2rem; }
 .mw-body { margin-top: 10px; }
@@ -229,14 +229,14 @@ svg polyline.cv { fill: none !important; }
 .chips { display: flex; flex-direction: column; gap: 5px; }
 .chip { display: flex; justify-content: space-between; gap: 10px; font: 500 .84rem var(--sans); text-align: left; background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 7px; padding: 6px 10px; cursor: pointer; }
 .chip em { font-style: normal; font-size: .74rem; color: var(--muted); }
-.hz-cols > div:first-child .chip[aria-pressed="true"] { border-color: var(--dwl); background: #FCEDEA; }
-.hz-cols > div:first-child .chip[aria-pressed="true"] em { color: #A8432F; }
-.hz-cols > div:last-child .chip[aria-pressed="true"] { border-color: #6FAE8B; background: #EAF5EE; }
-.hz-cols > div:last-child .chip[aria-pressed="true"] em { color: #2F6B4F; }
+.hz-cols > div:first-child .chip[aria-pressed="true"] { border-color: var(--dwl); background: var(--tone-fcedea); }
+.hz-cols > div:first-child .chip[aria-pressed="true"] em { color: var(--tone-a8432f); }
+.hz-cols > div:last-child .chip[aria-pressed="true"] { border-color: var(--tone-6fae8b); background: var(--tone-eaf5ee); }
+.hz-cols > div:last-child .chip[aria-pressed="true"] em { color: var(--tone-2f6b4f); }
 .scale { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 6px; margin-top: 18px; }
 .half { height: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; position: relative; overflow: hidden; }
 .half i { position: absolute; top: 0; bottom: 0; transition: width .25s; }
-.half.left i { right: 0; background: var(--dwl); } .half.right i { left: 0; background: #6FAE8B; }
+.half.left i { right: 0; background: var(--dwl); } .half.right i { left: 0; background: var(--tone-6fae8b); }
 @media (prefers-reduced-motion: reduce) { .half i { transition: none; } }
 .zero { font: 700 .8rem var(--mono); color: var(--muted); }
 .scale-l { display: flex; justify-content: space-between; font-size: .74rem; color: var(--muted); margin-top: 4px; }
@@ -246,7 +246,7 @@ svg polyline.cv { fill: none !important; }
 .kpi-flow > i { font-style: normal; color: var(--accent); font-weight: 700; align-self: center; }
 .kpi-flow b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .kpi-flow p { margin: 3px 0 0; } .kpi-flow ul { margin: 3px 0 0; padding-left: 1.1em; }
-.kpi-flow .bad { border-color: var(--dwl); background: #FCEDEA; } .kpi-flow .good { border-color: #6FAE8B; background: #EAF5EE; }
+.kpi-flow .bad { border-color: var(--dwl); background: var(--tone-fcedea); } .kpi-flow .good { border-color: var(--tone-6fae8b); background: var(--tone-eaf5ee); }
 
 .cmp-sel { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: .84rem; color: var(--muted); }
 .cmp-sel select { font: 500 .88rem var(--sans); padding: 5px 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); color: var(--fg); }
@@ -259,8 +259,8 @@ table.cmp td:first-child { font-weight: 700; color: var(--muted); width: 22%; }
 .ev > div { display: grid; grid-template-columns: 190px auto minmax(0, 1fr); gap: 10px; align-items: baseline; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: .86rem; line-height: 1.5; }
 .ev p { margin: 0; }
 .tag { font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
-.tag.gap { background: #FCE3DD; color: #A8432F; } .tag.ok { background: #E3F2E9; color: #2F6B4F; }
-.tag.maybe { background: #FBF0D9; color: #8A6216; } .tag.na { background: #EEE9EB; color: var(--muted); }
+.tag.gap { background: var(--tone-fce3dd); color: var(--tone-a8432f); } .tag.ok { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); }
+.tag.maybe { background: var(--tone-fbf0d9); color: var(--tone-8a6216); } .tag.na { background: var(--tone-eee9eb); color: var(--muted); }
 .issue { margin-top: 12px; background: var(--tint); border-radius: 8px; padding: 10px 14px; font-size: .9rem; }
 .issue p { margin: 4px 0 0; }
 
@@ -268,7 +268,7 @@ table.cmp td:first-child { font-weight: 700; color: var(--muted); width: 22%; }
 .xgrid > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 5px; font-size: .84rem; line-height: 1.4; }
 .xgrid small { color: var(--muted); font-size: .76rem; }
 .xgrid .ok, .xgrid .gap { align-self: flex-start; font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; }
-.xgrid .ok { background: #E3F2E9; color: #2F6B4F; } .xgrid .gap { background: #FCE3DD; color: #A8432F; }
+.xgrid .ok { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); } .xgrid .gap { background: var(--tone-fce3dd); color: var(--tone-a8432f); }
 
 @media (max-width: 760px) {
   .three, .four { grid-template-columns: minmax(0, 1fr); }
@@ -286,7 +286,7 @@ table.cmp td:first-child { font-weight: 700; color: var(--muted); width: 22%; }
 .six { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
 .six > div { display: flex; gap: 10px; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .88rem; line-height: 1.5; }
 .six span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
-a.cta { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+a.cta { display: inline-block; background: var(--accent); color: var(--tone-ffffff); text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
 a.cta:hover { background: var(--accent-ink); }
 blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; font-size: .92rem; line-height: 1.7; }
 .timeline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
@@ -295,22 +295,22 @@ blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); 
 .timeline p { margin: 4px 0 0; color: var(--muted); }
 .score { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
 .score > div { border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; border: 1px solid var(--line); }
-.score .up { background: #EAF5EE; border-color: #A9D3BA; } .score .down { background: #FCEDEA; border-color: #EDC2B8; }
-.score b::after { margin-left: 6px; font-size: .78rem; } .score .up b::after { content: "improved"; color: #2F6B4F; } .score .down b::after { content: "worse"; color: #A8432F; }
+.score .up { background: var(--tone-eaf5ee); border-color: var(--tone-a9d3ba); } .score .down { background: var(--tone-fcedea); border-color: var(--tone-edc2b8); }
+.score b::after { margin-left: 6px; font-size: .78rem; } .score .up b::after { content: "improved"; color: var(--tone-2f6b4f); } .score .down b::after { content: "worse"; color: var(--tone-a8432f); }
 .score ul { margin: 6px 0 0; padding-left: 1.1em; }
 
 .jcm { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, .9fr); gap: 16px; }
 .jdims { display: flex; flex-direction: column; gap: 8px; }
-.jd.g0 label span { color: #6E3F6A; } .jd.g1 label span { color: var(--accent-ink); } .jd.g2 label span { color: #2F6B4F; }
+.jd.g0 label span { color: var(--tone-6e3f6a); } .jd.g1 label span { color: var(--accent-ink); } .jd.g2 label span { color: var(--tone-2f6b4f); }
 .jstates { display: flex; flex-direction: column; gap: 12px; padding-top: 4px; }
 .jst span { font-size: .8rem; font-weight: 500; }
 .jbar { height: 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); overflow: hidden; margin-top: 3px; }
 .jbar i { display: block; height: 100%; transition: width .25s; }
-.jst.g0 .jbar i { background: #B98AB5; } .jst.g1 .jbar i { background: var(--accent); } .jst.g2 .jbar i { background: #6FAE8B; }
+.jst.g0 .jbar i { background: var(--tone-b98ab5); } .jst.g1 .jbar i { background: var(--accent); } .jst.g2 .jbar i { background: var(--tone-6fae8b); }
 @media (prefers-reduced-motion: reduce) { .jbar i { transition: none; } }
 .jout ul { margin: 8px 0 0; padding-left: 1.1em; font-size: .82rem; color: var(--muted); }
 .jlvl { display: inline-block; font-weight: 700; padding: 3px 12px; border-radius: 999px; font-size: .86rem; }
-.jlvl.strong { background: #E3F2E9; color: #2F6B4F; } .jlvl.moderate { background: #FBF0D9; color: #8A6216; } .jlvl.weak { background: #FCE3DD; color: #A8432F; }
+.jlvl.strong { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); } .jlvl.moderate { background: var(--tone-fbf0d9); color: var(--tone-8a6216); } .jlvl.weak { background: var(--tone-fce3dd); color: var(--tone-a8432f); }
 .jgns { margin-top: 14px; }
 
 .qz-item { font-size: 1rem; font-weight: 500; margin: 4px 0 12px; }
@@ -320,7 +320,7 @@ blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); 
 .qz-o { font: 500 .88rem var(--sans); background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 8px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; text-align: center; }
 .qz-o small { color: var(--muted); font-size: .74rem; font-weight: 400; }
 .qz-o:hover { border-color: var(--accent); }
-.qz-o.right { background: #E3F2E9; border-color: #6FAE8B; } .qz-o.wrong { background: #FCE3DD; border-color: var(--dwl); }
+.qz-o.right { background: var(--tone-e3f2e9); border-color: var(--tone-6fae8b); } .qz-o.wrong { background: var(--tone-fce3dd); border-color: var(--dwl); }
 .qz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: .8rem; color: var(--muted); }
 
 .rsteps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
@@ -328,7 +328,7 @@ blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); 
 .rsteps > div.g { background: var(--tint); border-color: var(--accent); }
 .rsteps b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .rsteps p { margin: 4px 0 0; }
-.risk { font-size: .88rem; } .risk b { font-size: .72rem; color: #fff; background: #B98A2E; padding: 1px 7px; border-radius: 4px; margin-right: 6px; }
+.risk { font-size: .88rem; } .risk b { font-size: .72rem; color: var(--tone-ffffff); background: var(--tone-b98a2e); padding: 1px 7px; border-radius: 4px; margin-right: 6px; }
 .sayd summary { cursor: pointer; font-weight: 500; color: var(--accent-ink); font-size: .9rem; }
 
 @media (max-width: 760px) {
@@ -380,8 +380,8 @@ body.show-zh .chip em .zh-full{color:inherit}
 body.show-zh .cmp-sel select{max-width:100%}
 .seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
 .topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
-.topswitch input{appearance:none;width:28px;height:16px;border:1px solid #d5c6ca;border-radius:999px;background:#eee6e8;position:relative;cursor:pointer;flex:none}
-.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:white;border-radius:50%;box-shadow:0 1px 2px #7775}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid var(--tone-d5c6ca);border-radius:999px;background:var(--tone-eee6e8);position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:var(--tone-ffffff);border-radius:50%;box-shadow:0 1px 2px var(--tone-77777755)}
 .topswitch input:checked{background:var(--accent)}
 .topswitch input:checked:after{left:14px}
 .topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
@@ -440,7 +440,108 @@ body.show-zh .eq-controls button .zh-full{color:inherit}
 body.show-zh .culture-roles button{min-width:0;white-space:normal}
 body.show-zh .culture-cue .zh-full{font-family:var(--sans)}
 .chart-zh-key{font-size:.78rem;line-height:1.7;margin-top:8px}
-</style></head><body><header class="top"><div class="top-in"><nav aria-label="Breadcrumb" class="crumbs"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="management.html">Management<span class="zh-full" lang="zh-Hant">管理學</span></a><span>/</span><b>Session 6<span class="zh-full" lang="zh-Hant">第 6 堂</span></b></nav><button aria-expanded="false" class="toc-btn" id="tocBtn" type="button">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button><nav aria-label="Sessions" class="sessions"><a class="pill" href="management-s5.html">S5</a><span aria-current="page" class="pill">S6</span><span class="pill off">S7</span><span class="pill off">S8</span></nav><div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input aria-label="顯示完整繁體中文對照" id="zhToggle" role="switch" type="checkbox"/>中文 <span id="zhModeLabel">OFF</span></label><button aria-pressed="false" class="practice-toggle" id="practiceToggle" title="Show or hide short questions within chapters" type="button">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" id="practiceChinese" lang="zh-Hant">練習模式：關閉</span></button></div></div></header><div class="wrap"><aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside><main><article class="doc"><div class="hero"><p class="kick">Managing People in Organizations · Session 6<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 6 堂</span></p><h1>Cross-Cultural Management<span class="zh-full" lang="zh-Hant">跨文化管理</span></h1><p class="lead">Use cultural differences to ask better questions, then adapt to the person and the workplace.<span class="zh-full" lang="zh-Hant">運用文化差異提出更好的問題，再依對方與工作情境調整做法。</span></p></div>
+</style>
+<style id="system-theme">
+/* System appearance only changes colors. Print retains the light palette. */
+:root {
+  --header-rgb: 253, 249, 249;
+  --tone-2f282b: #2f282b;
+  --tone-2f6b4f: #2f6b4f;
+  --tone-3f5675: #3f5675;
+  --tone-3f7f7a: #3f7f7a;
+  --tone-6e3f55: #6e3f55;
+  --tone-6e3f6a: #6e3f6a;
+  --tone-6fae8b: #6fae8b;
+  --tone-77777755: #77777755;
+  --tone-7e6f74: #7e6f74;
+  --tone-8a6216: #8a6216;
+  --tone-8a7a5c: #8a7a5c;
+  --tone-9c4862: #9c4862;
+  --tone-a7cdb6: #a7cdb6;
+  --tone-a8432f: #a8432f;
+  --tone-a9d3ba: #a9d3ba;
+  --tone-b2c4e3: #b2c4e3;
+  --tone-b98a2e: #b98a2e;
+  --tone-b98ab5: #b98ab5;
+  --tone-bfdcc9: #bfdcc9;
+  --tone-c06c84: #c06c84;
+  --tone-d5c6ca: #d5c6ca;
+  --tone-d9674f: #d9674f;
+  --tone-d9ebe1: #d9ebe1;
+  --tone-ddb3cb: #ddb3cb;
+  --tone-e3f2e9: #e3f2e9;
+  --tone-e5c171: #e5c171;
+  --tone-eaf2ee: #eaf2ee;
+  --tone-eaf5ee: #eaf5ee;
+  --tone-ebd7ea: #ebd7ea;
+  --tone-edc2b8: #edc2b8;
+  --tone-eee6e8: #eee6e8;
+  --tone-eee9eb: #eee9eb;
+  --tone-efdde2: #efdde2;
+  --tone-f1dca8: #f1dca8;
+  --tone-f6e9f4: #f6e9f4;
+  --tone-f8eef0: #f8eef0;
+  --tone-fae9ed: #fae9ed;
+  --tone-fbf0d9: #fbf0d9;
+  --tone-fce3dd: #fce3dd;
+  --tone-fcedea: #fcedea;
+  --tone-fdf9f9: #fdf9f9;
+  --tone-ffffff: #ffffff;
+}
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --header-rgb: 29, 24, 26;
+    --tone-2f282b: #EEE4E6;
+    --tone-2f6b4f: #A0D2B2;
+    --tone-3f5675: #93AECB;
+    --tone-3f7f7a: #8CC4BE;
+    --tone-6e3f55: #C9A3D6;
+    --tone-6e3f6a: #DAB3D6;
+    --tone-6fae8b: #8CC3A0;
+    --tone-77777755: #00000066;
+    --tone-7e6f74: #BEACB2;
+    --tone-8a6216: #E3C480;
+    --tone-8a7a5c: #C9B68C;
+    --tone-9c4862: #E6B3BE;
+    --tone-a7cdb6: #6E8C6B;
+    --tone-a8432f: #F0A48D;
+    --tone-a9d3ba: #669C7D;
+    --tone-b2c4e3: #667C96;
+    --tone-b98a2e: #D8B66B;
+    --tone-b98ab5: #BD99C1;
+    --tone-bfdcc9: #5F7A5C;
+    --tone-c06c84: #D79AA7;
+    --tone-d5c6ca: #8B737F;
+    --tone-d9674f: #E08A6F;
+    --tone-d9ebe1: #2C4135;
+    --tone-ddb3cb: #8C6680;
+    --tone-e3f2e9: #23372D;
+    --tone-e5c171: #C9A250;
+    --tone-eaf2ee: #29362F;
+    --tone-eaf5ee: #25372D;
+    --tone-ebd7ea: #413047;
+    --tone-edc2b8: #B77F70;
+    --tone-eee6e8: #4B3E45;
+    --tone-eee9eb: #30282D;
+    --tone-efdde2: #55424A;
+    --tone-f1dca8: #8F7A4A;
+    --tone-f6e9f4: #342938;
+    --tone-f8eef0: #2B2226;
+    --tone-fae9ed: #35272D;
+    --tone-fbf0d9: #3C3223;
+    --tone-fce3dd: #412B28;
+    --tone-fcedea: #382724;
+    --tone-fdf9f9: #1D181A;
+    --tone-ffffff: #241E21;
+  }
+  .topswitch input:after { background: var(--fg); }
+  .topswitch input:checked:after { background: var(--paper); }
+  .m-action.primary .zh-full, .m-pillrow button[aria-pressed="true"] .zh-full,
+  a.cta .zh-full, .risk b .zh-full, .hint b .zh-full, .tcard .tnum .zh-full { color: inherit; }
+}
+</style>
+</head><body><header class="top"><div class="top-in"><nav aria-label="Breadcrumb" class="crumbs"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="management.html">Management<span class="zh-full" lang="zh-Hant">管理學</span></a><span>/</span><b>Session 6<span class="zh-full" lang="zh-Hant">第 6 堂</span></b></nav><button aria-expanded="false" class="toc-btn" id="tocBtn" type="button">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button><nav aria-label="Sessions" class="sessions"><a class="pill" href="management-s5.html">S5</a><span aria-current="page" class="pill">S6</span><span class="pill off">S7</span><span class="pill off">S8</span></nav><div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input aria-label="顯示完整繁體中文對照" id="zhToggle" role="switch" type="checkbox"/>中文 <span id="zhModeLabel">OFF</span></label><button aria-pressed="false" class="practice-toggle" id="practiceToggle" title="Show or hide short questions within chapters" type="button">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" id="practiceChinese" lang="zh-Hant">練習模式：關閉</span></button></div></div></header><div class="wrap"><aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside><main><article class="doc"><div class="hero"><p class="kick">Managing People in Organizations · Session 6<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 6 堂</span></p><h1>Cross-Cultural Management<span class="zh-full" lang="zh-Hant">跨文化管理</span></h1><p class="lead">Use cultural differences to ask better questions, then adapt to the person and the workplace.<span class="zh-full" lang="zh-Hant">運用文化差異提出更好的問題，再依對方與工作情境調整做法。</span></p></div>
 <h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
 <div class="three"><div class="tcard"><b>Read the message<span class="zh-full" lang="zh-Hant">讀懂訊息</span></b><p>Culture and high/low context<span class="zh-full" lang="zh-Hant">文化與高／低情境</span></p><span class="zh">理解情境</span></div><div class="tcard"><b>Choose a lens<span class="zh-full" lang="zh-Hant">選擇分析構面</span></b><p>Five dimensions and Thai illustrations<span class="zh-full" lang="zh-Hant">五個構面與泰國例子</span></p><span class="zh">辨認構面</span></div><div class="tcard"><b>Check and adapt<span class="zh-full" lang="zh-Hant">確認與調整</span></b><p>Country comparison, boss preparation and case answers<span class="zh-full" lang="zh-Hant">國家比較、與主管共事的準備及個案作答</span></p><span class="zh">驗證與調整</span></div></div>
 <div class="method"><span>Framework<span class="zh-full" lang="zh-Hant">框架</span></span><i>→</i><span>Actual evidence<span class="zh-full" lang="zh-Hant">實際證據</span></span><i>→</i><span>Possible gap<span class="zh-full" lang="zh-Hant">可能的落差</span></span><i>→</i><span class="hi">Adapt and check<span class="zh-full" lang="zh-Hant">調整並檢查</span></span></div>
@@ -500,7 +601,7 @@ body.show-zh .culture-cue .zh-full{font-family:var(--sans)}
 <tr><td>LTO</td><td>77</td><td>58</td><td>42</td><td>67</td></tr>
 </tbody></table></div>
 <p class="note-small">Source: lecturer's four-country comparison, p.25.</p>
-<h3 id="pd-ua-map">PD × UA: two different questions<span class="zh-full" lang="zh-Hant">PD × UA：兩個不同的問題</span></h3><figure class="culture-map"><div class="chart-axis-label">Higher UA: more structure and predictability<span class="zh-full" lang="zh-Hant">UA 越高：越重視明確結構與可預期性。</span></div><svg aria-labelledby="pd-ua-title pd-ua-desc" class="pd-ua-chart" role="img" viewbox="0 0 500 310"><title id="pd-ua-title">Power Distance and Uncertainty Avoidance</title><desc id="pd-ua-desc">China: PD 80, UA 30. Russia: PD 93, UA 95. Switzerland: PD 34, UA 58. Thailand: PD 64, UA 64. Higher power distance does not imply the same uncertainty avoidance.</desc><path class="chart-grid" d="M 42.0 30 V 275 M 42 275.0 H 460"></path><text class="chart-tick" text-anchor="middle" x="42.0" y="298">0</text><text class="chart-tick" text-anchor="end" x="31" y="280.0">0</text><path class="chart-grid" d="M 146.5 30 V 275 M 42 213.75 H 460"></path><text class="chart-tick" text-anchor="middle" x="146.5" y="298">25</text><text class="chart-tick" text-anchor="end" x="31" y="218.75">25</text><path class="chart-grid" d="M 251.0 30 V 275 M 42 152.5 H 460"></path><text class="chart-tick" text-anchor="middle" x="251.0" y="298">50</text><text class="chart-tick" text-anchor="end" x="31" y="157.5">50</text><path class="chart-grid" d="M 355.5 30 V 275 M 42 91.25 H 460"></path><text class="chart-tick" text-anchor="middle" x="355.5" y="298">75</text><text class="chart-tick" text-anchor="end" x="31" y="96.25">75</text><path class="chart-grid" d="M 460.0 30 V 275 M 42 29.99999999999997 H 460"></path><text class="chart-tick" text-anchor="middle" x="460.0" y="298">100</text><text class="chart-tick" text-anchor="end" x="31" y="34.99999999999997">100</text><path class="chart-axis" d="M 42 30 V 275 H 460"></path><g><title>China: PD 80, UA 30</title><circle cx="376.4" cy="201.5" fill="#C06C84" r="6"></circle><text class="chart-country" fill="#C06C84" text-anchor="end" x="367.4" y="191.5">China (80, 30)</text></g><g><title>Russia: PD 93, UA 95</title><circle cx="430.73999999999995" cy="42.24999999999997" fill="#9C4862" r="6"></circle><text class="chart-country" fill="#9C4862" text-anchor="end" x="421.73999999999995" y="31.24999999999997">Russia (93, 95)</text></g><g><title>Switzerland: PD 34, UA 58</title><circle cx="184.12" cy="132.89999999999998" fill="#3F5675" r="6"></circle><text class="chart-country" fill="#3F5675" text-anchor="start" x="193.12" y="156.9">Switzerland (34, 58)</text></g><g><title>Thailand: PD 64, UA 64</title><circle cx="309.52" cy="118.19999999999999" fill="#7E6F74" r="6"></circle><text class="chart-country" fill="#7E6F74" text-anchor="start" x="318.52" y="108.19999999999999">Thailand (64, 64)</text></g></svg><figcaption>Horizontal axis: Power Distance →<br/>Country labels show (PD, UA).<span class="zh-full" lang="zh-Hant">橫軸為權力距離（PD），往右越高；國家標籤依序顯示（PD，UA）。</span></figcaption><div class="zh-full chart-zh-key" lang="zh-Hant">圖中標籤（PD，UA）：中國（80，30）、俄羅斯（93，95）、瑞士（34，58）、泰國（64，64）。</div></figure>
+<h3 id="pd-ua-map">PD × UA: two different questions<span class="zh-full" lang="zh-Hant">PD × UA：兩個不同的問題</span></h3><figure class="culture-map"><div class="chart-axis-label">Higher UA: more structure and predictability<span class="zh-full" lang="zh-Hant">UA 越高：越重視明確結構與可預期性。</span></div><svg aria-labelledby="pd-ua-title pd-ua-desc" class="pd-ua-chart" role="img" viewbox="0 0 500 310"><title id="pd-ua-title">Power Distance and Uncertainty Avoidance</title><desc id="pd-ua-desc">China: PD 80, UA 30. Russia: PD 93, UA 95. Switzerland: PD 34, UA 58. Thailand: PD 64, UA 64. Higher power distance does not imply the same uncertainty avoidance.</desc><path class="chart-grid" d="M 42.0 30 V 275 M 42 275.0 H 460"></path><text class="chart-tick" text-anchor="middle" x="42.0" y="298">0</text><text class="chart-tick" text-anchor="end" x="31" y="280.0">0</text><path class="chart-grid" d="M 146.5 30 V 275 M 42 213.75 H 460"></path><text class="chart-tick" text-anchor="middle" x="146.5" y="298">25</text><text class="chart-tick" text-anchor="end" x="31" y="218.75">25</text><path class="chart-grid" d="M 251.0 30 V 275 M 42 152.5 H 460"></path><text class="chart-tick" text-anchor="middle" x="251.0" y="298">50</text><text class="chart-tick" text-anchor="end" x="31" y="157.5">50</text><path class="chart-grid" d="M 355.5 30 V 275 M 42 91.25 H 460"></path><text class="chart-tick" text-anchor="middle" x="355.5" y="298">75</text><text class="chart-tick" text-anchor="end" x="31" y="96.25">75</text><path class="chart-grid" d="M 460.0 30 V 275 M 42 29.99999999999997 H 460"></path><text class="chart-tick" text-anchor="middle" x="460.0" y="298">100</text><text class="chart-tick" text-anchor="end" x="31" y="34.99999999999997">100</text><path class="chart-axis" d="M 42 30 V 275 H 460"></path><g><title>China: PD 80, UA 30</title><circle cx="376.4" cy="201.5" fill="var(--tone-c06c84)" r="6"></circle><text class="chart-country" fill="var(--tone-c06c84)" text-anchor="end" x="367.4" y="191.5">China (80, 30)</text></g><g><title>Russia: PD 93, UA 95</title><circle cx="430.73999999999995" cy="42.24999999999997" fill="var(--tone-9c4862)" r="6"></circle><text class="chart-country" fill="var(--tone-9c4862)" text-anchor="end" x="421.73999999999995" y="31.24999999999997">Russia (93, 95)</text></g><g><title>Switzerland: PD 34, UA 58</title><circle cx="184.12" cy="132.89999999999998" fill="var(--tone-3f5675)" r="6"></circle><text class="chart-country" fill="var(--tone-3f5675)" text-anchor="start" x="193.12" y="156.9">Switzerland (34, 58)</text></g><g><title>Thailand: PD 64, UA 64</title><circle cx="309.52" cy="118.19999999999999" fill="var(--tone-7e6f74)" r="6"></circle><text class="chart-country" fill="var(--tone-7e6f74)" text-anchor="start" x="318.52" y="108.19999999999999">Thailand (64, 64)</text></g></svg><figcaption>Horizontal axis: Power Distance →<br/>Country labels show (PD, UA).<span class="zh-full" lang="zh-Hant">橫軸為權力距離（PD），往右越高；國家標籤依序顯示（PD，UA）。</span></figcaption><div class="zh-full chart-zh-key" lang="zh-Hant">圖中標籤（PD，UA）：中國（80，30）、俄羅斯（93，95）、瑞士（34，58）、泰國（64，64）。</div></figure>
 <div data-mw="culture-chart"></div>
 <p><b>Read the contrast:</b> China and Russia both have high PD, yet UA is <b>30 versus 95</b>. Hierarchy and demand for predictability are separate. Switzerland's largest gap from Thailand is IDV: <b>+60 points</b>.<span class="zh-full" lang="zh-Hant">比較重點：中國與俄羅斯的 PD 都高，但 UA 分別為 30 與 95。接受階層與要求可預期性是兩件事。瑞士與泰國最大的差距在 IDV，相差 60 點。</span></p>
 <aside class="practice-prompt" hidden=""><strong>Pause &amp; think</strong><p>A Swiss boss rewards individual targets while a Thai employee prioritizes helping the team. What expectations should they clarify before treating this as a cultural mismatch, and what actual behavior would support the diagnosis?<span class="zh-full" lang="zh-Hant">瑞士主管獎勵個人目標，泰國員工則優先協助團隊。在判定文化落差之前，雙方應先確認哪些期待？哪些實際行為能支持這個診斷？</span></p></aside><h2 id="bosses">7. Four-boss preparation activity<span class="zh-full" lang="zh-Hant">7. 與四種主管共事的準備活動</span></h2>
