@@ -73,7 +73,7 @@ main { min-width: 0; padding-block: 30px 120px; }
 .doc h2 { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 3.4rem 0 .3rem; text-wrap: balance; }
 .doc h3 { font-size: 1.1rem; line-height: 1.45; margin: 2.2rem 0 .5rem; color: var(--accent-ink); text-wrap: balance; }
 .sub { margin: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
-.doc p, .doc li { max-width: 68ch; }
+.doc p, .doc li { max-width: none; }
 .doc ul, .doc ol { padding-left: 1.25em; }
 .doc li { margin: .25rem 0; }
 .zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
@@ -726,7 +726,7 @@ body.show-zh .score .down b:after{content:'惡化'}
       const mcPts = [], acPts = [], avcPts = [];
       for (let i = 1; i <= 12; i++) { mcPts.push([i, OIL.MC[i]]); acPts.push([i, OIL.TC[i] / i]); avcPts.push([i, OIL.VC[i] / i]); }
       P.path(mcPts.filter(x => x[1] <= 160), 'c-s'); P.path(acPts, 'c-d'); P.path(avcPts, 'c-d dash');
-      P.label(10.4, 155, "MC<span class=\"zh-full\" lang=\"zh-Hant\">邊際成本</span>", 'c-s'); P.label(10.3, 60, "AC<span class=\"zh-full\" lang=\"zh-Hant\">平均成本</span>", 'c-d'); P.label(11.2, 34, "AVC<span class=\"zh-full\" lang=\"zh-Hant\">平均變動成本</span>", 'c-d');
+      P.label(10.4, 155, "MC<span class=\"zh-full\" lang=\"zh-Hant\">邊際成本</span>", 'c-s'); P.label(10.3, 60, "ATC<span class=\"zh-full\" lang=\"zh-Hant\">平均總成本</span>", 'c-d'); P.label(11.2, 34, "AVC<span class=\"zh-full\" lang=\"zh-Hant\">平均變動成本</span>", 'c-d');
       P.hline(Math.min(p, 160), 'c-t', "P = MR<span class=\"zh-full\" lang=\"zh-Hant\">價格＝邊際收益</span>");
       mcPts.forEach(([i, m]) => { if (m <= 160) P.dot(i, m); });
       const tr = p * q, tc = OIL.TC[q];
@@ -756,6 +756,8 @@ body.show-zh .score .down b:after{content:'惡化'}
       M.clear(); M.axes("Million barrels<span class=\"zh-full\" lang=\"zh-Hant\">百萬桶</span>", "Price<span class=\"zh-full\" lang=\"zh-Hant\">價格</span>"); M.lin(a, -k, 'c-d', 'D'); M.lin(10, k, 'c-s', 'S'); M.guide(Qe, Pe, f1(Qe) + 'M', '$' + f1(Pe)); M.dot(Qe, Pe);
       F.clear(); F.axes("Barrels per day<span class=\"zh-full\" lang=\"zh-Hant\">每日桶數</span>", "Price<span class=\"zh-full\" lang=\"zh-Hant\">價格</span>");
       const mc = []; for (let i = 1; i <= 12; i++) if (OIL.MC[i] <= 160) mc.push([i, OIL.MC[i]]);
+      const atc = []; for (let i = 1; i <= 12; i++) atc.push([i, OIL.TC[i] / i]);
+      F.path(atc, 'c-d'); F.label(10.3, 60, "ATC<span class=\"zh-full\" lang=\"zh-Hant\">平均總成本</span>", 'c-d');
       F.path(mc, 'c-s'); F.label(10.4, 155, "MC<span class=\"zh-full\" lang=\"zh-Hant\">邊際成本</span>", 'c-s'); F.hline(Pe, 'c-t', "d = MR = P<span class=\"zh-full\" lang=\"zh-Hant\">需求＝邊際收益＝價格</span>");
       if (q) { F.guide(q, Pe, 'q* = ' + q, '$' + f1(Pe)); F.dot(q, Pe); }
       s.show([{ k: "Market price<span class=\"zh-full\" lang=\"zh-Hant\">市場價格</span>", v: '$' + f1(Pe) }, { k: "Market quantity<span class=\"zh-full\" lang=\"zh-Hant\">市場數量</span>", v: biPair(f1(Qe)+' million',f1(Qe)+' 百萬桶') }, { k: "This firm produces<span class=\"zh-full\" lang=\"zh-Hant\">這家廠商的產量</span>", v: biPair(q+' barrels',q+' 桶'), big: true }, { k: "Firm profit<span class=\"zh-full\" lang=\"zh-Hant\">廠商利潤</span>", v: (pi < 0 ? '−$' : '$') + f1(Math.abs(pi)) }],

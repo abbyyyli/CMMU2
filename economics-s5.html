@@ -1,28 +1,234 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Economics Session 5 · Study Notes</title>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/><title>Monopoly and Price Discrimination · Economics</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:var(--tone-fdf9f9);--paper:var(--tone-ffffff);--tint:var(--tone-fae9ed);--line:var(--tone-efdde2);--fg:var(--tone-2f282b);--muted:var(--tone-7e6f74);--accent:var(--tone-c06c84);--accent-ink:var(--tone-9c4862);--sans:"Noto Sans TC","PingFang TC",system-ui,sans-serif;--serif:"Noto Serif TC",Georgia,serif}
-*{box-sizing:border-box}html{color-scheme:light;background:var(--bg)}body{margin:0;font:16px/1.75 var(--sans);color:var(--fg)}a{color:var(--accent-ink)}:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-header{border-bottom:1px solid var(--line);background:rgba(var(--header-rgb), .96)}.top{max-width:1160px;margin:auto;padding:13px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
-.crumbs{font-size:.86rem;display:flex;align-items:center;flex-wrap:wrap;gap:8px;color:var(--muted)}.crumbs a{text-decoration:none;color:var(--muted)}.crumbs a:hover{color:var(--accent-ink)}
-.sessions{display:flex;gap:5px;margin-left:auto}.pill{font:.85rem var(--sans);text-decoration:none;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--muted)}.pill[aria-current="page"]{background:var(--accent);border-color:var(--accent);color:var(--tone-ffffff)}.sessions a.pill:hover,.sessions a.pill:focus-visible{background:var(--tone-fceef2);border-color:var(--tone-b86b7b);color:var(--tone-8e4357)}
-main{max-width:780px;margin:0 auto;padding:74px 22px 120px}.kick{color:var(--accent-ink);letter-spacing:.15em;text-transform:uppercase;font-size:.76rem;font-weight:700}h1{font:700 clamp(2.2rem,5vw,3.2rem)/1.23 var(--serif);margin:6px 0 16px}.note{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin-top:30px}.label{font-weight:700;color:var(--accent-ink);font-size:.82rem;letter-spacing:.07em;text-transform:uppercase}.note p{margin:9px 0 0}.back{display:inline-block;margin-top:22px;text-decoration:none;border-bottom:1px solid var(--accent);font-weight:600}
-@media(max-width:520px){.sessions{margin-left:0}main{padding-top:50px}.note{padding:20px}}
+/* Layout: one reading column with a sticky chapter rail; colors follow system appearance. */
+:root {
+  color-scheme: light;
+  --bg: var(--tone-fdf9f9); --panel: var(--tone-f8eef0); --paper: var(--tone-ffffff); --tint: var(--tone-fae9ed); --line: var(--tone-efdde2);
+  --fg: var(--tone-2f282b); --muted: var(--tone-7e6f74); --accent: var(--tone-c06c84); --accent-ink: var(--tone-9c4862);
+  --demand: var(--tone-3f5675); --supply: var(--tone-c06c84); --ext: var(--tone-6e3f55); --world: var(--tone-8a7a5c); --policy: var(--tone-3f7f7a);
+  --cs: var(--tone-a7cdb6); --ps: var(--tone-b2c4e3); --dwl: var(--tone-d9674f); --rev: var(--tone-e5c171); --rev2: var(--tone-f1dca8); --time: var(--tone-ddb3cb); --ts: var(--tone-bfdcc9);
+  --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; background: var(--bg); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.75; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(var(--header-rgb), .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
+.top-in { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 14px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.02rem; white-space: nowrap; }
+.brand small { font-family: var(--sans); font-weight: 500; color: var(--muted); font-size: .76rem; margin-left: 6px; letter-spacing: .06em; }
+.sessions { display: flex; gap: 4px; margin-left: auto; }
+.crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
+.sessions a.pill { text-decoration: none; transition: border-color .15s, color .15s; }
+.sessions a.pill:hover, .sessions a.pill:focus-visible { border-color: var(--accent); color: var(--accent-ink); background: var(--tint); }
+.sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
+.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--tone-ffffff); }
+.sessions .pill.off { opacity: .5; cursor: not-allowed; }
+.toc-btn { display: none; font: 500 .85rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--fg); border-radius: 8px; padding: 5px 12px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 52px; }
+.rail { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow: auto; padding-block: 34px 40px; font-size: .86rem; line-height: 1.5; }
+.rail .lbl { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.rail ol { list-style: none; margin: 0; padding: 0; }
+.rail li a { display: block; padding: 4px 10px; color: var(--muted); text-decoration: none; border-radius: 6px; }
+.rail li a:hover { color: var(--fg); background: var(--tint); }
+.rail li.h3 a { padding-left: 22px; font-size: .8rem; }
+.rail li a.on { color: var(--accent-ink); background: var(--tint); font-weight: 500; }
+
+main { min-width: 0; padding-block: 30px 120px; }
+.doc { max-width: 780px; }
+.hero { padding-block: 8px 26px; border-bottom: 1px solid var(--line); }
+.kick { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px; font-weight: 500; }
+.hero h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.25; margin: 0 0 12px; text-wrap: balance; }
+.lead { margin: 0; font-size: 1.04rem; max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.doc h2 { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 3.4rem 0 .3rem; text-wrap: balance; }
+.doc h3 { font-size: 1.1rem; line-height: 1.45; margin: 2.2rem 0 .5rem; color: var(--accent-ink); text-wrap: balance; }
+.sub { margin: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
+.doc p, .doc li { max-width: none; }
+.doc ul, .doc ol { padding-left: 1.25em; }
+.doc li { margin: .25rem 0; }
+.zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
+.hint { font-size: .9rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.hint b { flex: none; font-size: .72rem; color: var(--tone-ffffff); background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
+.key { background: var(--tint); padding: 12px 16px; border-radius: 8px; font-weight: 500; }
+.note-small { font-size: .8rem; color: var(--muted); }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.pair > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.pair b { color: var(--accent-ink); }
+.pair p { margin: 4px 0 0; font-size: .92rem; }
+
+.matrix { display: grid; grid-template-columns: minmax(90px, .7fr) repeat(2, minmax(0, 1fr)); gap: 6px; margin: 1rem 0 1.2rem; font-size: .9rem; max-width: 620px; }
+.matrix .mh { font-weight: 700; font-size: .8rem; color: var(--muted); align-self: end; padding: 0 4px 2px; }
+.matrix .mh.side { align-self: center; }
+.matrix .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-weight: 500; }
+.matrix .cell.hi { background: var(--tint); border-color: var(--accent); }
+.matrix small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; margin-top: 2px; line-height: 1.45; }
+
+.map { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 1rem 0; }
+.mcol { display: flex; flex-direction: column; gap: 8px; }
+.mbox { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; display: flex; flex-direction: column; gap: 2px; }
+.mbox b { font-size: .9rem; } .mbox span { color: var(--muted); } .mbox em { font-style: normal; color: var(--accent-ink); font-size: .78rem; font-weight: 500; }
+.mbox.good { border-color: var(--cs); } .mbox.ask { background: var(--tint); border-color: var(--accent); }
+.marrow { color: var(--accent); font-weight: 700; }
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.flow span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; line-height: 1.45; }
+.flow i { font-style: normal; color: var(--accent); font-weight: 700; }
+.formula { font-family: var(--mono); font-size: .9rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; line-height: 1.9; overflow-x: auto; }
+.steps { counter-reset: s; list-style: none; padding-left: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 10px; }
+.steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .75rem/22px var(--sans); text-align: center; margin-top: 3px; }
+.assign { margin: 1.6rem 0; border: 1px dashed var(--accent); border-radius: 10px; padding: 14px 16px; background: var(--paper); }
+.assign p { margin: 6px 0 0; font-size: .92rem; }
+
+.tbl { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.doc table { border-collapse: collapse; width: 100%; font-size: .88rem; line-height: 1.55; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.doc th { background: var(--panel); font-weight: 700; }
+.doc tr:last-child td { border-bottom: 0; }
+.drill .ans { filter: blur(5px); cursor: pointer; user-select: none; transition: filter .2s; }
+.drill .ans.shown { filter: none; user-select: auto; }
+
+.traps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 1rem; }
+.traps > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: .88rem; line-height: 1.55; }
+.traps s { color: var(--muted); text-decoration-color: var(--dwl); }
+.traps p { margin: 6px 0 0; font-weight: 500; }
+
+.qa-tools { margin: .4rem 0 .8rem; }
+.qa-tools button { font: 500 .82rem var(--sans); border: 1px solid var(--accent); background: var(--paper); color: var(--accent-ink); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+.qa { display: flex; flex-direction: column; gap: 6px; }
+.qa details { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.qa summary { cursor: pointer; padding: 10px 14px; font-weight: 500; font-size: .93rem; list-style: none; display: flex; gap: 10px; }
+.qa summary::before { content: "Q"; color: var(--accent); font-weight: 700; }
+.qa details[open] summary { border-bottom: 1px dashed var(--line); }
+.qa details p { margin: 0; padding: 10px 14px 12px 36px; font-size: .9rem; }
+
+/* graphs */
+.graph { max-width: 900px; margin: 1.8rem 0 2.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; }
+.g-head h4 { font-family: var(--serif); font-size: 1.12rem; margin: 2px 0 2px; line-height: 1.45; }
+.g-head p { margin: 0 0 10px; color: var(--muted); font-size: .86rem; }
+.g-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+.g-body { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.g-plot svg { width: 100%; height: auto; display: block; }
+.g-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.g-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.sl label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); line-height: 1.3; }
+.sl output { font-family: var(--mono); color: var(--fg); font-size: .8rem; }
+.sl input { width: 100%; accent-color: var(--accent); margin: 4px 0 0; }
+.g-btn { align-self: flex-start; font: 500 .8rem var(--sans); border: 1px solid var(--accent); color: var(--accent-ink); background: transparent; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.g-btn:hover { background: var(--tint); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; align-self: flex-start; }
+.seg button { font: 500 .8rem var(--sans); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--paper); }
+.chk { display: flex; gap: 8px; align-items: center; font-size: .8rem; color: var(--muted); }
+.chk input { accent-color: var(--accent); }
+.g-stats { margin: 0; border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+.st { display: flex; justify-content: space-between; gap: 10px; font-size: .8rem; line-height: 1.45; }
+.st dt { color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.st dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.st.big dd { font-weight: 500; color: var(--accent-ink); font-size: .92rem; }
+.g-note { margin: 12px 0 0; padding: 9px 12px; background: var(--tint); border-radius: 6px; font-size: .85rem; line-height: 1.6; }
+
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; flex: none; }
+.sw.none { background: transparent; }
+.sw.a-cs { background: var(--cs); } .sw.a-ps { background: var(--ps); } .sw.a-ps2 { background: var(--ps); outline: 1px solid var(--demand); }
+.sw.a-dwl { background: repeating-linear-gradient(45deg, var(--dwl) 0 2px, transparent 2px 4px); outline: 1px solid var(--dwl); }
+.sw.a-rev { background: var(--rev); } .sw.a-rev2 { background: var(--rev2); } .sw.a-time { background: var(--time); } .sw.a-ts { background: var(--ts); }
+.sw.ln { height: 3px; border-radius: 2px; width: 16px; }
+
+svg .ax { stroke: var(--muted); stroke-width: 1.2; }
+svg .axl { fill: var(--muted); font: 500 11px var(--sans); }
+svg .tk { fill: var(--muted); font: 500 10.5px var(--mono); }
+svg .gd { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+svg .cv { stroke-width: 2.6; fill: none; stroke-linecap: round; }
+svg .cv.dash { stroke-dasharray: 7 5; stroke-width: 2; }
+svg .cvl { font: 700 11.5px var(--sans); }
+svg .c-d { stroke: var(--demand); fill: var(--demand); } svg .c-s { stroke: var(--supply); fill: var(--supply); }
+svg .c-x { stroke: var(--ext); fill: var(--ext); } svg .c-w { stroke: var(--world); fill: var(--world); } svg .c-t { stroke: var(--policy); fill: var(--policy); }
+svg text.cvl { stroke: none; }
+svg .pt { fill: var(--paper); stroke: var(--fg); stroke-width: 2; }
+svg .ptl { fill: var(--fg); font: 700 11px var(--sans); }
+svg .atag { fill: var(--fg); font: 700 11px var(--sans); opacity: .8; }
+svg .a-cs { fill: var(--cs); fill-opacity: .6; } svg .a-ps { fill: var(--ps); fill-opacity: .6; }
+svg .a-ps2 { fill: var(--ps); fill-opacity: .95; } svg .a-ts { fill: var(--ts); fill-opacity: .6; }
+svg .a-dwl { fill: url(#dwlHatch); stroke: var(--dwl); stroke-width: 1.2; }
+svg .a-rev { fill: var(--rev); fill-opacity: .75; } svg .a-rev2 { fill: var(--rev2); fill-opacity: .8; } svg .a-time { fill: var(--time); fill-opacity: .65; }
+
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .a-prof { fill: var(--cs); fill-opacity: .75; } svg .a-loss { fill: var(--dwl); fill-opacity: .35; }
+.sw.a-prof { background: var(--cs); } .sw.a-loss { background: var(--dwl); opacity: .5; }
+.twin { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tw-t { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.g-ctrl .g-btn + .g-btn { margin-top: -4px; }
+.graph.wide .g-body { grid-template-columns: minmax(0, 1fr); }
+.graph.wide .g-side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 700px) { .twin, .graph.wide .g-side { grid-template-columns: minmax(0, 1fr); } }
+svg polyline.cv { fill: none !important; }
+
+.graph { background: var(--paper); }
+.g-note { background: var(--tint); }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail { display: none; position: fixed; inset: 64px 0 0 0; max-height: none; background: var(--bg); z-index: 15; padding: 20px 16px 60px; }
+  .rail.open { display: block; }
+  .toc-btn { display: inline-block; }
+  .g-body { grid-template-columns: minmax(0, 1fr); }
+  .map { grid-template-columns: minmax(0, 1fr); }
+  .marrow { transform: rotate(90deg); justify-self: center; }
+}
+@media (max-width: 560px) { .pair, .traps { grid-template-columns: minmax(0, 1fr); } }
+.spectrum { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; margin: 1rem 0 .2rem; font-weight: 700; font-size: .9rem; }
+.spectrum .bar { height: 12px; border-radius: 6px; background: linear-gradient(90deg, var(--tone-d9674f), var(--tone-e5c171), var(--tone-a7cdb6)); }
+.spec-l { display: flex; justify-content: space-between; font-size: .78rem; color: var(--muted); margin-bottom: 1rem; }
+.no, .yes { font-size: .74rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; }
+.no { background: var(--tone-fce3dd); color: var(--tone-a8432f); } .yes { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); }
+table.oil { font-variant-numeric: tabular-nums; }
+table.oil th, table.oil td { text-align: right; padding: 6px 8px; white-space: nowrap; }
+table.oil th:first-child, table.oil td:first-child { text-align: left; font-weight: 700; }
+table.oil td.hi { background: var(--tint); color: var(--accent-ink); font-weight: 700; }
+
 </style>
 <style id="system-theme">
 /* System appearance only changes colors. Print retains the light palette. */
 :root {
   --header-rgb: 253, 249, 249;
   --tone-2f282b: #2f282b;
+  --tone-2f6b4f: #2f6b4f;
+  --tone-3f5675: #3f5675;
+  --tone-3f7f7a: #3f7f7a;
+  --tone-6e3f55: #6e3f55;
   --tone-7e6f74: #7e6f74;
-  --tone-8e4357: #8e4357;
+  --tone-8a7a5c: #8a7a5c;
   --tone-9c4862: #9c4862;
-  --tone-b86b7b: #b86b7b;
+  --tone-a7cdb6: #a7cdb6;
+  --tone-a8432f: #a8432f;
+  --tone-b2c4e3: #b2c4e3;
+  --tone-bfdcc9: #bfdcc9;
   --tone-c06c84: #c06c84;
+  --tone-d9674f: #d9674f;
+  --tone-ddb3cb: #ddb3cb;
+  --tone-e3f2e9: #e3f2e9;
+  --tone-e5c171: #e5c171;
   --tone-efdde2: #efdde2;
+  --tone-f1dca8: #f1dca8;
+  --tone-f8eef0: #f8eef0;
   --tone-fae9ed: #fae9ed;
-  --tone-fceef2: #fceef2;
+  --tone-fce3dd: #fce3dd;
   --tone-fdf9f9: #fdf9f9;
   --tone-ffffff: #ffffff;
 }
@@ -31,23 +237,501 @@ main{max-width:780px;margin:0 auto;padding:74px 22px 120px}.kick{color:var(--acc
     color-scheme: dark;
     --header-rgb: 29, 24, 26;
     --tone-2f282b: #EEE4E6;
+    --tone-2f6b4f: #A0D2B2;
+    --tone-3f5675: #93AECB;
+    --tone-3f7f7a: #8CC4BE;
+    --tone-6e3f55: #C9A3D6;
     --tone-7e6f74: #BEACB2;
-    --tone-8e4357: #E6B3BE;
+    --tone-8a7a5c: #C9B68C;
     --tone-9c4862: #E6B3BE;
-    --tone-b86b7b: #D79AA7;
+    --tone-a7cdb6: #6E8C6B;
+    --tone-a8432f: #F0A48D;
+    --tone-b2c4e3: #667C96;
+    --tone-bfdcc9: #5F7A5C;
     --tone-c06c84: #D79AA7;
+    --tone-d9674f: #E08A6F;
+    --tone-ddb3cb: #8C6680;
+    --tone-e3f2e9: #23372D;
+    --tone-e5c171: #C9A250;
     --tone-efdde2: #55424A;
+    --tone-f1dca8: #8F7A4A;
+    --tone-f8eef0: #2B2226;
     --tone-fae9ed: #35272D;
-    --tone-fceef2: #35272D;
+    --tone-fce3dd: #412B28;
     --tone-fdf9f9: #1D181A;
     --tone-ffffff: #241E21;
   }
-  .topswitch input:after { background: var(--fg); }
-  .topswitch input:checked:after { background: var(--paper); }
-  .m-action.primary .zh-full, .m-pillrow button[aria-pressed="true"] .zh-full,
-  a.cta .zh-full, .risk b .zh-full, .hint b .zh-full, .tcard .tnum .zh-full { color: inherit; }
 }
 </style>
-</head><body>
-<header><div class="top"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes</a><span>/</span><a href="economics.html">Economics</a><span>/</span><b>Session 5</b></nav><nav class="sessions" aria-label="Sessions 5–8"><span class="pill" aria-current="page">S5</span><a class="pill" href="economics-s6.html">S6</a><a class="pill" href="economics-s7.html">S7</a><a class="pill" href="economics-s8.html">S8</a></nav></div></header>
-<main><p class="kick">MGMG515 · Session 5</p><h1>Economics — Session 5</h1><section class="note"><div class="label">Coming soon</div><p>This lesson is not published yet. This reserved page keeps the S5–S8 navigation working in the meantime.</p><p>When the lesson is ready, the completed HTML can replace this file directly.</p></section><a class="back" href="economics.html">← Back to Economics sessions</a></main></body></html>
+<style>
+body{margin:0}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:1rem 0}
+.three>div,.method{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+.three b,.method>b{color:var(--accent-ink)}.three p,.method p{margin:4px 0 0;font-size:.92rem}
+.method{margin:12px 0}.endnote{margin-top:32px}
+.plot-legend{display:flex;flex-wrap:wrap;gap:7px 16px;margin:4px 0 14px;font-size:.78rem;color:var(--muted)}
+.plot-legend span{display:inline-flex;gap:6px;align-items:center}
+svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
+.seg{display:flex;flex-wrap:wrap;gap:2px;max-width:100%}.seg button{flex:1 1 auto;white-space:normal}
+.seg button[aria-pressed=true]{background:var(--accent);color:var(--paper)}
+.best-row{background:var(--tint);font-weight:700;color:var(--accent-ink)}
+.g-ctrl [hidden]{display:none!important}.sl label{gap:12px}.sl label span{min-width:0}
+.sl output{flex-shrink:0}.g-note:empty{display:none}.doc p,.doc li{overflow-wrap:break-word}
+@media(max-width:700px){.three{grid-template-columns:minmax(0,1fr)}.graph{padding:14px 12px}.st dd{white-space:normal;text-align:right;max-width:60%}.top-in{gap:8px 12px}}
+@media(max-width:420px){.top-in{align-items:center}.sessions{margin-left:0}.crumbs{flex:1 1 100%;font-size:.8rem}.toc-btn{order:2;margin-left:auto}.sessions{order:1}.rail{inset:108px 0 0}.graph.wide .g-side{gap:14px}.doc h2{font-size:1.4rem}}
+@media print{.top,.rail,.g-ctrl,.qa-tools{display:none}.wrap{display:block}.qa details p{display:block}.graph{break-inside:avoid}body{background:#fff}.doc{max-width:none}}
+</style>
+<style>
+.extra,.graph-guide,.number-readout{background:var(--paper);border:1px solid var(--line);border-radius:9px;margin:1rem 0;padding:0 14px}
+.extra>summary,.graph-guide>summary,.number-readout>summary{cursor:pointer;padding:11px 0;color:var(--accent-ink);font-size:.87rem;font-weight:500}
+.extra[open]>summary,.graph-guide[open]>summary,.number-readout[open]>summary{border-bottom:1px dashed var(--line)}
+.extra>p,.graph-guide>p{font-size:.9rem}.graph-guide .steps{font-size:.91rem;line-height:1.65}.graph-guide .steps li{margin:12px 0}
+.g-reading{min-width:0}.g-reading .g-note{margin:0}.number-readout{margin:12px 0 0;padding:0 10px}.number-readout .g-stats{border-top:0;padding-bottom:10px}
+</style>
+<style id="bilingual-support">/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
+
+
+
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid var(--tone-d5c6ca);border-radius:999px;background:var(--tone-eee6e8);position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:var(--tone-ffffff);border-radius:50%;box-shadow:0 1px 2px var(--tone-77777755)}
+.topswitch input:checked{background:var(--accent)}
+.topswitch input:checked:after{left:14px}
+.topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+
+/* Shared reading rhythm, with room for each chapter's own teaching tools. */
+.doc select{font-family:var(--sans);font-size:.88rem}
+html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
+@media(max-width:900px){.rail.open{top:var(--header-height,64px);bottom:0;inset-inline:0;max-height:calc(100vh - var(--header-height,64px))}}
+body.show-zh .legend>span,body.show-zh .steps li,body.show-zh .six>div,body.show-zh .qa summary,body.show-zh .chk{flex-wrap:wrap}
+body.show-zh .legend>span>.zh-full,body.show-zh .steps li>.zh-full,body.show-zh .six>div>.zh-full,body.show-zh .qa summary>.zh-full,body.show-zh .chk>.zh-full{flex:0 0 100%;min-width:0}
+body.show-zh .steps li{display:list-item;list-style:none}
+body.show-zh .steps li:before{display:inline-block;margin-right:10px;vertical-align:middle}
+body.show-zh .six>div>.zh-full{margin-left:34px;flex-basis:calc(100% - 34px)}
+body.show-zh .seg{flex-wrap:wrap;max-width:100%}
+body.show-zh .seg button{min-width:0;white-space:normal}
+body.show-zh .spectrum{min-width:0}
+body.show-zh .spectrum>span{min-width:0;overflow-wrap:anywhere}
+body.show-zh .formula>.zh-full{white-space:normal;font-family:var(--sans)}
+body.show-zh .mw .tabs button,body.show-zh .mw .qz-o,body.show-zh .graph .g-btn{overflow-wrap:anywhere}
+body.show-zh .funnel-level{height:auto;min-height:68px;flex-direction:column;gap:1px;white-space:normal;line-height:1.3}
+body.show-zh .funnel-level .zh-full{color:inherit;margin-top:0;font-size:.75em}
+body.show-zh .decision-step{height:auto;min-height:100px}
+body.show-zh .m-control label{flex-wrap:wrap}
+body.show-zh .m-control label .zh-full{flex-basis:100%;text-align:left}
+body.show-zh .decision-step>.zh-full{font-size:.8em;line-height:1.45}
+body.show-zh .score .up b:after{content:'改善'}
+body.show-zh .score .down b:after{content:'惡化'}
+@media(max-width:560px){body.show-zh .spectrum{grid-template-columns:minmax(0,1fr)}body.show-zh .m-choices button{min-height:65px}}
+
+.page-tools{display:flex;align-items:center;gap:14px;margin-left:8px;flex-shrink:0}
+.page-tools .topswitch{margin-left:0}.page-tools .practice-toggle{font-size:.72rem;padding:5px 10px}
+.page-tools .practice-toggle>.zh-full{display:none!important}
+body.show-zh .page-tools .practice-toggle{white-space:normal}
+body.show-zh .seg button[aria-pressed=true] .zh-full{color:inherit}
+body.show-zh .steps li>span{min-width:0;flex:1}.formula>.zh-full{font-family:var(--sans)}
+body.show-zh .sl output{max-width:50%;white-space:normal;text-align:right}
+.plot-legend>span{align-items:flex-start;flex-wrap:wrap}.plot-legend .zh-full{flex-basis:100%;margin-top:1px}
+svg .zh-svg{fill:currentColor;font-size:10px}.g-plot svg text{color:var(--muted)}
+html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
+@media(max-width:900px){.rail.open{top:var(--header-height,64px);bottom:0;inset-inline:0;max-height:calc(100vh - var(--header-height,64px))}}
+@media(max-width:560px){.top-in .page-tools{order:3;flex-basis:100%;margin-left:0;justify-content:flex-end;padding-bottom:3px;gap:14px}.top-in{row-gap:6px}}
+@media(prefers-color-scheme:dark){.topswitch input{background:var(--panel);border-color:var(--line)}.topswitch input:after{background:var(--fg)}}
+@media print{.page-tools{display:none}}
+</style><style>:root{--tone-d5c6ca:#d5c6ca;--tone-eee6e8:#eee6e8;--tone-77777755:#77777755}</style></head><body>
+<svg aria-hidden="true" height="0" style="position:absolute" width="0"><defs><pattern height="6" id="dwlHatch" patterntransform="rotate(45)" patternunits="userSpaceOnUse" width="6"><rect height="6" style="fill:var(--dwl);fill-opacity:.12" width="6"></rect><rect height="6" style="fill:var(--dwl);fill-opacity:.75" width="2.2"></rect></pattern></defs></svg>
+<header class="top"><div class="top-in">
+<nav aria-label="Breadcrumb" class="crumbs"><a href="index.html">Study Notes</a><span>/</span><a href="economics.html">Economics</a><span>/</span><b>Session 5</b></nav>
+<button aria-controls="rail" aria-expanded="false" class="toc-btn" id="tocBtn" type="button">Contents</button>
+<nav aria-label="Sessions 5–8" class="sessions"><span aria-current="page" class="pill">S5</span><span aria-disabled="true" class="pill off">S6</span><span aria-disabled="true" class="pill off">S7</span><span aria-disabled="true" class="pill off">S8</span></nav>
+<div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input aria-label="顯示完整繁體中文對照" id="zhToggle" role="switch" type="checkbox"/>中文 <span id="zhModeLabel">OFF</span></label><button aria-pressed="false" class="practice-toggle" id="practiceToggle" title="Show or hide short questions within chapters" type="button">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
+<div class="wrap"><aside class="rail" id="rail"><p class="lbl">Contents</p><ol id="toc"></ol></aside>
+<main><article class="doc"><div class="hero"><p class="kick">MGMG515 · Session 5<span class="zh-full" lang="zh-Hant">MGMG515 · 第 5 堂</span></p><h1>Monopoly and Price Discrimination<span class="zh-full" lang="zh-Hant">獨占與差別取價</span></h1><p class="lead">A monopolist can influence price, but demand still limits sales. Choose output using marginal revenue and marginal cost, read price from demand, and use average total cost to check profit. Then ask who gains when prices differ across customers.<span class="zh-full" lang="zh-Hant">獨占廠商能影響價格，但銷量仍受需求限制。先比較邊際收益與邊際成本來選產量，再從需求線讀價格，並用平均總成本判斷利潤。接著分析對不同顧客收取不同價格時，誰得到好處。</span></p>
+<div class="legend"><span><i class="sw ln" style="background:var(--demand)"></i>Demand D<span class="zh-full" lang="zh-Hant">需求 D</span></span><span><i class="sw ln" style="background:var(--ext)"></i>MR<span class="zh-full" lang="zh-Hant">邊際收益</span></span><span><i class="sw ln" style="background:var(--supply)"></i>MC<span class="zh-full" lang="zh-Hant">邊際成本</span></span><span><i class="sw ln" style="background:var(--world)"></i>ATC<span class="zh-full" lang="zh-Hant">平均總成本</span></span></div></div>
+<h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
+<div class="flow"><span>Entry barriers<span class="zh-full" lang="zh-Hant">進入障礙</span></span><i>→</i><span>Downward-sloping demand<span class="zh-full" lang="zh-Hant">向下傾斜的需求</span></span><i>→</i><span>MR versus MC: choose Q<span class="zh-full" lang="zh-Hant">比較 MR、MC：選產量</span></span><i>→</i><span>Demand: read P<span class="zh-full" lang="zh-Hant">回到需求線：讀價格</span></span><i>→</i><span>ATC: assess profit or loss<span class="zh-full" lang="zh-Hant">比較 ATC：判斷盈虧</span></span><i>→</i><span>Output and surplus: evaluate pricing<span class="zh-full" lang="zh-Hant">產量與剩餘：評估定價</span></span></div>
+<p class="hint"><b>中文邏輯</b><span>先用 MR、MC 找產量，再回需求線找價格；ATC 看利潤，D 與 MC 看少掉哪些有價值的交易。</span></p>
+<h2 id="power">1. Market power still faces demand<span class="zh-full" lang="zh-Hant">1. 市場力量仍受需求約束</span></h2>
+<p class="sub">Control over entry creates pricing discretion, not unlimited willingness to pay.<span class="zh-full" lang="zh-Hant">控制進入條件帶來定價空間，但不代表顧客願意支付任何價格。</span></p>
+<div class="tbl"><table><thead><tr><th>Concept<span class="zh-full" lang="zh-Hant">概念</span></th><th>Definition<span class="zh-full" lang="zh-Hant">定義</span></th><th>Do not confuse with<span class="zh-full" lang="zh-Hant">不要混淆</span></th></tr></thead><tbody>
+<tr><td><b>Monopoly</b><span class="zh">獨占</span><span class="zh-full" lang="zh-Hant">獨占</span></td><td>One seller in a defined product and geographic market, with no close substitutes.<span class="zh-full" lang="zh-Hant">在明確界定的產品與地理市場中，只有一個賣方，而且沒有相近替代品。</span></td><td>Being the only shop in one building when buyers can easily go elsewhere.<span class="zh-full" lang="zh-Hant">某棟樓內只有一家店，不代表獨占；顧客可能很容易到別處購買。</span></td></tr>
+<tr><td><b>Market power</b><span class="zh">市場力量</span><span class="zh-full" lang="zh-Hant">市場力量</span></td><td>Ability to sustain price above marginal cost; some differentiated firms have it without being sole sellers.<span class="zh-full" lang="zh-Hant">能持續把價格訂在邊際成本之上；部分差異化廠商即使不是唯一賣方，也具有這種能力。</span></td><td>Guaranteed profit or an ability to choose P and Q independently.<span class="zh-full" lang="zh-Hant">不代表保證獲利，也不代表能各自任意決定價格與產量。</span></td></tr>
+<tr><td><b>Entry barrier</b><span class="zh">進入障礙</span><span class="zh-full" lang="zh-Hant">進入障礙</span></td><td>A restriction or advantage that makes rival entry difficult.<span class="zh-full" lang="zh-Hant">使競爭者難以進入的限制或優勢。</span></td><td>High sales or market share alone.<span class="zh-full" lang="zh-Hant">高銷售額或高市占率本身不等於進入障礙。</span></td></tr>
+<tr><td><b>Natural monopoly</b><span class="zh-full" lang="zh-Hant">自然獨占</span></td><td>One firm can serve relevant demand at lower total cost than multiple firms.<span class="zh-full" lang="zh-Hant">在相關需求範圍內，一家廠商供應的總成本低於多家廠商合供的總成本。</span></td><td>A legal monopoly, resource control, or high fixed cost by itself.<span class="zh-full" lang="zh-Hant">與法律授予的獨占、資源控制不同；固定成本高本身也不足以證明自然獨占。</span></td></tr></tbody></table></div>
+<div class="pair"><div><b>Class opening: Greene Planet<span class="zh-full" lang="zh-Hant">課堂開場：Greene Planet</span></b><p>In <i>Quantum of Solace</i>, Dominic Greene's company seeks control of Bolivia's water supply. Exclusive access to an essential resource makes rival supply and substitution harder. The mechanism is control of an input.<span class="zh-full" lang="zh-Hant">電影《Quantum of Solace》中，Dominic Greene 的公司企圖控制玻利維亞的水供應。獨占重要資源使競爭者難以供貨，也削弱消費者的替代選擇。這個例子說明的是控制關鍵投入。</span></p></div><div><b>Medicine and legal exclusion<span class="zh-full" lang="zh-Hant">藥物與法律排他權</span></b><p>The historical Combivir example links patent protection to restricted entry and pricing power. Scale economies, exclusive licenses, and temporary technological advantages are other possible barriers.<span class="zh-full" lang="zh-Hant">Combivir 的歷史案例把專利保護、限制進入與定價力量連在一起。規模經濟、獨家許可與暫時的技術優勢，也可能形成進入障礙。</span></p></div></div>
+<p class="note-small">The medicine example uses historical prices and patent conditions.<span class="zh-full" lang="zh-Hant">藥物例子使用的是歷史價格與專利條件。</span></p>
+<p>A price maker selects a feasible point on demand. Raising price generally reduces quantity demanded; a higher price can therefore reduce total revenue or profit. Define the market and available substitutes before judging how much pricing power a firm has.<span class="zh-full" lang="zh-Hant">價格制定者仍須在需求線上選擇可行組合。提高價格通常會減少需求量，因此可能降低總收益或利潤。判斷市場力量前，先界定市場與可替代選擇。</span></p><aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A firm controls the only practical source of water. What else would have to be true before calling it a natural monopoly, rather than a monopoly based on resource control?<span class="zh-full" lang="zh-Hant">一家廠商控制唯一可行的水源。還要滿足什麼成本條件，才能稱作自然獨占，而不只是靠資源控制形成的獨占？</span></p></aside>
+<h2 id="revenue">2. Why marginal revenue is below price<span class="zh-full" lang="zh-Hant">2. 為什麼邊際收益低於價格</span></h2>
+<p class="sub">The key is how an extra sale changes revenue across the whole sales plan.<span class="zh-full" lang="zh-Hant">關鍵是新增銷量如何改變整個銷售方案的收益。</span></p>
+<p><b>Demand D</b> shows the highest common price buyers will pay for each quantity. <b>Marginal revenue MR</b> shows how much total revenue increases when the seller expands output. They answer different questions.<span class="zh-full" lang="zh-Hant">需求 D 表示每個產量下，買方願意支付的最高統一價格。邊際收益 MR 表示增加產量時，總收益增加多少。兩條線回答不同問題。</span></p>
+<p>Under uniform pricing, a larger quantity requires a lower price on all units in that sales plan. The extra unit brings revenue in, while the lower price reduces receipts on the other units. As a result, <b>MR lies below D</b>. The relevant comparison is the extra revenue after this price effect, not simply the extra unit's selling price.<span class="zh-full" lang="zh-Hant">在統一定價下，要賣更多數量，就必須降低該銷售方案中所有單位的價格。多賣一單位帶來收益，但其他單位降價會減少收入。因此 MR 位於 D 下方。應比較扣除這個降價效果後的新增收益，而不是只看新增單位的售價。</span></p>
+<div class="pair"><div><b>Competitive firm<span class="zh-full" lang="zh-Hant">競爭廠商</span></b><p>Takes market price as given. An extra unit does not require a price cut on the other units, so MR=P.<span class="zh-full" lang="zh-Hant">接受既定市場價格。多賣一單位不需要降低其他單位的價格，因此 MR＝P。</span></p></div><div><b>Single-price monopolist<span class="zh-full" lang="zh-Hant">單一定價的獨占廠商</span></b><p>Faces downward-sloping demand. Expanding sales lowers the common price, so MR&lt;P.<span class="zh-full" lang="zh-Hant">面對向下傾斜的需求。擴大銷量需要降低統一價格，因此 MR＜P。</span></p></div></div>
+<p class="key">If the next unit adds more revenue than cost, expansion improves profit. If it adds less, reducing output improves profit. The usual MR–MC crossing identifies where that incentive changes.<span class="zh-full" lang="zh-Hant">如果下一單位增加的收益高於成本，擴產會提高利潤；反之，減產會提高利潤。一般的 MR、MC 交點用來辨認這個誘因改變的位置。</span></p>
+<details class="extra"><summary>Optional: linear demand and the numerical example<span class="zh-full" lang="zh-Hant">可展開補充：線性需求與數字例子</span></summary>
+<p>Linear demand is a straight-line relationship: each additional unit requires the same price reduction. For linear inverse demand, MR has the same vertical intercept and twice the negative slope. This shortcut is specific to linear demand.<span class="zh-full" lang="zh-Hant">線性需求是直線關係：每增加一單位，都需要相同幅度的降價。在線性反需求下，MR 與 D 有相同的縱軸截距，但 MR 的負斜率是兩倍。這個捷徑只適用於線性需求。</span></p>
+<div class="formula">TR = P × Q; MR = ΔTR / ΔQ<br/>P = a − bQ; continuous MR = a − 2bQ<br/>D reaches zero at Q = a/b; MR reaches zero at Q = a/(2b)<span class="zh-full" lang="zh-Hant">總收益 TR＝P×Q；邊際收益 MR＝ΔTR／ΔQ。線性反需求 P＝a−bQ 的連續型 MR＝a−2bQ。D 在 Q＝a/b 時降至零；MR 在 Q＝a/(2b) 時降至零。</span></div>
+<p>In MRU's example, two units at $16 earn $32. Three units at $14 earn $42. The extra unit adds $10: its $14 receipt minus the $4 lost on the other two units. For whole-unit tables, use the actual change in revenue rather than a continuous derivative.<span class="zh-full" lang="zh-Hant">MRU 的例子中，兩單位各賣 16 元，收入 32 元；三單位各賣 14 元，收入 42 元。新增收益是 10 元：新增單位收入 14 元，扣掉另外兩單位降價少收的 4 元。整數表格應使用實際收益差額，不直接套連續型微分值。</span></p>
+</details>
+<details class="graph-guide"><summary>How to build this graph<span class="zh-full" lang="zh-Hant">如何開始畫這張圖</span></summary>
+<ol class="steps">
+<li><span><b>Identify the question.</b> A single-price monopolist chooses along downward-sloping demand. Use Q on the horizontal axis and price/cost per unit on the vertical axis.<span class="zh-full" lang="zh-Hant">先辨認題目。單一定價的獨占廠商沿向下傾斜的需求選擇。橫軸放 Q，縱軸放每單位價格／成本。</span></span></li>
+<li><span><b>Start with D, then add MR.</b> D gives buyers' price constraint. MR lies below it because expanding sales lowers the common price.<span class="zh-full" lang="zh-Hant">先畫 D，再加 MR。D 是買方願付價格的約束；因為擴大銷量需要降低統一價格，MR 在 D 下方。</span></span></li>
+<li><span><b>Add MC and find output.</b> Locate the relevant MR–MC crossing and project down to Qm. For whole-unit tables, find where an additional unit stops improving profit; exact equality is not required.<span class="zh-full" lang="zh-Hant">加上 MC 找產量。找出適當的 MR、MC 交點，再向下投影到 Qm。整數表格則找下一單位從提高利潤轉為降低利潤的地方，不必剛好相等。</span></span></li>
+<li><span><b>Move up to D for price.</b> At Qm, mark the point on D and read Pm. The height of the MR–MC crossing is not the selling price.<span class="zh-full" lang="zh-Hant">從 Qm 往上回到 D 找價格。標出需求線上的點，再讀 Pm。MR、MC 交點的高度不是售價。</span></span></li>
+<li><span><b>Add only what the question needs.</b> For profit or loss, add ATC and compare it with Pm at Qm. For efficiency, find D–MC and mark Qe; excluded beneficial trades lie between D and MC.<span class="zh-full" lang="zh-Hant">依題目補上需要的線與點。問盈虧時加 ATC，並在 Qm 比較 ATC 與 Pm；問效率時找 D、MC 交點及 Qe。被排除的有益交易位於 D 與 MC 之間。</span></span></li>
+</ol>
+<p class="key">Class drug graph: mark MR–MC at (80, 0.50), D at (80, 12.50), and ATC at (80, 2.50). These points share the same output but play different roles.<span class="zh-full" lang="zh-Hant">課堂藥物圖：MR、MC 交點是 (80, 0.50)，D 上的點是 (80, 12.50)，ATC 上的點是 (80, 2.50)。三點的產量相同，但用途不同。</span></p>
+</details>
+<h2 id="water">3. The professor's whole-gallon decision<span class="zh-full" lang="zh-Hant">3. 教授的整加侖產量決策</span></h2>
+<p class="sub">Compare the benefit and cost of the next unit, rather than chasing the largest revenue.<span class="zh-full" lang="zh-Hant">比較下一單位的收益與成本，不只追求最大的營收。</span></p>
+<p>The class example makes the marginal decision concrete. The fourth gallon still increases profit; the fifth reduces it. The best listed choice is therefore <b>four gallons per day at $7</b>, with <b>$11/day profit</b>.<span class="zh-full" lang="zh-Hant">課堂例子把邊際決策具體化：第四加侖仍提高利潤，第五加侖則降低利潤。因此表格中的最佳選擇是每天四加侖、每加侖 7 元，每日利潤 11 元。</span></p>
+<p>Revenue keeps rising beyond the best output, but additional production also costs resources. <b>More sales need not mean more profit.</b> When quantities come in whole units, the decision can switch from a profitable extra unit to an unprofitable one without any row having exactly equal MR and MC.<span class="zh-full" lang="zh-Hant">超過最適產量後，收益仍可能增加，但生產也要付出更多資源成本。賣更多不一定賺更多。數量只能整單位變動時，可能直接從有利的新增單位跳到不利的新增單位，而沒有任何一列剛好 MR＝MC。</span></p>
+<div data-widget="water"></div>
+<p>At the chosen output, price lies above ATC, so the firm earns a profit. The vertical gap between P and ATC is profit per gallon; the rectangle's width is the number of gallons. Fixed cost is paid even with zero production in this short-run example, so shutdown can be worse than operating.<span class="zh-full" lang="zh-Hant">在所選產量下，價格高於 ATC，因此廠商獲利。P 與 ATC 的垂直距離是每加侖利潤；矩形的寬度是產量。在這個短期例子中，不生產也要付固定成本，因此停產可能比營運更差。</span></p>
+<details class="extra"><summary>Optional: professor's full table and calculations<span class="zh-full" lang="zh-Hant">可展開補充：教授完整表格與計算</span></summary>
+<div class="tbl"><table aria-label="Professor's monopoly table, quantities in gallons per day" class="oil"><thead><tr><th>Q/day<span class="zh-full" lang="zh-Hant">每日產量</span></th><th>P</th><th>TR<span class="zh-full" lang="zh-Hant">總收益</span></th><th>FC<span class="zh-full" lang="zh-Hant">固定成本</span></th><th>VC<span class="zh-full" lang="zh-Hant">變動成本</span></th><th>TC<span class="zh-full" lang="zh-Hant">總成本</span></th><th>MR<span class="zh-full" lang="zh-Hant">邊際收益</span></th><th>MC<span class="zh-full" lang="zh-Hant">邊際成本</span></th><th>Profit/day<span class="zh-full" lang="zh-Hant">每日利潤</span></th></tr></thead><tbody>
+<tr><td>0</td><td>11</td><td>0</td><td>10</td><td>0</td><td>10</td><td>N/A<span class="zh-full" lang="zh-Hant">不適用</span></td><td>N/A<span class="zh-full" lang="zh-Hant">不適用</span></td><td>−10</td></tr>
+<tr><td>1</td><td>10</td><td>10</td><td>10</td><td>1</td><td>11</td><td>10</td><td>1</td><td>−1</td></tr>
+<tr><td>2</td><td>9</td><td>18</td><td>10</td><td>2</td><td>12</td><td>8</td><td>1</td><td>6</td></tr>
+<tr><td>3</td><td>8</td><td>24</td><td>10</td><td>4</td><td>14</td><td>6</td><td>2</td><td>10</td></tr>
+<tr class="best-row"><td>4</td><td>7</td><td>28</td><td>10</td><td>7</td><td>17</td><td>4</td><td>3</td><td>11</td></tr>
+<tr><td>5</td><td>6</td><td>30</td><td>10</td><td>11</td><td>21</td><td>2</td><td>4</td><td>9</td></tr>
+<tr><td>6</td><td>5</td><td>30</td><td>10</td><td>16</td><td>26</td><td>0</td><td>5</td><td>4</td></tr>
+<tr><td>7</td><td>4</td><td>28</td><td>10</td><td>22</td><td>32</td><td>−2</td><td>6</td><td>−4</td></tr>
+<tr><td>8</td><td>3</td><td>24</td><td>10</td><td>33</td><td>43</td><td>−4</td><td>11</td><td>−19</td></tr></tbody></table></div>
+<p class="note-small">Class table, slides 2–6. P is dollars/gallon; MR and MC are dollars per extra gallon; TR, FC, VC, TC, and profit are dollars/day.<span class="zh-full" lang="zh-Hant">課堂表格，投影片 2–6。P 的單位是美元／加侖；MR、MC 是每多一加侖的美元數；TR、FC、VC、TC 與利潤是美元／日。</span></p>
+<p>The fourth gallon adds 4−3=$1 to profit; the fifth adds 2−4=−$2. Revenue peaks at both Q=5 and Q=6, where profits are $9 and $4, below $11 at Q=4. Fixed cost is $10/day, so shutdown loses $10/day.<span class="zh-full" lang="zh-Hant">第四加侖增加利潤 4−3＝1 元，第五加侖增加 2−4＝−2 元。Q＝5 與 Q＝6 的收益最高，但利潤只有 9 與 4 元，低於 Q＝4 時的 11 元。每日固定成本為 10 元，因此停產每日虧損 10 元。</span></p>
+<div class="formula">ATC(4) = TC / Q = 17 / 4 = $4.25<br/>Profit = (P − ATC)Q = (7 − 4.25) × 4 = $11/day<span class="zh-full" lang="zh-Hant">Q＝4 時，ATC＝TC／Q＝17／4＝4.25 元。利潤＝(P−ATC)Q＝(7−4.25)×4＝每日 11 元。</span></div>
+<p>MR and MC are the changes from the previous row. Use those whole-unit comparisons to identify when another gallon stops improving profit.<span class="zh-full" lang="zh-Hant">MR、MC 是相對前一列的變化量。使用這些整單位比較，辨認何時再多生產一加侖已無法提高利潤。</span></p>
+</details>
+<h2 id="medicine">4. From demand information to a drug price<span class="zh-full" lang="zh-Hant">4. 從需求資訊走向藥物定價</span></h2>
+<p class="sub">Estimate demand, choose output, read price, then measure profit.<span class="zh-full" lang="zh-Hant">估計需求、選產量、讀價格，再評估利潤。</span></p>
+<p>The class advertisement shows <b>Magic Johnson and Combivir</b>. The accurate historical wording is an HIV-positive diagnosis. The economic discussion asks how a drug seller learns demand: research or consultants can estimate sales at alternative prices, taking account of substitutes, budgets, and who pays.<span class="zh-full" lang="zh-Hant">課堂廣告人物是 Magic Johnson，藥品是 Combivir。準確的歷史描述是他被診斷為 HIV 陽性。經濟學討論則問：藥廠如何得知需求？研究或顧問可協助估計各價格下的銷量，並考慮替代品、預算與由誰付款。</span></p>
+<div class="flow"><span>Define product, buyers and period<span class="zh-full" lang="zh-Hant">界定產品、買方與期間</span></span><i>→</i><span>Estimate D<span class="zh-full" lang="zh-Hant">估計需求 D</span></span><i>→</i><span>Construct TR and MR<span class="zh-full" lang="zh-Hant">建立 TR 與 MR</span></span><i>→</i><span>Combine with MC<span class="zh-full" lang="zh-Hant">配合邊際成本 MC</span></span><i>→</i><span>Choose Q, read P<span class="zh-full" lang="zh-Hant">選產量，再讀價格</span></span><i>→</i><span>Check ATC and profit<span class="zh-full" lang="zh-Hant">用 ATC 檢查利潤</span></span></div>
+<p>Costs alone cannot identify the monopoly price. For any proposed Q, D gives its feasible common price; the most profitable Q also depends on MR and MC. Observed price/quantity pairs need not trace one stable demand curve if costs, substitution, or other conditions changed.<span class="zh-full" lang="zh-Hant">成本本身無法決定獨占價格。對任一提議的產量 Q，D 給出可行的統一價格；哪個產量最賺錢，還取決於 MR、MC。如果成本、替代選擇或其他條件改變，過去觀察到的價格／數量點不一定位於同一條穩定需求線上。</span></p>
+<div data-preset="drug" data-widget="monopoly"></div>
+<div class="three"><div><b>Output and price<span class="zh-full" lang="zh-Hant">產量與價格</span></b><p>MR=MC=$0.50 at <b>80 million pills</b>. Move up to D: <b>P=$12.50</b>.<span class="zh-full" lang="zh-Hant">在 8,000 萬顆時，MR＝MC＝每顆 0.50 美元；往上到 D，讀到每顆價格 12.50 美元。</span></p></div><div><b>Average total cost<span class="zh-full" lang="zh-Hant">平均總成本</span></b><p>The slide labels it AC. At that output, <b>ATC=$2.50</b>, so profit is $10/pill.<span class="zh-full" lang="zh-Hant">投影片標作 AC。在該產量下，ATC＝每顆 2.50 美元，因此每顆利潤 10 美元。</span></p></div><div><b>Total profit<span class="zh-full" lang="zh-Hant">總利潤</span></b><p>TR=$1,000 million; TC=$200 million. Profit=<b>$800 million</b>.<span class="zh-full" lang="zh-Hant">總收益為 10 億美元，總成本為 2 億美元，利潤為 8 億美元。</span></p></div></div>
+<p>The graph separates three roles: <b>MC helps choose output, D determines its price, and ATC determines profit or loss</b>. Even a price well above MC can coexist with a loss if average total cost is higher still. In the class example, markup is $12 per pill, while profit per pill is $10.<span class="zh-full" lang="zh-Hant">圖上三個角色不同：MC 協助選產量，D 決定該產量的價格，ATC 決定盈虧。即使價格遠高於 MC，只要 ATC 更高，仍可能虧損。課堂例子的每顆加價是 12 美元，每顆利潤則是 10 美元。</span></p>
+<p class="note-small">Class drug example, slides 9–11. Quantity is in millions of pills; no sales period is specified.<span class="zh-full" lang="zh-Hant">課堂藥物例子，投影片 9–11。產量單位為百萬顆，未指定銷售期間。</span></p>
+<p class="hint"><b>中文邏輯</b><span>D 先回答各價格下能賣多少；MR、MC 再選最賺的產量。價格減 MC 是加價，價格減 ATC 才是每單位利潤。</span></p><aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A research team knows production costs but not how buyers switch to alternatives when price changes. Which parts of a pricing recommendation remain unresolved?<span class="zh-full" lang="zh-Hant">研究團隊知道生產成本，卻不知道價格改變時買方如何轉向替代品。定價建議還有哪些部分無法確定？</span></p></aside>
+<h2 id="markup">5. Elasticity, markup, and cost changes<span class="zh-full" lang="zh-Hant">5. 彈性、加價與成本變動</span></h2>
+<p class="sub">Less price sensitivity can support a larger markup; a steeper line alone is not enough.<span class="zh-full" lang="zh-Hant">價格敏感度較低時可能支持較高加價；單看線較陡還不夠。</span></p>
+<p><b>Elasticity</b><span class="zh">需求彈性</span> measures percentage quantity response to percentage price change. Fewer close substitutes can make buyers less responsive. MRU's medicine discussion adds two mechanisms: serious illness can increase the priority of treatment, and third-party payment can reduce the user's sensitivity to the bill.<span class="zh-full" lang="zh-Hant">彈性衡量價格百分比變動引起的需求量百分比變動。相近替代品較少時，買方可能較不敏感。MRU 藥物討論另有兩個機制：嚴重疾病可能提高治療的優先性；第三方支付則可能降低使用者對帳單的敏感度。</span></p>
+<div data-readout="optional" data-widget="elasticity"></div>
+<p><b>The intuition:</b> when buyers can easily switch, a price increase loses many sales and the seller's markup is constrained. With weaker substitutes, the seller can sustain a larger gap between price and MC. In the class comparison, “relatively inelastic” means less responsive than the other demand case.<span class="zh-full" lang="zh-Hant">直覺是：如果買方很容易轉換，漲價會流失很多銷量，廠商加價就受限制。替代選擇較弱時，價格與 MC 的差距可能較大。課堂所說「相對缺乏彈性」，是相對另一種需求更不敏感。</span></p>
+<p>The standard positive-MC interior optimum remains on the <b>elastic part of demand</b>. On an inelastic part, reducing output and raising price would increase revenue while reducing variable cost, so the seller would want to change its choice.<span class="zh-full" lang="zh-Hant">在 MC 為正、一般內點最適條件下，廠商仍選在需求有彈性的區段。如果位於缺乏彈性的區段，減產漲價會增加收益並降低變動成本，廠商就有誘因改變選擇。</span></p>
+<details class="extra"><summary>Optional: markup measures and the linear examples<span class="zh-full" lang="zh-Hant">可展開補充：加價指標與線性例子</span></summary>
+<div class="formula">Absolute markup = P − MC<br/>Lerner index = (P − MC) / P = 1 / |ε|<span class="zh-full" lang="zh-Hant">絕對加價＝P−MC。Lerner 指數＝(P−MC)／P＝1／|ε|。</span></div>
+<p>The Lerner formula applies at a differentiable, unconstrained interior single-price optimum; with positive MC, |ε|&gt;1. The comparison uses P=60−2Q and P=140−4Q, both with MC=20. Their optimal markups are 20 and 60, and elasticity magnitudes are 2 and 4/3. Both the intercept and slope change; steepness alone does not identify elasticity.<span class="zh-full" lang="zh-Hant">Lerner 公式適用於可微、沒有額外約束的單一定價內點最適解；MC 為正時，|ε|＞1。比較的需求是 P＝60−2Q 與 P＝140−4Q，兩者 MC 都為 20。最適加價分別為 20、60，彈性絕對值為 2、4/3。截距與斜率都改變，因此不能只看陡峭程度判斷彈性。</span></p>
+</details>
+<p>MRU's historical airline puzzle contrasts a Washington–Dallas ticket with a longer Washington–San Francisco journey through Dallas. Fewer convenient alternatives for the hub destination can support a larger markup. Distance alone does not determine fares.<span class="zh-full" lang="zh-Hant">MRU 的歷史機票案例比較華盛頓到達拉斯，與經達拉斯轉往舊金山的更長旅程。前往樞紐目的地的便利替代選擇較少，可能支持更高加價；距離本身無法決定票價。</span></p>
+<div class="tbl"><table><thead><tr><th>Change<span class="zh-full" lang="zh-Hant">變動</span></th><th>Curve logic<span class="zh-full" lang="zh-Hant">曲線邏輯</span></th><th>Result, conditional on operating<span class="zh-full" lang="zh-Hant">仍持續營運時的結果</span></th></tr></thead><tbody>
+<tr><td>Higher per-unit input cost<span class="zh-full" lang="zh-Hant">每單位投入成本上升</span></td><td>MC rises; D and MR stay fixed.<span class="zh-full" lang="zh-Hant">MC 上移，D 與 MR 不變。</span></td><td>Lower Q and higher P in the linear-demand, constant-MC model.<span class="zh-full" lang="zh-Hant">在線性需求、固定 MC 模型中，產量下降、價格上升。</span></td></tr>
+<tr><td>Higher unavoidable fixed cost<span class="zh-full" lang="zh-Hant">不可避免的固定成本上升</span></td><td>ATC rises; MC stays fixed.<span class="zh-full" lang="zh-Hant">ATC 上移，MC 不變。</span></td><td>Same optimal Q and P, lower profit.<span class="zh-full" lang="zh-Hant">最適產量與價格相同，利潤下降。</span></td></tr>
+<tr><td>Higher demand intercept<span class="zh-full" lang="zh-Hant">需求截距上升</span></td><td>D and MR shift upward.<span class="zh-full" lang="zh-Hant">D 與 MR 向上移。</span></td><td>Higher Q and P with the slope and MC unchanged.<span class="zh-full" lang="zh-Hant">在斜率與 MC 不變時，產量與價格上升。</span></td></tr></tbody></table></div>
+<p>A monopolist generally has <b>no demand-independent supply curve</b>. Output depends on demand/MR as well as costs; MC is not a competitive supply schedule that can be used without demand.<span class="zh-full" lang="zh-Hant">獨占一般沒有獨立於需求的供給線。產量同時依賴需求／MR 與成本，不能把 MC 當作無須搭配需求即可使用的競爭供給線。</span></p><aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Two demand diagrams use different units and scales. What evidence is needed before concluding that the steeper line supports a larger markup?<span class="zh-full" lang="zh-Hant">兩張需求圖使用不同單位與尺度。要主張較陡的線能支持較高加價，還需要什麼證據？</span></p></aside>
+<h2 id="welfare">6. Profit, lost trades, and innovation<span class="zh-full" lang="zh-Hant">6. 利潤、失去的交易與創新</span></h2>
+<p class="sub">A transfer to the seller differs from a loss of combined gains.<span class="zh-full" lang="zh-Hant">剩餘轉移給賣方，與總交易利益消失，是不同的事。</span></p>
+<div class="tbl"><table><thead><tr><th>Object<span class="zh-full" lang="zh-Hant">項目</span></th><th>Meaning<span class="zh-full" lang="zh-Hant">意義</span></th><th>Graph / calculation<span class="zh-full" lang="zh-Hant">圖形／計算</span></th></tr></thead><tbody>
+<tr><td>Consumer surplus<span class="zh">消費者剩餘</span><span class="zh-full" lang="zh-Hant">消費者剩餘</span></td><td>Willingness to pay minus payment.<span class="zh-full" lang="zh-Hant">願付價格減去實際支付。</span></td><td>Area below D and above price for units sold.<span class="zh-full" lang="zh-Hant">已售單位中，D 下方、價格上方的面積。</span></td></tr>
+<tr><td>Producer surplus<span class="zh-full" lang="zh-Hant">生產者剩餘</span></td><td>TR minus variable cost.<span class="zh-full" lang="zh-Hant">總收益減變動成本。</span></td><td>Revenue minus the area under MC.<span class="zh-full" lang="zh-Hant">收益減去 MC 下方的成本面積。</span></td></tr>
+<tr><td>Economic profit<span class="zh">經濟利潤</span><span class="zh-full" lang="zh-Hant">經濟利潤</span></td><td>TR minus all economic costs.<span class="zh-full" lang="zh-Hant">總收益減全部經濟成本。</span></td><td>PS minus fixed cost in this model.<span class="zh-full" lang="zh-Hant">在此模型中，是生產者剩餘再減固定成本。</span></td></tr>
+<tr><td>Deadweight loss<span class="zh">無謂損失</span><span class="zh-full" lang="zh-Hant">無謂損失</span></td><td>Combined gains from trade that are lost.<span class="zh-full" lang="zh-Hant">未能實現的總交易利益。</span></td><td>Area between D and MC over excluded beneficial units.<span class="zh-full" lang="zh-Hant">被排除的有益單位中，D 與 MC 之間的面積。</span></td></tr></tbody></table></div>
+<p>Uniform monopoly pricing excludes some units whose WTP exceeds MC but falls below the monopoly price. Efficient output satisfies <b>D=MC</b>; monopoly output satisfies <b>MR=MC</b>. Lost consumer surplus includes both transfers and DWL.<span class="zh-full" lang="zh-Hant">統一獨占價格排除了一些願付價格高於 MC、卻低於售價的交易。有效率產量滿足 D＝MC；獨占產量滿足 MR＝MC。失去的消費者剩餘同時包含轉移與無謂損失。</span></p>
+<div data-preset="office" data-readout="optional" data-widget="monopoly"></div>
+<p>The monopoly price transfers some surplus from buyers to the seller. It also prevents trades that would create value because the buyer's willingness to pay exceeds the resource cost. <b>The transfer changes who receives the gains; the missing trades reduce total gains.</b> That is why all lost consumer surplus cannot be labeled DWL.<span class="zh-full" lang="zh-Hant">獨占價格把部分剩餘從買方移給賣方，也阻止了願付價格高於資源成本的有益交易。轉移改變誰取得利益；缺少的交易則降低總利益。因此不能把全部消費者損失都叫作無謂損失。</span></p>
+<p>Higher fixed cost can turn profit into a loss without changing the marginal output choice. If that fixed cost is unavoidable now, operating may still lose less than shutting down. Conversely, pricing at MC can serve efficient output while leaving fixed cost uncovered; efficient allocation and financing are separate questions.<span class="zh-full" lang="zh-Hant">固定成本上升可能把獲利變成虧損，卻不改變邊際產量選擇。如果固定成本目前無法避免，營運仍可能比停產少虧。反過來，以 MC 定價可服務有效率產量，但未必支付固定成本；配置效率與資金來源是兩個問題。</span></p>
+<details class="extra"><summary>Optional: follow the MRU numerical example<span class="zh-full" lang="zh-Hant">可展開補充：MRU 數字例子</span></summary>
+<p>With P=100−2Q, MC=20 and FC=100: Qm=20, Pm=60, ATC=25, profit=700, CS=400, PS=800 and DWL=400. Efficient Q=40 raises CS+PS from 1,200 to 1,600 before common fixed cost. Consumers lose 1,200: 800 transfers to the seller and 400 disappears.<span class="zh-full" lang="zh-Hant">在 P＝100−2Q、MC＝20、FC＝100 下：Qm＝20、Pm＝60、ATC＝25、利潤＝700、CS＝400、PS＝800、DWL＝400。有效率產量 40，使扣除共同固定成本前的 CS＋PS 從 1,200 增至 1,600。消費者損失 1,200，其中 800 轉移給賣方，400 消失。</span></p>
+<p>At FC=1,000, output and price stay unchanged, but ATC becomes 70 and profit becomes −200. Operating still beats losing the unavoidable 1,000 through shutdown.<span class="zh-full" lang="zh-Hant">FC＝1,000 時，產量與價格不變，但 ATC 升至 70、利潤變成 −200。繼續營運仍比停產損失不可避免的 1,000 更好。</span></p>
+</details>
+<div class="pair"><div><b>Static allocation<span class="zh-full" lang="zh-Hant">靜態配置</span></b><p>Use existing knowledge and resources efficiently. The diagram measures lost current trades.<span class="zh-full" lang="zh-Hant">有效利用現有知識與資源。圖形衡量的是當下失去的交易。</span></p></div><div><b>Dynamic incentives<span class="zh-full" lang="zh-Hant">動態誘因</span></b><p>Expected patent profits may encourage innovation. Whether extra innovation outweighs access costs requires evidence.<span class="zh-full" lang="zh-Hant">預期專利利潤可能鼓勵創新。額外創新的好處是否超過取得成本，需要證據。</span></p></div></div>
+<p>Patent buyouts and innovation prizes attempt to reward discovery separately from a high per-unit price. Their evaluation also requires financing, administration, and incentive effects. A possible innovation benefit does not validate every protected monopoly.<span class="zh-full" lang="zh-Hant">專利買斷與創新獎金嘗試把發明報酬和較高單位價格分開。仍須評估籌資、管理與誘因效果。可能的創新好處，不代表每種受保護的獨占都有正面價值。</span></p>
+<p class="note-small">MRU Office Hours example. Surplus excludes fixed cost; economic profit deducts it.<span class="zh-full" lang="zh-Hant">MRU Office Hours 例子。剩餘尚未扣固定成本；經濟利潤則有扣除。</span></p><aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A lower monopoly price increases consumer surplus. How could that gain combine a transfer from the seller with newly created gains from trade?<span class="zh-full" lang="zh-Hant">獨占價格下降使消費者剩餘增加。這個增加如何同時包含來自賣方的剩餘轉移，以及新增交易所創造的利益？</span></p></aside>
+<h2 id="discrimination">7. Different prices, different customers<span class="zh-full" lang="zh-Hant">7. 不同顧客、不同價格</span></h2>
+<p class="sub">Identify the information used, the resale constraint, and the relevant counterfactual.<span class="zh-full" lang="zh-Hant">辨認使用了哪些資訊、轉售受到何種限制，以及比較基準是什麼。</span></p>
+<p><b>Price discrimination</b><span class="zh">差別取價</span> charges different prices for comparable units for reasons beyond different supply costs. Sustaining it requires pricing power, a way to segment customers or induce sorting, and limits on <b>arbitrage</b><span class="zh">套利轉售</span>.<span class="zh-full" lang="zh-Hant">差別取價是對可比較的單位收取不同價格，而且價差不只是供應成本差異。要維持差別取價，須有定價力量、可行的分群或自我選擇機制，以及對套利轉售的限制。</span></p>
+<div class="tbl"><table><thead><tr><th>Device<span class="zh-full" lang="zh-Hant">方式</span></th><th>Information / selection<span class="zh-full" lang="zh-Hant">資訊／選擇機制</span></th><th>Example<span class="zh-full" lang="zh-Hant">例子</span></th></tr></thead><tbody>
+<tr><td>First-degree / perfect<span class="zh-full" lang="zh-Hant">第一級／完全差別取價</span></td><td>Exact unit-level willingness to pay<span class="zh">願付價格</span>.<span class="zh-full" lang="zh-Hant">知道每單位確切的願付價格。</span></td><td>Charge each buyer's reservation value; sell while WTP≥MC.<span class="zh-full" lang="zh-Hant">對每位買方收取其保留價格，只要 WTP≥MC 就出售。</span></td></tr>
+<tr><td>Second-degree<span class="zh-full" lang="zh-Hant">第二級差別取價</span></td><td>A menu induces self-selection.<span class="zh-full" lang="zh-Hant">透過選單讓顧客自行選擇。</span></td><td>Different usage plans or restricted/flexible tickets.<span class="zh-full" lang="zh-Hant">不同用量方案，或限制較多／較彈性的票種。</span></td></tr>
+<tr><td>Third-degree<span class="zh-full" lang="zh-Hant">第三級差別取價</span></td><td>Identify observable groups.<span class="zh-full" lang="zh-Hant">能辨認可觀察的客群。</span></td><td>Student, senior, or other verified customer categories.<span class="zh-full" lang="zh-Hant">學生、長者或其他可驗證的顧客分類。</span></td></tr></tbody></table></div>
+<p>The class examples show <b>senior and student Rabbit cards</b>, and an admission sign charging <b>Thai visitors ฿10 and foreigners ฿50</b>. The cards illustrate observable categories; the sign shows a ฿40 gap and a fivefold price ratio.<span class="zh-full" lang="zh-Hant">課堂例子包括長者與學生 Rabbit 卡，以及古蹟入場告示：泰國人 10 泰銖、外國人 50 泰銖。卡片說明可觀察客群；告示顯示 40 泰銖價差，外國人票價是五倍。</span></p>
+<p class="note-small">Class examples, slide 15. Rabbit fare amounts are not shown. The photographed admission prices are historical; the price gap alone does not identify demand elasticity.<span class="zh-full" lang="zh-Hant">課堂例子，投影片 15。未提供 Rabbit 票價；入場費照片是歷史例子，價差本身不能識別需求彈性。</span></p>
+<p>Resale can defeat segmentation: full-price buyers obtain discounted units through others. ID checks or nontransferable admission can help sustain separate prices. If resale forces a uniform price, the new optimum need not equal the former low price. Product differences also matter: a business-class fare gap alone does not isolate discrimination.<span class="zh-full" lang="zh-Hant">轉售可能破壞分群：原本付全價的人，可透過別人取得折扣商品。身分驗證或不可轉讓的入場權有助維持不同價格。如果轉售迫使統一定價，新最適價格不一定等於原本的低價。產品差異也重要：商務艙價差本身不能單獨識別差別取價。</span></p>
+<div data-readout="optional" data-widget="groups"></div>
+<p>Separate pricing lets the seller respond to each group's demand instead of compromising on one common price. The optimal group choices equate each group's MR with common MC. The group with less elastic demand at its chosen point supports a larger markup.<span class="zh-full" lang="zh-Hant">分別定價讓賣方依各群需求反應，而不必妥協於同一價格。最適客群產量會使各群 MR 等於共同 MC。在其選定點，需求較缺乏彈性的客群支持較高加價。</span></p>
+<p><b>Higher seller profit does not settle welfare.</b> In this example, total output stays unchanged, but sales shift away from higher-value marginal buyers in A toward lower-value buyers in B. The seller gains while combined gains fall. Who receives the units matters alongside how many are sold.<span class="zh-full" lang="zh-Hant">賣方多賺，不代表福利提高。這個例子的總產量不變，但部分單位由 A 群邊際價值較高的買方轉到 B 群價值較低的買方。賣方得利，總利益卻下降。分給誰與賣多少同樣重要。</span></p>
+<p>Under <b>perfect discrimination</b>, the seller can charge each unit's WTP without lowering prices on the other units. It expands until WTP meets MC, serving efficient output and capturing the gains. Consumer surplus can fall to zero even as DWL disappears; efficiency does not imply that every buyer benefits.<span class="zh-full" lang="zh-Hant">完全差別取價下，賣方可對每單位收取其 WTP，不必降低其他單位的價格。會擴產到 WTP＝MC，服務有效率產量並取得交易利益。CS 可降至零，同時 DWL 消失；有效率不代表每位買方都受益。</span></p>
+<details class="extra"><summary>Optional: group demand and surplus figures<span class="zh-full" lang="zh-Hant">可展開補充：客群需求與剩餘數字</span></summary>
+<p>Group A: P=100−2Q. Group B: P=60−2Q. Common MC=20. At uniform P=50, A buys 25 and B buys 5; CS=650 and PS=900. Separate prices of 60 and 40 give quantities 20 and 10; CS=500 and PS=1,000. Total output remains 30 while total surplus falls by 50.<span class="zh-full" lang="zh-Hant">A 群需求 P＝100−2Q，B 群需求 P＝60−2Q，共同 MC＝20。統一價格 50 時，A 買 25、B 買 5；CS＝650、PS＝900。分別定價 60 與 40 時，數量為 20、10；CS＝500、PS＝1,000。總量仍為 30，總剩餘下降 50。</span></p>
+<p>Under perfect discrimination in the earlier MRU model, Q=40, CS=0, PS=1,600, and profit=1,500 after FC=100. There is no common selling price; the last unit pays 20.<span class="zh-full" lang="zh-Hant">前述 MRU 模型若採完全差別取價，Q＝40、CS＝0、PS＝1,600，扣 FC＝100 後利潤為 1,500。沒有共同售價；最後一單位付 20。</span></p>
+</details>
+<p class="hint"><b>中文邏輯</b><span>先看怎麼分群、能不能轉賣，再看各群 MR。賣方多賺可能只是剩餘轉移；總量相同時，分配給誰也影響福利。</span></p><aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A public attraction charges residents less than visitors. What would need to be known before treating the two posted prices as profit-maximizing group prices?<span class="zh-full" lang="zh-Hant">公共景點對居民收費低於外地訪客。要把這兩個公告價格當成利潤最大化的分群價格，還需要知道什麼？</span></p></aside>
+<h2 id="packages">8. Tying and bundling solve different problems<span class="zh-full" lang="zh-Hant">8. 搭售與組合銷售處理不同問題</span></h2>
+<p class="sub">Usage metering differs from a fixed package; revenue differs from profit.<span class="zh-full" lang="zh-Hant">依用量計費與固定套裝不同；收益也不同於利潤。</span></p>
+<div class="pair"><div><b>Tying and metering<span class="zh">搭售與計量</span><span class="zh-full" lang="zh-Hant">搭售與計量</span></b><p>A base good is linked to repeated purchases of a tied good, such as a printer and required proprietary ink. A low access price can attract light users; recurring marked-up purchases collect more from heavy users.<span class="zh-full" lang="zh-Hant">基本商品與重複購買的綁定商品連結，例如印表機與必須使用的專用墨水。較低的入門價格可吸引輕度使用者；持續購買加價耗材，則讓重度使用者支付更多。</span></p></div><div><b>Bundling<span class="zh">組合銷售</span><span class="zh-full" lang="zh-Hant">組合銷售</span></b><p>Two or more goods are sold as a package. Pure bundling offers only the package; mixed bundling also offers components separately. The fixed package does not charge each time an app is used.<span class="zh-full" lang="zh-Hant">把兩種以上商品作為套裝出售。純組合只提供套裝；混合組合也單售零件。固定套裝不會在每次使用應用程式時再收費。</span></p></div></div>
+<p>Tying can increase system adoption while an above-MC consumable price reduces use per adopter. Both margins matter for welfare. Complementarity alone does not prove a tie; some restriction or practical dependency must connect purchases.<span class="zh-full" lang="zh-Hant">搭售可能增加系統採用者，但耗材價格高於 MC，會壓低每位採用者的使用量。福利須同時看兩者。商品互補本身不代表搭售；須有某種限制或實際依賴來連結購買。</span></p>
+<p>A package can solve a pricing problem: one buyer values the first component highly, while another values the second highly. Separate high prices lose some useful sales. If their combined values are more similar, one package price can appeal to both buyers and increase consumption.<span class="zh-full" lang="zh-Hant">套裝可解決定價問題：一位買方最重視第一項，另一位最重視第二項。分開高價銷售會失去部分有益交易；若合計價值更接近，同一套裝價可吸引兩人並增加消費。</span></p>
+<div data-readout="optional" data-widget="bundle"></div>
+<details class="extra"><summary>Optional: MRU buyer values and numerical comparison<span class="zh-full" lang="zh-Hant">可展開補充：MRU 買方價值與數字比較</span></summary>
+<div class="tbl"><table><thead><tr><th>MRU buyer values<span class="zh-full" lang="zh-Hant">MRU 買方願付價值</span></th><th>Word</th><th>Excel</th><th>Bundle<span class="zh-full" lang="zh-Hant">套裝</span></th></tr></thead><tbody><tr><td>Amanda</td><td>$100</td><td>$20</td><td>$120</td></tr><tr><td>Yvonne</td><td>$40</td><td>$90</td><td>$130</td></tr></tbody></table></div>
+<p>At zero MC, separate Word=$100 and Excel=$90 earn $190. A $120 bundle sells to both and earns $240, an increase of $50, or about 26.3%. CS rises from zero to $10; total surplus rises from 190 to 250 because additional valuable components are consumed at zero incremental cost.<span class="zh-full" lang="zh-Hant">MC＝0 時，Word 定價 100、Excel 定價 90，可賺收益 190。120 元套裝賣給兩人，收益 240，增加 50，約 26.3%。CS 從零升至 10；總剩餘從 190 升至 250，因為零新增成本下，更多有價值的組件被使用。</span></p>
+</details>
+<p>Opposite component preferences make the buyers' bundle values more similar. Negative correlation helps but is not necessary; low incremental cost and sufficiently concentrated package values matter. With positive MC, unwanted components can consume real resources. Higher revenue alone does not establish higher economic profit or welfare.<span class="zh-full" lang="zh-Hant">相反的組件偏好，讓兩人的套裝總價值更相似。負相關有幫助但非必要條件；低新增成本與足夠集中的套裝價值很重要。MC 為正時，不想要的組件仍消耗真實資源。收益增加本身不證明經濟利潤或福利提高。</span></p>
+<p class="note-small">MRU Word–Excel example. Assume additive values, one copy per buyer, and purchase when indifferent. The baseline MC is zero; figures exclude development costs.<span class="zh-full" lang="zh-Hant">MRU Word–Excel 例子。假設價值可相加、每人每項最多一份，而且無差異時仍購買。基準 MC 為零；數字未扣開發成本。</span></p><aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A cheaper printer attracts new users, while more expensive required ink discourages printing. Which outcomes would have to be compared to judge the welfare effect?<span class="zh-full" lang="zh-Hant">較便宜的印表機吸引新使用者，但較貴的必用墨水使人少印。判斷福利效果時，需要同時比較哪些結果？</span></p></aside>
+<h2 id="traps">9. Do not mix these up<span class="zh-full" lang="zh-Hant">9. 不要混淆這些概念</span></h2>
+<div class="traps">
+<div><s>MR=MC gives the selling price.<span class="zh-full" lang="zh-Hant">MR＝MC 的高度就是售價。</span></s><p>It gives an output candidate; return to D for price.<span class="zh-full" lang="zh-Hant">交點給的是候選產量；售價要回需求線讀。</span></p></div>
+<div><s>Maximize revenue in the water table.<span class="zh-full" lang="zh-Hant">水量表應選收益最大的產量。</span></s><p>Q=5 and 6 maximize TR; Q=4 maximizes profit.<span class="zh-full" lang="zh-Hant">Q＝5、6 的 TR 最大；Q＝4 的利潤最大。</span></p></div>
+<div><s>A discrete optimum needs exact equality.<span class="zh-full" lang="zh-Hant">整數最適產量必須剛好相等。</span></s><p>The next unit can switch from MR&gt;MC to MR&lt;MC.<span class="zh-full" lang="zh-Hant">下一單位可能直接從 MR＞MC 變成 MR＜MC。</span></p></div>
+<div><s>P−MC is profit per unit.<span class="zh-full" lang="zh-Hant">P−MC 是每單位利潤。</span></s><p>Use P−ATC; total profit also needs Q.<span class="zh-full" lang="zh-Hant">應用 P−ATC；總利潤還要乘 Q。</span></p></div>
+<div><s>All lost consumer surplus is DWL.<span class="zh-full" lang="zh-Hant">消費者剩餘減少全部都是 DWL。</span></s><p>Separate transfers from destroyed combined gains.<span class="zh-full" lang="zh-Hant">要分清剩餘轉移與總利益消失。</span></p></div>
+<div><s>Less elastic means the optimum is inelastic.<span class="zh-full" lang="zh-Hant">相對彈性較低，表示最適點沒有彈性。</span></s><p>With positive MC, the standard interior optimum has |ε|&gt;1.<span class="zh-full" lang="zh-Hant">MC 為正時，一般內點最適解的 |ε|＞1。</span></p></div>
+<div><s>Discrimination always raises total output.<span class="zh-full" lang="zh-Hant">差別取價一定增加總產量。</span></s><p>Output and allocation depend on group demand and the counterfactual.<span class="zh-full" lang="zh-Hant">產量與配置取決於各群需求和比較基準。</span></p></div>
+<div><s>More revenue proves a better bundle.<span class="zh-full" lang="zh-Hant">收益增加就證明套裝更好。</span></s><p>Subtract costs, then compare consumption and surplus.<span class="zh-full" lang="zh-Hant">先扣成本，再比較消費量與剩餘。</span></p></div></div>
+<h2 id="coldcall">10. Cold call practice<span class="zh-full" lang="zh-Hant">10. 課堂口頭問答練習</span></h2>
+<div class="qa-tools"><button id="qaAll" type="button">Show all answers</button></div>
+<div class="qa">
+<details><summary>What makes a market a monopoly?<span class="zh-full" lang="zh-Hant">什麼條件讓一個市場成為獨占？</span></summary><p>One seller faces no close substitutes in a defined product and geographic market; entry barriers sustain its position.<span class="zh-full" lang="zh-Hant">在明確的產品與地理市場中，一個賣方面對沒有相近替代品的需求；進入障礙維持其地位。</span></p></details>
+<details><summary>What is marginal revenue?<span class="zh-full" lang="zh-Hant">什麼是邊際收益？</span></summary><p>The change in total revenue from an additional unit. Under uniform monopoly pricing, it includes revenue lost by repricing earlier units.<span class="zh-full" lang="zh-Hant">多賣一單位帶來的總收益變化。在統一獨占定價下，還包含其他單位降價造成的收入減少。</span></p></details>
+<details><summary>What is economic profit?<span class="zh-full" lang="zh-Hant">什麼是經濟利潤？</span></summary><p>Total revenue minus all explicit and implicit economic costs, equal to (P−ATC)Q under a common price.<span class="zh-full" lang="zh-Hant">總收益減所有顯性與隱性經濟成本；統一定價時等於 (P−ATC)Q。</span></p></details>
+<details><summary>Why can a price maker not choose any price and quantity?<span class="zh-full" lang="zh-Hant">價格制定者為何不能任選價格與數量？</span></summary><p>Demand links the two. A higher common price generally means fewer sales, so the firm must choose a feasible point on demand.<span class="zh-full" lang="zh-Hant">需求連結兩者。較高統一價格通常意味較少銷量，因此須選需求線上的可行點。</span></p></details>
+<details><summary>What is deadweight loss?<span class="zh-full" lang="zh-Hant">什麼是無謂損失？</span></summary><p>Lost total gains from trade. In the monopoly diagram, it lies between demand and MC over beneficial units not sold.<span class="zh-full" lang="zh-Hant">未實現的總交易利益。在獨占圖中，是 D 與 MC 之間那些有益卻未出售單位的面積。</span></p></details>
+<details><summary>What sustains group price discrimination?<span class="zh-full" lang="zh-Hant">什麼條件能維持分群差別取價？</span></summary><p>Pricing power, workable segmentation or sorting, and limits on resale. Separate group demand and costs determine the optimal prices.<span class="zh-full" lang="zh-Hant">定價力量、可行的分群或自我選擇，以及轉售限制。各群需求與成本決定最適價格。</span></p></details>
+<details><summary>How does perfect discrimination change revenue?<span class="zh-full" lang="zh-Hant">完全差別取價如何改變收益？</span></summary><p>An extra unit can be sold at its own willingness to pay without reducing prior unit prices, so the seller expands while WTP covers MC.<span class="zh-full" lang="zh-Hant">新增單位可按其 WTP 出售，不必降低先前單位的價格；因此只要 WTP 足以支付 MC，賣方就擴產。</span></p></details>
+<details><summary>How do static and dynamic efficiency differ?<span class="zh-full" lang="zh-Hant">靜態效率與動態效率有何不同？</span></summary><p>Static efficiency concerns current allocation; dynamic efficiency concerns future innovation and improvements. A current price diagram does not measure the latter.<span class="zh-full" lang="zh-Hant">靜態效率關注當下配置；動態效率關注未來創新與改善。當期價格圖不能衡量後者。</span></p></details>
+</div>
+<h2 id="templates">11. Answer templates<span class="zh-full" lang="zh-Hant">11. 答題模板</span></h2>
+<div class="method"><b>Price and profit<span class="zh-full" lang="zh-Hant">價格與利潤</span></b><p>“I ask whether another unit adds more revenue than cost. I identify the output where that incentive changes, then use demand to read its price. I compare price with ATC to explain profit or loss. For whole-unit choices, an exact MR–MC equality is unnecessary.”<span class="zh-full" lang="zh-Hant">「先判斷多一單位增加的收益是否高於成本，找出這個誘因改變的產量，再用需求線讀售價。比較價格與 ATC，解釋盈虧。數量只能整單位變動時，不需要剛好 MR＝MC。」</span></p></div>
+<div class="method"><b>A change in costs<span class="zh-full" lang="zh-Hant">成本變動</span></b><p>“I identify whether marginal or fixed cost changed. A marginal-cost increase changes the MR–MC output choice and the price read from D. An unavoidable fixed-cost increase lowers profit without changing that interior choice, conditional on operating.”<span class="zh-full" lang="zh-Hant">「先辨認改變的是邊際成本還是固定成本。MC 上升會改變 MR、MC 所決定的產量，以及回需求線讀到的價格。不可避免的 FC 上升則降低利潤，但在持續營運的內點情況下，不改變該產量選擇。」</span></p></div>
+<div class="method"><b>Pricing and welfare<span class="zh-full" lang="zh-Hant">定價與福利</span></b><p>“I specify the feasible alternative, then compare quantities by buyer, willingness to pay, resource costs, CS, and PS. I deduct fixed and implementation costs where relevant. Greater seller profit alone does not settle welfare; innovation effects require separate evidence.”<span class="zh-full" lang="zh-Hant">「先定義可行的比較方案，再比較各買方數量、願付價格、資源成本、CS 與 PS。必要時扣固定成本及執行成本。賣方利潤增加本身不足以判斷福利；創新效果需要額外證據。」</span></p></div>
+<p class="note-small endnote">Continue from <a href="economics-s4.html">Session 4: competitive firms</a>, or return to <a href="economics.html">Economics sessions</a>.<span class="zh-full" lang="zh-Hant">接續第 4 堂：競爭廠商，或回到 Economics 課程列表。</span></p>
+</article></main></div>
+<script>/* Reusable economics widgets. Shared Plot and controls are embedded for offline use. */
+(() => {
+  'use strict';
+  const NS='http://www.w3.org/2000/svg'; let uid=0;
+  const money=n=>{const value=Math.round(Math.abs(n)*100)/100;return (n<0?'−$':'$')+value.toLocaleString('en-US',{minimumFractionDigits:Number.isInteger(value)?0:2,maximumFractionDigits:2});};
+  const num=n=>n.toLocaleString('en-US',{maximumFractionDigits:2});
+  const colors={d:'var(--demand)',mr:'var(--ext)',mc:'var(--supply)',atc:'var(--world)',cs:'var(--cs)',ps:'var(--ps)'};
+  function el(tag,attrs={},parent){const e=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));if(parent)parent.append(e);return e;}
+  function Plot(svg,qMax,pMax,pMin=0){
+    const W=Math.max(280,svg.getBoundingClientRect().width||500),H=document.body.classList.contains('show-zh')?370:340,L=48,R=18,T=document.body.classList.contains('show-zh')?44:28,B=document.body.classList.contains('show-zh')?64:51;
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.replaceChildren();
+    const sx=q=>L+q/qMax*(W-L-R),sy=p=>H-B-(p-pMin)/(pMax-pMin)*(H-T-B);
+    const defs=el('defs',{},svg),clip=el('clipPath',{id:'plot-clip-'+(++uid)},defs);
+    el('rect',{x:L,y:T,width:W-L-R,height:H-T-B},clip);
+    const grid=el('g',{},svg),area=el('g',{'clip-path':'url(#'+clip.id+')'},svg),lines=el('g',{'clip-path':'url(#'+clip.id+')'},svg),top=el('g',{},svg);
+    const text=(x,y,s,attrs={})=>{const t=el('text',{x,y,class:'tk',...attrs},top);t.textContent=s;return t;};
+    return {sx,sy,W,H,
+      axes(xl,yl){el('line',{x1:L,y1:T,x2:L,y2:H-B,class:'ax'},grid);el('line',{x1:L,y1:H-B,x2:W-R,y2:H-B,class:'ax'},grid);text(L,T-(document.body.classList.contains('show-zh')?25:12),yl,{class:'axl'});text((L+W-R)/2,H-(document.body.classList.contains('show-zh')?23:8),xl,{'text-anchor':'middle',class:'axl'});},
+      xticks(values,fmt=num){values.forEach(q=>text(sx(q),H-B+19,fmt(q),{'text-anchor':'middle'}));},
+      yticks(values,fmt=num){values.forEach(p=>{el('line',{x1:L,y1:sy(p),x2:W-R,y2:sy(p),class:'grid'},grid);text(L-7,sy(p)+4,fmt(p),{'text-anchor':'end'});});},
+      path(points,color,dash=false){el('polyline',{points:points.map(([q,p])=>sx(q)+','+sy(p)).join(' '),fill:'none',stroke:color,'stroke-width':2.5,'stroke-dasharray':dash?'6 5':'none'},lines);},
+      line(a,b,color){this.path([[0,a],[qMax,a+b*qMax]],color);},
+      hline(p,color,dash=false){this.path([[0,p],[qMax,p]],color,dash);},
+      poly(points,cls){el('polygon',{points:points.map(([q,p])=>sx(q)+','+sy(p)).join(' '),class:cls},area);},
+      rect(q0,q1,p0,p1,cls){this.poly([[q0,p0],[q1,p0],[q1,p1],[q0,p1]],cls);},
+      guide(q,p){el('line',{x1:sx(q),y1:sy(p),x2:sx(q),y2:sy(pMin),class:'gd'},lines);el('line',{x1:L,y1:sy(p),x2:sx(q),y2:sy(p),class:'gd'},lines);},
+      point(q,p,color){el('circle',{cx:sx(q),cy:sy(p),r:4,fill:color,stroke:'var(--paper)','stroke-width':1.3},lines);},
+      bar(q,value,color){el('rect',{x:sx(q-.28),y:sy(value),width:sx(q+.28)-sx(q-.28),height:Math.max(0,sy(0)-sy(value)),fill:color},area);text(sx(q),sy(value)-8,num(value),{'text-anchor':'middle'});}
+    };
+  }
+  function shell(host,title,sub,legend,twinTitles){
+    host.classList.add('graph','wide');const id='econ-'+(++uid);
+    host.innerHTML='<div class="g-head"><span class="g-kicker">Interactive graph</span><h4></h4><p></p></div><div class="plot-legend"></div><div class="g-body"><div class="g-plot"></div><div class="g-side"><div class="g-ctrl"></div><dl class="g-stats" aria-live="off"></dl></div></div><p class="g-note" aria-live="polite"></p>';
+    host.querySelector('h4').textContent=title;host.querySelector('.g-head p').textContent=sub;
+    const leg=host.querySelector('.plot-legend');legend.forEach(([s,c])=>{const item=document.createElement('span'),sw=document.createElement('i');sw.style.background=c;sw.className='sw ln';item.append(sw,document.createTextNode(s));leg.append(item);});
+    if(host.dataset.readout==='optional'){
+      const side=host.querySelector('.g-side'),stats=host.querySelector('.g-stats'),note=host.querySelector('.g-note');
+      const reading=document.createElement('div'),details=document.createElement('details'),summary=document.createElement('summary');
+      reading.className='g-reading';details.className='number-readout';summary.textContent='View numerical readout';details.append(summary,stats);reading.append(note,details);side.append(reading);
+    }
+    const plot=host.querySelector('.g-plot'),svgs=[];
+    if(twinTitles){plot.classList.add('twin');twinTitles.forEach(name=>{const div=document.createElement('div'),t=document.createElement('p');t.className='tw-t';t.textContent=name;div.append(t);const svg=el('svg',{role:'img','aria-label':title+': '+name},div);plot.append(div);svgs.push(svg);});}
+    else svgs.push(el('svg',{role:'img','aria-label':title},plot));
+    const ctrl=host.querySelector('.g-ctrl');
+    return {svgs,host,
+      slider(key,label,min,max,step,value,format,on){const row=document.createElement('div');row.className='sl';const lab=document.createElement('label'),span=document.createElement('span'),output=document.createElement('output'),input=document.createElement('input');input.type='range';input.setAttribute('aria-label',label);Object.assign(input,{id:id+'-'+key,min,max,step,value});lab.htmlFor=input.id;span.textContent=label;lab.append(span,output);output.htmlFor=input.id;row.append(lab,input);ctrl.append(row);const sync=()=>output.textContent=format(+input.value);input.addEventListener('input',()=>{sync();on(+input.value);});sync();return {set(v){input.value=v;sync();},input};},
+      button(label,on){const b=document.createElement('button');b.type='button';b.className='g-btn';b.textContent=label;b.addEventListener('click',on);ctrl.append(b);return b;},
+      seg(label,options,value,on){const group=document.createElement('div');group.className='seg';group.setAttribute('role','group');group.setAttribute('aria-label',label);options.forEach(([v,t])=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.dataset.value=v;b.setAttribute('aria-pressed',String(v===value));b.addEventListener('click',()=>{[...group.children].forEach(x=>x.setAttribute('aria-pressed',String(x===b)));on(v);});group.append(b);});ctrl.append(group);},
+      show(rows,note){const stats=host.querySelector('.g-stats');stats.replaceChildren();rows.forEach(([key,value,big=false])=>{const row=document.createElement('div');row.className='st'+(big?' big':'');row.dataset.stat=key;const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=key;dd.textContent=value;row.append(dt,dd);stats.append(row);});host.querySelector('.g-note').textContent=note;},
+      redrawOnResize(draw){let last='';const obs=new ResizeObserver(()=>{const widths=svgs.map(svg=>Math.round(svg.getBoundingClientRect().width)).join('|');if(widths!==last){last=widths;draw();}});obs.observe(plot);svgs.forEach(svg=>obs.observe(svg.parentElement));window.addEventListener('econ-language-change',draw);}
+    };
+  }
+  const W_={};
+  W_.water=host=>{
+    const vc=[0,1,2,4,7,11,16,22,33],tc=vc.map(v=>v+10),price=q=>11-q,tr=q=>q*price(q),profit=q=>tr(q)-tc[q];
+    const s=shell(host,'Compare the next whole gallon','Predict whether moving from three to four, then five gallons improves profit. Drag Q or reveal the best listed choice.',[['D',colors.d],['ATC',colors.atc],['MR',colors.mr],['MC',colors.mc]],['Demand, ATC, and profit','Per-gallon marginal values']);let q=3,revealed=false;
+    const draw=()=>{
+      const A=Plot(s.svgs[0],8.6,12),B=Plot(s.svgs[1],8.6,12,-5);
+      A.axes('Gallons per day','Dollars / gallon');A.xticks([0,2,4,6,8]);A.yticks([0,4,8,12]);
+      if(q)A.rect(0,q,price(q),tc[q]/q,profit(q)>=0?'a-prof':'a-loss');
+      A.path(Array.from({length:9},(_,i)=>[i,price(i)]),colors.d);A.path(Array.from({length:8},(_,i)=>[i+1,tc[i+1]/(i+1)]),colors.atc);
+      A.guide(q,price(q));A.point(q,price(q),colors.d);if(q)A.point(q,tc[q]/q,colors.atc);
+      B.axes('Additional gallon Q','Dollars / extra gallon');B.xticks([1,2,3,4,5,6,7,8]);B.yticks([-4,0,4,8,12]);
+      for(let i=1;i<=8;i++){B.point(i-.08,tr(i)-tr(i-1),colors.mr);B.point(i+.08,tc[i]-tc[i-1],colors.mc);}
+      if(q)B.guide(q,tr(q)-tr(q-1));
+      const marginal=q?'This gallon adds '+money(tr(q)-tr(q-1))+' of revenue and costs '+money(tc[q]-tc[q-1])+'. ':'';
+      s.show([['Chosen output',q+' gallons/day',true],['Price',money(price(q))+'/gallon'],['Revenue',money(tr(q))+'/day'],['Total cost',money(tc[q])+'/day'],['ATC',q?money(tc[q]/q)+'/gallon':'Undefined at Q=0'],['Profit',money(profit(q))+'/day',true]],marginal+(revealed?'The greatest listed profit is $11/day at Q=4. The fifth gallon reduces profit by $2.':'Move one step at a time. Compare total profit, not total revenue.'));
+    };
+    const control=s.slider('q','Chosen daily quantity',0,8,1,q,v=>v+' gallons',v=>{q=v;draw();});s.button('Reveal best listed output',()=>{q=4;revealed=true;control.set(q);draw();});draw();s.redrawOnResize(draw);
+  };
+  function monopolyModel(a,b,c,fc,regime='uniform'){
+    const qe=(a-c)/b,q=regime==='uniform'?qe/2:qe,p=regime==='efficient'?c:a-b*q;
+    const cs=regime==='perfect'?0:.5*(a-p)*q;
+    const ps=regime==='perfect'?(a-c)*q-.5*b*q*q:(p-c)*q;
+    return {q,qe,p,cs,ps,profit:ps-fc,atc:c+fc/q,dwl:.5*b*(qe-q)**2};
+  }
+  function drawMonopoly(svg,a,b,c,fc,choice,regime='uniform',drug=false){
+    const P=Plot(svg,drug?170:52,drug?26:108);P.axes(drug?'Quantity (million pills)':'Quantity','Price / unit');P.xticks(drug?[0,40,80,120,160]:[0,10,20,30,40,50]);P.yticks(drug?[0,5,10,15,20,25]:[0,20,40,60,80,100]);
+    const m=monopolyModel(a,b,c,fc,regime),q=choice??m.q,p=a-b*q;
+    if(drug){P.rect(0,q,c+fc/q,p,(p-c-fc/q)>=0?'a-prof':'a-loss');}
+    else if(regime==='perfect'){P.poly([[0,c],[0,a],[m.q,c]],'a-ps');}
+    else{P.poly([[0,m.p],[0,a],[m.q,m.p]],'a-cs');P.rect(0,m.q,c,m.p,'a-ps');if(regime==='uniform')P.poly([[m.q,c],[m.q,m.p],[m.qe,c]],'a-dwl');}
+    P.line(a,-b,colors.d);P.line(a,-2*b,colors.mr);P.hline(c,colors.mc);
+    const pts=[];for(let x=.5;x<=(drug?170:52);x+=.5)pts.push([x,c+fc/x]);P.path(pts,colors.atc);
+    P.guide(q,regime==='efficient'?c:p);P.point(q,p,colors.d);P.point(q,c+fc/q,colors.atc);P.point(q,a-2*b*q,colors.mr);
+    return m;
+  }
+  W_.monopoly=host=>{
+    const drug=host.dataset.preset==='drug';
+    const s=shell(host,drug?'Choose output, then read the drug price':'Explore costs, profit, and lost trades',drug?'Before revealing the optimum, predict what happens when output exceeds the MR–MC crossing.':'Predict what changes when MC rises or only FC rises. Compare uniform pricing with the efficient allocation and perfect discrimination.',[['D',colors.d],['MR',colors.mr],['MC',colors.mc],['ATC',colors.atc],...(!drug?[['CS',colors.cs],['PS',colors.ps],['DWL','var(--dwl)']]:[])]);
+    let q=60,c=20,fc=100,regime='uniform';
+    const draw=()=>{
+      if(drug){const a=24.5,b=.15,mc=.5,fixed=160;drawMonopoly(s.svgs[0],a,b,mc,fixed,q,'uniform',true);const p=a-b*q,atc=mc+fixed/q,pi=p*q-mc*q-fixed;
+        s.show([['Chosen output',num(q)+' million pills',true],['Price on demand',money(p)+'/pill'],['MR at chosen Q',money(a-2*b*q)+'/pill'],['MC',money(mc)+'/pill'],['ATC',money(atc)+'/pill'],['Total profit',money(pi)+' million',true]],q===80?'At 80 million pills, MR=MC=$0.50. D gives $12.50, ATC is $2.50, and total profit is $800 million.':(a-2*b*q>mc?'MR exceeds MC at this quantity, so a small output increase improves profit.':'MR is below MC at this quantity, so reducing output improves profit.'));
+      }else{const m=drawMonopoly(s.svgs[0],100,2,c,fc,null,regime);
+        s.show([['Output',num(m.q),true],['Price',regime==='perfect'?'Varies; last '+money(c):money(m.p)],['ATC',money(m.atc)],['Economic profit',money(m.profit),true],['Consumer surplus',money(m.cs)],['Producer surplus',money(m.ps)],['Deadweight loss',money(m.dwl)]],regime==='perfect'?'Each unit pays its own WTP. D supplies marginal unit receipts; the conventional MR line remains a reference for uniform pricing.':regime==='efficient'?'D=MC gives efficient output. The price covers variable cost but leaves the fixed cost uncovered.':'MR=MC determines Q; D gives P. Producer surplus excludes FC; profit subtracts it. Shutdown would lose '+money(fc)+' when FC is unavoidable.');
+      }
+    };
+    if(drug){const slider=s.slider('q','Proposed output',10,160,1,q,v=>v+' million pills',v=>{q=v;draw();});s.button('Reveal profit-maximizing output',()=>{q=80;slider.set(q);draw();});}
+    else{s.seg('Pricing regime',[['uniform','Uniform monopoly'],['efficient','MC-price benchmark'],['perfect','Perfect discrimination']],regime,v=>{regime=v;draw();});const cost=s.slider('mc','Marginal cost',0,60,1,c,money,v=>{c=v;draw();}),fixed=s.slider('fc','Unavoidable fixed cost',0,1000,10,fc,money,v=>{fc=v;draw();});s.button('Reset MRU example',()=>{c=20;fc=100;regime='uniform';s.host.querySelectorAll('.seg button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.value==='uniform')));cost.set(c);fixed.set(fc);draw();});}
+    draw();s.redrawOnResize(draw);
+  };
+  W_.elasticity=host=>{
+    const s=shell(host,'Compare two demand environments','Keep MC=20. Switch between the two cases and compare the optimal markup and point elasticity.',[['D',colors.d],['MR',colors.mr],['MC',colors.mc]]);let choice='more';
+    const draw=()=>{const [a,b]=choice==='more'?[60,2]:[140,4],m=monopolyModel(a,b,20,0),eps=m.p/(b*m.q);const P=Plot(s.svgs[0],38,150);P.axes('Quantity','Price / unit');P.xticks([0,10,20,30]);P.yticks([0,30,60,90,120,150]);P.line(a,-b,colors.d);P.line(a,-2*b,colors.mr);P.hline(20,colors.mc);P.guide(m.q,m.p);P.point(m.q,m.p,colors.d);P.point(m.q,20,colors.mc);
+      s.show([['Demand',`P = ${a} − ${b}Q`],['Optimal Q',num(m.q)],['Price',money(m.p)],['Absolute markup',money(m.p-20),true],['|Point elasticity|',num(eps),true],['Lerner index',num((m.p-20)/m.p)]],'Both optima are elastic. Both the intercept and slope change; slope alone does not identify elasticity.');};
+    s.seg('Demand environment',[['more','More elastic'],['less','Less elastic']],choice,v=>{choice=v;draw();});draw();s.redrawOnResize(draw);
+  };
+  W_.groups=host=>{
+    const s=shell(host,'Uniform price versus separate group prices','Predict whether total output must rise when the seller can charge each group separately.',[['D',colors.d],['MR',colors.mr],['MC',colors.mc]],['Group A','Group B']);let separate=false;
+    const draw=()=>{const qA=separate?20:25,qB=separate?10:5,pA=separate?60:50,pB=separate?40:50;
+      [[100,qA,pA],[60,qB,pB]].forEach(([a,q,p],i)=>{const P=Plot(s.svgs[i],52,108);P.axes('Group quantity','Price');P.xticks([0,10,20,30,40,50]);P.yticks([0,20,40,60,80,100]);P.poly([[0,p],[0,a],[q,p]],'a-cs');P.rect(0,q,20,p,'a-ps');P.line(a,-2,colors.d);P.line(a,-4,colors.mr);P.hline(20,colors.mc);P.guide(q,p);P.point(q,p,colors.d);});
+      const cs=.5*(100-pA)*qA+.5*(60-pB)*qB,ps=(pA-20)*qA+(pB-20)*qB;
+      s.show([['A: Q; price',qA+'; '+money(pA)],['B: Q; price',qB+'; '+money(pB)],['Total quantity',String(qA+qB),true],['Consumer surplus',money(cs)],['PS before fixed cost',money(ps)],['Total surplus',money(cs+ps),true]],separate?'Separate prices let each group respond to its own demand. Profit rises here, but total output is unchanged and the altered allocation lowers combined gains.':"One common price links the two groups' sales decisions. The optimum need not make each group's MR equal MC, because changing that price affects both groups.");};
+    s.seg('Group pricing',[['uniform','One common price'],['separate','Separate group prices']],'uniform',v=>{separate=v==='separate';draw();});draw();s.redrawOnResize(draw);
+    const note=document.createElement('p');note.className='note-small';note.textContent='MC=20, no resale or capacity constraint. Surplus is shown before common fixed cost.';host.after(note);
+  };
+  W_.bundle=host=>{
+    const s=shell(host,'Choose separate prices or a bundle','Predict which buyers purchase, then change prices or per-component marginal cost.',[['Revenue',colors.ps],['Variable cost',colors.mc],['Consumer surplus',colors.cs]]);let mode='separate',pw=100,pe=90,pb=120,c=0;
+    const values=[[100,20],[40,90]];
+    function outcome(w,e,b,cost,bundle){let tr=0,vc=0,cs=0,units=0;values.forEach(v=>{if(bundle){if(v[0]+v[1]>=b){tr+=b;vc+=2*cost;cs+=v[0]+v[1]-b;units+=2;}}else{[w,e].forEach((p,i)=>{if(v[i]>=p){tr+=p;vc+=cost;cs+=v[i]-p;units++;}});}});return {tr,vc,cs,units,ps:tr-vc};}
+    const draw=()=>{const m=outcome(pw,pe,pb,c,mode==='bundle'),P=Plot(s.svgs[0],3.8,400);P.axes('Outcome category','Dollars');P.xticks([1,2,3],v=>['','TR','VC','CS'][v]);P.yticks([0,100,200,300,400]);P.bar(1,m.tr,colors.ps);P.bar(2,m.vc,colors.mc);P.bar(3,m.cs,colors.cs);
+      s.show([['Mode',mode==='bundle'?'Bundle':'Separate components'],['Component units sold',String(m.units)],['Revenue',money(m.tr)],['Variable cost',money(m.vc)],['Contribution before FC',money(m.ps),true],['Consumer surplus',money(m.cs)],['Total surplus before FC',money(m.cs+m.ps)]],mode==='bundle'?'Each buyer purchases one bundle if combined WTP covers its price. Both included components incur the chosen MC.':'Each buyer separately purchases each component whose WTP covers its price. Contribution subtracts variable cost, not development FC.');};
+    s.seg('Selling method',[['separate','Separate sales'],['bundle','Bundle']],mode,v=>{mode=v;syncVisibility();draw();});
+    const word=s.slider('word','Word price',0,130,1,pw,money,v=>{pw=v;draw();}),excel=s.slider('excel','Excel price',0,130,1,pe,money,v=>{pe=v;draw();}),bundle=s.slider('bundle','Bundle price',0,150,1,pb,money,v=>{pb=v;draw();});s.slider('mc','MC per component',0,80,1,c,money,v=>{c=v;draw();});
+    function syncVisibility(){word.input.closest('.sl').hidden=mode==='bundle';excel.input.closest('.sl').hidden=mode==='bundle';bundle.input.closest('.sl').hidden=mode!=='bundle';}
+    s.button('Use best prices at this MC',()=>{if(mode==='bundle'){const opts=[120,130,131];pb=opts.reduce((best,p)=>outcome(pw,pe,p,c,true).ps>outcome(pw,pe,best,c,true).ps?p:best,opts[0]);bundle.set(pb);}else{let best=-Infinity;for(const w of [40,100,101])for(const e of [20,90,91]){const m=outcome(w,e,pb,c,false);if(m.ps>best){best=m.ps;pw=w;pe=e;}}word.set(pw);excel.set(pe);}draw();});syncVisibility();draw();s.redrawOnResize(draw);
+  };
+  window.EconWidgets={mount(root){root.querySelectorAll('[data-widget]').forEach(host=>{const init=W_[host.dataset.widget];if(init&&!host.dataset.ready){host.dataset.ready='1';init(host);}});}};
+})();
+</script>
+<script>
+(() => {
+ const toc=document.getElementById('toc'),rail=document.getElementById('rail'),button=document.getElementById('tocBtn');
+ const headings=[...document.querySelectorAll('.doc > h2,.doc > h3')];
+ headings.forEach(h=>{const li=document.createElement('li'),a=document.createElement('a');li.className=h.tagName.toLowerCase();li.dataset.id=h.id;a.href='#'+h.id;a.textContent=h.childNodes[0].textContent.trim();li.append(a);toc.append(li);});
+ const spy=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;toc.querySelectorAll('.on').forEach(a=>a.classList.remove('on'));const a=toc.querySelector('[data-id="'+e.target.id+'"] a');if(a)a.classList.add('on');}),{rootMargin:'-100px 0px -65% 0px'});headings.forEach(h=>spy.observe(h));
+ function close(){rail.classList.remove('open');button.setAttribute('aria-expanded','false');}
+ button.addEventListener('click',()=>{const open=rail.classList.toggle('open');button.setAttribute('aria-expanded',String(open));});
+ toc.addEventListener('click',e=>{if(e.target.closest('a'))close();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&rail.classList.contains('open')){close();button.focus();}});
+ const all=document.getElementById('qaAll');all.addEventListener('click',()=>{const ds=[...document.querySelectorAll('.qa details')],open=!ds.every(d=>d.open);ds.forEach(d=>d.open=open);all.textContent=open?'Hide all answers':'Show all answers';});
+ window.EconWidgets.mount(document);
+})();
+</script>
+<script>(() => {
+ 'use strict';
+ const dict={"MGMG515 · Session 5": "MGMG515 · 第 5 堂", "Monopoly and Price Discrimination": "獨占與差別取價", "A monopolist can influence price, but demand still limits sales. Choose output using marginal revenue and marginal cost, read price from demand, and use average total cost to check profit. Then ask who gains when prices differ across customers.": "獨占廠商能影響價格，但銷量仍受需求限制。先比較邊際收益與邊際成本來選產量，再從需求線讀價格，並用平均總成本判斷利潤。接著分析對不同顧客收取不同價格時，誰得到好處。", "Demand D": "需求 D", "MR": "邊際收益", "MC": "邊際成本", "ATC": "平均總成本", "Chapter map": "章節地圖", "Entry barriers": "進入障礙", "Downward-sloping demand": "向下傾斜的需求", "MR versus MC: choose Q": "比較 MR、MC：選產量", "Demand: read P": "回到需求線：讀價格", "ATC: assess profit or loss": "比較 ATC：判斷盈虧", "Output and surplus: evaluate pricing": "產量與剩餘：評估定價", "1. Market power still faces demand": "1. 市場力量仍受需求約束", "Control over entry creates pricing discretion, not unlimited willingness to pay.": "控制進入條件帶來定價空間，但不代表顧客願意支付任何價格。", "Concept": "概念", "Definition": "定義", "Do not confuse with": "不要混淆", "Monopoly": "獨占", "One seller in a defined product and geographic market, with no close substitutes.": "在明確界定的產品與地理市場中，只有一個賣方，而且沒有相近替代品。", "Being the only shop in one building when buyers can easily go elsewhere.": "某棟樓內只有一家店，不代表獨占；顧客可能很容易到別處購買。", "Market power": "市場力量", "Ability to sustain price above marginal cost; some differentiated firms have it without being sole sellers.": "能持續把價格訂在邊際成本之上；部分差異化廠商即使不是唯一賣方，也具有這種能力。", "Guaranteed profit or an ability to choose P and Q independently.": "不代表保證獲利，也不代表能各自任意決定價格與產量。", "Entry barrier": "進入障礙", "A restriction or advantage that makes rival entry difficult.": "使競爭者難以進入的限制或優勢。", "High sales or market share alone.": "高銷售額或高市占率本身不等於進入障礙。", "Natural monopoly": "自然獨占", "One firm can serve relevant demand at lower total cost than multiple firms.": "在相關需求範圍內，一家廠商供應的總成本低於多家廠商合供的總成本。", "A legal monopoly, resource control, or high fixed cost by itself.": "與法律授予的獨占、資源控制不同；固定成本高本身也不足以證明自然獨占。", "Class opening: Greene Planet": "課堂開場：Greene Planet", "In Quantum of Solace , Dominic Greene's company seeks control of Bolivia's water supply. Exclusive access to an essential resource makes rival supply and substitution harder. The mechanism is control of an input.": "電影《Quantum of Solace》中，Dominic Greene 的公司企圖控制玻利維亞的水供應。獨占重要資源使競爭者難以供貨，也削弱消費者的替代選擇。這個例子說明的是控制關鍵投入。", "Medicine and legal exclusion": "藥物與法律排他權", "The historical Combivir example links patent protection to restricted entry and pricing power. Scale economies, exclusive licenses, and temporary technological advantages are other possible barriers.": "Combivir 的歷史案例把專利保護、限制進入與定價力量連在一起。規模經濟、獨家許可與暫時的技術優勢，也可能形成進入障礙。", "The medicine example uses historical prices and patent conditions.": "藥物例子使用的是歷史價格與專利條件。", "A price maker selects a feasible point on demand. Raising price generally reduces quantity demanded; a higher price can therefore reduce total revenue or profit. Define the market and available substitutes before judging how much pricing power a firm has.": "價格制定者仍須在需求線上選擇可行組合。提高價格通常會減少需求量，因此可能降低總收益或利潤。判斷市場力量前，先界定市場與可替代選擇。", "2. Why marginal revenue is below price": "2. 為什麼邊際收益低於價格", "The key is how an extra sale changes revenue across the whole sales plan.": "關鍵是新增銷量如何改變整個銷售方案的收益。", "Demand D shows the highest common price buyers will pay for each quantity. Marginal revenue MR shows how much total revenue increases when the seller expands output. They answer different questions.": "需求 D 表示每個產量下，買方願意支付的最高統一價格。邊際收益 MR 表示增加產量時，總收益增加多少。兩條線回答不同問題。", "Under uniform pricing, a larger quantity requires a lower price on all units in that sales plan. The extra unit brings revenue in, while the lower price reduces receipts on the other units. As a result, MR lies below D . The relevant comparison is the extra revenue after this price effect, not simply the extra unit's selling price.": "在統一定價下，要賣更多數量，就必須降低該銷售方案中所有單位的價格。多賣一單位帶來收益，但其他單位降價會減少收入。因此 MR 位於 D 下方。應比較扣除這個降價效果後的新增收益，而不是只看新增單位的售價。", "Competitive firm": "競爭廠商", "Takes market price as given. An extra unit does not require a price cut on the other units, so MR=P.": "接受既定市場價格。多賣一單位不需要降低其他單位的價格，因此 MR＝P。", "Single-price monopolist": "單一定價的獨占廠商", "Faces downward-sloping demand. Expanding sales lowers the common price, so MR<P.": "面對向下傾斜的需求。擴大銷量需要降低統一價格，因此 MR＜P。", "If the next unit adds more revenue than cost, expansion improves profit. If it adds less, reducing output improves profit. The usual MR–MC crossing identifies where that incentive changes.": "如果下一單位增加的收益高於成本，擴產會提高利潤；反之，減產會提高利潤。一般的 MR、MC 交點用來辨認這個誘因改變的位置。", "Optional: linear demand and the numerical example": "可展開補充：線性需求與數字例子", "Linear demand is a straight-line relationship: each additional unit requires the same price reduction. For linear inverse demand, MR has the same vertical intercept and twice the negative slope. This shortcut is specific to linear demand.": "線性需求是直線關係：每增加一單位，都需要相同幅度的降價。在線性反需求下，MR 與 D 有相同的縱軸截距，但 MR 的負斜率是兩倍。這個捷徑只適用於線性需求。", "TR = P × Q; MR = ΔTR / ΔQ P = a − bQ; continuous MR = a − 2bQ D reaches zero at Q = a/b; MR reaches zero at Q = a/(2b)": "總收益 TR＝P×Q；邊際收益 MR＝ΔTR／ΔQ。線性反需求 P＝a−bQ 的連續型 MR＝a−2bQ。D 在 Q＝a/b 時降至零；MR 在 Q＝a/(2b) 時降至零。", "In MRU's example, two units at $16 earn $32. Three units at $14 earn $42. The extra unit adds $10: its $14 receipt minus the $4 lost on the other two units. For whole-unit tables, use the actual change in revenue rather than a continuous derivative.": "MRU 的例子中，兩單位各賣 16 元，收入 32 元；三單位各賣 14 元，收入 42 元。新增收益是 10 元：新增單位收入 14 元，扣掉另外兩單位降價少收的 4 元。整數表格應使用實際收益差額，不直接套連續型微分值。", "How to build this graph": "如何開始畫這張圖", "Identify the question. A single-price monopolist chooses along downward-sloping demand. Use Q on the horizontal axis and price/cost per unit on the vertical axis.": "先辨認題目。單一定價的獨占廠商沿向下傾斜的需求選擇。橫軸放 Q，縱軸放每單位價格／成本。", "Start with D, then add MR. D gives buyers' price constraint. MR lies below it because expanding sales lowers the common price.": "先畫 D，再加 MR。D 是買方願付價格的約束；因為擴大銷量需要降低統一價格，MR 在 D 下方。", "Add MC and find output. Locate the relevant MR–MC crossing and project down to Qm. For whole-unit tables, find where an additional unit stops improving profit; exact equality is not required.": "加上 MC 找產量。找出適當的 MR、MC 交點，再向下投影到 Qm。整數表格則找下一單位從提高利潤轉為降低利潤的地方，不必剛好相等。", "Move up to D for price. At Qm, mark the point on D and read Pm. The height of the MR–MC crossing is not the selling price.": "從 Qm 往上回到 D 找價格。標出需求線上的點，再讀 Pm。MR、MC 交點的高度不是售價。", "Add only what the question needs. For profit or loss, add ATC and compare it with Pm at Qm. For efficiency, find D–MC and mark Qe; excluded beneficial trades lie between D and MC.": "依題目補上需要的線與點。問盈虧時加 ATC，並在 Qm 比較 ATC 與 Pm；問效率時找 D、MC 交點及 Qe。被排除的有益交易位於 D 與 MC 之間。", "Class drug graph: mark MR–MC at (80, 0.50), D at (80, 12.50), and ATC at (80, 2.50). These points share the same output but play different roles.": "課堂藥物圖：MR、MC 交點是 (80, 0.50)，D 上的點是 (80, 12.50)，ATC 上的點是 (80, 2.50)。三點的產量相同，但用途不同。", "3. The professor's whole-gallon decision": "3. 教授的整加侖產量決策", "Compare the benefit and cost of the next unit, rather than chasing the largest revenue.": "比較下一單位的收益與成本，不只追求最大的營收。", "The class example makes the marginal decision concrete. The fourth gallon still increases profit; the fifth reduces it. The best listed choice is therefore four gallons per day at $7 , with $11/day profit .": "課堂例子把邊際決策具體化：第四加侖仍提高利潤，第五加侖則降低利潤。因此表格中的最佳選擇是每天四加侖、每加侖 7 元，每日利潤 11 元。", "Revenue keeps rising beyond the best output, but additional production also costs resources. More sales need not mean more profit. When quantities come in whole units, the decision can switch from a profitable extra unit to an unprofitable one without any row having exactly equal MR and MC.": "超過最適產量後，收益仍可能增加，但生產也要付出更多資源成本。賣更多不一定賺更多。數量只能整單位變動時，可能直接從有利的新增單位跳到不利的新增單位，而沒有任何一列剛好 MR＝MC。", "At the chosen output, price lies above ATC, so the firm earns a profit. The vertical gap between P and ATC is profit per gallon; the rectangle's width is the number of gallons. Fixed cost is paid even with zero production in this short-run example, so shutdown can be worse than operating.": "在所選產量下，價格高於 ATC，因此廠商獲利。P 與 ATC 的垂直距離是每加侖利潤；矩形的寬度是產量。在這個短期例子中，不生產也要付固定成本，因此停產可能比營運更差。", "Optional: professor's full table and calculations": "可展開補充：教授完整表格與計算", "Q/day": "每日產量", "TR": "總收益", "FC": "固定成本", "VC": "變動成本", "TC": "總成本", "Profit/day": "每日利潤", "Class table, slides 2–6. P is dollars/gallon; MR and MC are dollars per extra gallon; TR, FC, VC, TC, and profit are dollars/day.": "課堂表格，投影片 2–6。P 的單位是美元／加侖；MR、MC 是每多一加侖的美元數；TR、FC、VC、TC 與利潤是美元／日。", "The fourth gallon adds 4−3=$1 to profit; the fifth adds 2−4=−$2. Revenue peaks at both Q=5 and Q=6, where profits are $9 and $4, below $11 at Q=4. Fixed cost is $10/day, so shutdown loses $10/day.": "第四加侖增加利潤 4−3＝1 元，第五加侖增加 2−4＝−2 元。Q＝5 與 Q＝6 的收益最高，但利潤只有 9 與 4 元，低於 Q＝4 時的 11 元。每日固定成本為 10 元，因此停產每日虧損 10 元。", "ATC(4) = TC / Q = 17 / 4 = $4.25 Profit = (P − ATC)Q = (7 − 4.25) × 4 = $11/day": "Q＝4 時，ATC＝TC／Q＝17／4＝4.25 元。利潤＝(P−ATC)Q＝(7−4.25)×4＝每日 11 元。", "MR and MC are the changes from the previous row. Use those whole-unit comparisons to identify when another gallon stops improving profit.": "MR、MC 是相對前一列的變化量。使用這些整單位比較，辨認何時再多生產一加侖已無法提高利潤。", "4. From demand information to a drug price": "4. 從需求資訊走向藥物定價", "Estimate demand, choose output, read price, then measure profit.": "估計需求、選產量、讀價格，再評估利潤。", "The class advertisement shows Magic Johnson and Combivir . The accurate historical wording is an HIV-positive diagnosis. The economic discussion asks how a drug seller learns demand: research or consultants can estimate sales at alternative prices, taking account of substitutes, budgets, and who pays.": "課堂廣告人物是 Magic Johnson，藥品是 Combivir。準確的歷史描述是他被診斷為 HIV 陽性。經濟學討論則問：藥廠如何得知需求？研究或顧問可協助估計各價格下的銷量，並考慮替代品、預算與由誰付款。", "Define product, buyers and period": "界定產品、買方與期間", "Estimate D": "估計需求 D", "Construct TR and MR": "建立 TR 與 MR", "Combine with MC": "配合邊際成本 MC", "Choose Q, read P": "選產量，再讀價格", "Check ATC and profit": "用 ATC 檢查利潤", "Costs alone cannot identify the monopoly price. For any proposed Q, D gives its feasible common price; the most profitable Q also depends on MR and MC. Observed price/quantity pairs need not trace one stable demand curve if costs, substitution, or other conditions changed.": "成本本身無法決定獨占價格。對任一提議的產量 Q，D 給出可行的統一價格；哪個產量最賺錢，還取決於 MR、MC。如果成本、替代選擇或其他條件改變，過去觀察到的價格／數量點不一定位於同一條穩定需求線上。", "Output and price": "產量與價格", "MR=MC=$0.50 at 80 million pills . Move up to D: P=$12.50 .": "在 8,000 萬顆時，MR＝MC＝每顆 0.50 美元；往上到 D，讀到每顆價格 12.50 美元。", "Average total cost": "平均總成本", "The slide labels it AC. At that output, ATC=$2.50 , so profit is $10/pill.": "投影片標作 AC。在該產量下，ATC＝每顆 2.50 美元，因此每顆利潤 10 美元。", "Total profit": "總利潤", "TR=$1,000 million; TC=$200 million. Profit= $800 million .": "總收益為 10 億美元，總成本為 2 億美元，利潤為 8 億美元。", "The graph separates three roles: MC helps choose output, D determines its price, and ATC determines profit or loss . Even a price well above MC can coexist with a loss if average total cost is higher still. In the class example, markup is $12 per pill, while profit per pill is $10.": "圖上三個角色不同：MC 協助選產量，D 決定該產量的價格，ATC 決定盈虧。即使價格遠高於 MC，只要 ATC 更高，仍可能虧損。課堂例子的每顆加價是 12 美元，每顆利潤則是 10 美元。", "Class drug example, slides 9–11. Quantity is in millions of pills; no sales period is specified.": "課堂藥物例子，投影片 9–11。產量單位為百萬顆，未指定銷售期間。", "5. Elasticity, markup, and cost changes": "5. 彈性、加價與成本變動", "Less price sensitivity can support a larger markup; a steeper line alone is not enough.": "價格敏感度較低時可能支持較高加價；單看線較陡還不夠。", "Elasticity measures percentage quantity response to percentage price change. Fewer close substitutes can make buyers less responsive. MRU's medicine discussion adds two mechanisms: serious illness can increase the priority of treatment, and third-party payment can reduce the user's sensitivity to the bill.": "彈性衡量價格百分比變動引起的需求量百分比變動。相近替代品較少時，買方可能較不敏感。MRU 藥物討論另有兩個機制：嚴重疾病可能提高治療的優先性；第三方支付則可能降低使用者對帳單的敏感度。", "The intuition: when buyers can easily switch, a price increase loses many sales and the seller's markup is constrained. With weaker substitutes, the seller can sustain a larger gap between price and MC. In the class comparison, “relatively inelastic” means less responsive than the other demand case.": "直覺是：如果買方很容易轉換，漲價會流失很多銷量，廠商加價就受限制。替代選擇較弱時，價格與 MC 的差距可能較大。課堂所說「相對缺乏彈性」，是相對另一種需求更不敏感。", "The standard positive-MC interior optimum remains on the elastic part of demand . On an inelastic part, reducing output and raising price would increase revenue while reducing variable cost, so the seller would want to change its choice.": "在 MC 為正、一般內點最適條件下，廠商仍選在需求有彈性的區段。如果位於缺乏彈性的區段，減產漲價會增加收益並降低變動成本，廠商就有誘因改變選擇。", "Optional: markup measures and the linear examples": "可展開補充：加價指標與線性例子", "Absolute markup = P − MC Lerner index = (P − MC) / P = 1 / |ε|": "絕對加價＝P−MC。Lerner 指數＝(P−MC)／P＝1／|ε|。", "The Lerner formula applies at a differentiable, unconstrained interior single-price optimum; with positive MC, |ε|>1. The comparison uses P=60−2Q and P=140−4Q, both with MC=20. Their optimal markups are 20 and 60, and elasticity magnitudes are 2 and 4/3. Both the intercept and slope change; steepness alone does not identify elasticity.": "Lerner 公式適用於可微、沒有額外約束的單一定價內點最適解；MC 為正時，|ε|＞1。比較的需求是 P＝60−2Q 與 P＝140−4Q，兩者 MC 都為 20。最適加價分別為 20、60，彈性絕對值為 2、4/3。截距與斜率都改變，因此不能只看陡峭程度判斷彈性。", "MRU's historical airline puzzle contrasts a Washington–Dallas ticket with a longer Washington–San Francisco journey through Dallas. Fewer convenient alternatives for the hub destination can support a larger markup. Distance alone does not determine fares.": "MRU 的歷史機票案例比較華盛頓到達拉斯，與經達拉斯轉往舊金山的更長旅程。前往樞紐目的地的便利替代選擇較少，可能支持更高加價；距離本身無法決定票價。", "Change": "變動", "Curve logic": "曲線邏輯", "Result, conditional on operating": "仍持續營運時的結果", "Higher per-unit input cost": "每單位投入成本上升", "MC rises; D and MR stay fixed.": "MC 上移，D 與 MR 不變。", "Lower Q and higher P in the linear-demand, constant-MC model.": "在線性需求、固定 MC 模型中，產量下降、價格上升。", "Higher unavoidable fixed cost": "不可避免的固定成本上升", "ATC rises; MC stays fixed.": "ATC 上移，MC 不變。", "Same optimal Q and P, lower profit.": "最適產量與價格相同，利潤下降。", "Higher demand intercept": "需求截距上升", "D and MR shift upward.": "D 與 MR 向上移。", "Higher Q and P with the slope and MC unchanged.": "在斜率與 MC 不變時，產量與價格上升。", "A monopolist generally has no demand-independent supply curve . Output depends on demand/MR as well as costs; MC is not a competitive supply schedule that can be used without demand.": "獨占一般沒有獨立於需求的供給線。產量同時依賴需求／MR 與成本，不能把 MC 當作無須搭配需求即可使用的競爭供給線。", "6. Profit, lost trades, and innovation": "6. 利潤、失去的交易與創新", "A transfer to the seller differs from a loss of combined gains.": "剩餘轉移給賣方，與總交易利益消失，是不同的事。", "Object": "項目", "Meaning": "意義", "Graph / calculation": "圖形／計算", "Consumer surplus": "消費者剩餘", "Willingness to pay minus payment.": "願付價格減去實際支付。", "Area below D and above price for units sold.": "已售單位中，D 下方、價格上方的面積。", "Producer surplus": "生產者剩餘", "TR minus variable cost.": "總收益減變動成本。", "Revenue minus the area under MC.": "收益減去 MC 下方的成本面積。", "Economic profit": "經濟利潤", "TR minus all economic costs.": "總收益減全部經濟成本。", "PS minus fixed cost in this model.": "在此模型中，是生產者剩餘再減固定成本。", "Deadweight loss": "無謂損失", "Combined gains from trade that are lost.": "未能實現的總交易利益。", "Area between D and MC over excluded beneficial units.": "被排除的有益單位中，D 與 MC 之間的面積。", "Uniform monopoly pricing excludes some units whose WTP exceeds MC but falls below the monopoly price. Efficient output satisfies D=MC ; monopoly output satisfies MR=MC . Lost consumer surplus includes both transfers and DWL.": "統一獨占價格排除了一些願付價格高於 MC、卻低於售價的交易。有效率產量滿足 D＝MC；獨占產量滿足 MR＝MC。失去的消費者剩餘同時包含轉移與無謂損失。", "The monopoly price transfers some surplus from buyers to the seller. It also prevents trades that would create value because the buyer's willingness to pay exceeds the resource cost. The transfer changes who receives the gains; the missing trades reduce total gains. That is why all lost consumer surplus cannot be labeled DWL.": "獨占價格把部分剩餘從買方移給賣方，也阻止了願付價格高於資源成本的有益交易。轉移改變誰取得利益；缺少的交易則降低總利益。因此不能把全部消費者損失都叫作無謂損失。", "Higher fixed cost can turn profit into a loss without changing the marginal output choice. If that fixed cost is unavoidable now, operating may still lose less than shutting down. Conversely, pricing at MC can serve efficient output while leaving fixed cost uncovered; efficient allocation and financing are separate questions.": "固定成本上升可能把獲利變成虧損，卻不改變邊際產量選擇。如果固定成本目前無法避免，營運仍可能比停產少虧。反過來，以 MC 定價可服務有效率產量，但未必支付固定成本；配置效率與資金來源是兩個問題。", "Optional: follow the MRU numerical example": "可展開補充：MRU 數字例子", "With P=100−2Q, MC=20 and FC=100: Qm=20, Pm=60, ATC=25, profit=700, CS=400, PS=800 and DWL=400. Efficient Q=40 raises CS+PS from 1,200 to 1,600 before common fixed cost. Consumers lose 1,200: 800 transfers to the seller and 400 disappears.": "在 P＝100−2Q、MC＝20、FC＝100 下：Qm＝20、Pm＝60、ATC＝25、利潤＝700、CS＝400、PS＝800、DWL＝400。有效率產量 40，使扣除共同固定成本前的 CS＋PS 從 1,200 增至 1,600。消費者損失 1,200，其中 800 轉移給賣方，400 消失。", "At FC=1,000, output and price stay unchanged, but ATC becomes 70 and profit becomes −200. Operating still beats losing the unavoidable 1,000 through shutdown.": "FC＝1,000 時，產量與價格不變，但 ATC 升至 70、利潤變成 −200。繼續營運仍比停產損失不可避免的 1,000 更好。", "Static allocation": "靜態配置", "Use existing knowledge and resources efficiently. The diagram measures lost current trades.": "有效利用現有知識與資源。圖形衡量的是當下失去的交易。", "Dynamic incentives": "動態誘因", "Expected patent profits may encourage innovation. Whether extra innovation outweighs access costs requires evidence.": "預期專利利潤可能鼓勵創新。額外創新的好處是否超過取得成本，需要證據。", "Patent buyouts and innovation prizes attempt to reward discovery separately from a high per-unit price. Their evaluation also requires financing, administration, and incentive effects. A possible innovation benefit does not validate every protected monopoly.": "專利買斷與創新獎金嘗試把發明報酬和較高單位價格分開。仍須評估籌資、管理與誘因效果。可能的創新好處，不代表每種受保護的獨占都有正面價值。", "MRU Office Hours example. Surplus excludes fixed cost; economic profit deducts it.": "MRU Office Hours 例子。剩餘尚未扣固定成本；經濟利潤則有扣除。", "7. Different prices, different customers": "7. 不同顧客、不同價格", "Identify the information used, the resale constraint, and the relevant counterfactual.": "辨認使用了哪些資訊、轉售受到何種限制，以及比較基準是什麼。", "Price discrimination charges different prices for comparable units for reasons beyond different supply costs. Sustaining it requires pricing power, a way to segment customers or induce sorting, and limits on arbitrage .": "差別取價是對可比較的單位收取不同價格，而且價差不只是供應成本差異。要維持差別取價，須有定價力量、可行的分群或自我選擇機制，以及對套利轉售的限制。", "Device": "方式", "Information / selection": "資訊／選擇機制", "Example": "例子", "First-degree / perfect": "第一級／完全差別取價", "Exact unit-level willingness to pay .": "知道每單位確切的願付價格。", "Charge each buyer's reservation value; sell while WTP≥MC.": "對每位買方收取其保留價格，只要 WTP≥MC 就出售。", "Second-degree": "第二級差別取價", "A menu induces self-selection.": "透過選單讓顧客自行選擇。", "Different usage plans or restricted/flexible tickets.": "不同用量方案，或限制較多／較彈性的票種。", "Third-degree": "第三級差別取價", "Identify observable groups.": "能辨認可觀察的客群。", "Student, senior, or other verified customer categories.": "學生、長者或其他可驗證的顧客分類。", "The class examples show senior and student Rabbit cards , and an admission sign charging Thai visitors ฿10 and foreigners ฿50 . The cards illustrate observable categories; the sign shows a ฿40 gap and a fivefold price ratio.": "課堂例子包括長者與學生 Rabbit 卡，以及古蹟入場告示：泰國人 10 泰銖、外國人 50 泰銖。卡片說明可觀察客群；告示顯示 40 泰銖價差，外國人票價是五倍。", "Class examples, slide 15. Rabbit fare amounts are not shown. The photographed admission prices are historical; the price gap alone does not identify demand elasticity.": "課堂例子，投影片 15。未提供 Rabbit 票價；入場費照片是歷史例子，價差本身不能識別需求彈性。", "Resale can defeat segmentation: full-price buyers obtain discounted units through others. ID checks or nontransferable admission can help sustain separate prices. If resale forces a uniform price, the new optimum need not equal the former low price. Product differences also matter: a business-class fare gap alone does not isolate discrimination.": "轉售可能破壞分群：原本付全價的人，可透過別人取得折扣商品。身分驗證或不可轉讓的入場權有助維持不同價格。如果轉售迫使統一定價，新最適價格不一定等於原本的低價。產品差異也重要：商務艙價差本身不能單獨識別差別取價。", "Separate pricing lets the seller respond to each group's demand instead of compromising on one common price. The optimal group choices equate each group's MR with common MC. The group with less elastic demand at its chosen point supports a larger markup.": "分別定價讓賣方依各群需求反應，而不必妥協於同一價格。最適客群產量會使各群 MR 等於共同 MC。在其選定點，需求較缺乏彈性的客群支持較高加價。", "Higher seller profit does not settle welfare. In this example, total output stays unchanged, but sales shift away from higher-value marginal buyers in A toward lower-value buyers in B. The seller gains while combined gains fall. Who receives the units matters alongside how many are sold.": "賣方多賺，不代表福利提高。這個例子的總產量不變，但部分單位由 A 群邊際價值較高的買方轉到 B 群價值較低的買方。賣方得利，總利益卻下降。分給誰與賣多少同樣重要。", "Under perfect discrimination , the seller can charge each unit's WTP without lowering prices on the other units. It expands until WTP meets MC, serving efficient output and capturing the gains. Consumer surplus can fall to zero even as DWL disappears; efficiency does not imply that every buyer benefits.": "完全差別取價下，賣方可對每單位收取其 WTP，不必降低其他單位的價格。會擴產到 WTP＝MC，服務有效率產量並取得交易利益。CS 可降至零，同時 DWL 消失；有效率不代表每位買方都受益。", "Optional: group demand and surplus figures": "可展開補充：客群需求與剩餘數字", "Group A: P=100−2Q. Group B: P=60−2Q. Common MC=20. At uniform P=50, A buys 25 and B buys 5; CS=650 and PS=900. Separate prices of 60 and 40 give quantities 20 and 10; CS=500 and PS=1,000. Total output remains 30 while total surplus falls by 50.": "A 群需求 P＝100−2Q，B 群需求 P＝60−2Q，共同 MC＝20。統一價格 50 時，A 買 25、B 買 5；CS＝650、PS＝900。分別定價 60 與 40 時，數量為 20、10；CS＝500、PS＝1,000。總量仍為 30，總剩餘下降 50。", "Under perfect discrimination in the earlier MRU model, Q=40, CS=0, PS=1,600, and profit=1,500 after FC=100. There is no common selling price; the last unit pays 20.": "前述 MRU 模型若採完全差別取價，Q＝40、CS＝0、PS＝1,600，扣 FC＝100 後利潤為 1,500。沒有共同售價；最後一單位付 20。", "8. Tying and bundling solve different problems": "8. 搭售與組合銷售處理不同問題", "Usage metering differs from a fixed package; revenue differs from profit.": "依用量計費與固定套裝不同；收益也不同於利潤。", "Tying and metering": "搭售與計量", "A base good is linked to repeated purchases of a tied good, such as a printer and required proprietary ink. A low access price can attract light users; recurring marked-up purchases collect more from heavy users.": "基本商品與重複購買的綁定商品連結，例如印表機與必須使用的專用墨水。較低的入門價格可吸引輕度使用者；持續購買加價耗材，則讓重度使用者支付更多。", "Bundling": "組合銷售", "Two or more goods are sold as a package. Pure bundling offers only the package; mixed bundling also offers components separately. The fixed package does not charge each time an app is used.": "把兩種以上商品作為套裝出售。純組合只提供套裝；混合組合也單售零件。固定套裝不會在每次使用應用程式時再收費。", "Tying can increase system adoption while an above-MC consumable price reduces use per adopter. Both margins matter for welfare. Complementarity alone does not prove a tie; some restriction or practical dependency must connect purchases.": "搭售可能增加系統採用者，但耗材價格高於 MC，會壓低每位採用者的使用量。福利須同時看兩者。商品互補本身不代表搭售；須有某種限制或實際依賴來連結購買。", "A package can solve a pricing problem: one buyer values the first component highly, while another values the second highly. Separate high prices lose some useful sales. If their combined values are more similar, one package price can appeal to both buyers and increase consumption.": "套裝可解決定價問題：一位買方最重視第一項，另一位最重視第二項。分開高價銷售會失去部分有益交易；若合計價值更接近，同一套裝價可吸引兩人並增加消費。", "Optional: MRU buyer values and numerical comparison": "可展開補充：MRU 買方價值與數字比較", "MRU buyer values": "MRU 買方願付價值", "Bundle": "套裝", "At zero MC, separate Word=$100 and Excel=$90 earn $190. A $120 bundle sells to both and earns $240, an increase of $50, or about 26.3%. CS rises from zero to $10; total surplus rises from 190 to 250 because additional valuable components are consumed at zero incremental cost.": "MC＝0 時，Word 定價 100、Excel 定價 90，可賺收益 190。120 元套裝賣給兩人，收益 240，增加 50，約 26.3%。CS 從零升至 10；總剩餘從 190 升至 250，因為零新增成本下，更多有價值的組件被使用。", "Opposite component preferences make the buyers' bundle values more similar. Negative correlation helps but is not necessary; low incremental cost and sufficiently concentrated package values matter. With positive MC, unwanted components can consume real resources. Higher revenue alone does not establish higher economic profit or welfare.": "相反的組件偏好，讓兩人的套裝總價值更相似。負相關有幫助但非必要條件；低新增成本與足夠集中的套裝價值很重要。MC 為正時，不想要的組件仍消耗真實資源。收益增加本身不證明經濟利潤或福利提高。", "MRU Word–Excel example. Assume additive values, one copy per buyer, and purchase when indifferent. The baseline MC is zero; figures exclude development costs.": "MRU Word–Excel 例子。假設價值可相加、每人每項最多一份，而且無差異時仍購買。基準 MC 為零；數字未扣開發成本。", "9. Do not mix these up": "9. 不要混淆這些概念", "MR=MC gives the selling price.": "MR＝MC 的高度就是售價。", "It gives an output candidate; return to D for price.": "交點給的是候選產量；售價要回需求線讀。", "Maximize revenue in the water table.": "水量表應選收益最大的產量。", "Q=5 and 6 maximize TR; Q=4 maximizes profit.": "Q＝5、6 的 TR 最大；Q＝4 的利潤最大。", "A discrete optimum needs exact equality.": "整數最適產量必須剛好相等。", "The next unit can switch from MR>MC to MR<MC.": "下一單位可能直接從 MR＞MC 變成 MR＜MC。", "P−MC is profit per unit.": "P−MC 是每單位利潤。", "Use P−ATC; total profit also needs Q.": "應用 P−ATC；總利潤還要乘 Q。", "All lost consumer surplus is DWL.": "消費者剩餘減少全部都是 DWL。", "Separate transfers from destroyed combined gains.": "要分清剩餘轉移與總利益消失。", "Less elastic means the optimum is inelastic.": "相對彈性較低，表示最適點沒有彈性。", "With positive MC, the standard interior optimum has |ε|>1.": "MC 為正時，一般內點最適解的 |ε|＞1。", "Discrimination always raises total output.": "差別取價一定增加總產量。", "Output and allocation depend on group demand and the counterfactual.": "產量與配置取決於各群需求和比較基準。", "More revenue proves a better bundle.": "收益增加就證明套裝更好。", "Subtract costs, then compare consumption and surplus.": "先扣成本，再比較消費量與剩餘。", "10. Cold call practice": "10. 課堂口頭問答練習", "What makes a market a monopoly?": "什麼條件讓一個市場成為獨占？", "One seller faces no close substitutes in a defined product and geographic market; entry barriers sustain its position.": "在明確的產品與地理市場中，一個賣方面對沒有相近替代品的需求；進入障礙維持其地位。", "What is marginal revenue?": "什麼是邊際收益？", "The change in total revenue from an additional unit. Under uniform monopoly pricing, it includes revenue lost by repricing earlier units.": "多賣一單位帶來的總收益變化。在統一獨占定價下，還包含其他單位降價造成的收入減少。", "What is economic profit?": "什麼是經濟利潤？", "Total revenue minus all explicit and implicit economic costs, equal to (P−ATC)Q under a common price.": "總收益減所有顯性與隱性經濟成本；統一定價時等於 (P−ATC)Q。", "Why can a price maker not choose any price and quantity?": "價格制定者為何不能任選價格與數量？", "Demand links the two. A higher common price generally means fewer sales, so the firm must choose a feasible point on demand.": "需求連結兩者。較高統一價格通常意味較少銷量，因此須選需求線上的可行點。", "What is deadweight loss?": "什麼是無謂損失？", "Lost total gains from trade. In the monopoly diagram, it lies between demand and MC over beneficial units not sold.": "未實現的總交易利益。在獨占圖中，是 D 與 MC 之間那些有益卻未出售單位的面積。", "What sustains group price discrimination?": "什麼條件能維持分群差別取價？", "Pricing power, workable segmentation or sorting, and limits on resale. Separate group demand and costs determine the optimal prices.": "定價力量、可行的分群或自我選擇，以及轉售限制。各群需求與成本決定最適價格。", "How does perfect discrimination change revenue?": "完全差別取價如何改變收益？", "An extra unit can be sold at its own willingness to pay without reducing prior unit prices, so the seller expands while WTP covers MC.": "新增單位可按其 WTP 出售，不必降低先前單位的價格；因此只要 WTP 足以支付 MC，賣方就擴產。", "How do static and dynamic efficiency differ?": "靜態效率與動態效率有何不同？", "Static efficiency concerns current allocation; dynamic efficiency concerns future innovation and improvements. A current price diagram does not measure the latter.": "靜態效率關注當下配置；動態效率關注未來創新與改善。當期價格圖不能衡量後者。", "11. Answer templates": "11. 答題模板", "Price and profit": "價格與利潤", "“I ask whether another unit adds more revenue than cost. I identify the output where that incentive changes, then use demand to read its price. I compare price with ATC to explain profit or loss. For whole-unit choices, an exact MR–MC equality is unnecessary.”": "「先判斷多一單位增加的收益是否高於成本，找出這個誘因改變的產量，再用需求線讀售價。比較價格與 ATC，解釋盈虧。數量只能整單位變動時，不需要剛好 MR＝MC。」", "A change in costs": "成本變動", "“I identify whether marginal or fixed cost changed. A marginal-cost increase changes the MR–MC output choice and the price read from D. An unavoidable fixed-cost increase lowers profit without changing that interior choice, conditional on operating.”": "「先辨認改變的是邊際成本還是固定成本。MC 上升會改變 MR、MC 所決定的產量，以及回需求線讀到的價格。不可避免的 FC 上升則降低利潤，但在持續營運的內點情況下，不改變該產量選擇。」", "Pricing and welfare": "定價與福利", "“I specify the feasible alternative, then compare quantities by buyer, willingness to pay, resource costs, CS, and PS. I deduct fixed and implementation costs where relevant. Greater seller profit alone does not settle welfare; innovation effects require separate evidence.”": "「先定義可行的比較方案，再比較各買方數量、願付價格、資源成本、CS 與 PS。必要時扣固定成本及執行成本。賣方利潤增加本身不足以判斷福利；創新效果需要額外證據。」", "Continue from Session 4: competitive firms , or return to Economics sessions .": "接續第 4 堂：競爭廠商，或回到 Economics 課程列表。", "Contents": "目錄", "Interactive graph": "互動圖表", "View numerical readout": "查看數值結果", "Show all answers": "展開全部答案", "Hide all answers": "收合全部答案", "Compare the next whole gallon": "比較下一整加侖的決策", "Predict whether moving from three to four, then five gallons improves profit. Drag Q or reveal the best listed choice.": "先預測從三加侖增加到四、再增加到五，利潤會如何改變。拖曳 Q，或揭曉表格中的最佳產量。", "Demand, ATC, and profit": "需求、平均總成本與利潤", "Per-gallon marginal values": "每新增一加侖的邊際數值", "Chosen output": "所選產量", "Price": "價格", "Revenue": "總收益", "Total cost": "總成本", "Profit": "利潤", "Chosen daily quantity": "所選每日產量", "Reveal best listed output": "揭曉表格中的最佳產量", "The greatest listed profit is $11/day at Q=4. The fifth gallon reduces profit by $2.": "表格最高利潤在 Q＝4，為每日 11 元。第五加侖使利潤減少 2 元。", "Move one step at a time. Compare total profit, not total revenue.": "一次增加一單位，觀察總利潤的變化，而不是只比較總收益。", "Undefined at Q=0": "Q＝0 時無法定義", "Choose output, then read the drug price": "先選產量，再讀取藥物價格", "Before revealing the optimum, predict what happens when output exceeds the MR–MC crossing.": "揭曉最佳產量前，先預測超過 MR、MC 交點時會發生什麼事。", "Price on demand": "需求線上的價格", "MR at chosen Q": "所選產量的邊際收益", "Proposed output": "提議產量", "Reveal profit-maximizing output": "揭曉利潤最大的產量", "At 80 million pills, MR=MC=$0.50. D gives $12.50, ATC is $2.50, and total profit is $800 million.": "在 8,000 萬顆時，MR＝MC＝0.50 美元。D 給出價格 12.50 美元，ATC＝2.50 美元，總利潤為 8 億美元。", "MR exceeds MC at this quantity, so a small output increase improves profit.": "這個產量的 MR 高於 MC，稍微增加產量會提高利潤。", "MR is below MC at this quantity, so reducing output improves profit.": "這個產量的 MR 低於 MC，減少產量會提高利潤。", "Explore costs, profit, and lost trades": "探索成本、利潤與失去的交易", "Predict what changes when MC rises or only FC rises. Compare uniform pricing with the efficient allocation and perfect discrimination.": "先預測 MC 上升，或只有 FC 上升時，哪些結果會改變。比較統一獨占價格、有效率配置與完全差別取價。", "Output": "產量", "Pricing regime": "定價方式", "Uniform monopoly": "統一獨占價格", "MC-price benchmark": "邊際成本定價基準", "Perfect discrimination": "完全差別取價", "Marginal cost": "邊際成本", "Unavoidable fixed cost": "不可避免的固定成本", "Reset MRU example": "重設 MRU 例子", "Each unit pays its own WTP. D supplies marginal unit receipts; the conventional MR line remains a reference for uniform pricing.": "每單位按各自 WTP 付款。此時 D 代表新增單位的收益；一般 MR 線僅作統一定價的比較參考。", "D=MC gives efficient output. The price covers variable cost but leaves the fixed cost uncovered.": "D＝MC 給出有效率產量。價格足以支付變動成本，但尚未支付固定成本。", "Compare two demand environments": "比較兩種需求環境", "Keep MC=20. Switch between the two cases and compare the optimal markup and point elasticity.": "維持 MC＝20，切換兩種情況，比較最適加價與點彈性。", "Demand": "需求", "Optimal Q": "最適產量", "Absolute markup": "絕對加價", "|Point elasticity|": "點彈性絕對值", "Lerner index": "Lerner 指數", "Both optima are elastic. Both the intercept and slope change; slope alone does not identify elasticity.": "兩個最適點都在有彈性的區段。截距與斜率同時改變；不能單憑斜率識別彈性。", "Demand environment": "需求環境", "More elastic": "彈性相對較高", "Less elastic": "彈性相對較低", "Uniform price versus separate group prices": "統一定價與分群定價", "Predict whether total output must rise when the seller can charge each group separately.": "先預測：能對每群分別定價後，總產量一定上升嗎？", "Group A": "A 客群", "Group B": "B 客群", "A: Q; price": "A 群：產量；價格", "B: Q; price": "B 群：產量；價格", "Total quantity": "總產量", "PS before fixed cost": "未扣固定成本的生產者剩餘", "Total surplus": "總剩餘", "Separate prices let each group respond to its own demand. Profit rises here, but total output is unchanged and the altered allocation lowers combined gains.": "各群依各自需求分別定價。此例利潤上升，但總產量不變，而且配置改變使總利益下降。", "One common price links the two groups' sales decisions. The optimum need not make each group's MR equal MC, because changing that price affects both groups.": "同一價格連結兩群的銷售決策。由於調價會同時影響兩群，最適統一定價不必使各群 MR 各自等於 MC。", "Group pricing": "客群定價方式", "One common price": "統一價格", "Separate group prices": "分群價格", "MC=20, no resale or capacity constraint. Surplus is shown before common fixed cost.": "MC＝20，無轉售及產能限制；剩餘數字尚未扣共同固定成本。", "Choose separate prices or a bundle": "選擇單售或組合銷售", "Predict which buyers purchase, then change prices or per-component marginal cost.": "先預測哪些買方會購買，再調整價格或每項組件的邊際成本。", "Variable cost": "變動成本", "Mode": "銷售方式", "Separate components": "組件單售", "Component units sold": "售出組件數", "Contribution before FC": "未扣固定成本的貢獻", "Total surplus before FC": "未扣固定成本的總剩餘", "Each buyer purchases one bundle if combined WTP covers its price. Both included components incur the chosen MC.": "若合計願付價格足以支付套裝價格，買方就購買一套。套裝中的兩項組件都會產生設定的邊際成本。", "Each buyer separately purchases each component whose WTP covers its price. Contribution subtracts variable cost, not development FC.": "每位買方分別購買願付價格不低於售價的組件。貢獻已扣變動成本，尚未扣開發固定成本。", "Selling method": "銷售方式", "Separate sales": "單獨銷售", "Word price": "Word 價格", "Excel price": "Excel 價格", "Bundle price": "套裝價格", "MC per component": "每項組件的邊際成本", "Use best prices at this MC": "使用此成本下的最佳價格", "Gallons per day": "每日加侖數", "Dollars / gallon": "美元／加侖", "Additional gallon Q": "新增的第 Q 加侖", "Dollars / extra gallon": "每新增加侖的美元數", "Quantity (million pills)": "產量（百萬顆）", "Quantity": "產量", "Price / unit": "每單位價格", "Group quantity": "客群產量", "Outcome category": "結果類別", "Dollars": "美元", "N/A": "不適用"};
+ Object.assign(dict,{D:'需求',P:'價格',CS:'消費者剩餘',PS:'生產者剩餘',DWL:'無謂損失'});
+ const norm=s=>s.replace(/\s+/g,' ').trim();
+ function enText(el){const copy=el.cloneNode(true);copy.querySelectorAll('.zh-full,.zh-svg,.zh').forEach(n=>n.remove());return norm(copy.textContent);}
+ function translate(en){
+  if(dict[en])return dict[en];
+  let m;
+  if(m=en.match(/^This gallon adds (.+?) of revenue and costs (.+?)\. (.+)$/))return '這一加侖新增收益 '+m[1]+'，成本 '+m[2]+'。'+(translate(m[3])||m[3]);
+  if(m=en.match(/^MR=MC determines Q; D gives P\. Producer surplus excludes FC; profit subtracts it\. Shutdown would lose (.+?) when FC is unavoidable\.$/))return 'MR＝MC 決定產量，D 給出售價。生產者剩餘尚未扣 FC，利潤則已扣除。FC 不可避免時，停產會損失 '+m[1]+'。';
+  if(m=en.match(/^([\d,.]+) gallons\/day$/))return '每日 '+m[1]+' 加侖';
+  if(m=en.match(/^([\d,.]+) gallons$/))return m[1]+' 加侖';
+  if(m=en.match(/^([\d,.]+) million pills$/))return m[1]+' 百萬顆';
+  if(m=en.match(/^(−?\$[\d,.]+)\/gallon$/))return m[1]+'／加侖';
+  if(m=en.match(/^(−?\$[\d,.]+)\/pill$/))return m[1]+'／顆';
+  if(m=en.match(/^(−?\$[\d,.]+)\/day$/))return m[1]+'／日';
+  if(m=en.match(/^(−?\$[\d,.]+) million$/))return m[1]+' 百萬美元';
+  if(m=en.match(/^Varies; last (.+)$/))return '價格逐單位不同；最後一單位 '+m[1];
+  return '';
+ }
+ const observer=new MutationObserver(()=>schedule());let pending=false;
+ const selector='.doc h4,.doc p,.doc th,.doc td,.doc summary,.doc .formula,.doc .plot-legend>span,.doc .tw-t,.doc .g-stats dt,.doc .g-stats dd,.doc .g-ctrl button,.doc .sl label>span,.doc .sl output,.g-kicker,.rail a,#tocBtn,#qaAll';
+ function apply(){
+  pending=false;observer.disconnect();
+  document.querySelectorAll(selector).forEach(el=>{
+   if(el.closest('.zh-full,.hint,.practice-prompt')||el.querySelector(':scope > .zh-full'))return;
+   const chinese=translate(enText(el));if(!chinese)return;
+   const span=document.createElement('span');span.className='zh-full';span.lang='zh-Hant';span.textContent=chinese;el.append(span);
+  });
+  document.querySelectorAll('.g-plot svg text.axl').forEach(el=>{
+   if(el.querySelector('.zh-svg'))return;const chinese=translate(enText(el));if(!chinese)return;
+   const t=document.createElementNS('http://www.w3.org/2000/svg','tspan');t.setAttribute('class','zh-svg');t.setAttribute('lang','zh-Hant');t.setAttribute('x',el.getAttribute('x')||'0');t.setAttribute('dy','13');t.textContent=chinese;el.append(t);
+  });
+  observer.observe(document.body,{subtree:true,childList:true,characterData:true});
+ }
+ function schedule(){if(!pending){pending=true;requestAnimationFrame(apply);}}
+ const toggle=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+ function setZh(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';try{localStorage.setItem('study-notes-show-zh',on?'1':'0')}catch(e){}window.dispatchEvent(new Event('econ-language-change'));apply();}
+ let initial=false;try{initial=localStorage.getItem('study-notes-show-zh')==='1'}catch(e){}
+ toggle.addEventListener('change',()=>setZh(toggle.checked));
+ const practice=document.getElementById('practiceToggle'),state=document.getElementById('practiceState');
+ practice.addEventListener('click',()=>{const on=practice.getAttribute('aria-pressed')!=='true';practice.setAttribute('aria-pressed',String(on));state.textContent=on?'On':'Off';practice.querySelector(':scope > .zh-full').textContent='練習模式：'+(on?'開啟':'關閉');document.querySelectorAll('.practice-prompt').forEach(p=>p.hidden=!on);});
+ const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px');}
+ if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();setZh(initial);
+ // Expose only a translation refresh hook; numerical state remains owned by EconWidgets.
+ window.refreshChineseSupport=apply;
+})();
+</script></body></html>
