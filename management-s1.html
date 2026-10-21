@@ -302,7 +302,7 @@ table.cmp td:first-child { font-weight: 700; color: var(--muted); width: 22%; }
 .quotes q { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-style: italic; color: var(--muted); font-size: .9rem; }
 .six { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
 .six > div { display: flex; gap: 10px; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .88rem; line-height: 1.5; }
-.six span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
+.six > div > span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
 a.cta { display: inline-block; background: var(--accent); color: var(--tone-ffffff); text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
 a.cta:hover { background: var(--accent-ink); }
 blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; font-size: .92rem; line-height: 1.7; }
@@ -585,7 +585,7 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
   a.cta .zh-full, .risk b .zh-full, .hint b .zh-full, .tcard .tnum .zh-full { color: inherit; }
 }
 </style>
-</head><body>
+<style id="reading-layout-fix">.six > div > p{flex:1;min-width:0;margin:0}.steps > li{align-items:flex-start}.steps > li > .step-copy{flex:1;min-width:0;margin:0}</style></head><body>
 <svg aria-hidden="true" height="0" style="position:absolute" width="0"><defs>
 <pattern height="6" id="dwlHatch" patterntransform="rotate(45)" patternunits="userSpaceOnUse" width="6">
 <rect height="6" style="fill:var(--dwl);fill-opacity:.12" width="6"></rect><rect height="6" style="fill:var(--dwl);fill-opacity:.75" width="2.2"></rect></pattern></defs></svg>
@@ -700,7 +700,7 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 <h2 id="traps">6. Do not mix these up<span class="zh-full" lang="zh-Hant">6. 不要混淆</span></h2>
 <div class="traps">
 <div><s>Preference = ability.<span class="zh-full" lang="zh-Hant">偏好＝能力。</span></s><p>People can work against their preference when the context requires it.<span class="zh-full" lang="zh-Hant">當情境需要時，人們可以採取不符合平常偏好的做法。</span></p></div>
-<div><s>Quiet means Introvert.<span class="zh-full" lang="zh-Hant">安靜就代表內向。</span></s><p>One visible behavior is not enough evidence.<span class="zh-full" lang="zh-Hant">單一可見行為不足以判定。</span></p></div>
+<div><s>Quiet means Introvert.<span class="zh-full" lang="zh-Hant">安靜就代表內向。</span></s><p>Quiet behavior is an I-like clue. Explain the assumed processing preference and check the wider pattern.<span class="zh-full" lang="zh-Hant">安靜可作為偏 I 的線索；說明假設中的思考偏好，再核對整體模式。</span></p></div>
 <div><s>Performance problem = personality problem.<span class="zh-full" lang="zh-Hant">績效問題＝人格問題。</span></s><p>Check leader, people, culture, process and context.<span class="zh-full" lang="zh-Hant">檢查領導者、人員、文化、流程與情境。</span></p></div>
 <div><s>Every team needs one of each type.<span class="zh-full" lang="zh-Hant">每個團隊都需要每種類型各一人。</span></s><p>Cover the blind spots the task actually needs.<span class="zh-full" lang="zh-Hant">補足任務真正需要處理的盲點。</span></p></div>
 <div><s>Some types are better managers.<span class="zh-full" lang="zh-Hant">某些類型比較適合當主管。</span></s><p>Effectiveness comes from adaptation.<span class="zh-full" lang="zh-Hant">有效性來自調整與適應。</span></p></div>
@@ -717,11 +717,6 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 <details><summary>How would you adapt to an S, F, J colleague?<span class="zh-full" lang="zh-Hant">你會如何調整方式，與 S、F、J 的同事合作？</span></summary><p>Use concrete facts and steps, explain the people impact, and give structure, deadlines, ownership and closure.<span class="zh-full" lang="zh-Hant">提供具體事實與步驟，說明對人的影響，並給予結構、期限、權責歸屬與明確定案。</span></p></details>
 <details><summary>Why is personality awareness useful for managers?<span class="zh-full" lang="zh-Hant">人格覺察為何對主管有用？</span></summary><p>It helps managers recognize their own blind spots and adapt their communication and leadership to different people and work contexts.<span class="zh-full" lang="zh-Hant">它能幫助主管看見自己的盲點，並因應不同人員與工作情境，調整溝通及領導方式。</span></p></details>
 </div>
-<h3 id="templates">Answer template<span class="zh-full" lang="zh-Hant">答題模板</span></h3>
-<div class="tbl"><table>
-<tbody>
-<tr><td><b>Personality in a case</b><span class="zh-full" lang="zh-Hant">個案中的人格分析</span></td><td>Preference (with evidence) → likely strength → blind spot if overused → what the context requires → specific management adjustment → other factors in the performance model<span class="zh-full" lang="zh-Hant">偏好（附證據）→ 可能的優勢 → 過度使用時的盲點 → 情境需求 → 具體管理調整 → 績效模型中的其他因素</span></td></tr>
-</tbody></table></div>
 </article></main>
 </div>
 <script>

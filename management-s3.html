@@ -1,8 +1,9 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Motivation and Human Behavior · Management</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/><title>Motivation and Human Behavior · Management</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
 /* Layout: one reading column with a sticky chapter rail; colors follow system appearance. */
 :root {
@@ -300,7 +301,7 @@ table.cmp td:first-child { font-weight: 700; color: var(--muted); width: 22%; }
 .quotes q { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-style: italic; color: var(--muted); font-size: .9rem; }
 .six { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
 .six > div { display: flex; gap: 10px; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .88rem; line-height: 1.5; }
-.six span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
+.six > div > span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
 a.cta { display: inline-block; background: var(--accent); color: var(--tone-ffffff); text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
 a.cta:hover { background: var(--accent-ink); }
 blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; font-size: .92rem; line-height: 1.7; }
@@ -525,65 +526,55 @@ body.show-zh .cmp-sel select{max-width:100%}
   a.cta .zh-full, .risk b .zh-full, .hint b .zh-full, .tcard .tnum .zh-full { color: inherit; }
 }
 </style>
-</head><body>
-
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-<pattern id="dwlHatch" width="6" height="6" patternunits="userSpaceOnUse" patterntransform="rotate(45)">
-<rect width="6" height="6" style="fill:var(--dwl);fill-opacity:.12"></rect><rect width="2.2" height="6" style="fill:var(--dwl);fill-opacity:.75"></rect></pattern></defs></svg>
-
+<style id="reading-layout-fix">.six > div > p{flex:1;min-width:0;margin:0}.steps > li{align-items:flex-start}.steps > li > .step-copy{flex:1;min-width:0;margin:0}</style></head><body>
+<svg aria-hidden="true" height="0" style="position:absolute" width="0"><defs>
+<pattern height="6" id="dwlHatch" patterntransform="rotate(45)" patternunits="userSpaceOnUse" width="6">
+<rect height="6" style="fill:var(--dwl);fill-opacity:.12" width="6"></rect><rect height="6" style="fill:var(--dwl);fill-opacity:.75" width="2.2"></rect></pattern></defs></svg>
 <header class="top"><div class="top-in">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="management.html">Management<span class="zh-full" lang="zh-Hant">管理學</span></a><span>/</span><b>Session 3<span class="zh-full" lang="zh-Hant">第 3 堂</span></b></nav>
-  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
-  <nav class="sessions" aria-label="Sessions"><a class="pill" href="management-s1.html">S1</a>
+<nav aria-label="Breadcrumb" class="crumbs"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="management.html">Management<span class="zh-full" lang="zh-Hant">管理學</span></a><span>/</span><b>Session 3<span class="zh-full" lang="zh-Hant">第 3 堂</span></b></nav>
+<button aria-expanded="false" class="toc-btn" id="tocBtn" type="button">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
+<nav aria-label="Sessions" class="sessions"><a class="pill" href="management-s1.html">S1</a>
 <a class="pill" href="management-s2.html">S2</a>
-<span class="pill" aria-current="page">S3</span>
+<span aria-current="page" class="pill">S3</span>
 <a class="pill" href="management-s4.html">S4</a></nav>
-<div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
-
+<div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input aria-label="顯示完整繁體中文對照" id="zhToggle" role="switch" type="checkbox"/>中文 <span id="zhModeLabel">OFF</span></label><button aria-pressed="false" class="practice-toggle" id="practiceToggle" title="Show or hide short questions within chapters" type="button">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
 <div class="wrap">
-  <aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
-  <main><article class="doc"><div class="hero">
-  <p class="kick">Managing People in Organizations · Session 3<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 3 堂</span></p>
-  <h1>Motivation and Human Behavior<span class="zh-full" lang="zh-Hant">動機與人類行為</span></h1>
-  <p class="lead">Before fixing a motivation problem, decide what kind of problem it is: unmet needs, management style, or the goal system. Then choose the one framework that best explains the evidence.<span class="zh-full" lang="zh-Hant">處理動機問題前，先判斷問題屬於未滿足的需求、管理方式，還是目標制度，再選出最能解釋證據的一個架構。</span></p>
-
+<aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
+<main><article class="doc"><div class="hero">
+<p class="kick">Managing People in Organizations · Session 3<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 3 堂</span></p>
+<h1>Motivation and Human Behavior<span class="zh-full" lang="zh-Hant">動機與人類行為</span></h1>
+<p class="lead">First identify whether the problem concerns needs, management style or the goal system. Use the framework required by the prompt; if the choice is open, justify a suitable lens and complete all its components.<span class="zh-full" lang="zh-Hant">先判斷問題在需求、管理方式或目標系統。使用題目要求的框架；可自選時，說明為何選此框架，再完成其所有構面。</span></p>
 </div>
-
 <h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
 <p class="sub">The session ends with three ways to motivate people. Each groups the frameworks that answer the same question.<span class="zh-full" lang="zh-Hant">本堂最後整理出三種激勵方式；每一組架構都在回答相同類型的問題。</span></p>
 <div class="three">
-  <div class="tcard"><span class="tnum">1</span><b>Fulfill human needs<span class="zh-full" lang="zh-Hant">滿足人的需求</span></b><p>What do employees lack?<span class="zh-full" lang="zh-Hant">員工缺少什麼？</span></p><div class="tags"><span>Maslow<span class="zh-full" lang="zh-Hant">馬斯洛需求層級</span></span><span>ERG<span class="zh-full" lang="zh-Hant">ERG 理論</span></span><span>Herzberg<span class="zh-full" lang="zh-Hant">赫茲伯格雙因子理論</span></span></div></div>
-  <div class="tcard"><span class="tnum">2</span><b>Adjust management style<span class="zh-full" lang="zh-Hant">調整管理方式</span></b><p>How does the manager see employees?<span class="zh-full" lang="zh-Hant">主管如何看待員工？</span></p><div class="tags"><span>Theory X<span class="zh-full" lang="zh-Hant">X 理論</span></span><span>Theory Y<span class="zh-full" lang="zh-Hant">Y 理論</span></span></div></div>
-  <div class="tcard"><span class="tnum">3</span><b>Set goals<span class="zh-full" lang="zh-Hant">設定目標</span></b><p>Do goals and KPIs point effort at the right result?<span class="zh-full" lang="zh-Hant">目標與 KPI 是否把努力導向正確成果？</span></p><div class="tags"><span>Goal setting<span class="zh-full" lang="zh-Hant">目標設定</span></span><span>MBO<span class="zh-full" lang="zh-Hant">目標管理（MBO）</span></span></div></div>
+<div class="tcard"><span class="tnum">1</span><b>Fulfill human needs<span class="zh-full" lang="zh-Hant">滿足人的需求</span></b><p>What do employees lack?<span class="zh-full" lang="zh-Hant">員工缺少什麼？</span></p><div class="tags"><span>Maslow<span class="zh-full" lang="zh-Hant">馬斯洛需求層級</span></span><span>ERG<span class="zh-full" lang="zh-Hant">ERG 理論</span></span><span>Herzberg<span class="zh-full" lang="zh-Hant">赫茲伯格雙因子理論</span></span></div></div>
+<div class="tcard"><span class="tnum">2</span><b>Adjust management style<span class="zh-full" lang="zh-Hant">調整管理方式</span></b><p>How does the manager see employees?<span class="zh-full" lang="zh-Hant">主管如何看待員工？</span></p><div class="tags"><span>Theory X<span class="zh-full" lang="zh-Hant">X 理論</span></span><span>Theory Y<span class="zh-full" lang="zh-Hant">Y 理論</span></span></div></div>
+<div class="tcard"><span class="tnum">3</span><b>Set goals<span class="zh-full" lang="zh-Hant">設定目標</span></b><p>Do goals and KPIs point effort at the right result?<span class="zh-full" lang="zh-Hant">目標與 KPI 是否把努力導向正確成果？</span></p><div class="tags"><span>Goal setting<span class="zh-full" lang="zh-Hant">目標設定</span></span><span>MBO<span class="zh-full" lang="zh-Hant">目標管理（MBO）</span></span></div></div>
 </div>
-<div class="method"><span>Choose a framework<span class="zh-full" lang="zh-Hant">選擇架構</span></span><i>→</i><span>What it says should happen<span class="zh-full" lang="zh-Hant">理論認為應該發生什麼</span></span><i>→</i><span>What the case shows<span class="zh-full" lang="zh-Hant">個案實際顯示什麼</span></span><i>→</i><span class="hi">Gap = issue<span class="zh-full" lang="zh-Hant">落差＝議題</span></span><i>→</i><span>Recommendation<span class="zh-full" lang="zh-Hant">建議</span></span></div>
-
+<div class="method"><span>Choose a framework<span class="zh-full" lang="zh-Hant">選擇架構</span></span><i>→</i><span>What it says should happen<span class="zh-full" lang="zh-Hant">理論認為應該發生什麼</span></span><i>→</i><span>What the case shows<span class="zh-full" lang="zh-Hant">個案實際顯示什麼</span></span><i>→</i><span class="hi">Gap = issue<span class="zh-full" lang="zh-Hant">落差＝議題</span></span><i>→</i><span>Issue statement<span class="zh-full" lang="zh-Hant">問題陳述</span></span></div>
 <!-- 1 -->
 <h2 id="sources">1. Where motivation comes from<span class="zh-full" lang="zh-Hant">1. 動機從哪裡來？</span></h2>
 <p class="sub">Motivation <span class="zh">動機</span> is what drives the direction and persistence of effort at work.<span class="zh-full" lang="zh-Hant">動機是驅動工作努力方向與持續性的力量。</span></p>
 <div class="pair">
-  <div><b>Intrinsic<span class="zh-full" lang="zh-Hant">內在動機</span></b> <span class="zh">內在</span><p>Comes from the work itself: challenge, mastery, meaning, enjoyment. An analyst enjoys cracking a hard problem.<span class="zh-full" lang="zh-Hant">來自工作本身：挑戰、精熟、意義與樂趣，例如分析師享受破解難題。</span></p></div>
-  <div><b>Extrinsic<span class="zh-full" lang="zh-Hant">外在動機</span></b> <span class="zh">外在</span><p>Comes from outside rewards or consequences: pay, bonus, promotion, punishment. A salesperson works harder for commission.<span class="zh-full" lang="zh-Hant">來自外部獎勵或後果：薪資、獎金、晉升與懲罰，例如業務為佣金而更加努力。</span></p></div>
+<div><b>Intrinsic<span class="zh-full" lang="zh-Hant">內在動機</span></b> <span class="zh">內在</span><p>Comes from the work itself: challenge, mastery, meaning, enjoyment. An analyst enjoys cracking a hard problem.<span class="zh-full" lang="zh-Hant">來自工作本身：挑戰、精熟、意義與樂趣，例如分析師享受破解難題。</span></p></div>
+<div><b>Extrinsic<span class="zh-full" lang="zh-Hant">外在動機</span></b> <span class="zh">外在</span><p>Comes from outside rewards or consequences: pay, bonus, promotion, punishment. A salesperson works harder for commission.<span class="zh-full" lang="zh-Hant">來自外部獎勵或後果：薪資、獎金、晉升與懲罰，例如業務為佣金而更加努力。</span></p></div>
 </div>
 <p class="key">They are not either-or. The useful question is what currently drives behavior, and whether it pushes effort toward the right outcome.<span class="zh-full" lang="zh-Hant">兩者不是非此即彼。真正有用的問題是：目前什麼在驅動行為？它是否把努力導向正確成果？</span></p>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A salesperson enjoys negotiation and also earns a commission. Why is an either-or intrinsic/extrinsic label incomplete? Which behavior or outcome would you examine to assess whether the incentive is helping?<span class="zh-full" lang="zh-Hant">業務員既享受談判，也能賺取佣金。為什麼只能二選一的內在／外在動機分類不完整？應檢查哪些行為或結果，才能判斷誘因是否有幫助？</span></p></aside>
-
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A salesperson enjoys negotiation and also earns a commission. Why is an either-or intrinsic/extrinsic label incomplete? Which behavior or outcome would you examine to assess whether the incentive is helping?<span class="zh-full" lang="zh-Hant">業務員既享受談判，也能賺取佣金。為什麼只能二選一的內在／外在動機分類不完整？應檢查哪些行為或結果，才能判斷誘因是否有幫助？</span></p></aside>
 <!-- 2 -->
 <h2 id="needs">2. Needs theories<span class="zh-full" lang="zh-Hant">2. 需求理論</span></h2>
 <p class="sub">Maslow and ERG describe which needs exist. Herzberg explains why meeting some needs does not create motivation.<span class="zh-full" lang="zh-Hant">Maslow 與 ERG 描述有哪些需求；Herzberg 解釋為何滿足某些需求，卻不會創造動機。</span></p>
-
 <h3 id="maslow-erg">Maslow and ERG: same needs, different logic<span class="zh-full" lang="zh-Hant">Maslow 與 ERG：需求相似，邏輯不同</span></h3>
-<div class="ladder" aria-label="Maslow levels mapped to ERG">
-  <div class="lv l5">Self-actualization<span class="zh-full" lang="zh-Hant">自我實現需求</span><small>Continuous growth toward new goals<span class="zh-full" lang="zh-Hant">持續成長，朝新目標前進</span></small></div>
-  <div class="lv l4">Self-esteem<span class="zh-full" lang="zh-Hant">自尊需求</span><small>Profession, success, pride<span class="zh-full" lang="zh-Hant">專業、成功與自豪</span></small></div>
-  <div class="lv l3">Social<span class="zh-full" lang="zh-Hant">社交需求</span><small>Community, relationships<span class="zh-full" lang="zh-Hant">群體與人際關係</span></small></div>
-  <div class="lv l2">Safety<span class="zh-full" lang="zh-Hant">安全需求</span><small>Avoiding danger; laws, rules<span class="zh-full" lang="zh-Hant">避免危險；法律與規則</span></small></div>
-  <div class="lv l1">Physiological<span class="zh-full" lang="zh-Hant">生理需求</span><small>Food, shelter, clothing<span class="zh-full" lang="zh-Hant">食物、住所與衣物</span></small></div>
-  <div class="erg g">Growth<span class="zh-full" lang="zh-Hant">成長需求</span></div>
-  <div class="erg r">Relatedness<span class="zh-full" lang="zh-Hant">關係需求</span></div>
-  <div class="erg e">Existence<span class="zh-full" lang="zh-Hant">存在需求</span></div>
+<div aria-label="Maslow levels mapped to ERG" class="ladder">
+<div class="lv l5">Self-actualization<span class="zh-full" lang="zh-Hant">自我實現需求</span><small>Continuous growth toward new goals<span class="zh-full" lang="zh-Hant">持續成長，朝新目標前進</span></small></div>
+<div class="lv l4">Self-esteem<span class="zh-full" lang="zh-Hant">自尊需求</span><small>Profession, success, pride<span class="zh-full" lang="zh-Hant">專業、成功與自豪</span></small></div>
+<div class="lv l3">Social<span class="zh-full" lang="zh-Hant">社交需求</span><small>Community, relationships<span class="zh-full" lang="zh-Hant">群體與人際關係</span></small></div>
+<div class="lv l2">Safety<span class="zh-full" lang="zh-Hant">安全需求</span><small>Avoiding danger; laws, rules<span class="zh-full" lang="zh-Hant">避免危險；法律與規則</span></small></div>
+<div class="lv l1">Physiological<span class="zh-full" lang="zh-Hant">生理需求</span><small>Food, shelter, clothing<span class="zh-full" lang="zh-Hant">食物、住所與衣物</span></small></div>
+<div class="erg g">Growth<span class="zh-full" lang="zh-Hant">成長需求</span></div>
+<div class="erg r">Relatedness<span class="zh-full" lang="zh-Hant">關係需求</span></div>
+<div class="erg e">Existence<span class="zh-full" lang="zh-Hant">存在需求</span></div>
 </div>
 <p class="note-small">The slide places self-esteem under both Relatedness and Growth.<span class="zh-full" lang="zh-Hant">投影片把自尊需求同時放在「關係」與「成長」之下。</span></p>
 <div class="tbl"><table>
@@ -594,16 +585,12 @@ body.show-zh .cmp-sel select{max-width:100%}
 <tr><td>When a higher need is blocked<span class="zh-full" lang="zh-Hant">較高層需求受阻時</span></td><td>Not addressed<span class="zh-full" lang="zh-Hant">未處理此機制</span></td><td><b>Frustration-regression</b> <span class="zh">挫折退化</span>: desire for lower needs increases<span class="zh-full" lang="zh-Hant">挫折退化：對較低層需求的渴望增加</span></td></tr>
 <tr><td>Case question<span class="zh-full" lang="zh-Hant">個案問題</span></td><td>Does the company give employees chances to fulfill all five levels?<span class="zh-full" lang="zh-Hant">公司是否讓員工有機會滿足五個層級？</span></td><td>Which needs coexist, and is growth being blocked?<span class="zh-full" lang="zh-Hant">哪些需求同時存在？成長是否受阻？</span></td></tr>
 </tbody></table></div>
-<p class="hint"><b>注意</b>Frustration-regression 是理論機制。個案要有證據顯示員工真的轉向在意薪水或保障，才能說它發生了。</p>
-
+<p class="hint"><b>注意</b><span>Frustration-regression 須有「高層需求受阻後轉向較低需求」這一步；若此轉向是假設，須明示。</span></p>
 <h3 id="herzberg">Herzberg: removing dissatisfaction is not creating motivation<span class="zh-full" lang="zh-Hant">Herzberg：消除不滿不等於創造動機</span></h3>
 <p>Hygiene factors <span class="zh">保健因子</span> and motivators <span class="zh">激勵因子</span> work on two different scales. Toggle the factors below.<span class="zh-full" lang="zh-Hant">保健因素與激勵因素作用於兩條不同的量尺。請切換下方因素。</span></p>
 <div data-mw="herzberg"></div>
 <p>The lecture links this to Maslow: hygiene needs form the foundation and must be met first. Motivators without that base may not work, and hygiene alone will not create high motivation.<span class="zh-full" lang="zh-Hant">課堂將它與 Maslow 連結：保健需求構成基礎，必須先滿足。缺少基礎時，激勵因素可能無效；但只有保健因素，也不會創造高度動機。</span></p>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>An employee is denied promotion and later requests higher pay. Which ERG mechanism might explain the shift? Why is blocked promotion without evidence of a changed priority not enough to confirm that mechanism?<span class="zh-full" lang="zh-Hant">員工升遷受阻後開始要求加薪。哪項 ERG 機制可能解釋這個轉變？為什麼只有升遷受阻、沒有重視程度轉變的證據，還不能確認該機制？</span></p></aside>
-
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>An employee is denied promotion and later requests higher pay. Which ERG mechanism might explain the shift? Why is blocked promotion without evidence of a changed priority not enough to confirm that mechanism?<span class="zh-full" lang="zh-Hant">員工升遷受阻後開始要求加薪。哪項 ERG 機制可能解釋這個轉變？為什麼只有升遷受阻、沒有重視程度轉變的證據，還不能確認該機制？</span></p></aside>
 <!-- 3 -->
 <h2 id="xy">3. Theory X and Theory Y<span class="zh-full" lang="zh-Hant">3. X 理論與 Y 理論</span></h2>
 <p class="sub">These describe a manager's assumptions <span class="zh">假設</span> about workers, and those assumptions shape the management style.<span class="zh-full" lang="zh-Hant">兩者描述主管對員工的假設，而這些假設會塑造管理方式。</span></p>
@@ -615,41 +602,33 @@ body.show-zh .cmp-sel select{max-width:100%}
 <tr><td>Motivates through<span class="zh-full" lang="zh-Hant">激勵途徑</span></td><td>Pay and performance<span class="zh-full" lang="zh-Hant">薪酬與績效</span></td><td>Individual goals<span class="zh-full" lang="zh-Hant">個人目標</span></td></tr>
 <tr><td>Focus<span class="zh-full" lang="zh-Hant">焦點</span></td><td>Organizational goals only<span class="zh-full" lang="zh-Hant">只重視組織目標</span></td><td>Personal goals connected to work<span class="zh-full" lang="zh-Hant">把個人目標連結到工作</span></td></tr>
 </tbody></table></div>
-<div class="loop" aria-label="Self-reinforcing loop">
-  <span>Manager assumes staff cannot be trusted<span class="zh-full" lang="zh-Hant">主管認為員工不值得信任</span></span><i>→</i><span>Close control, micromanagement<span class="zh-full" lang="zh-Hant">嚴密控制與微觀管理</span></span><i>→</i><span>Staff lose initiative, act passively<span class="zh-full" lang="zh-Hant">員工失去主動性，變得被動</span></span><i>→</i><span>Manager feels proven right<span class="zh-full" lang="zh-Hant">主管覺得自己的假設得到驗證</span></span><i class="back">↺</i>
+<div aria-label="Self-reinforcing loop" class="loop">
+<span>Manager assumes staff cannot be trusted<span class="zh-full" lang="zh-Hant">主管認為員工不值得信任</span></span><i>→</i><span>Close control, micromanagement<span class="zh-full" lang="zh-Hant">嚴密控制與微觀管理</span></span><i>→</i><span>Staff lose initiative, act passively<span class="zh-full" lang="zh-Hant">員工失去主動性，變得被動</span></span><i>→</i><span>Manager feels proven right<span class="zh-full" lang="zh-Hant">主管覺得自己的假設得到驗證</span></span><i class="back">↺</i>
 </div>
-<p class="key">Theory Y is not always better. Ask whether the style fits the people and the task. New staff on high-risk work may need structure; experienced experts under micromanagement waste their ability.<span class="zh-full" lang="zh-Hant">Y 理論不一定永遠較好。要問管理方式是否適合人員與任務。高風險工作的新手可能需要結構；有經驗的專家若被過度控制，能力反而遭到浪費。</span></p>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A new employee performs a hazardous task under close supervision, while an expert is micromanaged on routine work. Why might identical control be appropriate in one case but counterproductive in the other? Distinguish safety requirements from Theory X assumptions.<span class="zh-full" lang="zh-Hant">新員工執行高風險任務時受到密切督導；資深專家做例行工作卻被事事緊盯。為什麼同樣的控制可能在一種情況合理、另一種有害？請區分安全需求與 Theory X 假設。</span></p></aside>
-
+<p class="key">Match the management approach to the people and task. Theory Y can include clear instructions and safeguards; structure alone does not show an X assumption.<span class="zh-full" lang="zh-Hant">管理方式須符合人員與任務。Y 理論也可包含清楚指示及必要防護；有結構本身不等於 X 假設。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A new employee performs a hazardous task under close supervision, while an expert is micromanaged on routine work. Why might identical control be appropriate in one case but counterproductive in the other? Distinguish safety requirements from Theory X assumptions.<span class="zh-full" lang="zh-Hant">新員工執行高風險任務時受到密切督導；資深專家做例行工作卻被事事緊盯。為什麼同樣的控制可能在一種情況合理、另一種有害？請區分安全需求與 Theory X 假設。</span></p></aside>
 <!-- 4 -->
 <h2 id="goals">4. Goal setting and MBO<span class="zh-full" lang="zh-Hant">4. 目標設定與 MBO</span></h2>
 <p class="sub">Management by Objectives (MBO) <span class="zh">目標管理</span> works only if people know what is expected, by when, and how they are doing.<span class="zh-full" lang="zh-Hant">目標管理（MBO）要有效，員工必須知道期待是什麼、何時完成，以及目前做得如何。</span></p>
 <div class="four">
-  <div><b>Goal specificity<span class="zh-full" lang="zh-Hant">目標具體性</span></b><p>What counts as success?<span class="zh-full" lang="zh-Hant">怎樣才算成功？</span></p></div>
-  <div><b>Explicit time period<span class="zh-full" lang="zh-Hant">明確的時間範圍</span></b><p>By when?<span class="zh-full" lang="zh-Hant">何時之前完成？</span></p></div>
-  <div><b>Participation<span class="zh-full" lang="zh-Hant">參與</span></b><p>Employees take part in goal decisions.<span class="zh-full" lang="zh-Hant">員工參與目標決策。</span></p></div>
-  <div><b>Performance feedback<span class="zh-full" lang="zh-Hant">績效回饋</span></b><p>Am I meeting expectations?<span class="zh-full" lang="zh-Hant">我達到期待了嗎？</span></p></div>
+<div><b>Goal specificity<span class="zh-full" lang="zh-Hant">目標具體性</span></b><p>What counts as success?<span class="zh-full" lang="zh-Hant">怎樣才算成功？</span></p></div>
+<div><b>Explicit time period<span class="zh-full" lang="zh-Hant">明確的時間範圍</span></b><p>By when?<span class="zh-full" lang="zh-Hant">何時之前完成？</span></p></div>
+<div><b>Participation<span class="zh-full" lang="zh-Hant">參與</span></b><p>Employees take part in goal decisions.<span class="zh-full" lang="zh-Hant">員工參與目標決策。</span></p></div>
+<div><b>Performance feedback<span class="zh-full" lang="zh-Hant">績效回饋</span></b><p>Am I meeting expectations?<span class="zh-full" lang="zh-Hant">我達到期待了嗎？</span></p></div>
 </div>
 <p>Slide example of a SMART goal: <em>"Increase customer satisfaction rate by 20% at the end of 2024."</em> It is specific, measurable and time-bound.<span class="zh-full" lang="zh-Hant">投影片的 SMART 目標例子：「在 2024 年底，將顧客滿意率提高 20%。」它具體、可衡量且有期限。</span></p>
-
 <h3 id="cascade">Cascading objectives<span class="zh-full" lang="zh-Hant">層層展開的目標</span></h3>
 <div class="cascade"><span>Organization<span class="zh-full" lang="zh-Hant">組織</span></span><i>↓</i><span>Division<span class="zh-full" lang="zh-Hant">事業部</span></span><i>↓</i><span>Department<span class="zh-full" lang="zh-Hant">部門</span></span><i>↓</i><span>Individual<span class="zh-full" lang="zh-Hant">個人</span></span></div>
 <p>The point is alignment <span class="zh">對齊</span>: hitting an individual KPI should move the department, division and company goals.<span class="zh-full" lang="zh-Hant">重點是對齊：個人達成 KPI，應能推進部門、事業部與公司的目標。</span></p>
-
 <h3 id="kpi-trap">Four problems with goal setting<span class="zh-full" lang="zh-Hant">目標設定的四個問題</span></h3>
 <ol class="steps">
-  <li><b>Goals become ceilings</b>: people stop at the target.<span class="zh-full" lang="zh-Hant">目標變成天花板：員工達標就停止。</span></li>
-  <li><b>Employees set easy goals</b> to protect themselves.<span class="zh-full" lang="zh-Hant">員工為自保而設定容易的目標。</span></li>
-  <li><b>What gets measured gets done</b>: people chase the KPI even when it is a weak proxy for the real goal.<span class="zh-full" lang="zh-Hant">衡量什麼，就做什麼：即使 KPI 只是實際目標的不佳替代指標，員工仍會追逐它。</span></li>
-  <li><b>Hard-to-measure outcomes get ignored</b>: trust, quality, innovation, long-term customer relationships.<span class="zh-full" lang="zh-Hant">難以衡量的成果被忽略：信任、品質、創新與長期顧客關係。</span></li>
+<li><div class="step-copy"><b>Goals become ceilings</b>: people stop at the target.<span class="zh-full" lang="zh-Hant">目標變成天花板：員工達標就停止。</span></div></li>
+<li><div class="step-copy"><b>Employees set easy goals</b> to protect themselves.<span class="zh-full" lang="zh-Hant">員工為自保而設定容易的目標。</span></div></li>
+<li><div class="step-copy"><b>What gets measured gets done</b>: people chase the KPI even when it is a weak proxy for the real goal.<span class="zh-full" lang="zh-Hant">衡量什麼，就做什麼：即使 KPI 只是實際目標的不佳替代指標，員工仍會追逐它。</span></div></li>
+<li><div class="step-copy"><b>Hard-to-measure outcomes get ignored</b>: trust, quality, innovation, long-term customer relationships.<span class="zh-full" lang="zh-Hant">難以衡量的成果被忽略：信任、品質、創新與長期顧客關係。</span></div></li>
 </ol>
 <div data-mw="kpi"></div>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A team meets its individual activity targets while customer outcomes deteriorate. What is misaligned in the organization-to-individual goal cascade, and what measures beyond activity counts would you check?<span class="zh-full" lang="zh-Hant">團隊達到個人活動量目標，顧客結果卻惡化。從組織到個人的目標連結哪裡可能不一致？除了活動次數，還應檢查哪些指標？</span></p></aside>
-
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A team meets its individual activity targets while customer outcomes deteriorate. What is misaligned in the organization-to-individual goal cascade, and what measures beyond activity counts would you check?<span class="zh-full" lang="zh-Hant">團隊達到個人活動量目標，顧客結果卻惡化。從組織到個人的目標連結哪裡可能不一致？除了活動次數，還應檢查哪些指標？</span></p></aside>
 <!-- 5 -->
 <h2 id="compare">5. Compare the frameworks<span class="zh-full" lang="zh-Hant">5. 比較各架構</span></h2>
 <p class="sub">Pick any two frameworks to see how they differ. Then use the table to choose one for a case.<span class="zh-full" lang="zh-Hant">任選兩個架構，觀察差異，再用表格為個案選擇最合適的一個。</span></p>
@@ -663,78 +642,67 @@ body.show-zh .cmp-sel select{max-width:100%}
 <tr><td>Control, approvals, assumptions about workers<span class="zh-full" lang="zh-Hant">控制、核准程序與對員工的假設</span></td><td><b>Theory X / Y</b><span class="zh-full" lang="zh-Hant">X／Y 理論</span></td></tr>
 <tr><td>Targets, KPIs, feedback, participation<span class="zh-full" lang="zh-Hant">目標、KPI、回饋與參與</span></td><td><b>Goal setting / MBO</b><span class="zh-full" lang="zh-Hant">目標設定／MBO</span></td></tr>
 </tbody></table></div>
-<p class="key">The professor's rule: choose the right framework. Listing all five to look thorough weakens the answer.<span class="zh-full" lang="zh-Hant">教授的原則：選對架構。為了看似完整而列出全部五種，反而削弱答案。</span></p>
-
+<p class="key">Choose the framework required by the question. If choice is open, choose and justify a suitable one. Then analyze every component of that framework and answer every requested part.<span class="zh-full" lang="zh-Hant">先用題目要求的框架；可自行選擇時，選合適框架並說明理由。接著逐一分析該框架的所有構面，回答題目每個部分。</span></p>
 <!-- 6 -->
 <h2 id="method">6. Case analysis method<span class="zh-full" lang="zh-Hant">6. 個案分析方法</span></h2>
 <p class="sub">An issue exists when there is a gap between the framework and workplace reality.<span class="zh-full" lang="zh-Hant">理論架構與職場現實之間存在落差，才形成需要分析的議題。</span></p>
 <div class="pair">
-  <div><b>Symptom<span class="zh-full" lang="zh-Hant">症狀</span></b> <span class="zh">症狀</span><p>Shows something is wrong. "Morale is low."<span class="zh-full" lang="zh-Hant">顯示有問題，例如「士氣低落」。</span></p></div>
-  <div><b>Issue<span class="zh-full" lang="zh-Hant">議題</span></b> <span class="zh">問題核心</span><p>Explains it through a framework. "Supervision and relations are poor (hygiene), and growth opportunities are weak (motivators)."<span class="zh-full" lang="zh-Hant">用架構解釋症狀，例如「督導與人際關係不佳（保健因素），成長機會也不足（激勵因素）」。</span></p></div>
+<div><b>Symptom<span class="zh-full" lang="zh-Hant">症狀</span></b> <span class="zh">症狀</span><p>Shows something is wrong. "Morale is low."<span class="zh-full" lang="zh-Hant">顯示有問題，例如「士氣低落」。</span></p></div>
+<div><b>Issue<span class="zh-full" lang="zh-Hant">議題</span></b> <span class="zh">問題核心</span><p>Explains it through a framework. "Supervision and relations are poor (hygiene), and growth opportunities are weak (motivators)."<span class="zh-full" lang="zh-Hant">用架構解釋症狀，例如「督導與人際關係不佳（保健因素），成長機會也不足（激勵因素）」。</span></p></div>
 </div>
-
 <h3 id="company-x">Worked example: Company X (Maslow)<span class="zh-full" lang="zh-Hant">演練：X 公司（Maslow）</span></h3>
 <p>A manufacturer pays well above the industry average and has had zero accidents for years. It focuses on performance, gives employees no chance to build relationships, and pays by the number of products completed each day.<span class="zh-full" lang="zh-Hant">一家製造商薪資遠高於業界平均，多年來零事故。它重視績效，不讓員工有機會建立關係，並依每天完成的產品數量付薪。</span></p>
 <div class="xgrid">
-  <div><b>Physiological<span class="zh-full" lang="zh-Hant">生理需求</span></b><span class="ok">No gap<span class="zh-full" lang="zh-Hant">無落差</span></span><small>Pay above industry average<span class="zh-full" lang="zh-Hant">薪資高於業界平均</span></small></div>
-  <div><b>Safety<span class="zh-full" lang="zh-Hant">安全需求</span></b><span class="ok">No gap<span class="zh-full" lang="zh-Hant">無落差</span></span><small>Zero accidents for years<span class="zh-full" lang="zh-Hant">多年零事故</span></small></div>
-  <div><b>Social<span class="zh-full" lang="zh-Hant">社交需求</span></b><span class="gap">Gap<span class="zh-full" lang="zh-Hant">有落差</span></span><small>No chance to build relationships<span class="zh-full" lang="zh-Hant">沒有機會建立關係</span></small></div>
-  <div><b>Self-esteem<span class="zh-full" lang="zh-Hant">自尊需求</span></b><span class="ok">No gap<span class="zh-full" lang="zh-Hant">無落差</span></span><small>Not explained on the slide<span class="zh-full" lang="zh-Hant">投影片未解釋</span></small></div>
-  <div><b>Self-actualization<span class="zh-full" lang="zh-Hant">自我實現需求</span></b><span class="gap">Gap<span class="zh-full" lang="zh-Hant">有落差</span></span><small>Not explained on the slide; work is judged only by daily output<span class="zh-full" lang="zh-Hant">投影片未解釋；工作只依每日產量評價</span></small></div>
+<div><b>Physiological<span class="zh-full" lang="zh-Hant">生理需求</span></b><span class="ok">No gap<span class="zh-full" lang="zh-Hant">無落差</span></span><small>Pay above industry average<span class="zh-full" lang="zh-Hant">薪資高於業界平均</span></small></div>
+<div><b>Safety<span class="zh-full" lang="zh-Hant">安全需求</span></b><span class="ok">No gap<span class="zh-full" lang="zh-Hant">無落差</span></span><small>Zero accidents for years<span class="zh-full" lang="zh-Hant">多年零事故</span></small></div>
+<div><b>Social<span class="zh-full" lang="zh-Hant">社交需求</span></b><span class="gap">Gap<span class="zh-full" lang="zh-Hant">有落差</span></span><small>No chance to build relationships<span class="zh-full" lang="zh-Hant">沒有機會建立關係</span></small></div>
+<div><b>Self-esteem<span class="zh-full" lang="zh-Hant">自尊需求</span></b><span class="ok">No gap<span class="zh-full" lang="zh-Hant">無落差</span></span><small>Not explained on the slide<span class="zh-full" lang="zh-Hant">投影片未解釋</span></small></div>
+<div><b>Self-actualization<span class="zh-full" lang="zh-Hant">自我實現需求</span></b><span class="gap">Gap<span class="zh-full" lang="zh-Hant">有落差</span></span><small>Reason not supplied on the slide<span class="zh-full" lang="zh-Hant">投影片未提供理由</span></small></div>
 </div>
-<p><b>Conclusion: two motivation issues exist.</b><span class="zh-full" lang="zh-Hant">結論：存在兩項動機議題。</span></p>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Company X pays above the industry average and reports no accidents, but employees have few opportunities to build relationships. Write one Maslow-based issue, distinguish it from the visible symptom and identify one important fact not established by the case.<span class="zh-full" lang="zh-Hant">Company X 薪資高於業界、沒有事故，但員工缺乏建立關係的機會。請寫出一個以 Maslow 分析的核心問題，將它與表面症狀分開，並指出個案尚未證實的一項重要事實。</span></p></aside>
-
+<p>Lecturer’s diagnosis: social and self-actualization gaps. The slide does not explain its esteem or self-actualization classifications.<span class="zh-full" lang="zh-Hant">教師的診斷：社交及自我實現有缺口。投影片未說明自尊與自我實現分類的理由。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Company X pays above the industry average and reports no accidents, but employees have few opportunities to build relationships. Write one Maslow-based issue, distinguish it from the visible symptom and identify one important fact not established by the case.<span class="zh-full" lang="zh-Hant">Company X 薪資高於業界、沒有事故，但員工缺乏建立關係的機會。請寫出一個以 Maslow 分析的核心問題，將它與表面症狀分開，並指出個案尚未證實的一項重要事實。</span></p></aside>
 <!-- 7 -->
 <h2 id="lms">7. Lee Medical Supply through each lens<span class="zh-full" lang="zh-Hant">7. 用不同架構分析 Lee Medical Supply</span></h2>
 <p class="sub">One company, several valid issues. Each framework asks a different question of the same facts.<span class="zh-full" lang="zh-Hant">同一家公司可以有多項成立的議題。不同架構對同樣事實提出不同問題。</span></p>
-
 <div class="pair">
-  <div><b>Improved after 18 months<span class="zh-full" lang="zh-Hant">18 個月後改善的部分</span></b><p>Sales, profit, accountability, timely financial reports. LMS reached KP Industries' standards.<span class="zh-full" lang="zh-Hant">銷售、利潤、責任歸屬與財務報告時效。LMS 達到 KP Industries 的標準。</span></p></div>
-  <div><b>Deteriorated<span class="zh-full" lang="zh-Hant">惡化的部分</span></b><p>Turnover of well-paid top people, morale, relationships, training and career development, feedback, customer satisfaction, new products (none in 12 months).<span class="zh-full" lang="zh-Hant">高薪優秀人才流失、士氣、人際關係、訓練與職涯發展、回饋、顧客滿意度，以及新產品（12 個月內為零）。</span></p></div>
+<div><b>Improved after 18 months<span class="zh-full" lang="zh-Hant">18 個月後改善的部分</span></b><p>Sales, profit, accountability, timely financial reports. LMS reached KP Industries' standards.<span class="zh-full" lang="zh-Hant">銷售、利潤、責任歸屬與財務報告時效。LMS 達到 KP Industries 的標準。</span></p></div>
+<div><b>Deteriorated<span class="zh-full" lang="zh-Hant">惡化的部分</span></b><p>Turnover of well-paid top people, morale, relationships, training and career development, feedback, customer satisfaction, new products (none in 12 months).<span class="zh-full" lang="zh-Hant">高薪優秀人才流失、士氣、人際關係、訓練與職涯發展、回饋、顧客滿意度，以及新產品（12 個月內為零）。</span></p></div>
 </div>
 <p>The tension: the president, Apichart, fixed financial performance, but the people system and broader strategic results declined. The CEO now wants lower turnover among high performers, more customer influence on operations, and better new-product development.<span class="zh-full" lang="zh-Hant">矛盾在於：總裁 Apichart 改善了財務績效，但人員制度與更廣泛的策略成果下滑。CEO 現在希望降低高績效員工流失，讓顧客更能影響營運，並改善新產品開發。</span></p>
 <div data-mw="lms"></div>
 <p class="hint"><b>證據</b>CEO 懷疑員工「不敢或不想提意見」只是推測，不是員工證詞。寫 issue 時分清楚 direct evidence、reasonable inference 和證據不足的部分。</p>
 <p class="note-small">Class activity: four teams, one framework each (Maslow, goal setting, Theory X/Y, Herzberg). Identify motivation issues only; no recommendations yet.<span class="zh-full" lang="zh-Hant">課堂活動：四組各選一個架構（Maslow、目標設定、X／Y 理論、Herzberg）。只辨識動機議題，暫時不提出建議。</span></p>
 <p><a class="cta" href="management-lms.html">Open the full Lee Medical Supply case page →</a><span class="zh-full" lang="zh-Hant">開啟完整 Lee Medical Supply 個案頁 →</span></p>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Lee Medical Supply improved financial performance while losing strong employees and weakening product development. Which framework would you use to examine the mismatch between financial targets and broader outcomes? What evidence prevents treating pay as the only issue?<span class="zh-full" lang="zh-Hant">Lee Medical Supply 財務表現改善，卻流失優秀員工、新產品開發也變弱。你會用哪個架構檢查財務目標與整體成果的錯位？哪些證據能說明薪資不是唯一問題？</span></p></aside>
-
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Lee Medical Supply improved financial performance while losing strong employees and weakening product development. Which framework would you use to examine the mismatch between financial targets and broader outcomes? What evidence prevents treating pay as the only issue?<span class="zh-full" lang="zh-Hant">Lee Medical Supply 財務表現改善，卻流失優秀員工、新產品開發也變弱。你會用哪個架構檢查財務目標與整體成果的錯位？哪些證據能說明薪資不是唯一問題？</span></p></aside>
 <!-- 8 -->
 <h2 id="traps">8. Common mistakes<span class="zh-full" lang="zh-Hant">8. 常見錯誤</span></h2>
 <div class="traps">
-  <div><s>Employees lack motivation, so raise pay.<span class="zh-full" lang="zh-Hant">員工沒有動機，所以加薪。</span></s><p>Diagnose first: needs, style or goals?<span class="zh-full" lang="zh-Hant">先診斷：需求、管理方式，還是目標？</span></p></div>
-  <div><s>They are well paid, so they should be motivated.<span class="zh-full" lang="zh-Hant">薪資很高，所以應該有動機。</span></s><p>Pay is a hygiene factor. It removes dissatisfaction only.<span class="zh-full" lang="zh-Hant">薪資是保健因素，只能消除不滿。</span></p></div>
-  <div><s>Theory X is bad, Theory Y is good.<span class="zh-full" lang="zh-Hant">X 理論不好，Y 理論好。</span></s><p>The style must fit the people and the task.<span class="zh-full" lang="zh-Hant">管理方式必須符合人員與任務。</span></p></div>
-  <div><s>Decentralized authority means Theory Y.<span class="zh-full" lang="zh-Hant">權限下放代表 Y 理論。</span></s><p>Authority can be decentralized while the climate stays control-heavy (LMS).<span class="zh-full" lang="zh-Hant">即使權限下放，組織氛圍仍可能高度控制，例如 LMS。</span></p></div>
-  <div><s>Everyone hit their KPI, so the company is doing well.<span class="zh-full" lang="zh-Hant">每個人都達到 KPI，所以公司很好。</span></s><p>The KPI may be a weak proxy for the real goal.<span class="zh-full" lang="zh-Hant">KPI 可能只是實際目標的不佳替代指標。</span></p></div>
-  <div><s>Frustration-regression happened.<span class="zh-full" lang="zh-Hant">發生了挫折退化。</span></s><p>Show evidence that people actually shifted to lower needs.<span class="zh-full" lang="zh-Hant">必須提出證據，顯示員工確實轉向較低層需求。</span></p></div>
-  <div><s>Use all five theories to look thorough.<span class="zh-full" lang="zh-Hant">把五種理論都用上，看起來更完整。</span></s><p>Choose the framework that best fits the evidence.<span class="zh-full" lang="zh-Hant">選擇最符合證據的架構。</span></p></div>
-  <div><s>Low morale is the issue.<span class="zh-full" lang="zh-Hant">士氣低落就是議題。</span></s><p>It is a symptom. The issue is the framework gap behind it.<span class="zh-full" lang="zh-Hant">那是症狀；議題是其背後的理論與現實落差。</span></p></div>
+<div><s>Employees lack motivation, so raise pay.<span class="zh-full" lang="zh-Hant">員工沒有動機，所以加薪。</span></s><p>Diagnose first: needs, style or goals?<span class="zh-full" lang="zh-Hant">先診斷：需求、管理方式，還是目標？</span></p></div>
+<div><s>They are well paid, so they should be motivated.<span class="zh-full" lang="zh-Hant">薪資很高，所以應該有動機。</span></s><p>Pay is a hygiene factor. It removes dissatisfaction only.<span class="zh-full" lang="zh-Hant">薪資是保健因素，只能消除不滿。</span></p></div>
+<div><s>Theory X is bad, Theory Y is good.<span class="zh-full" lang="zh-Hant">X 理論不好，Y 理論好。</span></s><p>The style must fit the people and the task.<span class="zh-full" lang="zh-Hant">管理方式必須符合人員與任務。</span></p></div>
+<div><s>Decentralized authority means Theory Y.<span class="zh-full" lang="zh-Hant">權限下放代表 Y 理論。</span></s><p>Authority can be decentralized while the climate stays control-heavy (LMS).<span class="zh-full" lang="zh-Hant">即使權限下放，組織氛圍仍可能高度控制，例如 LMS。</span></p></div>
+<div><s>Everyone hit their KPI, so the company is doing well.<span class="zh-full" lang="zh-Hant">每個人都達到 KPI，所以公司很好。</span></s><p>The KPI may be a weak proxy for the real goal.<span class="zh-full" lang="zh-Hant">KPI 可能只是實際目標的不佳替代指標。</span></p></div>
+<div><s>Frustration-regression happened.<span class="zh-full" lang="zh-Hant">發生了挫折退化。</span></s><p>Show the shift toward lower needs, or state it explicitly as an assumption consistent with the case.<span class="zh-full" lang="zh-Hant">說明員工轉向較低層需求的證據；若以假設分析，須明示且與個案相容。</span></p></div>
+<div><s>Use all five theories to look thorough.<span class="zh-full" lang="zh-Hant">把五種理論都用上，看起來更完整。</span></s><p>Use the required framework; if choice is open, justify a suitable one.<span class="zh-full" lang="zh-Hant">使用題目指定的架構；可自選時，說明選擇理由。</span></p></div>
+<div><s>Low morale is the issue.<span class="zh-full" lang="zh-Hant">士氣低落就是議題。</span></s><p>It is a symptom. The issue is the framework gap behind it.<span class="zh-full" lang="zh-Hant">那是症狀；議題是其背後的理論與現實落差。</span></p></div>
 </div>
-
 <!-- 9 -->
 <h2 id="coldcall">9. Cold call practice<span class="zh-full" lang="zh-Hant">9. 課堂即答練習</span></h2>
 <p class="sub">Answer aloud first, then open the card. Structure: definition, example, why it matters for a manager.<span class="zh-full" lang="zh-Hant">先口頭回答，再打開卡片。架構：定義、例子，以及對管理者的意義。</span></p>
-<div class="qa-tools"><button type="button" id="qaAll">Show all answers<span class="zh-full" lang="zh-Hant">顯示全部答案</span></button></div>
+<div class="qa-tools"><button id="qaAll" type="button">Show all answers<span class="zh-full" lang="zh-Hant">顯示全部答案</span></button></div>
 <div class="qa">
-  <details><summary>What is the difference between intrinsic and extrinsic motivation?<span class="zh-full" lang="zh-Hant">內在與外在動機有何不同？</span></summary><p>Intrinsic comes from the work itself, such as challenge or meaning. Extrinsic comes from outside rewards or consequences, such as pay or promotion. Both can operate at once.<span class="zh-full" lang="zh-Hant">內在動機來自工作本身，例如挑戰或意義；外在動機來自外部獎勵或後果，例如薪資或晉升。兩者可同時存在。</span></p></details>
-  <details><summary>What are Maslow's five needs?<span class="zh-full" lang="zh-Hant">Maslow 的五種需求是什麼？</span></summary><p>Physiological, safety, social, self-esteem and self-actualization. Lower needs are met before higher ones are pursued.<span class="zh-full" lang="zh-Hant">生理、安全、社交、自尊與自我實現。較低層需求滿足後，才追求較高層需求。</span></p></details>
-  <details><summary>How does ERG differ from Maslow?<span class="zh-full" lang="zh-Hant">ERG 與 Maslow 有何不同？</span></summary><p>ERG groups needs into Existence, Relatedness and Growth, allows several to be pursued at once, and adds frustration-regression.<span class="zh-full" lang="zh-Hant">ERG 分為存在、關係與成長，允許同時追求多種需求，並加入挫折退化機制。</span></p></details>
-  <details><summary>What is frustration-regression?<span class="zh-full" lang="zh-Hant">什麼是挫折退化？</span></summary><p>When a higher need is blocked, the desire for a lower need increases. An employee with no promotion path may focus more on pay.<span class="zh-full" lang="zh-Hant">較高層需求受阻時，對較低層需求的渴望增加。沒有晉升管道的員工，可能轉而更重視薪資。</span></p></details>
-  <details><summary>Name Herzberg's hygiene factors and motivators.<span class="zh-full" lang="zh-Hant">列出 Herzberg 的保健因素與激勵因素。</span></summary><p>Hygiene: supervision, pay, company policies, working conditions, relations with others, job security. Motivators: career advancement, personal growth, recognition, responsibility, achievement.<span class="zh-full" lang="zh-Hant">保健因素：督導、薪資、公司政策、工作環境、人際關係與工作保障。激勵因素：職涯晉升、個人成長、肯定、責任與成就。</span></p></details>
-  <details><summary>Does fixing hygiene factors create motivation?<span class="zh-full" lang="zh-Hant">改善保健因素會創造動機嗎？</span></summary><p>No. It only removes dissatisfaction. Motivation requires motivators.<span class="zh-full" lang="zh-Hant">不會，只會消除不滿。動機需要激勵因素。</span></p></details>
-  <details><summary>Are Theory X and Y employee types?<span class="zh-full" lang="zh-Hant">X 與 Y 理論是員工類型嗎？</span></summary><p>Mainly they are managers' assumptions about workers, which shape management style.<span class="zh-full" lang="zh-Hant">主要是主管對員工的假設，並據以塑造管理方式。</span></p></details>
-  <details><summary>What are the four key elements of MBO?<span class="zh-full" lang="zh-Hant">MBO 的四個關鍵要素是什麼？</span></summary><p>Goal specificity, explicit time period, participation in decision making, and performance feedback.<span class="zh-full" lang="zh-Hant">目標具體性、明確時間範圍、參與決策，以及績效回饋。</span></p></details>
-  <details><summary>What does "what gets measured gets done" warn about?<span class="zh-full" lang="zh-Hant">「衡量什麼，就做什麼」提醒什麼風險？</span></summary><p>People work to hit the KPI. If the KPI is a weak proxy, the organization may not actually improve.<span class="zh-full" lang="zh-Hant">人會努力達成 KPI；若 KPI 無法良好代表真正目標，組織未必實際改善。</span></p></details>
-  <details><summary>When does an issue exist?<span class="zh-full" lang="zh-Hant">何時存在議題？</span></summary><p>When there is a gap between the framework and workplace reality.<span class="zh-full" lang="zh-Hant">理論架構與職場現實存在落差時。</span></p></details>
-  <details><summary>What are the three ways to motivate people?<span class="zh-full" lang="zh-Hant">激勵人的三種方式是什麼？</span></summary><p>Fulfill human needs, adjust management style to employee characteristics, and set goals.<span class="zh-full" lang="zh-Hant">滿足人的需求、依員工特質調整管理方式，以及設定目標。</span></p></details>
+<details><summary>What is the difference between intrinsic and extrinsic motivation?<span class="zh-full" lang="zh-Hant">內在與外在動機有何不同？</span></summary><p>Intrinsic comes from the work itself, such as challenge or meaning. Extrinsic comes from outside rewards or consequences, such as pay or promotion. Both can operate at once.<span class="zh-full" lang="zh-Hant">內在動機來自工作本身，例如挑戰或意義；外在動機來自外部獎勵或後果，例如薪資或晉升。兩者可同時存在。</span></p></details>
+<details><summary>What are Maslow's five needs?<span class="zh-full" lang="zh-Hant">Maslow 的五種需求是什麼？</span></summary><p>Physiological, safety, social, self-esteem and self-actualization. Lower needs are met before higher ones are pursued.<span class="zh-full" lang="zh-Hant">生理、安全、社交、自尊與自我實現。較低層需求滿足後，才追求較高層需求。</span></p></details>
+<details><summary>How does ERG differ from Maslow?<span class="zh-full" lang="zh-Hant">ERG 與 Maslow 有何不同？</span></summary><p>ERG groups needs into Existence, Relatedness and Growth, allows several to be pursued at once, and adds frustration-regression.<span class="zh-full" lang="zh-Hant">ERG 分為存在、關係與成長，允許同時追求多種需求，並加入挫折退化機制。</span></p></details>
+<details><summary>What is frustration-regression?<span class="zh-full" lang="zh-Hant">什麼是挫折退化？</span></summary><p>When a higher need is blocked, the desire for a lower need increases. An employee with no promotion path may focus more on pay.<span class="zh-full" lang="zh-Hant">較高層需求受阻時，對較低層需求的渴望增加。沒有晉升管道的員工，可能轉而更重視薪資。</span></p></details>
+<details><summary>Name Herzberg's hygiene factors and motivators.<span class="zh-full" lang="zh-Hant">列出 Herzberg 的保健因素與激勵因素。</span></summary><p>Hygiene: supervision, pay, company policies, working conditions, relations with others, job security. Motivators: career advancement, personal growth, recognition, responsibility, achievement.<span class="zh-full" lang="zh-Hant">保健因素：督導、薪資、公司政策、工作環境、人際關係與工作保障。激勵因素：職涯晉升、個人成長、肯定、責任與成就。</span></p></details>
+<details><summary>Does fixing hygiene factors create motivation?<span class="zh-full" lang="zh-Hant">改善保健因素會創造動機嗎？</span></summary><p>No. It only removes dissatisfaction. Motivation requires motivators.<span class="zh-full" lang="zh-Hant">不會，只會消除不滿。動機需要激勵因素。</span></p></details>
+<details><summary>Are Theory X and Y employee types?<span class="zh-full" lang="zh-Hant">X 與 Y 理論是員工類型嗎？</span></summary><p>Mainly they are managers' assumptions about workers, which shape management style.<span class="zh-full" lang="zh-Hant">主要是主管對員工的假設，並據以塑造管理方式。</span></p></details>
+<details><summary>What are the four key elements of MBO?<span class="zh-full" lang="zh-Hant">MBO 的四個關鍵要素是什麼？</span></summary><p>Goal specificity, explicit time period, participation in decision making, and performance feedback.<span class="zh-full" lang="zh-Hant">目標具體性、明確時間範圍、參與決策，以及績效回饋。</span></p></details>
+<details><summary>What does "what gets measured gets done" warn about?<span class="zh-full" lang="zh-Hant">「衡量什麼，就做什麼」提醒什麼風險？</span></summary><p>People work to hit the KPI. If the KPI is a weak proxy, the organization may not actually improve.<span class="zh-full" lang="zh-Hant">人會努力達成 KPI；若 KPI 無法良好代表真正目標，組織未必實際改善。</span></p></details>
+<details><summary>When does an issue exist?<span class="zh-full" lang="zh-Hant">何時存在議題？</span></summary><p>When there is a gap between the framework and workplace reality.<span class="zh-full" lang="zh-Hant">理論架構與職場現實存在落差時。</span></p></details>
+<details><summary>What are the three ways to motivate people?<span class="zh-full" lang="zh-Hant">激勵人的三種方式是什麼？</span></summary><p>Fulfill human needs, adjust management style to employee characteristics, and set goals.<span class="zh-full" lang="zh-Hant">滿足人的需求、依員工特質調整管理方式，以及設定目標。</span></p></details>
 </div>
-
 <h3 id="drill">Quick drill: which framework is sharpest?<span class="zh-full" lang="zh-Hant">快問快答：哪個架構最精準？</span></h3>
 <div class="tbl"><table class="drill">
 <thead><tr><th>Case<span class="zh-full" lang="zh-Hant">案例</span></th><th>Answer<span class="zh-full" lang="zh-Hant">答案</span></th></tr></thead>
@@ -746,9 +714,8 @@ body.show-zh .cmp-sel select{max-width:100%}
 <tr><td>Great working conditions and job security, but the work gives no sense of achievement.<span class="zh-full" lang="zh-Hant">工作環境與保障很好，工作卻沒有成就感。</span></td><td><span class="ans">Herzberg is sharper than Maslow: it explains why removing dissatisfaction does not create motivation.</span><span class="zh-full" lang="zh-Hant">Herzberg 比 Maslow 更精準：它能解釋為何消除不滿，卻不創造動機。</span></td></tr>
 </tbody></table></div>
 <p class="note-small">Click an answer to reveal it.<span class="zh-full" lang="zh-Hant">點擊答案即可揭示。</span></p>
-</article></main>
+<h2 id="templates">10. Case answer: diagnose every part of the framework<span class="zh-full" lang="zh-Hant">10. 個案解題：逐項完成框架診斷</span></h2><div class="method"><span>Read the task<span class="zh-full" lang="zh-Hant">確認題目</span></span><i aria-hidden="true">→</i><span>Find the criterion<span class="zh-full" lang="zh-Hant">找出框架標準</span></span><i aria-hidden="true">→</i><span>Match facts / assumptions<span class="zh-full" lang="zh-Hant">對應事實／假設</span></span><i aria-hidden="true">→</i><span>Assess each component<span class="zh-full" lang="zh-Hant">判斷各項構面</span></span><i aria-hidden="true">→</i><span>State the overall issue<span class="zh-full" lang="zh-Hant">整合主要問題</span></span></div><div class="tbl"><table><thead><tr><th>Framework<span class="zh-full" lang="zh-Hant">框架</span></th><th>What a complete analysis covers<span class="zh-full" lang="zh-Hant">完整分析須涵蓋</span></th></tr></thead><tbody><tr><td>Maslow<span class="zh-full" lang="zh-Hant">馬斯洛</span></td><td>Assess physiological, safety, belonging, esteem and self-actualization needs separately, with evidence for each.<span class="zh-full" lang="zh-Hant">分別判斷生理、安全、歸屬、尊重及自我實現，每項都有證據。</span></td></tr><tr><td>ERG<span class="zh-full" lang="zh-Hant">ERG</span></td><td>Assess existence, relatedness and growth. Use simultaneous needs or frustration-regression when they explain the facts or an explicit premise.<span class="zh-full" lang="zh-Hant">判斷生存、關係與成長；同時需求或挫折退化須能解釋事實或明示前提。</span></td></tr><tr><td>Herzberg<span class="zh-full" lang="zh-Hant">赫茲伯格</span></td><td>Separate hygiene conditions that reduce dissatisfaction from motivators that build motivation.<span class="zh-full" lang="zh-Hant">區分減少不滿的保健條件，以及建立動機的激勵因素。</span></td></tr><tr><td>Theory X / Y<span class="zh-full" lang="zh-Hant">X／Y 理論</span></td><td>Connect the manager’s assumptions to the management style, then assess its fit with the task and employees.<span class="zh-full" lang="zh-Hant">將主管假設連到管理方式，再判斷它與工作及員工是否配適。</span></td></tr><tr><td>Goal setting / MBO<span class="zh-full" lang="zh-Hant">目標設定／MBO</span></td><td>Assess specificity, time period, participation and feedback; identify the missing or weak elements.<span class="zh-full" lang="zh-Hant">判斷具體性、期限、參與及回饋，指出缺少或薄弱的項目。</span></td></tr></tbody></table></div><h3 id="maslow-complete">Worked coverage: Maslow applied to LMS<span class="zh-full" lang="zh-Hant">逐項示範：馬斯洛套用 LMS</span></h3><p>Compare each need’s criterion with the case facts. State whether it is supported, partly supported, a gap or insufficiently described, and explain why. Mark any assumption used.<span class="zh-full" lang="zh-Hant">將各需求的標準與個案事實比較，判斷得到支持、部分支持、有缺口或資料不足，並說明理由。使用假設時寫清楚。</span></p><div class="tbl"><table><thead><tr><th>Need and criterion<span class="zh-full" lang="zh-Hant">需求與判斷標準</span></th><th>Case fact / stated assumption<span class="zh-full" lang="zh-Hant">個案事實／明示假設</span></th><th>Need assessment<span class="zh-full" lang="zh-Hant">需求判斷</span></th></tr></thead><tbody><tr><td>Physiological: material basics<span class="zh-full" lang="zh-Hant">生理：基本物質需求</span></td><td>Capable leavers are well paid.<span class="zh-full" lang="zh-Hant">有能力的離職者薪資高。</span></td><td>Supported on the pay evidence: material compensation is present.<span class="zh-full" lang="zh-Hant">薪資方面有支持：已提供物質報酬。</span></td></tr><tr><td>Safety: security and predictable treatment<span class="zh-full" lang="zh-Hant">安全：保障及可預期的對待</span></td><td>Terminations and intolerance of mistakes. Assumption: staff worry about arbitrary treatment.<span class="zh-full" lang="zh-Hant">解聘及不容錯誤。假設：員工擔心被任意對待。</span></td><td>Possible gap under that assumption: treatment feels insecure or unpredictable.<span class="zh-full" lang="zh-Hant">在此假設下可能有缺口：員工感到不安全或難以預期。</span></td></tr><tr><td>Belonging: connection and acceptance<span class="zh-full" lang="zh-Hant">歸屬：連結與被接納</span></td><td>Mandated competition replaces a collegial workplace.<span class="zh-full" lang="zh-Hant">強制競爭取代原有和睦的同事氛圍。</span></td><td>Gap: the competitive climate weakens belonging and cooperation.<span class="zh-full" lang="zh-Hant">有缺口：競爭氛圍削弱歸屬與合作。</span></td></tr><tr><td>Esteem: respect and recognition<span class="zh-full" lang="zh-Hant">尊重：受尊重及獲得肯定</span></td><td>Recognition is tied to numbers; the consultant reports little regard for employees’ feelings and needs.<span class="zh-full" lang="zh-Hant">肯定偏重數字；顧問報告指出員工感受與需要未獲重視。</span></td><td>Partly supported: numeric recognition exists, but respect and broader contributions receive weak support.<span class="zh-full" lang="zh-Hant">部分支持：數字績效有肯定，但尊重及更廣泛貢獻的支持薄弱。</span></td></tr><tr><td>Self-actualization: growth and use of capabilities<span class="zh-full" lang="zh-Hant">自我實現：成長及發揮能力</span></td><td>Training and career plans have stopped.<span class="zh-full" lang="zh-Hant">培訓及生涯規劃已停止。</span></td><td>Gap: opportunities to develop and apply capabilities are restricted.<span class="zh-full" lang="zh-Hant">有缺口：發展及發揮能力的機會受限。</span></td></tr></tbody></table></div><p class="key">Overall diagnosis: LMS retains pay support, while belonging and growth show gaps and esteem is only partly supported. Safety is a possible additional gap under the stated insecurity assumption. These need gaps explain why pay alone does not resolve the motivation problem.<span class="zh-full" lang="zh-Hant">整體診斷：LMS 保有薪資支持，但歸屬及成長有缺口，尊重僅部分獲支持。在明示的不安全感假設下，安全也可能有缺口。這些需求缺口說明為何單靠薪資無法解決動機問題。</span></p><p class="note-small">Case source: Lee Medical Supply handout.</p><p><a href="management-s4.html#templates">Continue in Session 4: turn these diagnoses into actions →<span class="zh-full" lang="zh-Hant">接續第 4 堂：把這些診斷轉為行動 →</span></a></p><p><a href="management-lms.html#diagnose">Apply this to the full LMS case →<span class="zh-full" lang="zh-Hant">到完整 LMS 個案練習 →</span></a></p></article></main>
 </div>
-
 <script>
 (function(){
 const $ = (id) => document.getElementById(id);
@@ -763,7 +730,6 @@ const $ = (id) => document.getElementById(id);
  });
 })();
 </script>
-
 <script>/* Management interactive components: Herzberg scale, KPI trap, framework comparator, LMS lens. */
 (function () {
   const esc = biEscape;
@@ -830,10 +796,10 @@ const $ = (id) => document.getElementById(id);
 
   const F = {
     maslow: { n: "Maslow<span class=\"zh-full\" lang=\"zh-Hant\">馬斯洛需求層級</span>", q: "Which level of need is under-supported?<span class=\"zh-full\" lang=\"zh-Hant\">哪個需求層次未獲充分支持？</span>", idea: "Five levels, met from lower to higher.<span class=\"zh-full\" lang=\"zh-Hant\">五層需求，由低至高獲得滿足。</span>", look: "Evidence for each of the five levels.<span class=\"zh-full\" lang=\"zh-Hant\">分別尋找五層需求的證據。</span>", use: "You need to check which needs the company supports and which it neglects.<span class=\"zh-full\" lang=\"zh-Hant\">需要檢查公司支持與忽略了哪些需求。</span>", trap: "Labeling a person as \"stuck\" at a level without evidence.<span class=\"zh-full\" lang=\"zh-Hant\">沒有證據就說某人「卡在」某個需求層次。</span>" },
-    erg: { n: "ERG<span class=\"zh-full\" lang=\"zh-Hant\">存在、關係、成長（ERG）</span>", q: "Which needs coexist, and is growth blocked?<span class=\"zh-full\" lang=\"zh-Hant\">哪些需求同時存在？成長是否受阻？</span>", idea: "Existence, Relatedness, Growth can be pursued at the same time.<span class=\"zh-full\" lang=\"zh-Hant\">存在、關係與成長需求可以同時追求。</span>", look: "Several needs at once; signs that blocked growth shifted attention to pay or security.<span class=\"zh-full\" lang=\"zh-Hant\">多種需求並存的證據，以及成長受阻後轉而重視薪資或安全的跡象。</span>", use: "Employees want pay, relationships and growth together.<span class=\"zh-full\" lang=\"zh-Hant\">員工同時在意薪資、人際關係與成長。</span>", trap: "Claiming frustration-regression without evidence of the shift.<span class=\"zh-full\" lang=\"zh-Hant\">沒有注意力轉移的證據，就聲稱存在受挫退化。</span>" },
+    erg: { n: "ERG<span class=\"zh-full\" lang=\"zh-Hant\">存在、關係、成長（ERG）</span>", q: "Which needs coexist, and is growth blocked?<span class=\"zh-full\" lang=\"zh-Hant\">哪些需求同時存在？成長是否受阻？</span>", idea: "Existence, Relatedness, Growth can be pursued at the same time.<span class=\"zh-full\" lang=\"zh-Hant\">存在、關係與成長需求可以同時追求。</span>", look: "Several needs at once; signs that blocked growth shifted attention to pay or security.<span class=\"zh-full\" lang=\"zh-Hant\">多種需求並存的證據，以及成長受阻後轉而重視薪資或安全的跡象。</span>", use: "Employees want pay, relationships and growth together.<span class=\"zh-full\" lang=\"zh-Hant\">員工同時在意薪資、人際關係與成長。</span>", trap: "Treating blocked growth alone as evidence of a shift toward lower needs.<span class=\"zh-full\" lang=\"zh-Hant\">沒有注意力轉移的證據，就聲稱存在受挫退化。</span>" },
     herzberg: { n: "Herzberg<span class=\"zh-full\" lang=\"zh-Hant\">赫茲伯格雙因子理論</span>", q: "Are we only removing dissatisfaction, or creating motivation?<span class=\"zh-full\" lang=\"zh-Hant\">我們只是消除不滿，還是在創造動機？</span>", idea: "Hygiene factors and motivators are two different scales.<span class=\"zh-full\" lang=\"zh-Hant\">保健因素與激勵因素是兩條不同的量尺。</span>", look: "Pay, supervision, policies, conditions versus growth, recognition, responsibility.<span class=\"zh-full\" lang=\"zh-Hant\">比較薪資、督導、政策、環境與成長、肯定、責任。</span>", use: "Pay and conditions are fine, yet motivation stays low.<span class=\"zh-full\" lang=\"zh-Hant\">薪資與條件不錯，動機卻仍偏低。</span>", trap: "Assuming good pay means motivated staff.<span class=\"zh-full\" lang=\"zh-Hant\">誤以為高薪就代表員工有動機。</span>" },
     xy: { n: "Theory X / Y<span class=\"zh-full\" lang=\"zh-Hant\">X／Y 理論</span>", q: "What do managers assume about workers?<span class=\"zh-full\" lang=\"zh-Hant\">主管對員工抱持什麼假設？</span>", idea: "Assumptions drive style: control and punishment, or support and responsibility.<span class=\"zh-full\" lang=\"zh-Hant\">管理假設影響風格：控制與懲罰，或支持與賦責。</span>", look: "Approvals, written orders, tolerance of mistakes, how much responsibility is given.<span class=\"zh-full\" lang=\"zh-Hant\">核准流程、書面命令、容錯程度與賦予多少責任。</span>", use: "The case centers on control and how managers treat people.<span class=\"zh-full\" lang=\"zh-Hant\">個案聚焦控制方式及主管如何對待員工。</span>", trap: "Treating X as always bad, or decentralization as proof of Y.<span class=\"zh-full\" lang=\"zh-Hant\">誤以為 X 一定不好，或把權限下放當作 Y 理論的證據。</span>" },
-    goals: { n: "Goal setting / MBO<span class=\"zh-full\" lang=\"zh-Hant\">目標設定／MBO</span>", q: "Do goals point effort at the right outcome?<span class=\"zh-full\" lang=\"zh-Hant\">目標是否把努力導向正確成果？</span>", idea: "Specific goals, a time period, participation and feedback direct effort.<span class=\"zh-full\" lang=\"zh-Hant\">具體目標、時間範圍、參與和回饋會引導努力。</span>", look: "KPIs, targets, feedback, who sets goals, how goals cascade.<span class=\"zh-full\" lang=\"zh-Hant\">檢查 KPI、目標、回饋、誰設定目標及目標如何向下拆解。</span>", use: "Targets are hit but the real result does not improve.<span class=\"zh-full\" lang=\"zh-Hant\">指標達標，真正的成果卻沒有改善。</span>", trap: "Calling a KPI-design problem a motivation problem.<span class=\"zh-full\" lang=\"zh-Hant\">把 KPI 設計問題誤判為動機問題。</span>" }
+    goals: { n: "Goal setting / MBO<span class=\"zh-full\" lang=\"zh-Hant\">目標設定／MBO</span>", q: "Do goals point effort at the right outcome?<span class=\"zh-full\" lang=\"zh-Hant\">目標是否把努力導向正確成果？</span>", idea: "Specific goals, a time period, participation and feedback direct effort.<span class=\"zh-full\" lang=\"zh-Hant\">具體目標、時間範圍、參與和回饋會引導努力。</span>", look: "KPIs, targets, feedback, who sets goals, how goals cascade.<span class=\"zh-full\" lang=\"zh-Hant\">檢查 KPI、目標、回饋、誰設定目標及目標如何向下拆解。</span>", use: "Targets are hit but the intended organizational result does not improve.<span class=\"zh-full\" lang=\"zh-Hant\">指標達標，真正的成果卻沒有改善。</span>", trap: "Calling a KPI-design problem a motivation problem.<span class=\"zh-full\" lang=\"zh-Hant\">把 KPI 設計問題誤判為動機問題。</span>" }
   };
   const ROWS = [['q', "Core question<span class=\"zh-full\" lang=\"zh-Hant\">核心問題</span>"], ['idea', "Key idea<span class=\"zh-full\" lang=\"zh-Hant\">核心概念</span>"], ['look', "Look for in the case<span class=\"zh-full\" lang=\"zh-Hant\">在個案中尋找</span>"], ['use', "Use it when<span class=\"zh-full\" lang=\"zh-Hant\">適用情境</span>"], ['trap', "Common mistake<span class=\"zh-full\" lang=\"zh-Hant\">常見錯誤</span>"]];
 
@@ -863,7 +829,7 @@ const $ = (id) => document.getElementById(id);
       issue: "LMS supports financial rewards but leaves clear gaps in social and higher-level needs: competition replaced the family atmosphere, and training and career development were stopped.<span class=\"zh-full\" lang=\"zh-Hant\">LMS 有金錢獎酬，卻在社交與較高層次需求留下明顯缺口：競爷取代家庭般的氛圍，訓練與職涯發展也停止。</span>" },
     goals: { n: "Goal setting<span class=\"zh-full\" lang=\"zh-Hant\">目標設定</span>", rows: [
       ["Goal specificity<span class=\"zh-full\" lang=\"zh-Hant\">目標具體性</span>", 'ok', "Clear sales, profit and cost targets; every unit is a profit center.<span class=\"zh-full\" lang=\"zh-Hant\">銷售、利潤及成本目標明確；各單位都是利潤中心。</span>"],
-      ["Time period<span class=\"zh-full\" lang=\"zh-Hant\">時間範圍</span>", 'na', "The case gives too little detail. Do not invent a gap.<span class=\"zh-full\" lang=\"zh-Hant\">個案細節不足；不能憑空推定缺口。</span>"],
+      ["Time period<span class=\"zh-full\" lang=\"zh-Hant\">時間範圍</span>", 'na', "No employee-level deadline is reported. If timing is relevant, state the assumption used to assess it.<span class=\"zh-full\" lang=\"zh-Hant\">個案細節不足；不能憑空推定缺口。</span>"],
       ["Participation<span class=\"zh-full\" lang=\"zh-Hant\">參與</span>", 'maybe', "Written orders and imposed standards suggest weak participation; evidence is indirect.<span class=\"zh-full\" lang=\"zh-Hant\">書面命令與由上而下的標準暗示參與不足，但證據是間接的。</span>"],
       ["Performance feedback<span class=\"zh-full\" lang=\"zh-Hant\">績效回饋</span>", 'gap', "Employees say they get too little feedback and do not know if they meet expectations.<span class=\"zh-full\" lang=\"zh-Hant\">員工表示回饋太少，不知道自己是否達到期待。</span>"],
       ["Alignment<span class=\"zh-full\" lang=\"zh-Hant\">目標對齊</span>", 'gap', "Sales and profit rose while customer satisfaction, innovation and retention fell.<span class=\"zh-full\" lang=\"zh-Hant\">銷售及利潤上升，但顧客滿意度、創新與留任下降。</span>"]],
@@ -885,7 +851,7 @@ const $ = (id) => document.getElementById(id);
       ["Existence<span class=\"zh-full\" lang=\"zh-Hant\">存在需求</span>", 'ok', "Pay and incentives are present.<span class=\"zh-full\" lang=\"zh-Hant\">薪資與誘因存在。</span>"],
       ["Relatedness<span class=\"zh-full\" lang=\"zh-Hant\">關係需求</span>", 'gap', "Tense workplace, internal competition, loss of family atmosphere.<span class=\"zh-full\" lang=\"zh-Hant\">職場緊張、內部競爭、家庭般氛圍消失。</span>"],
       ["Growth<span class=\"zh-full\" lang=\"zh-Hant\">成長需求</span>", 'gap', "Training and career development stopped; innovation declined.<span class=\"zh-full\" lang=\"zh-Hant\">訓練與職涯發展停止；創新下降。</span>"]],
-      issue: "Existence rewards are strong while Relatedness and Growth are weak. The case does not prove frustration-regression.<span class=\"zh-full\" lang=\"zh-Hant\">存在需求方面的獎酬較強，關係與成長需求卻弱；個案不足以證明「受挫退化」現象。</span>" }
+      issue: "Existence rewards are strong while Relatedness and Growth are weak. To use frustration-regression, identify a shift toward lower needs or state that shift as an assumption.<span class=\"zh-full\" lang=\"zh-Hant\">存在需求方面的獎酬較強，關係與成長需求卻弱；個案不足以證明「受挫退化」現象。</span>" }
   };
   const TAG = { ok: "No clear gap<span class=\"zh-full\" lang=\"zh-Hant\">無明顯缺口</span>", gap: "Gap<span class=\"zh-full\" lang=\"zh-Hant\">缺口</span>", maybe: "Possible / mixed<span class=\"zh-full\" lang=\"zh-Hant\">可能有缺口／證據不一致</span>", na: "Not enough evidence<span class=\"zh-full\" lang=\"zh-Hant\">證據不足</span>" };
 

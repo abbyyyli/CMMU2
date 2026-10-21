@@ -1,8 +1,9 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Values and Attitudes in the Workplace · Management</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/><title>Values and Attitudes in the Workplace · Management</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
 /* Layout: one reading column with a sticky chapter rail; colors follow system appearance. */
 :root {
@@ -301,7 +302,7 @@ table.cmp td:first-child { font-weight: 700; color: var(--muted); width: 22%; }
 .quotes q { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-style: italic; color: var(--muted); font-size: .9rem; }
 .six { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
 .six > div { display: flex; gap: 10px; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .88rem; line-height: 1.5; }
-.six span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
+.six > div > span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
 a.cta { display: inline-block; background: var(--accent); color: var(--tone-ffffff); text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
 a.cta:hover { background: var(--accent-ink); }
 blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; font-size: .92rem; line-height: 1.7; }
@@ -579,57 +580,48 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
   a.cta .zh-full, .risk b .zh-full, .hint b .zh-full, .tcard .tnum .zh-full { color: inherit; }
 }
 </style>
-</head><body>
-
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-<pattern id="dwlHatch" width="6" height="6" patternunits="userSpaceOnUse" patterntransform="rotate(45)">
-<rect width="6" height="6" style="fill:var(--dwl);fill-opacity:.12"></rect><rect width="2.2" height="6" style="fill:var(--dwl);fill-opacity:.75"></rect></pattern></defs></svg>
-
+<style id="reading-layout-fix">.six > div > p{flex:1;min-width:0;margin:0}.steps > li{align-items:flex-start}.steps > li > .step-copy{flex:1;min-width:0;margin:0}</style></head><body>
+<svg aria-hidden="true" height="0" style="position:absolute" width="0"><defs>
+<pattern height="6" id="dwlHatch" patterntransform="rotate(45)" patternunits="userSpaceOnUse" width="6">
+<rect height="6" style="fill:var(--dwl);fill-opacity:.12" width="6"></rect><rect height="6" style="fill:var(--dwl);fill-opacity:.75" width="2.2"></rect></pattern></defs></svg>
 <header class="top"><div class="top-in">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="management.html">Management<span class="zh-full" lang="zh-Hant">管理學</span></a><span>/</span><b>Session 2<span class="zh-full" lang="zh-Hant">第 2 堂</span></b></nav>
-  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
-  <nav class="sessions" aria-label="Sessions"><a class="pill" href="management-s1.html">S1</a><span class="pill" aria-current="page">S2</span><a class="pill" href="management-s3.html">S3</a><a class="pill" href="management-s4.html">S4</a></nav>
-<div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
-
+<nav aria-label="Breadcrumb" class="crumbs"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="management.html">Management<span class="zh-full" lang="zh-Hant">管理學</span></a><span>/</span><b>Session 2<span class="zh-full" lang="zh-Hant">第 2 堂</span></b></nav>
+<button aria-expanded="false" class="toc-btn" id="tocBtn" type="button">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
+<nav aria-label="Sessions" class="sessions"><a class="pill" href="management-s1.html">S1</a><span aria-current="page" class="pill">S2</span><a class="pill" href="management-s3.html">S3</a><a class="pill" href="management-s4.html">S4</a></nav>
+<div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input aria-label="顯示完整繁體中文對照" id="zhToggle" role="switch" type="checkbox"/>中文 <span id="zhModeLabel">OFF</span></label><button aria-pressed="false" class="practice-toggle" id="practiceToggle" title="Show or hide short questions within chapters" type="button">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
 <div class="wrap">
-  <aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
-  <main><article class="doc"><div class="hero">
-  <p class="kick">Managing People in Organizations · Session 2<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 2 堂</span></p>
-  <h1>Values and Attitudes in the Workplace<span class="zh-full" lang="zh-Hant">職場中的價值觀與態度</span></h1>
-  <p class="lead">Why do different employees react differently to the same workplace? Personal values meet corporate values and real management practice. The fit shapes attitudes, which may then shape behavior.<span class="zh-full" lang="zh-Hant">為何不同員工面對同一職場，反應卻不同？個人價值觀會與企業價值觀及實際管理作法相遇。兩者的契合程度形塑態度，態度又可能影響行為。</span></p>
-
+<aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
+<main><article class="doc"><div class="hero">
+<p class="kick">Managing People in Organizations · Session 2<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 2 堂</span></p>
+<h1>Values and Attitudes in the Workplace<span class="zh-full" lang="zh-Hant">職場中的價值觀與態度</span></h1>
+<p class="lead">Why do different employees react differently to the same workplace? Personal values meet corporate values and real management practice. The fit shapes attitudes, which may then shape behavior.<span class="zh-full" lang="zh-Hant">為何不同員工面對同一職場，反應卻不同？個人價值觀會與企業價值觀及實際管理作法相遇。兩者的契合程度形塑態度，態度又可能影響行為。</span></p>
 </div>
-
 <h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
 <div class="method"><span>Values<span class="zh-full" lang="zh-Hant">價值觀</span></span><i>→</i><span>Fit and workplace experience<span class="zh-full" lang="zh-Hant">契合程度與職場經驗</span></span><i>→</i><span>Attitudes<span class="zh-full" lang="zh-Hant">態度</span></span><i>→</i><span>Behavior<span class="zh-full" lang="zh-Hant">行為</span></span><i>→</i><span class="hi">Management response<span class="zh-full" lang="zh-Hant">管理回應</span></span></div>
-<p class="hint"><b>中文邏輯</b><span>每一個箭頭都需要 case 的證據；values 「可能」影響 attitude 和 behavior，不是直接決定。答題用 may / could，不用 will。</span></p>
-
+<p class="hint"><b>中文邏輯</b><span>沿著價值、職場經驗、態度與行為建立證據鏈；缺少的連結可用明示且與個案相容的假設補足。</span></p>
 <!-- 1 -->
 <h2 id="values">1. Values<span class="zh-full" lang="zh-Hant">1. 價值觀</span></h2>
 <p class="sub">Personal beliefs or convictions about what is right or wrong, good or bad, proper or improper.<span class="zh-full" lang="zh-Hant">對何者正確或錯誤、好或壞、適當或不適當的個人信念或確信。</span></p>
 <div class="pair">
-  <div><b>Content<span class="zh-full" lang="zh-Hant">內容</span></b><p>What we consider important.<span class="zh-full" lang="zh-Hant">我們認為什麼重要。</span></p></div>
-  <div><b>Intensity<span class="zh-full" lang="zh-Hant">強度</span></b> <span class="zh">強度</span><p>How important it is. Two people both value autonomy; the one who values it more reacts more strongly to micromanagement.<span class="zh-full" lang="zh-Hant">它有多重要。兩人都重視自主，但更重視自主的人，面對微觀管理時反應更強烈。</span></p></div>
+<div><b>Content<span class="zh-full" lang="zh-Hant">內容</span></b><p>What we consider important.<span class="zh-full" lang="zh-Hant">我們認為什麼重要。</span></p></div>
+<div><b>Intensity<span class="zh-full" lang="zh-Hant">強度</span></b> <span class="zh">強度</span><p>How important it is. Two people both value autonomy; the one who values it more reacts more strongly to micromanagement.<span class="zh-full" lang="zh-Hant">它有多重要。兩人都重視自主，但更重視自主的人，面對微觀管理時反應更強烈。</span></p></div>
 </div>
 <p>Values are fairly stable, shaped by family, school, friends and experience, vary across cultures, and are difficult to change. How people allocate their time reveals what they value; the professor's example was his years of long-distance running.<span class="zh-full" lang="zh-Hant">價值觀相當穩定，受到家庭、學校、朋友及經驗形塑，跨文化有所差異，也不容易改變。人們如何分配時間，會透露他們重視什麼；教授舉的是自己多年長跑的例子。</span></p>
 <p class="key">When a value conflict appears, first examine job design, management style and the reward system, not how to change the employee.<span class="zh-full" lang="zh-Hant">出現價值衝突時，先檢查工作設計、管理風格與獎酬制度，而非先想如何改變員工。</span></p>
 <h3 id="tiv">Terminal versus instrumental<span class="zh-full" lang="zh-Hant">終極價值與工具性價值</span></h3>
 <div class="pair">
-  <div><b>Terminal<span class="zh-full" lang="zh-Hant">終極價值</span></b> <span class="zh">終極價值</span><p>The destination. Freedom, happiness, harmony, self-respect, wealth, recognition, wisdom, social contribution, world peace.<span class="zh-full" lang="zh-Hant">目的地：自由、快樂、和諧、自尊、財富、認可、智慧、社會貢獻、世界和平。</span></p></div>
-  <div><b>Instrumental<span class="zh-full" lang="zh-Hant">工具性價值</span></b> <span class="zh">工具性價值</span><p>How you get there. Ambitious, self-disciplined, honest, sincere, logical, obedient, risk-taking, clean, imaginative.<span class="zh-full" lang="zh-Hant">達成目的的方法：有抱負、自律、誠實、真誠、合乎邏輯、服從、勇於冒險、整潔、有想像力。</span></p></div>
+<div><b>Terminal<span class="zh-full" lang="zh-Hant">終極價值</span></b> <span class="zh">終極價值</span><p>The destination. Freedom, happiness, harmony, self-respect, wealth, recognition, wisdom, social contribution, world peace.<span class="zh-full" lang="zh-Hant">目的地：自由、快樂、和諧、自尊、財富、認可、智慧、社會貢獻、世界和平。</span></p></div>
+<div><b>Instrumental<span class="zh-full" lang="zh-Hant">工具性價值</span></b> <span class="zh">工具性價值</span><p>How you get there. Ambitious, self-disciplined, honest, sincere, logical, obedient, risk-taking, clean, imaginative.<span class="zh-full" lang="zh-Hant">達成目的的方法：有抱負、自律、誠實、真誠、合乎邏輯、服從、勇於冒險、整潔、有想像力。</span></p></div>
 </div>
 <div data-mw="tiv"></div>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Two employees value autonomy, but only one reacts strongly to frequent approvals. How could value intensity explain the difference, and what other workplace evidence would be needed?<span class="zh-full" lang="zh-Hant">兩名員工都重視自主性，卻只有一人對頻繁核准反應強烈。價值強度如何解釋差異？還需哪些職場證據？</span></p></aside>
-
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Two employees value autonomy, but only one reacts strongly to frequent approvals. How could value intensity explain the difference, and what other workplace evidence would be needed?<span class="zh-full" lang="zh-Hant">兩名員工都重視自主性，卻只有一人對頻繁核准反應強烈。價值強度如何解釋差異？還需哪些職場證據？</span></p></aside>
 <!-- 2 -->
 <h2 id="fit">2. Fit and corporate values<span class="zh-full" lang="zh-Hant">2. 契合與企業價值觀</span></h2>
 <div class="flow"><span>Corporate values<span class="zh-full" lang="zh-Hant">企業價值觀</span></span><i>+</i><span>Personal values<span class="zh-full" lang="zh-Hant">個人價值觀</span></span><i>→</i><span>Employee attitudes and behavior<span class="zh-full" lang="zh-Hant">員工態度與行為</span></span></div>
 <ul>
-  <li>Person-organization fit <span class="zh">人與組織契合</span> concerns values as well as personality.<span class="zh-full" lang="zh-Hant">人與組織契合不只涉及人格，也涉及價值觀。</span></li>
-  <li>Value alignment affects job satisfaction.<span class="zh-full" lang="zh-Hant">價值觀一致程度會影響工作滿意度。</span></li>
-  <li>People tend to select organizations whose values align, or leave.<span class="zh-full" lang="zh-Hant">人們傾向選擇價值觀契合的組織，或選擇離開。</span></li>
+<li>Person-organization fit <span class="zh">人與組織契合</span> concerns values as well as personality.<span class="zh-full" lang="zh-Hant">人與組織契合不只涉及人格，也涉及價值觀。</span></li>
+<li>Value alignment affects job satisfaction.<span class="zh-full" lang="zh-Hant">價值觀一致程度會影響工作滿意度。</span></li>
+<li>People tend to select organizations whose values align, or leave.<span class="zh-full" lang="zh-Hant">人們傾向選擇價值觀契合的組織，或選擇離開。</span></li>
 </ul>
 <p>Kantabutra (2022): sustainable corporations see themselves as a "special" place to work where individual and corporate values are aligned. Fit means meaningful alignment, not identical people.<span class="zh-full" lang="zh-Hant">Kantabutra（2022）：永續企業視自己為「特別」的工作場所，讓個人與企業價值觀契合。契合是有意義的一致，不是人人相同。</span></p>
 <p class="key">A strong culture aligns members' values and attitudes with the organization's values. It does not mean everyone has the same personality.<span class="zh-full" lang="zh-Hant">強文化會使成員的價值觀與態度和組織價值觀一致，不代表每個人都有相同人格。</span></p>
@@ -641,37 +633,30 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 <tr><td><b>PlanToys</b><span class="zh-full" lang="zh-Hant">PlanToys</span></td><td>Social and environmental responsibility<span class="zh-full" lang="zh-Hant">社會與環境責任</span></td><td>Core to the business.<span class="zh-full" lang="zh-Hant">屬於企業核心。</span></td></tr>
 </tbody></table></div>
 <p>Values common in sustainable enterprises: virtuous values (perseverance, moderation, generosity, honesty, integrity, ethics), social and environmental responsibility, and innovation. A manager's own values also shape what they see, what they think is important, how they spend time and what they decide.<span class="zh-full" lang="zh-Hant">永續企業常見的價值觀：美德價值（堅毅、適度、慷慨、誠實、正直、倫理）、社會與環境責任，以及創新。主管本人的價值觀，也會影響他注意什麼、認為什麼重要、如何分配時間，以及做出何種決定。</span></p>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>An employee says the job is frustrating. Why does that statement alone not prove poor person-organization fit or an intention to resign? What would you investigate?<span class="zh-full" lang="zh-Hant">員工說工作令人挫折。為什麼這句話本身無法證明人與組織不契合，也不能證明其有離職意圖？應調查什麼？</span></p></aside>
-
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>An employee says the job is frustrating. Why does that statement alone not prove poor person-organization fit or an intention to resign? What would you investigate?<span class="zh-full" lang="zh-Hant">員工說工作令人挫折。為什麼這句話本身無法證明人與組織不契合，也不能證明其有離職意圖？應調查什麼？</span></p></aside>
 <!-- 3 -->
 <h2 id="discrepancy">3. Value mismatch versus stated-practice discrepancy<span class="zh-full" lang="zh-Hant">3. 價值觀不契合與宣稱／實務落差</span></h2>
 <p class="sub">A key distinction from the Ken case discussion.<span class="zh-full" lang="zh-Hant">這是 Ken 個案討論中的關鍵區分。</span></p>
 <div class="pair">
-  <div><b>Value mismatch<span class="zh-full" lang="zh-Hant">價值觀不契合</span></b><p>The employee genuinely values something different. The employee values autonomy; the organization emphasizes control.<span class="zh-full" lang="zh-Hant">員工確實重視不同的事物。例如員工重視自主，組織卻強調控制。</span></p></div>
-  <div><b>Stated-practice discrepancy<span class="zh-full" lang="zh-Hant">宣稱與實務落差</span></b> <span class="zh">說做不一</span><p>The employee may agree with the stated value, but practice rewards something else. "We value work-life balance," yet promotions go to people who work late.<span class="zh-full" lang="zh-Hant">員工可能同意組織宣稱的價值，但實際作法獎勵另一件事。例如宣稱「我們重視工作與生活平衡」，升遷卻給經常加班的人。</span></p></div>
+<div><b>Value mismatch<span class="zh-full" lang="zh-Hant">價值觀不契合</span></b><p>The employee genuinely values something different. The employee values autonomy; the organization emphasizes control.<span class="zh-full" lang="zh-Hant">員工確實重視不同的事物。例如員工重視自主，組織卻強調控制。</span></p></div>
+<div><b>Stated-practice discrepancy<span class="zh-full" lang="zh-Hant">宣稱與實務落差</span></b> <span class="zh">說做不一</span><p>The employee may agree with the stated value, but practice rewards something else. "We value work-life balance," yet promotions go to people who work late.<span class="zh-full" lang="zh-Hant">員工可能同意組織宣稱的價值，但實際作法獎勵另一件事。例如宣稱「我們重視工作與生活平衡」，升遷卻給經常加班的人。</span></p></div>
 </div>
 <div data-mw="align"></div>
 <p>For a value to feel real, it must appear in four layers: the stated value, leader behavior, rewards and policy, and repeated communication.<span class="zh-full" lang="zh-Hant">價值觀要讓人感到真實，必須出現在四個層面：宣稱的價值、領導者行為、獎酬與政策，以及反覆溝通。</span></p>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>An organization promotes empowerment but requires approval for every minor choice. How would you test whether the issue is a genuine value mismatch or a gap between stated values and actual practice? What should management examine first?<span class="zh-full" lang="zh-Hant">組織宣稱重視賦權，卻要求每個小決定都先核准。如何判斷是真正的價值不合，還是宣稱與實務落差？管理者應先檢查什麼？</span></p></aside>
-
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>An organization promotes empowerment but requires approval for every minor choice. How would you test whether the issue is a genuine value mismatch or a gap between stated values and actual practice? What should management examine first?<span class="zh-full" lang="zh-Hant">組織宣稱重視賦權，卻要求每個小決定都先核准。如何判斷是真正的價值不合，還是宣稱與實務落差？管理者應先檢查什麼？</span></p></aside>
 <!-- 4 -->
 <h2 id="attitudes">4. Attitudes<span class="zh-full" lang="zh-Hant">4. 態度</span></h2>
 <p class="sub">Judgments we make about objects, people or events. "I like my job."<span class="zh-full" lang="zh-Hant">我們對事物、人物或事件所做的評價。例如：「我喜歡我的工作。」</span></p>
 <div class="pair">
-  <div><b>Value<span class="zh-full" lang="zh-Hant">價值觀</span></b><p>What matters to me? Broad and stable. "Honesty is important to me."<span class="zh-full" lang="zh-Hant">什麼對我重要？廣泛且穩定。例如：「誠實對我很重要。」</span></p></div>
-  <div><b>Attitude<span class="zh-full" lang="zh-Hant">態度</span></b><p>How do I evaluate this? Specific. "I don't trust my manager."<span class="zh-full" lang="zh-Hant">我如何評價這個對象？針對特定對象。例如：「我不信任我的主管。」</span></p></div>
+<div><b>Value<span class="zh-full" lang="zh-Hant">價值觀</span></b><p>What matters to me? Broad and stable. "Honesty is important to me."<span class="zh-full" lang="zh-Hant">什麼對我重要？廣泛且穩定。例如：「誠實對我很重要。」</span></p></div>
+<div><b>Attitude<span class="zh-full" lang="zh-Hant">態度</span></b><p>How do I evaluate this? Specific. "I don't trust my manager."<span class="zh-full" lang="zh-Hant">我如何評價這個對象？針對特定對象。例如：「我不信任我的主管。」</span></p></div>
 </div>
 <div class="three">
-  <div class="tcard"><span class="tnum">C</span><b>Cognitive<span class="zh-full" lang="zh-Hant">認知成分</span></b><p>Opinion or belief: "My boss is a mean person."<span class="zh-full" lang="zh-Hant">意見或信念：「我的主管是個刻薄的人。」</span></p></div>
-  <div class="tcard"><span class="tnum">A</span><b>Affective<span class="zh-full" lang="zh-Hant">情感成分</span></b><p>Emotion: "I am angry because my boss is mean."<span class="zh-full" lang="zh-Hant">情緒：「因為主管刻薄，我感到生氣。」</span></p></div>
-  <div class="tcard"><span class="tnum">B</span><b>Behavioral<span class="zh-full" lang="zh-Hant">行為成分</span></b><p>Intention to act: "I am going to report my boss to HR."<span class="zh-full" lang="zh-Hant">行動意圖：「我要向人資檢舉主管。」</span></p></div>
+<div class="tcard"><span class="tnum">C</span><b>Cognitive<span class="zh-full" lang="zh-Hant">認知成分</span></b><p>Opinion or belief: "My boss is a mean person."<span class="zh-full" lang="zh-Hant">意見或信念：「我的主管是個刻薄的人。」</span></p></div>
+<div class="tcard"><span class="tnum">A</span><b>Affective<span class="zh-full" lang="zh-Hant">情感成分</span></b><p>Emotion: "I am angry because my boss is mean."<span class="zh-full" lang="zh-Hant">情緒：「因為主管刻薄，我感到生氣。」</span></p></div>
+<div class="tcard"><span class="tnum">B</span><b>Behavioral<span class="zh-full" lang="zh-Hant">行為成分</span></b><p>Intention to act: "I am going to report my boss to HR."<span class="zh-full" lang="zh-Hant">行動意圖：「我要向人資檢舉主管。」</span></p></div>
 </div>
 <div data-mw="abc"></div>
-
 <h3 id="work">Workplace attitudes<span class="zh-full" lang="zh-Hant">職場態度</span></h3>
 <div class="tbl"><table>
 <thead><tr><th>Concept<span class="zh-full" lang="zh-Hant">概念</span></th><th>Definition<span class="zh-full" lang="zh-Hant">定義</span></th><th>Diagnostic question<span class="zh-full" lang="zh-Hant">診斷問題</span></th></tr></thead>
@@ -682,19 +667,16 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 <tr><td><b>Organizational citizenship (OCB)</b><span class="zh-full" lang="zh-Hant">組織公民行為（OCB）</span></td><td>Discretionary behavior that helps the organization<span class="zh-full" lang="zh-Hant">出於自願、對組織有幫助的行為</span></td><td>Do I voluntarily do extra-role work?<span class="zh-full" lang="zh-Hant">我是否自願做角色要求以外的工作？</span></td></tr>
 </tbody></table></div>
 <div class="pair">
-  <div><b>Satisfaction ≠ commitment<span class="zh-full" lang="zh-Hant">滿意度 ≠ 組織承諾</span></b><p>"I love being a designer, but I no longer believe in this company." Satisfaction may stay high while commitment falls.<span class="zh-full" lang="zh-Hant">「我喜歡當設計師，但已不再認同這家公司。」滿意度可能仍高，組織承諾卻下降。</span></p></div>
-  <div><b>OCB is a behavior<span class="zh-full" lang="zh-Hant">OCB 是行為</span></b><p>An employee who stops helping new colleagues shows lower OCB, not automatically lower task performance.<span class="zh-full" lang="zh-Hant">員工不再協助新同事，表示 OCB 降低，不自動代表本職任務績效下降。</span></p></div>
+<div><b>Satisfaction ≠ commitment<span class="zh-full" lang="zh-Hant">滿意度 ≠ 組織承諾</span></b><p>"I love being a designer, but I no longer believe in this company." Satisfaction may stay high while commitment falls.<span class="zh-full" lang="zh-Hant">「我喜歡當設計師，但已不再認同這家公司。」滿意度可能仍高，組織承諾卻下降。</span></p></div>
+<div><b>OCB is a behavior<span class="zh-full" lang="zh-Hant">OCB 是行為</span></b><p>An employee who stops helping new colleagues shows lower OCB, not automatically lower task performance.<span class="zh-full" lang="zh-Hant">員工不再協助新同事，表示 OCB 降低，不自動代表本職任務績效下降。</span></p></div>
 </div>
 <div data-mw="wattitude"></div>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>An employee still enjoys professional work but no longer identifies with the company and stops voluntarily helping newcomers. Distinguish the evidence about job satisfaction, organizational commitment and OCB. What cannot be concluded about task performance?<span class="zh-full" lang="zh-Hant">員工仍喜歡專業工作，卻不再認同公司，也停止自願協助新人。請區分工作滿意、組織承諾與 OCB 的證據；對工作績效還不能推論什麼？</span></p></aside>
-
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>An employee dislikes the current assignment, supports the company’s mission and volunteers to mentor newcomers. Classify the evidence about satisfaction, commitment and OCB. What would be needed to assess task performance?<span class="zh-full" lang="zh-Hant">員工不喜歡目前任務，但支持公司使命，並自願指導新人。請分別判斷滿意度、組織承諾與 OCB；還需什麼資料才能判斷任務績效？</span></p></aside>
 <!-- 5 -->
 <h2 id="typeab">5. Type A and Type B<span class="zh-full" lang="zh-Hant">5. A 型與 B 型</span></h2>
 <div class="pair">
-  <div><b>Type A<span class="zh-full" lang="zh-Hant">A 型</span></b><p>Aggressive, impatient, goal and outcome driven, time conscious, multitasks.<span class="zh-full" lang="zh-Hant">積極進取、缺乏耐心、目標與結果導向、重視時間、同時處理多項工作。</span></p></div>
-  <div><b>Type B<span class="zh-full" lang="zh-Hant">B 型</span></b><p>Little urgency, no need to display achievement, takes time, plays for fun, relaxes easily.<span class="zh-full" lang="zh-Hant">急迫感較低、不需要展示成就、從容行事、為樂趣而玩、容易放鬆。</span></p></div>
+<div><b>Type A<span class="zh-full" lang="zh-Hant">A 型</span></b><p>Aggressive, impatient, goal and outcome driven, time conscious, multitasks.<span class="zh-full" lang="zh-Hant">積極進取、缺乏耐心、目標與結果導向、重視時間、同時處理多項工作。</span></p></div>
+<div><b>Type B<span class="zh-full" lang="zh-Hant">B 型</span></b><p>Little urgency, no need to display achievement, takes time, plays for fun, relaxes easily.<span class="zh-full" lang="zh-Hant">急迫感較低、不需要展示成就、從容行事、為樂趣而玩、容易放鬆。</span></p></div>
 </div>
 <div class="tbl"><table>
 <thead><tr><th>Slide conclusion<span class="zh-full" lang="zh-Hant">投影片結論</span></th><th>Type A<span class="zh-full" lang="zh-Hant">A 型</span></th><th>Type B<span class="zh-full" lang="zh-Hant">B 型</span></th></tr></thead>
@@ -704,25 +686,22 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 <tr><td>Roles<span class="zh-full" lang="zh-Hant">角色</span></td><td>Better in sales<span class="zh-full" lang="zh-Hant">在銷售上較有優勢</span></td><td>More common in senior management<span class="zh-full" lang="zh-Hant">在高階管理層較常見</span></td></tr>
 </tbody></table></div>
 <p>Type A and B relate to national culture: competitive versus cooperative. These are tendencies; a time-conscious employee will not definitely burn out without evidence.<span class="zh-full" lang="zh-Hant">A、B 型也與國家文化的競爭或合作傾向有關。這些只是傾向；沒有證據時，不能斷言重視時間的員工一定會倦怠。</span></p>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A time-conscious employee works quickly under pressure. Why would a definite prediction of burnout misuse the Type A/B material? What additional signs would help assess the risk?<span class="zh-full" lang="zh-Hant">一名時間意識強的員工在壓力下工作迅速。為什麼直接預言他一定會倦怠，是誤用 Type A/B 內容？還要看哪些徵兆？</span></p></aside>
-
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A time-conscious employee works quickly under pressure. Why would a definite prediction of burnout misuse the Type A/B material? What additional signs would help assess the risk?<span class="zh-full" lang="zh-Hant">一名時間意識強的員工在壓力下工作迅速。為什麼直接預言他一定會倦怠，是誤用 Type A/B 內容？還要看哪些徵兆？</span></p></aside>
 <!-- 6 -->
 <h2 id="change">6. Changing attitudes and building culture<span class="zh-full" lang="zh-Hant">6. 改變態度與建立文化</span></h2>
 <p class="sub">Can you change other people's attitudes? It depends on three things.<span class="zh-full" lang="zh-Hant">能否改變別人的態度？取決於三項條件。</span></p>
 <div class="three">
-  <div class="tcard"><span class="tnum">1</span><b>Their attitude<span class="zh-full" lang="zh-Hant">對方的態度</span></b><p>How committed they are to it, how aware they are of their position, how big the change is.<span class="zh-full" lang="zh-Hant">對原有立場有多堅定、對立場有多清楚，以及需要改變的幅度。</span></p></div>
-  <div class="tcard"><span class="tnum">2</span><b>You<span class="zh-full" lang="zh-Hant">你本身</span></b><p>Trust and credibility, expertise and influence, perceived honesty and fairness.<span class="zh-full" lang="zh-Hant">信任與可信度、專業與影響力，以及對方感受到的誠實與公平。</span></p></div>
-  <div class="tcard"><span class="tnum">3</span><b>Your strategy<span class="zh-full" lang="zh-Hant">你的策略</span></b><p>Understand their values and personality, use social influence, give training and moral support, provide incentives.<span class="zh-full" lang="zh-Hant">理解對方的價值觀與人格、運用社會影響、提供訓練與精神支持、給予誘因。</span></p></div>
+<div class="tcard"><span class="tnum">1</span><b>Their attitude<span class="zh-full" lang="zh-Hant">對方的態度</span></b><p>How committed they are to it, how aware they are of their position, how big the change is.<span class="zh-full" lang="zh-Hant">對原有立場有多堅定、對立場有多清楚，以及需要改變的幅度。</span></p></div>
+<div class="tcard"><span class="tnum">2</span><b>You<span class="zh-full" lang="zh-Hant">你本身</span></b><p>Trust and credibility, expertise and influence, perceived honesty and fairness.<span class="zh-full" lang="zh-Hant">信任與可信度、專業與影響力，以及對方感受到的誠實與公平。</span></p></div>
+<div class="tcard"><span class="tnum">3</span><b>Your strategy<span class="zh-full" lang="zh-Hant">你的策略</span></b><p>Understand their values and personality, use social influence, give training and moral support, provide incentives.<span class="zh-full" lang="zh-Hant">理解對方的價值觀與人格、運用社會影響、提供訓練與精神支持、給予誘因。</span></p></div>
 </div>
 <p>Workforce diversity in age, experience, culture, gender, race and religion is a strength through variation in ideas, attitudes and knowledge.<span class="zh-full" lang="zh-Hant">員工在年齡、經驗、文化、性別、種族與宗教上的多樣性，能透過不同想法、態度與知識形成優勢。</span></p>
 <h3 id="framework">Culture Development Framework<span class="zh-full" lang="zh-Hant">文化發展架構</span></h3>
 <p class="note-small">Ketprapakorn and Kantabutra (2019)<span class="zh-full" lang="zh-Hant">Ketprapakorn 與 Kantabutra（2019）</span></p>
 <div class="cf">
-  <div class="cf-in"><span>Act as a role model<span class="zh-full" lang="zh-Hant">以身作則</span></span><span>Promote from within<span class="zh-full" lang="zh-Hant">從內部晉升</span></span><span>Design value communication channels<span class="zh-full" lang="zh-Hant">設計價值觀溝通管道</span></span><span>Use core values to recruit<span class="zh-full" lang="zh-Hant">依核心價值招募</span></span><span>Avoid employee layoff<span class="zh-full" lang="zh-Hant">避免裁員</span></span></div>
-  <i>→</i>
-  <div class="cf-out">Sustainability culture<span class="zh-full" lang="zh-Hant">永續文化</span></div>
+<div class="cf-in"><span>Act as a role model<span class="zh-full" lang="zh-Hant">以身作則</span></span><span>Promote from within<span class="zh-full" lang="zh-Hant">從內部晉升</span></span><span>Design value communication channels<span class="zh-full" lang="zh-Hant">設計價值觀溝通管道</span></span><span>Use core values to recruit<span class="zh-full" lang="zh-Hant">依核心價值招募</span></span><span>Avoid employee layoff<span class="zh-full" lang="zh-Hant">避免裁員</span></span></div>
+<i>→</i>
+<div class="cf-out">Sustainability culture<span class="zh-full" lang="zh-Hant">永續文化</span></div>
 </div>
 <p class="cf-lab"><span>Starting point: identify core values</span><span class="zh-full" lang="zh-Hant">起點：辨識核心價值</span></p>
 <p class="key">The common function: turn abstract values into repeated, visible and consistent workplace signals. Role modeling shows the value; promoting from within shows what gets rewarded; value-based recruiting starts with better fit.<span class="zh-full" lang="zh-Hant">共同作用是把抽象價值變成反覆、可見且一致的職場訊號。以身作則讓人看見價值；內部晉升顯示什麼受到獎勵；以價值為基礎的招募，從一開始提高契合度。</span></p>
@@ -733,53 +712,45 @@ window.biRichPair=(en,zh)=>en+biPair('',zh);
 <tr><td><b>Phung Noi Bakery</b><span class="zh-full" lang="zh-Hant">Phung Noi Bakery</span></td><td>The MD teaches core values through songs and poems.<span class="zh-full" lang="zh-Hant">總經理透過歌曲與詩歌傳授核心價值。</span></td></tr>
 <tr><td><b>PlanToys</b><span class="zh-full" lang="zh-Hant">PlanToys</span></td><td>"Fresh Up in the Morning" every Wednesday: department heads take turns sharing knowledge for about 15 minutes.<span class="zh-full" lang="zh-Hant">每週三舉辦「Fresh Up in the Morning」：各部門主管輪流分享約 15 分鐘的知識。</span></td></tr>
 </tbody></table></div>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>An attitude-change message is ignored despite a financial incentive. Use the employee, messenger and strategy dimensions to propose two alternative explanations before adding a larger reward.<span class="zh-full" lang="zh-Hant">改變態度的訊息即使搭配金錢誘因仍被忽略。請從員工、傳達者及策略三個面向，提出兩種可能解釋，再考慮是否提高獎勵。</span></p></aside>
-
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>An attitude-change message is ignored despite a financial incentive. Use the employee, messenger and strategy dimensions to propose two alternative explanations before adding a larger reward.<span class="zh-full" lang="zh-Hant">改變態度的訊息即使搭配金錢誘因仍被忽略。請從員工、傳達者及策略三個面向，提出兩種可能解釋，再考慮是否提高獎勵。</span></p></aside>
 <!-- 7 -->
 <h2 id="case">7. Six-step case analysis<span class="zh-full" lang="zh-Hant">7. 六步個案分析</span></h2>
 <div class="steps">
-  <div><b>1 · Value<span class="zh-full" lang="zh-Hant">1・價值觀</span></b><p>What matters to this employee?<span class="zh-full" lang="zh-Hant">這名員工重視什麼？</span></p></div>
-  <div><b>2 · Fit / experience<span class="zh-full" lang="zh-Hant">2・契合／經驗</span></b><p>Does the organization support or contradict it?<span class="zh-full" lang="zh-Hant">組織支持還是違背這項價值？</span></p></div>
-  <div><b>3 · Attitude<span class="zh-full" lang="zh-Hant">3・態度</span></b><p>Satisfaction? Commitment?<span class="zh-full" lang="zh-Hant">工作滿意度？組織承諾？</span></p></div>
-  <div><b>4 · Evidence<span class="zh-full" lang="zh-Hant">4・證據</span></b><p>What behavior is observed: OCB, turnover intention, performance?<span class="zh-full" lang="zh-Hant">觀察到什麼行為：OCB、離職意圖、績效？</span></p></div>
-  <div><b>5 · Boundary<span class="zh-full" lang="zh-Hant">5・推論界線</span></b><p>What can we not conclude yet?<span class="zh-full" lang="zh-Hant">目前還不能下什麼結論？</span></p></div>
-  <div><b>6 · Response<span class="zh-full" lang="zh-Hant">6・回應</span></b><p>Which practice, leader behavior or reward should management examine?<span class="zh-full" lang="zh-Hant">管理者應檢查哪種作法、領導者行為或獎酬？</span></p></div>
+<div><b>1 · Value<span class="zh-full" lang="zh-Hant">1・價值觀</span></b><p>What matters to this employee?<span class="zh-full" lang="zh-Hant">這名員工重視什麼？</span></p></div>
+<div><b>2 · Fit / experience<span class="zh-full" lang="zh-Hant">2・契合／經驗</span></b><p>Does the organization support or contradict it?<span class="zh-full" lang="zh-Hant">組織支持還是違背這項價值？</span></p></div>
+<div><b>3 · Attitude<span class="zh-full" lang="zh-Hant">3・態度</span></b><p>Satisfaction? Commitment?<span class="zh-full" lang="zh-Hant">工作滿意度？組織承諾？</span></p></div>
+<div><b>4 · Behavior / intention<span class="zh-full" lang="zh-Hant">4・行為／意圖</span></b><p>Separate observed OCB and performance from a stated intention to leave.<span class="zh-full" lang="zh-Hant">區分已觀察到的 OCB、績效，以及口頭表達的離職意圖。</span></p></div>
+<div><b>5 · Diagnosis<span class="zh-full" lang="zh-Hant">5・問題判斷</span></b><p>Name the value conflict or practice gap, then link it to the reported attitude and behavior. State any needed assumption.<span class="zh-full" lang="zh-Hant">指出價值衝突或實務落差，再連到已記載的態度與行為；需要假設時寫清楚。</span></p></div>
+<div><b>6 · Response / check<span class="zh-full" lang="zh-Hant">6・行動／檢查</span></b><p>Change the conflicting practice; check value alignment, the relevant attitude and the target behavior.<span class="zh-full" lang="zh-Hant">調整衝突的作法，檢查價值是否落實、相關態度及目標行為。</span></p></div>
 </div>
-<blockquote class="say">Worked example: an employee values autonomy; the company claims empowerment, but every small decision needs approval. "I still like my profession, but I don't trust this company," and she has stopped helping coworkers. This is a stated-practice discrepancy that may reduce commitment and OCB, while job satisfaction may hold. The case gives no evidence she will resign. Management should first examine its own control practices and rewards.<span class="zh-full" lang="zh-Hant">示範個案：員工重視自主；公司宣稱賦權，但每個小決定都要批准。她說「我仍喜歡我的專業，但不信任這家公司」，也停止協助同事。這是宣稱與實務落差，可能降低組織承諾與 OCB，而工作滿意度可能維持。個案沒有證據顯示她會辭職。管理者應先檢查自身控制作法與獎酬制度。</span></blockquote>
-
-
-<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A firm announces collaboration as a core value, but promotions reward individual output only and optional helping declines. Separate the observable behavior, possible stated-practice discrepancy and unproven assumptions. What would an aligned response change?<span class="zh-full" lang="zh-Hant">公司宣稱合作是核心價值，升遷卻只獎勵個人產出，自願協助同事的行為也減少。請分出可觀察行為、可能的說做不一，以及尚未證實的假設。真正一致的做法應改變什麼？</span></p></aside>
-
+<h3 id="worked-case">Worked example: empowerment in practice<span class="zh-full" lang="zh-Hant">應用示例：授權是否落實</span></h3><blockquote class="say">An employee values autonomy. The company promotes empowerment, but every small customer decision needs approval. She says, “I enjoy my job, but these approvals frustrate me and I no longer identify with this organization.” She still meets assigned targets but has stopped voluntarily helping new colleagues.<span class="zh-full" lang="zh-Hant">員工重視自主，公司也宣傳授權，但每個小型顧客決策都須核准。她說：「我喜歡這份工作，但這些核准讓我挫折，也不再認同這家公司。」她仍達成指定目標，卻停止自願協助新同事。</span></blockquote><div class="tbl"><table><thead><tr><th>Link in the chain<span class="zh-full" lang="zh-Hant">分析環節</span></th><th>Case analysis / response<span class="zh-full" lang="zh-Hant">個案分析／行動</span></th></tr></thead><tbody><tr><td>Value → workplace experience<span class="zh-full" lang="zh-Hant">價值 → 工作經驗</span></td><td>Autonomy matters to her. The approval rule contradicts the company’s stated empowerment, so the central issue is a stated-practice discrepancy.<span class="zh-full" lang="zh-Hant">自主對她重要。核准規則違反公司宣稱的授權，因此核心問題是宣稱與實際做法不一致。</span></td></tr><tr><td>Attitude<span class="zh-full" lang="zh-Hant">態度</span></td><td>Her belief is that empowerment is not practiced; the feeling is frustration. Job satisfaction remains positive in her statement, while identification with the organization weakens.<span class="zh-full" lang="zh-Hant">她認為授權未落實，感受是挫折。她的話呈現對工作仍有正面感受，但對組織的認同減弱。</span></td></tr><tr><td>Behavior<span class="zh-full" lang="zh-Hant">行為</span></td><td>Voluntary helping has declined: lower OCB. Assigned performance is maintained. Neither fact alone establishes an intention to resign.<span class="zh-full" lang="zh-Hant">自願協助下降，對應較低 OCB；指定績效仍維持。兩者本身都不能當成已有離職意圖。</span></td></tr><tr><td>Response and mechanism<span class="zh-full" lang="zh-Hant">回應與機制</span></td><td>The manager should delegate routine customer decisions within written limits and support those decisions. Practicing the stated value gives employees a reason to trust it.<span class="zh-full" lang="zh-Hant">主管應在書面界線內授權例行顧客決策，並支持這些決策。落實宣稱的價值，才能讓員工有理由信任它。</span></td></tr><tr><td>Check<span class="zh-full" lang="zh-Hant">檢查</span></td><td>After a short trial, review approval delays, her perceived autonomy and organizational identification, and examples of voluntary cooperation. Keep these indicators separate.<span class="zh-full" lang="zh-Hant">短期試行後，檢視核准延遲、自主感及組織認同，以及自願合作的具體例子；各指標分開判斷。</span></td></tr></tbody></table></div><p class="note-small">Illustrative workplace example.</p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A firm announces collaboration as a core value, but promotions reward individual output only and optional helping declines. Separate the observable behavior, possible stated-practice discrepancy and unproven assumptions. What would an aligned response change?<span class="zh-full" lang="zh-Hant">公司宣稱合作是核心價值，升遷卻只獎勵個人產出，自願協助同事的行為也減少。請分出可觀察行為、可能的說做不一，以及尚未證實的假設。真正一致的做法應改變什麼？</span></p></aside>
 <!-- 8 -->
 <h2 id="traps">8. Do not mix these up<span class="zh-full" lang="zh-Hant">8. 不要混淆</span></h2>
 <div class="traps">
-  <div><s>Values determine behavior.<span class="zh-full" lang="zh-Hant">價值觀決定行為。</span></s><p>Values may influence attitudes, which may influence behavior.<span class="zh-full" lang="zh-Hant">價值觀可能影響態度，態度又可能影響行為。</span></p></div>
-  <div><s>Poor fit means he will leave.<span class="zh-full" lang="zh-Hant">不契合就代表他會離職。</span></s><p>Need evidence of turnover intention or leaving.<span class="zh-full" lang="zh-Hant">需要離職意圖或實際離職的證據。</span></p></div>
-  <div><s>Fix value conflicts by changing the employee.<span class="zh-full" lang="zh-Hant">透過改變員工來解決價值衝突。</span></s><p>Check job design, management and rewards first.<span class="zh-full" lang="zh-Hant">先檢查工作設計、管理與獎酬。</span></p></div>
-  <div><s>Strong culture = same personality.<span class="zh-full" lang="zh-Hant">強文化＝相同人格。</span></s><p>It means aligned values and attitudes.<span class="zh-full" lang="zh-Hant">意思是價值觀與態度一致。</span></p></div>
-  <div><s>"I don't trust my manager" is a value.<span class="zh-full" lang="zh-Hant">「我不信任主管」是一項價值觀。</span></s><p>It is an attitude toward a specific person.<span class="zh-full" lang="zh-Hant">這是對特定人物的態度。</span></p></div>
-  <div><s>Satisfied = committed.<span class="zh-full" lang="zh-Hant">滿意＝有組織承諾。</span></s><p>Job and organization are different targets.<span class="zh-full" lang="zh-Hant">工作與組織是不同評價對象。</span></p></div>
-  <div><s>OCB is an attitude.<span class="zh-full" lang="zh-Hant">OCB 是一種態度。</span></s><p>It is an observable, optional behavior.<span class="zh-full" lang="zh-Hant">它是可觀察、出於自願的行為。</span></p></div>
-  <div><s>Incentives change attitudes.<span class="zh-full" lang="zh-Hant">誘因會改變態度。</span></s><p>Also depends on the person and your credibility.<span class="zh-full" lang="zh-Hant">還取決於對方本身與你的可信度。</span></p></div>
+<div><s>Values determine behavior.<span class="zh-full" lang="zh-Hant">價值觀決定行為。</span></s><p>Values may influence attitudes, which may influence behavior.<span class="zh-full" lang="zh-Hant">價值觀可能影響態度，態度又可能影響行為。</span></p></div>
+<div><s>Poor fit means he will leave.<span class="zh-full" lang="zh-Hant">不契合就代表他會離職。</span></s><p>Need evidence of turnover intention or leaving.<span class="zh-full" lang="zh-Hant">需要離職意圖或實際離職的證據。</span></p></div>
+<div><s>Fix value conflicts by changing the employee.<span class="zh-full" lang="zh-Hant">透過改變員工來解決價值衝突。</span></s><p>Check job design, management and rewards first.<span class="zh-full" lang="zh-Hant">先檢查工作設計、管理與獎酬。</span></p></div>
+<div><s>Strong culture = same personality.<span class="zh-full" lang="zh-Hant">強文化＝相同人格。</span></s><p>It means aligned values and attitudes.<span class="zh-full" lang="zh-Hant">意思是價值觀與態度一致。</span></p></div>
+<div><s>"I don't trust my manager" is a value.<span class="zh-full" lang="zh-Hant">「我不信任主管」是一項價值觀。</span></s><p>It is an attitude toward a specific person.<span class="zh-full" lang="zh-Hant">這是對特定人物的態度。</span></p></div>
+<div><s>Satisfied = committed.<span class="zh-full" lang="zh-Hant">滿意＝有組織承諾。</span></s><p>Job and organization are different targets.<span class="zh-full" lang="zh-Hant">工作與組織是不同評價對象。</span></p></div>
+<div><s>OCB is an attitude.<span class="zh-full" lang="zh-Hant">OCB 是一種態度。</span></s><p>It is an observable, optional behavior.<span class="zh-full" lang="zh-Hant">它是可觀察、出於自願的行為。</span></p></div>
+<div><s>Incentives change attitudes.<span class="zh-full" lang="zh-Hant">誘因會改變態度。</span></s><p>Also depends on the person and your credibility.<span class="zh-full" lang="zh-Hant">還取決於對方本身與你的可信度。</span></p></div>
 </div>
-
 <!-- 9 -->
 <h2 id="coldcall">9. Cold call practice<span class="zh-full" lang="zh-Hant">9. 課堂口答練習</span></h2>
-<div class="qa-tools"><button type="button" id="qaAll">Show all answers<span class="zh-full" lang="zh-Hant">顯示全部答案</span></button></div>
+<div class="qa-tools"><button id="qaAll" type="button">Show all answers<span class="zh-full" lang="zh-Hant">顯示全部答案</span></button></div>
 <div class="qa">
-  <details><summary>Why should managers care about value intensity, not just content?<span class="zh-full" lang="zh-Hant">主管為何不只要了解價值內容，也要了解強度？</span></summary><p>Stronger values produce stronger reactions when the workplace supports or violates them.<span class="zh-full" lang="zh-Hant">價值越強烈，職場支持或違背它時，反應也越強烈。</span></p></details>
-  <details><summary>Freedom or honest: which is terminal?<span class="zh-full" lang="zh-Hant">自由與誠實，哪個是終極價值？</span></summary><p>Freedom is a desired end state (terminal); honest is a way of behaving (instrumental).<span class="zh-full" lang="zh-Hant">自由是希望達到的最終狀態（終極價值）；誠實是行為方式（工具性價值）。</span></p></details>
-  <details><summary>A firm says sustainability is core, but KPIs reward only short-term sales. Mismatch or discrepancy?<span class="zh-full" lang="zh-Hant">公司宣稱永續是核心，但 KPI 只獎勵短期銷售。這是不契合還是落差？</span></summary><p>Stated-practice discrepancy: the reward system contradicts the stated value.<span class="zh-full" lang="zh-Hant">宣稱與實務落差：獎酬制度違背宣稱的價值。</span></p></details>
-  <details><summary>"My boss is unfair" → "I feel angry" → "I will report this." Classify.<span class="zh-full" lang="zh-Hant">「主管不公平」→「我生氣」→「我要檢舉」。如何分類？</span></summary><p>Cognitive, affective, behavioral intention.<span class="zh-full" lang="zh-Hant">認知成分、情感成分、行為意圖。</span></p></details>
-  <details><summary>Is Type A always better than Type B?<span class="zh-full" lang="zh-Hant">A 型一定比 B 型好嗎？</span></summary><p>No. Type A suits sales and goal focus but risks burnout and quantity over quality; Type B may innovate and is more common in senior management but has less urgency.<span class="zh-full" lang="zh-Hant">不一定。A 型適合銷售與目標導向，但有倦怠及重量不重質的風險；B 型可能較具創新，且在高階管理層較常見，但急迫感較低。</span></p></details>
-  <details><summary>Why might the same message work from a trusted manager but not a consultant?<span class="zh-full" lang="zh-Hant">為何同樣的訊息，由受信任的主管傳達可能有效，由顧問傳達卻未必？</span></summary><p>Trust and credibility increase influence over attitudes.<span class="zh-full" lang="zh-Hant">信任與可信度會提高對態度的影響力。</span></p></details>
-  <details><summary>What do the five culture-development techniques have in common?<span class="zh-full" lang="zh-Hant">五種文化發展技巧有何共同點？</span></summary><p>They make core values repeated, observable and consistent signals.<span class="zh-full" lang="zh-Hant">它們都讓核心價值成為反覆出現、可觀察且一致的訊號。</span></p></details>
+<details><summary>Why should managers care about value intensity, not just content?<span class="zh-full" lang="zh-Hant">主管為何不只要了解價值內容，也要了解強度？</span></summary><p>Stronger values produce stronger reactions when the workplace supports or violates them.<span class="zh-full" lang="zh-Hant">價值越強烈，職場支持或違背它時，反應也越強烈。</span></p></details>
+<details><summary>Freedom or honest: which is terminal?<span class="zh-full" lang="zh-Hant">自由與誠實，哪個是終極價值？</span></summary><p>Freedom is a desired end state (terminal); honest is a way of behaving (instrumental).<span class="zh-full" lang="zh-Hant">自由是希望達到的最終狀態（終極價值）；誠實是行為方式（工具性價值）。</span></p></details>
+<details><summary>A firm says sustainability is core, but KPIs reward only short-term sales. Mismatch or discrepancy?<span class="zh-full" lang="zh-Hant">公司宣稱永續是核心，但 KPI 只獎勵短期銷售。這是不契合還是落差？</span></summary><p>Stated-practice discrepancy: the reward system contradicts the stated value.<span class="zh-full" lang="zh-Hant">宣稱與實務落差：獎酬制度違背宣稱的價值。</span></p></details>
+<details><summary>"My boss is unfair" → "I feel angry" → "I will report this." Classify.<span class="zh-full" lang="zh-Hant">「主管不公平」→「我生氣」→「我要檢舉」。如何分類？</span></summary><p>Cognitive, affective, behavioral intention.<span class="zh-full" lang="zh-Hant">認知成分、情感成分、行為意圖。</span></p></details>
+<details><summary>Is Type A always better than Type B?<span class="zh-full" lang="zh-Hant">A 型一定比 B 型好嗎？</span></summary><p>No. Type A suits sales and goal focus but risks burnout and quantity over quality; Type B may innovate and is more common in senior management but has less urgency.<span class="zh-full" lang="zh-Hant">不一定。A 型適合銷售與目標導向，但有倦怠及重量不重質的風險；B 型可能較具創新，且在高階管理層較常見，但急迫感較低。</span></p></details>
+<details><summary>Why might the same message work from a trusted manager but not a consultant?<span class="zh-full" lang="zh-Hant">為何同樣的訊息，由受信任的主管傳達可能有效，由顧問傳達卻未必？</span></summary><p>Trust and credibility increase influence over attitudes.<span class="zh-full" lang="zh-Hant">信任與可信度會提高對態度的影響力。</span></p></details>
+<details><summary>What do the five culture-development techniques have in common?<span class="zh-full" lang="zh-Hant">五種文化發展技巧有何共同點？</span></summary><p>They make core values repeated, observable and consistent signals.<span class="zh-full" lang="zh-Hant">它們都讓核心價值成為反覆出現、可觀察且一致的訊號。</span></p></details>
 </div>
 </article></main>
 </div>
-
 <script>
 (function(){
 const $ = (id) => document.getElementById(id);
@@ -794,7 +765,6 @@ const $ = (id) => document.getElementById(id);
  });
 })();
 </script>
-
 <script>/* Management interactive components: Herzberg scale, KPI trap, framework comparator, LMS lens. */
 (function () {
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
