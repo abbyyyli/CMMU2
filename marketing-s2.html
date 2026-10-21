@@ -563,7 +563,21 @@ body.show-zh .cmp-sel select{max-width:100%}
   a.cta .zh-full, .risk b .zh-full, .hint b .zh-full, .tcard .tnum .zh-full { color: inherit; }
 }
 </style>
-</head><body>
+<style id="learning-revision">
+/* Reading additions use the established system palette and full body column. */
+.doc p,.doc li,.hero .lead{max-width:none}
+.doc h2,.doc h3{scroll-margin-top:calc(var(--header-height,80px) + 20px)}
+.doc .tbl{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+.doc .tbl table{width:100%}
+.doc .tbl th{vertical-align:top}
+.doc .tbl td{vertical-align:top;overflow-wrap:break-word}
+.doc .method,.doc .flow{max-width:100%;flex-wrap:wrap}
+.answer-example{margin:1rem 0;padding:16px 18px;background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px}
+.answer-example>b{color:var(--accent-ink);font-size:.9rem}
+.answer-example p{margin:.5rem 0 0}
+.sessions a.pill:hover{background:var(--tint);color:var(--accent-ink);border-color:var(--accent)}
+@media(max-width:600px){.top-in{gap:8px 10px}.page-tools{flex-basis:100%;justify-content:flex-end;flex-wrap:wrap;margin:0}.page-tools .practice-toggle{max-width:100%}.answer-example{padding:14px}.doc .tbl td,.doc .tbl th{min-width:130px}}
+</style></head><body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <pattern id="dwlHatch" width="6" height="6" patternunits="userSpaceOnUse" patterntransform="rotate(45)">
@@ -571,7 +585,7 @@ body.show-zh .cmp-sel select{max-width:100%}
 
 <header class="top"><div class="top-in">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="marketing.html">Marketing<span class="zh-full" lang="zh-Hant">行銷學</span></a><span>/</span><b>Session 2<span class="zh-full" lang="zh-Hant">第 2 堂</span></b></nav>
-  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
+  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false" aria-controls="rail">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
   <nav class="sessions" aria-label="Sessions"><a class="pill" href="marketing-s1.html">S1</a><span class="pill" aria-current="page">S2</span><a class="pill" href="marketing-s3.html">S3</a><a class="pill" href="marketing-s4.html">S4</a></nav>
 <div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
 
@@ -599,10 +613,10 @@ body.show-zh .cmp-sel select{max-width:100%}
   <div><b>Relationship<span class="zh-full" lang="zh-Hant">關係</span></b> <span class="zh">關係行銷</span><p>How do I create enough value that this customer keeps choosing us? "Buy one time vs a lifetime."<span class="zh-full" lang="zh-Hant">如何創造足夠價值，讓這位顧客持續選擇我們？「買一次，還是一輩子持續購買？」</span></p></div>
 </div>
 <p>CRM <span class="zh">顧客關係管理</span> is managing acquisition, retention and value creation over time. It is not merely software.<span class="zh-full" lang="zh-Hant">CRM 是長期管理獲客、留存與價值創造，不只是軟體。</span></p>
-<div data-mk="getkeep"></div>
+<p><b>CRM connects acquisition, retention and churn.</b> Acquisition adds new customers; retention keeps a defined group active over a stated period; churn records those lost. Starting base + acquired customers − customers lost = ending base, when the definitions and period are consistent. Do not subtract losses again from a figure that already counts only retained customers. Acquiring 1,000 while losing 900 gives a net addition of 100, not evidence of strong relationships.<span class="zh-full" lang="zh-Hant"><b>CRM 串起獲客、留存與流失。</b>獲客增加新客；留存看特定群體在明確期間後是否仍活躍；流失記錄離開者。定義與期間一致時，期初顧客＋新增顧客－流失顧客＝期末顧客。若已使用「留存顧客」數字，就不能再扣一次流失。獲得 1,000 人卻失去 900 人，淨增只有 100，無法證明關係經營良好。</span></p><div data-mk="getkeep"></div>
 <h3 id="clv">Customer lifetime value<span class="zh-full" lang="zh-Hant">顧客終身價值</span></h3>
 <p>CLV is the economic value of a relationship over time, not today's revenue. It depends on frequency, retention, margin, serving cost and acquisition cost. The professor's warning: 100% loyalty is unrealistic.<span class="zh-full" lang="zh-Hant">CLV 是一段顧客關係隨時間帶來的經濟價值，而非今日營收。它取決於頻率、留存、利潤率、服務成本與獲客成本。教授提醒：百分之百忠誠並不切實際。</span></p>
-<div data-mk="clv"></div>
+<p>Consider two purchase histories: THB 100 three times a week for 52 weeks produces THB 15,600 in annual revenue; a one-time THB 500 purchase produces THB 500. The first relationship generates more revenue, but its value still depends on contribution margin, service cost and how long it lasts. <b>CLV helps decide how much acquisition or retention spending a relationship can support.</b> The model below simplifies that economic question; it is not a promise of permanent loyalty.<span class="zh-full" lang="zh-Hant">比較兩種紀錄：每週三次、每次 100 泰銖，52 週產生 15,600 泰銖年營收；一次性購買 500 泰銖則是 500 泰銖。前者營收較大，但關係價值仍取決於貢獻利益、服務成本及持續期間。<b>CLV 幫助判斷這段關係能支持多少獲客或留存支出。</b>下方模型簡化這個經濟問題，不是永久忠誠的保證。</span></p><div data-mk="clv"></div>
 <p class="key">An expensive customer to acquire is worth it only if the relationship lasts long enough to repay the cost. Retention is not the goal for every customer at any cost.<span class="zh-full" lang="zh-Hant">獲客成本高，只有在關係維持夠久、能回收成本時才值得。留客不代表對每位顧客都要不計代價。</span></p>
 
 <!-- 2 -->
@@ -617,7 +631,7 @@ body.show-zh .cmp-sel select{max-width:100%}
 <tr><td>Store music<span class="zh-full" lang="zh-Hant">店內音樂</span></td><td>5/10</td><td>2/10</td><td>Low, despite the lower score<span class="zh-full" lang="zh-Hant">即使分數較低，優先程度仍低</span></td></tr>
 <tr><td>Coffee taste<span class="zh-full" lang="zh-Hant">咖啡口味</span></td><td>7/10</td><td>10/10</td><td>Examine first<span class="zh-full" lang="zh-Hant">優先檢查</span></td></tr>
 </tbody></table></div>
-<div data-mk="satimp"></div>
+<p>Music scores 5/10 and taste scores 7/10. Improving music looks attractive if the manager only ranks low scores. But taste is much more important to the buying decision, so a modest taste weakness may have a larger business effect. Importance and performance should be read together; they are not automatically a validated mathematical priority score. Serious failures of cleanliness or order accuracy still require attention even if customers take those basics for granted.<span class="zh-full" lang="zh-Hant">音樂 5/10、口味 7/10。若只按低分排序，主管會先改音樂；但口味對購買決策重要得多，小幅口味問題可能有更大影響。重要性與表現要一起解讀，不能直接當成已驗證的數學優先分數。即使顧客視基本服務為理所當然，清潔或訂單正確性的嚴重失誤仍須處理。</span></p><div data-mk="satimp"></div>
 <p class="note-small">Queue time and Wi-Fi are added examples. The quadrant view is a standard importance-performance supplement.<span class="zh-full" lang="zh-Hant">排隊時間與 Wi-Fi 是補充例子；四象限圖則是標準的重要性與績效分析補充。</span></p>
 <h3 id="hygiene">Hygiene versus motivators<span class="zh-full" lang="zh-Hant">保健因素與激勵因素</span></h3>
 <div class="pair">
@@ -630,14 +644,14 @@ body.show-zh .cmp-sel select{max-width:100%}
 
 <aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A café has low satisfaction with its music but only moderate satisfaction with coffee taste. Why might improving taste have greater value? What additional customer evidence would justify the priority?<span class="zh-full" lang="zh-Hant">咖啡店的音樂滿意度很低，咖啡口味滿意度則普通。為什麼先改善口味可能更有價值？還要取得哪些顧客證據，才能支持這個優先順序？</span></p></aside>
 
-<h2 id="data">3. Data, information and decisions<span class="zh-full" lang="zh-Hant">3. 資料、資訊與決策</span></h2>
+<p><b>CXM / CEM</b> both refer here to customer experience management across touchpoints. Listening produces feedback; learning identifies a problem or opportunity; reacting changes the experience. A report arriving after the customer has left may document failure without recovering the experience, so response ownership and timing matter as much as data collection.<span class="zh-full" lang="zh-Hant"><b>CXM／CEM</b>在此都指跨接觸點的顧客體驗管理。聆聽取得回饋，學習辨識問題或機會，回應改變體驗。顧客離開後才到的報告可能只記錄失敗，無法補救，因此回應負責者與時機和蒐集資料同樣重要。</span></p><h2 id="data">3. Data, information and decisions<span class="zh-full" lang="zh-Hant">3. 資料、資訊與決策</span></h2>
 <div class="ladder2">
   <div><b>Data<span class="zh-full" lang="zh-Hant">資料</span></b>Observations.<span class="zh-full" lang="zh-Hant">觀察紀錄。</span></div><i>↓</i>
   <div><b>Information<span class="zh-full" lang="zh-Hant">資訊</span></b>Organized data with meaning.<span class="zh-full" lang="zh-Hant">經整理而具有意義的資料。</span></div><i>↓</i>
   <div><b>Insight<span class="zh-full" lang="zh-Hant">洞察</span></b>Interpretation relevant to a business problem.<span class="zh-full" lang="zh-Hant">與企業問題相關的解讀。</span></div><i>↓</i>
   <div><b>Decision<span class="zh-full" lang="zh-Hant">決策</span></b>Action chosen with evidence plus judgment.<span class="zh-full" lang="zh-Hant">結合證據與判斷所選擇的行動。</span></div>
 </div>
-<div class="pair">
+<h3 id="data-worked">Follow one observation through the decision<span class="zh-full" lang="zh-Hant">沿著一筆觀察走到決策</span></h3><div class="tbl"><table><thead><tr><th scope="col">Stage<span class="zh-full" lang="zh-Hant">階段</span></th><th scope="col">Retail example<span class="zh-full" lang="zh-Hant">零售短例</span></th><th scope="col">What changes<span class="zh-full" lang="zh-Hant">增加了什麼</span></th></tr></thead><tbody><tr><td>Data<span class="zh-full" lang="zh-Hant">資料</span></td><td>Records of purchase time, items and store location.<span class="zh-full" lang="zh-Hant">購買時間、品項與門市位置紀錄。</span></td><td>Raw observations.<span class="zh-full" lang="zh-Hant">原始觀察。</span></td></tr><tr><td>Information / pattern<span class="zh-full" lang="zh-Hant">資訊／模式</span></td><td>Morning food purchases fell in school-area stores, but not factory-area stores.<span class="zh-full" lang="zh-Hant">學校附近門市的早晨食品購買下降，工廠附近沒有。</span></td><td>A meaningful comparison.<span class="zh-full" lang="zh-Hant">有意義的比較。</span></td></tr><tr><td>Insight / hypothesis<span class="zh-full" lang="zh-Hant">洞察／假設</span></td><td>The change may relate to the school-area customer routine; price, availability and rival activity remain alternatives.<span class="zh-full" lang="zh-Hant">變化可能與學區顧客作息有關；價格、供貨與對手活動仍是其他解釋。</span></td><td>Decision-relevant interpretation with uncertainty.<span class="zh-full" lang="zh-Hant">與決策有關、保留不確定性的解讀。</span></td></tr><tr><td>Decision and follow-up<span class="zh-full" lang="zh-Hant">決策與追蹤</span></td><td>Check stock and routines, then pilot a local assortment change; monitor sales, availability and waste.<span class="zh-full" lang="zh-Hant">檢查庫存與作息，再小規模調整當地品項；追蹤銷售、可得性與耗損。</span></td><td>A justified action and a way to learn.<span class="zh-full" lang="zh-Hant">有依據的行動與學習方式。</span></td></tr></tbody></table></div><div class="pair">
   <div><b>MIS and garbage in, garbage out<span class="zh-full" lang="zh-Hant">管理資訊系統與「垃圾進，垃圾出」</span></b><p>A management information system turns data into information for decisions. Technology cannot fix wrong data, the wrong question or poor interpretation.<span class="zh-full" lang="zh-Hant">管理資訊系統把資料轉為支援決策的資訊。科技無法修正錯誤資料、問錯問題或不佳的解讀。</span></p></div>
   <div><b>Information overload<span class="zh-full" lang="zh-Hant">資訊超載</span></b><p>Ask what decision we are making, which information is relevant, which metric would change the decision, and what can be ignored.<span class="zh-full" lang="zh-Hant">先問要做什麼決策、哪些資訊相關、什麼指標會改變決策，以及哪些內容可以忽略。</span></p></div>
 </div>
@@ -684,7 +698,7 @@ body.show-zh .cmp-sel select{max-width:100%}
 
 <aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Personalized ads accurately predict customer interests, but some customers find them intrusive. What trade-off should the brand evaluate before collecting more personal data?<span class="zh-full" lang="zh-Hant">個人化廣告能準確預測顧客興趣，但部分顧客覺得被侵犯隱私。品牌蒐集更多個資前，應評估什麼取捨？</span></p></aside>
 
-<h2 id="channels">6. Omnichannel and e-commerce<span class="zh-full" lang="zh-Hant">6. 全通路與電子商務</span></h2>
+<p>A prediction can rank likely buyers without establishing why they buy or what action will change their behavior. If a competitor opens nearby or working routines change, historical relationships may weaken. Check performance in the intended stores and period. With personalization, ask whether the added information improves the experience enough to justify its intrusiveness; more precise targeting can still reduce trust.<span class="zh-full" lang="zh-Hant">預測可以排列可能買家，卻未必解釋購買原因，也未必指出什麼行動能改變行為。附近新對手開業或作息改變，都可能使歷史關係失準。要檢查模型在目標門市與期間的表現。個人化也要看新增資訊是否改善體驗，足以抵銷侵入感；投放更準確仍可能降低信任。</span></p><h2 id="channels">6. Omnichannel and e-commerce<span class="zh-full" lang="zh-Hant">6. 全通路與電子商務</span></h2>
 <div class="pair">
   <div><b>Multichannel<span class="zh-full" lang="zh-Hant">多通路</span></b><p>Store, website, app and social media, possibly run separately.<span class="zh-full" lang="zh-Hant">門市、網站、App 與社群媒體，可能各自獨立運作。</span></p></div>
   <div><b>Omnichannel<span class="zh-full" lang="zh-Hant">全通路</span></b> <span class="zh">全通路</span><p>Channels integrated into one seamless journey: research on mobile, check stock online, buy in store, return elsewhere.<span class="zh-full" lang="zh-Hant">把通路整合成無縫旅程：手機研究、線上查庫存、門市購買、另一據點退貨。</span></p></div>
@@ -697,13 +711,13 @@ body.show-zh .cmp-sel select{max-width:100%}
   <div><b>Logistics<span class="zh-full" lang="zh-Hant">物流</span></b><p>Inventory, delivery, fulfillment and returns remain physical.<span class="zh-full" lang="zh-Hant">庫存、配送、訂單履行與退貨仍涉及實體作業。</span></p></div>
   <div><b>Revenue model<span class="zh-full" lang="zh-Hant">營收模式</span></b><p>Who pays, for what, how often? Users are not revenue.<span class="zh-full" lang="zh-Hant">誰付錢、為了什麼、多久付一次？使用者不等於營收。</span></p></div>
 </div>
-<p>Pure play is fully online; clicks-and-mortar combines both. Do not ask which is modern; ask which creates better value and economics here. E-commerce is a trade-off, not an automatically superior channel.<span class="zh-full" lang="zh-Hant">純網路業者完全在線上經營；虛實整合業者同時有線上與實體。別只問哪種比較現代，要問哪種在此情境創造更好的價值與經濟效益。電子商務涉及取捨，不是自動優於其他通路。</span></p>
+
 
 <!-- 7 -->
 
 <aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A retailer runs an app, website and stores, but a customer cannot return an online purchase in-store. What is missing from this channel strategy, and which customer and operating evidence should guide the fix?<span class="zh-full" lang="zh-Hant">零售商有 App、網站和門市，但顧客不能在門市退回網購商品。這項通路策略缺少什麼？應用哪些顧客與營運證據決定改善方式？</span></p></aside>
 
-<h2 id="digital">7. Digital behavior and pain points<span class="zh-full" lang="zh-Hant">7. 數位行為與痛點</span></h2>
+<h3 id="commerce-economics">Who pays, and what still has to be delivered?<span class="zh-full" lang="zh-Hant">誰付錢，還有哪些工作必須完成？</span></h3><div class="tbl"><table><thead><tr><th scope="col">Revenue model<span class="zh-full" lang="zh-Hant">收入模式</span></th><th scope="col">Payment mechanism<span class="zh-full" lang="zh-Hant">付款機制</span></th><th scope="col">Economic question<span class="zh-full" lang="zh-Hant">經濟問題</span></th></tr></thead><tbody><tr><td>Direct sale<span class="zh-full" lang="zh-Hant">直接銷售</span></td><td>Buyer pays for a product or service.<span class="zh-full" lang="zh-Hant">買家為產品或服務付費。</span></td><td>Does the price cover product, acquisition, delivery and returns?<span class="zh-full" lang="zh-Hant">價格能否涵蓋產品、獲客、配送與退貨？</span></td></tr><tr><td>Commission / transaction fee<span class="zh-full" lang="zh-Hant">佣金／交易費</span></td><td>A platform earns a share or fee when a transaction occurs.<span class="zh-full" lang="zh-Hant">平台在成交時收取比例或費用。</span></td><td>Are enough valuable transactions completed after serving both sides?<span class="zh-full" lang="zh-Hant">服務買賣雙方後，是否完成足夠有價值的交易？</span></td></tr><tr><td>Subscription<span class="zh-full" lang="zh-Hant">訂閱</span></td><td>Customer pays repeatedly for continued access or service.<span class="zh-full" lang="zh-Hant">顧客持續付費取得存取權或服務。</span></td><td>Will repeat value support retention and service cost?<span class="zh-full" lang="zh-Hant">持續價值能否支持留存與服務成本？</span></td></tr><tr><td>Advertising<span class="zh-full" lang="zh-Hant">廣告</span></td><td>An advertiser pays for access to an audience.<span class="zh-full" lang="zh-Hant">廣告主為觸及受眾付費。</span></td><td>Can audience value support revenue without damaging the user experience?<span class="zh-full" lang="zh-Hant">受眾價值能否支持收入，同時維持使用體驗？</span></td></tr></tbody></table></div><p>Pure play means online-only; bricks-and-mortar means physical stores; clicks-and-mortar combines the two. Each can create customer value. An integrated journey requires accurate stock information, usable interfaces and workable purchase/return handoffs. A convenient website followed by failed delivery breaks the same promise that attracted the customer.<span class="zh-full" lang="zh-Hant">Pure play 是純線上，bricks-and-mortar 是實體店，clicks-and-mortar 結合兩者。每種都可能創造顧客價值。整合旅程需要正確庫存、可用介面與能銜接的購買／退貨流程。網站便利卻配送失敗，會破壞原本吸引顧客的承諾。</span></p><h2 id="digital">7. Digital behavior and pain points<span class="zh-full" lang="zh-Hant">7. 數位行為與痛點</span></h2>
 <div class="tbl"><table>
 <thead><tr><th>Tool<span class="zh-full" lang="zh-Hant">工具</span></th><th>Value<span class="zh-full" lang="zh-Hant">價值</span></th><th>Limit<span class="zh-full" lang="zh-Hant">限制</span></th></tr></thead>
 <tbody>
@@ -712,12 +726,12 @@ body.show-zh .cmp-sel select{max-width:100%}
 <tr><td><b>Remarketing</b> <span class="zh">再行銷</span><span class="zh-full" lang="zh-Hant">再行銷</span></td><td>Uses past interest to remind and convert.<span class="zh-full" lang="zh-Hant">根據過往興趣提醒顧客並促成轉換。</span></td><td>If the customer already bought, the ad is irrelevant or shows a cheaper price later.<span class="zh-full" lang="zh-Hant">若顧客已購買，廣告可能無關，甚至讓他看到後來更便宜的價格。</span></td></tr>
 </tbody></table></div>
 <div class="method"><span>Customer friction<span class="zh-full" lang="zh-Hant">顧客使用阻力</span></span><i>→</i><span>Pain point<span class="zh-full" lang="zh-Hant">痛點</span></span><i>→</i><span>Alternative solution<span class="zh-full" lang="zh-Hant">替代解決方案</span></span><i>→</i><span class="hi">Adoption opportunity<span class="zh-full" lang="zh-Hant">採用機會</span></span></div>
-<p>Banks, fintech and Grab removed fees, waiting and complexity. But pushing customers to ATMs and apps can remove face-to-face relationships some segments value: efficiency versus human touch.<span class="zh-full" lang="zh-Hant">銀行、金融科技與 Grab 減少費用、等待和複雜度。但把顧客轉到 ATM 與 App，也可能移除某些客群重視的面對面關係：這是效率與人情互動的取捨。</span></p>
+<p>The class uses banks, fintech and Uber/Grab to explore fees, waiting and complexity as pain points. A useful alternative removes a valued friction at a viable cost. Moving everyone to ATMs or apps can also remove face-to-face help some customers value, so efficiency and customer relationship effects must be considered together.<span class="zh-full" lang="zh-Hant">課堂以銀行、金融科技與 Uber／Grab 探索費用、等待與複雜流程等痛點。有用替代方案要以可行成本降低顧客在意的阻礙。把所有人推向 ATM 或 App，也可能移除部分顧客重視的面對面協助，因此須一起衡量效率與關係影響。</span></p>
 
 <!-- 8 -->
 <h2 id="loyalty">8. Loyalty programs<span class="zh-full" lang="zh-Hant">8. 忠誠計畫</span></h2>
 <p class="sub">A loyalty program is an intervention, not the objective. Membership is not behavioral loyalty, and behavioral loyalty is not attitudinal loyalty.<span class="zh-full" lang="zh-Hant">忠誠計畫是一項介入，不是目標本身。加入會員不等於行為忠誠，行為忠誠也不等於態度忠誠。</span></p>
-<div data-mk="loyalty"></div>
+<div class="tbl"><table><thead><tr><th scope="col">Concept<span class="zh-full" lang="zh-Hant">概念</span></th><th scope="col">Evidence<span class="zh-full" lang="zh-Hant">證據</span></th><th scope="col">Do not infer<span class="zh-full" lang="zh-Hant">不能直接推論</span></th></tr></thead><tbody><tr><td>Program membership<span class="zh-full" lang="zh-Hant">方案會員資格</span></td><td>Enrollment or a stamp card.<span class="zh-full" lang="zh-Hant">加入會員或取得集點卡。</span></td><td>A strong brand preference.<span class="zh-full" lang="zh-Hant">具有強烈品牌偏好。</span></td></tr><tr><td>Behavioral loyalty<span class="zh-full" lang="zh-Hant">行為忠誠</span></td><td>Repeated purchase over a defined period.<span class="zh-full" lang="zh-Hant">明確期間內重複購買。</span></td><td>The program caused those purchases.<span class="zh-full" lang="zh-Hant">購買是方案造成的。</span></td></tr><tr><td>Attitudinal loyalty<span class="zh-full" lang="zh-Hant">態度忠誠</span></td><td>Ongoing preference or attachment.<span class="zh-full" lang="zh-Hant">持續偏好或情感連結。</span></td><td>Never buying another brand.<span class="zh-full" lang="zh-Hant">永遠不買別的品牌。</span></td></tr></tbody></table></div><p>In the coffee example, a customer buys 10 cups per month before joining and still buys 10 afterward. A free reward may now subsidize the same behavior. A buy-nine-get-one-free card aims to make returning more attractive, but the test is whether it creates additional visits or contribution after reward costs. Members often already like the brand, so comparing members with all nonmembers can exaggerate the program effect.<span class="zh-full" lang="zh-Hant">咖啡例子中，顧客加入前每月買 10 杯，加入後仍買 10 杯，免費獎勵可能只補貼既有行為。買九送一希望提高回訪誘因，但要看它是否在扣除獎勵成本後帶來額外造訪或貢獻。會員往往本來就喜歡品牌，直接拿會員與所有非會員比較，可能高估方案效果。</span></p><div data-mk="loyalty"></div>
 <div class="formula">Program value ≈ incremental customer value − reward and program cost<span class="zh-full" lang="zh-Hant">計畫價值 ≈ 新增顧客價值 − 獎勵與計畫成本</span></div>
 <p class="key">Ask the counterfactual <span class="zh">反事實</span>: what would this customer have done without the program? Rewarding behavior that would have happened anyway only reduces margin.<span class="zh-full" lang="zh-Hant">追問反事實情境：若沒有計畫，顧客原本會怎麼做？若獎勵的是本來就會發生的行為，只會降低利潤率。</span></p>
 
@@ -730,7 +744,7 @@ body.show-zh .cmp-sel select{max-width:100%}
 </div>
 <div class="method"><span>Impression<span class="zh-full" lang="zh-Hant">曝光</span></span><i>→</i><span>Click<span class="zh-full" lang="zh-Hant">點擊</span></span><i>→</i><span>Visit<span class="zh-full" lang="zh-Hant">到訪</span></span><i>→</i><span>Purchase<span class="zh-full" lang="zh-Hant">購買</span></span><i>→</i><span>Repeat<span class="zh-full" lang="zh-Hant">重購</span></span><i>→</i><span class="hi">Profit<span class="zh-full" lang="zh-Hant">利潤</span></span></div>
 <p>CTR is an intermediate metric. Likes and views become vanity metrics <span class="zh">虛榮指標</span> when they are not tied to the objective. Even sales can mislead: the market grew, prices rose, discounts cut margin, or acquisition rose while retention collapsed.<span class="zh-full" lang="zh-Hant">CTR 是中間階段指標。按讚與觀看若未連結目標，就可能變成虛榮指標。連銷售也可能誤導：也許市場整體成長、價格上升、折扣侵蝕利潤，或獲客增加卻伴隨留存崩跌。</span></p>
-<div data-mk="metric"></div>
+<div class="tbl"><table><thead><tr><th scope="col">Objective<span class="zh-full" lang="zh-Hant">目標</span></th><th scope="col">Closer outcome measure<span class="zh-full" lang="zh-Hant">較接近結果的指標</span></th><th scope="col">What earlier metrics miss<span class="zh-full" lang="zh-Hant">前段指標漏掉什麼</span></th></tr></thead><tbody><tr><td>Awareness<span class="zh-full" lang="zh-Hant">知名度</span></td><td>Target awareness / relevant reach.<span class="zh-full" lang="zh-Hant">目標客群知名度／相關觸及。</span></td><td>Exposure alone does not establish purchase.<span class="zh-full" lang="zh-Hant">曝光本身無法證明購買。</span></td></tr><tr><td>Trial<span class="zh-full" lang="zh-Hant">試買</span></td><td>First purchase or first actual use.<span class="zh-full" lang="zh-Hant">首次購買或實際使用。</span></td><td>A click or registration may stop before use.<span class="zh-full" lang="zh-Hant">點擊或註冊可能沒有走到使用。</span></td></tr><tr><td>Repeat / retention<span class="zh-full" lang="zh-Hant">重購／留存</span></td><td>Cohort repeat rate, visit frequency, retention and churn over a stated period.<span class="zh-full" lang="zh-Hant">明確期間的同群重購率、到訪頻率、留存與流失。</span></td><td>Sign-ups do not show later behavior.<span class="zh-full" lang="zh-Hant">加入人數看不出之後行為。</span></td></tr><tr><td>Profitability<span class="zh-full" lang="zh-Hant">獲利</span></td><td>Incremental contribution after relevant costs.<span class="zh-full" lang="zh-Hant">扣除相關成本後的增量貢獻。</span></td><td>Sales can rise while discounts and service costs erode margin.<span class="zh-full" lang="zh-Hant">營收可能上升，但折扣與服務成本侵蝕利潤。</span></td></tr></tbody></table></div><div data-mk="metric"></div>
 
 <!-- 10 -->
 
@@ -776,7 +790,7 @@ body.show-zh .cmp-sel select{max-width:100%}
   <details><summary>Why is high CTR not enough when the goal is repeat purchase?<span class="zh-full" lang="zh-Hant">目標是重購時，為什麼高 CTR 不夠？</span></summary><p>CTR measures an earlier step, not repeat behavior or its economic value.<span class="zh-full" lang="zh-Hant">CTR 衡量更早的階段，而非重購行為或其經濟價值。</span></p></details>
 </div>
 
-<h3 id="templates">Answer templates<span class="zh-full" lang="zh-Hant">答題模板</span></h3>
+<h2 id="answer-templates">Answer templates<span class="zh-full" lang="zh-Hant">答題模板</span></h2>
 <div class="tbl"><table>
 <tbody>
 <tr><td><b>CRM problem</b><span class="zh-full" lang="zh-Hant">CRM 問題</span></td><td>Objective → customer → data → pattern → action → metric → risk (privacy, cost, irrelevance)<span class="zh-full" lang="zh-Hant">目標 → 顧客 → 資料 → 模式 → 行動 → 指標 → 風險（隱私、成本、無關內容）</span></td></tr>
@@ -784,7 +798,7 @@ body.show-zh .cmp-sel select{max-width:100%}
 <tr><td><b>Digital business</b><span class="zh-full" lang="zh-Hant">數位商業</span></td><td>Customer value → friction → channel → trust → logistics → revenue model<span class="zh-full" lang="zh-Hant">顧客價值 → 阻力 → 通路 → 信任 → 物流 → 營收模式</span></td></tr>
 <tr><td><b>Loyalty program</b><span class="zh-full" lang="zh-Hant">忠誠計畫</span></td><td>Objective → incentive → expected behavior → metric → counterfactual → program cost<span class="zh-full" lang="zh-Hant">目標 → 誘因 → 預期行為 → 指標 → 反事實情境 → 計畫成本</span></td></tr>
 </tbody></table></div>
-<p class="key">Data, channels and visible metrics are not the goal. The test is whether actions change meaningful customer behavior and create value without damaging margin or trust.<span class="zh-full" lang="zh-Hant">資料、通路與看得見的指標並非目標。真正要檢驗的是：行動是否改變有意義的顧客行為，並在不傷害利潤率或信任的情況下創造價值。</span></p>
+<div class="answer-example"><b>Example · A local purchase decline<span class="zh-full" lang="zh-Hant">範例｜當地購買下降</span></b><p>The records show that morning visits fell in school-area stores. They do not establish that price caused the decline. I would first compare availability, customer routines and nearby competition, then pilot an action matched to the likely problem. Success should be judged by incremental morning visits and contribution, alongside waste and customer feedback. Any personalized outreach should use only information needed for that purpose.<span class="zh-full" lang="zh-Hant">紀錄顯示學校附近門市的早晨造訪下降，不能據此判定是價格造成。我會先比較供貨、顧客作息與附近競爭，再小規模測試符合可能原因的行動。以額外早晨造訪及貢獻利益判斷成果，同時看耗損與顧客回饋。個人化聯繫只使用該目的需要的資訊。</span></p></div><p class="key">Data, channels and visible metrics are not the goal. The test is whether actions change meaningful customer behavior and create value without damaging margin or trust.<span class="zh-full" lang="zh-Hant">資料、通路與看得見的指標並非目標。真正要檢驗的是：行動是否改變有意義的顧客行為，並在不傷害利潤率或信任的情況下創造價值。</span></p>
 </article></main>
 </div>
 
@@ -966,7 +980,7 @@ const toggle=document.getElementById('zhToggle'),label=document.getElementById('
 const key='study-notes-show-zh';
 function syncOptions(on){document.querySelectorAll('option[data-zh]').forEach(o=>{if(!o.dataset.en)o.dataset.en=o.textContent;o.textContent=o.dataset.en+(on&&o.dataset.zh?'／'+o.dataset.zh:'')})}
 function set(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';syncOptions(on);try{localStorage.setItem(key,on?'1':'0')}catch(e){}}
-let initial=false;try{initial=localStorage.getItem(key)==='1'}catch(e){}
+let initial=false;
 set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
 const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
 if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();

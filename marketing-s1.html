@@ -561,7 +561,21 @@ body.show-zh .cmp-sel select{max-width:100%}
   a.cta .zh-full, .risk b .zh-full, .hint b .zh-full, .tcard .tnum .zh-full { color: inherit; }
 }
 </style>
-</head><body>
+<style id="learning-revision">
+/* Reading additions use the established system palette and full body column. */
+.doc p,.doc li,.hero .lead{max-width:none}
+.doc h2,.doc h3{scroll-margin-top:calc(var(--header-height,80px) + 20px)}
+.doc .tbl{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+.doc .tbl table{width:100%}
+.doc .tbl th{vertical-align:top}
+.doc .tbl td{vertical-align:top;overflow-wrap:break-word}
+.doc .method,.doc .flow{max-width:100%;flex-wrap:wrap}
+.answer-example{margin:1rem 0;padding:16px 18px;background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px}
+.answer-example>b{color:var(--accent-ink);font-size:.9rem}
+.answer-example p{margin:.5rem 0 0}
+.sessions a.pill:hover{background:var(--tint);color:var(--accent-ink);border-color:var(--accent)}
+@media(max-width:600px){.top-in{gap:8px 10px}.page-tools{flex-basis:100%;justify-content:flex-end;flex-wrap:wrap;margin:0}.page-tools .practice-toggle{max-width:100%}.answer-example{padding:14px}.doc .tbl td,.doc .tbl th{min-width:130px}}
+</style></head><body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <pattern id="dwlHatch" width="6" height="6" patternunits="userSpaceOnUse" patterntransform="rotate(45)">
@@ -569,7 +583,7 @@ body.show-zh .cmp-sel select{max-width:100%}
 
 <header class="top"><div class="top-in">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="marketing.html">Marketing<span class="zh-full" lang="zh-Hant">行銷學</span></a><span>/</span><b>Session 1<span class="zh-full" lang="zh-Hant">第 1 堂</span></b></nav>
-  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
+  <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false" aria-controls="rail">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
   <nav class="sessions" aria-label="Sessions"><span class="pill" aria-current="page">S1</span><a class="pill" href="marketing-s2.html">S2</a><a class="pill" href="marketing-s3.html">S3</a><a class="pill" href="marketing-s4.html">S4</a></nav>
 <div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
 
@@ -593,7 +607,7 @@ body.show-zh .cmp-sel select{max-width:100%}
   <div><b>Advertising<span class="zh-full" lang="zh-Hant">廣告</span></b><p>One communication tool inside Promotion.<span class="zh-full" lang="zh-Hant">促銷之中的一種溝通工具。</span></p></div>
   <div><b>Marketing<span class="zh-full" lang="zh-Hant">行銷</span></b><p>Customer + value + market + strategy + execution: product, price, distribution, service, branding, research, experience and demand management.<span class="zh-full" lang="zh-Hant">顧客＋價值＋市場＋策略＋執行：包括產品、價格、通路、服務、品牌、研究、體驗與需求管理。</span></p></div>
 </div>
-<h3 id="evidence">Evidence, not common sense<span class="zh-full" lang="zh-Hant">依據證據，而非只靠常識</span></h3>
+<p>The order matters. A firm first learns whose problem it can solve, decides what value to offer, and arranges price, access and delivery. Advertising then helps people understand that offer. An attractive ad cannot compensate for a product that is unavailable or solves the wrong problem.<span class="zh-full" lang="zh-Hant">順序很重要：先了解能解決誰的問題，決定提供什麼價值，再安排價格、取得方式與交付。廣告接著幫助顧客理解提案。產品買不到，或解決的不是顧客問題，再吸引人的廣告也難以補救。</span></p><h3 id="evidence">Evidence, not common sense<span class="zh-full" lang="zh-Hant">依據證據，而非只靠常識</span></h3>
 <p>Store A sells more iced coffee than Store B. "It is hotter there" is plausible, but customer profile, traffic, competitors, price, opening hours or promotions could explain the same pattern.<span class="zh-full" lang="zh-Hant">A 店的冰咖啡賣得比 B 店多。「那裡比較熱」是合理假設，但客群、來客量、競爭者、價格、營業時間或促銷，也可能解釋同樣的現象。</span></p>
 <div class="method"><span>Observation<span class="zh-full" lang="zh-Hant">觀察</span></span><i>→</i><span>Possible explanation<span class="zh-full" lang="zh-Hant">可能的解釋</span></span><i>≠</i><span class="hi">Proven explanation<span class="zh-full" lang="zh-Hant">已獲證實的解釋</span></span></div>
 <p class="key">Common sense can generate a hypothesis <span class="zh">假設</span>. Evidence is needed to support a conclusion. Always ask: what other variables could explain the same pattern?<span class="zh-full" lang="zh-Hant">常識可以產生假設，結論則需要證據支持。要持續追問：還有哪些變數能解釋同樣的現象？</span></p>
@@ -619,7 +633,7 @@ body.show-zh .cmp-sel select{max-width:100%}
 <h3 id="cv">Customer value<span class="zh-full" lang="zh-Hant">顧客價值</span></h3>
 <div class="formula">Customer value ≈ perceived benefits ÷ perceived costs<span class="zh-full" lang="zh-Hant">顧客價值 ≈ 感知利益 ÷ 感知成本</span></div>
 <p>Costs include money, time, effort, risk and inconvenience. Benefits can be functional, emotional, social, convenience or experience.<span class="zh-full" lang="zh-Hant">成本包括金錢、時間、力氣、風險與不便；利益則可能來自功能、情緒、社交、便利或體驗。</span></p>
-<div data-mk="value"></div>
+<p><b>Read the comparison from the customer's perspective.</b> A THB 70 coffee may involve more waiting and travel than a THB 100 coffee near the office. Someone in a hurry may prefer the second shop; someone with spare time may prefer the first. The benefit–cost ratio is a conceptual aid: it does not put all emotions, risk and time on one objectively correct scale. The calculator below isolates price and time so this trade-off is easier to see.<span class="zh-full" lang="zh-Hant"><b>站在顧客角度比較。</b>70 泰銖的咖啡可能比辦公室附近 100 泰銖的咖啡多花等待與交通時間。趕時間的人可能選後者，時間充裕的人可能選前者。利益與成本的比值是概念工具，不能把情緒、風險與時間放到唯一客觀的量尺上。下方計算器先單獨比較價格與時間，讓取捨更容易看懂。</span></p><div data-mk="value"></div>
 <p class="note-small">Illustrative numbers built on the class two-shop example.<span class="zh-full" lang="zh-Hant">以下數字是依課堂兩家店的例子設計的示範數值。</span></p>
 
 <h3 id="loyal">Satisfaction, repeat purchase, loyalty<span class="zh-full" lang="zh-Hant">滿意度、重複購買與忠誠</span></h3>
@@ -658,7 +672,7 @@ body.show-zh .cmp-sel select{max-width:100%}
   <div><b>Branding<span class="zh-full" lang="zh-Hant">品牌經營</span></b><p>When features are copied, brand meaning matters more: recognition, associations, expectations and trust. A brand is what customers associate with the offering, not a logo.<span class="zh-full" lang="zh-Hant">功能被模仿後，品牌意義更重要：辨識度、聯想、期待與信任。品牌是顧客對產品或服務的聯想，而不只是標誌。</span></p></div>
 </div>
 
-<!-- 4 -->
+<p>A <b>Unique Selling Proposition (USP)</b> is a distinct selling claim. Its commercial value depends on a chain: customers notice the difference, understand its benefit, value it relative to alternatives, and choose accordingly. A copied feature may lose uniqueness quickly. Consistent experience and recognizable brand associations can preserve a reason to choose even when technical features converge.<span class="zh-full" lang="zh-Hant"><b>USP（獨特銷售主張）</b>是與眾不同的銷售訴求。它要轉成商業價值，須經過：顧客注意到差異、理解利益、相對於替代品重視這項利益，並因此選擇。功能被模仿後可能很快失去獨特性；一致體驗與可辨識的品牌聯想，仍可能維持選擇理由。</span></p><!-- 4 -->
 
 <aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A phone maker adds an unusual camera feature that rivals do not offer. What must be true about the target customer before the feature counts as meaningful differentiation rather than mere difference?<span class="zh-full" lang="zh-Hant">手機品牌增加競爭者沒有的特殊相機功能。從目標顧客角度看，還必須滿足哪些條件，這項功能才能算有意義的差異化，而不只是不同？</span></p></aside>
 
@@ -672,7 +686,7 @@ body.show-zh .cmp-sel select{max-width:100%}
 <tr><td>Purchase frequency<span class="zh-full" lang="zh-Hant">購買頻率</span></td><td>Rare, high value<span class="zh-full" lang="zh-Hant">低頻、高金額</span></td><td>Weekly, low value<span class="zh-full" lang="zh-Hant">每週、低金額</span></td></tr>
 <tr><td>What matters most<span class="zh-full" lang="zh-Hant">最重要的因素</span></td><td>Buying power, status<span class="zh-full" lang="zh-Hant">購買力與地位</span></td><td>Population size, access, price<span class="zh-full" lang="zh-Hant">人口規模、可取得性與價格</span></td></tr>
 </tbody></table></div>
-<p>Check population, age, income, purchasing power, needs, growth, competition and distribution access. A big population with weak buying power, poor fit or hard distribution can still be unattractive.<span class="zh-full" lang="zh-Hant">檢查人口、年齡、所得、購買力、需要、成長、競爭與通路可及性。即使人口多，若購買力弱、契合度差或配送困難，仍可能沒有吸引力。</span></p>
+<p>The Mercedes–Tesco Lotus comparison illustrates why the same population figure can lead to different decisions. A car business needs enough reachable buyers with the required purchasing power, even though purchases are infrequent. A mass retailer needs convenient access and repeated shopping trips. Market size becomes useful only after the category, customer, occasion and economics have been defined.<span class="zh-full" lang="zh-Hant">Mercedes 與 Tesco Lotus 說明，同一個人口數字對不同企業意義不同。汽車業需要可觸及、具足夠購買力的買家，即使購買不頻繁；大眾零售商更依賴便利據點與重複購物。先界定品類、顧客、情境與經濟性，市場規模才有決策價值。</span></p><p>Check population, age, income, purchasing power, needs, growth, competition and distribution access. A big population with weak buying power, poor fit or hard distribution can still be unattractive.<span class="zh-full" lang="zh-Hant">檢查人口、年齡、所得、購買力、需要、成長、競爭與通路可及性。即使人口多，若購買力弱、契合度差或配送困難，仍可能沒有吸引力。</span></p>
 
 
 <aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Thailand has a large population, yet a premium brand may still find a target market unattractive. Which customer, purchasing-power, competitive and channel facts would matter more than population size alone?<span class="zh-full" lang="zh-Hant">泰國人口眾多，高價品牌的目標市場卻仍可能缺乏吸引力。除了人口規模，還應看哪些顧客、購買力、競爭與通路證據？</span></p></aside>
@@ -686,14 +700,7 @@ body.show-zh .cmp-sel select{max-width:100%}
 
 <h3 id="env">External environment<span class="zh-full" lang="zh-Hant">外部環境</span></h3>
 <p>Monitor customers, competitors, the economy, technology, culture, demographics, the natural environment and globalization. A strategy can fail because the environment changed, even if the company did not.<span class="zh-full" lang="zh-Hant">觀察顧客、競爭者、經濟、科技、文化、人口結構、自然環境與全球化。即使公司沒有改變，策略也可能因環境改變而失效。</span></p>
-<div class="tbl"><table>
-<thead><tr><th>Challenge<span class="zh-full" lang="zh-Hant">挑戰</span></th><th>Marketing question<span class="zh-full" lang="zh-Hant">行銷問題</span></th></tr></thead>
-<tbody>
-<tr><td>Changing customer values<span class="zh-full" lang="zh-Hant">顧客價值觀改變</span></td><td>Is our value proposition still relevant?<span class="zh-full" lang="zh-Hant">我們的價值主張仍切合顧客嗎？</span></td></tr>
-<tr><td>Recession<span class="zh-full" lang="zh-Hant">經濟衰退</span></td><td>Wants remain, buying power falls: fewer wants become demand.<span class="zh-full" lang="zh-Hant">想要仍存在，但購買力下降，因此較少的想要能轉化成需求。</span></td></tr>
-<tr><td>Technology and e-commerce<span class="zh-full" lang="zh-Hant">科技與電子商務</span></td><td>Channels change how value is delivered, not whether we must understand customers.<span class="zh-full" lang="zh-Hant">通路改變價值的交付方式，但不改變理解顧客的必要性。</span></td></tr>
-<tr><td>Globalization<span class="zh-full" lang="zh-Hant">全球化</span></td><td>Are our competitors only local firms, or global alternatives too?<span class="zh-full" lang="zh-Hant">我們的競爭者只有本地企業，還包括全球替代方案？</span></td></tr>
-</tbody></table></div>
+<h3 id="context-to-mix">How environmental change reaches the 4Ps<span class="zh-full" lang="zh-Hant">環境變化如何影響 4Ps</span></h3><div class="tbl"><table><thead><tr><th scope="col">Change<span class="zh-full" lang="zh-Hant">變化</span></th><th scope="col">Mechanism<span class="zh-full" lang="zh-Hant">作用機制</span></th><th scope="col">Possible response<span class="zh-full" lang="zh-Hant">可能回應</span></th></tr></thead><tbody><tr><td>Changing customer values<span class="zh-full" lang="zh-Hant">顧客價值改變</span></td><td>A once-relevant benefit may matter less as needs, routines and social expectations change.<span class="zh-full" lang="zh-Hant">需要、作息與社會期待改變時，原本相關的利益可能不再重要。</span></td><td>Research whether the value proposition still fits the target.<span class="zh-full" lang="zh-Hant">研究價值主張是否仍符合目標顧客。</span></td></tr><tr><td>Recession<span class="zh-full" lang="zh-Hant">景氣衰退</span></td><td>Desire can remain while buying power falls; some wants no longer become demand.<span class="zh-full" lang="zh-Hant">想要可能仍在，但購買力下降，部分想要無法轉成有效需求。</span></td><td>Reconsider pack sizes, value tiers and payment/access friction.<span class="zh-full" lang="zh-Hant">重新檢視包裝規格、價值層級與付款／取得阻礙。</span></td></tr><tr><td>E-commerce<span class="zh-full" lang="zh-Hant">電子商務</span></td><td>Search and comparison become easier; delivery and returns become part of the offer.<span class="zh-full" lang="zh-Hant">搜尋比較更容易，配送與退貨成為提案的一部分。</span></td><td>Coordinate product information, total price, fulfillment and communication.<span class="zh-full" lang="zh-Hant">協調產品資訊、總價格、履約與溝通。</span></td></tr><tr><td>Globalization<span class="zh-full" lang="zh-Hant">全球化</span></td><td>Customers gain alternatives beyond familiar local competitors.<span class="zh-full" lang="zh-Hant">顧客的替代選項超出熟悉的本地競爭者。</span></td><td>Recheck the benefit and competitive set, including substitutes.<span class="zh-full" lang="zh-Hant">重新檢驗利益與競爭範圍，包含替代品。</span></td></tr></tbody></table></div>
 <p class="hint"><b>中文邏輯</b><span>「上網賣」只是 channel 選擇，不是 strategy；仍需 target、value proposition 和 4Ps 配合。</span></p>
 
 <!-- 5 -->
@@ -710,12 +717,12 @@ body.show-zh .cmp-sel select{max-width:100%}
 <h3 id="funnel">The funnel is a diagnostic tool<span class="zh-full" lang="zh-Hant">漏斗是診斷工具</span></h3>
 <div class="method"><span>Awareness<span class="zh-full" lang="zh-Hant">知名度</span></span><i>→</i><span>Interest<span class="zh-full" lang="zh-Hant">興趣</span></span><i>→</i><span>Trial<span class="zh-full" lang="zh-Hant">首次試用／購買</span></span><i>→</i><span>Repeat purchase<span class="zh-full" lang="zh-Hant">重複購買</span></span></div>
 <div data-mk="funnel"></div>
-<p>Low sales can come from any stage. Do not answer every problem with more advertising.<span class="zh-full" lang="zh-Hant">銷售低迷可能發生在任何階段。別用更多廣告回答所有問題。</span></p>
+<div class="tbl"><table><thead><tr><th scope="col">Observed bottleneck<span class="zh-full" lang="zh-Hant">觀察到的瓶頸</span></th><th scope="col">What it may mean<span class="zh-full" lang="zh-Hant">可能意義</span></th><th scope="col">First investigation<span class="zh-full" lang="zh-Hant">先調查什麼</span></th></tr></thead><tbody><tr><td>Low awareness<span class="zh-full" lang="zh-Hant">知名度低</span></td><td>Relevant customers may not know the offer exists.<span class="zh-full" lang="zh-Hant">相關顧客可能不知道有這項產品／服務。</span></td><td>Target reach and distribution of the message.<span class="zh-full" lang="zh-Hant">目標觸及與訊息傳播。</span></td></tr><tr><td>Aware, little interest<span class="zh-full" lang="zh-Hant">知道但沒興趣</span></td><td>The benefit may seem irrelevant or unclear.<span class="zh-full" lang="zh-Hant">利益可能不相關或不清楚。</span></td><td>Need fit and message understanding.<span class="zh-full" lang="zh-Hant">需求契合與訊息理解。</span></td></tr><tr><td>Interested, little trial<span class="zh-full" lang="zh-Hant">有興趣卻少試買</span></td><td>Price, access, risk or friction may block purchase.<span class="zh-full" lang="zh-Hant">價格、取得方式、風險或阻礙可能擋住購買。</span></td><td>Where the first transaction becomes difficult.<span class="zh-full" lang="zh-Hant">首次交易卡在哪裡。</span></td></tr><tr><td>Trial, little repeat<span class="zh-full" lang="zh-Hant">試買後少重購</span></td><td>The experience or the next occasion may not support return.<span class="zh-full" lang="zh-Hant">體驗或下一次情境可能不足以支持回購。</span></td><td>Product experience, frequency and alternatives.<span class="zh-full" lang="zh-Hant">產品體驗、購買頻率與替代品。</span></td></tr></tbody></table></div><p>These are diagnostic hypotheses. A low conversion rate locates a problem; research is still needed to explain it. Raising awareness may send more people into the same purchase barrier without resolving it.<span class="zh-full" lang="zh-Hant">這些是診斷假設。低轉換率指出問題位置，原因仍需研究。若購買障礙沒解決，提高知名度可能只是把更多人送進同一個瓶頸。</span></p><p>Low sales can come from any stage. Do not answer every problem with more advertising.<span class="zh-full" lang="zh-Hant">銷售低迷可能發生在任何階段。別用更多廣告回答所有問題。</span></p>
 
 <h3 id="demand">Demand management and GET + KEEP<span class="zh-full" lang="zh-Hant">需求管理與獲客＋留客</span></h3>
 <div class="pair">
   <div><b>Demand management<span class="zh-full" lang="zh-Hant">需求管理</span></b> <span class="zh">需求管理</span><p>Too much demand means queues, lower service quality and unhappy customers; too little means idle staff and assets. The goal is appropriate demand at the right time for the capacity. A gym can shift peak users to off-peak hours.<span class="zh-full" lang="zh-Hant">需求太多會造成排隊、服務品質下降與顧客不滿；需求太少則使人力與資產閒置。目標是在適當時間，讓需求符合產能。健身房可以把尖峰使用者引導到離峰時段。</span></p></div>
-  <div><b>GET + KEEP<span class="zh-full" lang="zh-Hant">獲客＋留客</span></b><p>Demand comes from new and repeat customers. New + retained − lost = customer base development. 10,000 new customers with 9,500 lost is weak growth. This is the bridge to Session 2 CRM.<span class="zh-full" lang="zh-Hant">需求來自新顧客與回頭客。新顧客＋留存顧客－流失顧客，決定顧客基礎的變化。獲得 10,000 位新客，卻流失 9,500 位，成長仍弱。這也連結到第 2 堂的 CRM。</span></p></div>
+  <div><b>GET + KEEP<span class="zh-full" lang="zh-Hant">獲客＋留客</span></b><p>Demand comes from new and repeat customers. Starting customer base + acquired customers − customers lost = ending customer base, using consistent definitions and periods. 10,000 new customers with 9,500 lost gives a net addition of 500. Session 2 develops acquisition, retention and relationship economics.<span class="zh-full" lang="zh-Hant">需求來自新客與重複購買。定義與期間一致時，期初顧客＋新增顧客－流失顧客＝期末顧客。新增 10,000、流失 9,500，淨增為 500。Session 2 會展開獲客、留存與關係經濟性。</span></p></div>
 </div>
 
 <!-- 6 -->
@@ -737,7 +744,7 @@ body.show-zh .cmp-sel select{max-width:100%}
   <div><b>Selling Concept<span class="zh-full" lang="zh-Hant">銷售觀念</span></b><p>Product first → sell harder.<span class="zh-full" lang="zh-Hant">產品先行 → 更努力推銷。</span></p></div>
   <div><b>Marketing Concept<span class="zh-full" lang="zh-Hant">行銷觀念</span></b><p>Customer first → design the offering to fit.<span class="zh-full" lang="zh-Hant">顧客先行 → 設計契合需要的產品或服務。</span></p></div>
 </div>
-<div data-mk="philo"></div>
+<h3 id="philosophy-logic">Why the starting assumption changes the decision<span class="zh-full" lang="zh-Hant">為什麼出發假設會改變決策</span></h3><p>Production thinking is useful when affordability and availability are the main customer problems. Product thinking becomes risky when managers equate more features with better value. Selling starts with existing output and tries to persuade buyers; marketing starts with the target's need and designs an offer around it. Societal marketing checks long-term welfare. Strategic marketing also checks whether logistics, costs and competitive conditions let the firm deliver that value profitably.<span class="zh-full" lang="zh-Hant">當顧客主要問題是買不起或買不到，生產觀念有用。若管理者把功能多直接當成價值高，產品觀念就有風險。銷售觀念從既有產品出發、說服人購買；行銷觀念從目標顧客需要出發設計提案。社會行銷檢查長期福祉；策略行銷還要檢查物流、成本與競爭條件，能否讓公司有利潤地交付價值。</span></p><p><b>Diagnose the reason for an action.</b> Cutting delivery cost could express a production focus on efficiency, or support a customer-led promise of convenient service. The visible action alone does not identify the philosophy; the decision's starting logic does.<span class="zh-full" lang="zh-Hant"><b>判斷行動背後的理由。</b>降低配送成本可能是生產效率導向，也可能支援顧客導向的便利服務承諾。只看行動外表不足以判斷觀念，要看決策的出發邏輯。</span></p><div data-mk="philo"></div>
 
 <!-- 7 -->
 <h2 id="system">7. The strategic marketing system<span class="zh-full" lang="zh-Hant">7. 策略行銷系統</span></h2>
@@ -754,11 +761,11 @@ body.show-zh .cmp-sel select{max-width:100%}
 
 <aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A marketing campaign raises sales but encourages unnecessary waste. What additional business and social evidence is needed before calling the campaign successful or sustainable?<span class="zh-full" lang="zh-Hant">一項行銷活動提高銷售，卻也鼓勵不必要的浪費。在稱它成功或永續之前，還需要哪些經營與社會面的證據？</span></p></aside>
 
-<h2 id="cases">8. Class cases<span class="zh-full" lang="zh-Hant">8. 課堂案例</span></h2>
+<p><b>Customer value and societal value can diverge.</b> A convenient disposable product may satisfy buyers today while increasing waste. A repair service may sell fewer replacement units while earning service revenue and building trust. Evaluate customer benefit, business viability and resource consequences together; reduced physical consumption alone does not establish commercial failure.<span class="zh-full" lang="zh-Hant"><b>顧客價值與社會價值可能不同。</b>方便的一次性產品可能滿足當下顧客，卻增加廢棄物；維修服務可能減少替換品銷量，同時帶來服務收入與信任。要一起檢查顧客利益、經營可行性與資源後果，不能只因實體消費減少就判定商業失敗。</span></p><p><b>Corporate Social Responsibility (CSR)</b> concerns a company's broader social and environmental responsibilities. Societal marketing applies a related welfare check to marketing decisions: an offer should be assessed through customer satisfaction, company viability and long-term effects on society. A charitable message alone does not show that the product, sourcing or daily operations are responsible.<span class="zh-full" lang="zh-Hant"><b>企業社會責任（CSR）</b>關注公司較廣泛的社會與環境責任。社會行銷把相關福祉檢查帶入行銷決策，從顧客滿意、公司可行性及長期社會影響評估提案。單靠公益訊息，不能證明產品、採購或日常營運負責任。</span></p><h2 id="cases">8. Class cases<span class="zh-full" lang="zh-Hant">8. 課堂案例</span></h2>
 <div class="tbl"><table>
 <thead><tr><th>Case<span class="zh-full" lang="zh-Hant">案例</span></th><th>Analysis<span class="zh-full" lang="zh-Hant">分析</span></th><th>Lesson<span class="zh-full" lang="zh-Hant">啟示</span></th></tr></thead>
 <tbody>
-<tr><td><b>McDonald's 60-second guarantee</b><span class="zh-full" lang="zh-Hant">麥當勞 60 秒保證</span></td><td>Customer problem: waiting. Value: speed and reliability. Risk: staff stress, quality, gaming the clock.<span class="zh-full" lang="zh-Hant">顧客問題：等待。價值：快速且可靠。風險：員工壓力、品質與鑽計時規則漏洞。</span></td><td>A promotion can also be an operational promise.<span class="zh-full" lang="zh-Hant">促銷也可能是營運承諾。</span></td></tr>
+<tr><td><b>McDonald's 60-second guarantee</b><span class="zh-full" lang="zh-Hant"><b>McDonald’s 60 秒保證</b></span></td><td>In the class example, an order taking longer than 60 seconds earns a small Coke or fries. The promise lowers expected waiting uncertainty and puts pressure on the service process.<span class="zh-full" lang="zh-Hant">課堂案例中，訂單超過 60 秒可獲小杯可樂或薯條。承諾降低等待的不確定感，也對服務流程形成壓力。</span></td><td>Measure actual waiting, fulfillment of the guarantee and customer response; check staff workload, quality and gaming. A promise needs operating capacity.<span class="zh-full" lang="zh-Hant">衡量實際等待、保證履行與顧客反應，也檢查員工負荷、品質與鑽規則行為。承諾必須有營運能力支援。</span></td></tr>
 <tr><td><b>Aging Thailand</b><span class="zh-full" lang="zh-Hant">高齡化的泰國</span></td><td>Pain points: mobility, health, independent living, medication.<span class="zh-full" lang="zh-Hant">痛點：行動、健康、獨立生活與用藥。</span></td><td>Ask what problems demographic change will make more important.<span class="zh-full" lang="zh-Hant">追問人口變化會讓哪些問題變得更重要。</span></td></tr>
 <tr><td><b>Mercedes vs Tesco Lotus</b><span class="zh-full" lang="zh-Hant">賓士與 Tesco Lotus</span></td><td>Same country, different targets, frequency and value propositions.<span class="zh-full" lang="zh-Hant">同一國家，卻有不同目標客群、購買頻率與價值主張。</span></td><td>A market fact matters only relative to a specific business.<span class="zh-full" lang="zh-Hant">市場事實必須相對於特定企業才有意義。</span></td></tr>
 <tr><td><b>7-Eleven, coffee, taxis</b><span class="zh-full" lang="zh-Hant">7-Eleven、咖啡與計程車</span></td><td>Recurring, context-dependent demand.<span class="zh-full" lang="zh-Hant">反覆出現且取決於情境的需求。</span></td><td>Transfer the reasoning, not the example.<span class="zh-full" lang="zh-Hant">要遷移運用的是推理方式，而非照搬例子。</span></td></tr>
@@ -794,7 +801,7 @@ body.show-zh .cmp-sel select{max-width:100%}
   <details><summary>Why is lower consumption not necessarily a failure?<span class="zh-full" lang="zh-Hant">為什麼消費減少不一定代表失敗？</span></summary><p>A firm can create value through durability, repair or reuse while building trust and long-run viability.<span class="zh-full" lang="zh-Hant">企業可以透過耐用、維修或重複使用創造價值，同時建立信任與長期經營能力。</span></p></details>
 </div>
 
-<h3 id="templates">Answer templates<span class="zh-full" lang="zh-Hant">答題模板</span></h3>
+<h2 id="answer-templates">Answer templates<span class="zh-full" lang="zh-Hant">答題模板</span></h2>
 <div class="tbl"><table>
 <tbody>
 <tr><td><b>Analyze a business</b><span class="zh-full" lang="zh-Hant">分析一家公司</span></td><td>Objective → target customer → value → action → expected behavior → metric → risk<span class="zh-full" lang="zh-Hant">目標 → 目標顧客 → 價值 → 行動 → 預期行為 → 指標 → 風險</span></td></tr>
@@ -803,7 +810,7 @@ body.show-zh .cmp-sel select{max-width:100%}
 <tr><td><b>Market attractiveness</b><span class="zh-full" lang="zh-Hant">市場吸引力</span></td><td>Target → need → buying power → competition → access → company fit<span class="zh-full" lang="zh-Hant">目標客群 → 需要 → 購買力 → 競爭 → 可取得性 → 公司契合度</span></td></tr>
 <tr><td><b>Will it survive?</b><span class="zh-full" lang="zh-Hant">能否生存？</span></td><td>Real need → meaningful value → enough demand → advantage → distribution → repeat → economics<span class="zh-full" lang="zh-Hant">真實需要 → 有意義的價值 → 足夠需求 → 優勢 → 通路 → 重購 → 經濟效益</span></td></tr>
 </tbody></table></div>
-<p class="key">Strategic marketing understands customers and context, turns insight into meaningful value and a coherent mix, and judges success by behavior, competitive performance, profit and long-term consequences.<span class="zh-full" lang="zh-Hant">策略行銷理解顧客與情境，把洞察轉為有意義的價值與一致的行銷組合，並以行為、競爭表現、利潤與長期影響判斷成功。</span></p>
+<div class="answer-example"><b>Example · Product launch<span class="zh-full" lang="zh-Hant">範例｜產品上市</span></b><p>The seasonal Thai-tea latte offers novelty and familiar local flavor to existing café customers and potential new visitors. I would first test whether that benefit creates additional purchases or only replaces the usual drink. Product, price, store/app availability and promotion should support the same promise. Trial is the first response to measure; repeat visits and contribution show whether the launch creates lasting business value.<span class="zh-full" lang="zh-Hant">季節限定泰奶拿鐵，向既有咖啡館顧客與潛在新訪客提供新鮮感及熟悉的在地口味。我會先檢驗它帶來額外購買，還是只取代平常飲品。產品、價格、門市／App 取得方式與推廣應支援同一承諾。先衡量試買，再用重訪與貢獻利益判斷是否創造持續商業價值。</span></p></div><p class="key">Strategic marketing understands customers and context, turns insight into meaningful value and a coherent mix, and judges success by behavior, competitive performance, profit and long-term consequences.<span class="zh-full" lang="zh-Hant">策略行銷理解顧客與情境，把洞察轉為有意義的價值與一致的行銷組合，並以行為、競爭表現、利潤與長期影響判斷成功。</span></p>
 </article></main>
 </div>
 
@@ -856,7 +863,7 @@ body.show-zh .cmp-sel select{max-width:100%}
   W.value = host => {
     const body = shell(host, "Interactive<span class=\"zh-full\" lang=\"zh-Hant\">互動練習</span>", "Which coffee shop gives more value?<span class=\"zh-full\" lang=\"zh-Hant\">哪家咖啡店提供更高價值？</span>", "Shop A: ฿70, 12-minute queue, 8-minute walk. Shop B: ฿100, ready in 1 minute, 2 minutes from the office. Price is only part of what the customer gives up.<span class=\"zh-full\" lang=\"zh-Hant\">A 店：฿70，排隊 12 分鐘、步行 8 分鐘。B 店：฿100，1 分鐘備妥，離辦公室 2 分鐘。價格只是顧客付出的一部分。</span>");
     const id = 'val' + (++uid);
-    body.innerHTML = '<div class="pop-grid"><div class="pop-ctrl">' + sliders(id, [["What one minute of your time is worth<span class=\"zh-full\" lang=\"zh-Hant\">你的一分鐘值多少？</span>", 0, 8, .5, 1]]) +
+    body.innerHTML = '<div class="pop-grid"><div class="pop-ctrl">' + sliders(id, [["Assumed value of one minute<span class=\"zh-full\" lang=\"zh-Hant\">假設的一分鐘時間價值</span>", 0, 8, .5, 1]]) +
       "<div class=\"seg\" role=\"radiogroup\"><button type=\"button\" role=\"radio\" data-v=\"0.5\">Relaxed student<span class=\"zh-full\" lang=\"zh-Hant\">時間充裕的學生</span></button><button type=\"button\" role=\"radio\" data-v=\"4\">Busy manager<span class=\"zh-full\" lang=\"zh-Hant\">忙碌的經理人</span></button></div><dl class=\"g-stats\"></dl></div><div class=\"pop-bars\"></div></div><p class=\"g-note\"></p>";
     const r = body.querySelector('input'), o = body.querySelector('output'), bars = body.querySelector('.pop-bars'), stats = body.querySelector('.g-stats'), note = body.querySelector('.g-note');
     const A = { p: 70, m: 20 }, B = { p: 100, m: 3 }, be = (B.p - A.p) / (A.m - B.m);
@@ -946,7 +953,7 @@ const toggle=document.getElementById('zhToggle'),label=document.getElementById('
 const key='study-notes-show-zh';
 function syncOptions(on){document.querySelectorAll('option[data-zh]').forEach(o=>{if(!o.dataset.en)o.dataset.en=o.textContent;o.textContent=o.dataset.en+(on&&o.dataset.zh?'／'+o.dataset.zh:'')})}
 function set(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';syncOptions(on);try{localStorage.setItem(key,on?'1':'0')}catch(e){}}
-let initial=false;try{initial=localStorage.getItem(key)==='1'}catch(e){}
+let initial=false;
 set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
 const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
 if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
