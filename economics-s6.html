@@ -1,28 +1,234 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Economics Session 6 · Study Notes</title>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/><title>Asymmetric Information · Economics</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:var(--tone-fdf9f9);--paper:var(--tone-ffffff);--tint:var(--tone-fae9ed);--line:var(--tone-efdde2);--fg:var(--tone-2f282b);--muted:var(--tone-7e6f74);--accent:var(--tone-c06c84);--accent-ink:var(--tone-9c4862);--sans:"Noto Sans TC","PingFang TC",system-ui,sans-serif;--serif:"Noto Serif TC",Georgia,serif}
-*{box-sizing:border-box}html{color-scheme:light;background:var(--bg)}body{margin:0;font:16px/1.75 var(--sans);color:var(--fg)}a{color:var(--accent-ink)}:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-header{border-bottom:1px solid var(--line);background:rgba(var(--header-rgb), .96)}.top{max-width:1160px;margin:auto;padding:13px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
-.crumbs{font-size:.86rem;display:flex;align-items:center;flex-wrap:wrap;gap:8px;color:var(--muted)}.crumbs a{text-decoration:none;color:var(--muted)}.crumbs a:hover{color:var(--accent-ink)}
-.sessions{display:flex;gap:5px;margin-left:auto}.pill{font:.85rem var(--sans);text-decoration:none;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--muted)}.pill[aria-current="page"]{background:var(--accent);border-color:var(--accent);color:var(--tone-ffffff)}.sessions a.pill:hover,.sessions a.pill:focus-visible{background:var(--tone-fceef2);border-color:var(--tone-b86b7b);color:var(--tone-8e4357)}
-main{max-width:780px;margin:0 auto;padding:74px 22px 120px}.kick{color:var(--accent-ink);letter-spacing:.15em;text-transform:uppercase;font-size:.76rem;font-weight:700}h1{font:700 clamp(2.2rem,5vw,3.2rem)/1.23 var(--serif);margin:6px 0 16px}.note{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin-top:30px}.label{font-weight:700;color:var(--accent-ink);font-size:.82rem;letter-spacing:.07em;text-transform:uppercase}.note p{margin:9px 0 0}.back{display:inline-block;margin-top:22px;text-decoration:none;border-bottom:1px solid var(--accent);font-weight:600}
-@media(max-width:520px){.sessions{margin-left:0}main{padding-top:50px}.note{padding:20px}}
+/* Layout: one reading column with a sticky chapter rail; colors follow system appearance. */
+:root {
+  color-scheme: light;
+  --bg: var(--tone-fdf9f9); --panel: var(--tone-f8eef0); --paper: var(--tone-ffffff); --tint: var(--tone-fae9ed); --line: var(--tone-efdde2);
+  --fg: var(--tone-2f282b); --muted: var(--tone-7e6f74); --accent: var(--tone-c06c84); --accent-ink: var(--tone-9c4862);
+  --demand: var(--tone-3f5675); --supply: var(--tone-c06c84); --ext: var(--tone-6e3f55); --world: var(--tone-8a7a5c); --policy: var(--tone-3f7f7a);
+  --cs: var(--tone-a7cdb6); --ps: var(--tone-b2c4e3); --dwl: var(--tone-d9674f); --rev: var(--tone-e5c171); --rev2: var(--tone-f1dca8); --time: var(--tone-ddb3cb); --ts: var(--tone-bfdcc9);
+  --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; background: var(--bg); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.75; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(var(--header-rgb), .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
+.top-in { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 14px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.02rem; white-space: nowrap; }
+.brand small { font-family: var(--sans); font-weight: 500; color: var(--muted); font-size: .76rem; margin-left: 6px; letter-spacing: .06em; }
+.sessions { display: flex; gap: 4px; margin-left: auto; }
+.crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
+.sessions a.pill { text-decoration: none; transition: border-color .15s, color .15s; }
+.sessions a.pill:hover, .sessions a.pill:focus-visible { border-color: var(--accent); color: var(--accent-ink); background: var(--tint); }
+.sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
+.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--tone-ffffff); }
+.sessions .pill.off { opacity: .5; cursor: not-allowed; }
+.toc-btn { display: none; font: 500 .85rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--fg); border-radius: 8px; padding: 5px 12px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 52px; }
+.rail { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow: auto; padding-block: 34px 40px; font-size: .86rem; line-height: 1.5; }
+.rail .lbl { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.rail ol { list-style: none; margin: 0; padding: 0; }
+.rail li a { display: block; padding: 4px 10px; color: var(--muted); text-decoration: none; border-radius: 6px; }
+.rail li a:hover { color: var(--fg); background: var(--tint); }
+.rail li.h3 a { padding-left: 22px; font-size: .8rem; }
+.rail li a.on { color: var(--accent-ink); background: var(--tint); font-weight: 500; }
+
+main { min-width: 0; padding-block: 30px 120px; }
+.doc { max-width: 780px; }
+.hero { padding-block: 8px 26px; border-bottom: 1px solid var(--line); }
+.kick { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px; font-weight: 500; }
+.hero h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.25; margin: 0 0 12px; text-wrap: balance; }
+.lead { margin: 0; font-size: 1.04rem; max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.doc h2 { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 3.4rem 0 .3rem; text-wrap: balance; }
+.doc h3 { font-size: 1.1rem; line-height: 1.45; margin: 2.2rem 0 .5rem; color: var(--accent-ink); text-wrap: balance; }
+.sub { margin: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
+.doc p, .doc li { max-width: none; }
+.doc ul, .doc ol { padding-left: 1.25em; }
+.doc li { margin: .25rem 0; }
+.zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
+.hint { font-size: .9rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.hint b { flex: none; font-size: .72rem; color: var(--tone-ffffff); background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
+.key { background: var(--tint); padding: 12px 16px; border-radius: 8px; font-weight: 500; }
+.note-small { font-size: .8rem; color: var(--muted); }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.pair > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.pair b { color: var(--accent-ink); }
+.pair p { margin: 4px 0 0; font-size: .92rem; }
+
+.matrix { display: grid; grid-template-columns: minmax(90px, .7fr) repeat(2, minmax(0, 1fr)); gap: 6px; margin: 1rem 0 1.2rem; font-size: .9rem; max-width: 620px; }
+.matrix .mh { font-weight: 700; font-size: .8rem; color: var(--muted); align-self: end; padding: 0 4px 2px; }
+.matrix .mh.side { align-self: center; }
+.matrix .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-weight: 500; }
+.matrix .cell.hi { background: var(--tint); border-color: var(--accent); }
+.matrix small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; margin-top: 2px; line-height: 1.45; }
+
+.map { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 1rem 0; }
+.mcol { display: flex; flex-direction: column; gap: 8px; }
+.mbox { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; display: flex; flex-direction: column; gap: 2px; }
+.mbox b { font-size: .9rem; } .mbox span { color: var(--muted); } .mbox em { font-style: normal; color: var(--accent-ink); font-size: .78rem; font-weight: 500; }
+.mbox.good { border-color: var(--cs); } .mbox.ask { background: var(--tint); border-color: var(--accent); }
+.marrow { color: var(--accent); font-weight: 700; }
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.flow span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; line-height: 1.45; }
+.flow i { font-style: normal; color: var(--accent); font-weight: 700; }
+.formula { font-family: var(--mono); font-size: .9rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; line-height: 1.9; overflow-x: auto; }
+.steps { counter-reset: s; list-style: none; padding-left: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 10px; }
+.steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .75rem/22px var(--sans); text-align: center; margin-top: 3px; }
+.assign { margin: 1.6rem 0; border: 1px dashed var(--accent); border-radius: 10px; padding: 14px 16px; background: var(--paper); }
+.assign p { margin: 6px 0 0; font-size: .92rem; }
+
+.tbl { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.doc table { border-collapse: collapse; width: 100%; font-size: .88rem; line-height: 1.55; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.doc th { background: var(--panel); font-weight: 700; }
+.doc tr:last-child td { border-bottom: 0; }
+.drill .ans { filter: blur(5px); cursor: pointer; user-select: none; transition: filter .2s; }
+.drill .ans.shown { filter: none; user-select: auto; }
+
+.traps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 1rem; }
+.traps > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: .88rem; line-height: 1.55; }
+.traps s { color: var(--muted); text-decoration-color: var(--dwl); }
+.traps p { margin: 6px 0 0; font-weight: 500; }
+
+.qa-tools { margin: .4rem 0 .8rem; }
+.qa-tools button { font: 500 .82rem var(--sans); border: 1px solid var(--accent); background: var(--paper); color: var(--accent-ink); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+.qa { display: flex; flex-direction: column; gap: 6px; }
+.qa details { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.qa summary { cursor: pointer; padding: 10px 14px; font-weight: 500; font-size: .93rem; list-style: none; display: flex; gap: 10px; }
+.qa summary::before { content: "Q"; color: var(--accent); font-weight: 700; }
+.qa details[open] summary { border-bottom: 1px dashed var(--line); }
+.qa details p { margin: 0; padding: 10px 14px 12px 36px; font-size: .9rem; }
+
+/* graphs */
+.graph { max-width: 900px; margin: 1.8rem 0 2.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; }
+.g-head h4 { font-family: var(--serif); font-size: 1.12rem; margin: 2px 0 2px; line-height: 1.45; }
+.g-head p { margin: 0 0 10px; color: var(--muted); font-size: .86rem; }
+.g-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+.g-body { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.g-plot svg { width: 100%; height: auto; display: block; }
+.g-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.g-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.sl label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); line-height: 1.3; }
+.sl output { font-family: var(--mono); color: var(--fg); font-size: .8rem; }
+.sl input { width: 100%; accent-color: var(--accent); margin: 4px 0 0; }
+.g-btn { align-self: flex-start; font: 500 .8rem var(--sans); border: 1px solid var(--accent); color: var(--accent-ink); background: transparent; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.g-btn:hover { background: var(--tint); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; align-self: flex-start; }
+.seg button { font: 500 .8rem var(--sans); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--paper); }
+.chk { display: flex; gap: 8px; align-items: center; font-size: .8rem; color: var(--muted); }
+.chk input { accent-color: var(--accent); }
+.g-stats { margin: 0; border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+.st { display: flex; justify-content: space-between; gap: 10px; font-size: .8rem; line-height: 1.45; }
+.st dt { color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.st dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.st.big dd { font-weight: 500; color: var(--accent-ink); font-size: .92rem; }
+.g-note { margin: 12px 0 0; padding: 9px 12px; background: var(--tint); border-radius: 6px; font-size: .85rem; line-height: 1.6; }
+
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; flex: none; }
+.sw.none { background: transparent; }
+.sw.a-cs { background: var(--cs); } .sw.a-ps { background: var(--ps); } .sw.a-ps2 { background: var(--ps); outline: 1px solid var(--demand); }
+.sw.a-dwl { background: repeating-linear-gradient(45deg, var(--dwl) 0 2px, transparent 2px 4px); outline: 1px solid var(--dwl); }
+.sw.a-rev { background: var(--rev); } .sw.a-rev2 { background: var(--rev2); } .sw.a-time { background: var(--time); } .sw.a-ts { background: var(--ts); }
+.sw.ln { height: 3px; border-radius: 2px; width: 16px; }
+
+svg .ax { stroke: var(--muted); stroke-width: 1.2; }
+svg .axl { fill: var(--muted); font: 500 11px var(--sans); }
+svg .tk { fill: var(--muted); font: 500 10.5px var(--mono); }
+svg .gd { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+svg .cv { stroke-width: 2.6; fill: none; stroke-linecap: round; }
+svg .cv.dash { stroke-dasharray: 7 5; stroke-width: 2; }
+svg .cvl { font: 700 11.5px var(--sans); }
+svg .c-d { stroke: var(--demand); fill: var(--demand); } svg .c-s { stroke: var(--supply); fill: var(--supply); }
+svg .c-x { stroke: var(--ext); fill: var(--ext); } svg .c-w { stroke: var(--world); fill: var(--world); } svg .c-t { stroke: var(--policy); fill: var(--policy); }
+svg text.cvl { stroke: none; }
+svg .pt { fill: var(--paper); stroke: var(--fg); stroke-width: 2; }
+svg .ptl { fill: var(--fg); font: 700 11px var(--sans); }
+svg .atag { fill: var(--fg); font: 700 11px var(--sans); opacity: .8; }
+svg .a-cs { fill: var(--cs); fill-opacity: .6; } svg .a-ps { fill: var(--ps); fill-opacity: .6; }
+svg .a-ps2 { fill: var(--ps); fill-opacity: .95; } svg .a-ts { fill: var(--ts); fill-opacity: .6; }
+svg .a-dwl { fill: url(#dwlHatch); stroke: var(--dwl); stroke-width: 1.2; }
+svg .a-rev { fill: var(--rev); fill-opacity: .75; } svg .a-rev2 { fill: var(--rev2); fill-opacity: .8; } svg .a-time { fill: var(--time); fill-opacity: .65; }
+
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .a-prof { fill: var(--cs); fill-opacity: .75; } svg .a-loss { fill: var(--dwl); fill-opacity: .35; }
+.sw.a-prof { background: var(--cs); } .sw.a-loss { background: var(--dwl); opacity: .5; }
+.twin { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tw-t { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.g-ctrl .g-btn + .g-btn { margin-top: -4px; }
+.graph.wide .g-body { grid-template-columns: minmax(0, 1fr); }
+.graph.wide .g-side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 700px) { .twin, .graph.wide .g-side { grid-template-columns: minmax(0, 1fr); } }
+svg polyline.cv { fill: none !important; }
+
+.graph { background: var(--paper); }
+.g-note { background: var(--tint); }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail { display: none; position: fixed; inset: 64px 0 0 0; max-height: none; background: var(--bg); z-index: 15; padding: 20px 16px 60px; }
+  .rail.open { display: block; }
+  .toc-btn { display: inline-block; }
+  .g-body { grid-template-columns: minmax(0, 1fr); }
+  .map { grid-template-columns: minmax(0, 1fr); }
+  .marrow { transform: rotate(90deg); justify-self: center; }
+}
+@media (max-width: 560px) { .pair, .traps { grid-template-columns: minmax(0, 1fr); } }
+.spectrum { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; margin: 1rem 0 .2rem; font-weight: 700; font-size: .9rem; }
+.spectrum .bar { height: 12px; border-radius: 6px; background: linear-gradient(90deg, var(--tone-d9674f), var(--tone-e5c171), var(--tone-a7cdb6)); }
+.spec-l { display: flex; justify-content: space-between; font-size: .78rem; color: var(--muted); margin-bottom: 1rem; }
+.no, .yes { font-size: .74rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; }
+.no { background: var(--tone-fce3dd); color: var(--tone-a8432f); } .yes { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); }
+table.oil { font-variant-numeric: tabular-nums; }
+table.oil th, table.oil td { text-align: right; padding: 6px 8px; white-space: nowrap; }
+table.oil th:first-child, table.oil td:first-child { text-align: left; font-weight: 700; }
+table.oil td.hi { background: var(--tint); color: var(--accent-ink); font-weight: 700; }
+
 </style>
 <style id="system-theme">
 /* System appearance only changes colors. Print retains the light palette. */
 :root {
   --header-rgb: 253, 249, 249;
   --tone-2f282b: #2f282b;
+  --tone-2f6b4f: #2f6b4f;
+  --tone-3f5675: #3f5675;
+  --tone-3f7f7a: #3f7f7a;
+  --tone-6e3f55: #6e3f55;
   --tone-7e6f74: #7e6f74;
-  --tone-8e4357: #8e4357;
+  --tone-8a7a5c: #8a7a5c;
   --tone-9c4862: #9c4862;
-  --tone-b86b7b: #b86b7b;
+  --tone-a7cdb6: #a7cdb6;
+  --tone-a8432f: #a8432f;
+  --tone-b2c4e3: #b2c4e3;
+  --tone-bfdcc9: #bfdcc9;
   --tone-c06c84: #c06c84;
+  --tone-d9674f: #d9674f;
+  --tone-ddb3cb: #ddb3cb;
+  --tone-e3f2e9: #e3f2e9;
+  --tone-e5c171: #e5c171;
   --tone-efdde2: #efdde2;
+  --tone-f1dca8: #f1dca8;
+  --tone-f8eef0: #f8eef0;
   --tone-fae9ed: #fae9ed;
-  --tone-fceef2: #fceef2;
+  --tone-fce3dd: #fce3dd;
   --tone-fdf9f9: #fdf9f9;
   --tone-ffffff: #ffffff;
 }
@@ -31,23 +237,627 @@ main{max-width:780px;margin:0 auto;padding:74px 22px 120px}.kick{color:var(--acc
     color-scheme: dark;
     --header-rgb: 29, 24, 26;
     --tone-2f282b: #EEE4E6;
+    --tone-2f6b4f: #A0D2B2;
+    --tone-3f5675: #93AECB;
+    --tone-3f7f7a: #8CC4BE;
+    --tone-6e3f55: #C9A3D6;
     --tone-7e6f74: #BEACB2;
-    --tone-8e4357: #E6B3BE;
+    --tone-8a7a5c: #C9B68C;
     --tone-9c4862: #E6B3BE;
-    --tone-b86b7b: #D79AA7;
+    --tone-a7cdb6: #6E8C6B;
+    --tone-a8432f: #F0A48D;
+    --tone-b2c4e3: #667C96;
+    --tone-bfdcc9: #5F7A5C;
     --tone-c06c84: #D79AA7;
+    --tone-d9674f: #E08A6F;
+    --tone-ddb3cb: #8C6680;
+    --tone-e3f2e9: #23372D;
+    --tone-e5c171: #C9A250;
     --tone-efdde2: #55424A;
+    --tone-f1dca8: #8F7A4A;
+    --tone-f8eef0: #2B2226;
     --tone-fae9ed: #35272D;
-    --tone-fceef2: #35272D;
+    --tone-fce3dd: #412B28;
     --tone-fdf9f9: #1D181A;
     --tone-ffffff: #241E21;
   }
-  .topswitch input:after { background: var(--fg); }
-  .topswitch input:checked:after { background: var(--paper); }
-  .m-action.primary .zh-full, .m-pillrow button[aria-pressed="true"] .zh-full,
-  a.cta .zh-full, .risk b .zh-full, .hint b .zh-full, .tcard .tnum .zh-full { color: inherit; }
 }
 </style>
-</head><body>
-<header><div class="top"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes</a><span>/</span><a href="economics.html">Economics</a><span>/</span><b>Session 6</b></nav><nav class="sessions" aria-label="Sessions 5–8"><a class="pill" href="economics-s5.html">S5</a><span class="pill" aria-current="page">S6</span><a class="pill" href="economics-s7.html">S7</a><a class="pill" href="economics-s8.html">S8</a></nav></div></header>
-<main><p class="kick">MGMG515 · Session 6</p><h1>Economics — Session 6</h1><section class="note"><div class="label">Coming soon</div><p>This lesson is not published yet. This reserved page keeps the S5–S8 navigation working in the meantime.</p><p>When the lesson is ready, the completed HTML can replace this file directly.</p></section><a class="back" href="economics.html">← Back to Economics sessions</a></main></body></html>
+<style>
+body{margin:0}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:1rem 0}
+.three>div,.method{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+.three b,.method>b{color:var(--accent-ink)}.three p,.method p{margin:4px 0 0;font-size:.92rem}
+.method{margin:12px 0}.endnote{margin-top:32px}
+.plot-legend{display:flex;flex-wrap:wrap;gap:7px 16px;margin:4px 0 14px;font-size:.78rem;color:var(--muted)}
+.plot-legend span{display:inline-flex;gap:6px;align-items:center}
+svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
+.seg{display:flex;flex-wrap:wrap;gap:2px;max-width:100%}.seg button{flex:1 1 auto;white-space:normal}
+.seg button[aria-pressed=true]{background:var(--accent);color:var(--paper)}
+.best-row{background:var(--tint);font-weight:700;color:var(--accent-ink)}
+.g-ctrl [hidden]{display:none!important}.sl label{gap:12px}.sl label span{min-width:0}
+.sl output{flex-shrink:0}.g-note:empty{display:none}.doc p,.doc li{overflow-wrap:break-word}
+@media(max-width:700px){.three{grid-template-columns:minmax(0,1fr)}.graph{padding:14px 12px}.st dd{white-space:normal;text-align:right;max-width:60%}.top-in{gap:8px 12px}}
+@media(max-width:420px){.top-in{align-items:center}.sessions{margin-left:0}.crumbs{flex:1 1 100%;font-size:.8rem}.toc-btn{order:2;margin-left:auto}.sessions{order:1}.rail{inset:108px 0 0}.graph.wide .g-side{gap:14px}.doc h2{font-size:1.4rem}}
+@media print{.top,.rail,.g-ctrl,.qa-tools{display:none}.wrap{display:block}.qa details p{display:block}.graph{break-inside:avoid}body{background:#fff}.doc{max-width:none}}
+</style>
+<style>
+.extra,.graph-guide,.number-readout{background:var(--paper);border:1px solid var(--line);border-radius:9px;margin:1rem 0;padding:0 14px}
+.extra>summary,.graph-guide>summary,.number-readout>summary{cursor:pointer;padding:11px 0;color:var(--accent-ink);font-size:.87rem;font-weight:500}
+.extra[open]>summary,.graph-guide[open]>summary,.number-readout[open]>summary{border-bottom:1px dashed var(--line)}
+.extra>p,.graph-guide>p{font-size:.9rem}.graph-guide .steps{font-size:.91rem;line-height:1.65}.graph-guide .steps li{margin:12px 0}
+.g-reading{min-width:0}.g-reading .g-note{margin:0}.number-readout{margin:12px 0 0;padding:0 10px}.number-readout .g-stats{border-top:0;padding-bottom:10px}
+</style>
+<style id="bilingual-support">/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
+
+
+
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid var(--tone-d5c6ca);border-radius:999px;background:var(--tone-eee6e8);position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:var(--tone-ffffff);border-radius:50%;box-shadow:0 1px 2px var(--tone-77777755)}
+.topswitch input:checked{background:var(--accent)}
+.topswitch input:checked:after{left:14px}
+.topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+
+/* Shared reading rhythm, with room for each chapter's own teaching tools. */
+.doc select{font-family:var(--sans);font-size:.88rem}
+html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
+@media(max-width:900px){.rail.open{top:var(--header-height,64px);bottom:0;inset-inline:0;max-height:calc(100vh - var(--header-height,64px))}}
+body.show-zh .legend>span,body.show-zh .steps li,body.show-zh .six>div,body.show-zh .qa summary,body.show-zh .chk{flex-wrap:wrap}
+body.show-zh .legend>span>.zh-full,body.show-zh .steps li>.zh-full,body.show-zh .six>div>.zh-full,body.show-zh .qa summary>.zh-full,body.show-zh .chk>.zh-full{flex:0 0 100%;min-width:0}
+body.show-zh .steps li{display:list-item;list-style:none}
+body.show-zh .steps li:before{display:inline-block;margin-right:10px;vertical-align:middle}
+body.show-zh .six>div>.zh-full{margin-left:34px;flex-basis:calc(100% - 34px)}
+body.show-zh .seg{flex-wrap:wrap;max-width:100%}
+body.show-zh .seg button{min-width:0;white-space:normal}
+body.show-zh .spectrum{min-width:0}
+body.show-zh .spectrum>span{min-width:0;overflow-wrap:anywhere}
+body.show-zh .formula>.zh-full{white-space:normal;font-family:var(--sans)}
+body.show-zh .mw .tabs button,body.show-zh .mw .qz-o,body.show-zh .graph .g-btn{overflow-wrap:anywhere}
+body.show-zh .funnel-level{height:auto;min-height:68px;flex-direction:column;gap:1px;white-space:normal;line-height:1.3}
+body.show-zh .funnel-level .zh-full{color:inherit;margin-top:0;font-size:.75em}
+body.show-zh .decision-step{height:auto;min-height:100px}
+body.show-zh .m-control label{flex-wrap:wrap}
+body.show-zh .m-control label .zh-full{flex-basis:100%;text-align:left}
+body.show-zh .decision-step>.zh-full{font-size:.8em;line-height:1.45}
+body.show-zh .score .up b:after{content:'改善'}
+body.show-zh .score .down b:after{content:'惡化'}
+@media(max-width:560px){body.show-zh .spectrum{grid-template-columns:minmax(0,1fr)}body.show-zh .m-choices button{min-height:65px}}
+
+.page-tools{display:flex;align-items:center;gap:14px;margin-left:8px;flex-shrink:0}
+.page-tools .topswitch{margin-left:0}.page-tools .practice-toggle{font-size:.72rem;padding:5px 10px}
+.page-tools .practice-toggle>.zh-full{display:none!important}
+body.show-zh .page-tools .practice-toggle{white-space:normal}
+body.show-zh .seg button[aria-pressed=true] .zh-full{color:inherit}
+body.show-zh .steps li>span{min-width:0;flex:1}.formula>.zh-full{font-family:var(--sans)}
+body.show-zh .sl output{max-width:50%;white-space:normal;text-align:right}
+.plot-legend>span{align-items:flex-start;flex-wrap:wrap}.plot-legend .zh-full{flex-basis:100%;margin-top:1px}
+svg .zh-svg{fill:currentColor;font-size:10px}.g-plot svg text{color:var(--muted)}
+html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
+@media(max-width:900px){.rail.open{top:var(--header-height,64px);bottom:0;inset-inline:0;max-height:calc(100vh - var(--header-height,64px))}}
+@media(max-width:560px){.top-in .page-tools{order:3;flex-basis:100%;margin-left:0;justify-content:flex-end;padding-bottom:3px;gap:14px}.top-in{row-gap:6px}}
+@media(prefers-color-scheme:dark){.topswitch input{background:var(--panel);border-color:var(--line)}.topswitch input:after{background:var(--fg)}}
+@media print{.page-tools{display:none}}
+</style><style>:root{--tone-d5c6ca:#d5c6ca;--tone-eee6e8:#eee6e8;--tone-77777755:#77777755}</style><style>svg .a-faded{opacity:.28}.map .mbox{min-width:0}</style></head><body>
+<svg aria-hidden="true" height="0" style="position:absolute" width="0"><defs><pattern height="6" id="dwlHatch" patterntransform="rotate(45)" patternunits="userSpaceOnUse" width="6"><rect height="6" style="fill:var(--dwl);fill-opacity:.12" width="6"></rect><rect height="6" style="fill:var(--dwl);fill-opacity:.75" width="2.2"></rect></pattern></defs></svg>
+<header class="top"><div class="top-in">
+<nav aria-label="Breadcrumb" class="crumbs"><a href="index.html">Study Notes</a><span>/</span><a href="economics.html">Economics</a><span>/</span><b>Session 6</b></nav>
+<button aria-controls="rail" aria-expanded="false" class="toc-btn" id="tocBtn" type="button">Contents</button>
+<nav aria-label="Sessions 5–8" class="sessions"><a class="pill" href="economics-s5.html">S5</a><span aria-current="page" class="pill">S6</span><span aria-disabled="true" class="pill off">S7</span><span aria-disabled="true" class="pill off">S8</span></nav>
+<div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input aria-label="顯示完整繁體中文對照" id="zhToggle" role="switch" type="checkbox"/>中文 <span id="zhModeLabel">OFF</span></label><button aria-pressed="false" class="practice-toggle" id="practiceToggle" title="Show or hide short questions within chapters" type="button">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
+<div class="wrap"><aside class="rail" id="rail"><p class="lbl">Contents</p><ol id="toc"></ol></aside>
+<main><article class="doc"><div class="hero"><p class="kick">MGMG515 · Session 6<span class="zh-full" lang="zh-Hant">MGMG515 · 第 6 堂</span></p><h1>Asymmetric Information<span class="zh-full" lang="zh-Hant">資訊不對稱</span></h1><p class="lead">When one side of a deal knows more than the other, two things can go wrong. Hidden quality or risk changes who shows up to trade, and hidden behavior changes what people do after a contract is signed. This session traces both problems, the fixes that reduce them, and what they mean for the value of a degree.<span class="zh-full" lang="zh-Hant">交易一方比另一方知道得多時，會出兩種問題：隱藏的品質或風險，改變「誰來交易」；隱藏的行為，改變「簽約後怎麼做」。本堂追蹤這兩種問題、能減輕它們的方法，以及它們對學歷價值的意義。</span></p></div>
+
+<h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
+<div class="map">
+<div class="mcol"><div class="mbox ask"><b>Who knows more?<span class="zh-full" lang="zh-Hant">誰知道得比較多？</span></b><span>Name the informed side, then ask what is hidden: an existing type or a later action.<span class="zh-full" lang="zh-Hant">先指出掌握資訊的一方，再問隱藏的是什麼：既有的類型，還是之後的行動。</span></span></div></div>
+<div class="marrow">→</div>
+<div class="mcol">
+<div class="mbox"><b>Hidden type<span class="zh-full" lang="zh-Hant">隱藏類型</span></b><span>Pooled terms change who participates.<span class="zh-full" lang="zh-Hant">統一條件改變了誰會參與。</span></span><em>Adverse selection<span class="zh-full" lang="zh-Hant">逆向選擇</span></em></div>
+<div class="mbox"><b>Hidden action<span class="zh-full" lang="zh-Hant">隱藏行動</span></b><span>Shifted consequences change behavior.<span class="zh-full" lang="zh-Hant">後果轉嫁給別人，行為因此改變。</span></span><em>Moral hazard<span class="zh-full" lang="zh-Hant">道德風險</span></em></div>
+</div>
+<div class="marrow">→</div>
+<div class="mcol"><div class="mbox good"><b>Match the fix<span class="zh-full" lang="zh-Hant">對症選擇方法</span></b><span>Better information: screening, inspection, credible signals. Better incentives: monitoring, cost sharing, reputation.<span class="zh-full" lang="zh-Hant">補資訊：篩選、檢查、可信訊號。調誘因：監督、部分負擔、聲譽。</span></span></div></div>
+</div>
+<p class="hint"><b>中文邏輯</b><span>類型影響「誰進來」；誘因影響「怎麼做」；訊號影響「別人怎麼相信」。</span></p>
+
+<h2 id="info">1. Who knows what, and what is hidden?<span class="zh-full" lang="zh-Hant">1. 誰知道什麼？隱藏的是什麼？</span></h2>
+<p class="sub">Start every case by naming the informed side. Then ask whether the hidden thing already exists or is a later choice.<span class="zh-full" lang="zh-Hant">每個案例先指出掌握資訊的一方，再問被隱藏的東西是原本就存在，還是之後才做的選擇。</span></p>
+<div class="tbl"><table><thead><tr><th>Concept<span class="zh-full" lang="zh-Hant">概念</span></th><th>Definition<span class="zh-full" lang="zh-Hant">定義</span></th><th>Example<span class="zh-full" lang="zh-Hant">例子</span></th><th>Do not confuse with<span class="zh-full" lang="zh-Hant">不要混淆</span></th></tr></thead><tbody>
+<tr><td><b>Imperfect information</b><span class="zh-full" lang="zh-Hant">不完全資訊</span></td><td>A decision maker lacks some relevant knowledge.<span class="zh-full" lang="zh-Hant">決策者缺少部分相關知識。</span></td><td>Two traders are both unsure about next year's flood.<span class="zh-full" lang="zh-Hant">兩位交易者都不確定明年會不會淹水。</span></td><td>Asymmetric information, which needs one side to know more.<span class="zh-full" lang="zh-Hant">資訊不對稱，那需要其中一方知道得更多。</span></td></tr>
+<tr><td><b>Asymmetric information</b><span class="zh">資訊不對稱</span><span class="zh-full" lang="zh-Hant">資訊不對稱</span></td><td>One party has better relevant information than the other.<span class="zh-full" lang="zh-Hant">一方掌握的相關資訊比另一方好。</span></td><td>A seller knows the car was flood-damaged; the buyer cannot tell.<span class="zh-full" lang="zh-Hant">賣家知道車子泡過水，買家看不出來。</span></td><td>Uncertainty that both sides share.<span class="zh-full" lang="zh-Hant">雙方都一樣不確定的情況。</span></td></tr>
+<tr><td><b>Hidden type</b><span class="zh-full" lang="zh-Hant">隱藏類型</span></td><td>An existing characteristic the other side cannot observe, such as quality, health risk or ability.<span class="zh-full" lang="zh-Hant">對方觀察不到的既有特徵，例如品質、健康風險或能力。</span></td><td>Engine damage that existed before the sale.<span class="zh-full" lang="zh-Hant">出售前就已存在的引擎損傷。</span></td><td>A choice made after the contract.<span class="zh-full" lang="zh-Hant">簽約後才做的選擇。</span></td></tr>
+<tr><td><b>Hidden action</b><span class="zh-full" lang="zh-Hant">隱藏行動</span></td><td>Behavior the other side cannot fully observe, such as effort or precaution.<span class="zh-full" lang="zh-Hant">對方無法完全觀察的行為，例如努力程度或預防措施。</span></td><td>An owner skips agreed maintenance after buying coverage.<span class="zh-full" lang="zh-Hant">車主投保後，略過原本約定的保養。</span></td><td>A trait the person already had.<span class="zh-full" lang="zh-Hant">當事人原本就有的特質。</span></td></tr>
+</tbody></table></div>
+<p class="key">“Before or after signing” is a handy shortcut, not the definition. Ask whether the problem is selection among existing types or behavior that responds to incentives. Plans can be made before signing, and private information can last after it.<span class="zh-full" lang="zh-Hant">「簽約前或簽約後」只是方便的捷徑，不是定義。要問的是：問題出在既有類型的篩選，還是行為對誘因的反應？行為可能在簽約前就計畫好，私有資訊也可能在簽約後繼續存在。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A used-car seller hides earlier flood damage. After the sale, the buyer skips the maintenance the warranty requires. Which is a hidden type and which is a hidden action? Why would “before or after signing” be a weak test on its own?<span class="zh-full" lang="zh-Hant">二手車賣家隱瞞了先前的泡水損傷；成交後，買家又略過保固要求的保養。哪一個是隱藏類型，哪一個是隱藏行動？為什麼只看「簽約前或簽約後」是不夠可靠的判斷方式？</span></p></aside>
+
+<h2 id="lemons">2. Adverse selection in used cars<span class="zh-full" lang="zh-Hant">2. 二手車市場的逆向選擇</span></h2>
+<p class="sub">Buyers who cannot tell quality apart pay for the average car, and paying the average drives good cars away.<span class="zh-full" lang="zh-Hant">分不出品質的買家只肯付「平均車」的價錢，而這個平均價正是把好車趕走的原因。</span></p>
+<p>In Akerlof's lemons model, sellers know whether a car is a reliable plum or an unreliable lemon<span class="zh">劣質車</span>, but buyers cannot tell. Buyers therefore pay for the expected quality on offer, and that price is too low for some owners of good cars.<span class="zh-full" lang="zh-Hant">在 Akerlof 的檸檬車模型中，賣家知道車子是可靠的好車（plum）還是不可靠的劣質車（lemon），買家卻分不出來。所以買家只肯按市場上的預期品質出價，而這個價格對部分好車車主來說太低。</span></p>
+<div class="flow"><span>Quality hidden<span class="zh-full" lang="zh-Hant">品質被隱藏</span></span><i>→</i><span>Buyers pay for the average<span class="zh-full" lang="zh-Hant">買家按平均品質出價</span></span><i>→</i><span>Good cars withdrawn<span class="zh-full" lang="zh-Hant">好車退出</span></span><i>→</i><span>Average quality falls<span class="zh-full" lang="zh-Hant">平均品質下降</span></span><i>→</i><span>Offers fall again<span class="zh-full" lang="zh-Hant">出價再下降</span></span></div>
+<div data-widget="lemons"></div>
+<p>In this example the market shrinks to lemons only, but it does not disappear: lemons still trade between ฿80,000 and ฿100,000. Adverse selection<span class="zh">逆向選擇</span> destroys the gains from good-car trades, not necessarily the whole market. Real used-car markets survive partly because inspections, vehicle histories, warranties and dealer reputation narrow the information gap.<span class="zh-full" lang="zh-Hant">這個例子裡，市場縮小到只剩劣質車，但並沒有消失：劣質車仍在 8 萬到 10 萬泰銖之間成交。逆向選擇毀掉的是好車交易的利益，不一定是整個市場。現實的二手車市場能存在，部分原因是檢查、車輛紀錄、保固與車商聲譽縮小了資訊差距。</span></p>
+<p class="hint"><b>中文邏輯</b><span>不是「便宜的車一定差」；是買家分不出品質，只能出平均價，好車車主因此退出，市場平均品質真的被拉低。</span></p>
+<details class="extra"><summary>Optional: the numbers behind the graph<span class="zh-full" lang="zh-Hant">可展開補充：圖背後的數字</span></summary>
+<div class="tbl"><table class="oil" aria-label="Used-car example in thousand baht per car"><thead><tr><th>Type<span class="zh-full" lang="zh-Hant">類型</span></th><th>Buyer value<span class="zh-full" lang="zh-Hant">買方價值</span></th><th>Seller minimum<span class="zh-full" lang="zh-Hant">賣方底價</span></th><th>Gain from trade<span class="zh-full" lang="zh-Hant">交易利益</span></th></tr></thead><tbody>
+<tr><td>Good car<span class="zh-full" lang="zh-Hant">優質車</span></td><td>300</td><td>260</td><td>40</td></tr>
+<tr><td>Lemon<span class="zh-full" lang="zh-Hant">劣質車</span></td><td>100</td><td>80</td><td>20</td></tr></tbody></table></div>
+<p>With equal numbers of each type, the pooled offer is 0.5×300 + 0.5×100 = 200. That is below the good-car minimum of 260, so good cars leave. Buyers then expect only lemons and offer 100, which lemon owners accept because 100 ≥ 80. With verified quality, both types would trade.<span class="zh-full" lang="zh-Hant">兩種車數量相同時，混同出價是 0.5×300＋0.5×100＝200。這低於好車底價 260，所以好車退出。買家接著預期市場上只剩劣質車，出價降到 100；劣質車車主接受，因為 100≥80。如果品質能被驗證，兩種車都能成交。</span></p>
+</details>
+<p class="note-small">All baht figures in the car, insurance, signal and cost-sharing examples are teaching numbers, not market data. Car values are in thousand baht per car.<span class="zh-full" lang="zh-Hant">二手車、保險、訊號與部分負擔例子中的泰銖數字都是教學用數字，不是市場資料。車價單位為每輛千泰銖。</span></p>
+
+<h2 id="insurance">3. Insurance pools and the death spiral<span class="zh-full" lang="zh-Hant">3. 保險池與惡性循環</span></h2>
+<p class="sub">In insurance the buyer often holds the private information, so the premium decides which risks stay in the pool.<span class="zh-full" lang="zh-Hant">保險市場裡，掌握私有資訊的常常是買方，所以保費高低決定了哪些風險留在保險池裡。</span></p>
+<div class="tbl"><table><thead><tr><th>Term<span class="zh-full" lang="zh-Hant">名詞</span></th><th>Meaning<span class="zh-full" lang="zh-Hant">意義</span></th><th>Example<span class="zh-full" lang="zh-Hant">例子</span></th></tr></thead><tbody>
+<tr><td><b>Expected loss</b><span class="zh-full" lang="zh-Hant">預期損失</span></td><td>The probability-weighted average loss.<span class="zh-full" lang="zh-Hant">以機率加權的平均損失。</span></td><td>A 10% chance of a ฿100,000 claim gives ฿10,000.<span class="zh-full" lang="zh-Hant">有 10% 機率發生 10 萬泰銖理賠，預期損失是 1 萬泰銖。</span></td></tr>
+<tr><td><b>Actuarially fair premium</b><span class="zh-full" lang="zh-Hant">精算公平保費</span></td><td>A premium equal to expected covered claims, before admin costs and profit.<span class="zh-full" lang="zh-Hant">等於預期理賠金額的保費，尚未加上行政成本與利潤。</span></td><td>Expected claims of ฿10,000 imply a fair premium of ฿10,000.<span class="zh-full" lang="zh-Hant">預期理賠 1 萬泰銖，公平保費就是 1 萬泰銖。</span></td></tr>
+<tr><td><b>Risk pooling</b><span class="zh">風險分攤</span><span class="zh-full" lang="zh-Hant">風險分攤</span></td><td>Combining many uncertain losses so premiums can pay the claims.<span class="zh-full" lang="zh-Hant">把許多不確定的損失集合起來，讓保費足以支付理賠。</span></td><td>Many households pay into one accident fund.<span class="zh-full" lang="zh-Hant">許多家庭繳錢進同一個意外基金。</span></td></tr>
+<tr><td><b>Risk aversion</b><span class="zh">風險趨避</span><span class="zh-full" lang="zh-Hant">風險趨避</span></td><td>Preferring a certain payment to a risky one with the same expected value.<span class="zh-full" lang="zh-Hant">在預期值相同時，偏好確定的支出，而不是有風險的支出。</span></td><td>Paying ฿15,000 to avoid a risk that averages ฿10,000.<span class="zh-full" lang="zh-Hant">願意付 1.5 萬泰銖，避開平均只有 1 萬泰銖的風險。</span></td></tr>
+<tr><td><b>Death spiral</b><span class="zh-full" lang="zh-Hant">惡性循環（死亡螺旋）</span></td><td>Higher premiums push out lower risks, which raises premiums again.<span class="zh-full" lang="zh-Hant">保費上升把低風險者擠出去，保費因此再上升。</span></td><td>Each repricing leaves a riskier pool.<span class="zh-full" lang="zh-Hant">每次重新定價，留下的保險池都更危險。</span></td></tr>
+</tbody></table></div>
+<p>A common premium follows the pool's average claims. If lower-risk buyers find it poor value and leave, the average and the premium rise. Risk aversion slows this: a careful buyer may pay above expected claims for peace of mind.<span class="zh-full" lang="zh-Hant">統一保費跟著保險池的平均理賠走。如果低風險買家覺得不划算而退出，平均理賠和保費就會上升。風險趨避會減緩這個過程：謹慎的買家為了安心，可能願意付超過預期理賠的保費。</span></p>
+<div data-widget="pool"></div>
+<div class="pair"><div><b>Adverse selection<span class="zh-full" lang="zh-Hant">逆向選擇</span></b><p>Higher-risk people are keener to buy, so the insured pool is riskier than the population.<span class="zh-full" lang="zh-Hant">高風險的人更想買保險，所以投保者的風險高於整體人口。</span></p></div><div><b>Advantageous selection<span class="zh-full" lang="zh-Hant">有利選擇</span></b><p>Cautious people may both prevent losses and buy coverage, so the insured pool can be safer than the uninsured. Which pattern holds is an empirical question for each product and price.<span class="zh-full" lang="zh-Hant">謹慎的人可能既會預防損失、也會投保，所以投保者反而可能比未投保者安全。哪一種情況成立，要看各產品與價格的實證資料。</span></p></div></div>
+<details class="extra"><summary>Optional: MRU's stylized death spiral<span class="zh-full" lang="zh-Hant">可展開補充：MRU 的簡化惡性循環例子</span></summary>
+<p>In MRU's teaching example, covered costs spread evenly from $0 to $30,000, so the first premium averages $15,000. If everyone expecting less than that drops out, the remaining pool averages $22,500, and the cycle can repeat. A continuous range of risks is what turns a smaller pool into a full spiral.<span class="zh-full" lang="zh-Hant">MRU 的教學例子中，承保成本平均分布在 0 到 3 萬美元，所以第一次保費平均為 1.5 萬美元。若預期成本低於這個數字的人全部退出，剩下的保險池平均為 2.25 萬美元，循環可能一再重複。正是風險連續分布，才讓「保險池縮小」變成完整的惡性循環。</span></p>
+</details>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Suppose cautious drivers are both safer and keener on insurance. How could an insurer's pool end up less risky than the uninsured? What evidence would you need before assuming either adverse or advantageous selection?<span class="zh-full" lang="zh-Hant">假設謹慎的駕駛人既比較安全，也比較想投保。保險公司的投保者為什麼可能比未投保者風險更低？在假定是逆向選擇或有利選擇之前，你需要什麼證據？</span></p></aside>
+
+<h2 id="fixes">4. Fixing adverse selection<span class="zh-full" lang="zh-Hant">4. 處理逆向選擇</span></h2>
+<p class="sub">Either reveal the hidden type or change who joins the pool. Each fix has a cost.<span class="zh-full" lang="zh-Hant">要嘛揭露隱藏類型，要嘛改變誰加入保險池。每種方法都有代價。</span></p>
+<p>Screening<span class="zh">篩選</span> is started by the less-informed side, such as a buyer ordering an inspection or an insurer asking for verifiable records. Certification passes on the result of a credible test; a badge with no real test behind it adds little.<span class="zh-full" lang="zh-Hant">篩選由資訊較少的一方發動，例如買家請人驗車，或保險公司要求可驗證的紀錄。認證則是傳達一項可信檢驗的結果；背後沒有真正檢驗的標章，作用很小。</span></p>
+<div class="tbl"><table><thead><tr><th>Response<span class="zh-full" lang="zh-Hant">方法</span></th><th>How it helps<span class="zh-full" lang="zh-Hant">如何發揮作用</span></th><th>Limit<span class="zh-full" lang="zh-Hant">限制</span></th></tr></thead><tbody>
+<tr><td>Independent inspection or vehicle history<span class="zh-full" lang="zh-Hant">獨立驗車或車輛紀錄</span></td><td>Verified quality lets prices match quality, so good sellers can return.<span class="zh-full" lang="zh-Hant">品質經驗證後，價格能反映品質，好車賣家可能回到市場。</span></td><td>Costs money, can miss damage, and the inspector may have conflicts.<span class="zh-full" lang="zh-Hant">需要花錢、可能漏看損傷，檢查者也可能有利益衝突。</span></td></tr>
+<tr><td>Seller warranty<span class="zh-full" lang="zh-Hant">賣方保固</span></td><td>Lemons generate more claims, so the promise carries information (section 8).<span class="zh-full" lang="zh-Hant">劣質車的理賠較多，所以這個承諾本身帶有資訊（見第 8 節）。</span></td><td>Works only if enforceable and costly for low types to copy.<span class="zh-full" lang="zh-Hant">必須可執行，而且低品質者模仿的成本夠高，才有效。</span></td></tr>
+<tr><td>Risk classification<span class="zh-full" lang="zh-Hant">風險分類</span></td><td>Premiums follow observed risk predictors, so low risks face fairer prices.<span class="zh-full" lang="zh-Hant">保費依可觀察的風險指標訂定，低風險者面對較公平的價格。</span></td><td>High risks may face unaffordable terms, and less risk is shared.<span class="zh-full" lang="zh-Hant">高風險者可能負擔不起，風險分攤的程度也下降。</span></td></tr>
+<tr><td>Group insurance<span class="zh-full" lang="zh-Hant">團體保險</span></td><td>Membership is not chosen on individual health risk, which broadens the pool.<span class="zh-full" lang="zh-Hant">成員資格不是依個人健康風險選擇，保險池因此較廣。</span></td><td>Plan design can still attract some risks, and coverage may be tied to a job.<span class="zh-full" lang="zh-Hant">方案設計仍可能吸引特定風險，保障也可能綁在工作上。</span></td></tr>
+<tr><td>Broad enrollment incentives or requirements<span class="zh-full" lang="zh-Hant">擴大投保的誘因或規定</span></td><td>Bringing in lower risks lowers average claims and steadies premiums.<span class="zh-full" lang="zh-Hant">讓低風險者加入，可降低平均理賠並穩定保費。</span></td><td>Results depend on take-up, subsidies, enforcement and benefit design.<span class="zh-full" lang="zh-Hant">效果取決於參加率、補貼、執行力度與給付設計。</span></td></tr>
+</tbody></table></div>
+<p class="hint"><b>中文邏輯</b><span>分得越清楚，越不會逆向選擇；但高風險的人也可能越難負擔。效率、風險分攤和公平是不同的問題。</span></p>
+
+<h2 id="moral-hazard">5. Moral hazard: coverage changes behavior<span class="zh-full" lang="zh-Hant">5. 道德風險：保障改變行為</span></h2>
+<p class="sub">Moral hazard is about incentives under imperfect monitoring, not about bad people.<span class="zh-full" lang="zh-Hant">道德風險談的是監督不完全時的誘因，不是在說誰品德不好。</span></p>
+<p>Moral hazard<span class="zh">道德風險</span> arises when someone does not bear the full consequences of an action that others cannot fully observe. Insurance, guarantees, delegation and incomplete contracts can all shift consequences. No lie or fraud is needed.<span class="zh-full" lang="zh-Hant">當某人不必承擔自己行為的全部後果，而別人又無法完全觀察這個行為時，就會出現道德風險。保險、保證、委託與不完整的契約都可能轉移後果。過程中不需要有人說謊或詐欺。</span></p>
+<div class="flow"><span>Shop buys fire insurance<span class="zh-full" lang="zh-Hant">商店投保火險</span></span><i>→</i><span>Insurer bears much of a fire loss<span class="zh-full" lang="zh-Hant">保險公司承擔大部分火災損失</span></span><i>→</i><span>Private payoff from prevention falls<span class="zh-full" lang="zh-Hant">自己做預防的好處變少</span></span><i>→</i><span>Precautions slip<span class="zh-full" lang="zh-Hant">預防措施鬆懈</span></span><i>→</i><span>Expected claims rise<span class="zh-full" lang="zh-Hant">預期理賠上升</span></span></div>
+<p>This is not adverse selection: the same owner changes behavior after the contract, rather than a riskier type choosing to buy.<span class="zh-full" lang="zh-Hant">這不是逆向選擇：是同一位店主在簽約後改變行為，而不是風險較高的類型選擇投保。</span></p>
+<h3 id="visits">Insurance and the use of care<span class="zh-full" lang="zh-Hant">保險與醫療使用</span></h3>
+<p>If a visit uses ฿1,000 of real resources but the patient pays a ฿200 copayment, the patient faces a lower price. That is a movement along the demand curve for visits, not a shift of it. The ฿1,000 cost does not disappear; the pool pays the difference.<span class="zh-full" lang="zh-Hant">如果一次看診使用 1,000 泰銖的實際資源，病人卻只付 200 泰銖的定額負擔，病人面對的價格就變低了。這是沿著看診需求線移動，不是需求線移動。1,000 泰銖的成本並沒有消失，差額由保險池支付。</span></p>
+<div data-widget="copay"></div>
+<p class="key">More insured care is not automatically waste. Some extra visits are worth less than their cost; others were blocked by cash or uncertainty and are worth more. Compare marginal benefit with resource cost before calling the change a loss.<span class="zh-full" lang="zh-Hant">保險帶來的額外醫療不一定是浪費。有些新增看診的價值低於成本；有些原本因為缺錢或不確定而被擋下，價值反而高於成本。判斷是不是損失之前，要先比較邊際利益與資源成本。</span></p>
+<p class="hint"><b>中文邏輯</b><span>「道德」二字容易誤導。重點是行為的成本與利益分配變了，未必有人說謊。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>An insurer's pooled premium attracts higher-risk applicants, and some customers then cut back on preventive effort. Separate the two problems and suggest one targeted response for each.<span class="zh-full" lang="zh-Hant">保險公司的統一保費吸引了風險較高的投保人，之後部分客戶又減少預防措施。請把這兩個問題分開，並各提出一個對症的處理方法。</span></p></aside>
+
+<h2 id="agency">6. Principal-agent problems<span class="zh-full" lang="zh-Hant">6. 委託代理問題</span></h2>
+<p class="sub">Hiring an expert helps because they know more, and that same gap creates room for conflict.<span class="zh-full" lang="zh-Hant">請專家幫忙有用，是因為他們懂得比較多；同樣的落差，也留下利益衝突的空間。</span></p>
+<p>A principal<span class="zh">委託人</span> hires an agent to do a task. Problems arise when the agent's better information combines with incentives that differ from the principal's. MRU's examples are a mechanic who may recommend unneeded repairs, a taxi driver who knows the routes better than a tourist, and an employee whose effort is hard to see.<span class="zh-full" lang="zh-Hant">委託人雇用代理人完成某項工作。當代理人掌握較多資訊，誘因又和委託人不同時，問題就出現了。MRU 的例子包括：可能建議不必要維修的技師、比觀光客更熟路線的計程車司機，以及努力程度難以觀察的員工。</span></p>
+<div class="tbl"><table><thead><tr><th>Element<span class="zh-full" lang="zh-Hant">要素</span></th><th>Repair case<span class="zh-full" lang="zh-Hant">修車例子</span></th></tr></thead><tbody>
+<tr><td>Principal<span class="zh-full" lang="zh-Hant">委託人</span></td><td>Car owner who wants a reliable repair at a fair cost.<span class="zh-full" lang="zh-Hant">希望以合理價格得到可靠維修的車主。</span></td></tr>
+<tr><td>Agent<span class="zh-full" lang="zh-Hant">代理人</span></td><td>Mechanic who diagnoses the problem and also sells the repair.<span class="zh-full" lang="zh-Hant">負責診斷、同時也賣維修服務的技師。</span></td></tr>
+<tr><td>Information gap<span class="zh-full" lang="zh-Hant">資訊落差</span></td><td>Only the mechanic can judge whether a part really needs replacing.<span class="zh-full" lang="zh-Hant">只有技師能判斷零件是否真的需要更換。</span></td></tr>
+<tr><td>Conflict<span class="zh-full" lang="zh-Hant">利益衝突</span></td><td>Extra billed work pays the mechanic even when the owner does not need it.<span class="zh-full" lang="zh-Hant">即使車主不需要，多做的工程也能讓技師多賺。</span></td></tr>
+<tr><td>Wider loss<span class="zh-full" lang="zh-Hant">更大的損失</span></td><td>Fearing overcharges, owners refuse even useful preventive work.<span class="zh-full" lang="zh-Hant">車主怕被多收錢，連有用的預防保養也拒絕。</span></td></tr>
+</tbody></table></div>
+<p class="key">The deepest cost is not only overcharging. Distrust makes people turn down trades that would have helped them.<span class="zh-full" lang="zh-Hant">最大的代價不只是被多收錢，而是不信任讓人拒絕了原本對自己有利的交易。</span></p>
+<p>Shirking is the effort version: when effort is costly and pay barely depends on it, an agent may do less than agreed. A bad outcome alone does not prove shirking, because luck, demand and tools also matter.<span class="zh-full" lang="zh-Hant">怠工是努力程度上的版本：努力有成本、薪酬又幾乎不受努力影響時，代理人可能做得比約定的少。單看壞結果不能證明有人怠工，因為運氣、需求與工具也會影響結果。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A hospital pays doctors per procedure, and procedure volume rises. What agency conflict could explain this? Why does the rise in volume alone not prove unnecessary treatment?<span class="zh-full" lang="zh-Hant">醫院按處置件數付錢給醫師，之後處置件數上升。哪種委託代理衝突可能解釋這個現象？為什麼光看件數上升，不能證明出現了不必要的治療？</span></p></aside>
+
+<h2 id="remedies">7. Reducing moral hazard<span class="zh-full" lang="zh-Hant">7. 減輕道德風險</span></h2>
+<p class="sub">Narrow the information gap, or change who bears the consequences.<span class="zh-full" lang="zh-Hant">縮小資訊落差，或改變由誰承擔後果。</span></p>
+<div class="tbl"><table><thead><tr><th>Tool<span class="zh-full" lang="zh-Hant">工具</span></th><th>How it works<span class="zh-full" lang="zh-Hant">運作方式</span></th><th>Limit<span class="zh-full" lang="zh-Hant">限制</span></th></tr></thead><tbody>
+<tr><td>Monitoring and audits<span class="zh-full" lang="zh-Hant">監督與稽核</span></td><td>Better observation raises the chance of detection, so misconduct pays less.<span class="zh-full" lang="zh-Hant">觀察得更清楚，被發現的機率提高，不當行為就不划算。</span></td><td>Costly, and people may game the measured number.<span class="zh-full" lang="zh-Hant">成本高，而且人們可能只針對被衡量的指標做表面功夫。</span></td></tr>
+<tr><td>Reputation and reviews<span class="zh-full" lang="zh-Hant">聲譽與評價</span></td><td>Bad conduct today costs future customers, and reviews also inform buyers.<span class="zh-full" lang="zh-Hant">今天的不當行為會讓未來流失客人，評價也同時提供買家資訊。</span></td><td>Fake reviews and one-off sellers weaken it.<span class="zh-full" lang="zh-Hant">假評價和只做一次生意的賣家會削弱效果。</span></td></tr>
+<tr><td>Independent diagnosis<span class="zh">獨立診斷</span><span class="zh-full" lang="zh-Hant">獨立診斷</span></td><td>The assessor cannot profit from selling the repair, so there is less reason to exaggerate.<span class="zh-full" lang="zh-Hant">診斷者無法從賣維修中獲利，誇大問題的理由就變少。</span></td><td>Independence does not guarantee competence.<span class="zh-full" lang="zh-Hant">獨立不代表一定有能力。</span></td></tr>
+<tr><td>Warranty on the work<span class="zh-full" lang="zh-Hant">施工保固</span></td><td>Poor work leads to seller-paid repeat repairs.<span class="zh-full" lang="zh-Hant">做得不好，就要由賣方出錢重修。</span></td><td>Must be clear and enforceable.<span class="zh-full" lang="zh-Hant">條款必須清楚且可執行。</span></td></tr>
+<tr><td>Pay linked to results<span class="zh-full" lang="zh-Hant">績效連動薪酬</span></td><td>The agent shares the gains from good outcomes.<span class="zh-full" lang="zh-Hant">代理人分享好結果帶來的利益。</span></td><td>Outcomes are noisy, and metrics can be gamed.<span class="zh-full" lang="zh-Hant">結果受雜訊影響，指標也可能被操弄。</span></td></tr>
+<tr><td>Cost sharing<span class="zh-full" lang="zh-Hant">部分負擔</span></td><td>The insured bears part of each loss or bill, so private incentives move closer to real cost.<span class="zh-full" lang="zh-Hant">被保險人自付部分損失或帳單，讓私人誘因更接近真實成本。</span></td><td>Weakens protection and may deter valuable care.<span class="zh-full" lang="zh-Hant">保障變弱，也可能讓人放棄有價值的治療。</span></td></tr>
+</tbody></table></div>
+<h3 id="cost-sharing">Three kinds of cost sharing<span class="zh-full" lang="zh-Hant">三種部分負擔</span></h3>
+<div class="tbl"><table><thead><tr><th>Term<span class="zh-full" lang="zh-Hant">名詞</span></th><th>Rule<span class="zh-full" lang="zh-Hant">規則</span></th><th>Simplified example<span class="zh-full" lang="zh-Hant">簡化例子</span></th></tr></thead><tbody>
+<tr><td><b>Deductible</b><span class="zh-full" lang="zh-Hant">自負額</span></td><td>The insured pays losses up to a set amount before the insurer starts paying.<span class="zh-full" lang="zh-Hant">損失在一定金額以內由被保險人自付，超過後保險公司才開始給付。</span></td><td>A ฿12,000 claim with a ฿5,000 deductible: insured ฿5,000, insurer ฿7,000.<span class="zh-full" lang="zh-Hant">理賠 12,000 泰銖、自負額 5,000 泰銖：被保險人付 5,000，保險公司付 7,000。</span></td></tr>
+<tr><td><b>Copayment</b><span class="zh-full" lang="zh-Hant">定額負擔</span></td><td>A fixed amount per covered service.<span class="zh-full" lang="zh-Hant">每次承保服務付固定金額。</span></td><td>฿200 per eligible visit.<span class="zh-full" lang="zh-Hant">每次符合資格的看診付 200 泰銖。</span></td></tr>
+<tr><td><b>Coinsurance</b><span class="zh-full" lang="zh-Hant">比例負擔</span></td><td>A share of each eligible bill.<span class="zh-full" lang="zh-Hant">每筆符合資格帳單的一定比例。</span></td><td>10% of a ฿12,000 bill: insured ฿1,200, insurer ฿10,800.<span class="zh-full" lang="zh-Hant">12,000 泰銖帳單的 10%：被保險人付 1,200，保險公司付 10,800。</span></td></tr>
+</tbody></table></div>
+<p class="note-small">These are separate examples, not one combined policy.<span class="zh-full" lang="zh-Hant">這些是各自獨立的例子，不是同一張保單的合併條款。</span></p>
+<h3 id="info-good">Information as a public good<span class="zh-full" lang="zh-Hant">資訊是一種公共財</span></h3>
+<p>A trustworthy product test is costly to produce, but once shared it is nonrival and hard to keep from non-payers. Users free ride, so reliable testing may be underprovided. That raises the question of how independent information is financed; it does not mean every review platform fails.<span class="zh-full" lang="zh-Hant">可信的產品測試製作成本高，但一旦公開，就不具競爭性，也很難排除沒付錢的人。使用者會搭便車，所以可靠的測試可能供給不足。這提出的問題是獨立資訊的經費從哪裡來，而不是說每個評價平台都會失敗。</span></p>
+
+<h2 id="signaling">8. Signaling: making a claim believable<span class="zh-full" lang="zh-Hant">8. 訊號傳遞：讓宣稱變得可信</span></h2>
+<p class="sub">A signal works when the low type would not want to copy it.<span class="zh-full" lang="zh-Hant">訊號有效的條件，是低品質的一方不想模仿。</span></p>
+<p>Signaling<span class="zh">訊號傳遞</span> is started by the informed side. In MRU's historical example, Hyundai improved its cars and backed them with an unusually long warranty. For reliable cars, expected warranty claims are low; for unreliable cars, the same promise would be expensive. That cost difference is what makes the warranty believable.<span class="zh-full" lang="zh-Hant">訊號傳遞由掌握資訊的一方發動。在 MRU 的歷史例子中，Hyundai 提升了車子的品質，並提供特別長的保固。可靠的車預期保固理賠少；不可靠的車若做同樣承諾，代價會很高。正是這個成本差異，讓保固變得可信。</span></p>
+<div class="tbl"><table><thead><tr><th>Question<span class="zh-full" lang="zh-Hant">問題</span></th><th>Signaling<span class="zh-full" lang="zh-Hant">訊號傳遞</span></th><th>Screening<span class="zh-full" lang="zh-Hant">篩選</span></th></tr></thead><tbody>
+<tr><td>Who acts?<span class="zh-full" lang="zh-Hant">由誰行動？</span></td><td>The better-informed side.<span class="zh-full" lang="zh-Hant">資訊較多的一方。</span></td><td>The less-informed side.<span class="zh-full" lang="zh-Hant">資訊較少的一方。</span></td></tr>
+<tr><td>Car example<span class="zh-full" lang="zh-Hant">汽車例子</span></td><td>Seller offers a warranty.<span class="zh-full" lang="zh-Hant">賣家提供保固。</span></td><td>Buyer orders an inspection.<span class="zh-full" lang="zh-Hant">買家請人驗車。</span></td></tr>
+<tr><td>Key test<span class="zh-full" lang="zh-Hant">判斷重點</span></td><td>Would a low type want to copy it?<span class="zh-full" lang="zh-Hant">低品質者會想模仿嗎？</span></td><td>Does the test actually separate the types?<span class="zh-full" lang="zh-Hant">這項檢驗真的能區分類型嗎？</span></td></tr>
+</tbody></table></div>
+<div data-widget="signal"></div>
+<div class="tbl"><table><thead><tr><th>Term<span class="zh-full" lang="zh-Hant">名詞</span></th><th>Meaning<span class="zh-full" lang="zh-Hant">意義</span></th></tr></thead><tbody>
+<tr><td><b>Separating outcome</b><span class="zh-full" lang="zh-Hant">分離結果</span></td><td>Different types make different choices, so the choice reveals the type.<span class="zh-full" lang="zh-Hant">不同類型做出不同選擇，選擇本身就揭露了類型。</span></td></tr>
+<tr><td><b>Pooling outcome</b><span class="zh-full" lang="zh-Hant">混同結果</span></td><td>Types make the same choice, so uncertainty remains.<span class="zh-full" lang="zh-Hant">不同類型做出相同選擇，不確定性依然存在。</span></td></tr>
+<tr><td><b>Cheap talk</b><span class="zh-full" lang="zh-Hant">空口宣稱</span></td><td>A costless claim like “excellent condition” that any seller can make, so it separates nothing.<span class="zh-full" lang="zh-Hant">像「車況極佳」這種沒有成本、任何賣家都能說的話，無法區分任何類型。</span></td></tr>
+</tbody></table></div>
+<p>A credible signal need not be costly for the good type. What matters is that copying is costly for the bad type and that the promise can be honored. A warranty also transfers risk and changes later incentives for repair quality and buyer care.<span class="zh-full" lang="zh-Hant">可信的訊號不一定對高品質者很貴；重點是低品質者模仿起來代價高，而且承諾真的能兌現。保固同時也會轉移風險，並改變之後的維修品質與買家照顧車子的誘因。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A firm spends heavily on a glossy advertisement claiming top quality. Why might this fail as a credible signal even though it is expensive? What would make the spending informative?<span class="zh-full" lang="zh-Hant">一家公司砸大錢做精美廣告，宣稱自己品質最好。為什麼這筆錢雖然很貴，仍可能不是可信的訊號？怎樣的條件才會讓這筆支出帶有資訊？</span></p></aside>
+
+<h2 id="education">9. Education: skills, signals or prior ability?<span class="zh-full" lang="zh-Hant">9. 教育：技能、訊號，還是原本的能力？</span></h2>
+<p class="sub">Graduates earn more. Three mechanisms can explain it, and they can work at the same time.<span class="zh-full" lang="zh-Hant">大學畢業生賺得比較多。有三種機制可以解釋，而且可能同時發生。</span></p>
+<div class="tbl"><table><thead><tr><th>Explanation<span class="zh-full" lang="zh-Hant">解釋</span></th><th>What changes<span class="zh-full" lang="zh-Hant">改變的是什麼</span></th><th>Chain<span class="zh-full" lang="zh-Hant">因果鏈</span></th><th>Example<span class="zh-full" lang="zh-Hant">例子</span></th></tr></thead><tbody>
+<tr><td><b>Human capital</b><span class="zh">人力資本</span><span class="zh-full" lang="zh-Hant">人力資本</span></td><td>Productive skills.<span class="zh-full" lang="zh-Hant">生產技能。</span></td><td>Study builds skills, output rises, and employers value the worker more.<span class="zh-full" lang="zh-Hant">讀書培養技能，產出提高，雇主更看重這位員工。</span></td><td>An analyst learns spreadsheet modeling and forecasts better.<span class="zh-full" lang="zh-Hant">分析師學會試算表建模，預測得更準。</span></td></tr>
+<tr><td><b>Signaling</b><span class="zh-full" lang="zh-Hant">訊號傳遞</span></td><td>What employers know about existing traits.<span class="zh-full" lang="zh-Hant">雇主對既有特質的了解。</span></td><td>Finishing a hard degree shows persistence, employers update their view, and offers improve even with unchanged skills.<span class="zh-full" lang="zh-Hant">完成困難的學位顯示了毅力，雇主改變看法，即使技能沒變，條件也變好。</span></td><td>A demanding degree helps an employer infer persistence.<span class="zh-full" lang="zh-Hant">要求嚴格的學位，幫助雇主推斷應徵者有毅力。</span></td></tr>
+<tr><td><b>Ability bias</b><span class="zh-full" lang="zh-Hant">能力偏誤</span></td><td>Who gets educated.<span class="zh-full" lang="zh-Hant">誰接受了教育。</span></td><td>Prior ability or resources raise both schooling and earnings, so the raw gap overstates the effect of schooling.<span class="zh-full" lang="zh-Hant">原本的能力或資源同時提高受教程度與收入，所以表面上的差距會高估教育的效果。</span></td><td>Highly motivated students might earn more even without the degree.<span class="zh-full" lang="zh-Hant">動機很強的學生，即使沒有學位也可能賺得比較多。</span></td></tr>
+</tbody></table></div>
+<p class="hint"><b>中文邏輯</b><span>薪水較高，可能是學到東西，可能是雇主終於看出能力，也可能本來就有優勢；同一筆相關資料分不出三者的比例。</span></p>
+<p>The sheepskin effect<span class="zh">文憑完成溢價</span> is a jump in earnings at the point a credential is completed, beyond what extra years of study would predict. It fits signaling, but completion can also open licensed jobs, finish a key skill, or mark people who differ in unobserved ways. It does not prove that education is pure signaling.<span class="zh-full" lang="zh-Hant">文憑效應（sheepskin effect）指的是：拿到學位那一刻的收入跳升，超過多讀幾年所能解釋的幅度。這和訊號理論相符，但完成學位也可能打開需要執照的工作、補齊關鍵技能，或標示出在看不見的方面本來就不同的人。它不能證明教育純粹只是訊號。</span></p>
+<details class="extra"><summary>Optional: from skills to wages<span class="zh-full" lang="zh-Hant">可展開補充：從技能到工資</span></summary>
+<div class="formula">MPL = Δoutput / Δlabor (physical units)<br>MRPL = MR × MPL (revenue); for a price taker, MRPL = P × MPL<br>A wage-taking firm hires while MRPL ≥ wage<span class="zh-full" lang="zh-Hant">勞動邊際產量 MPL＝產出變動／勞動變動（實物單位）。勞動邊際收益產值 MRPL＝MR×MPL（收入）；價格接受者的 MRPL＝P×MPL。接受既定工資的廠商，只要 MRPL≥工資就繼續僱人。</span></div>
+<p>MRU's lesson calls a dollar-valued gain the “marginal product of labor”. Standard texts call that the marginal revenue product. Keep the units straight: output versus money.<span class="zh-full" lang="zh-Hant">MRU 的課程把以金額計算的增加量稱為「勞動邊際產量」；一般教科書稱之為邊際收益產值。單位要分清楚：產出量還是金額。</span></p>
+<div class="flow"><span>Training raises skills<span class="zh-full" lang="zh-Hant">訓練提高技能</span></span><i>→</i><span>MPL and MRPL rise<span class="zh-full" lang="zh-Hant">MPL 與 MRPL 上升</span></span><i>→</i><span>Labor demand shifts right<span class="zh-full" lang="zh-Hant">勞動需求右移</span></span><i>→</i><span>With supply unchanged, wage and employment rise<span class="zh-full" lang="zh-Hant">供給不變時，工資與就業上升</span></span></div>
+<p>That market result needs a broad rise in demand for the skill, not one person's degree. If many people gain the skill, labor supply also shifts, and the wage effect can be smaller.<span class="zh-full" lang="zh-Hant">這個市場層面的結論，需要的是對該技能的需求普遍上升，而不是某一個人拿到學位。如果很多人都學會這項技能，勞動供給也會移動，工資效果可能較小。</span></p>
+</details>
+
+<h2 id="debate">10. The Econ Duel: learning or signaling?<span class="zh-full" lang="zh-Hant">10. Econ Duel：學習還是訊號？</span></h2>
+<p class="sub">Tyler Cowen and Alex Tabarrok agree that graduates earn more. They disagree about why, and about what that means for society.<span class="zh-full" lang="zh-Hant">Tyler Cowen 和 Alex Tabarrok 都同意畢業生賺得比較多，分歧在於原因，以及這對社會代表什麼。</span></p>
+<div class="tbl"><table><thead><tr><th>Speaker<span class="zh-full" lang="zh-Hant">講者</span></th><th>Position<span class="zh-full" lang="zh-Hant">立場</span></th><th>Examples used<span class="zh-full" lang="zh-Hant">使用的例子</span></th></tr></thead><tbody>
+<tr><td><b>Cowen</b></td><td>Lasting learning explains much of the gap; education builds critical thinking and social skills.<span class="zh-full" lang="zh-Hant">持久的學習解釋了大部分差距；教育培養批判思考與社交能力。</span></td><td>Educated self-employed workers, Scandinavian schooling changes and Asian development; education works alongside infrastructure and governance.<span class="zh-full" lang="zh-Hant">受過教育的自雇者、北歐的學制改革與亞洲的發展；教育要和基礎建設及治理一起發揮作用。</span></td></tr>
+<tr><td><b>Tabarrok</b></td><td>Credentials reveal ability and persistence and open doors to careers.<span class="zh-full" lang="zh-Hant">文憑揭露能力與毅力，並打開職涯大門。</span></td><td>Students cheering canceled classes yet valuing the degree; a credential race that disadvantages people without degrees.<span class="zh-full" lang="zh-Hant">學生為停課歡呼卻仍看重學位；文憑競賽讓沒有學位的人處於劣勢。</span></td></tr>
+</tbody></table></div>
+<p class="note-small">These are debate positions. The video does not give enough study detail to split the wage gap into learning and signaling shares.<span class="zh-full" lang="zh-Hant">以上是辯論中的立場。影片提供的研究細節不足以把薪資差距拆成學習與訊號各占多少。</span></p>
+<h3 id="returns">Private return versus social return<span class="zh-full" lang="zh-Hant">個人報酬與社會報酬</span></h3>
+<div class="pair"><div><b>Private return<span class="zh-full" lang="zh-Hant">個人報酬</span></b><p>The student's extra earnings and other benefits, minus tuition, effort, time and forgone pay.<span class="zh-full" lang="zh-Hant">學生增加的收入與其他好處，扣掉學費、努力、時間與放棄的薪水。</span></p></div><div><b>Social return<span class="zh-full" lang="zh-Hant">社會報酬</span></b><p>Extra real output, better job matching and spillovers, minus the real resources used. Tuition can be a transfer; teachers' time and buildings are real costs.<span class="zh-full" lang="zh-Hant">增加的實際產出、更好的工作配對與外溢效果，扣掉實際使用的資源。學費可能只是移轉；老師的時間和校舍才是實際成本。</span></p></div></div>
+<p>In a pure credential race, one person's degree can lift their rank without raising total skill. If everyone responds by studying longer for unchanged jobs, credential inflation<span class="zh">學歷門檻膨脹</span> uses resources and shuts out non-graduates. Better matching can still create some social value, and some jobs really have become more complex.<span class="zh-full" lang="zh-Hant">在純粹的文憑競賽中，一個人的學位能提高他的排名，卻沒有增加整體技能。如果大家都為了工作內容沒變的職位多讀幾年，學歷門檻膨脹就會耗用資源，並把沒有學位的人排除在外。不過，較好的配對仍可能創造一些社會價值，有些工作也確實變得更複雜。</span></p>
+<h3 id="evidence">What evidence could separate the explanations?<span class="zh-full" lang="zh-Hant">什麼證據能區分這幾種解釋？</span></h3>
+<div class="tbl"><table><thead><tr><th>Comparison<span class="zh-full" lang="zh-Hant">比較方式</span></th><th>What it can test<span class="zh-full" lang="zh-Hant">可檢驗什麼</span></th><th>Why caution remains<span class="zh-full" lang="zh-Hant">為何仍需謹慎</span></th></tr></thead><tbody>
+<tr><td>A credible change in access to schooling<span class="zh-full" lang="zh-Hant">可信的入學機會變動</span></td><td>The effect of extra schooling on those affected.<span class="zh-full" lang="zh-Hant">多讀書對受影響者的效果。</span></td><td>Needs a valid comparison group and no other changes at the same time.<span class="zh-full" lang="zh-Hant">需要有效的對照組，而且同時沒有其他變動。</span></td></tr>
+<tr><td>Credential status with similar measured skills<span class="zh-full" lang="zh-Hant">技能相近但文憑狀態不同</span></td><td>The information or eligibility value of a degree.<span class="zh-full" lang="zh-Hant">學位的資訊價值或資格價值。</span></td><td>Completers may still differ in unobserved traits.<span class="zh-full" lang="zh-Hant">完成學位的人仍可能在看不見的特質上不同。</span></td></tr>
+<tr><td>Direct tests of job skills and output<span class="zh-full" lang="zh-Hant">直接測驗工作技能與產出</span></td><td>Whether learning raises capability.<span class="zh-full" lang="zh-Hant">學習是否真的提高能力。</span></td><td>Tests can miss skills; tools and jobs also matter.<span class="zh-full" lang="zh-Hant">測驗可能漏掉某些技能；工具與職務也有影響。</span></td></tr>
+<tr><td>How employer beliefs change over time<span class="zh-full" lang="zh-Hant">雇主看法隨時間如何改變</span></td><td>Whether early credential-based pay adjusts to performance.<span class="zh-full" lang="zh-Hant">起初依文憑訂的薪資，是否隨表現調整。</span></td><td>Performance is noisy, and early career paths persist.<span class="zh-full" lang="zh-Hant">表現有雜訊，早期的職涯路徑也會延續。</span></td></tr>
+<tr><td>Cross-country schooling and income<span class="zh-full" lang="zh-Hant">跨國教育程度與所得</span></td><td>A pattern to explain.<span class="zh-full" lang="zh-Hant">一個需要解釋的現象。</span></td><td>Institutions, health, capital and reverse causation can drive it.<span class="zh-full" lang="zh-Hant">制度、健康、資本與反向因果都可能是背後原因。</span></td></tr>
+</tbody></table></div>
+<p class="key">A wage gap compares different people, so it lacks the counterfactual<span class="zh">反事實</span>: what the same people would earn without the degree. No single comparison settles the debate, and being unable to measure the shares is an evidence limit, not a reason to assume they are equal.<span class="zh-full" lang="zh-Hant">薪資差距比較的是不同的人，所以缺少反事實：同一批人沒有學位時會賺多少。沒有任何一種比較能單獨解決這場辯論；無法衡量各自比例是證據上的限制，不是假設兩者各占一半的理由。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A survey finds graduates earn 30% more than non-graduates. Can that be reported as a 30% productivity gain caused by education? Explain why a private gain can differ from the gain to society, and propose a better comparison.<span class="zh-full" lang="zh-Hant">一份調查發現畢業生比非畢業生多賺 30%。能把它說成「教育造成 30% 的生產力提升」嗎？請說明為什麼個人得到的好處可能和社會得到的不同，並提出一個更好的比較方式。</span></p></aside>
+
+<h2 id="traps">11. Do not mix these up<span class="zh-full" lang="zh-Hant">11. 不要混淆這些概念</span></h2>
+<div class="traps">
+<div><s>Uncertainty means asymmetric information.<span class="zh-full" lang="zh-Hant">有不確定就是資訊不對稱。</span></s><p>Both sides can lack the same facts. Look for a relative gap.<span class="zh-full" lang="zh-Hant">雙方可能缺少同樣的資訊；要找的是相對落差。</span></p></div>
+<div><s>Adverse selection means any bad outcome.<span class="zh-full" lang="zh-Hant">逆向選擇泛指任何壞結果。</span></s><p>Hidden types must change who participates.<span class="zh-full" lang="zh-Hant">必須是隱藏類型改變了誰參與。</span></p></div>
+<div><s>Moral hazard means dishonest people.<span class="zh-full" lang="zh-Hant">道德風險代表有人不誠實。</span></s><p>It is an incentive and monitoring problem; no fraud is needed.<span class="zh-full" lang="zh-Hant">這是誘因與監督的問題，不需要有詐欺。</span></p></div>
+<div><s>The signing date is the whole distinction.<span class="zh-full" lang="zh-Hant">簽約日期就是唯一的分界。</span></s><p>Ask: selection among types, or behavior under incentives?<span class="zh-full" lang="zh-Hant">要問：是類型的篩選，還是誘因下的行為？</span></p></div>
+<div><s>Adverse selection always destroys the market.<span class="zh-full" lang="zh-Hant">逆向選擇一定會毀掉市場。</span></s><p>It can leave a smaller, stable pool.<span class="zh-full" lang="zh-Hant">它可能只留下一個較小但穩定的市場。</span></p></div>
+<div><s>Screening and signaling are the same.<span class="zh-full" lang="zh-Hant">篩選和訊號傳遞是同一件事。</span></s><p>Check who starts the revealing action.<span class="zh-full" lang="zh-Hant">要看是誰發動揭露資訊的行動。</span></p></div>
+<div><s>An expensive signal is automatically credible.<span class="zh-full" lang="zh-Hant">昂貴的訊號自動可信。</span></s><p>Ask whether a low type would copy it.<span class="zh-full" lang="zh-Hant">要問低品質者會不會模仿。</span></p></div>
+<div><s>More insured care is all waste.<span class="zh-full" lang="zh-Hant">保險帶來的額外醫療全是浪費。</span></s><p>Compare each visit's benefit with its resource cost.<span class="zh-full" lang="zh-Hant">要比較每次看診的利益與資源成本。</span></p></div>
+<div><s>Cost sharing has no downside.<span class="zh-full" lang="zh-Hant">部分負擔沒有缺點。</span></s><p>It weakens protection and can deter valuable care.<span class="zh-full" lang="zh-Hant">它削弱保障，也可能讓人放棄有價值的治療。</span></p></div>
+<div><s>A graduate wage gap proves learning.<span class="zh-full" lang="zh-Hant">畢業生的薪資差距證明了學習的效果。</span></s><p>Signaling and ability bias can contribute too.<span class="zh-full" lang="zh-Hant">訊號與能力偏誤也可能有貢獻。</span></p></div>
+</div>
+
+<h2 id="coldcall">12. Cold call practice<span class="zh-full" lang="zh-Hant">12. 課堂口頭問答練習</span></h2>
+<div class="qa-tools"><button id="qaAll" type="button">Show all answers</button></div>
+<div class="qa">
+<details><summary>What is adverse selection?<span class="zh-full" lang="zh-Hant">什麼是逆向選擇？</span></summary><p>Hidden characteristics change who participates, so the uninformed side faces a worse average pool, as when a pooled used-car offer drives good cars away.<span class="zh-full" lang="zh-Hant">隱藏特徵改變了參與者的組成，使資訊較少的一方面對較差的平均群體，例如二手車的混同出價把好車趕走。</span></p></details>
+<details><summary>Why can risk aversion keep low-risk buyers insured?<span class="zh-full" lang="zh-Hant">為什麼風險趨避能讓低風險者繼續投保？</span></summary><p>They value avoiding a large uncertain loss, so they may pay a premium above their expected claims.<span class="zh-full" lang="zh-Hant">他們重視避開大額且不確定的損失，所以可能願意付高於預期理賠的保費。</span></p></details>
+<details><summary>What is moral hazard?<span class="zh-full" lang="zh-Hant">什麼是道德風險？</span></summary><p>Behavior that others cannot fully observe changes because someone else bears part of the consequences, as when an insured shop cuts fire precautions.<span class="zh-full" lang="zh-Hant">別人無法完全觀察的行為，因為部分後果由他人承擔而改變，例如投保後的商店減少防火措施。</span></p></details>
+<details><summary>How do reviews reduce moral hazard?<span class="zh-full" lang="zh-Hant">評價如何減輕道德風險？</span></summary><p>They inform buyers and make bad conduct cost future business. Fake reviews weaken both effects.<span class="zh-full" lang="zh-Hant">評價提供買家資訊，也讓不當行為付出流失未來生意的代價。假評價會同時削弱這兩個作用。</span></p></details>
+<details><summary>Why can reliable test information be underprovided?<span class="zh-full" lang="zh-Hant">為什麼可靠的測試資訊可能供給不足？</span></summary><p>It is costly to produce, but once shared it is nonrival and hard to exclude, so users free ride.<span class="zh-full" lang="zh-Hant">製作成本高，但公開後不具競爭性又難以排除他人，使用者就會搭便車。</span></p></details>
+<details><summary>How does signaling differ from screening?<span class="zh-full" lang="zh-Hant">訊號傳遞和篩選有什麼不同？</span></summary><p>The informed side signals, for example with a warranty. The uninformed side screens, for example with an inspection.<span class="zh-full" lang="zh-Hant">掌握資訊的一方傳遞訊號，例如提供保固；資訊較少的一方進行篩選，例如請人驗車。</span></p></details>
+<details><summary>What is cheap talk?<span class="zh-full" lang="zh-Hant">什麼是空口宣稱？</span></summary><p>A costless claim any type can make, so it does not separate types.<span class="zh-full" lang="zh-Hant">任何類型都能說、沒有成本的宣稱，因此無法區分類型。</span></p></details>
+<details><summary>What is the sheepskin effect?<span class="zh-full" lang="zh-Hant">什麼是文憑效應？</span></summary><p>An earnings jump at credential completion beyond smooth years-of-schooling effects. It fits signaling but does not prove pure signaling.<span class="zh-full" lang="zh-Hant">拿到文憑時的收入跳升，超過就學年數所能解釋的部分。它和訊號理論相符，但不能證明教育純粹是訊號。</span></p></details>
+<details><summary>When can a contract menu screen types?<span class="zh-full" lang="zh-Hant">合約選單何時能篩選類型？</span></summary><p>When different risks reliably choose different options. The resulting pool still has to be checked, not assumed.<span class="zh-full" lang="zh-Hant">當不同風險的人會穩定地選擇不同方案時。選擇後形成的保險池仍要實際檢查，不能直接假設。</span></p></details>
+</div>
+
+<h2 id="templates">13. Answer templates<span class="zh-full" lang="zh-Hant">13. 答題模板</span></h2>
+<div class="method"><b>Adverse selection<span class="zh-full" lang="zh-Hant">逆向選擇</span></b><p>“One party privately knows its type. Common terms attract a different mix of participants, which changes the quality or risk of the pool. That feedback can worsen the terms and eliminate useful trades, although the market need not collapse completely.”<span class="zh-full" lang="zh-Hant">「一方私下知道自己的類型。統一條件吸引到不同組成的參與者，改變了群體的品質或風險。這種回饋可能讓條件更差、消滅有益的交易，但市場不一定完全崩潰。」</span></p></div>
+<div class="method"><b>Moral hazard<span class="zh-full" lang="zh-Hant">道德風險</span></b><p>“The contract changes the private consequences of an action that is hard to observe. Behavior can then shift costs to someone else. I identify the action that changes and compare monitoring or incentive fixes with their costs.”<span class="zh-full" lang="zh-Hant">「契約改變了一項難以觀察的行為的私人後果，行為可能因此把成本轉嫁給別人。我會先指出改變的是哪個行為，再比較監督或誘因調整方法的成本。」</span></p></div>
+<div class="method"><b>Principal-agent<span class="zh-full" lang="zh-Hant">委託代理</span></b><p>“The principal delegates to an agent with better information. Their incentives differ, and the principal cannot fully verify the agent's action or advice. A good remedy narrows the information gap or the conflict, rather than simply assuming the expert is dishonest.”<span class="zh-full" lang="zh-Hant">「委託人把工作交給資訊較多的代理人。兩者誘因不同，委託人又無法完全驗證代理人的行動或建議。好的解方是縮小資訊落差或利益衝突，而不是直接假設專家不誠實。」</span></p></div>
+<div class="method"><b>Credible signaling<span class="zh-full" lang="zh-Hant">可信的訊號</span></b><p>“The informed party takes an action that an inferior type would not want to copy. Buyers then update their beliefs. The key is differential cost and enforceability, not expense alone.”<span class="zh-full" lang="zh-Hant">「掌握資訊的一方採取低品質者不想模仿的行動，買家因此更新看法。關鍵是成本差異與可執行性，而不只是花了多少錢。」</span></p></div>
+<div class="method"><b>Education debate<span class="zh-full" lang="zh-Hant">教育辯論</span></b><p>“Education can build skills and signal existing traits at the same time, and prior ability can raise both schooling and earnings. A wage premium alone cannot identify the causal shares, and private returns need not equal the gain in social output.”<span class="zh-full" lang="zh-Hant">「教育可以同時培養技能並傳遞既有特質的訊號，原本的能力也可能同時提高受教程度與收入。單看薪資溢價無法辨認各因素的因果比例，個人報酬也不一定等於社會產出的增加。」</span></p></div>
+<p class="note-small endnote">Sources: MRU lessons on used cars, health insurance, moral hazard and its solutions, signaling, human capital, and the marginal product of labor; MRU Econ Duel, <a href="https://mru.org/courses/econ-duel/education-signaling-human-capital">Is Education Signaling or Skill Building?</a> The Hyundai and U.S. examples are historical, not current terms or prices.<span class="zh-full" lang="zh-Hant">來源：MRU 關於二手車、健康保險、道德風險及其解方、訊號傳遞、人力資本與勞動邊際產量的課程；MRU Econ Duel〈教育是訊號還是技能培養？〉。Hyundai 與美國的例子是歷史資料，不代表目前的條款或價格。</span></p>
+<p class="note-small">Continue from <a href="economics-s5.html">Session 5: monopoly and price discrimination</a>, or return to <a href="economics.html">Economics sessions</a>.<span class="zh-full" lang="zh-Hant">接續第 5 堂：獨占與差別取價，或回到 Economics 課程列表。</span></p>
+</article></main></div>
+<script>/* Reusable economics widgets. Shared Plot and controls are embedded for offline use. */
+(() => {
+  'use strict';
+  const NS='http://www.w3.org/2000/svg'; let uid=0;
+  const money=n=>{const value=Math.round(Math.abs(n)*100)/100;return (n<0?'−$':'$')+value.toLocaleString('en-US',{minimumFractionDigits:Number.isInteger(value)?0:2,maximumFractionDigits:2});};
+  const num=n=>n.toLocaleString('en-US',{maximumFractionDigits:2});
+  const colors={d:'var(--demand)',mr:'var(--ext)',mc:'var(--supply)',atc:'var(--world)',cs:'var(--cs)',ps:'var(--ps)'};
+  function el(tag,attrs={},parent){const e=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));if(parent)parent.append(e);return e;}
+  function Plot(svg,qMax,pMax,pMin=0){
+    const W=Math.max(280,svg.getBoundingClientRect().width||500),H=document.body.classList.contains('show-zh')?370:340,L=48,R=18,T=document.body.classList.contains('show-zh')?44:28,B=document.body.classList.contains('show-zh')?64:51;
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.replaceChildren();
+    const sx=q=>L+q/qMax*(W-L-R),sy=p=>H-B-(p-pMin)/(pMax-pMin)*(H-T-B);
+    const defs=el('defs',{},svg),clip=el('clipPath',{id:'plot-clip-'+(++uid)},defs);
+    el('rect',{x:L,y:T,width:W-L-R,height:H-T-B},clip);
+    const grid=el('g',{},svg),area=el('g',{'clip-path':'url(#'+clip.id+')'},svg),lines=el('g',{'clip-path':'url(#'+clip.id+')'},svg),top=el('g',{},svg);
+    const text=(x,y,s,attrs={})=>{const t=el('text',{x,y,class:'tk',...attrs},top);t.textContent=s;return t;};
+    return {sx,sy,W,H,
+      axes(xl,yl){el('line',{x1:L,y1:T,x2:L,y2:H-B,class:'ax'},grid);el('line',{x1:L,y1:H-B,x2:W-R,y2:H-B,class:'ax'},grid);text(L,T-(document.body.classList.contains('show-zh')?25:12),yl,{class:'axl'});text((L+W-R)/2,H-(document.body.classList.contains('show-zh')?23:8),xl,{'text-anchor':'middle',class:'axl'});},
+      xticks(values,fmt=num){values.forEach(q=>text(sx(q),H-B+19,fmt(q),{'text-anchor':'middle'}));},
+      yticks(values,fmt=num){values.forEach(p=>{el('line',{x1:L,y1:sy(p),x2:W-R,y2:sy(p),class:'grid'},grid);text(L-7,sy(p)+4,fmt(p),{'text-anchor':'end'});});},
+      path(points,color,dash=false){el('polyline',{points:points.map(([q,p])=>sx(q)+','+sy(p)).join(' '),fill:'none',stroke:color,'stroke-width':2.5,'stroke-dasharray':dash?'6 5':'none'},lines);},
+      line(a,b,color){this.path([[0,a],[qMax,a+b*qMax]],color);},
+      hline(p,color,dash=false){this.path([[0,p],[qMax,p]],color,dash);},
+      poly(points,cls){el('polygon',{points:points.map(([q,p])=>sx(q)+','+sy(p)).join(' '),class:cls},area);},
+      rect(q0,q1,p0,p1,cls){this.poly([[q0,p0],[q1,p0],[q1,p1],[q0,p1]],cls);},
+      guide(q,p){el('line',{x1:sx(q),y1:sy(p),x2:sx(q),y2:sy(pMin),class:'gd'},lines);el('line',{x1:L,y1:sy(p),x2:sx(q),y2:sy(p),class:'gd'},lines);},
+      point(q,p,color){el('circle',{cx:sx(q),cy:sy(p),r:4,fill:color,stroke:'var(--paper)','stroke-width':1.3},lines);},
+      tag(q,p,s,anchor='middle',dy=-7){return text(sx(q),sy(p)+dy,s,{'text-anchor':anchor});},
+      bar(q,value,color){el('rect',{x:sx(q-.28),y:sy(value),width:sx(q+.28)-sx(q-.28),height:Math.max(0,sy(0)-sy(value)),fill:color},area);text(sx(q),sy(value)-8,num(value),{'text-anchor':'middle'});}
+    };
+  }
+  function shell(host,title,sub,legend,twinTitles){
+    host.classList.add('graph','wide');const id='econ-'+(++uid);
+    host.innerHTML='<div class="g-head"><span class="g-kicker">Interactive graph</span><h4></h4><p></p></div><div class="plot-legend"></div><div class="g-body"><div class="g-plot"></div><div class="g-side"><div class="g-ctrl"></div><dl class="g-stats" aria-live="off"></dl></div></div><p class="g-note" aria-live="polite"></p>';
+    host.querySelector('h4').textContent=title;host.querySelector('.g-head p').textContent=sub;
+    const leg=host.querySelector('.plot-legend');legend.forEach(([s,c])=>{const item=document.createElement('span'),sw=document.createElement('i');sw.style.background=c;sw.className='sw ln';item.append(sw,document.createTextNode(s));leg.append(item);});
+    if(host.dataset.readout==='optional'){
+      const side=host.querySelector('.g-side'),stats=host.querySelector('.g-stats'),note=host.querySelector('.g-note');
+      const reading=document.createElement('div'),details=document.createElement('details'),summary=document.createElement('summary');
+      reading.className='g-reading';details.className='number-readout';summary.textContent='View numerical readout';details.append(summary,stats);reading.append(note,details);side.append(reading);
+    }
+    const plot=host.querySelector('.g-plot'),svgs=[];
+    if(twinTitles){plot.classList.add('twin');twinTitles.forEach(name=>{const div=document.createElement('div'),t=document.createElement('p');t.className='tw-t';t.textContent=name;div.append(t);const svg=el('svg',{role:'img','aria-label':title+': '+name},div);plot.append(div);svgs.push(svg);});}
+    else svgs.push(el('svg',{role:'img','aria-label':title},plot));
+    const ctrl=host.querySelector('.g-ctrl');
+    return {svgs,host,
+      slider(key,label,min,max,step,value,format,on){const row=document.createElement('div');row.className='sl';const lab=document.createElement('label'),span=document.createElement('span'),output=document.createElement('output'),input=document.createElement('input');input.type='range';input.setAttribute('aria-label',label);Object.assign(input,{id:id+'-'+key,min,max,step,value});lab.htmlFor=input.id;span.textContent=label;lab.append(span,output);output.htmlFor=input.id;row.append(lab,input);ctrl.append(row);const sync=()=>output.textContent=format(+input.value);input.addEventListener('input',()=>{sync();on(+input.value);});sync();return {set(v){input.value=v;sync();},input};},
+      button(label,on){const b=document.createElement('button');b.type='button';b.className='g-btn';b.textContent=label;b.addEventListener('click',on);ctrl.append(b);return b;},
+      seg(label,options,value,on){const group=document.createElement('div');group.className='seg';group.setAttribute('role','group');group.setAttribute('aria-label',label);options.forEach(([v,t])=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.dataset.value=v;b.setAttribute('aria-pressed',String(v===value));b.addEventListener('click',()=>{[...group.children].forEach(x=>x.setAttribute('aria-pressed',String(x===b)));on(v);});group.append(b);});ctrl.append(group);},
+      show(rows,note){const stats=host.querySelector('.g-stats');stats.replaceChildren();rows.forEach(([key,value,big=false])=>{const row=document.createElement('div');row.className='st'+(big?' big':'');row.dataset.stat=key;const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=key;dd.textContent=value;row.append(dt,dd);stats.append(row);});host.querySelector('.g-note').textContent=note;},
+      redrawOnResize(draw){let last='';const obs=new ResizeObserver(()=>{const widths=svgs.map(svg=>Math.round(svg.getBoundingClientRect().width)).join('|');if(widths!==last){last=widths;draw();}});obs.observe(plot);svgs.forEach(svg=>obs.observe(svg.parentElement));window.addEventListener('econ-language-change',draw);}
+    };
+  }
+  const W_={};
+  const kb=n=>'฿'+num(n)+'k';
+  const baht=n=>(n<0?'−฿':'฿')+Math.round(Math.abs(n)).toLocaleString('en-US');
+  const pct=n=>Math.round(n*100)+'%';
+  const signed=n=>(n<0?'−':'')+num(Math.abs(n));
+
+  /* Used cars: a two-type lemons market, stepped round by round. */
+  W_.lemons=host=>{
+    const s=shell(host,'Watch the used-car pool unravel','Predict whether owners of good cars accept an offer based on the average car. Step through the rounds, then switch to verified quality.',[['Buyer value',colors.ps],['Seller minimum','var(--rev)'],['Buyer offer',colors.d]]);
+    let share=.5,hMin=260,step=0,info='hidden';
+    const rounds=()=>{const first=share*300+(1-share)*100;const r=[{offer:first,good:first>=hMin,lemon:first>=80}];if(first<hMin)r.push({offer:100,good:false,lemon:true});return r;};
+    const draw=()=>{
+      const r=rounds();if(step>r.length)step=r.length;
+      const cur=step?r[step-1]:null,verified=info==='verified',fadeGood=!verified&&cur&&!cur.good;
+      const P=Plot(s.svgs[0],4,340);P.axes('','Thousand baht per car');P.xticks([1,3],v=>v===1?'Good cars':'Lemons');P.yticks([0,100,200,300]);
+      P.rect(.55,.98,0,300,'a-ps'+(fadeGood?' a-faded':''));P.rect(1.02,1.45,0,hMin,'a-rev'+(fadeGood?' a-faded':''));P.rect(2.55,2.98,0,100,'a-ps');P.rect(3.02,3.45,0,80,'a-rev');
+      P.tag(.765,300,'300');P.tag(1.235,hMin,num(hMin));P.tag(2.765,100,'100');P.tag(3.235,80,'80');
+      if(verified){P.path([[.45,300],[1.55,300]],colors.d,true);P.path([[2.45,100],[3.55,100]],colors.d,true);}
+      else if(cur){P.hline(cur.offer,colors.d);P.tag(2,cur.offer,num(cur.offer));}
+      let rows,note;
+      if(verified){
+        rows=[['Stage','Quality verified',true],['Good cars sell','Yes'],['Lemons sell','Yes'],['Gains realized (one car of each type)',kb(60),true],['Gains lost',kb(0)]];
+        note='With verified quality, each type gets its own price. Both trades happen and all '+kb(60)+' of gains are realized.';
+      }else if(!cur){
+        rows=[['Stage','Before any offer',true],['Share of good cars',pct(share)],['Good-car seller minimum',kb(hMin)]];
+        note='Buyers know only the mix of cars. Predict: will good-car owners accept an offer based on the average?';
+      }else{
+        const final=step===r.length,gains=(cur.good?40:0)+(cur.lemon?20:0);
+        rows=[['Stage',final?'Round '+step+' (stable)':'Round '+step,true],['Buyer offer',kb(cur.offer)],['Good cars sell',cur.good?'Yes':'No'],['Lemons sell',cur.lemon?'Yes':'No'],['Gains realized (one car of each type)',kb(gains),true],['Gains lost',kb(60-gains)]];
+        if(cur.good)note='The pooled offer of '+kb(cur.offer)+' covers the good-car minimum of '+kb(hMin)+', so both types sell. Pooling is stable here.';
+        else if(step===1)note='The pooled offer of '+kb(cur.offer)+' is below the good-car minimum of '+kb(hMin)+', so good cars are withdrawn. Buyers will notice that the pool has changed.';
+        else note='Only lemons remain, so buyers offer '+kb(100)+'. Lemon owners accept because 100 ≥ 80. The market shrinks but survives.';
+      }
+      s.show(rows,note);
+    };
+    s.seg('Information',[['hidden','Hidden quality'],['verified','Verified quality']],info,v=>{info=v;draw();});
+    s.slider('share','Share of good cars',10,90,5,share*100,v=>v+'%',v=>{share=v/100;draw();});
+    s.slider('hmin','Good-car seller minimum',200,300,10,hMin,kb,v=>{hMin=v;draw();});
+    s.button('Next round',()=>{if(info==='hidden'){step=Math.min(step+1,rounds().length);draw();}});
+    s.button('Reset rounds',()=>{step=0;draw();});
+    draw();s.redrawOnResize(draw);
+  };
+
+  /* Insurance: a two-type pool repriced until it stops changing. */
+  W_.pool=host=>{
+    const s=shell(host,'Reprice the insurance pool','Predict whether low-risk buyers stay when the premium reflects the average claim. Raise their willingness to pay to see how risk aversion holds a pool together.',[['Expected claims',colors.ps],['Willingness to pay',colors.cs],['Premium',colors.d]]);
+    let lowShare=.5,lowWtp=15,step=0;
+    const rounds=()=>{const r=[];let low=true,high=true;for(let i=0;i<4;i++){const w=(low?lowShare:0)+(high?1-lowShare:0);if(!w)break;const prem=((low?lowShare*10:0)+(high?(1-lowShare)*30:0))/w;const nl=low&&lowWtp>=prem,nh=high&&35>=prem;r.push({prem,low:nl,high:nh,wasLow:low});if(nl===low&&nh===high)break;low=nl;high=nh;}return r;};
+    const draw=()=>{
+      const r=rounds();if(step>r.length)step=r.length;const cur=step?r[step-1]:null;
+      const P=Plot(s.svgs[0],4,42);P.axes('','Thousand baht per year');P.xticks([1,3],v=>v===1?'Low risk':'High risk');P.yticks([0,10,20,30,40]);
+      const fadeLow=cur&&!cur.low;
+      P.rect(.55,.98,0,10,'a-ps'+(fadeLow?' a-faded':''));P.rect(1.02,1.45,0,lowWtp,'a-cs'+(fadeLow?' a-faded':''));P.rect(2.55,2.98,0,30,'a-ps');P.rect(3.02,3.45,0,35,'a-cs');
+      P.tag(.765,10,'10');P.tag(1.235,lowWtp,num(lowWtp));P.tag(2.765,30,'30');P.tag(3.235,35,'35');
+      if(cur){P.hline(cur.prem,colors.d);P.tag(2,cur.prem,num(cur.prem));}
+      let rows,note;
+      if(!cur){
+        rows=[['Stage','Before pricing',true],['Share of low-risk buyers',pct(lowShare)],['Low-risk willingness to pay',kb(lowWtp)]];
+        note='The insurer cannot tell the types apart. Predict: will low-risk buyers accept a premium based on the average claim?';
+      }else{
+        const final=step===r.length,pool=cur.low&&cur.high?'Mixed pool':cur.high?'High risk only':cur.low?'Low risk only':'Nobody insured';
+        rows=[['Stage',final?'Round '+step+' (stable)':'Round '+step,true],['Premium',kb(cur.prem)],['Low risk stays insured',cur.low?'Yes':'No'],['High risk stays insured',cur.high?'Yes':'No'],['Pool after this round',pool,true]];
+        if(cur.low&&cur.high)note='Both types stay because the premium of '+kb(cur.prem)+' is within both willingness-to-pay levels. Risk aversion keeps the pool mixed.';
+        else if(cur.wasLow&&!cur.low)note='A premium of '+kb(cur.prem)+' exceeds the low-risk willingness to pay of '+kb(lowWtp)+', so low-risk buyers leave. The insurer must reprice.';
+        else note='Only high-risk buyers remain at '+kb(cur.prem)+'. They stay because 30 ≤ 35. The pool shrinks but survives.';
+      }
+      s.show(rows,note);
+    };
+    s.slider('share','Share of low-risk buyers',10,90,5,lowShare*100,v=>v+'%',v=>{lowShare=v/100;draw();});
+    s.slider('wtp','Low-risk willingness to pay',10,30,1,lowWtp,kb,v=>{lowWtp=v;draw();});
+    s.button('Next round',()=>{step=Math.min(step+1,rounds().length);draw();});
+    s.button('Reset rounds',()=>{step=0;draw();});
+    draw();s.redrawOnResize(draw);
+  };
+
+  /* Moral hazard in care: a lower out-of-pocket price moves patients along demand. */
+  W_.copay=host=>{
+    const s=shell(host,'Lower the price a patient pays','Each visit uses ฿1,000 of resources. Predict how many extra visits a ฿200 copayment creates, then ask whether those visits are worth their cost.',[['Demand D',colors.d],['Resource cost',colors.mc],['Benefit including blocked care',colors.atc],['Worth more than cost','var(--cs)'],['Worth less than cost','var(--dwl)']]);
+    let c=200,view='demand';
+    const draw=()=>{
+      const mb=view==='blocked',a=mb?2500:2000,B=x=>a-20*x,cross=mb?75:50,q=(2000-c)/20;
+      const P=Plot(s.svgs[0],105,2300);P.axes('Visits per 100 members a year','Baht per visit');P.xticks([0,25,50,75,100]);P.yticks([0,500,1000,1500,2000]);
+      const hiEnd=Math.min(q,cross);if(hiEnd>50)P.poly([[50,1000],[50,B(50)],[hiEnd,B(hiEnd)],[hiEnd,1000]],'a-prof');
+      const loStart=Math.max(50,cross);if(q>loStart)P.poly([[loStart,1000],[q,1000],[q,B(q)],[loStart,B(loStart)]],'a-loss');
+      P.line(2000,-20,colors.d);P.hline(1000,colors.mc);if(mb)P.path([[0,2500],[105,400]],colors.atc,true);
+      P.path([[0,c],[q,c]],colors.mc,true);P.guide(q,c);P.point(q,c,colors.d);P.point(50,1000,colors.d);
+      const above=Math.max(0,Math.min(q,cross)-50),below=Math.max(0,q-Math.max(50,cross)),net=(a-1000)*(q-50)-10*(q*q-2500);
+      const rows=[['Patient pays per visit',baht(c)],['Resource cost per visit',baht(1000)],['Pool pays per visit',baht(1000-c)],['Visits',num(q),true],['Extra visits versus uninsured',num(q-50)],['Extra visits worth more than cost',num(above)],['Extra visits worth less than cost',num(below)],['Net value of extra visits (per 100 members)',baht(net),true]];
+      let note;
+      if(c>=1000)note='At '+baht(1000)+' the patient pays the full resource cost: the uninsured benchmark of 50 visits.';
+      else if(!mb)note='The lower price moves patients down the demand curve to '+num(q)+' visits. Every extra visit is valued below its '+baht(1000)+' cost, so the change loses '+baht(-net)+' of value.';
+      else note='Some extra visits treat needs that a lack of cash had blocked. Visits 50 to '+num(Math.min(q,cross))+' are worth more than cost'+(q>cross?'; visits beyond '+num(cross)+' are worth less':'')+'. Net change: '+baht(net)+'.';
+      s.show(rows,note);
+    };
+    s.seg('Benefit view',[['demand','Demand shows the full benefit'],['blocked','Some valuable care was blocked']],view,v=>{view=v;draw();});
+    const slider=s.slider('price','Out-of-pocket price per visit',0,1000,50,c,baht,v=>{c=v;draw();});
+    s.button('Reset to ฿200 copayment',()=>{c=200;slider.set(c);draw();});
+    draw();s.redrawOnResize(draw);
+  };
+
+  /* Signaling: a signal separates types only when the low type would not copy it. */
+  W_.signal=host=>{
+    const s=shell(host,'Test whether a signal separates the types','Predict who sends the signal when it raises a seller\'s revenue by 30, costs a high-quality seller 10 and costs a low-quality seller 50. Then change the numbers.',[['Benefit if seen as high quality','var(--cs)'],['Cost of sending the signal','var(--rev)']]);
+    let ben=30,ch=10,cl=50;
+    const draw=()=>{
+      const P=Plot(s.svgs[0],4,90);P.axes('','Payoff (illustrative units)');P.xticks([1,3],v=>v===1?'High type':'Low type');P.yticks([0,20,40,60,80]);
+      P.rect(.55,.98,0,ben,'a-cs');P.rect(1.02,1.45,0,ch,'a-rev');P.rect(2.55,2.98,0,ben,'a-cs');P.rect(3.02,3.45,0,cl,'a-rev');
+      P.tag(.765,ben,num(ben));P.tag(1.235,ch,num(ch));P.tag(2.765,ben,num(ben));P.tag(3.235,cl,num(cl));
+      const hs=ben>ch,ls=ben>cl;
+      const outcome=hs&&!ls?'Separating':hs&&ls?'Pooling':!hs&&!ls?'No one signals':'Only the low type signals';
+      let note;
+      if(hs&&!ls)note='Separating: the high type gains '+num(ben-ch)+' and the low type would lose '+num(cl-ben)+' by copying. Only good sellers signal, so buyers can trust it.';
+      else if(hs&&ls)note='Pooling: copying pays for the low type too, so both types signal and the signal tells buyers nothing. Buyers would stop paying extra for it.';
+      else if(!hs&&!ls)note='No one signals: the benefit does not cover even the high type\'s cost.';
+      else note='Only the low type would signal here, so a buyer should read the signal as bad news.';
+      s.show([['High type net gain',signed(ben-ch)],['Low type net gain if copying',signed(ben-cl)],['Outcome',outcome,true]],note);
+    };
+    const b=s.slider('ben','Benefit of being seen as high quality',0,80,1,ben,num,v=>{ben=v;draw();});
+    const h=s.slider('ch','Signal cost: high type',0,80,1,ch,num,v=>{ch=v;draw();});
+    const l=s.slider('cl','Signal cost: low type',0,80,1,cl,num,v=>{cl=v;draw();});
+    s.button('Reset example',()=>{ben=30;ch=10;cl=50;b.set(ben);h.set(ch);l.set(cl);draw();});
+    draw();s.redrawOnResize(draw);
+  };
+
+  window.EconWidgets={mount(root){root.querySelectorAll('[data-widget]').forEach(host=>{const init=W_[host.dataset.widget];if(init&&!host.dataset.ready){host.dataset.ready='1';init(host);}});}};
+})();
+</script>
+<script>
+(() => {
+ const toc=document.getElementById('toc'),rail=document.getElementById('rail'),button=document.getElementById('tocBtn');
+ const headings=[...document.querySelectorAll('.doc > h2,.doc > h3')];
+ headings.forEach(h=>{const li=document.createElement('li'),a=document.createElement('a');li.className=h.tagName.toLowerCase();li.dataset.id=h.id;a.href='#'+h.id;a.textContent=h.childNodes[0].textContent.trim();const z=h.querySelector(':scope > .zh-full');if(z){const s=document.createElement('span');s.className='zh-full';s.lang='zh-Hant';s.textContent=z.textContent;a.append(s);}li.append(a);toc.append(li);});
+ const spy=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;toc.querySelectorAll('.on').forEach(a=>a.classList.remove('on'));const a=toc.querySelector('[data-id="'+e.target.id+'"] a');if(a)a.classList.add('on');}),{rootMargin:'-100px 0px -65% 0px'});headings.forEach(h=>spy.observe(h));
+ function close(){rail.classList.remove('open');button.setAttribute('aria-expanded','false');}
+ button.addEventListener('click',()=>{const open=rail.classList.toggle('open');button.setAttribute('aria-expanded',String(open));});
+ toc.addEventListener('click',e=>{if(e.target.closest('a'))close();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&rail.classList.contains('open')){close();button.focus();}});
+ const all=document.getElementById('qaAll');all.addEventListener('click',()=>{const ds=[...document.querySelectorAll('.qa details')],open=!ds.every(d=>d.open);ds.forEach(d=>d.open=open);all.textContent=open?'Hide all answers':'Show all answers';});
+ window.EconWidgets.mount(document);
+})();
+</script>
+<script>(() => {
+ 'use strict';
+ const dict={
+  "Interactive graph":"互動圖表","Contents":"目錄","Show all answers":"展開全部答案","Hide all answers":"收合全部答案","View numerical readout":"查看數值結果",
+  "Yes":"是","No":"否","Stage":"階段","Next round":"下一輪","Reset rounds":"重設回合",
+  "Watch the used-car pool unravel":"看二手車市場如何逐步瓦解",
+  "Predict whether owners of good cars accept an offer based on the average car. Step through the rounds, then switch to verified quality.":"先預測：好車車主會不會接受依「平均車」出的價？逐輪推進，再切換到品質已驗證的情況。",
+  "Buyer value":"買方價值","Seller minimum":"賣方底價","Buyer offer":"買方出價","Thousand baht per car":"每輛千泰銖","Good cars":"優質車","Lemons":"劣質車",
+  "Quality verified":"品質已驗證","Good cars sell":"優質車成交","Lemons sell":"劣質車成交","Gains realized (one car of each type)":"已實現的交易利益（兩類各一輛）","Gains lost":"失去的交易利益",
+  "Before any offer":"尚未出價","Share of good cars":"優質車比例","Good-car seller minimum":"優質車賣方底價","Hidden quality":"品質隱藏","Verified quality":"品質已驗證",
+  "With verified quality, each type gets its own price. Both trades happen and all ฿60k of gains are realized.":"品質可驗證時，每種車各有自己的價格。兩筆交易都會發生，฿60k 的交易利益全部實現。",
+  "Buyers know only the mix of cars. Predict: will good-car owners accept an offer based on the average?":"買家只知道車子的組成比例。先預測：好車車主會接受依平均品質出的價嗎？",
+  "Only lemons remain, so buyers offer ฿100k. Lemon owners accept because 100 ≥ 80. The market shrinks but survives.":"只剩劣質車，所以買家出價 ฿100k。劣質車車主接受，因為 100≥80。市場縮小，但仍然存在。",
+  "Reprice the insurance pool":"重新為保險池定價",
+  "Predict whether low-risk buyers stay when the premium reflects the average claim. Raise their willingness to pay to see how risk aversion holds a pool together.":"先預測：保費反映平均理賠時，低風險買家會不會留下？再提高他們的願付價格，看風險趨避如何讓保險池維持住。",
+  "Expected claims":"預期理賠","Willingness to pay":"願付價格","Premium":"保費","Thousand baht per year":"每年千泰銖","Low risk":"低風險","High risk":"高風險",
+  "Before pricing":"尚未定價","Share of low-risk buyers":"低風險買家比例","Low-risk willingness to pay":"低風險者的願付價格","Low risk stays insured":"低風險者繼續投保","High risk stays insured":"高風險者繼續投保",
+  "Pool after this round":"本輪後的保險池","Mixed pool":"混合保險池","High risk only":"只剩高風險者","Low risk only":"只剩低風險者","Nobody insured":"無人投保",
+  "The insurer cannot tell the types apart. Predict: will low-risk buyers accept a premium based on the average claim?":"保險公司分不出類型。先預測：低風險買家會接受依平均理賠訂的保費嗎？",
+  "Lower the price a patient pays":"降低病人自付的價格",
+  "Each visit uses ฿1,000 of resources. Predict how many extra visits a ฿200 copayment creates, then ask whether those visits are worth their cost.":"每次看診使用 1,000 泰銖的資源。先預測 200 泰銖的定額負擔會多出多少次看診，再問這些看診值不值得它的成本。",
+  "Demand D":"需求 D","Resource cost":"資源成本","Benefit including blocked care":"含被擋下醫療的利益","Worth more than cost":"價值高於成本","Worth less than cost":"價值低於成本",
+  "Visits per 100 members a year":"每百名會員每年看診次數","Baht per visit":"每次看診泰銖",
+  "Patient pays per visit":"病人每次自付","Resource cost per visit":"每次看診資源成本","Pool pays per visit":"保險池每次支付","Visits":"看診次數",
+  "Extra visits versus uninsured":"相對未投保增加的看診","Extra visits worth more than cost":"價值高於成本的新增看診","Extra visits worth less than cost":"價值低於成本的新增看診","Net value of extra visits (per 100 members)":"新增看診的淨價值（每百名會員）",
+  "Demand shows the full benefit":"需求反映全部利益","Some valuable care was blocked":"有些有價值的醫療曾被擋下","Out-of-pocket price per visit":"每次看診自付價格","Reset to ฿200 copayment":"重設為 200 泰銖定額負擔",
+  "Test whether a signal separates the types":"檢驗訊號能否區分類型",
+  "Predict who sends the signal when it raises a seller's revenue by 30, costs a high-quality seller 10 and costs a low-quality seller 50. Then change the numbers.":"先預測：訊號讓賣家收入增加 30，高品質賣家的成本是 10、低品質賣家是 50 時，誰會發出訊號？再改變數字試試看。",
+  "Benefit if seen as high quality":"被視為高品質的好處","Cost of sending the signal":"發出訊號的成本","Payoff (illustrative units)":"報酬（示意單位）","High type":"高品質類型","Low type":"低品質類型",
+  "High type net gain":"高品質類型的淨收益","Low type net gain if copying":"低品質類型模仿時的淨收益","Outcome":"結果",
+  "Separating":"分離","Pooling":"混同","No one signals":"無人發出訊號","Only the low type signals":"只有低品質類型發出訊號",
+  "Pooling: copying pays for the low type too, so both types signal and the signal tells buyers nothing. Buyers would stop paying extra for it.":"混同：模仿對低品質類型也划算，兩種類型都發出訊號，訊號對買家毫無資訊。買家不會再為它多付錢。",
+  "No one signals: the benefit does not cover even the high type's cost.":"無人發出訊號：好處連高品質類型的成本都不足以支付。",
+  "Only the low type would signal here, so a buyer should read the signal as bad news.":"這裡只有低品質類型會發出訊號，所以買家應該把它解讀為壞消息。",
+  "Benefit of being seen as high quality":"被視為高品質的好處","Signal cost: high type":"訊號成本：高品質類型","Signal cost: low type":"訊號成本：低品質類型","Reset example":"重設例子"
+ };
+ const patterns=[
+  [/^Round (\d+) \(stable\)$/,m=>'第 '+m[1]+' 輪（已穩定）'],
+  [/^Round (\d+)$/,m=>'第 '+m[1]+' 輪'],
+  [/^The pooled offer of (.+?) covers the good-car minimum of (.+?), so both types sell\. Pooling is stable here\.$/,m=>'混同出價 '+m[1]+' 不低於優質車底價 '+m[2]+'，所以兩種車都成交。此時混同狀態是穩定的。'],
+  [/^The pooled offer of (.+?) is below the good-car minimum of (.+?), so good cars are withdrawn\. Buyers will notice that the pool has changed\.$/,m=>'混同出價 '+m[1]+' 低於優質車底價 '+m[2]+'，所以優質車退出市場。買家會察覺市場上的車子組成已經改變。'],
+  [/^Both types stay because the premium of (.+?) is within both willingness-to-pay levels\. Risk aversion keeps the pool mixed\.$/,m=>'保費 '+m[1]+' 在兩種人的願付價格之內，所以兩種人都留下。風險趨避讓保險池維持混合。'],
+  [/^A premium of (.+?) exceeds the low-risk willingness to pay of (.+?), so low-risk buyers leave\. The insurer must reprice\.$/,m=>'保費 '+m[1]+' 高於低風險者的願付價格 '+m[2]+'，所以低風險買家退出，保險公司必須重新定價。'],
+  [/^Only high-risk buyers remain at (.+?)\. They stay because 30 ≤ 35\. The pool shrinks but survives\.$/,m=>'保費 '+m[1]+' 時只剩高風險買家。他們留下，因為 30≤35。保險池縮小，但仍然存在。'],
+  [/^At (.+?) the patient pays the full resource cost: the uninsured benchmark of 50 visits\.$/,m=>'病人付 '+m[1]+' 時，等於自付全部資源成本，也就是未投保時 50 次看診的基準。'],
+  [/^The lower price moves patients down the demand curve to (.+?) visits\. Every extra visit is valued below its (.+?) cost, so the change loses (.+?) of value\.$/,m=>'較低的價格讓病人沿需求線往下移到 '+m[1]+' 次看診。每次新增看診的價值都低於 '+m[2]+' 的成本，所以這個變化損失 '+m[3]+' 的價值。'],
+  [/^Some extra visits treat needs that a lack of cash had blocked\. Visits 50 to (.+?) are worth more than cost; visits beyond (.+?) are worth less\. Net change: (.+?)\.$/,m=>'部分新增看診治療的是原本因缺錢而被擋下的需求。第 50 到 '+m[1]+' 次看診的價值高於成本；超過 '+m[2]+' 次的部分價值低於成本。淨變化：'+m[3]+'。'],
+  [/^Some extra visits treat needs that a lack of cash had blocked\. Visits 50 to (.+?) are worth more than cost\. Net change: (.+?)\.$/,m=>'部分新增看診治療的是原本因缺錢而被擋下的需求。第 50 到 '+m[1]+' 次看診的價值高於成本。淨變化：'+m[2]+'。'],
+  [/^Separating: the high type gains (.+?) and the low type would lose (.+?) by copying\. Only good sellers signal, so buyers can trust it\.$/,m=>'分離：高品質類型獲得 '+m[1]+'，低品質類型若模仿會損失 '+m[2]+'。只有好賣家會發出訊號，所以買家可以相信它。']
+ ];
+ const norm=s=>s.replace(/\s+/g,' ').trim();
+ function enText(el){const copy=el.cloneNode(true);copy.querySelectorAll('.zh-full,.zh-svg,.zh').forEach(n=>n.remove());return norm(copy.textContent);}
+ function translate(en){if(dict[en])return dict[en];for(const [re,f] of patterns){const m=en.match(re);if(m)return f(m);}return '';}
+ const observer=new MutationObserver(()=>schedule());let pending=false;
+ const selector='.doc h4,.doc p,.doc th,.doc td,.doc summary,.doc .formula,.doc .plot-legend>span,.doc .tw-t,.doc .g-stats dt,.doc .g-stats dd,.doc .g-ctrl button,.doc .sl label>span,.doc .sl output,.g-kicker,.rail a,#tocBtn,#qaAll';
+ function apply(){
+  pending=false;observer.disconnect();
+  document.querySelectorAll(selector).forEach(el=>{
+   if(el.closest('.zh-full,.hint,.practice-prompt')||el.querySelector(':scope > .zh-full'))return;
+   const chinese=translate(enText(el));if(!chinese)return;
+   const span=document.createElement('span');span.className='zh-full';span.lang='zh-Hant';span.textContent=chinese;el.append(span);
+  });
+  document.querySelectorAll('.g-plot svg text.axl,.g-plot svg text.tk').forEach(el=>{
+   if(el.querySelector('.zh-svg'))return;const chinese=translate(enText(el));if(!chinese)return;
+   const t=document.createElementNS('http://www.w3.org/2000/svg','tspan');t.setAttribute('class','zh-svg');t.setAttribute('lang','zh-Hant');t.setAttribute('x',el.getAttribute('x')||'0');t.setAttribute('dy','13');t.textContent=chinese;el.append(t);
+  });
+  observer.observe(document.body,{subtree:true,childList:true,characterData:true});
+ }
+ function schedule(){if(!pending){pending=true;requestAnimationFrame(apply);}}
+ const toggle=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+ function setZh(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';try{localStorage.setItem('study-notes-show-zh',on?'1':'0')}catch(e){}window.dispatchEvent(new Event('econ-language-change'));apply();}
+ let initial=false;try{initial=localStorage.getItem('study-notes-show-zh')==='1'}catch(e){}
+ toggle.addEventListener('change',()=>setZh(toggle.checked));
+ const practice=document.getElementById('practiceToggle'),state=document.getElementById('practiceState');
+ practice.addEventListener('click',()=>{const on=practice.getAttribute('aria-pressed')!=='true';practice.setAttribute('aria-pressed',String(on));state.textContent=on?'On':'Off';practice.querySelector(':scope > .zh-full').textContent='練習模式：'+(on?'開啟':'關閉');document.querySelectorAll('.practice-prompt').forEach(p=>p.hidden=!on);});
+ const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px');}
+ if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();setZh(initial);
+ window.refreshChineseSupport=apply;
+})();
+</script></body></html>
