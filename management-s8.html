@@ -1,28 +1,507 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Management Session 8 · Study Notes</title>
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/><title>Organizational Structure and Communication · Management</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:var(--tone-fdf9f9);--paper:var(--tone-ffffff);--tint:var(--tone-fae9ed);--line:var(--tone-efdde2);--fg:var(--tone-2f282b);--muted:var(--tone-7e6f74);--accent:var(--tone-c06c84);--accent-ink:var(--tone-9c4862);--sans:"Noto Sans TC","PingFang TC",system-ui,sans-serif;--serif:"Noto Serif TC",Georgia,serif}
-*{box-sizing:border-box}html{color-scheme:light;background:var(--bg)}body{margin:0;font:16px/1.75 var(--sans);color:var(--fg)}a{color:var(--accent-ink)}:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-header{border-bottom:1px solid var(--line);background:rgba(var(--header-rgb), .96)}.top{max-width:1160px;margin:auto;padding:13px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
-.crumbs{font-size:.86rem;display:flex;align-items:center;flex-wrap:wrap;gap:8px;color:var(--muted)}.crumbs a{text-decoration:none;color:var(--muted)}.crumbs a:hover{color:var(--accent-ink)}
-.sessions{display:flex;gap:5px;margin-left:auto}.pill{font:.85rem var(--sans);text-decoration:none;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--muted)}.pill[aria-current="page"]{background:var(--accent);border-color:var(--accent);color:var(--tone-ffffff)}.sessions a.pill:hover,.sessions a.pill:focus-visible{background:var(--tone-fceef2);border-color:var(--tone-b86b7b);color:var(--tone-8e4357)}
-main{max-width:780px;margin:0 auto;padding:74px 22px 120px}.kick{color:var(--accent-ink);letter-spacing:.15em;text-transform:uppercase;font-size:.76rem;font-weight:700}h1{font:700 clamp(2.2rem,5vw,3.2rem)/1.23 var(--serif);margin:6px 0 16px}.note{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin-top:30px}.label{font-weight:700;color:var(--accent-ink);font-size:.82rem;letter-spacing:.07em;text-transform:uppercase}.note p{margin:9px 0 0}.back{display:inline-block;margin-top:22px;text-decoration:none;border-bottom:1px solid var(--accent);font-weight:600}
-@media(max-width:520px){.sessions{margin-left:0}main{padding-top:50px}.note{padding:20px}}
+/* Layout: one reading column with a sticky chapter rail; colors follow system appearance. */
+:root {
+  color-scheme: light;
+  --bg: var(--tone-fdf9f9); --panel: var(--tone-f8eef0); --paper: var(--tone-ffffff); --tint: var(--tone-fae9ed); --line: var(--tone-efdde2);
+  --fg: var(--tone-2f282b); --muted: var(--tone-7e6f74); --accent: var(--tone-c06c84); --accent-ink: var(--tone-9c4862);
+  --demand: var(--tone-3f5675); --supply: var(--tone-c06c84); --ext: var(--tone-6e3f55); --world: var(--tone-8a7a5c); --policy: var(--tone-3f7f7a);
+  --cs: var(--tone-a7cdb6); --ps: var(--tone-b2c4e3); --dwl: var(--tone-d9674f); --rev: var(--tone-e5c171); --rev2: var(--tone-f1dca8); --time: var(--tone-ddb3cb); --ts: var(--tone-bfdcc9);
+  --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; background: var(--bg); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.75; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(var(--header-rgb), .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
+.top-in { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 14px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.02rem; white-space: nowrap; }
+.brand small { font-family: var(--sans); font-weight: 500; color: var(--muted); font-size: .76rem; margin-left: 6px; letter-spacing: .06em; }
+.sessions { display: flex; gap: 4px; margin-left: auto; }
+.crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
+.sessions a.pill { text-decoration: none; transition: border-color .15s, color .15s; }
+.sessions a.pill:hover, .sessions a.pill:focus-visible { border-color: var(--accent); color: var(--accent-ink); background: var(--tint); }
+.sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
+.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--tone-ffffff); }
+.sessions .pill.off { opacity: .5; cursor: not-allowed; }
+.toc-btn { display: none; font: 500 .85rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--fg); border-radius: 8px; padding: 5px 12px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 52px; }
+.rail { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow: auto; padding-block: 34px 40px; font-size: .86rem; line-height: 1.5; }
+.rail .lbl { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.rail ol { list-style: none; margin: 0; padding: 0; }
+.rail li a { display: block; padding: 4px 10px; color: var(--muted); text-decoration: none; border-radius: 6px; }
+.rail li a:hover { color: var(--fg); background: var(--tint); }
+.rail li.h3 a { padding-left: 22px; font-size: .8rem; }
+.rail li a.on { color: var(--accent-ink); background: var(--tint); font-weight: 500; }
+
+main { min-width: 0; padding-block: 30px 120px; }
+.doc { max-width: 780px; }
+.hero { padding-block: 8px 26px; border-bottom: 1px solid var(--line); }
+.kick { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px; font-weight: 500; }
+.hero h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.25; margin: 0 0 12px; text-wrap: balance; }
+.lead { margin: 0; font-size: 1.04rem; max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.doc h2 { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 3.4rem 0 .3rem; text-wrap: balance; }
+.doc h3 { font-size: 1.1rem; line-height: 1.45; margin: 2.2rem 0 .5rem; color: var(--accent-ink); text-wrap: balance; }
+.sub { margin: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
+.doc p, .doc li { max-width: none; }
+.doc ul, .doc ol { padding-left: 1.25em; }
+.doc li { margin: .25rem 0; }
+.zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
+.hint { font-size: .9rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.hint b { flex: none; font-size: .72rem; color: var(--tone-ffffff); background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
+.key { background: var(--tint); padding: 12px 16px; border-radius: 8px; font-weight: 500; }
+.note-small { font-size: .8rem; color: var(--muted); }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.pair > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.pair b { color: var(--accent-ink); }
+.pair p { margin: 4px 0 0; font-size: .92rem; }
+
+.matrix { display: grid; grid-template-columns: minmax(90px, .7fr) repeat(2, minmax(0, 1fr)); gap: 6px; margin: 1rem 0 1.2rem; font-size: .9rem; max-width: 620px; }
+.matrix .mh { font-weight: 700; font-size: .8rem; color: var(--muted); align-self: end; padding: 0 4px 2px; }
+.matrix .mh.side { align-self: center; }
+.matrix .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-weight: 500; }
+.matrix .cell.hi { background: var(--tint); border-color: var(--accent); }
+.matrix small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; margin-top: 2px; line-height: 1.45; }
+
+.map { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 1rem 0; }
+.mcol { display: flex; flex-direction: column; gap: 8px; }
+.mbox { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; display: flex; flex-direction: column; gap: 2px; }
+.mbox b { font-size: .9rem; } .mbox span { color: var(--muted); } .mbox em { font-style: normal; color: var(--accent-ink); font-size: .78rem; font-weight: 500; }
+.mbox.good { border-color: var(--cs); } .mbox.ask { background: var(--tint); border-color: var(--accent); }
+.marrow { color: var(--accent); font-weight: 700; }
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.flow span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; line-height: 1.45; }
+.flow i { font-style: normal; color: var(--accent); font-weight: 700; }
+.formula { font-family: var(--mono); font-size: .9rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; line-height: 1.9; overflow-x: auto; }
+.steps { counter-reset: s; list-style: none; padding-left: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 10px; }
+.steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .75rem/22px var(--sans); text-align: center; margin-top: 3px; }
+.assign { margin: 1.6rem 0; border: 1px dashed var(--accent); border-radius: 10px; padding: 14px 16px; background: var(--paper); }
+.assign p { margin: 6px 0 0; font-size: .92rem; }
+
+.tbl { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.doc table { border-collapse: collapse; width: 100%; font-size: .88rem; line-height: 1.55; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.doc th { background: var(--panel); font-weight: 700; }
+.doc tr:last-child td { border-bottom: 0; }
+.drill .ans { filter: blur(5px); cursor: pointer; user-select: none; transition: filter .2s; }
+.drill .ans.shown { filter: none; user-select: auto; }
+
+.traps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 1rem; }
+.traps > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: .88rem; line-height: 1.55; }
+.traps s { color: var(--muted); text-decoration-color: var(--dwl); }
+.traps p { margin: 6px 0 0; font-weight: 500; }
+
+.qa-tools { margin: .4rem 0 .8rem; }
+.qa-tools button { font: 500 .82rem var(--sans); border: 1px solid var(--accent); background: var(--paper); color: var(--accent-ink); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+.qa { display: flex; flex-direction: column; gap: 6px; }
+.qa details { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.qa summary { cursor: pointer; padding: 10px 14px; font-weight: 500; font-size: .93rem; list-style: none; display: flex; gap: 10px; }
+.qa summary::before { content: "Q"; color: var(--accent); font-weight: 700; }
+.qa details[open] summary { border-bottom: 1px dashed var(--line); }
+.qa details p { margin: 0; padding: 10px 14px 12px 36px; font-size: .9rem; }
+
+/* graphs */
+.graph { max-width: 900px; margin: 1.8rem 0 2.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; }
+.g-head h4 { font-family: var(--serif); font-size: 1.12rem; margin: 2px 0 2px; line-height: 1.45; }
+.g-head p { margin: 0 0 10px; color: var(--muted); font-size: .86rem; }
+.g-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+.g-body { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.g-plot svg { width: 100%; height: auto; display: block; }
+.g-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.g-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.sl label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); line-height: 1.3; }
+.sl output { font-family: var(--mono); color: var(--fg); font-size: .8rem; }
+.sl input { width: 100%; accent-color: var(--accent); margin: 4px 0 0; }
+.g-btn { align-self: flex-start; font: 500 .8rem var(--sans); border: 1px solid var(--accent); color: var(--accent-ink); background: transparent; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.g-btn:hover { background: var(--tint); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; align-self: flex-start; }
+.seg button { font: 500 .8rem var(--sans); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--paper); }
+.chk { display: flex; gap: 8px; align-items: center; font-size: .8rem; color: var(--muted); }
+.chk input { accent-color: var(--accent); }
+.g-stats { margin: 0; border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+.st { display: flex; justify-content: space-between; gap: 10px; font-size: .8rem; line-height: 1.45; }
+.st dt { color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.st dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.st.big dd { font-weight: 500; color: var(--accent-ink); font-size: .92rem; }
+.g-note { margin: 12px 0 0; padding: 9px 12px; background: var(--tint); border-radius: 6px; font-size: .85rem; line-height: 1.6; }
+
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; flex: none; }
+.sw.none { background: transparent; }
+.sw.a-cs { background: var(--cs); } .sw.a-ps { background: var(--ps); } .sw.a-ps2 { background: var(--ps); outline: 1px solid var(--demand); }
+.sw.a-dwl { background: repeating-linear-gradient(45deg, var(--dwl) 0 2px, transparent 2px 4px); outline: 1px solid var(--dwl); }
+.sw.a-rev { background: var(--rev); } .sw.a-rev2 { background: var(--rev2); } .sw.a-time { background: var(--time); } .sw.a-ts { background: var(--ts); }
+.sw.ln { height: 3px; border-radius: 2px; width: 16px; }
+
+svg .ax { stroke: var(--muted); stroke-width: 1.2; }
+svg .axl { fill: var(--muted); font: 500 11px var(--sans); }
+svg .tk { fill: var(--muted); font: 500 10.5px var(--mono); }
+svg .gd { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+svg .cv { stroke-width: 2.6; fill: none; stroke-linecap: round; }
+svg .cv.dash { stroke-dasharray: 7 5; stroke-width: 2; }
+svg .cvl { font: 700 11.5px var(--sans); }
+svg .c-d { stroke: var(--demand); fill: var(--demand); } svg .c-s { stroke: var(--supply); fill: var(--supply); }
+svg .c-x { stroke: var(--ext); fill: var(--ext); } svg .c-w { stroke: var(--world); fill: var(--world); } svg .c-t { stroke: var(--policy); fill: var(--policy); }
+svg text.cvl { stroke: none; }
+svg .pt { fill: var(--paper); stroke: var(--fg); stroke-width: 2; }
+svg .ptl { fill: var(--fg); font: 700 11px var(--sans); }
+svg .atag { fill: var(--fg); font: 700 11px var(--sans); opacity: .8; }
+svg .a-cs { fill: var(--cs); fill-opacity: .6; } svg .a-ps { fill: var(--ps); fill-opacity: .6; }
+svg .a-ps2 { fill: var(--ps); fill-opacity: .95; } svg .a-ts { fill: var(--ts); fill-opacity: .6; }
+svg .a-dwl { fill: url(#dwlHatch); stroke: var(--dwl); stroke-width: 1.2; }
+svg .a-rev { fill: var(--rev); fill-opacity: .75; } svg .a-rev2 { fill: var(--rev2); fill-opacity: .8; } svg .a-time { fill: var(--time); fill-opacity: .65; }
+
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .a-prof { fill: var(--cs); fill-opacity: .75; } svg .a-loss { fill: var(--dwl); fill-opacity: .35; }
+.sw.a-prof { background: var(--cs); } .sw.a-loss { background: var(--dwl); opacity: .5; }
+.twin { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tw-t { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.g-ctrl .g-btn + .g-btn { margin-top: -4px; }
+.graph.wide .g-body { grid-template-columns: minmax(0, 1fr); }
+.graph.wide .g-side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 700px) { .twin, .graph.wide .g-side { grid-template-columns: minmax(0, 1fr); } }
+svg polyline.cv { fill: none !important; }
+
+.graph { background: var(--paper); }
+.g-note { background: var(--tint); }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail { display: none; position: fixed; inset: 64px 0 0 0; max-height: none; background: var(--bg); z-index: 15; padding: 20px 16px 60px; }
+  .rail.open { display: block; }
+  .toc-btn { display: inline-block; }
+  .g-body { grid-template-columns: minmax(0, 1fr); }
+  .map { grid-template-columns: minmax(0, 1fr); }
+  .marrow { transform: rotate(90deg); justify-self: center; }
+}
+@media (max-width: 560px) { .pair, .traps { grid-template-columns: minmax(0, 1fr); } }
+/* Management components */
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.tcard { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.tcard .tnum { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: var(--tone-ffffff); font: 700 .78rem/24px var(--sans); text-align: center; }
+.tcard p { margin: 0; color: var(--muted); font-size: .88rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.tags span { font-size: .74rem; background: var(--tint); color: var(--accent-ink); padding: 1px 8px; border-radius: 999px; font-weight: 500; }
+.method, .loop, .cascade { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.method span, .loop span, .cascade span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 5px 11px; line-height: 1.4; }
+.method span.hi { background: var(--tint); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+.method i, .loop i, .cascade i { font-style: normal; color: var(--accent); font-weight: 700; }
+.loop i.back { font-size: 1.1rem; }
+.cascade { flex-direction: column; align-items: flex-start; gap: 2px; }
+.cascade span:nth-of-type(2) { margin-left: 18px; } .cascade span:nth-of-type(3) { margin-left: 36px; } .cascade span:nth-of-type(4) { margin-left: 54px; }
+.cascade i:nth-of-type(1) { margin-left: 14px; } .cascade i:nth-of-type(2) { margin-left: 32px; } .cascade i:nth-of-type(3) { margin-left: 50px; }
+.four { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.four > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+.four b { font-size: .9rem; color: var(--accent-ink); } .four p { margin: 4px 0 0; font-size: .84rem; color: var(--muted); line-height: 1.5; }
+
+.ladder { display: grid; grid-template-columns: minmax(0, 1fr) 118px 118px; grid-template-rows: repeat(5, auto); gap: 5px 8px; margin: 1rem 0 .3rem; max-width: 640px; }
+.lv { grid-column: 1; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; font-weight: 700; font-size: .9rem; line-height: 1.35; }
+.lv small { display: block; font-weight: 400; color: var(--muted); font-size: .78rem; }
+.lv.l5 { grid-row: 1; margin-inline: 22%; } .lv.l4 { grid-row: 2; margin-inline: 16%; } .lv.l3 { grid-row: 3; margin-inline: 10%; } .lv.l2 { grid-row: 4; margin-inline: 5%; } .lv.l1 { grid-row: 5; }
+.lv.l5, .lv.l4 { background: var(--tone-f6e9f4); } .lv.l3 { background: var(--tint); } .lv.l2, .lv.l1 { background: var(--tone-eaf2ee); }
+.erg { border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .84rem; text-align: center; padding: 6px; }
+.erg.g { grid-column: 2; grid-row: 1 / span 2; background: var(--tone-ebd7ea); color: var(--tone-6e3f6a); }
+.erg.r { grid-column: 3; grid-row: 2 / span 2; background: var(--tint); color: var(--accent-ink); }
+.erg.e { grid-column: 2; grid-row: 4 / span 2; background: var(--tone-d9ebe1); color: var(--tone-2f6b4f); }
+
+.mw { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 1.6rem 0 2rem; }
+.mw-body { margin-top: 10px; }
+.hz-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.hz-t { margin: 0 0 6px; font-weight: 700; font-size: .88rem; } .hz-t small { font-weight: 400; color: var(--muted); }
+.chips { display: flex; flex-direction: column; gap: 5px; }
+.chip { display: flex; justify-content: space-between; gap: 10px; font: 500 .84rem var(--sans); text-align: left; background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 7px; padding: 6px 10px; cursor: pointer; }
+.chip em { font-style: normal; font-size: .74rem; color: var(--muted); }
+.hz-cols > div:first-child .chip[aria-pressed="true"] { border-color: var(--dwl); background: var(--tone-fcedea); }
+.hz-cols > div:first-child .chip[aria-pressed="true"] em { color: var(--tone-a8432f); }
+.hz-cols > div:last-child .chip[aria-pressed="true"] { border-color: var(--tone-6fae8b); background: var(--tone-eaf5ee); }
+.hz-cols > div:last-child .chip[aria-pressed="true"] em { color: var(--tone-2f6b4f); }
+.scale { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 6px; margin-top: 18px; }
+.half { height: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; position: relative; overflow: hidden; }
+.half i { position: absolute; top: 0; bottom: 0; transition: width .25s; }
+.half.left i { right: 0; background: var(--dwl); } .half.right i { left: 0; background: var(--tone-6fae8b); }
+@media (prefers-reduced-motion: reduce) { .half i { transition: none; } }
+.zero { font: 700 .8rem var(--mono); color: var(--muted); }
+.scale-l { display: flex; justify-content: space-between; font-size: .74rem; color: var(--muted); margin-top: 4px; }
+
+.kpi-flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, .8fr) auto minmax(0, 1fr); gap: 8px; align-items: stretch; margin-top: 12px; font-size: .84rem; }
+.kpi-flow > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; line-height: 1.45; }
+.kpi-flow > i { font-style: normal; color: var(--accent); font-weight: 700; align-self: center; }
+.kpi-flow b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.kpi-flow p { margin: 3px 0 0; } .kpi-flow ul { margin: 3px 0 0; padding-left: 1.1em; }
+.kpi-flow .bad { border-color: var(--dwl); background: var(--tone-fcedea); } .kpi-flow .good { border-color: var(--tone-6fae8b); background: var(--tone-eaf5ee); }
+
+.cmp-sel { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: .84rem; color: var(--muted); }
+.cmp-sel select { font: 500 .88rem var(--sans); padding: 5px 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); color: var(--fg); }
+table.cmp td:first-child { font-weight: 700; color: var(--muted); width: 22%; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); }
+.tabs button { font: 500 .86rem var(--sans); background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); padding: 6px 12px; cursor: pointer; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--accent-ink); border-bottom-color: var(--accent); }
+.ev { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+.ev > div { display: grid; grid-template-columns: 190px auto minmax(0, 1fr); gap: 10px; align-items: baseline; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: .86rem; line-height: 1.5; }
+.ev p { margin: 0; }
+.tag { font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.tag.gap { background: var(--tone-fce3dd); color: var(--tone-a8432f); } .tag.ok { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); }
+.tag.maybe { background: var(--tone-fbf0d9); color: var(--tone-8a6216); } .tag.na { background: var(--tone-eee9eb); color: var(--muted); }
+.issue { margin-top: 12px; background: var(--tint); border-radius: 8px; padding: 10px 14px; font-size: .9rem; }
+.issue p { margin: 4px 0 0; }
+
+.xgrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.xgrid > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 5px; font-size: .84rem; line-height: 1.4; }
+.xgrid small { color: var(--muted); font-size: .76rem; }
+.xgrid .ok, .xgrid .gap { align-self: flex-start; font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; }
+.xgrid .ok { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); } .xgrid .gap { background: var(--tone-fce3dd); color: var(--tone-a8432f); }
+
+@media (max-width: 760px) {
+  .three, .four { grid-template-columns: minmax(0, 1fr); }
+  .xgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hz-cols { grid-template-columns: minmax(0, 1fr); }
+  .kpi-flow { grid-template-columns: minmax(0, 1fr); } .kpi-flow > i { transform: rotate(90deg); justify-self: center; }
+  .ev > div { grid-template-columns: minmax(0, 1fr); gap: 3px; } .ev .tag { justify-self: start; }
+  .ladder { grid-template-columns: minmax(0, 1fr) 84px 84px; }
+}
+
+/* Session 4 + case page */
+.tcard small.dont { color: var(--muted); font-size: .78rem; border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 4px; }
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: .6rem 0 1rem; }
+.quotes q { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-style: italic; color: var(--muted); font-size: .9rem; }
+.six { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.six > div { display: flex; gap: 10px; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .88rem; line-height: 1.5; }
+.six span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
+a.cta { display: inline-block; background: var(--accent); color: var(--tone-ffffff); text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+a.cta:hover { background: var(--accent-ink); }
+blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; font-size: .92rem; line-height: 1.7; }
+.timeline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.timeline > div { background: var(--paper); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 10px; padding: 10px 14px; font-size: .88rem; line-height: 1.5; }
+.timeline time { font: 500 .76rem var(--mono); color: var(--accent-ink); display: block; }
+.timeline p { margin: 4px 0 0; color: var(--muted); }
+.score { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.score > div { border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; border: 1px solid var(--line); }
+.score .up { background: var(--tone-eaf5ee); border-color: var(--tone-a9d3ba); } .score .down { background: var(--tone-fcedea); border-color: var(--tone-edc2b8); }
+.score b::after { margin-left: 6px; font-size: .78rem; } .score .up b::after { content: "improved"; color: var(--tone-2f6b4f); } .score .down b::after { content: "worse"; color: var(--tone-a8432f); }
+.score ul { margin: 6px 0 0; padding-left: 1.1em; }
+
+.jcm { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, .9fr); gap: 16px; }
+.jdims { display: flex; flex-direction: column; gap: 8px; }
+.jd.g0 label span { color: var(--tone-6e3f6a); } .jd.g1 label span { color: var(--accent-ink); } .jd.g2 label span { color: var(--tone-2f6b4f); }
+.jstates { display: flex; flex-direction: column; gap: 12px; padding-top: 4px; }
+.jst span { font-size: .8rem; font-weight: 500; }
+.jbar { height: 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); overflow: hidden; margin-top: 3px; }
+.jbar i { display: block; height: 100%; transition: width .25s; }
+.jst.g0 .jbar i { background: var(--tone-b98ab5); } .jst.g1 .jbar i { background: var(--accent); } .jst.g2 .jbar i { background: var(--tone-6fae8b); }
+@media (prefers-reduced-motion: reduce) { .jbar i { transition: none; } }
+.jout ul { margin: 8px 0 0; padding-left: 1.1em; font-size: .82rem; color: var(--muted); }
+.jlvl { display: inline-block; font-weight: 700; padding: 3px 12px; border-radius: 999px; font-size: .86rem; }
+.jlvl.strong { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); } .jlvl.moderate { background: var(--tone-fbf0d9); color: var(--tone-8a6216); } .jlvl.weak { background: var(--tone-fce3dd); color: var(--tone-a8432f); }
+.jgns { margin-top: 14px; }
+
+.qz-item { font-size: 1rem; font-weight: 500; margin: 4px 0 12px; }
+.qz-opts { display: grid; gap: 8px; }
+.qz-opts.grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 520px; }
+.qz-opts.row5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.qz-o { font: 500 .88rem var(--sans); background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 8px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; text-align: center; }
+.qz-o small { color: var(--muted); font-size: .74rem; font-weight: 400; }
+.qz-o:hover { border-color: var(--accent); }
+.qz-o.right { background: var(--tone-e3f2e9); border-color: var(--tone-6fae8b); } .qz-o.wrong { background: var(--tone-fce3dd); border-color: var(--dwl); }
+.qz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: .8rem; color: var(--muted); }
+
+.rsteps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.rsteps > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: .85rem; line-height: 1.5; }
+.rsteps > div.g { background: var(--tint); border-color: var(--accent); }
+.rsteps b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.rsteps p { margin: 4px 0 0; }
+.risk { font-size: .88rem; } .risk b { font-size: .72rem; color: var(--tone-ffffff); background: var(--tone-b98a2e); padding: 1px 7px; border-radius: 4px; margin-right: 6px; }
+.sayd summary { cursor: pointer; font-weight: 500; color: var(--accent-ink); font-size: .9rem; }
+
+@media (max-width: 760px) {
+  .quotes, .six, .timeline, .rsteps { grid-template-columns: minmax(0, 1fr); }
+  .score { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jcm { grid-template-columns: minmax(0, 1fr); }
+  .qz-opts.row5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+
+.eq-controls{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}.eq-controls button,.eq-controls select{font:500 .86rem var(--sans);color:var(--accent-ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 12px;max-width:100%;cursor:pointer}.eq-controls button[aria-pressed="true"]{background:var(--tint);border-color:var(--accent)}.eq-result{background:var(--tint);border-radius:8px;padding:14px;min-height:100px}.eq-result p{margin:5px 0}.eq-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.eq-grid>div{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--paper)}.eq-grid b{color:var(--accent-ink)}.eq-num{font:500 1.8rem var(--mono);display:block;color:var(--accent-ink)}.eq-map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.eq-map>div{padding:16px;background:var(--paper);border:1px solid var(--line);border-radius:10px}.eq-map p{margin:6px 0}body{margin:0}.hint span{min-width:0} @media(max-width:600px){.eq-grid,.eq-map{grid-template-columns:minmax(0,1fr)}.hint{flex-wrap:wrap}.mw{padding:14px}.doc{overflow-wrap:break-word}}
+
+html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}@media(max-width:900px){.rail.open{top:var(--header-height,64px);max-height:calc(100vh - var(--header-height,64px));bottom:0}}
+.culture-rows{display:grid;gap:18px;margin:18px 0}.culture-row{border-bottom:1px solid var(--line);padding-bottom:12px}.culture-row:last-child{border:0}.culture-dimension{font-weight:700;font-size:.88rem;margin-bottom:6px;color:var(--accent-ink)}.culture-bar{display:grid;grid-template-columns:100px minmax(0,1fr) 30px;gap:9px;align-items:center;margin:5px 0;font-size:.8rem}.culture-track{height:11px;background:var(--bg);border-radius:99px;overflow:hidden}.culture-track i{display:block;height:100%;background:var(--accent);border-radius:99px}.culture-bar.comparison .culture-track i{background:var(--demand)}.culture-bar output{font-family:var(--mono);text-align:right}.culture-cue{font:500 .8rem var(--mono);color:var(--accent-ink);margin-top:5px}.culture-compact p{margin:.4rem 0}.culture-answer{padding:14px;background:var(--tint);border-radius:8px;min-height:84px}.culture-answer p{margin:4px 0}.culture-count{font-size:.78rem;color:var(--muted)}.culture-roles{display:flex;flex-wrap:wrap;gap:6px}.culture-roles button{font-size:.8rem}.eq-controls label{min-width:0;max-width:100%}.eq-controls select{display:block;width:100%;max-width:100%;margin-top:5px}.source{margin-top:1rem}@media(max-width:560px){.culture-bar{grid-template-columns:82px minmax(0,1fr) 25px;gap:7px}.eq-controls button{padding:7px 9px}.hint{flex-wrap:wrap}.doc td,.doc th{padding:8px}}
+
+.context-diagram .flow{align-items:center;gap:5px;font-size:.8rem;margin:.8rem 0}.context-diagram .flow span{padding:4px 7px}.context-diagram small{display:block;color:var(--muted);font-size:.8rem;margin-top:7px}
+.message-chain{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:9px;margin:1rem 0}.message-chain>div{border:1px solid var(--line);background:var(--paper);border-radius:9px;padding:13px}.message-chain>div.hi{background:var(--tint);border-color:var(--accent)}.message-chain b{font-size:.83rem;color:var(--accent-ink)}.message-chain p{margin:5px 0 0;font-size:.9rem}.message-chain>i{font-style:normal;color:var(--accent)}
+.culture-map{margin:1.2rem 0 1.7rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px}.chart-axis-label,.culture-map figcaption{font:500 .8rem/1.6 var(--sans);color:var(--muted)}.pd-ua-chart{width:100%;max-width:560px;height:auto;display:block;margin:5px auto}.chart-grid{stroke:var(--line);stroke-width:1;fill:none}.chart-axis{stroke:var(--muted);stroke-width:1.3;fill:none}.chart-tick{fill:var(--muted);font:400 14px var(--mono)}.chart-country{font:500 16px var(--sans)}
+.culture-cue{font-family:var(--sans)}
+@media(max-width:560px){.message-chain{grid-template-columns:minmax(0,1fr);gap:6px}.message-chain>i{text-align:center;transform:rotate(90deg)}.culture-map{padding:10px}.chart-country{font-size:18px}}
+
+#map + .sub + .three > .tcard > .zh, .three > .tcard > .zh { align-self: flex-start; }
+
+.qz-o:focus-visible,.qz-nav .g-btn:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px}
+.qz-o[aria-disabled="true"]{cursor:default}
+
+
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid var(--tone-d5c6ca);border-radius:999px;background:var(--tone-eee6e8);position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:var(--tone-ffffff);border-radius:50%;box-shadow:0 1px 2px var(--tone-77777755)}
+.topswitch input:checked{background:var(--accent)}
+.topswitch input:checked:after{left:14px}
+.topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+
+/* Shared reading rhythm, with room for each chapter's own teaching tools. */
+.doc select{font-family:var(--sans);font-size:.88rem}
+html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
+@media(max-width:900px){.rail.open{top:var(--header-height,64px);bottom:0;inset-inline:0;max-height:calc(100vh - var(--header-height,64px))}}
+body.show-zh .legend>span,body.show-zh .steps li,body.show-zh .six>div,body.show-zh .qa summary,body.show-zh .chk{flex-wrap:wrap}
+body.show-zh .legend>span>.zh-full,body.show-zh .steps li>.zh-full,body.show-zh .six>div>.zh-full,body.show-zh .qa summary>.zh-full,body.show-zh .chk>.zh-full{flex:0 0 100%;min-width:0}
+body.show-zh .steps li{display:list-item;list-style:none}
+body.show-zh .steps li:before{display:inline-block;margin-right:10px;vertical-align:middle}
+body.show-zh .six>div>.zh-full{margin-left:34px;flex-basis:calc(100% - 34px)}
+body.show-zh .seg{flex-wrap:wrap;max-width:100%}
+body.show-zh .seg button{min-width:0;white-space:normal}
+body.show-zh .spectrum{min-width:0}
+body.show-zh .spectrum>span{min-width:0;overflow-wrap:anywhere}
+body.show-zh .formula>.zh-full{white-space:normal;font-family:var(--sans)}
+body.show-zh .mw .tabs button,body.show-zh .mw .qz-o,body.show-zh .graph .g-btn{overflow-wrap:anywhere}
+body.show-zh .funnel-level{height:auto;min-height:68px;flex-direction:column;gap:1px;white-space:normal;line-height:1.3}
+body.show-zh .funnel-level .zh-full{color:inherit;margin-top:0;font-size:.75em}
+body.show-zh .decision-step{height:auto;min-height:100px}
+body.show-zh .m-control label{flex-wrap:wrap}
+body.show-zh .m-control label .zh-full{flex-basis:100%;text-align:left}
+body.show-zh .decision-step>.zh-full{font-size:.8em;line-height:1.45}
+body.show-zh .score .up b:after{content:'改善'}
+body.show-zh .score .down b:after{content:'惡化'}
+@media(max-width:560px){body.show-zh .spectrum{grid-template-columns:minmax(0,1fr)}body.show-zh .m-choices button{min-height:65px}}
+
+/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
+
+.page-tools{display:flex;align-items:center;gap:14px;margin-left:8px;flex-shrink:0}
+.page-tools .topswitch{margin-left:0}
+.page-tools .practice-toggle{font-size:.72rem;padding:5px 10px}
+.page-tools .practice-toggle>.zh-full{display:none!important}
+body.show-zh .page-tools .practice-toggle{white-space:normal}
+.eq-controls label{min-width:0;max-width:100%}
+.eq-controls select{display:block;max-width:100%;margin-top:5px}
+body.show-zh .eq-controls button .zh-full{color:inherit}
+@media(max-width:560px){.top-in .sessions{order:2}.top-in .page-tools{order:3;flex-basis:100%;margin-left:0;justify-content:flex-end;padding-bottom:3px;gap:14px}.top-in .page-tools .topswitch{margin-left:0}.top-in{row-gap:6px}}
+@media print{.page-tools{display:none}}
+
+
+body.show-zh .culture-roles button{min-width:0;white-space:normal}
+body.show-zh .culture-cue .zh-full{font-family:var(--sans)}
+.chart-zh-key{font-size:.78rem;line-height:1.7;margin-top:8px}
+
+/* Expanded activity uses the existing colors, typography and bilingual switch. */
+.boss-controls[hidden],.boss-panel[hidden]{display:none!important}
+.boss-controls{position:relative;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+.boss-controls>span{flex-basis:100%;font-size:.85rem;font-weight:700;color:var(--accent-ink)}
+.boss-panel{margin-top:24px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.boss-panel h3{margin-top:1rem}.boss-panel h4{font-size:1.03rem;color:var(--accent-ink);margin:2rem 0 .65rem}
+.boss-panel blockquote{margin:1rem 0;padding:10px 18px;border-left:3px solid var(--accent);background:var(--paper);border-radius:0 8px 8px 0}
+
+.boss-panel .tbl th[scope="row"]{background:transparent;font-weight:600;width:23%}
+.boss-matrix table{min-width:650px}.boss-matrix td{width:38%}.supplement{margin:1.3rem 0;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+.supplement>summary{cursor:pointer;font-weight:600;color:var(--accent-ink)}.supplement .culture-map{border:0;padding-inline:0}
+@media(max-width:560px){.culture-bar{grid-template-columns:80px minmax(0,1fr) 28px}.boss-controls button{flex:1 1 120px}.boss-panel .tbl{font-size:.85rem}}
+@media print{.boss-controls{display:none!important}.boss-panel[hidden]{display:block!important}.boss-panel{break-before:page}.boss-panel h3,.boss-panel h4{break-after:avoid}.tbl{overflow:visible}.boss-matrix table{min-width:0}tr{break-inside:avoid}.supplement{display:none}.top,.rail{display:none!important}.wrap{display:block}.doc{max-width:none}main{padding:0}.boss-panel .qa details:not([open])>p{display:block}}
+
+.boss-panel .boss-analysis table{min-width:820px;table-layout:fixed}.boss-panel .boss-analysis th[scope="row"],.boss-panel .boss-analysis td{width:auto}.boss-analysis th,.boss-analysis td{overflow-wrap:break-word}
+@media print{.boss-panel .boss-analysis table{min-width:0}}
 </style>
 <style id="system-theme">
 /* System appearance only changes colors. Print retains the light palette. */
 :root {
   --header-rgb: 253, 249, 249;
   --tone-2f282b: #2f282b;
+  --tone-2f6b4f: #2f6b4f;
+  --tone-3f5675: #3f5675;
+  --tone-3f7f7a: #3f7f7a;
+  --tone-6e3f55: #6e3f55;
+  --tone-6e3f6a: #6e3f6a;
+  --tone-6fae8b: #6fae8b;
+  --tone-77777755: #77777755;
   --tone-7e6f74: #7e6f74;
-  --tone-8e4357: #8e4357;
+  --tone-8a6216: #8a6216;
+  --tone-8a7a5c: #8a7a5c;
   --tone-9c4862: #9c4862;
-  --tone-b86b7b: #b86b7b;
+  --tone-a7cdb6: #a7cdb6;
+  --tone-a8432f: #a8432f;
+  --tone-a9d3ba: #a9d3ba;
+  --tone-b2c4e3: #b2c4e3;
+  --tone-b98a2e: #b98a2e;
+  --tone-b98ab5: #b98ab5;
+  --tone-bfdcc9: #bfdcc9;
   --tone-c06c84: #c06c84;
+  --tone-d5c6ca: #d5c6ca;
+  --tone-d9674f: #d9674f;
+  --tone-d9ebe1: #d9ebe1;
+  --tone-ddb3cb: #ddb3cb;
+  --tone-e3f2e9: #e3f2e9;
+  --tone-e5c171: #e5c171;
+  --tone-eaf2ee: #eaf2ee;
+  --tone-eaf5ee: #eaf5ee;
+  --tone-ebd7ea: #ebd7ea;
+  --tone-edc2b8: #edc2b8;
+  --tone-eee6e8: #eee6e8;
+  --tone-eee9eb: #eee9eb;
   --tone-efdde2: #efdde2;
+  --tone-f1dca8: #f1dca8;
+  --tone-f6e9f4: #f6e9f4;
+  --tone-f8eef0: #f8eef0;
   --tone-fae9ed: #fae9ed;
-  --tone-fceef2: #fceef2;
+  --tone-fbf0d9: #fbf0d9;
+  --tone-fce3dd: #fce3dd;
+  --tone-fcedea: #fcedea;
   --tone-fdf9f9: #fdf9f9;
   --tone-ffffff: #ffffff;
 }
@@ -31,14 +510,45 @@ main{max-width:780px;margin:0 auto;padding:74px 22px 120px}.kick{color:var(--acc
     color-scheme: dark;
     --header-rgb: 29, 24, 26;
     --tone-2f282b: #EEE4E6;
+    --tone-2f6b4f: #A0D2B2;
+    --tone-3f5675: #93AECB;
+    --tone-3f7f7a: #8CC4BE;
+    --tone-6e3f55: #C9A3D6;
+    --tone-6e3f6a: #DAB3D6;
+    --tone-6fae8b: #8CC3A0;
+    --tone-77777755: #00000066;
     --tone-7e6f74: #BEACB2;
-    --tone-8e4357: #E6B3BE;
+    --tone-8a6216: #E3C480;
+    --tone-8a7a5c: #C9B68C;
     --tone-9c4862: #E6B3BE;
-    --tone-b86b7b: #D79AA7;
+    --tone-a7cdb6: #6E8C6B;
+    --tone-a8432f: #F0A48D;
+    --tone-a9d3ba: #669C7D;
+    --tone-b2c4e3: #667C96;
+    --tone-b98a2e: #D8B66B;
+    --tone-b98ab5: #BD99C1;
+    --tone-bfdcc9: #5F7A5C;
     --tone-c06c84: #D79AA7;
+    --tone-d5c6ca: #8B737F;
+    --tone-d9674f: #E08A6F;
+    --tone-d9ebe1: #2C4135;
+    --tone-ddb3cb: #8C6680;
+    --tone-e3f2e9: #23372D;
+    --tone-e5c171: #C9A250;
+    --tone-eaf2ee: #29362F;
+    --tone-eaf5ee: #25372D;
+    --tone-ebd7ea: #413047;
+    --tone-edc2b8: #B77F70;
+    --tone-eee6e8: #4B3E45;
+    --tone-eee9eb: #30282D;
     --tone-efdde2: #55424A;
+    --tone-f1dca8: #8F7A4A;
+    --tone-f6e9f4: #342938;
+    --tone-f8eef0: #2B2226;
     --tone-fae9ed: #35272D;
-    --tone-fceef2: #35272D;
+    --tone-fbf0d9: #3C3223;
+    --tone-fce3dd: #412B28;
+    --tone-fcedea: #382724;
     --tone-fdf9f9: #1D181A;
     --tone-ffffff: #241E21;
   }
@@ -48,6 +558,176 @@ main{max-width:780px;margin:0 auto;padding:74px 22px 120px}.kick{color:var(--acc
   a.cta .zh-full, .risk b .zh-full, .hint b .zh-full, .tcard .tnum .zh-full { color: inherit; }
 }
 </style>
-</head><body>
-<header><div class="top"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes</a><span>/</span><a href="management.html">Management</a><span>/</span><b>Session 8</b></nav><nav class="sessions" aria-label="Sessions 5–8"><a class="pill" href="management-s5.html">S5</a><a class="pill" href="management-s6.html">S6</a><a class="pill" href="management-s7.html">S7</a><span class="pill" aria-current="page">S8</span></nav></div></header>
-<main><p class="kick">CMMU · Session 8</p><h1>Management — Session 8</h1><section class="note"><div class="label">Coming soon</div><p>This lesson is not published yet. This reserved page keeps the S5–S8 navigation working in the meantime.</p><p>When the lesson is ready, the completed HTML can replace this file directly.</p></section><a class="back" href="management.html">← Back to Management sessions</a></main></body></html>
+<style>
+/* Session 8 components */
+.chain{list-style:none;counter-reset:c;padding-left:0!important;margin:1rem 0;display:flex;flex-direction:column;gap:5px;max-width:560px}
+.chain li{counter-increment:c;display:flex;gap:10px;align-items:baseline;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:7px 12px;margin:0;font-size:.92rem;line-height:1.5}
+.chain li::before{content:counter(c);flex:none;width:22px;height:22px;border-radius:50%;background:var(--tint);color:var(--accent-ink);font:700 .75rem/22px var(--sans);text-align:center}
+.chain li.first,.chain li.last{border-color:var(--accent);background:var(--tint);font-weight:500}
+.chain li.first::before,.chain li.last::before{background:var(--accent);color:var(--tone-ffffff)}
+.chain li>span{min-width:0}
+.tcard .tnum{flex:none}
+.struct .tabs{margin-bottom:6px}
+.struct-panel{padding-top:8px}
+.struct-panel h4{font-family:var(--serif);font-size:1.1rem;margin:4px 0 8px}
+.struct-body{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:18px;align-items:start}
+.struct-fig svg{width:100%;height:auto;display:block}
+.struct-dl{margin:0;font-size:.88rem;line-height:1.55}
+.struct-dl dt{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-top:10px}
+.struct-dl dt:first-child{margin-top:0}
+.struct-dl dd{margin:2px 0 0}
+svg.org{font-family:var(--sans)}
+svg.org text{fill:var(--fg);font-size:12px;font-weight:500}
+svg.org text.sm{font-size:10.5px;fill:var(--muted);font-weight:400}
+svg.org .bx{fill:var(--paper);stroke:var(--muted);stroke-width:1.2}
+svg.org .bx.hi{fill:var(--tint);stroke:var(--accent);stroke-width:1.5}
+svg.org .bx.cu{fill:var(--tone-eaf5ee);stroke:var(--tone-6fae8b)}
+svg.org .ln{stroke:var(--muted);stroke-width:1.3;fill:none}
+svg.org .ln.ac{stroke:var(--accent);stroke-width:1.8}
+svg.org .web{stroke:var(--muted);stroke-width:.9;opacity:.55}
+svg .arw{fill:var(--accent)}
+#simSvg{max-width:260px;margin:8px auto 0}
+#simSvg [data-line]{stroke:var(--muted);stroke-width:2}
+#simSvg [data-line].on{stroke:var(--accent);stroke-width:4}
+#simSvg [data-node] rect{fill:var(--paper);stroke:var(--muted);stroke-width:1.4}
+#simSvg [data-node].on rect{fill:var(--tint);stroke:var(--accent);stroke-width:2.2}
+#simSvg [data-node] text{font-size:15px;font-weight:700}
+.sim-pair .steps{margin:.5rem 0 0;font-size:.9rem}
+.mw-label{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 4px}
+.sayd{margin:1rem 0}
+@media(max-width:760px){.struct-body{grid-template-columns:minmax(0,1fr)}}
+@media print{.struct-panel[hidden]{display:block!important}.struct .tabs{display:none}}
+</style>
+</head><body><header class="top"><div class="top-in"><nav aria-label="Breadcrumb" class="crumbs"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="management.html">Management<span class="zh-full" lang="zh-Hant">管理學</span></a><span>/</span><b>Session 8<span class="zh-full" lang="zh-Hant">第 8 堂</span></b></nav><button aria-expanded="false" class="toc-btn" id="tocBtn" type="button">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button><nav aria-label="Sessions" class="sessions"><a class="pill" href="management-s5.html">S5</a><a class="pill" href="management-s6.html">S6</a><span aria-current="page" class="pill">S8</span></nav><div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input aria-label="顯示完整繁體中文對照" id="zhToggle" role="switch" type="checkbox"/>中文 <span id="zhModeLabel">OFF</span></label><button aria-pressed="false" class="practice-toggle" id="practiceToggle" title="Show or hide short questions within chapters" type="button">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" id="practiceChinese" lang="zh-Hant">練習模式：關閉</span></button></div></div></header><div class="wrap"><aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside><main><article class="doc"><div class="hero"><p class="kick">Managing People in Organizations · Session 8<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 8 堂</span></p><h1>Organizational Structure and Communication<span class="zh-full" lang="zh-Hant">組織結構與溝通</span></h1><p class="lead">Structure decides who can talk to whom. What people know shapes both performance and satisfaction, so check the system before blaming the person.<span class="zh-full" lang="zh-Hant">結構決定誰能和誰說話；員工知道什麼，會同時影響績效與滿意度。所以先檢查系統，再判斷個人。</span></p></div><h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2><div class="three"><div class="tcard"><b>Leader model<span class="zh-full" lang="zh-Hant">領導者模型</span></b><p>Three levers, two results<span class="zh-full" lang="zh-Hant">三個槓桿，兩種結果</span></p></div><div class="tcard"><b>How messages travel<span class="zh-full" lang="zh-Hant">訊息如何傳遞</span></b><p>Linear model, three factors, breakdown<span class="zh-full" lang="zh-Hant">線性模型、三個影響因素、溝通失靈</span></p></div><div class="tcard"><b>How structure shapes it<span class="zh-full" lang="zh-Hant">結構如何影響溝通</span></b><p>Structure types, choosing one, the simulation<span class="zh-full" lang="zh-Hant">結構類型、如何選擇、課堂模擬</span></p></div></div><div class="method"><span>Check structure and process<span class="zh-full" lang="zh-Hant">檢查結構與流程</span></span><i>→</i><span>Trace the information<span class="zh-full" lang="zh-Hant">追蹤資訊流向</span></span><i>→</i><span class="hi">Then judge the person<span class="zh-full" lang="zh-Hant">再判斷個人</span></span></div><h2 id="results">1. How leaders achieve results<span class="zh-full" lang="zh-Hant">1. 領導者如何達成結果</span></h2><p>A leader does not produce results directly. The leader works <b>through</b> work culture, work process and people. The result has two parts: <b>performance and satisfaction</b>.<span class="zh-full" lang="zh-Hant">領導者不是直接產出結果，而是透過工作文化、工作流程與人來達成。結果有兩個部分：績效與滿意度。</span></p><div class="map"><div class="mcol"><div class="mbox ask"><b>Leader<span class="zh-full" lang="zh-Hant">領導者</span></b></div></div><i class="marrow">→</i><div class="mcol"><div class="mbox"><b>Work Culture<span class="zh-full" lang="zh-Hant">工作文化</span></b><em>Next week's topic<span class="zh-full" lang="zh-Hant">下週主題</span></em></div><div class="mbox"><b>Work Process<span class="zh-full" lang="zh-Hant">工作流程</span></b><em>Linked to organizational structure<span class="zh-full" lang="zh-Hant">連到組織結構</span></em></div><div class="mbox"><b>People<span class="zh-full" lang="zh-Hant">人</span></b></div></div><i class="marrow">→</i><div class="mcol"><div class="mbox good"><b>Performance<span class="zh-full" lang="zh-Hant">績效</span></b><span>Getting the work done<span class="zh-full" lang="zh-Hant">把工作做出成果</span></span></div><div class="mbox good"><b>Satisfaction<span class="zh-full" lang="zh-Hant">滿意度</span></b><span>How people feel about it<span class="zh-full" lang="zh-Hant">人對工作的感受</span></span></div></div></div><p class="note-small">Slide p.2 draws a line from Work Process to the label “Organizational structure.” Slide p.22 lists organizational culture for next week.<span class="zh-full" lang="zh-Hant">投影片第 2 頁從 Work Process 拉一條線到「Organizational structure」。第 22 頁註明下週主題是組織文化。</span></p><p class="key">A team can hit every number and still deliver only half of the result.<span class="zh-full" lang="zh-Hant">團隊即使達成所有數字，也可能只完成一半的結果。</span></p><p class="hint"><b>中文邏輯</b><span>領導者透過三個槓桿影響結果；結構是領導者設計出來的，所以績效差不一定只是個人的問題。</span></p><aside class="practice-prompt" hidden=""><strong>Pause &amp; think</strong><p>A unit meets every sales target, but two senior staff have asked for transfers. Using the leader model, has it achieved the result? Which lever would you examine first, and why?<span class="zh-full" lang="zh-Hant">某單位達成所有銷售目標，但兩位資深員工申請調職。依領導者模型，這算達成結果嗎？你會先檢查哪個槓桿？為什麼？</span></p></aside><h2 id="linear">2. How a message travels<span class="zh-full" lang="zh-Hant">2. 訊息如何傳遞</span></h2><div class="message-chain"><div><b>Speaker<span class="zh-full" lang="zh-Hant">說話者</span></b><p>Encodes and speaks<span class="zh-full" lang="zh-Hant">編碼並說出</span></p></div><i>→</i><div class="hi"><b>Message<span class="zh-full" lang="zh-Hant">訊息</span></b><p>One direction<span class="zh-full" lang="zh-Hant">單一方向</span></p></div><i>→</i><div><b>Listeners<span class="zh-full" lang="zh-Hant">聽眾</span></b><p>Decode<span class="zh-full" lang="zh-Hant">解碼</span></p></div></div><p>The slide's arrow runs one way, from the speaker to the listeners. Nothing in this model tells the speaker whether the message was decoded as intended. A check has to be added on purpose, for example asking someone to restate the task.<span class="zh-full" lang="zh-Hant">投影片上的箭頭只有一個方向：從說話者到聽眾。這個模型本身沒有機制讓說話者知道對方是否照原意解碼，所以要刻意加上確認，例如請對方複述任務。</span></p><h3 id="factors">Three factors that shape what gets through<span class="zh-full" lang="zh-Hant">影響訊息傳達的三個因素</span></h3><div class="tbl"><table><thead><tr><th>Factor<span class="zh-full" lang="zh-Hant">因素</span></th><th>Where it sits<span class="zh-full" lang="zh-Hant">位置</span></th><th>Items on the slide (p.4)<span class="zh-full" lang="zh-Hant">投影片列出的項目（第 4 頁）</span></th><th>Do not confuse with<span class="zh-full" lang="zh-Hant">不要混淆</span></th></tr></thead><tbody><tr><td><b>Context</b> <span class="zh">情境</span></td><td>Around both people: the setting<span class="zh-full" lang="zh-Hant">在雙方之外：場合</span></td><td>organization, situation, culture, place, time, politics<span class="zh-full" lang="zh-Hant">組織、情境、文化、地點、時間、政治</span></td><td>S6 high/low context, which is about how much meaning sits outside the words<span class="zh-full" lang="zh-Hant">S6 的高／低情境溝通，講的是多少意思在話語之外</span></td></tr><tr><td><b>Frame of Reference</b> <span class="zh">參照框架</span></td><td>Inside the listener<span class="zh-full" lang="zh-Hant">在聽者身上</span></td><td>culture, relationship to the speaker, knowledge, personality, status, position, power<span class="zh-full" lang="zh-Hant">文化、與說話者的關係、知識、個性、地位、職位、權力</span></td><td>Noise: frame of reference is lasting background, not a moment's interference<span class="zh-full" lang="zh-Hant">干擾：參照框架是長期背景，不是當下的干擾</span></td></tr><tr><td><b>Noise</b> <span class="zh">干擾</span></td><td>At the moment of delivery<span class="zh-full" lang="zh-Hant">傳遞訊息的當下</span></td><td>interest in speaker/issue, timing, distractors, timing/urgency, mode of communication, emotions<span class="zh-full" lang="zh-Hant">對說話者或議題的興趣、時機、分心事物、時機／急迫性、溝通管道、情緒</span></td><td>Physical sound only: emotions and the channel count too<span class="zh-full" lang="zh-Hant">只有物理噪音：情緒與溝通管道也算</span></td></tr></tbody></table></div><p class="note-small">As printed: “culture” appears under both Context and Frame of Reference, and “timing” appears twice under Noise.<span class="zh-full" lang="zh-Hant">依原文：「culture」同時列在 Context 與 Frame of Reference，「timing」在 Noise 中出現兩次。</span></p><div data-mw="factor-sort"></div><p class="hint"><b>容易混淆</b><span>Context 裡的 culture 是場合的文化環境；Frame of Reference 裡的 culture 是聽者自己帶來的文化背景。</span></p><aside class="practice-prompt" hidden=""><strong>Pause &amp; think</strong><p>A restructuring is announced by email at 5:45 p.m. on a Friday, during cost cuts. Name one Context item, one Frame of Reference item and one Noise item that could change how a ten-year veteran reads it.<span class="zh-full" lang="zh-Hant">公司在縮減成本期間，於週五傍晚 5:45 用電子郵件宣布組織重整。請各舉一個 Context、Frame of Reference 與 Noise 的項目，說明它們如何影響一位十年資深員工的解讀。</span></p></aside><h2 id="breakdown">3. When communication breaks down<span class="zh-full" lang="zh-Hant">3. 溝通失靈的後果</span></h2><p>Slide p.5 lists the consequences in this order:<span class="zh-full" lang="zh-Hant">投影片第 5 頁依序列出以下後果：</span></p><ol class="chain"><li class="first"><span>Lack of information<span class="zh-full" lang="zh-Hant">缺乏資訊</span></span></li><li class=""><span>Ambiguity, uncertainty<span class="zh-full" lang="zh-Hant">模糊、不確定</span></span></li><li class=""><span>Need for structure: people create new tasks, and effort is wasted<span class="zh-full" lang="zh-Hant">需要結構：自行創造新任務，努力被浪費</span></span></li><li class=""><span>Frustration, anger<span class="zh-full" lang="zh-Hant">挫折、憤怒</span></span></li><li class=""><span>Feelings of isolation<span class="zh-full" lang="zh-Hant">孤立感</span></span></li><li class=""><span>Inadequacy<span class="zh-full" lang="zh-Hant">無能感</span></span></li><li class=""><span>Withdrawal<span class="zh-full" lang="zh-Hant">退縮</span></span></li><li class="last"><span>Poor performance, low morale<span class="zh-full" lang="zh-Hant">績效差、士氣低</span></span></li></ol><p class="key">The list starts with missing information and ends with poor performance. What looks like a people problem at the bottom may be an information problem at the top.<span class="zh-full" lang="zh-Hant">清單從缺乏資訊開始，以績效差結束。底部看起來像「人」的問題，源頭可能是頂端的資訊問題。</span></p><p class="note-small">The slide prints a list, not arrows between each item. Say “this can develop into,” not “A proves B.”<span class="zh-full" lang="zh-Hant">投影片是條列，沒有在每一項之間畫箭頭。可以說「可能發展成」，不要說「A 證明 B」。</span></p><p><b>Link to S4:</b> withdrawal resembles Neglect in EVLN. The difference is the starting point: EVLN begins from dissatisfaction, while this list begins from missing information.<span class="zh-full" lang="zh-Hant"><b>連結 S4：</b>退縮類似 EVLN 的 Neglect。差別在起點：EVLN 從不滿意開始，這張清單從缺乏資訊開始。</span></p><h3 id="blame">Look at the system first<span class="zh-full" lang="zh-Hant">先看系統</span></h3><div class="three"><div class="tcard"><span class="tnum">6</span><b>Organizations can create dropouts<span class="zh-full" lang="zh-Hant">組織會製造出「落後者」</span></b><p>People seen as problems today may have been the brightest stars 10 years ago, but their talents were not used or developed.<span class="zh-full" lang="zh-Hant">今天被視為問題的人，十年前可能是最優秀的明星，只是才能沒有被好好運用或培養。</span></p></div><div class="tcard"><span class="tnum">7</span><b>Avoid blame<span class="zh-full" lang="zh-Hant">避免責怪</span></b><p>Don't assume poor performance is an individual's fault. It can come from structure and process.<span class="zh-full" lang="zh-Hant">不要預設績效差是個人的錯，原因可能來自結構與流程。</span></p></div><div class="tcard"><span class="tnum">8</span><b>Effort at the bottom<span class="zh-full" lang="zh-Hant">基層的努力</span></b><p>Effort must occur at the bottom to achieve the goals of the top, so the bottom needs information and support.<span class="zh-full" lang="zh-Hant">高層的目標必須靠基層的努力才能達成，所以基層需要資訊與支援。</span></p></div></div><p class="note-small">Limit: the slides say poor performance <i>can</i> come from structure and process. They do not say individuals are never responsible.<span class="zh-full" lang="zh-Hant">界線：投影片說績效差「可能」來自結構與流程，並沒有說個人永遠沒有責任。</span></p><p class="hint"><b>中文邏輯</b><span>順序不要顛倒：先問結構和流程有沒有給他資訊與發揮空間，再問他個人有沒有問題。</span></p><aside class="practice-prompt" hidden=""><strong>Pause &amp; think</strong><p>A manager wants to let go of a low performer who was a top seller five years ago. Using pp.6–7, what two questions would you ask before agreeing?<span class="zh-full" lang="zh-Hant">主管想辭退一位績效差的員工，他五年前曾是頂尖業務。依第 6–7 頁，你同意之前會先問哪兩個問題？</span></p></aside><h2 id="structures">4. Five structures and the lattice<span class="zh-full" lang="zh-Hant">4. 五種結構與網狀組織</span></h2><p>Each structure answers one question: <b>what are people grouped by?</b> The grouping decides who talks to whom, and through whom.<span class="zh-full" lang="zh-Hant">每種結構都在回答同一個問題：人是依什麼分組的？分組方式決定誰和誰說話，以及要經過誰。</span></p><div class="mw struct"><div class="tabs" id="structTabs" role="tablist" hidden=""><button type="button" role="tab" id="tab-functional" aria-controls="st-functional" aria-selected="false">Functional<span class="zh-full" lang="zh-Hant">功能別</span></button><button type="button" role="tab" id="tab-product" aria-controls="st-product" aria-selected="false">Product division<span class="zh-full" lang="zh-Hant">產品事業部</span></button><button type="button" role="tab" id="tab-matrix" aria-controls="st-matrix" aria-selected="false">Matrix<span class="zh-full" lang="zh-Hant">矩陣式</span></button><button type="button" role="tab" id="tab-horizontal" aria-controls="st-horizontal" aria-selected="false">Horizontal<span class="zh-full" lang="zh-Hant">水平式</span></button><button type="button" role="tab" id="tab-hybrid" aria-controls="st-hybrid" aria-selected="false">Hybrid<span class="zh-full" lang="zh-Hant">混合式</span></button><button type="button" role="tab" id="tab-lattice" aria-controls="st-lattice" aria-selected="false">Lattice<span class="zh-full" lang="zh-Hant">網狀組織</span></button></div><section class="struct-panel" id="st-functional" role="tabpanel" aria-labelledby="tab-functional"><h4>Functional<span class="zh-full" lang="zh-Hant">功能別</span> <span class="zh">照專業分</span></h4><div class="struct-body"><div class="struct-fig"><svg class="org" viewBox="0 0 480 160" role="img" aria-label="Functional grouping: CEO over Engineering, Marketing and Manufacturing"><rect class="bx hi" x="185" y="14" width="110" height="34" rx="6"/><text x="240" y="35" text-anchor="middle">CEO</text><path class="ln" d="M240,48 V78 M80,78 H400 M80,78 V108 M240,78 V108 M400,78 V108"/><rect class="bx" x="15" y="108" width="130" height="36" rx="6"/><text x="80" y="130" text-anchor="middle">Engineering</text><rect class="bx" x="175" y="108" width="130" height="36" rx="6"/><text x="240" y="130" text-anchor="middle">Marketing</text><rect class="bx" x="335" y="108" width="130" height="36" rx="6"/><text x="400" y="130" text-anchor="middle">Manufacturing</text></svg></div><dl class="struct-dl"><dt>Grouped by<span class="zh-full" lang="zh-Hant">分組依據</span></dt><dd>Specialty: what people do.<span class="zh-full" lang="zh-Hant">專業：人做什麼工作。</span></dd><dt>In the diagram<span class="zh-full" lang="zh-Hant">圖中重點</span></dt><dd>CEO over Engineering, Marketing and Manufacturing (p.11).<span class="zh-full" lang="zh-Hant">CEO 底下是工程、行銷與製造（第 11 頁）。</span></dd><dt>Communication question<span class="zh-full" lang="zh-Hant">溝通上要問</span></dt><dd>How do specialties coordinate on one product without sending everything up to the CEO?<span class="zh-full" lang="zh-Hant">各專業如何為同一項產品協調，而不必凡事上報 CEO？</span></dd></dl></div></section><section class="struct-panel" id="st-product" role="tabpanel" aria-labelledby="tab-product"><h4>Product division<span class="zh-full" lang="zh-Hant">產品事業部</span> <span class="zh">照產品分</span></h4><div class="struct-body"><div class="struct-fig"><svg class="org" viewBox="0 0 480 160" role="img" aria-label="Product grouping: CEO over Product Divisions 1 to 3"><rect class="bx hi" x="185" y="14" width="110" height="34" rx="6"/><text x="240" y="35" text-anchor="middle">CEO</text><path class="ln" d="M240,48 V78 M80,78 H400 M80,78 V108 M240,78 V108 M400,78 V108"/><rect class="bx" x="15" y="108" width="130" height="36" rx="6"/><text x="80" y="130" text-anchor="middle">Product Division 1</text><rect class="bx" x="175" y="108" width="130" height="36" rx="6"/><text x="240" y="130" text-anchor="middle">Product Division 2</text><rect class="bx" x="335" y="108" width="130" height="36" rx="6"/><text x="400" y="130" text-anchor="middle">Product Division 3</text></svg></div><dl class="struct-dl"><dt>Grouped by<span class="zh-full" lang="zh-Hant">分組依據</span></dt><dd>Product: what people make or sell.<span class="zh-full" lang="zh-Hant">產品：人製造或銷售什麼。</span></dd><dt>In the diagram<span class="zh-full" lang="zh-Hant">圖中重點</span></dt><dd>CEO over Product Divisions 1, 2 and 3 (p.11).<span class="zh-full" lang="zh-Hant">CEO 底下是產品事業部 1、2、3（第 11 頁）。</span></dd><dt>Communication question<span class="zh-full" lang="zh-Hant">溝通上要問</span></dt><dd>How do divisions share knowledge instead of duplicating it?<span class="zh-full" lang="zh-Hant">各事業部如何分享知識，而不是重複投入？</span></dd></dl></div></section><section class="struct-panel" id="st-matrix" role="tabpanel" aria-labelledby="tab-matrix"><h4>Matrix<span class="zh-full" lang="zh-Hant">矩陣式</span> <span class="zh">縱橫交叉</span></h4><div class="struct-body"><div class="struct-fig"><svg class="org" viewBox="0 0 560 270" role="img" aria-label="Matrix: product managers A to D under the Director of Product Operations cross five functional columns and end at customers"><rect class="bx hi" x="250" y="6" width="90" height="26" rx="6"/><text x="295" y="23" text-anchor="middle">President</text><path class="ln" d="M295,32 V44 M58,44 H500"/><path class="ln" d="M58,44 V54"/><rect class="bx" x="10" y="54" width="96" height="34" rx="6"/><text x="58" y="69" text-anchor="middle" style="font-size:11px">Director of</text><text class="sm" x="58" y="82" text-anchor="middle">Product Ops</text><path class="ln" d="M164,44 V54"/><rect class="bx" x="130" y="54" width="68" height="34" rx="6"/><text x="164" y="75" text-anchor="middle" style="font-size:10.5px">Design VP</text><line class="ln" x1="164" y1="88" x2="164" y2="255" marker-end="url(#arw)"/><path class="ln" d="M244,44 V54"/><rect class="bx" x="210" y="54" width="68" height="34" rx="6"/><text x="244" y="75" text-anchor="middle" style="font-size:10.5px">Mfg VP</text><line class="ln" x1="244" y1="88" x2="244" y2="255" marker-end="url(#arw)"/><path class="ln" d="M324,44 V54"/><rect class="bx" x="290" y="54" width="68" height="34" rx="6"/><text x="324" y="75" text-anchor="middle" style="font-size:10.5px">Marketing VP</text><line class="ln" x1="324" y1="88" x2="324" y2="255" marker-end="url(#arw)"/><path class="ln" d="M404,44 V54"/><rect class="bx" x="370" y="54" width="68" height="34" rx="6"/><text x="404" y="75" text-anchor="middle" style="font-size:10.5px">Controller</text><line class="ln" x1="404" y1="88" x2="404" y2="255" marker-end="url(#arw)"/><path class="ln" d="M484,44 V54"/><rect class="bx" x="450" y="54" width="68" height="34" rx="6"/><text x="484" y="75" text-anchor="middle" style="font-size:10.5px">Procure. Mgr</text><line class="ln" x1="484" y1="88" x2="484" y2="255" marker-end="url(#arw)"/><path class="ln" d="M20,88 V232"/><path class="ln" d="M20,121 H30"/><rect class="bx" x="30" y="108" width="70" height="26" rx="6"/><text x="65" y="125" text-anchor="middle" style="font-size:11px">PM A</text><line class="ln ac" x1="100" y1="121" x2="512" y2="121" marker-end="url(#arw)"/><circle class="bx cu" cx="532" cy="121" r="13"/><text class="sm" x="532" y="125" text-anchor="middle">C</text><path class="ln" d="M20,159 H30"/><rect class="bx" x="30" y="146" width="70" height="26" rx="6"/><text x="65" y="163" text-anchor="middle" style="font-size:11px">PM B</text><line class="ln ac" x1="100" y1="159" x2="512" y2="159" marker-end="url(#arw)"/><circle class="bx cu" cx="532" cy="159" r="13"/><text class="sm" x="532" y="163" text-anchor="middle">C</text><path class="ln" d="M20,197 H30"/><rect class="bx" x="30" y="184" width="70" height="26" rx="6"/><text x="65" y="201" text-anchor="middle" style="font-size:11px">PM C</text><line class="ln ac" x1="100" y1="197" x2="512" y2="197" marker-end="url(#arw)"/><circle class="bx cu" cx="532" cy="197" r="13"/><text class="sm" x="532" y="201" text-anchor="middle">C</text><path class="ln" d="M20,235 H30"/><rect class="bx" x="30" y="222" width="70" height="26" rx="6"/><text x="65" y="239" text-anchor="middle" style="font-size:11px">PM D</text><line class="ln ac" x1="100" y1="235" x2="512" y2="235" marker-end="url(#arw)"/><circle class="bx cu" cx="532" cy="235" r="13"/><text class="sm" x="532" y="239" text-anchor="middle">C</text><text class="sm" x="512" y="266" text-anchor="end">C = Customer</text></svg></div><dl class="struct-dl"><dt>Grouped by<span class="zh-full" lang="zh-Hant">分組依據</span></dt><dd>Function and product at the same time.<span class="zh-full" lang="zh-Hant">同時依功能與產品分組。</span></dd><dt>In the diagram<span class="zh-full" lang="zh-Hant">圖中重點</span></dt><dd>Product Managers A to D report to the Director of Product Operations. Their lines cross every functional column and end at a customer (p.12).<span class="zh-full" lang="zh-Hant">產品經理 A 到 D 向產品營運總監匯報，他們的線橫跨每個功能欄，終點都是顧客（第 12 頁）。</span></dd><dt>Communication question<span class="zh-full" lang="zh-Hant">溝通上要問</span></dt><dd>Who decides when a functional head and a product manager disagree?<span class="zh-full" lang="zh-Hant">功能主管和產品經理意見不同時，由誰決定？</span></dd></dl></div></section><section class="struct-panel" id="st-horizontal" role="tabpanel" aria-labelledby="tab-horizontal"><h4>Horizontal<span class="zh-full" lang="zh-Hant">水平式</span> <span class="zh">照流程分</span></h4><div class="struct-body"><div class="struct-fig"><svg class="org" viewBox="0 0 560 250" role="img" aria-label="Horizontal: two processes, each with a process owner and teams, ending at the customer"><ellipse class="bx hi" cx="280" cy="24" rx="88" ry="17"/><text x="280" y="28" text-anchor="middle">Top Management Team</text><rect class="bx" x="8" y="62" width="72" height="34" rx="6"/><text x="44" y="77" text-anchor="middle" style="font-size:11px">Process</text><text class="sm" x="44" y="90" text-anchor="middle">Owner</text><circle class="bx" cx="130" cy="77" r="13"/><text class="sm" x="130" y="81" text-anchor="middle">T1</text><circle class="bx" cx="222" cy="77" r="13"/><text class="sm" x="222" y="81" text-anchor="middle">T2</text><circle class="bx" cx="314" cy="77" r="13"/><text class="sm" x="314" y="81" text-anchor="middle">T3</text><path class="bx" d="M92,98 h86 l10,15 l-10,15 h-86 l10,-15 z"/><text x="140" y="117" text-anchor="middle" style="font-size:10.5px">Market Anal.</text><path class="bx" d="M180,98 h86 l10,15 l-10,15 h-86 l10,-15 z"/><text x="228" y="117" text-anchor="middle" style="font-size:10.5px">Research</text><path class="bx" d="M268,98 h86 l10,15 l-10,15 h-86 l10,-15 z"/><text x="316" y="117" text-anchor="middle" style="font-size:10.5px">Prod. Plan.</text><path class="bx" d="M356,98 h86 l10,15 l-10,15 h-86 l10,-15 z"/><text x="404" y="117" text-anchor="middle" style="font-size:10.5px">Testing</text><line class="ln ac" x1="458" y1="113" x2="482" y2="113" marker-end="url(#arw)"/><ellipse class="bx cu" cx="518" cy="113" rx="34" ry="15"/><text class="sm" x="518" y="117" text-anchor="middle">Customer</text><text class="sm" x="270" y="144" text-anchor="middle">New Product Development Process</text><rect class="bx" x="8" y="152" width="72" height="34" rx="6"/><text x="44" y="167" text-anchor="middle" style="font-size:11px">Process</text><text class="sm" x="44" y="180" text-anchor="middle">Owner</text><circle class="bx" cx="130" cy="167" r="13"/><text class="sm" x="130" y="171" text-anchor="middle">T1</text><circle class="bx" cx="222" cy="167" r="13"/><text class="sm" x="222" y="171" text-anchor="middle">T2</text><circle class="bx" cx="314" cy="167" r="13"/><text class="sm" x="314" y="171" text-anchor="middle">T3</text><path class="bx" d="M92,188 h86 l10,15 l-10,15 h-86 l10,-15 z"/><text x="140" y="207" text-anchor="middle" style="font-size:10.5px">Analysis</text><path class="bx" d="M180,188 h86 l10,15 l-10,15 h-86 l10,-15 z"/><text x="228" y="207" text-anchor="middle" style="font-size:10.5px">Purchasing</text><path class="bx" d="M268,188 h86 l10,15 l-10,15 h-86 l10,-15 z"/><text x="316" y="207" text-anchor="middle" style="font-size:10.5px">Material Flow</text><path class="bx" d="M356,188 h86 l10,15 l-10,15 h-86 l10,-15 z"/><text x="404" y="207" text-anchor="middle" style="font-size:10.5px">Distrib.</text><line class="ln ac" x1="458" y1="203" x2="482" y2="203" marker-end="url(#arw)"/><ellipse class="bx cu" cx="518" cy="203" rx="34" ry="15"/><text class="sm" x="518" y="207" text-anchor="middle">Customer</text><text class="sm" x="270" y="234" text-anchor="middle">Procurement and Logistics Process</text></svg></div><dl class="struct-dl"><dt>Grouped by<span class="zh-full" lang="zh-Hant">分組依據</span></dt><dd>End-to-end process, organized around teams.<span class="zh-full" lang="zh-Hant">端到端流程，以團隊為單位。</span></dd><dt>In the diagram<span class="zh-full" lang="zh-Hant">圖中重點</span></dt><dd>A top management team; each process has a process owner and teams. New Product Development and Procurement and Logistics both end at the customer (p.13).<span class="zh-full" lang="zh-Hant">高階管理團隊之下，每個流程有流程負責人與團隊。新產品開發、採購與物流兩個流程的終點都是顧客（第 13 頁）。</span></dd><dt>Communication question<span class="zh-full" lang="zh-Hant">溝通上要問</span></dt><dd>How much can a team decide in front of the customer?<span class="zh-full" lang="zh-Hant">團隊在顧客面前能做多少決定？</span></dd></dl></div></section><section class="struct-panel" id="st-hybrid" role="tabpanel" aria-labelledby="tab-hybrid"><h4>Hybrid<span class="zh-full" lang="zh-Hant">混合式</span> <span class="zh">功能＋流程</span></h4><div class="struct-body"><div class="struct-fig"><svg class="org" viewBox="0 0 560 274" role="img" aria-label="Ford Customer Service Division hybrid: functional band of Finance, Strategy and Communication, Human Resources; three horizontal customer-facing groups"><rect class="bx hi" x="225" y="6" width="110" height="28" rx="6"/><text x="280" y="24" text-anchor="middle">General Manager</text><rect x="6" y="44" width="548" height="56" rx="8" fill="none" stroke-dasharray="4 4" class="ln"/><text class="sm" x="16" y="60">Functional</text><rect class="bx" x="110" y="58" width="136" height="30" rx="6"/><text x="178" y="77" text-anchor="middle" style="font-size:11px">Finance</text><rect class="bx" x="260" y="58" width="136" height="30" rx="6"/><text x="328" y="77" text-anchor="middle" style="font-size:11px">Strategy and Comm.</text><rect class="bx" x="410" y="58" width="136" height="30" rx="6"/><text x="478" y="77" text-anchor="middle" style="font-size:11px">Human Resources</text><rect x="6" y="110" width="548" height="156" rx="8" fill="none" stroke-dasharray="4 4" class="ln"/><text class="sm" x="16" y="262">Horizontal</text><rect class="bx" x="16" y="118" width="108" height="30" rx="6"/><text x="70" y="131" text-anchor="middle" style="font-size:10px">Director and</text><text class="sm" x="70" y="144" text-anchor="middle">Process Owner</text><line class="ln ac" x1="124" y1="133" x2="430" y2="133" marker-end="url(#arw)"/><circle class="bx" cx="160" cy="133" r="11"/><circle class="bx" cx="194" cy="133" r="11"/><circle class="bx" cx="228" cy="133" r="11"/><circle class="bx" cx="262" cy="133" r="11"/><text class="sm" x="365" y="149" text-anchor="middle">Parts Supply / Logistics</text><ellipse class="bx cu" cx="476" cy="133" rx="40" ry="13"/><text class="sm" x="476" y="137" text-anchor="middle">Customer</text><rect class="bx" x="16" y="164" width="108" height="30" rx="6"/><text x="70" y="177" text-anchor="middle" style="font-size:10px">Director and</text><text class="sm" x="70" y="190" text-anchor="middle">Process Owner</text><line class="ln ac" x1="124" y1="179" x2="430" y2="179" marker-end="url(#arw)"/><circle class="bx" cx="160" cy="179" r="11"/><circle class="bx" cx="194" cy="179" r="11"/><circle class="bx" cx="228" cy="179" r="11"/><circle class="bx" cx="262" cy="179" r="11"/><text class="sm" x="365" y="195" text-anchor="middle">Vehicle Service and Programs</text><ellipse class="bx cu" cx="476" cy="179" rx="40" ry="13"/><text class="sm" x="476" y="183" text-anchor="middle">Customer</text><rect class="bx" x="16" y="210" width="108" height="30" rx="6"/><text x="70" y="223" text-anchor="middle" style="font-size:10px">Director and</text><text class="sm" x="70" y="236" text-anchor="middle">Process Owner</text><line class="ln ac" x1="124" y1="225" x2="430" y2="225" marker-end="url(#arw)"/><circle class="bx" cx="160" cy="225" r="11"/><circle class="bx" cx="194" cy="225" r="11"/><circle class="bx" cx="228" cy="225" r="11"/><circle class="bx" cx="262" cy="225" r="11"/><text class="sm" x="365" y="241" text-anchor="middle">Technical Support</text><ellipse class="bx cu" cx="476" cy="225" rx="40" ry="13"/><text class="sm" x="476" y="229" text-anchor="middle">Customer</text></svg></div><dl class="struct-dl"><dt>Grouped by<span class="zh-full" lang="zh-Hant">分組依據</span></dt><dd>A functional band plus horizontal processes.<span class="zh-full" lang="zh-Hant">功能別區塊加上水平流程。</span></dd><dt>In the diagram<span class="zh-full" lang="zh-Hant">圖中重點</span></dt><dd>Ford Customer Service Division: Finance, Strategy and Communication, and Human Resources stay functional; three customer-facing groups run horizontally (p.15).<span class="zh-full" lang="zh-Hant">Ford 客戶服務部門：財務、策略與溝通、人資維持功能別；三個面向顧客的群組以水平方式運作（第 15 頁）。</span></dd><dt>Communication question<span class="zh-full" lang="zh-Hant">溝通上要問</span></dt><dd>Where is the boundary between the two parts, and who resolves issues across it?<span class="zh-full" lang="zh-Hant">兩部分的界線在哪？跨界的問題由誰處理？</span></dd></dl></div></section><section class="struct-panel" id="st-lattice" role="tabpanel" aria-labelledby="tab-lattice"><h4>Lattice<span class="zh-full" lang="zh-Hant">網狀組織</span> <span class="zh">人人直通</span></h4><div class="struct-body"><div class="struct-fig"><svg class="org" viewBox="0 0 400 230" role="img" aria-label="Lattice: every member linked directly to every other member"><line class="web" x1="200" y1="23" x2="292" y2="50"/><line class="web" x1="200" y1="23" x2="330" y2="115"/><line class="web" x1="200" y1="23" x2="292" y2="180"/><line class="web" x1="200" y1="23" x2="200" y2="207"/><line class="web" x1="200" y1="23" x2="108" y2="180"/><line class="web" x1="200" y1="23" x2="70" y2="115"/><line class="web" x1="200" y1="23" x2="108" y2="50"/><line class="web" x1="292" y1="50" x2="330" y2="115"/><line class="web" x1="292" y1="50" x2="292" y2="180"/><line class="web" x1="292" y1="50" x2="200" y2="207"/><line class="web" x1="292" y1="50" x2="108" y2="180"/><line class="web" x1="292" y1="50" x2="70" y2="115"/><line class="web" x1="292" y1="50" x2="108" y2="50"/><line class="web" x1="330" y1="115" x2="292" y2="180"/><line class="web" x1="330" y1="115" x2="200" y2="207"/><line class="web" x1="330" y1="115" x2="108" y2="180"/><line class="web" x1="330" y1="115" x2="70" y2="115"/><line class="web" x1="330" y1="115" x2="108" y2="50"/><line class="web" x1="292" y1="180" x2="200" y2="207"/><line class="web" x1="292" y1="180" x2="108" y2="180"/><line class="web" x1="292" y1="180" x2="70" y2="115"/><line class="web" x1="292" y1="180" x2="108" y2="50"/><line class="web" x1="200" y1="207" x2="108" y2="180"/><line class="web" x1="200" y1="207" x2="70" y2="115"/><line class="web" x1="200" y1="207" x2="108" y2="50"/><line class="web" x1="108" y1="180" x2="70" y2="115"/><line class="web" x1="108" y1="180" x2="108" y2="50"/><line class="web" x1="70" y1="115" x2="108" y2="50"/><circle class="bx hi" cx="200" cy="23" r="11"/><circle class="bx hi" cx="292" cy="50" r="11"/><circle class="bx hi" cx="330" cy="115" r="11"/><circle class="bx hi" cx="292" cy="180" r="11"/><circle class="bx hi" cx="200" cy="207" r="11"/><circle class="bx hi" cx="108" cy="180" r="11"/><circle class="bx hi" cx="70" cy="115" r="11"/><circle class="bx hi" cx="108" cy="50" r="11"/></svg></div><dl class="struct-dl"><dt>Grouped by<span class="zh-full" lang="zh-Hant">分組依據</span></dt><dd>No fixed grouping: everyone is linked to everyone.<span class="zh-full" lang="zh-Hant">沒有固定分組：每個人都和其他人相連。</span></dd><dt>In the diagram<span class="zh-full" lang="zh-Hant">圖中重點</span></dt><dd>Vision emerges from the group; multi-skilled, self-managing members; no followers, and leaders may emerge; mutual sense making; buy in to shared values; anyone can reach anyone without an intermediary (p.9).<span class="zh-full" lang="zh-Hant">願景來自群體；成員多技能、自我管理；沒有追隨者，領導者可能自然產生；共同理解狀況；認同共享價值；任何人都能不經中間人聯繫彼此（第 9 頁）。</span></dd><dt>Communication question<span class="zh-full" lang="zh-Hant">溝通上要問</span></dt><dd>With no intermediary, how does the group reach a decision?<span class="zh-full" lang="zh-Hant">沒有中間人，群體如何做出決定？</span></dd></dl></div></section></div><p class="note-small">Lattice: shown on p.9, before the “Types of Organization Structure” divider, and not in the p.16 summary. Use it as the communication opposite of a hierarchy. “(control)” in its first bullet is not explained on the slide.<span class="zh-full" lang="zh-Hant">網狀組織出現在第 9 頁，位於「Types of Organization Structure」分隔頁之前，也不在第 16 頁的總結中。把它當作與階層對照的溝通型態。第一點中的「(control)」投影片沒有解釋。</span></p><p class="note-small">Diagram sources on the slides: Nadler and Tushman (1988); Ostroff (1999); Byrne (1993); Stewart (1992); Ackerman (1982).<span class="zh-full" lang="zh-Hant">投影片圖表出處：Nadler and Tushman (1988)；Ostroff (1999)；Byrne (1993)；Stewart (1992)；Ackerman (1982)。</span></p><p class="hint"><b>容易混淆</b><span>Product 與 Horizontal 都面向產出，但 Product 仍是 CEO 底下的事業部階層；Horizontal 依流程橫向排列、以團隊為單位、終點是顧客。</span></p><h2 id="choose">5. Choosing a structure<span class="zh-full" lang="zh-Hant">5. 如何選擇結構</span></h2><p class="key">“There is no one best structure, depending on the requirements of each individual business.” (p.14)<span class="zh-full" lang="zh-Hant">「沒有最好的結構，取決於每個企業的需求。」（第 14 頁）</span></p><div class="tbl"><table><thead><tr><th>Situation (p.16 summary)<span class="zh-full" lang="zh-Hant">情況（第 16 頁總結）</span></th><th>Structure<span class="zh-full" lang="zh-Hant">結構</span></th><th>Watch for<span class="zh-full" lang="zh-Hant">注意</span></th></tr></thead><tbody><tr><td>Small business, a few products<span class="zh-full" lang="zh-Hant">小型企業，產品少</span></td><td><b>Functional<span class="zh-full" lang="zh-Hant">功能別</span></b></td><td>Also kept for any function needing full control<span class="zh-full" lang="zh-Hant">需要完全掌控的功能也保留此結構</span></td></tr><tr><td>Medium size, multiple products<span class="zh-full" lang="zh-Hant">中型規模，多項產品</span></td><td><b>Matrix<span class="zh-full" lang="zh-Hant">矩陣式</span></b></td><td>Shared specialists answer to function and product lines<span class="zh-full" lang="zh-Hant">共用的專業人員同時面對功能線與產品線</span></td></tr><tr><td>Really large, multiple groups of products<span class="zh-full" lang="zh-Hant">大型組織，多個產品群</span></td><td><b>Product division<span class="zh-full" lang="zh-Hant">產品事業部</span></b></td><td>Large is “really large” on the slide, not just “large”<span class="zh-full" lang="zh-Hant">投影片寫的是「really large」，不只是 large</span></td></tr><tr><td>Frequent, direct customer contact, and the task does not require being correct 100% of the time<span class="zh-full" lang="zh-Hant">與顧客接觸頻繁且直接，且任務不需要百分之百正確</span></td><td><b>Horizontal (may be used)<span class="zh-full" lang="zh-Hant">水平式（可以採用）</span></b></td><td>Both conditions are needed<span class="zh-full" lang="zh-Hant">兩個條件都要成立</span></td></tr><tr><td>A function you want to keep under 100% control<span class="zh-full" lang="zh-Hant">想要百分之百掌控的功能</span></td><td><b>Functional, inside a hybrid<span class="zh-full" lang="zh-Hant">在混合式中保留功能別</span></b></td><td>Ford keeps Finance, Strategy and Communication, and HR functional<span class="zh-full" lang="zh-Hant">Ford 保留財務、策略與溝通、人資為功能別</span></td></tr></tbody></table></div><p>Read the last two rules together. Teams close to the customer decide quickly, which suits work where a small mistake can be fixed next time. Where errors are not acceptable, keep that part under central, functional control.<span class="zh-full" lang="zh-Hant">最後兩條要一起讀：靠近顧客的團隊決策快，適合小錯可以下次修正的工作；不能出錯的部分，就保留在集中的功能別控制下。</span></p><p class="note-small">Limit: the slide gives no headcount or revenue for small, medium or really large. The Ford diagram fits the hybrid rule, but the slide does not state Ford's reasons.<span class="zh-full" lang="zh-Hant">界線：投影片沒有給小、中、大型的人數或營收門檻。Ford 的圖符合混合式規則，但投影片沒有說明 Ford 這樣安排的原因。</span></p><div data-mw="structure-pick"></div><p class="hint"><b>中文邏輯</b><span>選結構看四件事：規模、產品數、與顧客接觸的頻率、需要多少控制。不是背哪個最好，而是說得出在什麼條件下用哪個。</span></p><aside class="practice-prompt" hidden=""><strong>Pause &amp; think</strong><p>A firm grew from two products to nine and now shares one engineering team across them. Which structure does the summary point to, and what new communication problem could it create for the engineers?<span class="zh-full" lang="zh-Hant">一家公司從兩項產品成長到九項，並由同一個工程團隊支援所有產品。依總結應採用哪種結構？這會為工程師帶來什麼新的溝通問題？</span></p></aside><h2 id="simulation">6. Communication networks simulation<span class="zh-full" lang="zh-Hant">6. 溝通網絡模擬</span></h2><p>The second half of the session puts participants in a <b>highly rigid, hierarchical organization</b>: strict work rules, command and control, and top-down management and communication. They observe <b>organizational productivity and their own feeling</b>.<span class="zh-full" lang="zh-Hant">本堂後半段讓學員進入一個高度僵化的階層組織：嚴格的工作規則、命令與控制、由上而下的管理與溝通。學員要觀察組織的生產力與自己的感受。</span></p><div class="six"><div><span>1</span>Examine how structure influences leadership, communication and decision-making.<span class="zh-full" lang="zh-Hant">檢視結構如何影響領導、溝通與決策。</span></div><div><span>2</span>Experience its impact on teamwork and productivity; morale, satisfaction and commitment; and personal effectiveness.<span class="zh-full" lang="zh-Hant">體驗它對團隊合作與生產力、士氣、滿意度與承諾，以及個人效能的影響。</span></div><div><span>3</span>Build a framework for thinking about leadership and communication that helps people learn from experience.<span class="zh-full" lang="zh-Hant">建立思考領導與溝通的框架，幫助從經驗中學習。</span></div><div><span>4</span>Task: solve the problem as a team, before the other teams, within the time limit.<span class="zh-full" lang="zh-Hant">任務：以團隊解題，比其他隊先完成，且在時限內完成。</span></div></div><h3 id="sim-setup">Setup and rules<span class="zh-full" lang="zh-Hant">組織設定與規則</span></h3><div class="pair sim-pair"><div><b>Your organization (p.20)<span class="zh-full" lang="zh-Hant">你的組織（第 20 頁）</span></b><svg id="simSvg" class="org" viewBox="0 0 260 230" role="img" aria-label="A, the boss, linked to B, the middle manager; B linked to staff C, D and E"><line data-line="AB" x1="130" y1="48" x2="130" y2="92"/><line data-line="BC" x1="130" y1="128" x2="40" y2="178"/><line data-line="BD" x1="130" y1="128" x2="130" y2="178"/><line data-line="BE" x1="130" y1="128" x2="220" y2="178"/><g data-node="A"><rect x="108" y="12" width="44" height="36" rx="7"/><text x="130" y="35" text-anchor="middle">A</text></g><g data-node="B"><rect x="108" y="92" width="44" height="36" rx="7"/><text x="130" y="115" text-anchor="middle">B</text></g><g data-node="C"><rect x="18" y="178" width="44" height="36" rx="7"/><text x="40" y="201" text-anchor="middle">C</text></g><g data-node="D"><rect x="108" y="178" width="44" height="36" rx="7"/><text x="130" y="201" text-anchor="middle">D</text></g><g data-node="E"><rect x="198" y="178" width="44" height="36" rx="7"/><text x="220" y="201" text-anchor="middle">E</text></g><text class="sm" x="160" y="34">Boss</text><text class="sm" x="160" y="114">Middle Manager</text></svg></div><div><b>Directions (p.21)<span class="zh-full" lang="zh-Hant">規則（第 21 頁）</span></b><ul class="steps"><li>Written messages only<span class="zh-full" lang="zh-Hant">只能用書面訊息溝通</span></li><li>No talking or non-verbal communication<span class="zh-full" lang="zh-Hant">不能說話，也不能用肢體語言</span></li><li>Address every message, e.g. “To B”<span class="zh-full" lang="zh-Hant">每則訊息都要寫收件人，例如「To B」</span></li><li>Raise your hand; a postman delivers<span class="zh-full" lang="zh-Hant">舉手，由郵差遞送</span></li><li>Wrongly addressed mail goes to a lost mail bag<span class="zh-full" lang="zh-Hant">收件人寫錯就進遺失郵件袋</span></li><li>Tell the instructor by a note “To Instructor”<span class="zh-full" lang="zh-Hant">解題後寫「To Instructor」通知老師</span></li><li>30 minutes<span class="zh-full" lang="zh-Hant">限時 30 分鐘</span></li></ul></div></div><h3 id="sim-routes">Trace a message<span class="zh-full" lang="zh-Hant">追蹤一則訊息</span></h3><div data-mw="sim-route"></div><p class="note-small">Routes assume messages follow the lines on the chart. The supplied slides end at the directions, so the problem and the class debrief are not included here.<span class="zh-full" lang="zh-Hant">路徑假設訊息只能沿著圖上的線傳遞。提供的投影片停在規則說明，因此題目內容與課後討論不在本頁。</span></p><p><b>What the setup predicts</b> (reasoning from the rules, not reported results):<span class="zh-full" lang="zh-Hant"><b>從設定可以推論</b>（依規則推理，不是課堂結果）：</span></p><ul><li>Every route passes through <b>B</b>. B is the bottleneck, and B's frame of reference filters everything.<span class="zh-full" lang="zh-Hant">所有路徑都經過 B。B 是瓶頸，B 的參照框架會過濾所有訊息。</span></li><li>Staff see only a fragment of the problem: <b>lack of information</b>, the first item on p.5.<span class="zh-full" lang="zh-Hant">員工只看到問題的一部分，也就是第 5 頁的第一項：缺乏資訊。</span></li><li>Writing only removes tone and body language: <b>mode of communication</b>, on the Noise list.<span class="zh-full" lang="zh-Hant">只能書寫，少了語氣與肢體線索，對應 Noise 中的溝通管道。</span></li><li>Productivity and feeling mirror the two results on p.2: <b>performance and satisfaction</b>.<span class="zh-full" lang="zh-Hant">生產力與感受對應第 2 頁的兩種結果：績效與滿意度。</span></li><li><b>Link to S4:</b> C, D and E have low autonomy, task identity and feedback, three JCM core dimensions.<span class="zh-full" lang="zh-Hant"><b>連結 S4：</b>C、D、E 的自主性、任務完整性與回饋都很低，正是 JCM 的三個核心構面。</span></li></ul><p class="hint"><b>中文邏輯</b><span>模擬組織和網狀組織是同一個問題的兩端：一則訊息要經過幾個人才到得了？</span></p><aside class="practice-prompt" hidden=""><strong>Pause &amp; think</strong><p>C holds a key piece of the answer that only A can approve. Trace the route, count the hand-offs, and name two Noise items that could distort the message on the way.<span class="zh-full" lang="zh-Hant">C 掌握答案的關鍵資訊，但只有 A 能核准。請畫出路徑、算出轉手次數，並指出兩個可能在途中扭曲訊息的 Noise 項目。</span></p></aside><h2 id="traps">7. Do not mix these up<span class="zh-full" lang="zh-Hant">7. 易混淆概念</span></h2><div class="tbl"><table><thead><tr><th scope="col">Concepts<span class="zh-full" lang="zh-Hant">概念</span></th><th scope="col">First<span class="zh-full" lang="zh-Hant">前者</span></th><th scope="col">Second<span class="zh-full" lang="zh-Hant">後者</span></th></tr></thead><tbody><tr><th scope="row">Performance / satisfaction<span class="zh-full" lang="zh-Hant">績效／滿意度</span></th><td>Performance is getting the work done.<span class="zh-full" lang="zh-Hant">績效是把工作做出成果。</span></td><td>Satisfaction is how people feel. p.2 counts both as results.<span class="zh-full" lang="zh-Hant">滿意度是人的感受；第 2 頁兩者都算結果。</span></td></tr><tr><th scope="row">Context / frame of reference<span class="zh-full" lang="zh-Hant">情境／參照框架</span></th><td>Context is the setting around both people.<span class="zh-full" lang="zh-Hant">情境是雙方所處的場合。</span></td><td>Frame of reference is what the listener brings.<span class="zh-full" lang="zh-Hant">參照框架是聽者自己帶來的背景。</span></td></tr><tr><th scope="row">Frame of reference / noise<span class="zh-full" lang="zh-Hant">參照框架／干擾</span></th><td>Frame of reference is lasting background.<span class="zh-full" lang="zh-Hant">參照框架是長期背景。</span></td><td>Noise is interference at the moment of delivery.<span class="zh-full" lang="zh-Hant">干擾是傳遞當下的妨礙。</span></td></tr><tr><th scope="row">Product division / horizontal<span class="zh-full" lang="zh-Hant">產品事業部／水平式</span></th><td>Product divisions sit under the CEO as a hierarchy.<span class="zh-full" lang="zh-Hant">產品事業部是 CEO 底下的階層。</span></td><td>Horizontal teams line up along a process that ends at the customer.<span class="zh-full" lang="zh-Hant">水平式團隊沿著流程排列，終點是顧客。</span></td></tr><tr><th scope="row">Matrix / hybrid<span class="zh-full" lang="zh-Hant">矩陣式／混合式</span></th><td>A matrix crosses function and product lines.<span class="zh-full" lang="zh-Hant">矩陣式讓功能線與產品線交叉。</span></td><td>A hybrid keeps some units functional and runs others as horizontal processes.<span class="zh-full" lang="zh-Hant">混合式讓部分單位保持功能別，其他以水平流程運作。</span></td></tr><tr><th scope="row">Lattice / no leadership<span class="zh-full" lang="zh-Hant">網狀組織／沒有領導</span></th><td>A lattice has no formally appointed leader.<span class="zh-full" lang="zh-Hant">網狀組織沒有正式任命的領導者。</span></td><td>Leaders may emerge from the group.<span class="zh-full" lang="zh-Hant">領導者可能從群體中自然產生。</span></td></tr><tr><th scope="row">“Don't assume” / “never”<span class="zh-full" lang="zh-Hant">「不要預設」／「永遠不是」</span></th><td>p.7: don't assume poor performance is the individual's fault.<span class="zh-full" lang="zh-Hant">第 7 頁：不要預設績效差是個人的錯。</span></td><td>Individuals can still be responsible once the system is checked.<span class="zh-full" lang="zh-Hant">檢查過系統後，個人仍可能有責任。</span></td></tr><tr><th scope="row">Simulation setup / results<span class="zh-full" lang="zh-Hant">模擬設定／模擬結果</span></th><td>The slides give the roles and rules.<span class="zh-full" lang="zh-Hant">投影片提供角色與規則。</span></td><td>Outcomes come from the class debrief, which is not in the slides.<span class="zh-full" lang="zh-Hant">結果來自課後討論，不在投影片中。</span></td></tr></tbody></table></div><h2 id="coldcall">8. Cold call practice<span class="zh-full" lang="zh-Hant">8. Cold call 練習</span></h2><div class="qa-tools"><button id="qaAll" type="button">Show all answers<span class="zh-full" lang="zh-Hant">展開全部答案</span></button></div><div class="qa"><details><summary>How do leaders achieve results?<span class="zh-full" lang="zh-Hant">領導者如何達成結果？</span></summary><p>Through work culture, work process and people. Results are performance and satisfaction.<span class="zh-full" lang="zh-Hant">透過工作文化、工作流程與人；結果包括績效與滿意度。</span></p></details><details><summary>Describe the linear model of communication.<span class="zh-full" lang="zh-Hant">說明線性溝通模型。</span></summary><p>A speaker encodes and speaks a message, and listeners decode it. The arrow runs one way.<span class="zh-full" lang="zh-Hant">說話者編碼並說出訊息，聽眾解碼；箭頭只有單一方向。</span></p></details><details><summary>What three factors influence communication?<span class="zh-full" lang="zh-Hant">影響溝通的三個因素是什麼？</span></summary><p>Context, the setting; frame of reference, what the listener brings; and noise, interference at the moment of delivery.<span class="zh-full" lang="zh-Hant">情境（場合）、參照框架（聽者帶來的背景）與干擾（當下的妨礙）。</span></p></details><details><summary>What happens when communication breaks down?<span class="zh-full" lang="zh-Hant">溝通失靈會發生什麼？</span></summary><p>The slide runs from lack of information and uncertainty, through wasted effort, frustration, isolation and withdrawal, to poor performance and low morale.<span class="zh-full" lang="zh-Hant">投影片從缺乏資訊與不確定開始，經過努力浪費、挫折、孤立與退縮，最後是績效差與士氣低。</span></p></details><details><summary>Is poor performance the individual's fault?<span class="zh-full" lang="zh-Hant">績效差是個人的錯嗎？</span></summary><p>Don't assume so. It can come from structure and process, so check the system before blaming the person.<span class="zh-full" lang="zh-Hant">不要預設是。原因可能來自結構與流程，所以先檢查系統再責怪個人。</span></p></details><details><summary>What is the best structure?<span class="zh-full" lang="zh-Hant">最好的結構是什麼？</span></summary><p>There is no one best structure. Functional suits small firms with few products, matrix medium firms with multiple products, product division really large firms with product groups.<span class="zh-full" lang="zh-Hant">沒有最好的結構。功能別適合產品少的小企業，矩陣式適合多產品的中型企業，產品事業部適合有多個產品群的大型組織。</span></p></details><details><summary>When can a horizontal structure be used?<span class="zh-full" lang="zh-Hant">什麼時候可以用水平式結構？</span></summary><p>Where customer contact is frequent and direct, and the task does not require being correct 100% of the time.<span class="zh-full" lang="zh-Hant">與顧客接觸頻繁且直接，且任務不需要百分之百正確時。</span></p></details><details><summary>What is a lattice organization?<span class="zh-full" lang="zh-Hant">什麼是網狀組織？</span></summary><p>A network where everyone can reach everyone without an intermediary, vision comes from the group, and leaders emerge rather than being appointed.<span class="zh-full" lang="zh-Hant">每個人都能不經中間人直接聯繫彼此，願景來自群體，領導者是自然產生而非正式任命。</span></p></details><details><summary>In the simulation, why does B matter so much?<span class="zh-full" lang="zh-Hant">模擬中為什麼 B 這麼關鍵？</span></summary><p>If messages follow the chart, every route between A and the staff, or between staff, passes through B.<span class="zh-full" lang="zh-Hant">如果訊息沿著圖上的線傳遞，A 與員工之間、員工彼此之間的每條路徑都要經過 B。</span></p></details></div><h2 id="templates">9. Answer templates<span class="zh-full" lang="zh-Hant">9. 答題模板</span></h2><div class="pair"><div><b>Diagnose a performance problem<span class="zh-full" lang="zh-Hant">診斷績效問題</span></b><p>“Before attributing this to the individual, I would check whether the structure gives ___ the information about ___. The case shows ___, which fits ___ on the breakdown list. The issue is ___.”<span class="zh-full" lang="zh-Hant">「在歸咎個人之前，我會先檢查結構是否讓＿＿取得關於＿＿的資訊。個案顯示＿＿，符合溝通失靈清單中的＿＿。問題在於＿＿。」</span></p></div><div><b>Recommend a structure<span class="zh-full" lang="zh-Hant">建議組織結構</span></b><p>“Because the firm is ___ with ___ products, the summary points to a ___ structure. Functions that need full control, such as ___, can stay functional. I would track ___.”<span class="zh-full" lang="zh-Hant">「因為這家公司規模＿＿、有＿＿項產品，依總結應採用＿＿結構。需要完全掌控的功能，例如＿＿，可以保留功能別。我會追蹤＿＿。」</span></p></div></div><details class="sayd"><summary>45-second model answer: “Our service unit performs badly. Should we replace the staff?”<span class="zh-full" lang="zh-Hant">45 秒範例：「客服單位表現很差，要換掉員工嗎？」</span></summary><blockquote class="say">“Not before checking the system. The slides warn against assuming poor performance is an individual's fault, because it can come from structure and process. I would first ask what information staff receive, how many people a message passes through, and how much they may decide in front of a customer. If contact is frequent and small errors can be corrected, a horizontal, team-based design may fit. Only if performance stays poor after the information problems are fixed would I look at individual capability.”<span class="zh-full" lang="zh-Hant">「先別急著換人。投影片提醒不要預設績效差是個人的錯，因為原因可能來自結構與流程。我會先問員工拿到哪些資訊、一則訊息要經過幾個人、他們在顧客面前能做多少決定。如果接觸頻繁且小錯可以修正，以團隊為主的水平式設計可能適合。資訊問題解決後績效仍差，我才會檢視個人能力。」</span></blockquote></details><p class="note-small source">Source: S8 lecture slides, pp.2–22.<span class="zh-full" lang="zh-Hant">出處：S8 課堂投影片第 2–22 頁。</span></p></article></main></div><svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arw"/></marker></defs></svg><script>
+/* Chinese lookup for strings created by the page tools. */
+window.MgmtZh = {"Context": "情境", "Frame of Reference": "參照框架", "Noise": "干擾", "Functional": "功能別", "Matrix": "矩陣式", "Product division": "產品事業部", "Horizontal": "水平式", "The listener has distrusted the speaker since a conflict last year.": "聽者自去年衝突後就不信任說話者。", "Context is the setting; the cue here is the listener's relationship to the speaker.": "情境指場合；這裡的線索是聽者與說話者的關係。", "Relationship to the speaker is on the Frame of Reference list: lasting background the listener brings.": "與說話者的關係列在參照框架中，是聽者帶來的長期背景。", "Noise is interference at the moment; distrust built over a year is lasting background.": "干擾是當下的妨礙；累積一年的不信任屬於長期背景。", "The announcement lands in the middle of a system outage.": "公告正好在系統當機時發出。", "The setting matters, but the outage is a distraction at the moment of delivery.": "場合固然重要，但當機是傳遞當下的分心事物。", "Nothing here is about what the listener brings; it is about the moment.": "這和聽者帶來的背景無關，而是當下的狀況。", "Distractors and timing are on the Noise list: interference when the message arrives.": "分心事物與時機列在干擾中，是訊息抵達時的妨礙。", "The message is sent while two departments compete for budget during a merger.": "在合併期間兩個部門爭奪預算時發出訊息。", "Organization and politics are on the Context list: the setting around both people.": "組織與政治列在情境中，是雙方所處的場合。", "The cue is the organizational situation, not one listener's background.": "線索是組織情勢，不是某位聽者的背景。", "Budget politics shape the whole setting rather than interrupting one moment.": "預算政治影響整個場合，而不是打斷某一刻。", "A complex change that worries staff is announced by text message.": "一項讓員工擔心的複雜變革用簡訊宣布。", "The setting is not the main cue; the channel and the emotions are.": "主要線索不是場合，而是溝通管道與情緒。", "Worry is momentary emotion here; the channel choice is the bigger cue.": "這裡的擔心是當下情緒；溝通管道的選擇是更主要的線索。", "Mode of communication and emotions are both on the Noise list.": "溝通管道與情緒都列在干擾中。", "A new hire reads a technical memo differently from a senior engineer.": "新進員工與資深工程師對同一份技術備忘錄理解不同。", "Both read it in the same setting; the difference is in the readers.": "兩人在相同場合閱讀，差異在讀者本身。", "Knowledge and position are on the Frame of Reference list.": "知識與職位列在參照框架中。", "Nothing interrupts the reading; their backgrounds differ.": "閱讀沒有受到干擾，是兩人的背景不同。", "A 25-person supplier sells two products.": "一家 25 人的供應商販售兩項產品。", "Small business with a few products: the summary's first rule.": "產品少的小企業，符合總結第一條。", "Matrix is for medium size with multiple products.": "矩陣式適用於多產品的中型企業。", "Product divisions are for really large organizations with product groups.": "產品事業部適用於有多個產品群的大型組織。", "Nothing here mentions frequent customer contact or error tolerance.": "這裡沒有提到頻繁接觸顧客或可容錯。", "A 400-person firm with seven products shares one engineering group.": "一家 400 人、七項產品的公司共用一個工程團隊。", "Seven products sharing specialists has outgrown a simple functional design.": "七項產品共用專業人員，已超出單純功能別的範圍。", "Medium size with multiple products: shared engineers sit where function and product cross.": "多產品的中型企業：共用的工程師位於功能與產品交叉處。", "This is medium, not a really large group of separate product families.": "這是中型規模，不是擁有多個產品群的大型組織。", "No customer-contact condition is given.": "沒有提到顧客接觸的條件。", "A very large group runs separate consumer, industrial and medical product families.": "大型集團經營消費、工業與醫療三個獨立產品群。", "Functional suits a small firm with a few products.": "功能別適合產品少的小企業。", "Matrix suits medium size; this is a really large organization.": "矩陣式適合中型企業；這是大型組織。", "Really large with multiple groups of products: the product division rule.": "大型且有多個產品群，符合產品事業部規則。", "Horizontal depends on customer contact, which is not the cue here.": "水平式取決於顧客接觸，這不是本題線索。", "A help desk talks to customers all day; small errors can be fixed on the next call.": "服務台整天與顧客對話，小錯可以在下一通電話修正。", "Functional fits where full control is needed; here errors are tolerable.": "功能別適合需要完全掌控之處；這裡可以容錯。", "Matrix is about product range, not customer contact.": "矩陣式與產品數有關，不是顧客接觸。", "Product divisions are about product groups, not customer contact.": "產品事業部與產品群有關，不是顧客接觸。", "Frequent direct contact and tolerance for small errors: both horizontal conditions hold.": "頻繁直接接觸顧客且可容許小錯，兩個水平式條件都成立。", "In the same company, the treasury function cannot accept errors.": "同一家公司中，財務資金部門不能出錯。", "A function needing 100% control stays functional inside a hybrid.": "需要百分之百掌控的功能，在混合式中保留功能別。", "A matrix adds dual reporting lines, which loosens control.": "矩陣式增加雙重匯報線，反而降低掌控。", "Product divisions group by product, not by need for control.": "產品事業部依產品分組，不是依掌控需求。", "Horizontal requires tolerance for errors, which treasury lacks.": "水平式需要能容錯，財務資金部門不行。", "Classify": "分類", "Next": "下一題", "Which factor is this?": "這是哪一個因素？", "Read the situation, then choose the factor the cue points to.": "閱讀情境，選出線索對應的因素。", "Pick the structure": "選擇結構", "Apply the five rules from the p.16 summary.": "套用第 16 頁總結的五條規則。", "Interactive · Trace a message": "互動・追蹤一則訊息", "From": "寄件者", "To": "收件者", "Choose two different positions.": "請選擇兩個不同的位置。"};
+window.MgmtSetText = function(el, en, zh) {
+  el.textContent = en;
+  if (zh === undefined) zh = window.MgmtZh[en.trim()];
+  if (!zh) {
+    const m = en.match(/^Item (\d+) of (\d+)(?: · (\d+) \/ (\d+) correct)?$/);
+    if (m) zh = '第 '+m[1]+'／'+m[2]+' 題'+(m[3] ? '・'+m[3]+'／'+m[4]+' 題答對' : '');
+  }
+  if (zh) { const z=document.createElement('span'); z.className='zh-full'; z.lang='zh-Hant'; z.textContent=zh; el.append(z); }
+};
+window.MgmtQuizExplain = function(panel, labels, reasons, correct, chosen) {
+  const ok = chosen === correct;
+  const english = ok ? 'Correct. '+reasons[chosen] : 'Not quite. Best answer: '+labels[correct]+'. '+reasons[chosen];
+  const chinese = ok ? '答對了。'+window.MgmtZh[reasons[chosen]] : '答錯了。正確答案：'+window.MgmtZh[labels[correct]]+'。'+window.MgmtZh[reasons[chosen]];
+  window.MgmtSetText(panel, english, chinese); panel.hidden=false;
+};
+</script><script>
+/* Shared Management classification cards, adapted from the Session 4 quiz. */
+window.MgmtQuiz = function(host, title, instruction, items) {
+  const make = (tag, text, cls) => { const e = document.createElement(tag); if (text) window.MgmtSetText(e, text); if (cls) e.className = cls; return e; };
+  host.classList.add('mw');
+  const head = make('div', null, 'g-head');
+  head.append(make('span', 'Classify', 'g-kicker'), make('h4', title), make('p', instruction));
+  const body = make('div', null, 'mw-body'), question = make('p', null, 'qz-item'), options = make('div', null, 'qz-opts grid2'), note = make('div', null, 'g-note'), nav = make('div', null, 'qz-nav'), count = make('span'), next = make('button', 'Next', 'g-btn');
+  note.setAttribute('aria-live', 'polite'); next.type = 'button';
+  nav.append(count, next); body.append(question, options, note, nav); host.append(head, body);
+  let index = 0, score = 0, done = 0, answered = false;
+  function show() {
+    const item = items[index]; answered = false; window.MgmtSetText(question, item.q); options.replaceChildren(); note.textContent = ''; note.hidden = true;
+    window.MgmtSetText(count, 'Item ' + (index + 1) + ' of ' + items.length + (done ? ' · ' + score + ' / ' + done + ' correct' : ''));
+    item.options.forEach((option, choice) => {
+      const button = make('button', null, 'qz-o'); button.type = 'button'; button.append(make('b', option));
+      button.addEventListener('click', () => {
+        if (answered) return; answered = true; done++; const correct = choice === item.answer; if (correct) score++;
+        options.querySelectorAll('button').forEach((b, i) => { b.classList.toggle('right', i === item.answer); b.setAttribute('aria-disabled', 'true'); });
+        if (!correct) button.classList.add('wrong');
+        window.MgmtQuizExplain(note, item.explanationLabels || item.options, item.explanations, item.answer, choice);
+        window.MgmtSetText(count, 'Item ' + (index + 1) + ' of ' + items.length + ' · ' + score + ' / ' + done + ' correct');
+      });
+      options.append(button);
+    });
+  }
+  next.addEventListener('click', () => { index = (index + 1) % items.length; show(); }); show();
+};
+</script><script>
+(function(){
+ const W={};
+ const create=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined&&text!==null)window.MgmtSetText(e,text);if(cls)e.className=cls;return e};
+ W['factor-sort']=host=>window.MgmtQuiz(host,'Which factor is this?','Read the situation, then choose the factor the cue points to.',[{"q": "The listener has distrusted the speaker since a conflict last year.", "options": ["Context", "Frame of Reference", "Noise"], "answer": 1, "explanations": ["Context is the setting; the cue here is the listener's relationship to the speaker.", "Relationship to the speaker is on the Frame of Reference list: lasting background the listener brings.", "Noise is interference at the moment; distrust built over a year is lasting background."]}, {"q": "The announcement lands in the middle of a system outage.", "options": ["Context", "Frame of Reference", "Noise"], "answer": 2, "explanations": ["The setting matters, but the outage is a distraction at the moment of delivery.", "Nothing here is about what the listener brings; it is about the moment.", "Distractors and timing are on the Noise list: interference when the message arrives."]}, {"q": "The message is sent while two departments compete for budget during a merger.", "options": ["Context", "Frame of Reference", "Noise"], "answer": 0, "explanations": ["Organization and politics are on the Context list: the setting around both people.", "The cue is the organizational situation, not one listener's background.", "Budget politics shape the whole setting rather than interrupting one moment."]}, {"q": "A complex change that worries staff is announced by text message.", "options": ["Context", "Frame of Reference", "Noise"], "answer": 2, "explanations": ["The setting is not the main cue; the channel and the emotions are.", "Worry is momentary emotion here; the channel choice is the bigger cue.", "Mode of communication and emotions are both on the Noise list."]}, {"q": "A new hire reads a technical memo differently from a senior engineer.", "options": ["Context", "Frame of Reference", "Noise"], "answer": 1, "explanations": ["Both read it in the same setting; the difference is in the readers.", "Knowledge and position are on the Frame of Reference list.", "Nothing interrupts the reading; their backgrounds differ."]}]);
+ W['structure-pick']=host=>window.MgmtQuiz(host,'Pick the structure','Apply the five rules from the p.16 summary.',[{"q": "A 25-person supplier sells two products.", "options": ["Functional", "Matrix", "Product division", "Horizontal"], "answer": 0, "explanations": ["Small business with a few products: the summary's first rule.", "Matrix is for medium size with multiple products.", "Product divisions are for really large organizations with product groups.", "Nothing here mentions frequent customer contact or error tolerance."]}, {"q": "A 400-person firm with seven products shares one engineering group.", "options": ["Functional", "Matrix", "Product division", "Horizontal"], "answer": 1, "explanations": ["Seven products sharing specialists has outgrown a simple functional design.", "Medium size with multiple products: shared engineers sit where function and product cross.", "This is medium, not a really large group of separate product families.", "No customer-contact condition is given."]}, {"q": "A very large group runs separate consumer, industrial and medical product families.", "options": ["Functional", "Matrix", "Product division", "Horizontal"], "answer": 2, "explanations": ["Functional suits a small firm with a few products.", "Matrix suits medium size; this is a really large organization.", "Really large with multiple groups of products: the product division rule.", "Horizontal depends on customer contact, which is not the cue here."]}, {"q": "A help desk talks to customers all day; small errors can be fixed on the next call.", "options": ["Functional", "Matrix", "Product division", "Horizontal"], "answer": 3, "explanations": ["Functional fits where full control is needed; here errors are tolerable.", "Matrix is about product range, not customer contact.", "Product divisions are about product groups, not customer contact.", "Frequent direct contact and tolerance for small errors: both horizontal conditions hold."]}, {"q": "In the same company, the treasury function cannot accept errors.", "options": ["Functional", "Matrix", "Product division", "Horizontal"], "answer": 0, "explanations": ["A function needing 100% control stays functional inside a hybrid.", "A matrix adds dual reporting lines, which loosens control.", "Product divisions group by product, not by need for control.", "Horizontal requires tolerance for errors, which treasury lacks."]}]);
+ const roles={A:['A (Boss)','A（主管）'],B:['B (Middle Manager)','B（中階主管）'],C:['C (Staff)','C（員工）'],D:['D (Staff)','D（員工）'],E:['E (Staff)','E（員工）']};
+ const parent={A:null,B:'A',C:'B',D:'B',E:'B'};
+ function up(n){const p=[n];while(parent[n]){n=parent[n];p.push(n)}return p}
+ function route(f,t){const a=up(f),b=up(t);const meet=a.find(x=>b.includes(x));return a.slice(0,a.indexOf(meet)+1).concat(b.slice(0,b.indexOf(meet)).reverse())}
+ W['sim-route']=host=>{
+  host.classList.add('mw');host.append(create('p','Interactive · Trace a message','mw-label'));
+  const controls=create('div',null,'eq-controls');const sel={};
+  [['From','C'],['To','A']].forEach(([lab,def])=>{const l=create('label',lab),s=document.createElement('select');s.setAttribute('aria-label',lab);
+   Object.keys(roles).forEach(k=>{const o=document.createElement('option');o.value=k;o.textContent=roles[k][0];o.dataset.en=roles[k][0];if(window.MgmtZh)o.dataset.zh=roles[k][1].replace(/^[A-E]/,'').replace(/[（）]/g,'');s.append(o)});
+   s.value=def;l.append(s);controls.append(l);sel[lab]=s});
+  const out=create('div',null,'eq-result');out.setAttribute('aria-live','polite');host.append(controls,out);
+  const svg=document.getElementById('simSvg');
+  function draw(){
+   out.replaceChildren();svg.querySelectorAll('.on').forEach(e=>e.classList.remove('on'));
+   const f=sel.From.value,t=sel.To.value;
+   if(f===t){out.append(create('p','Choose two different positions.'));return}
+   const r=route(f,t),hops=r.length-1;
+   r.forEach(n=>{const g=svg.querySelector('[data-node="'+n+'"]');if(g)g.classList.add('on')});
+   for(let i=0;i<hops;i++){const k=[r[i],r[i+1]].sort().join('');const l=svg.querySelector('[data-line="'+k+'"]');if(l)l.classList.add('on')}
+   const p1=document.createElement('p'),b1=document.createElement('b');b1.textContent=r.join(' → ');p1.append(b1);out.append(p1);
+   const via=r.slice(1,-1);
+   out.append(create('p',null));
+   window.MgmtSetText(out.lastChild,'Hand-offs: '+hops+(via.length?'. Passes through '+via.join(', ')+'.':'. Direct line on the chart.'),
+     window.MgmtZh?('轉手次數：'+hops+(via.length?'，經過 '+via.join('、')+'。':'，圖上有直接連線。')):undefined);
+   out.append(create('p',null));
+   window.MgmtSetText(out.lastChild,'In a lattice: 1 hand-off, because each person can reach every other person without an intermediary.',
+     window.MgmtZh?'在網狀組織中：1 次轉手，因為每個人都能不經中間人直接聯繫其他人。':undefined);
+  }
+  sel.From.addEventListener('change',draw);sel.To.addEventListener('change',draw);draw();
+ };
+ const header=document.querySelector('.top');function measureHeader(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}if('ResizeObserver'in window)new ResizeObserver(measureHeader).observe(header);measureHeader();
+ window.MgmtWidgets={mount(root){root.querySelectorAll('[data-mw]').forEach(host=>{if(!host.dataset.ready&&W[host.dataset.mw]){host.dataset.ready='1';W[host.dataset.mw](host)}})}};
+})();
+</script><script>
+(function () {
+  const toc = document.getElementById('toc'), rail = document.getElementById('rail');
+  const hs = [...document.querySelectorAll('.doc > h2, .doc > h3')];
+  hs.forEach(h => {
+    const li = document.createElement('li'); li.className = h.tagName.toLowerCase(); li.dataset.id = h.id;
+    const a = document.createElement('a'); a.href = '#' + h.id; a.textContent = h.childNodes[0].textContent.trim(); const z=h.querySelector(':scope > .zh-full'); if(z)a.append(z.cloneNode(true));
+    li.appendChild(a); toc.appendChild(li);
+  });
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    toc.querySelectorAll('a.on').forEach(a => a.classList.remove('on'));
+    const a = toc.querySelector('li[data-id="' + e.target.id + '"] a'); if (a) a.classList.add('on');
+  }), { rootMargin: '-80px 0px -70% 0px' });
+  hs.forEach(h => spy.observe(h));
+
+  const tb = document.getElementById('tocBtn');
+  tb.addEventListener('click', () => { const o = rail.classList.toggle('open'); tb.setAttribute('aria-expanded', o); });
+  toc.addEventListener('click', e => { if (e.target.closest('a')) { rail.classList.remove('open'); tb.setAttribute('aria-expanded', false); } });
+
+  const all = document.getElementById('qaAll');
+  if (all) all.addEventListener('click', () => {
+    const ds = document.querySelectorAll('.qa details'), open = ![...ds].every(d => d.open);
+    ds.forEach(d => d.open = open); window.MgmtSetText(all, open ? 'Hide all answers' : 'Show all answers');
+  });
+  document.querySelectorAll('.drill .ans').forEach(s => s.addEventListener('click', () => s.classList.toggle('shown')));
+
+  if (window.EconWidgets) window.EconWidgets.mount(document);
+  if (window.MgmtWidgets) window.MgmtWidgets.mount(document);
+})();
+</script><script>
+(function(){
+ const tabs=document.getElementById('structTabs');if(!tabs)return;
+ const btns=[...tabs.querySelectorAll('[role="tab"]')],panels=[...document.querySelectorAll('.struct-panel')];
+ function pick(i,focus){btns.forEach((b,j)=>{const on=i===j;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;panels[j].hidden=!on});if(focus)btns[i].focus()}
+ btns.forEach((b,i)=>{b.addEventListener('click',()=>pick(i));b.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();pick((i+(e.key==='ArrowRight'?1:btns.length-1))%btns.length,true)}})});
+ tabs.hidden=false;pick(0);
+})();
+</script><script>
+(function(){
+ const zh=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+ function syncOptions(){document.querySelectorAll('option[data-en]').forEach(o=>o.textContent=o.dataset.en+(zh.checked&&o.dataset.zh?'／'+o.dataset.zh:''))}
+ function setChinese(on){zh.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';syncOptions()}
+ setChinese(false);zh.addEventListener('change',()=>setChinese(zh.checked));
+ const practice=document.getElementById('practiceToggle'),state=document.getElementById('practiceState'),stateZh=document.getElementById('practiceChinese');
+ practice.addEventListener('click',()=>{const on=practice.getAttribute('aria-pressed')!=='true';practice.setAttribute('aria-pressed',String(on));state.textContent=on?'On':'Off';stateZh.textContent=on?'練習模式：開啟':'練習模式：關閉';document.querySelectorAll('.practice-prompt').forEach(p=>p.hidden=!on)});
+})();
+</script></body></html>
