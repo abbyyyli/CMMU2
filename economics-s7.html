@@ -316,242 +316,334 @@ svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
 .timeline li.what-if::before{background:var(--paper);border:2px dashed var(--accent);width:8px;height:8px}
 .timeline li.what-if>span{color:var(--muted);font-style:italic}
 .timeline b{font-family:"JetBrains Mono",ui-monospace,monospace;color:var(--accent-ink);font-weight:500}
-</style><style>svg .a-faded{opacity:.28}.map .mbox{min-width:0}</style></head><body>
+</style>
+<style id="bilingual-support">/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
+
+
+
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid var(--tone-d5c6ca);border-radius:999px;background:var(--tone-eee6e8);position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:var(--tone-ffffff);border-radius:50%;box-shadow:0 1px 2px var(--tone-77777755)}
+.topswitch input:checked{background:var(--accent)}
+.topswitch input:checked:after{left:14px}
+.topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+
+/* Shared reading rhythm, with room for each chapter's own teaching tools. */
+.doc select{font-family:var(--sans);font-size:.88rem}
+html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
+@media(max-width:900px){.rail.open{top:var(--header-height,64px);bottom:0;inset-inline:0;max-height:calc(100vh - var(--header-height,64px))}}
+body.show-zh .legend>span,body.show-zh .steps li,body.show-zh .six>div,body.show-zh .qa summary,body.show-zh .chk{flex-wrap:wrap}
+body.show-zh .legend>span>.zh-full,body.show-zh .steps li>.zh-full,body.show-zh .six>div>.zh-full,body.show-zh .qa summary>.zh-full,body.show-zh .chk>.zh-full{flex:0 0 100%;min-width:0}
+body.show-zh .steps li{display:list-item;list-style:none}
+body.show-zh .steps li:before{display:inline-block;margin-right:10px;vertical-align:middle}
+body.show-zh .six>div>.zh-full{margin-left:34px;flex-basis:calc(100% - 34px)}
+body.show-zh .seg{flex-wrap:wrap;max-width:100%}
+body.show-zh .seg button{min-width:0;white-space:normal}
+body.show-zh .spectrum{min-width:0}
+body.show-zh .spectrum>span{min-width:0;overflow-wrap:anywhere}
+body.show-zh .formula>.zh-full{white-space:normal;font-family:var(--sans)}
+body.show-zh .mw .tabs button,body.show-zh .mw .qz-o,body.show-zh .graph .g-btn{overflow-wrap:anywhere}
+body.show-zh .funnel-level{height:auto;min-height:68px;flex-direction:column;gap:1px;white-space:normal;line-height:1.3}
+body.show-zh .funnel-level .zh-full{color:inherit;margin-top:0;font-size:.75em}
+body.show-zh .decision-step{height:auto;min-height:100px}
+body.show-zh .m-control label{flex-wrap:wrap}
+body.show-zh .m-control label .zh-full{flex-basis:100%;text-align:left}
+body.show-zh .decision-step>.zh-full{font-size:.8em;line-height:1.45}
+body.show-zh .score .up b:after{content:'改善'}
+body.show-zh .score .down b:after{content:'惡化'}
+@media(max-width:560px){body.show-zh .spectrum{grid-template-columns:minmax(0,1fr)}body.show-zh .m-choices button{min-height:65px}}
+
+.page-tools{display:flex;align-items:center;gap:14px;margin-left:8px;flex-shrink:0}
+.page-tools .topswitch{margin-left:0}.page-tools .practice-toggle{font-size:.72rem;padding:5px 10px}
+.page-tools .practice-toggle>.zh-full{display:none!important}
+body.show-zh .page-tools .practice-toggle{white-space:normal}
+body.show-zh .seg button[aria-pressed=true] .zh-full{color:inherit}
+body.show-zh .steps li>span{min-width:0;flex:1}.formula>.zh-full{font-family:var(--sans)}
+body.show-zh .sl output{max-width:50%;white-space:normal;text-align:right}
+.plot-legend>span{align-items:flex-start;flex-wrap:wrap}.plot-legend .zh-full{flex-basis:100%;margin-top:1px}
+svg .zh-svg{fill:currentColor;font-size:10px}.g-plot svg text{color:var(--muted)}
+html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
+@media(max-width:900px){.rail.open{top:var(--header-height,64px);bottom:0;inset-inline:0;max-height:calc(100vh - var(--header-height,64px))}}
+@media(max-width:560px){.top-in .page-tools{order:3;flex-basis:100%;margin-left:0;justify-content:flex-end;padding-bottom:3px;gap:14px}.top-in{row-gap:6px}}
+@media(prefers-color-scheme:dark){.topswitch input{background:var(--panel);border-color:var(--line)}.topswitch input:after{background:var(--fg)}}
+@media print{.page-tools{display:none}}
+</style><style>:root{--tone-d5c6ca:#d5c6ca;--tone-eee6e8:#eee6e8;--tone-77777755:#77777755}</style><style>svg .a-faded{opacity:.28}.map .mbox{min-width:0}</style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><pattern id="dwlHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" style="fill:var(--dwl);fill-opacity:.12"/><rect width="2.2" height="6" style="fill:var(--dwl);fill-opacity:.75"/></pattern></defs></svg>
 <header class="top"><div class="top-in">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes</a><span>/</span><a href="economics.html">Economics</a><span>/</span><b>Session 7</b></nav>
 <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false" aria-controls="rail">Contents</button>
 <nav aria-label="Sessions 5–8" class="sessions"><a class="pill" href="economics-s5.html">S5</a><a class="pill" href="economics-s6.html">S6</a><span aria-current="page" class="pill">S7</span><span aria-disabled="true" class="pill off">S8</span></nav>
-</div></header>
+<div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input aria-label="顯示完整繁體中文對照" id="zhToggle" role="switch" type="checkbox"/>中文 <span id="zhModeLabel">OFF</span></label><button aria-pressed="false" class="practice-toggle" id="practiceToggle" title="Show or hide short questions within chapters" type="button">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
 <div class="wrap"><aside class="rail" id="rail"><p class="lbl">Contents</p><ol id="toc"></ol></aside>
-<main><article class="doc"><div class="hero"><p class="kick">MGMG515 · Session 7</p><h1>GDP and Economic Growth</h1><p class="lead">How rich is a country, and why? First we learn to measure it properly, then we see how small differences in growth turn into enormous differences in how people live, and finally we dig for the causes.</p></div>
+<main><article class="doc"><div class="hero"><p class="kick">MGMG515 · Session 7<span class="zh-full" lang="zh-Hant">MGMG515 · 第 7 堂</span></p><h1>GDP and Economic Growth<span class="zh-full" lang="zh-Hant">GDP 與經濟成長</span></h1><p class="lead">How rich is a country, and why? First we learn to measure it properly, then we see how small differences in growth turn into enormous differences in how people live, and finally we dig for the causes.<span class="zh-full" lang="zh-Hant">一個國家有多富有？為什麼？先學會正確地衡量，再看成長率的小差距如何變成生活水準的巨大差距，最後往下挖出原因。</span></p></div>
 
-<h2 id="map">Chapter map</h2>
+<h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
 <div class="map">
-<div class="mcol"><div class="mbox ask"><b>Measure</b><span>Count final output, take out prices, divide by people, compare at common prices.</span></div></div>
+<div class="mcol"><div class="mbox ask"><b>Measure<span class="zh-full" lang="zh-Hant">衡量</span></b><span>Count final output, take out prices, divide by people, compare at common prices.<span class="zh-full" lang="zh-Hant">計算最終產出，拿掉物價，除以人口，用共同價格比較。</span></span></div></div>
 <div class="marrow">→</div>
 <div class="mcol">
-<div class="mbox"><b>Compare</b><span>The richest countries have about 90 times the income of the poorest.</span></div>
-<div class="mbox"><b>Trace</b><span>Those gaps come from growth rates kept up for decades.</span></div>
+<div class="mbox"><b>Compare<span class="zh-full" lang="zh-Hant">比較</span></b><span>The richest countries have about 90 times the income of the poorest.<span class="zh-full" lang="zh-Hant">最富國家的所得約是最窮國家的 90 倍。</span></span></div>
+<div class="mbox"><b>Trace<span class="zh-full" lang="zh-Hant">追溯</span></b><span>Those gaps come from growth rates kept up for decades.<span class="zh-full" lang="zh-Hant">這些差距來自持續數十年的成長率差異。</span></span></div>
 </div>
 <div class="marrow">→</div>
-<div class="mcol"><div class="mbox good"><b>Explain</b><span>Capital and knowledge make workers productive. Incentives and institutions decide whether a country builds them.</span></div></div>
+<div class="mcol"><div class="mbox good"><b>Explain<span class="zh-full" lang="zh-Hant">解釋</span></b><span>Capital and knowledge make workers productive. Incentives and institutions decide whether a country builds them.<span class="zh-full" lang="zh-Hant">資本與知識讓勞工有生產力；誘因與制度決定一個國家會不會累積它們。</span></span></div></div>
 </div>
 <p class="hint"><b>中文邏輯</b><span>先會量，再會比，最後會解釋：差距來自長期成長率，而成長率取決於誘因和制度。</span></p>
 
-<h2 id="gdp">1. What goes into GDP</h2>
-<p class="sub">Picture the whole economy as one giant supermarket. GDP is what the register rings up in a year.</p>
-<p><b>Gross Domestic Product</b><span class="zh">國內生產毛額</span> is the market value of all final goods and services produced within a country in a year. The register follows four rules, and almost every GDP question tests one of them.</p>
+<h2 id="gdp">1. What goes into GDP<span class="zh-full" lang="zh-Hant">1. GDP 包含什麼</span></h2>
+<p class="sub">Picture the whole economy as one giant supermarket. GDP is what the register rings up in a year.<span class="zh-full" lang="zh-Hant">把整個經濟想成一間巨大的超市，GDP 就是收銀機一年記下的金額。</span></p>
+<p><b>Gross Domestic Product</b><span class="zh">國內生產毛額</span> is the market value of all final goods and services produced within a country in a year. The register follows four rules, and almost every GDP question tests one of them.<span class="zh-full" lang="zh-Hant">國內生產毛額是一國在一年內生產的所有最終商品與服務的市場價值。收銀機遵守四條規則，幾乎每個 GDP 題目都在考其中一條。</span></p>
 <div class="four">
-<div><b>Final only</b><p>Flour a bakery uses is already inside the bread's price. Count the bread, not the flour.</p></div>
-<div><b>Capital goods count</b><p>A tractor helps make other goods, but it is not sold again as part of them, so it counts.</p></div>
-<div><b>New production only</b><p>A used car or an old house was counted when it was made. Reselling it adds nothing.</p></div>
-<div><b>Inside the borders</b><p>A Korean-owned factory in Chonburi adds to Thai GDP. Income Thais earn abroad belongs in GNI instead.</p></div>
+<div><b>Final only<span class="zh-full" lang="zh-Hant">只算最終財</span></b><p>Flour a bakery uses is already inside the bread's price. Count the bread, not the flour.<span class="zh-full" lang="zh-Hant">麵包店用的麵粉已經包含在麵包售價裡。算麵包，不算麵粉。</span></p></div>
+<div><b>Capital goods count<span class="zh-full" lang="zh-Hant">資本財要算</span></b><p>A tractor helps make other goods, but it is not sold again as part of them, so it counts.<span class="zh-full" lang="zh-Hant">曳引機用來生產別的東西，但不會被做成那些東西再賣一次，所以要算。</span></p></div>
+<div><b>New production only<span class="zh-full" lang="zh-Hant">只算新生產</span></b><p>A used car or an old house was counted when it was made. Reselling it adds nothing.<span class="zh-full" lang="zh-Hant">二手車或舊房子在生產時已經算過，轉售不增加 GDP。</span></p></div>
+<div><b>Inside the borders<span class="zh-full" lang="zh-Hant">只算境內</span></b><p>A Korean-owned factory in Chonburi adds to Thai GDP. Income Thais earn abroad belongs in GNI instead.<span class="zh-full" lang="zh-Hant">韓國人在春武里開的工廠算進泰國 GDP。泰國人在海外賺的所得要算在 GNI。</span></p></div>
 </div>
-<p>Spending is split into four buckets: <b>Y = C + I + G + NX</b>, where net exports are exports minus imports. Imports come off because they were made abroad, not because imports are bad. Pension checks and other <b>transfers</b><span class="zh">移轉支付</span> buy nothing, so they stay off the register until someone spends them.</p>
-<div class="tbl"><table><thead><tr><th>Part</th><th>Definition</th><th>Example</th><th>Do not confuse with</th></tr></thead><tbody>
-<tr><td><b>C</b> Consumption</td><td>Household spending on final goods and services; the largest part, about 63% of US GDP.</td><td>Groceries, phone plans, a massage.</td><td>Buying used goods.</td></tr>
-<tr><td><b>I</b> Investment</td><td>New capital goods, usually bought by firms.</td><td>Machines, tractors, a new warehouse.</td><td>Buying shares or bonds.</td></tr>
-<tr><td><b>G</b> Government purchases</td><td>Goods and services the government buys directly.</td><td>A rail line, teachers' salaries, office supplies.</td><td>Transfers such as pensions, which buy nothing.</td></tr>
-<tr><td><b>NX</b> Net exports</td><td>Exports minus imports.</td><td>Tourists paying Phuket hotels is an export; imported fuel is an import.</td><td>A sign that imports are bad.</td></tr>
+<p>Spending is split into four buckets: <b>Y = C + I + G + NX</b>, where net exports are exports minus imports. Imports come off because they were made abroad, not because imports are bad. Pension checks and other <b>transfers</b><span class="zh">移轉支付</span> buy nothing, so they stay off the register until someone spends them.<span class="zh-full" lang="zh-Hant">支出分成四類：Y = C + I + G + NX，淨出口是出口減進口。扣掉進口是因為它們在國外生產，不是因為進口不好。退休金等移轉支付沒有購買任何東西，要等有人花掉才會被記錄。</span></p>
+<div class="tbl"><table><thead><tr><th>Part<span class="zh-full" lang="zh-Hant">項目</span></th><th>Definition<span class="zh-full" lang="zh-Hant">定義</span></th><th>Example<span class="zh-full" lang="zh-Hant">例子</span></th><th>Do not confuse with<span class="zh-full" lang="zh-Hant">不要混淆</span></th></tr></thead><tbody>
+<tr><td><b>C</b> Consumption</td><td>Household spending on final goods and services; the largest part, about 63% of US GDP.<span class="zh-full" lang="zh-Hant">家庭購買最終商品與服務的支出；最大的一項，約占美國 GDP 的 63%。</span></td><td>Groceries, phone plans, a massage.<span class="zh-full" lang="zh-Hant">食物、手機方案、按摩。</span></td><td>Buying used goods.<span class="zh-full" lang="zh-Hant">購買二手貨。</span></td></tr>
+<tr><td><b>I</b> Investment</td><td>New capital goods, usually bought by firms.<span class="zh-full" lang="zh-Hant">新的資本財，通常由企業購買。</span></td><td>Machines, tractors, a new warehouse.<span class="zh-full" lang="zh-Hant">機器、曳引機、新倉庫。</span></td><td>Buying shares or bonds.<span class="zh-full" lang="zh-Hant">買股票或債券。</span></td></tr>
+<tr><td><b>G</b> Government purchases</td><td>Goods and services the government buys directly.<span class="zh-full" lang="zh-Hant">政府直接購買的商品與服務。</span></td><td>A rail line, teachers' salaries, office supplies.<span class="zh-full" lang="zh-Hant">鐵路、教師薪水、辦公用品。</span></td><td>Transfers such as pensions, which buy nothing.<span class="zh-full" lang="zh-Hant">退休金等移轉支付，沒有購買任何東西。</span></td></tr>
+<tr><td><b>NX</b> Net exports</td><td>Exports minus imports.<span class="zh-full" lang="zh-Hant">出口減進口。</span></td><td>Tourists paying Phuket hotels is an export; imported fuel is an import.<span class="zh-full" lang="zh-Hant">遊客付普吉島旅館費是出口；進口燃料是進口。</span></td><td>A sign that imports are bad.<span class="zh-full" lang="zh-Hant">「進口是壞事」的訊號。</span></td></tr>
 </tbody></table></div>
-<p>Why split GDP at all? Households, firms and governments respond to different forces. When GDP falls, it matters whether consumption, investment or government purchases fell, because the policy response is different.</p>
+<p>Why split GDP at all? Households, firms and governments respond to different forces. When GDP falls, it matters whether consumption, investment or government purchases fell, because the policy response is different.<span class="zh-full" lang="zh-Hant">為什麼要拆 GDP？家庭、企業和政府受不同力量影響。GDP 下降時，要知道是消費、投資還是政府購買下降，因為對策不同。</span></p>
 <div data-widget="ringup"></div>
-<p class="note-small">Amounts are a made-up economy in million baht. The income-side split is illustrative.</p>
-<p>The second bar is the point of the income side. Every baht spent on final output ends up as someone's wages, rent, interest or profit, so adding up incomes (gross domestic income, GDI) should give the same total. In practice the two are measured separately and differ slightly, and in a recession economists watch both.</p>
-<p>A third cut is by sector: who produces the output. Thailand's economy has been shifting toward services.</p>
-<div class="tbl"><table class="oil" aria-label="Thailand GDP by sector"><thead><tr><th>Share of Thai GDP</th><th>2010</th><th>2020</th></tr></thead><tbody>
-<tr><td>Agriculture</td><td>10.5%</td><td>8.6%</td></tr>
-<tr><td>Industry</td><td>39.9%</td><td>33.1%</td></tr>
-<tr><td>Services</td><td>49.6%</td><td class="hi">58.3%</td></tr>
+<p class="note-small">Amounts are a made-up economy in million baht. The income-side split is illustrative.<span class="zh-full" lang="zh-Hant">金額是虛構的經濟體，單位為百萬泰銖。所得面的拆分僅供說明。</span></p>
+<p>The second bar is the point of the income side. Every baht spent on final output ends up as someone's wages, rent, interest or profit, so adding up incomes (gross domestic income, GDI) should give the same total. In practice the two are measured separately and differ slightly, and in a recession economists watch both.<span class="zh-full" lang="zh-Hant">第二條長條就是所得面的重點：花在最終產出上的每一泰銖，最後都成為某人的工資、租金、利息或利潤，所以把所得加總（國內所得毛額，GDI）應該得到同樣的總數。實務上兩者分開計算，會略有差異；經濟衰退時，經濟學家兩個都看。</span></p>
+<p>A third cut is by sector: who produces the output. Thailand's economy has been shifting toward services.<span class="zh-full" lang="zh-Hant">第三種拆法是按產業：產出由誰生產。泰國經濟一直在往服務業移動。</span></p>
+<div class="tbl"><table class="oil" aria-label="Thailand GDP by sector"><thead><tr><th>Share of Thai GDP<span class="zh-full" lang="zh-Hant">占泰國 GDP 比例</span></th><th>2010</th><th>2020</th></tr></thead><tbody>
+<tr><td>Agriculture<span class="zh-full" lang="zh-Hant">農業</span></td><td>10.5%</td><td>8.6%</td></tr>
+<tr><td>Industry<span class="zh-full" lang="zh-Hant">工業</span></td><td>39.9%</td><td>33.1%</td></tr>
+<tr><td>Services<span class="zh-full" lang="zh-Hant">服務業</span></td><td>49.6%</td><td class="hi">58.3%</td></tr>
 </tbody></table></div>
-<p class="note-small">Source: Statista, as shown in class.</p>
+<p class="note-small">Source: Statista, as shown in class.<span class="zh-full" lang="zh-Hant">來源：Statista，課堂投影片。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A Thai airline buys a new plane built in France. Which bucket does it enter, and why does Thai GDP end up roughly unchanged?<span class="zh-full" lang="zh-Hant">泰國航空公司買了一架法國製的新飛機。它進入哪一類？為什麼泰國 GDP 最後大致不變？</span></p></aside>
 
-<h2 id="real">2. Three adjustments that make GDP comparable</h2>
-<p class="sub">Raw GDP answers "how big is this economy?" It does not answer "how well do people live?" Three adjustments close the gap.</p>
-<p>A chart of the ASEAN-6 shows why. Indonesia's economy, at about $1.44 trillion, is more than twice the size of Singapore's $565 billion, Thailand's $538 billion or Vietnam's $514 billion. Yet one reader asked the obvious question underneath: then why are Indonesians still poor compared with Singaporeans? A big total spread across a very large population is not the same as a high income per person.</p>
-<p class="note-small">The chart shown in class labels Indonesia "$1.443B"; the comments and the bar heights show it means trillion.</p>
-<div class="tbl"><table><thead><tr><th>Adjustment</th><th>What it removes</th><th>Use it to compare</th></tr></thead><tbody>
-<tr><td><b>Real GDP</b></td><td>Inflation: every year's output is valued at the same base-year prices.</td><td>One country over time.</td></tr>
-<tr><td><b>GDP per capita</b></td><td>Differences in population size: divide by the number of people.</td><td>Countries of different sizes.</td></tr>
-<tr><td><b>Purchasing power parity (PPP)</b></td><td>Differences in the cost of living: value every country's output at the same prices.</td><td>Living standards across countries (section 4).</td></tr>
+<h2 id="real">2. Three adjustments that make GDP comparable<span class="zh-full" lang="zh-Hant">2. 讓 GDP 可以比較的三項調整</span></h2>
+<p class="sub">Raw GDP answers "how big is this economy?" It does not answer "how well do people live?" Three adjustments close the gap.<span class="zh-full" lang="zh-Hant">原始 GDP 回答的是「這個經濟體有多大」，不是「人們過得多好」。要靠三項調整補上差距。</span></p>
+<p>A chart of the ASEAN-6 shows why. Indonesia's economy, at about $1.44 trillion, is more than twice the size of Singapore's $565 billion, Thailand's $538 billion or Vietnam's $514 billion. Yet one reader asked the obvious question underneath: then why are Indonesians still poor compared with Singaporeans? A big total spread across a very large population is not the same as a high income per person.<span class="zh-full" lang="zh-Hant">一張東協六國的圖說明了原因。印尼經濟約 1.44 兆美元，是新加坡（5,650 億）、泰國（5,380 億）或越南（5,140 億）的兩倍以上。但有讀者在底下問了一個顯而易見的問題：那為什麼印尼人比新加坡人窮？總量大，但分給非常多的人口，不等於每人所得高。</span></p>
+<p class="note-small">The chart shown in class labels Indonesia "$1.443B"; the comments and the bar heights show it means trillion.<span class="zh-full" lang="zh-Hant">課堂圖表把印尼標成「$1.443B」；從留言和長條高度看，應為兆（trillion）。</span></p>
+<div class="tbl"><table><thead><tr><th>Adjustment<span class="zh-full" lang="zh-Hant">調整</span></th><th>What it removes<span class="zh-full" lang="zh-Hant">去掉什麼</span></th><th>Use it to compare<span class="zh-full" lang="zh-Hant">用來比較</span></th></tr></thead><tbody>
+<tr><td><b>Real GDP</b></td><td>Inflation: every year's output is valued at the same base-year prices.<span class="zh-full" lang="zh-Hant">通膨：每年的產出都用同一組基期價格計算。</span></td><td>One country over time.<span class="zh-full" lang="zh-Hant">同一國家的不同時間。</span></td></tr>
+<tr><td><b>GDP per capita</b></td><td>Differences in population size: divide by the number of people.<span class="zh-full" lang="zh-Hant">人口規模的差異：除以人口數。</span></td><td>Countries of different sizes.<span class="zh-full" lang="zh-Hant">規模不同的國家。</span></td></tr>
+<tr><td><b>Purchasing power parity (PPP)</b></td><td>Differences in the cost of living: value every country's output at the same prices.<span class="zh-full" lang="zh-Hant">生活成本的差異：用相同價格計算各國產出。</span></td><td>Living standards across countries (section 4).<span class="zh-full" lang="zh-Hant">各國的生活水準（第 4 節）。</span></td></tr>
 </tbody></table></div>
-<p>Start with the first two. A rising GDP number can be a mirage: prices may have gone up while output stayed put.</p>
-<div class="tbl"><table><thead><tr><th>Measure</th><th>What it does</th><th>Answers the question</th></tr></thead><tbody>
-<tr><td><b>Nominal GDP</b></td><td>Values output at this year's prices.</td><td>How much money changed hands?</td></tr>
-<tr><td><b>Real GDP</b></td><td>Values every year's output at the same base-year prices.</td><td>Did we produce more?</td></tr>
-<tr><td><b>GDP deflator</b><span class="zh">平減指數</span></td><td>Nominal ÷ real × 100.</td><td>How much did prices rise overall?</td></tr>
-<tr><td><b>Real GDP per capita</b></td><td>Real GDP ÷ population.</td><td>Is the average person better off?</td></tr>
+<p>Start with the first two. A rising GDP number can be a mirage: prices may have gone up while output stayed put.<span class="zh-full" lang="zh-Hant">先看前兩項。GDP 上升可能只是海市蜃樓：物價漲了，產出卻沒變。</span></p>
+<div class="tbl"><table><thead><tr><th>Measure<span class="zh-full" lang="zh-Hant">指標</span></th><th>What it does<span class="zh-full" lang="zh-Hant">做了什麼</span></th><th>Answers the question<span class="zh-full" lang="zh-Hant">回答的問題</span></th></tr></thead><tbody>
+<tr><td><b>Nominal GDP</b></td><td>Values output at this year's prices.<span class="zh-full" lang="zh-Hant">用今年的價格計算產出。</span></td><td>How much money changed hands?<span class="zh-full" lang="zh-Hant">經手了多少錢？</span></td></tr>
+<tr><td><b>Real GDP</b></td><td>Values every year's output at the same base-year prices.<span class="zh-full" lang="zh-Hant">用同一組基期價格計算每年的產出。</span></td><td>Did we produce more?<span class="zh-full" lang="zh-Hant">我們有沒有生產更多？</span></td></tr>
+<tr><td><b>GDP deflator</b><span class="zh">平減指數</span></td><td>Nominal ÷ real × 100.<span class="zh-full" lang="zh-Hant">名目 ÷ 實質 × 100。</span></td><td>How much did prices rise overall?<span class="zh-full" lang="zh-Hant">整體物價漲了多少？</span></td></tr>
+<tr><td><b>Real GDP per capita</b></td><td>Real GDP ÷ population.<span class="zh-full" lang="zh-Hant">實質 GDP ÷ 人口。</span></td><td>Is the average person better off?<span class="zh-full" lang="zh-Hant">平均每個人有沒有過得更好？</span></td></tr>
 </tbody></table></div>
 <div data-widget="waterfall"></div>
-<p class="note-small">US figures come from FRED, in 2009 dollars. The per-person rise is 3.6 times on these rounded numbers, often quoted as "about four times".</p>
-<p>A fall in real GDP is part of what defines a <b>recession</b>. In 2009 US real GDP shrank 3.6% and unemployment jumped.</p>
-<details class="extra"><summary>Optional: the small Thai economy, worked out</summary>
-<div class="tbl"><table class="oil" aria-label="Two-good example in baht"><thead><tr><th>Item</th><th>Year 1 P</th><th>Year 1 Q</th><th>Year 2 P</th><th>Year 2 Q</th></tr></thead><tbody>
-<tr><td>Rice, baht per ton</td><td>20,000</td><td>100</td><td>22,000</td><td>110</td></tr>
-<tr><td>Haircuts, baht each</td><td>100</td><td>50,000</td><td>120</td><td>52,000</td></tr></tbody></table></div>
+<p class="note-small">US figures come from FRED, in 2009 dollars. The per-person rise is 3.6 times on these rounded numbers, often quoted as "about four times".<span class="zh-full" lang="zh-Hant">美國數字來自 FRED，以 2009 年美元計。依這些四捨五入的數字，每人成長是 3.6 倍，常被說成「大約四倍」。</span></p>
+<p>A fall in real GDP is part of what defines a <b>recession</b>. In 2009 US real GDP shrank 3.6% and unemployment jumped.<span class="zh-full" lang="zh-Hant">實質 GDP 下降是「經濟衰退」定義的一部分。2009 年美國實質 GDP 縮減 3.6%，失業率大幅上升。</span></p>
+<details class="extra"><summary>Optional: the small Thai economy, worked out<span class="zh-full" lang="zh-Hant">可展開補充：泰國小經濟體的計算</span></summary>
+<div class="tbl"><table class="oil" aria-label="Two-good example in baht"><thead><tr><th>Item<span class="zh-full" lang="zh-Hant">項目</span></th><th>Year 1 P</th><th>Year 1 Q</th><th>Year 2 P</th><th>Year 2 Q</th></tr></thead><tbody>
+<tr><td>Rice, baht per ton<span class="zh-full" lang="zh-Hant">稻米（泰銖／噸）</span></td><td>20,000</td><td>100</td><td>22,000</td><td>110</td></tr>
+<tr><td>Haircuts, baht each<span class="zh-full" lang="zh-Hant">理髮（泰銖／次）</span></td><td>100</td><td>50,000</td><td>120</td><td>52,000</td></tr></tbody></table></div>
 <div class="formula">Nominal: 7,000,000 → 8,660,000 (+23.7%)<br>Real at Year 1 prices: 7,000,000 → 7,400,000 (+5.7%)<br>Deflator: 100 → 117.0<br>Real per person, population 1,000 → 1,050: 7,000 → 7,047.6 (+0.7%)</div>
-<p>Quick rule for small rates: real growth ≈ nominal growth − inflation, and growth per person ≈ real growth − population growth. With rates this large the shortcut drifts.</p>
+<p>Quick rule for small rates: real growth ≈ nominal growth − inflation, and growth per person ≈ real growth − population growth. With rates this large the shortcut drifts.<span class="zh-full" lang="zh-Hant">成長率不大時的速算：實質成長 ≈ 名目成長 − 物價上漲，每人成長 ≈ 實質成長 − 人口成長。成長率像這樣大時，速算會有誤差。</span></p>
 </details>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A news headline says the economy grew 12% this year. What two numbers would you ask for before deciding whether people are better off?<span class="zh-full" lang="zh-Hant">新聞說經濟今年成長 12%。在判斷大家有沒有過得更好之前，你會先問哪兩個數字？</span></p></aside>
 
-<h2 id="living">3. What GDP per person misses</h2>
-<p class="sub">It is not a measure of happiness, yet it is still the best single summary we have.</p>
-<div class="pair"><div><b>Why it still works</b><p>The good things in life tend to come together. Countries with higher real GDP per person usually have longer lives, happier people on average, better education, and, over time, higher incomes for the poorest fifth.</p></div><div><b>What it leaves out</b><p>Who gets the income, how much leisure people have, unpaid work at home, and damage to the environment. A rise in GDP can even come with more pollution.</p></div></div>
-<div class="tbl"><table class="oil" aria-label="Similar GDP per person, different poverty"><thead><tr><th>Country</th><th>Real GDP per person</th><th>Living on under $2 a day</th></tr></thead><tbody>
-<tr><td>Nigeria</td><td>Similar</td><td class="hi">≈ 80%</td></tr>
-<tr><td>Pakistan</td><td>Similar</td><td>≈ 60%</td></tr>
-<tr><td>Honduras</td><td>Similar</td><td>≈ 33%</td></tr>
+<h2 id="living">3. What GDP per person misses<span class="zh-full" lang="zh-Hant">3. 每人 GDP 漏掉了什麼</span></h2>
+<p class="sub">It is not a measure of happiness, yet it is still the best single summary we have.<span class="zh-full" lang="zh-Hant">它不是快樂的指標，但仍是我們最好的單一摘要。</span></p>
+<div class="pair"><div><b>Why it still works<span class="zh-full" lang="zh-Hant">為什麼仍然好用</span></b><p>The good things in life tend to come together. Countries with higher real GDP per person usually have longer lives, happier people on average, better education, and, over time, higher incomes for the poorest fifth.<span class="zh-full" lang="zh-Hant">生活中的好事通常一起出現。每人實質 GDP 較高的國家，通常壽命較長、平均較快樂、教育較好；長期下來，最窮的五分之一所得也會提高。</span></p></div><div><b>What it leaves out<span class="zh-full" lang="zh-Hant">它漏掉什麼</span></b><p>Who gets the income, how much leisure people have, unpaid work at home, and damage to the environment. A rise in GDP can even come with more pollution.<span class="zh-full" lang="zh-Hant">所得分給誰、人們有多少休閒、家中的無償勞動，以及環境破壞。GDP 上升甚至可能伴隨更多污染。</span></p></div></div>
+<div class="tbl"><table class="oil" aria-label="Similar GDP per person, different poverty"><thead><tr><th>Country<span class="zh-full" lang="zh-Hant">國家</span></th><th>Real GDP per person<span class="zh-full" lang="zh-Hant">每人實質 GDP</span></th><th>Living on under $2 a day<span class="zh-full" lang="zh-Hant">每日生活費不到 2 美元</span></th></tr></thead><tbody>
+<tr><td>Nigeria<span class="zh-full" lang="zh-Hant">奈及利亞</span></td><td>Similar<span class="zh-full" lang="zh-Hant">相近</span></td><td class="hi">≈ 80%</td></tr>
+<tr><td>Pakistan<span class="zh-full" lang="zh-Hant">巴基斯坦</span></td><td>Similar<span class="zh-full" lang="zh-Hant">相近</span></td><td>≈ 60%</td></tr>
+<tr><td>Honduras<span class="zh-full" lang="zh-Hant">宏都拉斯</span></td><td>Similar<span class="zh-full" lang="zh-Hant">相近</span></td><td>≈ 33%</td></tr>
 </tbody></table></div>
-<p>The same average hides very different lives. Nigeria has many very poor people and some very rich ones, so the rich pull the average up while most people stay poor. GDP per person tells you how much there is, not who gets it.</p>
-<p>Be careful with cause and effect. Richer countries are healthier, but health also raises productivity, and good institutions can lift both at once.</p>
+<p>The same average hides very different lives. Nigeria has many very poor people and some very rich ones, so the rich pull the average up while most people stay poor. GDP per person tells you how much there is, not who gets it.<span class="zh-full" lang="zh-Hant">同樣的平均數，背後是非常不同的生活。奈及利亞有很多極窮的人，也有一些非常富有的人，富人把平均數拉高，大多數人仍然貧窮。每人 GDP 告訴你有多少，不告訴你誰拿到。</span></p>
+<p>Be careful with cause and effect. Richer countries are healthier, but health also raises productivity, and good institutions can lift both at once.<span class="zh-full" lang="zh-Hant">小心因果關係。富國比較健康，但健康也會提高生產力，好的制度也可能同時提高兩者。</span></p>
 
-<h2 id="ppp">4. Comparing countries fairly</h2>
-<p class="sub">In India an iPhone costs about as much as in the United States, roughly $1,000. A haircut with a head massage costs 50 rupees, under a dollar.</p>
-<div class="pair"><div><b>Tradable goods</b><p>If phones were much cheaper in India, people would buy them there and resell them in the US. That arbitrage pulls prices together everywhere.</p></div><div><b>Services that cannot move</b><p>You cannot ship a haircut, and the barber cannot easily move to the US, where he might earn $10 an hour instead of $10 a day. Haircuts, cleaning, taxis and massage stay cheap in poor countries.</p></div></div>
-<p>This is the <b>Balassa-Samuelson effect</b>: where factories and offices pay high wages, every job has to pay well to keep its workers, including the barber's. Cheap services make the whole price level lower in poor countries, so a dollar goes further there. Comparing incomes at market exchange rates therefore makes poor countries look poorer than they are. <b>Purchasing power parity</b><span class="zh">購買力平價</span> (PPP) fixes this by valuing every country's output at the same prices.</p>
-<p>The 2026 world economy shows how much this matters. At market exchange rates the world produces about $128 trillion; at PPP the same output is worth about $219 trillion, because so much of it happens in countries where prices are low.</p>
+<h2 id="ppp">4. Comparing countries fairly<span class="zh-full" lang="zh-Hant">4. 公平地比較各國</span></h2>
+<p class="sub">In India an iPhone costs about as much as in the United States, roughly $1,000. A haircut with a head massage costs 50 rupees, under a dollar.<span class="zh-full" lang="zh-Hant">在印度，iPhone 的價格和美國差不多，大約 1,000 美元；理髮加頭部按摩只要 50 盧比，不到 1 美元。</span></p>
+<div class="pair"><div><b>Tradable goods<span class="zh-full" lang="zh-Hant">可貿易品</span></b><p>If phones were much cheaper in India, people would buy them there and resell them in the US. That arbitrage pulls prices together everywhere.<span class="zh-full" lang="zh-Hant">如果手機在印度便宜很多，人們會在印度買、拿到美國賣。這種套利讓各地價格趨於一致。</span></p></div><div><b>Services that cannot move<span class="zh-full" lang="zh-Hant">無法移動的服務</span></b><p>You cannot ship a haircut, and the barber cannot easily move to the US, where he might earn $10 an hour instead of $10 a day. Haircuts, cleaning, taxis and massage stay cheap in poor countries.<span class="zh-full" lang="zh-Hant">理髮無法運送，理髮師也很難移民到美國（在那裡他一小時可能賺 10 美元，而不是一天 10 美元）。理髮、清潔、計程車和按摩在窮國一直很便宜。</span></p></div></div>
+<p>This is the <b>Balassa-Samuelson effect</b>: where factories and offices pay high wages, every job has to pay well to keep its workers, including the barber's. Cheap services make the whole price level lower in poor countries, so a dollar goes further there. Comparing incomes at market exchange rates therefore makes poor countries look poorer than they are. <b>Purchasing power parity</b><span class="zh">購買力平價</span> (PPP) fixes this by valuing every country's output at the same prices.<span class="zh-full" lang="zh-Hant">這就是巴拉薩－薩繆爾森效應：工廠和辦公室付高薪的地方，每份工作都得付高薪才留得住人，理髮師也一樣。服務便宜，讓窮國整體物價水準較低，一塊錢能買得更多。所以用市場匯率比較所得，會讓窮國看起來比實際更窮。購買力平價（PPP）用相同價格計算各國產出，修正這個問題。</span></p>
+<p>The 2026 world economy shows how much this matters. At market exchange rates the world produces about $128 trillion; at PPP the same output is worth about $219 trillion, because so much of it happens in countries where prices are low.<span class="zh-full" lang="zh-Hant">2026 年的世界經濟顯示了這有多重要。以市場匯率計，全球產出約 128 兆美元；以 PPP 計，同樣的產出約值 219 兆美元，因為大量產出發生在物價低的國家。</span></p>
 <div data-widget="pppflip"></div>
-<p class="note-small">IMF estimates for 2026, compiled by Visual Capitalist, as shown in class.</p>
-<p>Why do poorer countries gain the most from the adjustment? The haircut shows the mechanism.</p>
+<p class="note-small">IMF estimates for 2026, compiled by Visual Capitalist, as shown in class.<span class="zh-full" lang="zh-Hant">IMF 2026 年估計，由 Visual Capitalist 整理，課堂投影片。</span></p>
+<p>Why do poorer countries gain the most from the adjustment? The haircut shows the mechanism.<span class="zh-full" lang="zh-Hant">為什麼較窮的國家調整後增加最多？理髮的例子說明了機制。</span></p>
 <div data-widget="haircut" data-readout="optional"></div>
-<details class="graph-guide"><summary>How to build this graph</summary>
-<ol class="steps"><li><span>Haircuts per day on the horizontal axis, baht per haircut on the vertical axis. Draw D sloping down and S1 sloping up; mark E1, P1, Q1.</span></li><li><span>A better-paid job elsewhere raises the cost of each haircut, so supply shifts left (up) to S2.</span></li><li><span>Mark E2: P2 is above P1, Q2 below Q1. If local incomes rise too, shift D right and P climbs further.</span></li></ol></details>
+<details class="graph-guide"><summary>How to build this graph<span class="zh-full" lang="zh-Hant">如何畫這張圖</span></summary>
+<ol class="steps"><li><span>Haircuts per day on the horizontal axis, baht per haircut on the vertical axis. Draw D sloping down and S1 sloping up; mark E1, P1, Q1.<span class="zh-full" lang="zh-Hant">橫軸是每日理髮次數，縱軸是每次理髮的泰銖。畫向下的 D 和向上的 S1，標出 E1、P1、Q1。</span></span></li><li><span>A better-paid job elsewhere raises the cost of each haircut, so supply shifts left (up) to S2.<span class="zh-full" lang="zh-Hant">別處有更高薪的工作，每次理髮的成本上升，所以供給左移（上移）到 S2。</span></span></li><li><span>Mark E2: P2 is above P1, Q2 below Q1. If local incomes rise too, shift D right and P climbs further.<span class="zh-full" lang="zh-Hant">標出 E2：P2 高於 P1，Q2 低於 Q1。如果當地所得也提高，D 右移，P 再上升。</span></span></li></ol></details>
 <p class="hint"><b>中文邏輯</b><span>理髮便宜不是因為理髮師比較差，而是整個國家的工資低。可貿易品被套利拉平，服務拉不平，所以要用 PPP 才公平。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Thailand's factories become much more productive. Without any change in barbers' skills, what happens to the price of a haircut in Bangkok, and why?<span class="zh-full" lang="zh-Hant">泰國工廠的生產力大幅提高。理髮師的手藝沒有改變，曼谷的理髮價格會怎樣？為什麼？</span></p></aside>
 
-<h2 id="gaps">5. How big the gaps are</h2>
-<p class="sub">Measured at common prices, the gaps between countries are not 20% or 50%. They are 10, 20, sometimes nearly 100 times.</p>
+<h2 id="gaps">5. How big the gaps are<span class="zh-full" lang="zh-Hant">5. 差距有多大</span></h2>
+<p class="sub">Measured at common prices, the gaps between countries are not 20% or 50%. They are 10, 20, sometimes nearly 100 times.<span class="zh-full" lang="zh-Hant">用共同價格衡量，國家之間的差距不是 20% 或 50%，而是 10 倍、20 倍，有時接近 100 倍。</span></p>
 <div data-widget="guess"></div>
-<p class="note-small">IMF data, PPP-adjusted: CAR about $600 a year, Mexico $17,800. The US is given as 90 times the CAR, which works out to roughly 540 baskets.</p>
-<p>Two lessons. First, "poor countries" are not one group: Mexico is far closer to the United States than to the Central African Republic, a small landlocked country torn by civil war. Second, these gaps are recent. For most of history average income barely moved; sustained growth began with the Industrial Revolution and then shot up like the blade of a hockey stick.</p>
+<p class="note-small">IMF data, PPP-adjusted: CAR about $600 a year, Mexico $17,800. The US is given as 90 times the CAR, which works out to roughly 540 baskets.<span class="zh-full" lang="zh-Hant">IMF 資料，已做 PPP 調整：中非每年約 600 美元，墨西哥 17,800 美元。美國約是中非的 90 倍，換算約 540 籃。</span></p>
+<p>Two lessons. First, "poor countries" are not one group: Mexico is far closer to the United States than to the Central African Republic, a small landlocked country torn by civil war. Second, these gaps are recent. For most of history average income barely moved; sustained growth began with the Industrial Revolution and then shot up like the blade of a hockey stick.<span class="zh-full" lang="zh-Hant">兩個重點。第一，「窮國」不是同一群：墨西哥離美國，比離中非共和國（一個飽受內戰之苦的內陸小國）近得多。第二，這些差距是近代才出現的。人類歷史大部分時間平均所得幾乎不動；持續成長從工業革命開始，然後像曲棍球桿的桿頭一樣往上衝。</span></p>
 
-<h2 id="growth">6. Why growth rates matter so much</h2>
-<p class="sub">The United States is rich mainly because it kept growing about 2% a year for two centuries.</p>
-<div class="tbl"><table><thead><tr><th>Idea</th><th>Definition</th><th>Example</th></tr></thead><tbody>
-<tr><td><b>Compound growth</b><span class="zh">複利</span></td><td>Each year's growth builds on last year's higher level.</td><td>3% a year for 35 years gives 2.8 times, not 2.05.</td></tr>
-<tr><td><b>Rule of 70</b><span class="zh">70 法則</span></td><td>Years to double ≈ 70 ÷ growth rate in percent.</td><td>US income went from about $2,000 in 1845 to $4,000 in 1880: doubled in 35 years, so about 2% a year.</td></tr>
-<tr><td><b>Ratio scale</b></td><td>Each step on the axis is a doubling, so steady growth is a straight line.</td><td>On an ordinary scale, steady growth looks like it is speeding up.</td></tr>
+<h2 id="growth">6. Why growth rates matter so much<span class="zh-full" lang="zh-Hant">6. 為什麼成長率這麼重要</span></h2>
+<p class="sub">The United States is rich mainly because it kept growing about 2% a year for two centuries.<span class="zh-full" lang="zh-Hant">美國富有，主要是因為它兩個世紀以來每年持續成長約 2%。</span></p>
+<div class="tbl"><table><thead><tr><th>Idea<span class="zh-full" lang="zh-Hant">概念</span></th><th>Definition<span class="zh-full" lang="zh-Hant">定義</span></th><th>Example<span class="zh-full" lang="zh-Hant">例子</span></th></tr></thead><tbody>
+<tr><td><b>Compound growth</b><span class="zh">複利</span></td><td>Each year's growth builds on last year's higher level.<span class="zh-full" lang="zh-Hant">每年的成長都建立在前一年較高的水準上。</span></td><td>3% a year for 35 years gives 2.8 times, not 2.05.<span class="zh-full" lang="zh-Hant">每年 3%、35 年後是 2.8 倍，不是 2.05 倍。</span></td></tr>
+<tr><td><b>Rule of 70</b><span class="zh">70 法則</span></td><td>Years to double ≈ 70 ÷ growth rate in percent.<span class="zh-full" lang="zh-Hant">倍增年數 ≈ 70 ÷ 成長率（%）。</span></td><td>US income went from about $2,000 in 1845 to $4,000 in 1880: doubled in 35 years, so about 2% a year.<span class="zh-full" lang="zh-Hant">美國所得從 1845 年約 2,000 美元到 1880 年 4,000 美元：35 年翻倍，約每年 2%。</span></td></tr>
+<tr><td><b>Ratio scale</b></td><td>Each step on the axis is a doubling, so steady growth is a straight line.<span class="zh-full" lang="zh-Hant">軸上每一格都是翻倍，所以穩定成長是一條直線。</span></td><td>On an ordinary scale, steady growth looks like it is speeding up.<span class="zh-full" lang="zh-Hant">在一般刻度上，穩定成長看起來像越長越快。</span></td></tr>
 </tbody></table></div>
-<p>Run the numbers on the US and the stakes are clear. Had it grown only 1% a year since 1800, it would be about as rich today as it was in 1940. Had it grown 3%, it would have reached today's living standard back in 1917, and real GDP per person today would be about $893,000. At current growth rates, it will not get there until 2159.</p>
+<p>Run the numbers on the US and the stakes are clear. Had it grown only 1% a year since 1800, it would be about as rich today as it was in 1940. Had it grown 3%, it would have reached today's living standard back in 1917, and real GDP per person today would be about $893,000. At current growth rates, it will not get there until 2159.<span class="zh-full" lang="zh-Hant">用美國算一下就很清楚。如果它從 1800 年起每年只成長 1%，今天大約只有 1940 年的水準。如果是 3%，1917 年就達到今天的生活水準，今天的每人實質 GDP 會約 893,000 美元。照目前的成長率，要到 2159 年才會到那裡。</span></p>
 <div data-widget="compound" data-readout="optional"></div>
-<p>Another way to feel the gap is to place today's countries in American history:</p>
+<p>Another way to feel the gap is to place today's countries in American history:<span class="zh-full" lang="zh-Hant">另一種感受差距的方式，是把今天的國家放進美國歷史：</span></p>
 <ol class="timeline">
-<li><b>1800</b><span>Bangladesh and Uganda today</span></li>
-<li><b>1880</b><span>India today</span></li>
-<li class="what-if"><b>1917</b><span>When the US would have reached today's living standard, had it grown 3% a year</span></li>
-<li><b>1920s</b><span>China today</span></li>
-<li class="what-if"><b>1940</b><span>Where the US would be today, had it grown only 1% a year: few cars, no TV, incomes below today's poverty line</span></li>
-<li><b>1980</b><span>Italy today</span></li>
+<li><b>1800</b><span>Bangladesh and Uganda today<span class="zh-full" lang="zh-Hant">今天的孟加拉和烏干達</span></span></li>
+<li><b>1880</b><span>India today<span class="zh-full" lang="zh-Hant">今天的印度</span></span></li>
+<li class="what-if"><b>1917</b><span>When the US would have reached today's living standard, had it grown 3% a year<span class="zh-full" lang="zh-Hant">如果美國每年成長 3%，會在這一年達到今天的生活水準</span></span></li>
+<li><b>1920s</b><span>China today<span class="zh-full" lang="zh-Hant">今天的中國</span></span></li>
+<li class="what-if"><b>1940</b><span>Where the US would be today, had it grown only 1% a year: few cars, no TV, incomes below today's poverty line<span class="zh-full" lang="zh-Hant">如果美國每年只成長 1%，今天大概停在這裡：很少車、沒有電視，所得低於今天的貧窮線</span></span></li>
+<li><b>1980</b><span>Italy today<span class="zh-full" lang="zh-Hant">今天的義大利</span></span></li>
 </ol>
-<p class="note-small">India and China grow fast, so their places keep moving. The comparison is also imperfect: every country today lives longer than the richest countries did in 1800, thanks to vaccines, antibiotics and sanitation spreading from rich countries.</p>
+<p class="note-small">India and China grow fast, so their places keep moving. The comparison is also imperfect: every country today lives longer than the richest countries did in 1800, thanks to vaccines, antibiotics and sanitation spreading from rich countries.<span class="zh-full" lang="zh-Hant">印度和中國成長很快，位置會一直往後移。這個比較也不完美：今天每個國家的壽命，都比 1800 年最富有的國家長，因為疫苗、抗生素和衛生知識從富國擴散出去。</span></p>
 <p class="hint"><b>中文邏輯</b><span>1% 的差距一年看不出來，一百多年後就是好幾倍。富國的秘密不是哪一年長很快，而是長很久都不停。</span></p>
 
-<h2 id="miracles">7. Miracles and disasters</h2>
-<p class="sub">Since the Industrial Revolution, rich and poor regions have mostly pulled apart. Country by country, though, some have raced ahead and others have stalled.</p>
-<div class="tbl"><table><thead><tr><th></th><th>Japan</th><th>Argentina</th></tr></thead><tbody>
-<tr><td>1950</td><td>Poor, about the level of Mexico.</td><td>Rich, like much of Western Europe; about twice Japan's living standard.</td></tr>
-<tr><td>What happened</td><td>Doubled living standards about every 8 years; by the rule of 70, about 8.5% a year.</td><td>Some years of negative growth; doubled only once in 65 years, about 1.1% a year.</td></tr>
-<tr><td>2015</td><td>More than 10 times its 1950 level; about twice as rich as Argentina.</td><td>Stagnated.</td></tr>
+<h2 id="miracles">7. Miracles and disasters<span class="zh-full" lang="zh-Hant">7. 成長奇蹟與災難</span></h2>
+<p class="sub">Since the Industrial Revolution, rich and poor regions have mostly pulled apart. Country by country, though, some have raced ahead and others have stalled.<span class="zh-full" lang="zh-Hant">工業革命以來，富裕和貧窮的地區大致越拉越遠。但逐國來看，有些國家衝到前面，有些則停滯不前。</span></p>
+<div class="tbl"><table><thead><tr><th></th><th>Japan<span class="zh-full" lang="zh-Hant">日本</span></th><th>Argentina<span class="zh-full" lang="zh-Hant">阿根廷</span></th></tr></thead><tbody>
+<tr><td>1950</td><td>Poor, about the level of Mexico.<span class="zh-full" lang="zh-Hant">窮，大約和墨西哥同一水準。</span></td><td>Rich, like much of Western Europe; about twice Japan's living standard.<span class="zh-full" lang="zh-Hant">富，像大部分西歐國家；生活水準約是日本的兩倍。</span></td></tr>
+<tr><td>What happened<span class="zh-full" lang="zh-Hant">之後的發展</span></td><td>Doubled living standards about every 8 years; by the rule of 70, about 8.5% a year.<span class="zh-full" lang="zh-Hant">大約每 8 年翻倍；依 70 法則，約每年 8.5%。</span></td><td>Some years of negative growth; doubled only once in 65 years, about 1.1% a year.<span class="zh-full" lang="zh-Hant">有幾段負成長；65 年只翻倍一次，約每年 1.1%。</span></td></tr>
+<tr><td>2015</td><td>More than 10 times its 1950 level; about twice as rich as Argentina.<span class="zh-full" lang="zh-Hant">超過 1950 年的 10 倍；約是阿根廷的兩倍富。</span></td><td>Stagnated.<span class="zh-full" lang="zh-Hant">停滯。</span></td></tr>
 </tbody></table></div>
-<p>The reversal is just the rule of 70 at work. Several Japanese doublings against one Argentine doubling more than wiped out a two-to-one head start.</p>
-<div class="pair"><div><b>Growth miracle</b><p>Decades of very fast growth per person: Japan, South Korea, China, and perhaps India now. What took the US 200 years of steady growth can happen in about 40.</p></div><div><b>Growth disaster</b><p>Long stagnation or decline. Argentina grew for a while, then stalled. Niger and Chad never took off at all. Behind the numbers are shorter, harder lives.</p></div></div>
-<p>Why can poor countries grow faster than rich ones? They can copy technology that already exists and add machines where machines are scarce, so each investment pays off a lot. A country already at the frontier has to invent new ideas, which is slower. That is <b>catch-up growth</b><span class="zh">追趕型成長</span>, and it is possible, not automatic. It needs the right conditions, which is where the next section begins.</p>
+<p>The reversal is just the rule of 70 at work. Several Japanese doublings against one Argentine doubling more than wiped out a two-to-one head start.<span class="zh-full" lang="zh-Hant">這個逆轉就是 70 法則的結果：日本翻倍好幾次，阿根廷只翻倍一次，就足以抹平兩倍的領先。</span></p>
+<div class="pair"><div><b>Growth miracle<span class="zh-full" lang="zh-Hant">成長奇蹟</span></b><p>Decades of very fast growth per person: Japan, South Korea, China, and perhaps India now. What took the US 200 years of steady growth can happen in about 40.<span class="zh-full" lang="zh-Hant">數十年非常快速的每人成長：日本、南韓、中國，或許還有現在的印度。美國花 200 年穩定成長才做到的，奇蹟國家約 40 年就能做到。</span></p></div><div><b>Growth disaster<span class="zh-full" lang="zh-Hant">成長災難</span></b><p>Long stagnation or decline. Argentina grew for a while, then stalled. Niger and Chad never took off at all. Behind the numbers are shorter, harder lives.<span class="zh-full" lang="zh-Hant">長期停滯或倒退。阿根廷成長一陣子後停滯；尼日和查德從未起飛。數字背後是更短、更辛苦的人生。</span></p></div></div>
+<p>Why can poor countries grow faster than rich ones? They can copy technology that already exists and add machines where machines are scarce, so each investment pays off a lot. A country already at the frontier has to invent new ideas, which is slower. That is <b>catch-up growth</b><span class="zh">追趕型成長</span>, and it is possible, not automatic. It needs the right conditions, which is where the next section begins.<span class="zh-full" lang="zh-Hant">為什麼窮國能比富國長得快？它們可以複製現成的技術，在缺機器的地方增加機器，每筆投資的回報都很高。已經在技術前緣的國家必須發明新點子，成長較慢。這就是追趕型成長：可能發生，但不會自動發生，需要對的條件，這就是下一節的起點。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Use doubling times to explain how Japan went from half of Argentina's living standard in 1950 to twice it by 2015. Why is "poor countries naturally catch up" too strong a claim?<span class="zh-full" lang="zh-Hant">用倍增時間解釋，日本如何從 1950 年只有阿根廷的一半，變成 2015 年的兩倍。為什麼「窮國自然會追上」說得太強？</span></p></aside>
 
-<h2 id="puzzle">8. Why some countries grow: keep asking why</h2>
-<p class="sub">"Rich countries have more capital" is true but too easy. The useful answer comes from asking why, again and again.</p>
-<p>The answer comes in layers. The most immediate one is that workers in rich countries have more physical capital, more human capital and better technology, organized by entrepreneurs. But that only moves the question back: why did those countries build so much capital? Because people had incentives to work, save and invest. And why the incentives? Because institutions protected the rewards. Why the institutions? That is the least settled part, a mix of history, ideas, culture, geography and luck.</p>
+<h2 id="puzzle">8. Why some countries grow: keep asking why<span class="zh-full" lang="zh-Hant">8. 為什麼有些國家會成長：一直問為什麼</span></h2>
+<p class="sub">"Rich countries have more capital" is true but too easy. The useful answer comes from asking why, again and again.<span class="zh-full" lang="zh-Hant">「富國有更多資本」是對的，但太簡單。有用的答案來自一次又一次地問為什麼。</span></p>
+<p>The answer comes in layers. The most immediate one is that workers in rich countries have more physical capital, more human capital and better technology, organized by entrepreneurs. But that only moves the question back: why did those countries build so much capital? Because people had incentives to work, save and invest. And why the incentives? Because institutions protected the rewards. Why the institutions? That is the least settled part, a mix of history, ideas, culture, geography and luck.<span class="zh-full" lang="zh-Hant">答案分好幾層。最直接的一層是：富國的勞工擁有更多實體資本、人力資本和更好的技術，並由企業家組織起來。但這只是把問題往後推：為什麼這些國家累積了這麼多資本？因為人們有工作、儲蓄和投資的誘因。為什麼有誘因？因為制度保護了成果。為什麼有這些制度？這是最沒有定論的部分，混合了歷史、思想、文化、地理和運氣。</span></p>
 <div data-widget="ladder"></div>
-<div class="tbl"><table><thead><tr><th>Five key institutions</th><th>What it protects</th><th>Without it</th></tr></thead><tbody>
-<tr><td><b>Property rights</b><span class="zh">財產權</span></td><td>Your investment.</td><td>Someone could build on your farm.</td></tr>
-<tr><td><b>Honest government</b></td><td>Permits without bribes; no seizure.</td><td>Bribes become a cost of doing business.</td></tr>
-<tr><td><b>Political stability</b></td><td>Long-term plans.</td><td>Civil war can wash plans away.</td></tr>
-<tr><td><b>Dependable legal system</b></td><td>Contracts, debts, borrowing and lending.</td><td>Hard to collect a debt or prove who owns what.</td></tr>
-<tr><td><b>Competitive, open markets</b></td><td>Price signals and room to innovate.</td><td>Needless regulations protect monopolies.</td></tr>
+<div class="tbl"><table><thead><tr><th>Five key institutions<span class="zh-full" lang="zh-Hant">五大關鍵制度</span></th><th>What it protects<span class="zh-full" lang="zh-Hant">保護什麼</span></th><th>Without it<span class="zh-full" lang="zh-Hant">沒有它的話</span></th></tr></thead><tbody>
+<tr><td><b>Property rights</b><span class="zh">財產權</span></td><td>Your investment.<span class="zh-full" lang="zh-Hant">你的投資。</span></td><td>Someone could build on your farm.<span class="zh-full" lang="zh-Hant">別人可能在你的農場上蓋房子。</span></td></tr>
+<tr><td><b>Honest government</b></td><td>Permits without bribes; no seizure.<span class="zh-full" lang="zh-Hant">不必賄賂就能拿到許可；不會被沒收。</span></td><td>Bribes become a cost of doing business.<span class="zh-full" lang="zh-Hant">賄賂變成經商成本。</span></td></tr>
+<tr><td><b>Political stability</b></td><td>Long-term plans.<span class="zh-full" lang="zh-Hant">長期計畫。</span></td><td>Civil war can wash plans away.<span class="zh-full" lang="zh-Hant">內戰可能讓計畫化為烏有。</span></td></tr>
+<tr><td><b>Dependable legal system</b></td><td>Contracts, debts, borrowing and lending.<span class="zh-full" lang="zh-Hant">合約、債務、借貸。</span></td><td>Hard to collect a debt or prove who owns what.<span class="zh-full" lang="zh-Hant">很難收回債務或證明誰擁有什麼。</span></td></tr>
+<tr><td><b>Competitive, open markets</b></td><td>Price signals and room to innovate.<span class="zh-full" lang="zh-Hant">價格訊號和創新的空間。</span></td><td>Needless regulations protect monopolies.<span class="zh-full" lang="zh-Hant">不必要的法規保護獨占。</span></td></tr>
 </tbody></table></div>
 <p class="hint"><b>中文邏輯</b><span>資本、人力、技術是直接原因；要追問為什麼能累積，答案是誘因，誘因來自制度，制度又來自歷史、文化、地理和運氣。</span></p>
 
-<h2 id="institutions">9. Institutions in action</h2>
-<p class="sub">Two cases at very different scales: a divided country and a single coffee shop.</p>
-<h3 id="korea">One peninsula, two outcomes</h3>
-<p>Before 1945 the two Koreas had the same people, language, culture and history, and similar economies; the north was, if anything, richer. Then the North got central planning and the South got a market economy. Tyler Cowen calls it an almost perfect natural experiment.</p>
-<div class="tbl"><table><thead><tr><th></th><th>South Korea</th><th>North Korea</th></tr></thead><tbody>
-<tr><td>Incentive</td><td>Serve customers and keep the profit; failing firms close, so capital moves to better uses.</td><td>No right to start a business or keep profits; prices controlled; capital handed out by the party.</td></tr>
-<tr><td>Where effort goes</td><td>Making things people want.</td><td>Winning favor with officials.</td></tr>
-<tr><td>Result</td><td>Rich-country living standards; Hyundai cars, K-pop, films and cosmetics sold across Asia and beyond.</td><td>Repeated famines, because farmers had no reason to grow enough food.</td></tr>
-<tr><td>Seen from space at night</td><td>Bright</td><td>Dark, apart from Pyongyang</td></tr>
+<h2 id="institutions">9. Institutions in action<span class="zh-full" lang="zh-Hant">9. 制度的實際作用</span></h2>
+<p class="sub">Two cases at very different scales: a divided country and a single coffee shop.<span class="zh-full" lang="zh-Hant">兩個尺度差很多的例子：一個分裂的國家，和一家咖啡店。</span></p>
+<h3 id="korea">One peninsula, two outcomes<span class="zh-full" lang="zh-Hant">同一個半島，兩種結局</span></h3>
+<p>Before 1945 the two Koreas had the same people, language, culture and history, and similar economies; the north was, if anything, richer. Then the North got central planning and the South got a market economy. Tyler Cowen calls it an almost perfect natural experiment.<span class="zh-full" lang="zh-Hant">1945 年以前，南北韓有相同的人民、語言、文化與歷史，經濟也相似；硬要說的話，北方還比較富有。後來北韓實行中央計畫，南韓走向市場經濟。Tyler Cowen 稱之為幾乎完美的自然實驗。</span></p>
+<div class="tbl"><table><thead><tr><th></th><th>South Korea<span class="zh-full" lang="zh-Hant">南韓</span></th><th>North Korea<span class="zh-full" lang="zh-Hant">北韓</span></th></tr></thead><tbody>
+<tr><td>Incentive<span class="zh-full" lang="zh-Hant">誘因</span></td><td>Serve customers and keep the profit; failing firms close, so capital moves to better uses.<span class="zh-full" lang="zh-Hant">服務顧客就能保有利潤；失敗的公司會倒閉，資本流向更好的用途。</span></td><td>No right to start a business or keep profits; prices controlled; capital handed out by the party.<span class="zh-full" lang="zh-Hant">不能自由創業或保有利潤；價格受管制；資本由黨分配。</span></td></tr>
+<tr><td>Where effort goes<span class="zh-full" lang="zh-Hant">心力用在哪</span></td><td>Making things people want.<span class="zh-full" lang="zh-Hant">做出人們想要的東西。</span></td><td>Winning favor with officials.<span class="zh-full" lang="zh-Hant">討好官員。</span></td></tr>
+<tr><td>Result<span class="zh-full" lang="zh-Hant">結果</span></td><td>Rich-country living standards; Hyundai cars, K-pop, films and cosmetics sold across Asia and beyond.<span class="zh-full" lang="zh-Hant">富國的生活水準；現代汽車、K-pop、電影和化妝品賣到亞洲和全世界。</span></td><td>Repeated famines, because farmers had no reason to grow enough food.<span class="zh-full" lang="zh-Hant">一再發生饑荒，因為農民沒有理由種出足夠的糧食。</span></td></tr>
+<tr><td>Seen from space at night<span class="zh-full" lang="zh-Hant">夜間從太空看</span></td><td>Bright<span class="zh-full" lang="zh-Hant">燈火通明</span></td><td>Dark, apart from Pyongyang<span class="zh-full" lang="zh-Hant">除了平壤，一片漆黑</span></td></tr>
 </tbody></table></div>
-<p class="note-small">Not a perfect experiment: the two halves also had different allies, aid and war damage.</p>
-<h3 id="mumbai">The road to opening a café in Mumbai</h3>
-<div class="pair"><div><b>On paper</b><p>The World Bank once ranked India 130th of 190 for ease of doing business and estimated 14 procedures and 26 days for a simple Mumbai license.</p></div><div><b>In practice</b><p>The owner of Koinonia Coffee Roasters said 26 days "would be a dream".</p></div></div>
+<p class="note-small">Not a perfect experiment: the two halves also had different allies, aid and war damage.<span class="zh-full" lang="zh-Hant">並非完美的實驗：兩邊的盟友、援助和戰爭破壞也不同。</span></p>
+<h3 id="mumbai">The road to opening a café in Mumbai<span class="zh-full" lang="zh-Hant">在孟買開一家咖啡館的路</span></h3>
+<div class="pair"><div><b>On paper<span class="zh-full" lang="zh-Hant">紙上</span></b><p>The World Bank once ranked India 130th of 190 for ease of doing business and estimated 14 procedures and 26 days for a simple Mumbai license.<span class="zh-full" lang="zh-Hant">世界銀行曾把印度的經商便利度排在 190 國中第 130 名，並估計在孟買申請簡單執照要 14 道程序、26 天。</span></p></div><div><b>In practice<span class="zh-full" lang="zh-Hant">實際上</span></b><p>The owner of Koinonia Coffee Roasters said 26 days "would be a dream".<span class="zh-full" lang="zh-Hant">Koinonia Coffee Roasters 的老闆說，如果只要 26 天，「那簡直是夢想」。</span></p></div></div>
 <ol class="steps">
-<li><span>Lease a commercial space before the company even exists, just to have an address to register.</span></li>
-<li><span>Write down in advance everything the business might ever do; adding anything later means amending the papers.</span></li>
-<li><span>Work through 10 to 12 licenses with three consultants, some of which changed along the way.</span></li>
-<li><span>Get a pollution permit for a gas-powered roaster: maps, emissions details and 8 to 12 trips to an office an hour away.</span></li>
-<li><span>Refuse to pay bribes, and lose a licensing firm that would not work without them.</span></li>
-<li><span>Sit closed for three months, paying staff and rent, ready to open but waiting for paper.</span></li>
+<li><span>Lease a commercial space before the company even exists, just to have an address to register.<span class="zh-full" lang="zh-Hant">公司還沒成立，就得先租商業空間，只為了有個地址可以登記。</span></span></li>
+<li><span>Write down in advance everything the business might ever do; adding anything later means amending the papers.<span class="zh-full" lang="zh-Hant">事先寫下公司將來可能做的所有業務；之後要新增就得修改文件。</span></span></li>
+<li><span>Work through 10 to 12 licenses with three consultants, some of which changed along the way.<span class="zh-full" lang="zh-Hant">在三位顧問協助下申請 10 到 12 張執照，其中有些中途還改了。</span></span></li>
+<li><span>Get a pollution permit for a gas-powered roaster: maps, emissions details and 8 to 12 trips to an office an hour away.<span class="zh-full" lang="zh-Hant">為一台瓦斯烘豆機申請污染許可：地圖、排放資料，跑一小時車程外的辦公室 8 到 12 趟。</span></span></li>
+<li><span>Refuse to pay bribes, and lose a licensing firm that would not work without them.<span class="zh-full" lang="zh-Hant">拒絕行賄，結果一家不付好處就不肯辦事的代辦公司拒絕合作。</span></span></li>
+<li><span>Sit closed for three months, paying staff and rent, ready to open but waiting for paper.<span class="zh-full" lang="zh-Hant">停業三個月，照付員工薪水和房租，一切準備好了，只等文件。</span></span></li>
 </ol>
-<div class="flow"><span>More licenses and delays</span><i>→</i><span>Costlier, slower entry</span><i>→</i><span>Fewer cafés open</span><i>→</i><span>Supply shifts left</span><i>→</i><span>Higher prices, less output, idle capital</span></div>
-<p class="note-small">One honest firm shows bribe-free business is possible, not that it is easy or typical. The World Bank has since stopped publishing Doing Business.</p>
+<div class="flow"><span>More licenses and delays<span class="zh-full" lang="zh-Hant">執照更多、拖更久</span></span><i>→</i><span>Costlier, slower entry<span class="zh-full" lang="zh-Hant">進入更貴、更慢</span></span><i>→</i><span>Fewer cafés open<span class="zh-full" lang="zh-Hant">開業的咖啡館變少</span></span><i>→</i><span>Supply shifts left<span class="zh-full" lang="zh-Hant">供給左移</span></span><i>→</i><span>Higher prices, less output, idle capital<span class="zh-full" lang="zh-Hant">價格更高、產出更少、資本閒置</span></span></div>
+<p class="note-small">One honest firm shows bribe-free business is possible, not that it is easy or typical. The World Bank has since stopped publishing Doing Business.<span class="zh-full" lang="zh-Hant">一家誠實的公司證明不行賄也能經營，但不代表容易或普遍。世界銀行之後已停止發布經商便利度指數。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Which of the five key institutions does the café story touch? If every new business in a city faced the same delays, what would happen to that city's growth?<span class="zh-full" lang="zh-Hant">咖啡館的故事碰到了五大制度中的哪幾項？如果一個城市的每家新公司都遇到同樣的延誤，這個城市的成長會怎樣？</span></p></aside>
 
-<h2 id="geography">10. Geography: the natural tariff</h2>
-<p class="sub">Think of the most prosperous cities you know. Most sit on a coast or a major river.</p>
-<div class="flow"><span>Cheap shipping by water</span><i>→</i><span>Lower trade costs</span><i>→</i><span>Bigger markets</span><i>→</i><span>More specialization and new ideas</span><i>→</i><span>Growth</span></div>
-<p>That chain goes back to Adam Smith, and a map of output per square kilometer bears it out: GDP piles up along the US coasts and the Great Lakes, in Western Europe, Japan, coastal China and coastal Australia. Landlocked countries are, on average, poorer. Africa is huge, big enough to hold most of the US, China, India and much of Europe, yet Europe has two to three times more coastline. Africa is the most landlocked continent and has the most poor countries.</p>
+<h2 id="geography">10. Geography: the natural tariff<span class="zh-full" lang="zh-Hant">10. 地理：天然關稅</span></h2>
+<p class="sub">Think of the most prosperous cities you know. Most sit on a coast or a major river.<span class="zh-full" lang="zh-Hant">想想你知道最繁榮的城市，多半位於海岸或大河旁。</span></p>
+<div class="flow"><span>Cheap shipping by water<span class="zh-full" lang="zh-Hant">水運便宜</span></span><i>→</i><span>Lower trade costs<span class="zh-full" lang="zh-Hant">貿易成本降低</span></span><i>→</i><span>Bigger markets<span class="zh-full" lang="zh-Hant">市場變大</span></span><i>→</i><span>More specialization and new ideas<span class="zh-full" lang="zh-Hant">更多分工與新點子</span></span><i>→</i><span>Growth<span class="zh-full" lang="zh-Hant">成長</span></span></div>
+<p>That chain goes back to Adam Smith, and a map of output per square kilometer bears it out: GDP piles up along the US coasts and the Great Lakes, in Western Europe, Japan, coastal China and coastal Australia. Landlocked countries are, on average, poorer. Africa is huge, big enough to hold most of the US, China, India and much of Europe, yet Europe has two to three times more coastline. Africa is the most landlocked continent and has the most poor countries.<span class="zh-full" lang="zh-Hant">這條推理可以追溯到亞當斯密。每平方公里產出的地圖也證實了它：GDP 集中在美國沿海與五大湖區、西歐、日本、中國沿海和澳洲沿海。內陸國平均比較窮。非洲非常大，裝得下大部分的美國、中國、印度和大半個歐洲，但歐洲的海岸線是非洲的兩到三倍。非洲是最內陸的大陸，也是窮國最多的大陸。</span></p>
 <div data-widget="tariff" data-readout="optional"></div>
-<div class="pair"><div><b>The lesson</b><p>Being landlocked works like a <b>natural tariff</b><span class="zh">天然關稅</span>, a tax on every import and export. If a natural tariff slows growth, a tariff chosen by government is unlikely to help it.</p></div><div><b>The limit</b><p>Geography is not destiny. Landlocked Switzerland is rich, and railways and roads can cut the natural tariff. Growth depends on natural advantages and on policy.</p></div></div>
+<div class="pair"><div><b>The lesson<span class="zh-full" lang="zh-Hant">結論</span></b><p>Being landlocked works like a <b>natural tariff</b><span class="zh">天然關稅</span>, a tax on every import and export. If a natural tariff slows growth, a tariff chosen by government is unlikely to help it.<span class="zh-full" lang="zh-Hant">內陸就像天然關稅，對每筆進出口課稅。如果天然關稅拖慢成長，政府自己設的關稅也不太可能有幫助。</span></p></div><div><b>The limit<span class="zh-full" lang="zh-Hant">限制</span></b><p>Geography is not destiny. Landlocked Switzerland is rich, and railways and roads can cut the natural tariff. Growth depends on natural advantages and on policy.<span class="zh-full" lang="zh-Hant">地理不是命運。內陸的瑞士很富有，鐵路和公路也能降低天然關稅。成長同時取決於天然條件和政策。</span></p></div></div>
 
-<h2 id="data">11. When the numbers themselves are weak</h2>
-<p class="sub">Every comparison above assumes we can count output and people. In the poorest countries, often we cannot.</p>
-<p>The Central African Republic has no reliable birth and death records and no recent census. In 2022 researchers went house to house by car, boat, motorbike and on foot and found that nearly 6% of the population had died that year, mostly from malaria, diarrhea and violence. The UN's figure was about four times lower, because it projected older data forward as if conditions were stable.</p>
-<div class="tbl"><table class="oil" aria-label="Two mortality estimates for the CAR, 2022"><thead><tr><th>Estimate</th><th>Deaths per 10,000 people a day</th><th>Above the emergency line of 1?</th></tr></thead><tbody>
-<tr><td>Household survey</td><td>≈ 1.6</td><td class="hi">Yes</td></tr>
-<tr><td>UN estimate</td><td>≈ 0.4</td><td>No</td></tr>
+<h2 id="data">11. When the numbers themselves are weak<span class="zh-full" lang="zh-Hant">11. 當數字本身就不可靠</span></h2>
+<p class="sub">Every comparison above assumes we can count output and people. In the poorest countries, often we cannot.<span class="zh-full" lang="zh-Hant">上面所有比較都假設我們數得出產出和人口。但在最窮的國家，常常數不出來。</span></p>
+<p>The Central African Republic has no reliable birth and death records and no recent census. In 2022 researchers went house to house by car, boat, motorbike and on foot and found that nearly 6% of the population had died that year, mostly from malaria, diarrhea and violence. The UN's figure was about four times lower, because it projected older data forward as if conditions were stable.<span class="zh-full" lang="zh-Hant">中非共和國沒有可靠的出生與死亡紀錄，也沒有近期的人口普查。2022 年研究人員搭車、坐船、騎摩托車、步行逐戶調查，發現當年有近 6% 的人口死亡，主要死於瘧疾、腹瀉和暴力。聯合國的數字約低四倍，因為它把舊資料往後推，假設情況穩定。</span></p>
+<div class="tbl"><table class="oil" aria-label="Two mortality estimates for the CAR, 2022"><thead><tr><th>Estimate<span class="zh-full" lang="zh-Hant">估計</span></th><th>Deaths per 10,000 people a day<span class="zh-full" lang="zh-Hant">每天每萬人死亡數</span></th><th>Above the emergency line of 1?<span class="zh-full" lang="zh-Hant">是否超過緊急門檻 1？</span></th></tr></thead><tbody>
+<tr><td>Household survey<span class="zh-full" lang="zh-Hant">家戶調查</span></td><td>≈ 1.6</td><td class="hi">Yes<span class="zh-full" lang="zh-Hant">是</span></td></tr>
+<tr><td>UN estimate<span class="zh-full" lang="zh-Hant">聯合國估計</span></td><td>≈ 0.4</td><td>No<span class="zh-full" lang="zh-Hant">否</span></td></tr>
 </tbody></table></div>
-<p>The difference is not academic. Aid agencies treat one death per 10,000 people a day as the threshold for an emergency, so which estimate you believe decides whether the CAR counts as a crisis at all.</p>
-<p class="note-small">Survey rate converted from nearly 6% of the population a year. The CAR government and the UN's chief demographer disputed the survey, so treat it as evidence of large uncertainty rather than a settled figure.</p>
-<p>The lesson for GDP: the countries at the bottom of every ranking are exactly where both the output figures and the population counts are weakest. "About 90 times richer" is an order of magnitude, not a precise fact.</p>
+<p>The difference is not academic. Aid agencies treat one death per 10,000 people a day as the threshold for an emergency, so which estimate you believe decides whether the CAR counts as a crisis at all.<span class="zh-full" lang="zh-Hant">這個差異不只是學術問題。援助機構把每天每萬人死亡 1 人視為緊急門檻，所以相信哪一個估計，決定了中非到底算不算危機。</span></p>
+<p class="note-small">Survey rate converted from nearly 6% of the population a year. The CAR government and the UN's chief demographer disputed the survey, so treat it as evidence of large uncertainty rather than a settled figure.<span class="zh-full" lang="zh-Hant">調查數字由「每年近 6% 人口死亡」換算而來。中非政府和聯合國首席人口學家對這項調查有異議，所以應視為「不確定性很大」的證據，而非定論。</span></p>
+<p>The lesson for GDP: the countries at the bottom of every ranking are exactly where both the output figures and the population counts are weakest. "About 90 times richer" is an order of magnitude, not a precise fact.<span class="zh-full" lang="zh-Hant">對 GDP 的啟示：排名最底層的國家，正是產出數字和人口數字都最不可靠的地方。「約 90 倍」是數量級，不是精確的事實。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Model-based estimates missed the crisis exactly when conditions changed fastest. Why is that the moment they are most likely to fail?<span class="zh-full" lang="zh-Hant">模型推估正好在情況變化最快時錯過了這場危機。為什麼那正是它們最容易失準的時候？</span></p></aside>
 
-<h2 id="traps">12. Do not mix these up</h2>
+<h2 id="traps">12. Do not mix these up<span class="zh-full" lang="zh-Hant">12. 不要混淆這些概念</span></h2>
 <div class="traps">
-<div><s>Anything used to make other goods is intermediate.</s><p>Capital goods such as a tractor are final goods and count.</p></div>
-<div><s>GDP counts what citizens produce anywhere.</s><p>That is GNI. GDP counts production inside the borders.</p></div>
-<div><s>Investment means buying shares.</s><p>In GDP, investment means new capital goods.</p></div>
-<div><s>All government spending is G.</s><p>Transfers such as pensions buy nothing and are left out.</p></div>
-<div><s>The US economy grew 55 times since 1950.</s><p>That is nominal. Real is about 8 times; per person about 3.6.</p></div>
-<div><s>Indonesia has the biggest economy in ASEAN, so Indonesians are the richest.</s><p>Total GDP measures size. Divide by population to compare living standards.</p></div>
-<div><s>Same GDP per person means the same poverty.</s><p>Distribution differs, as Nigeria and Honduras show.</p></div>
-<div><s>Haircuts are cheap in India because barbers are worse.</s><p>Wages are low across the economy and workers cannot move.</p></div>
-<div><s>Compare incomes at market exchange rates.</s><p>Use PPP, or poor countries look poorer than they are.</p></div>
-<div><s>A one-point growth gap is small.</s><p>Over 140 years, 3% against 2% is about 3.9 times.</p></div>
-<div><s>Poor countries automatically catch up.</s><p>Argentina, Niger and Chad did not.</p></div>
-<div><s>More capital explains why rich countries are rich.</s><p>That is the immediate cause. Ask why the capital was built.</p></div>
-<div><s>Geography is destiny.</s><p>It matters, but institutions and infrastructure can offset it.</p></div>
+<div><s>Anything used to make other goods is intermediate.<span class="zh-full" lang="zh-Hant">用來生產其他東西的都是中間財。</span></s><p>Capital goods such as a tractor are final goods and count.<span class="zh-full" lang="zh-Hant">曳引機這類資本財是最終財，要算。</span></p></div>
+<div><s>GDP counts what citizens produce anywhere.<span class="zh-full" lang="zh-Hant">GDP 算的是本國人民在任何地方的生產。</span></s><p>That is GNI. GDP counts production inside the borders.<span class="zh-full" lang="zh-Hant">那是 GNI。GDP 算的是境內生產。</span></p></div>
+<div><s>Investment means buying shares.<span class="zh-full" lang="zh-Hant">投資就是買股票。</span></s><p>In GDP, investment means new capital goods.<span class="zh-full" lang="zh-Hant">在 GDP 裡，投資是新的資本財。</span></p></div>
+<div><s>All government spending is G.<span class="zh-full" lang="zh-Hant">政府的所有支出都是 G。</span></s><p>Transfers such as pensions buy nothing and are left out.<span class="zh-full" lang="zh-Hant">退休金等移轉支付沒有購買東西，不計入。</span></p></div>
+<div><s>The US economy grew 55 times since 1950.<span class="zh-full" lang="zh-Hant">美國經濟從 1950 年成長了 55 倍。</span></s><p>That is nominal. Real is about 8 times; per person about 3.6.<span class="zh-full" lang="zh-Hant">那是名目。實質約 8 倍；每人約 3.6 倍。</span></p></div>
+<div><s>Indonesia has the biggest economy in ASEAN, so Indonesians are the richest.<span class="zh-full" lang="zh-Hant">印尼是東協最大的經濟體，所以印尼人最富有。</span></s><p>Total GDP measures size. Divide by population to compare living standards.<span class="zh-full" lang="zh-Hant">GDP 總量衡量的是規模。要除以人口才能比較生活水準。</span></p></div>
+<div><s>Same GDP per person means the same poverty.<span class="zh-full" lang="zh-Hant">每人 GDP 相同，貧窮程度就相同。</span></s><p>Distribution differs, as Nigeria and Honduras show.<span class="zh-full" lang="zh-Hant">分配不同，奈及利亞和宏都拉斯就是例子。</span></p></div>
+<div><s>Haircuts are cheap in India because barbers are worse.<span class="zh-full" lang="zh-Hant">印度理髮便宜是因為理髮師比較差。</span></s><p>Wages are low across the economy and workers cannot move.<span class="zh-full" lang="zh-Hant">是整體工資低，而且勞工無法移動。</span></p></div>
+<div><s>Compare incomes at market exchange rates.<span class="zh-full" lang="zh-Hant">用市場匯率比較所得。</span></s><p>Use PPP, or poor countries look poorer than they are.<span class="zh-full" lang="zh-Hant">要用 PPP，否則窮國看起來比實際更窮。</span></p></div>
+<div><s>A one-point growth gap is small.<span class="zh-full" lang="zh-Hant">成長率差 1 個百分點很小。</span></s><p>Over 140 years, 3% against 2% is about 3.9 times.<span class="zh-full" lang="zh-Hant">140 年下來，3% 對 2% 差約 3.9 倍。</span></p></div>
+<div><s>Poor countries automatically catch up.<span class="zh-full" lang="zh-Hant">窮國會自動追上。</span></s><p>Argentina, Niger and Chad did not.<span class="zh-full" lang="zh-Hant">阿根廷、尼日和查德就沒有。</span></p></div>
+<div><s>More capital explains why rich countries are rich.<span class="zh-full" lang="zh-Hant">更多資本就解釋了富國為何富有。</span></s><p>That is the immediate cause. Ask why the capital was built.<span class="zh-full" lang="zh-Hant">那只是直接原因。要追問資本為什麼會被建立。</span></p></div>
+<div><s>Geography is destiny.<span class="zh-full" lang="zh-Hant">地理決定命運。</span></s><p>It matters, but institutions and infrastructure can offset it.<span class="zh-full" lang="zh-Hant">地理有影響，但制度和基礎建設可以彌補。</span></p></div>
 </div>
 
-<h2 id="coldcall">13. Cold call practice</h2>
+<h2 id="coldcall">13. Cold call practice<span class="zh-full" lang="zh-Hant">13. 課堂口頭問答練習</span></h2>
 <div class="qa-tools"><button id="qaAll" type="button">Show all answers</button></div>
 <div class="qa">
-<details><summary>What is GDP?</summary><p>The market value of all final goods and services produced within a country in a year, for example cars built in Rayong and massages sold in Bangkok this year.</p></details>
-<details><summary>Why does a tractor count but a bakery's flour does not?</summary><p>The flour is used up inside the bread, whose price already includes it. The tractor is a final capital good that is never resold as part of another product.</p></details>
-<details><summary>Why are pensions not part of G?</summary><p>They are transfers that buy no output. When retirees spend the money it shows up as consumption, so counting the check as well would double count.</p></details>
-<details><summary>What three adjustments make GDP comparable?</summary><p>Real GDP removes inflation, so we can compare over time; GDP per capita removes population size, so we can compare countries of different sizes; PPP removes differences in the cost of living.</p></details>
-<details><summary>What is the difference between nominal and real GDP?</summary><p>Nominal GDP uses current prices, so it rises with inflation. Real GDP holds prices fixed, so it rises only when output rises.</p></details>
-<details><summary>Is real GDP per capita a good measure of living standards?</summary><p>It is the best single measure because it moves with life expectancy, happiness and education, but it ignores how income is shared, leisure and the environment.</p></details>
-<details><summary>What is purchasing power parity?</summary><p>Valuing every country's output at the same prices, so comparisons reflect what incomes actually buy. Without it, poor countries with cheap services look poorer than they are.</p></details>
-<details><summary>What is the Balassa-Samuelson effect?</summary><p>Services that cannot be traded are cheaper in poor countries because wages there are low, which makes the overall price level lower. A haircut in India costs under a dollar.</p></details>
-<details><summary>What is the rule of 70?</summary><p>Doubling time is about 70 divided by the growth rate in percent: about 35 years at 2%, about 10 years at 7%.</p></details>
-<details><summary>What are the key institutions for growth?</summary><p>Property rights, honest government, political stability, a dependable legal system, and competitive, open markets.</p></details>
-<details><summary>Why is being landlocked called a natural tariff?</summary><p>High transport costs act like a tax on every import and export: prices inland rise, trade shrinks and specialization suffers.</p></details>
+<details><summary>What is GDP?<span class="zh-full" lang="zh-Hant">什麼是 GDP？</span></summary><p>The market value of all final goods and services produced within a country in a year, for example cars built in Rayong and massages sold in Bangkok this year.<span class="zh-full" lang="zh-Hant">一國在一年內生產的所有最終商品與服務的市場價值，例如今年在羅勇生產的汽車和在曼谷賣出的按摩。</span></p></details>
+<details><summary>Why does a tractor count but a bakery's flour does not?<span class="zh-full" lang="zh-Hant">為什麼曳引機要算，麵包店的麵粉卻不算？</span></summary><p>The flour is used up inside the bread, whose price already includes it. The tractor is a final capital good that is never resold as part of another product.<span class="zh-full" lang="zh-Hant">麵粉在做麵包時被用掉，麵包售價已經包含它。曳引機是最終的資本財，不會變成其他產品再賣一次。</span></p></details>
+<details><summary>Why are pensions not part of G?<span class="zh-full" lang="zh-Hant">為什麼退休金不算 G？</span></summary><p>They are transfers that buy no output. When retirees spend the money it shows up as consumption, so counting the check as well would double count.<span class="zh-full" lang="zh-Hant">它們是移轉支付，沒有購買產出。退休人士花錢時會算進消費，再算支票就重複計算。</span></p></details>
+<details><summary>What three adjustments make GDP comparable?<span class="zh-full" lang="zh-Hant">哪三項調整讓 GDP 可以比較？</span></summary><p>Real GDP removes inflation, so we can compare over time; GDP per capita removes population size, so we can compare countries of different sizes; PPP removes differences in the cost of living.<span class="zh-full" lang="zh-Hant">實質 GDP 去掉通膨，可以跨時間比較；每人 GDP 去掉人口規模，可以比較大小不同的國家；PPP 去掉生活成本的差異。</span></p></details>
+<details><summary>What is the difference between nominal and real GDP?<span class="zh-full" lang="zh-Hant">名目 GDP 和實質 GDP 有什麼不同？</span></summary><p>Nominal GDP uses current prices, so it rises with inflation. Real GDP holds prices fixed, so it rises only when output rises.<span class="zh-full" lang="zh-Hant">名目 GDP 用當期價格，會隨通膨上升。實質 GDP 固定價格，只有產出增加時才會上升。</span></p></details>
+<details><summary>Is real GDP per capita a good measure of living standards?<span class="zh-full" lang="zh-Hant">每人實質 GDP 是好的生活水準指標嗎？</span></summary><p>It is the best single measure because it moves with life expectancy, happiness and education, but it ignores how income is shared, leisure and the environment.<span class="zh-full" lang="zh-Hant">它是最好的單一指標，因為它和壽命、快樂與教育一起變動，但它忽略了所得分配、休閒和環境。</span></p></details>
+<details><summary>What is purchasing power parity?<span class="zh-full" lang="zh-Hant">什麼是購買力平價？</span></summary><p>Valuing every country's output at the same prices, so comparisons reflect what incomes actually buy. Without it, poor countries with cheap services look poorer than they are.<span class="zh-full" lang="zh-Hant">用相同價格計算各國產出，讓比較反映所得實際能買到的東西。不這樣做，服務便宜的窮國會看起來比實際更窮。</span></p></details>
+<details><summary>What is the Balassa-Samuelson effect?<span class="zh-full" lang="zh-Hant">什麼是巴拉薩－薩繆爾森效應？</span></summary><p>Services that cannot be traded are cheaper in poor countries because wages there are low, which makes the overall price level lower. A haircut in India costs under a dollar.<span class="zh-full" lang="zh-Hant">無法交易的服務在窮國比較便宜，因為工資低，整體物價水準也因此較低。在印度理髮不到 1 美元。</span></p></details>
+<details><summary>What is the rule of 70?<span class="zh-full" lang="zh-Hant">什麼是 70 法則？</span></summary><p>Doubling time is about 70 divided by the growth rate in percent: about 35 years at 2%, about 10 years at 7%.<span class="zh-full" lang="zh-Hant">倍增時間約為 70 除以成長率（%）：2% 約 35 年，7% 約 10 年。</span></p></details>
+<details><summary>What are the key institutions for growth?<span class="zh-full" lang="zh-Hant">成長的關鍵制度有哪些？</span></summary><p>Property rights, honest government, political stability, a dependable legal system, and competitive, open markets.<span class="zh-full" lang="zh-Hant">財產權、誠實的政府、政治穩定、可靠的法律制度，以及競爭開放的市場。</span></p></details>
+<details><summary>Why is being landlocked called a natural tariff?<span class="zh-full" lang="zh-Hant">為什麼內陸被稱為天然關稅？</span></summary><p>High transport costs act like a tax on every import and export: prices inland rise, trade shrinks and specialization suffers.<span class="zh-full" lang="zh-Hant">高運輸成本就像對每筆進出口課稅：內陸價格上升、貿易縮小、分工受損。</span></p></details>
 </div>
 
-<h2 id="templates">14. Answer templates</h2>
-<div class="method"><b>Define GDP</b><p>“GDP is the market value of all final goods and services produced within a country in a year. Final means we skip intermediate inputs to avoid double counting; produced means resales and transfers do not count.”</p></div>
-<div class="method"><b>Nominal, real, per person</b><p>“Nominal GDP rises with prices. Real GDP holds prices fixed, so it shows whether we produce more. Dividing by population gives real GDP per capita, the closest single measure of how the average person is doing.”</p></div>
-<div class="method"><b>Comparing countries</b><p>“Tradable goods cost about the same everywhere because of arbitrage, but services cannot be traded and workers cannot move freely. Low wages make services and the whole price level cheaper in poor countries, so we compare incomes at PPP.”</p></div>
-<div class="method"><b>Growth rates</b><p>“By the rule of 70, 2% growth doubles income every 35 years and 7% every 10. Small gaps compound: Japan went from half of Argentina's living standard in 1950 to twice it by 2015.”</p></div>
-<div class="method"><b>Why some countries are rich</b><p>“The immediate reason is productive workers with more physical capital, human capital and technology, organized by entrepreneurs. The deeper reason is incentives created by institutions: property rights, honest government, stability, dependable courts and open markets. North and South Korea show how different institutions turn the same starting point into a miracle and a disaster.”</p></div>
-<p class="note-small endnote">Sources: Marginal Revolution University, Principles of Macroeconomics (GDP and economic growth) and Development Economics (<i>When in India, Get a Haircut</i>; <i>No Considerations: Doing Business in India Without Bribes</i>); Amy Maxmen, <a href="https://undark.org/2024/01/24/central-african-republic-mortality/">How the World's Deadliest Crises Go Unseen</a>, Undark (2024). Figures and rankings are as reported in those sources, not current data.</p>
-<p class="note-small">Continue from <a href="economics-s6.html">Session 6: asymmetric information</a>, or return to <a href="economics.html">Economics sessions</a>.</p>
+<h2 id="templates">14. Answer templates<span class="zh-full" lang="zh-Hant">14. 答題模板</span></h2>
+<div class="method"><b>Define GDP<span class="zh-full" lang="zh-Hant">定義 GDP</span></b><p>“GDP is the market value of all final goods and services produced within a country in a year. Final means we skip intermediate inputs to avoid double counting; produced means resales and transfers do not count.”<span class="zh-full" lang="zh-Hant">「GDP 是一國在一年內生產的所有最終商品與服務的市場價值。『最終』代表略過中間投入以免重複計算；『生產』代表轉售和移轉支付不算。」</span></p></div>
+<div class="method"><b>Nominal, real, per person<span class="zh-full" lang="zh-Hant">名目、實質、每人</span></b><p>“Nominal GDP rises with prices. Real GDP holds prices fixed, so it shows whether we produce more. Dividing by population gives real GDP per capita, the closest single measure of how the average person is doing.”<span class="zh-full" lang="zh-Hant">「名目 GDP 會隨物價上升。實質 GDP 固定價格，顯示我們是否真的生產更多。再除以人口，就是每人實質 GDP，最接近平均每個人過得如何的單一指標。」</span></p></div>
+<div class="method"><b>Comparing countries<span class="zh-full" lang="zh-Hant">跨國比較</span></b><p>“Tradable goods cost about the same everywhere because of arbitrage, but services cannot be traded and workers cannot move freely. Low wages make services and the whole price level cheaper in poor countries, so we compare incomes at PPP.”<span class="zh-full" lang="zh-Hant">「可貿易品因為套利，各地價格差不多；但服務無法交易，勞工也不能自由移動。低工資讓窮國的服務和整體物價較便宜，所以要用 PPP 比較所得。」</span></p></div>
+<div class="method"><b>Growth rates<span class="zh-full" lang="zh-Hant">成長率</span></b><p>“By the rule of 70, 2% growth doubles income every 35 years and 7% every 10. Small gaps compound: Japan went from half of Argentina's living standard in 1950 to twice it by 2015.”<span class="zh-full" lang="zh-Hant">「依 70 法則，2% 成長每 35 年所得翻倍，7% 每 10 年翻倍。小差距會累積：日本從 1950 年只有阿根廷的一半，到 2015 年變成兩倍。」</span></p></div>
+<div class="method"><b>Why some countries are rich<span class="zh-full" lang="zh-Hant">為什麼有些國家富有</span></b><p>“The immediate reason is productive workers with more physical capital, human capital and technology, organized by entrepreneurs. The deeper reason is incentives created by institutions: property rights, honest government, stability, dependable courts and open markets. North and South Korea show how different institutions turn the same starting point into a miracle and a disaster.”<span class="zh-full" lang="zh-Hant">「直接原因是勞工擁有更多實體資本、人力資本和技術，並由企業家組織起來。更深的原因是制度創造的誘因：財產權、誠實的政府、穩定、可靠的法院和開放的市場。南北韓說明了相同的起點，在不同制度下會變成奇蹟與災難。」</span></p></div>
+<p class="note-small endnote">Sources: Marginal Revolution University, Principles of Macroeconomics (GDP and economic growth) and Development Economics (<i>When in India, Get a Haircut</i>; <i>No Considerations: Doing Business in India Without Bribes</i>); Amy Maxmen, <a href="https://undark.org/2024/01/24/central-african-republic-mortality/">How the World's Deadliest Crises Go Unseen</a>, Undark (2024). Figures and rankings are as reported in those sources, not current data.<span class="zh-full" lang="zh-Hant">來源：Marginal Revolution University 總體經濟學原理（GDP 與經濟成長）及發展經濟學（〈在印度，去理個髮〉、〈不付「好處」：在印度做生意〉）；Amy Maxmen〈世界上最致命的危機為何被忽視〉，Undark（2024）。數字與排名依來源所述，並非目前資料。</span></p>
+<p class="note-small">Continue from <a href="economics-s6.html">Session 6: asymmetric information</a>, or return to <a href="economics.html">Economics sessions</a>.<span class="zh-full" lang="zh-Hant">接續第 6 堂：資訊不對稱，或回到 Economics 課程列表。</span></p>
 </article></main></div>
 
 <script>/* Reusable economics widgets. Shared Plot and controls are embedded for offline use. */
@@ -563,7 +655,7 @@ svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
   const colors={d:'var(--demand)',mr:'var(--ext)',mc:'var(--supply)',atc:'var(--world)',cs:'var(--cs)',ps:'var(--ps)'};
   function el(tag,attrs={},parent){const e=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));if(parent)parent.append(e);return e;}
   function Plot(svg,qMax,pMax,pMin=0){
-    const W=Math.max(280,svg.getBoundingClientRect().width||500),H=340,L=48,R=18,T=28,B=51;
+    const W=Math.max(280,svg.getBoundingClientRect().width||500),H=document.body.classList.contains('show-zh')?370:340,L=48,R=18,T=document.body.classList.contains('show-zh')?44:28,B=document.body.classList.contains('show-zh')?64:51;
     svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.replaceChildren();
     const sx=q=>L+q/qMax*(W-L-R),sy=p=>H-B-(p-pMin)/(pMax-pMin)*(H-T-B);
     const defs=el('defs',{},svg),clip=el('clipPath',{id:'plot-clip-'+(++uid)},defs);
@@ -571,7 +663,7 @@ svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
     const grid=el('g',{},svg),area=el('g',{'clip-path':'url(#'+clip.id+')'},svg),lines=el('g',{'clip-path':'url(#'+clip.id+')'},svg),top=el('g',{},svg);
     const text=(x,y,s,attrs={})=>{const t=el('text',{x,y,class:'tk',...attrs},top);t.textContent=s;return t;};
     return {sx,sy,W,H,
-      axes(xl,yl){el('line',{x1:L,y1:T,x2:L,y2:H-B,class:'ax'},grid);el('line',{x1:L,y1:H-B,x2:W-R,y2:H-B,class:'ax'},grid);text(L,T-12,yl,{class:'axl'});text((L+W-R)/2,H-8,xl,{'text-anchor':'middle',class:'axl'});},
+      axes(xl,yl){el('line',{x1:L,y1:T,x2:L,y2:H-B,class:'ax'},grid);el('line',{x1:L,y1:H-B,x2:W-R,y2:H-B,class:'ax'},grid);text(L,T-(document.body.classList.contains('show-zh')?25:12),yl,{class:'axl'});text((L+W-R)/2,H-(document.body.classList.contains('show-zh')?23:8),xl,{'text-anchor':'middle',class:'axl'});},
       xticks(values,fmt=num){values.forEach(q=>text(sx(q),H-B+19,fmt(q),{'text-anchor':'middle'}));},
       yticks(values,fmt=num){values.forEach(p=>{el('line',{x1:L,y1:sy(p),x2:W-R,y2:sy(p),class:'grid'},grid);text(L-7,sy(p)+4,fmt(p),{'text-anchor':'end'});});},
       path(points,color,dash=false){el('polyline',{points:points.map(([q,p])=>sx(q)+','+sy(p)).join(' '),fill:'none',stroke:color,'stroke-width':2.5,'stroke-dasharray':dash?'6 5':'none'},lines);},
@@ -604,7 +696,7 @@ svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
       button(label,on){const b=document.createElement('button');b.type='button';b.className='g-btn';b.textContent=label;b.addEventListener('click',on);ctrl.append(b);return b;},
       seg(label,options,value,on){const group=document.createElement('div');group.className='seg';group.setAttribute('role','group');group.setAttribute('aria-label',label);options.forEach(([v,t])=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.dataset.value=v;b.setAttribute('aria-pressed',String(v===value));b.addEventListener('click',()=>{[...group.children].forEach(x=>x.setAttribute('aria-pressed',String(x===b)));on(v);});group.append(b);});ctrl.append(group);},
       show(rows,note){const stats=host.querySelector('.g-stats');stats.replaceChildren();rows.forEach(([key,value,big=false])=>{const row=document.createElement('div');row.className='st'+(big?' big':'');row.dataset.stat=key;const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=key;dd.textContent=value;row.append(dt,dd);stats.append(row);});host.querySelector('.g-note').textContent=note;},
-      redrawOnResize(draw){let last='';const obs=new ResizeObserver(()=>{const widths=svgs.map(svg=>Math.round(svg.getBoundingClientRect().width)).join('|');if(widths!==last){last=widths;draw();}});obs.observe(plot);svgs.forEach(svg=>obs.observe(svg.parentElement));}
+      redrawOnResize(draw){let last='';const obs=new ResizeObserver(()=>{const widths=svgs.map(svg=>Math.round(svg.getBoundingClientRect().width)).join('|');if(widths!==last){last=widths;draw();}});obs.observe(plot);svgs.forEach(svg=>obs.observe(svg.parentElement));window.addEventListener('econ-language-change',draw);}
     };
   }
   const W_={};
@@ -612,30 +704,33 @@ svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
   const baht=n=>(n<0?'−฿':'฿')+Math.round(Math.abs(n)).toLocaleString('en-US');
   const pct=n=>Math.round(n*100)+'%';
   const signed=n=>(n<0?'−':'')+num(Math.abs(n));
-  const tr=en=>en;const L=en=>[en,''];const zhOn=()=>false;
   
+  const ZHD=window.ZH_DYN||(window.ZH_DYN={});
+  const tr=(en,zh)=>{if(zh)ZHD[en.replace(/\s+/g,' ').trim()]=zh;return en;};
+  const L=(en,zh)=>[en,zh];
+  const zhOn=()=>document.body.classList.contains('show-zh');
   const T=p=>tr(p[0],p[1]);
   const pc1=n=>(Math.abs(n)<0.05?'0.0':(n<0?'−':'')+Math.abs(n).toFixed(1))+'%';
   const times=n=>n>=100?Math.round(n).toLocaleString('en-US')+'×':n>=10?n.toFixed(0)+'×':n.toFixed(1)+'×';
-  function live(s,draw){draw();s.redrawOnResize(draw);}
+  function live(s,draw){draw();s.redrawOnResize(draw);window.addEventListener('econ-language-change',draw);}
   function niceStep(span,count){const raw=span/count,p=Math.pow(10,Math.floor(Math.log10(raw))),m=raw/p;return (m<=1?1:m<=2?2:m<=5?5:10)*p;}
   function make(tag,cls,text,parent){const n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;if(parent)parent.append(n);return n;}
 
   /* 1. Ring up GDP: each transaction either lands in C, I, G, X or M, or stays off the register. */
   W_.ringup=host=>{
-    const K={C:[L('Consumption'),'var(--ps)','a-ps'],I:[L('Investment'),'var(--rev)','a-rev'],G:[L('Government purchases'),'var(--cs)','a-cs'],X:[L('Exports'),'var(--time)','a-time'],M:[L('Imports, subtracted'),'var(--dwl)','a-loss']};
+    const K={C:[L('Consumption','消費'),'var(--ps)','a-ps'],I:[L('Investment','投資'),'var(--rev)','a-rev'],G:[L('Government purchases','政府購買'),'var(--cs)','a-cs'],X:[L('Exports','出口'),'var(--time)','a-time'],M:[L('Imports, subtracted','進口（扣除）'),'var(--dwl)','a-loss']};
     const items=[
-      [L('Households buy food, phone plans and massages'),500,'C',L('Household spending on final goods and services.')],
-      [L('Firms buy new machines and build a warehouse'),150,'I',L('New capital goods: they count even though they will help make other things.')],
-      [L('Government builds a rail line and pays teachers'),180,'G',L('The government buys output: construction and teaching services.')],
-      [L('Foreign tourists pay hotels in Phuket'),120,'X',L('Thai output bought by foreigners.')],
-      [L('People and firms buy imported phones and fuel'),110,'M',L('This spending is already inside C and I, but it was produced abroad, so it comes off.')],
-      [L('Bakeries buy flour to bake bread'),30,'N',L('Intermediate good: its value is already inside the price of the bread.')],
-      [L('Government sends pension checks'),60,'N',L('Transfer: nothing is bought. When retirees spend it, that is consumption.')],
-      [L('People resell used cars'),40,'N',L('Resale: the cars were counted in the year they were built.')],
-      [L('Investors buy shares'),90,'N',L('Financial trade: ownership changes hands, nothing new is made.')]
+      [L('Households buy food, phone plans and massages','家庭購買食物、手機方案和按摩'),500,'C',L('Household spending on final goods and services.','家庭購買最終商品與服務。')],
+      [L('Firms buy new machines and build a warehouse','企業購買新機器、興建倉庫'),150,'I',L('New capital goods: they count even though they will help make other things.','新的資本財：雖然之後用來生產別的東西，仍要計算。')],
+      [L('Government builds a rail line and pays teachers','政府興建鐵路、支付教師薪水'),180,'G',L('The government buys output: construction and teaching services.','政府購買產出：營建與教學服務。')],
+      [L('Foreign tourists pay hotels in Phuket','外國遊客付普吉島的旅館費'),120,'X',L('Thai output bought by foreigners.','外國人購買的泰國產出。')],
+      [L('People and firms buy imported phones and fuel','民眾和企業購買進口手機和燃料'),110,'M',L('This spending is already inside C and I, but it was produced abroad, so it comes off.','這筆支出已經包含在 C 和 I 裡，但它是在國外生產的，所以要扣掉。')],
+      [L('Bakeries buy flour to bake bread','麵包店買麵粉做麵包'),30,'N',L('Intermediate good: its value is already inside the price of the bread.','中間財：它的價值已經包含在麵包售價裡。')],
+      [L('Government sends pension checks','政府寄出退休金支票'),60,'N',L('Transfer: nothing is bought. When retirees spend it, that is consumption.','移轉支付：沒有購買任何東西。退休人士花掉時才算消費。')],
+      [L('People resell used cars','民眾轉售二手車'),40,'N',L('Resale: the cars were counted in the year they were built.','轉售：車子在生產那一年已經算過。')],
+      [L('Investors buy shares','投資人買股票'),90,'N',L('Financial trade: ownership changes hands, nothing new is made.','金融交易：所有權易手，沒有生產新東西。')]
     ];
-    const s=shell(host,tr('Ring up the economy'),tr('Tap a transaction to send it to the register. Before each tap, decide whether it counts and in which part.'),Object.values(K).map(([n,c])=>[T(n),c]));
+    const s=shell(host,tr('Ring up the economy','把整個經濟結帳'),tr('Tap a transaction to send it to the register. Before each tap, decide whether it counts and in which part.','點一筆交易送去結帳。每次點之前，先判斷它算不算、算在哪一類。'),Object.values(K).map(([n,c])=>[T(n),c]));
     const rung=new Set();let view='spend',last=null;
     const grid=make('div','ring-grid');
     const cards=items.map(([t,v,k,why],i)=>{
@@ -646,82 +741,82 @@ svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
     });
     host.append(grid);
     const sum=k=>items.reduce((a,[,v,kk],i)=>a+(rung.has(i)&&kk===k?v:0),0);
-    const sync=()=>cards.forEach((c,i)=>{const on=rung.has(i);c.b.classList.toggle('done',on);c.b.classList.toggle('off-reg',on&&c.k==='N');c.b.setAttribute('aria-pressed',String(on));c.tag.textContent=on?(c.k==='N'?tr('Not counted'):T(K[c.k][0])):'';});
+    const sync=()=>cards.forEach((c,i)=>{const on=rung.has(i);c.b.classList.toggle('done',on);c.b.classList.toggle('off-reg',on&&c.k==='N');c.b.setAttribute('aria-pressed',String(on));c.tag.textContent=on?(c.k==='N'?tr('Not counted','不計入'):T(K[c.k][0])):'';});
     const draw=()=>{
       const v={C:sum('C'),I:sum('I'),G:sum('G'),X:sum('X'),M:sum('M')},gross=v.C+v.I+v.G+v.X,gdp=gross-v.M;
-      const P=Plot(s.svgs[0],3,1000);P.axes('',tr('Million baht'));P.yticks([0,250,500,750,1000]);
-      P.xticks([1,2],q=>q===1?tr('Spending side'):tr('Income side'));
+      const P=Plot(s.svgs[0],3,1000);P.axes('',tr('Million baht','百萬泰銖'));P.yticks([0,250,500,750,1000]);
+      P.xticks([1,2],q=>q===1?tr('Spending side','支出面'):tr('Income side','所得面'));
       let y=0;['C','I','G','X'].forEach(k=>{if(v[k]){P.rect(.62,1.38,y,y+v[k],K[k][2]);if(v[k]>=60){if(k==='X'&&v.M)P.tag(.58,y+v[k]/2+4,'X','end');else P.tag(1,y+v[k]/2+4,k);}y+=v[k];}});
       if(v.M){P.rect(.62,1.38,gdp,gross,'a-dwl');P.tag(1.42,gross-v.M/2+4,'−M','start');}
       if(gdp>0){P.path([[.5,gdp],[2.5,gdp]],'var(--fg)',true);P.tag(2.5,gdp,'GDP '+num(gdp),'end');
-        const inc=[[L('Wages'),.56],[L('Rent'),.07],[L('Interest'),.06],[L('Profit'),.31]];let z=0;
+        const inc=[[L('Wages','工資'),.56],[L('Rent','租金'),.07],[L('Interest','利息'),.06],[L('Profit','利潤'),.31]];let z=0;
         inc.forEach(([n,sh],j)=>{const h=gdp*sh;P.rect(1.62,2.38,z,z+h,['a-ps2','a-ts','a-rev2','a-prof'][j]);if(h>=60)P.tag(2,z+h/2+4,T(n));z+=h;});}
-      const rows=[['C',num(v.C)],['I',num(v.I)],['G',num(v.G)],[tr('Exports'),num(v.X)],[tr('Imports'),v.M?'−'+num(v.M):'0'],['NX',(v.X-v.M<0?'−':'')+num(Math.abs(v.X-v.M))],['GDP = C + I + G + NX',num(gdp),true],[tr('Left off the register'),num(items.reduce((a,[,val,k],i)=>a+(rung.has(i)&&k==='N'?val:0),0))]];
-      const note=last===null?tr('Nothing rung up yet. Start with the household shopping, then try the trickier ones at the bottom.'):T(cards[last].why)+(rung.size===items.length?' '+tr('Same total from both sides: every baht spent ends up as someone\'s wages, rent, interest or profit.'):'');
+      const rows=[['C',num(v.C)],['I',num(v.I)],['G',num(v.G)],[tr('Exports','出口'),num(v.X)],[tr('Imports','進口'),v.M?'−'+num(v.M):'0'],['NX',(v.X-v.M<0?'−':'')+num(Math.abs(v.X-v.M))],['GDP = C + I + G + NX',num(gdp),true],[tr('Left off the register','沒有結帳的金額'),num(items.reduce((a,[,val,k],i)=>a+(rung.has(i)&&k==='N'?val:0),0))]];
+      const note=last===null?tr('Nothing rung up yet. Start with the household shopping, then try the trickier ones at the bottom.','還沒結帳。先從家庭購物開始，再試下面比較難的幾筆。'):T(cards[last].why)+(rung.size===items.length?' '+tr('Same total from both sides: every baht spent ends up as someone\'s wages, rent, interest or profit.','兩邊總數相同：花出去的每一泰銖，最後都成為某人的工資、租金、利息或利潤。'):'');
       s.show(rows,note);
     };
-    s.button(tr('Ring up everything'),()=>{items.forEach((_,i)=>rung.add(i));last=items.length-1;sync();draw();});
-    s.button(tr('Clear the register'),()=>{rung.clear();last=null;sync();draw();});
+    s.button(tr('Ring up everything','全部結帳'),()=>{items.forEach((_,i)=>rung.add(i));last=items.length-1;sync();draw();});
+    s.button(tr('Clear the register','清空收銀機'),()=>{rung.clear();last=null;sync();draw();});
     live(s,draw);
   };
 
   /* 2. Nominal to real to per person, as a waterfall. */
   W_.waterfall=host=>{
-    const s=shell(host,tr('From the headline number to living standards'),tr('Start with nominal GDP, take out price increases, then share what is left among more people.'),[[tr('Nominal'),'var(--rev)'],[tr('Lost to prices or people'),'var(--dwl)'],[tr('Real'),'var(--ps)'],[tr('Real per person'),'var(--cs)']]);
+    const s=shell(host,tr('From the headline number to living standards','從新聞數字到生活水準'),tr('Start with nominal GDP, take out price increases, then share what is left among more people.','從名目 GDP 出發，先拿掉物價上漲，再把剩下的分給變多的人口。'),[[tr('Nominal','名目'),'var(--rev)'],[tr('Lost to prices or people','被物價或人口吃掉'),'var(--dwl)'],[tr('Real','實質'),'var(--ps)'],[tr('Real per person','每人實質'),'var(--cs)']]);
     let mode='us',n=6,pi=4,pop=1;
     const draw=()=>{
       let a,b,c,unit,fmt;
       if(mode==='us'){a=55;b=8;c=3.6;fmt=v=>num(v)+'×';}
       else{a=n;b=((1+n/100)/(1+pi/100)-1)*100;c=((1+b/100)/(1+pop/100)-1)*100;fmt=pc1;}
       const vals=[a,b,c],hi=mode==='us'?60:Math.max(10,Math.ceil(Math.max(...vals)/5)*5),lo=mode==='us'?0:Math.min(0,Math.floor(Math.min(...vals)/5)*5);
-      const P=Plot(s.svgs[0],5.6,hi,lo);P.axes('',mode==='us'?tr('US GDP in 2015 as a multiple of 1950'):tr('Percent change'));
-      P.xticks([1,2,3,4,5],q=>[tr('Nominal'),tr('Prices'),tr('Real'),tr('People'),tr('Per head')][q-1]);
+      const P=Plot(s.svgs[0],5.6,hi,lo);P.axes('',mode==='us'?tr('US GDP in 2015 as a multiple of 1950','2015 年美國 GDP 為 1950 年的幾倍'):tr('Percent change','百分比變化'));
+      P.xticks([1,2,3,4,5],q=>[tr('Nominal','名目'),tr('Prices','物價'),tr('Real','實質'),tr('People','人口'),tr('Per head','每人')][q-1]);
       const st=niceStep(hi-lo,5),tk=[];for(let t=Math.ceil(lo/st)*st;t<=hi+1e-9;t+=st)tk.push(Math.round(t*100)/100);P.yticks(tk,mode==='us'?v=>v+'×':v=>v+'%');
       const bar=(x,y0,y1,cls,label)=>{P.rect(x-.34,x+.34,Math.min(y0,y1),Math.max(y0,y1),cls);if(label)P.tag(x,Math.max(y0,y1),label);};
       const dl=(x,y)=>mode==='us'?'÷'+(x/y).toFixed(1):(x>=y?'−':'+')+Math.abs(x-y).toFixed(1);bar(1,0,a,'a-rev',fmt(a));bar(2,a,b,'a-loss',dl(a,b));bar(3,0,b,'a-ps',fmt(b));bar(4,b,c,'a-loss',dl(b,c));bar(5,0,c,'a-cs',fmt(c));
       P.path([[1.34,a],[1.66,a]],'var(--muted)',true);P.path([[2.34,b],[2.66,b]],'var(--muted)',true);P.path([[3.34,b],[3.66,b]],'var(--muted)',true);P.path([[4.34,c],[4.66,c]],'var(--muted)',true);
       if(lo<0)P.hline(0,'var(--muted)');
       let rows,note;
-      if(mode==='us'){rows=[[tr('Nominal GDP, 1950 to 2015'),'$320 bn → $17 tn+'],[tr('Real GDP, 2009 dollars'),'$2 tn → $16 tn'],[tr('Real GDP per person'),'$14,000 → $50,000',true],[tr('Price level rose about'),'6.9×'],[tr('Population rose about'),'2.2×']];
-        note=tr('Prices did most of the work in the headline 55×. Per person, Americans ended up roughly three and a half times better off.');}
-      else{rows=[[tr('Nominal GDP growth'),pc1(n)],[tr('Inflation'),pc1(pi)],[tr('Real GDP growth'),pc1(b),true],[tr('Population growth'),pc1(pop)],[tr('Real growth per person'),pc1(c),true]];
-        note=c<-0.05?tr('Spending rose in money terms, yet each person\'s share of real output fell.'):tr('Only the last bar answers "are people better off?" The first one mostly measures prices.');}
+      if(mode==='us'){rows=[[tr('Nominal GDP, 1950 to 2015','名目 GDP，1950 至 2015'),'$320 bn → $17 tn+'],[tr('Real GDP, 2009 dollars','實質 GDP（2009 年美元）'),'$2 tn → $16 tn'],[tr('Real GDP per person','每人實質 GDP'),'$14,000 → $50,000',true],[tr('Price level rose about','物價水準約上升'),'6.9×'],[tr('Population rose about','人口約增加'),'2.2×']];
+        note=tr('Prices did most of the work in the headline 55×. Per person, Americans ended up roughly three and a half times better off.','55 倍的新聞數字大多來自物價。換算到每個人，美國人大約好了三倍半。');}
+      else{rows=[[tr('Nominal GDP growth','名目 GDP 成長'),pc1(n)],[tr('Inflation','物價上漲'),pc1(pi)],[tr('Real GDP growth','實質 GDP 成長'),pc1(b),true],[tr('Population growth','人口成長'),pc1(pop)],[tr('Real growth per person','每人實質成長'),pc1(c),true]];
+        note=c<-0.05?tr('Spending rose in money terms, yet each person\'s share of real output fell.','以金額計支出增加了，但每個人分到的實質產出卻減少。'):tr('Only the last bar answers "are people better off?" The first one mostly measures prices.','只有最後一條回答「大家有沒有過得更好」，第一條大多只是在量物價。');}
       s.show(rows,note);
     };
     const own=()=>{mode='own';draw();};
-    const sa=s.slider('n',tr('Nominal GDP growth'),0,30,.1,n,v=>v.toFixed(1)+'%',v=>{n=v;own();});
-    const sb=s.slider('pi',tr('Inflation'),0,25,.1,pi,v=>v.toFixed(1)+'%',v=>{pi=v;own();});
-    const sc=s.slider('pop',tr('Population growth'),-1,6,.1,pop,v=>v.toFixed(1)+'%',v=>{pop=v;own();});
-    s.button(tr('Show the US, 1950 to 2015'),()=>{mode='us';draw();});
-    s.button(tr('A year in a small Thai economy'),()=>{n=23.7;pi=17;pop=5;sa.set(n);sb.set(pi);sc.set(pop);own();});
+    const sa=s.slider('n',tr('Nominal GDP growth','名目 GDP 成長'),0,30,.1,n,v=>v.toFixed(1)+'%',v=>{n=v;own();});
+    const sb=s.slider('pi',tr('Inflation','物價上漲'),0,25,.1,pi,v=>v.toFixed(1)+'%',v=>{pi=v;own();});
+    const sc=s.slider('pop',tr('Population growth','人口成長'),-1,6,.1,pop,v=>v.toFixed(1)+'%',v=>{pop=v;own();});
+    s.button(tr('Show the US, 1950 to 2015','看美國 1950 至 2015'),()=>{mode='us';draw();});
+    s.button(tr('A year in a small Thai economy','泰國小經濟體的一年'),()=>{n=23.7;pi=17;pop=5;sa.set(n);sb.set(pi);sc.set(pop);own();});
     live(s,draw);
   };
 
   /* Nominal versus PPP: the professor's 2026 comparison. */
   W_.pppflip=host=>{
-    const s=shell(host,tr('The same economies at market prices and at PPP'),tr('Switch from nominal GDP to PPP-adjusted GDP. Predict first: which countries grow on the chart, and which barely move?'),[[tr('Nominal GDP'),'var(--rev)'],[tr('PPP GDP','PPP GDP'),'var(--ps)']]);
-    const d=[[L('US'),32.6,31.8,'US'],[L('China'),21.5,43.5,'CHN'],[L('India'),4.1,19.1,'IND'],[L('Japan'),4.3,6.9,'JPN'],[L('Indonesia'),1.5,5.4,'IDN'],[L('Thailand'),0.599,1.9,'THA']];
+    const s=shell(host,tr('The same economies at market prices and at PPP','同一批經濟體：市場價格 vs PPP'),tr('Switch from nominal GDP to PPP-adjusted GDP. Predict first: which countries grow on the chart, and which barely move?','從名目 GDP 切換到 PPP 調整後的 GDP。先預測：哪些國家的長條會變長，哪些幾乎不動？'),[[tr('Nominal GDP','名目 GDP'),'var(--rev)'],[tr('PPP GDP','PPP GDP'),'var(--ps)']]);
+    const d=[[L('US','美國'),32.6,31.8,'US'],[L('China','中國'),21.5,43.5,'CHN'],[L('India','印度'),4.1,19.1,'IND'],[L('Japan','日本'),4.3,6.9,'JPN'],[L('Indonesia','印尼'),1.5,5.4,'IDN'],[L('Thailand','泰國'),0.599,1.9,'THA']];
     let mode='nom';
     const draw=()=>{
-      const P=Plot(s.svgs[0],7,50);P.axes('',tr('Trillion US dollars, 2026 estimates'));P.yticks([0,10,20,30,40],v=>'$'+v+'T');
+      const P=Plot(s.svgs[0],7,50);P.axes('',tr('Trillion US dollars, 2026 estimates','兆美元，2026 年估計'));P.yticks([0,10,20,30,40],v=>'$'+v+'T');
       P.xticks([1,2,3,4,5,6],q=>d[q-1][3]);
       d.forEach(([,n,p],i)=>{const v=mode==='nom'?n:p;P.rect(i+.66,i+1.34,0,v,mode==='nom'?'a-rev':'a-ps');P.tag(i+1,v,'$'+(v<1?Math.round(v*1000)+'B':v+'T'));});
-      const rows=d.map(([nm,n,p])=>[tr(`${nm[0]}: PPP ÷ nominal`),(p/n).toFixed(1)+'×',nm[0]==='Thailand']);
-      rows.push([tr('World GDP'),mode==='nom'?'$128T':'$219.2T']);
-      s.show(rows,mode==='nom'?tr('At market exchange rates the US is the largest economy by far, and Thailand is about $0.6 trillion.'):tr('At PPP, China passes the US (it did so in 2014), India nearly quintuples and Thailand more than triples. The US barely moves. Low-wage economies have cheap services, so their output is worth more once prices are made equal.'));
+      const rows=d.map(([nm,n,p])=>[tr(`${nm[0]}: PPP ÷ nominal`,`${nm[1]}：PPP ÷ 名目`),(p/n).toFixed(1)+'×',nm[0]==='Thailand']);
+      rows.push([tr('World GDP','全球 GDP'),mode==='nom'?'$128T':'$219.2T']);
+      s.show(rows,mode==='nom'?tr('At market exchange rates the US is the largest economy by far, and Thailand is about $0.6 trillion.','以市場匯率計，美國是遙遙領先的最大經濟體，泰國約 0.6 兆美元。'):tr('At PPP, China passes the US (it did so in 2014), India nearly quintuples and Thailand more than triples. The US barely moves. Low-wage economies have cheap services, so their output is worth more once prices are made equal.','以 PPP 計，中國超越美國（2014 年就已超越），印度接近五倍，泰國超過三倍，美國幾乎不變。低工資經濟體的服務便宜，所以價格拉平後，它們的產出價值更高。'));
     };
-    s.seg(tr('Measure'),[['nom',tr('Nominal')],['ppp','PPP']],mode,v=>{mode=v;draw();});
+    s.seg(tr('Measure','衡量方式'),[['nom',tr('Nominal','名目')],['ppp','PPP']],mode,v=>{mode=v;draw();});
     live(s,draw);
   };
 
   /* 4. Balassa-Samuelson: a higher outside wage raises the cost, and price, of a haircut. */
   W_.haircut=host=>{
-    const s=shell(host,tr('Why a haircut costs more where wages are high'),tr('Raise what a barber could earn in another job. Predict which curve moves and what happens to the price.'),[[tr('Demand D'),colors.d],[tr('Supply S'),colors.mc]]);
+    const s=shell(host,tr('Why a haircut costs more where wages are high','為什麼工資高的地方理髮比較貴'),tr('Raise what a barber could earn in another job. Predict which curve moves and what happens to the price.','提高理髮師在其他工作能賺到的錢。先預測哪條線移動、價格怎麼變。'),[[tr('Demand D','需求 D'),colors.d],[tr('Supply S','供給 S'),colors.mc]]);
     let w=100,rich=false;const w0=100,a0=600;
     const eq=(a,wage)=>{const q=(a-0.5*wage)/6;return [q,a-4*q];};
     const draw=()=>{
       const a=rich?800:600,[q1,p1]=eq(a0,w0),[q2,p2]=eq(a,w),movedS=w!==w0,moved=movedS||rich;
-      const P=Plot(s.svgs[0],120,820);P.axes(tr('Haircuts per day in one district'),tr('Baht per haircut'));P.xticks([0,30,60,90,120]);P.yticks([0,200,400,600,800]);
+      const P=Plot(s.svgs[0],120,820);P.axes(tr('Haircuts per day in one district','某區每日理髮次數'),tr('Baht per haircut','每次理髮泰銖'));P.xticks([0,30,60,90,120]);P.yticks([0,200,400,600,800]);
       if(movedS)P.path([[0,0.5*w0],[120,0.5*w0+240]],colors.mc,true);
       if(rich)P.path([[0,a0],[120,a0-480]],colors.d,true);
       P.line(0.5*w,2,colors.mc);P.line(a,-4,colors.d);
@@ -729,25 +824,25 @@ svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
       P.tag(8,a-32,rich?'D2':'D','start',-4);if(rich)P.tag(8,a0-32,'D1','start',16);
       P.guide(q1,p1);P.point(q1,p1,'var(--fg)');P.tag(q1,p1,moved?'E1':'E','start',-9);P.tag(1.5,p1,moved?'P1':'P','start',p2>p1||!moved?14:-4);P.tag(q1,0,moved?'Q1':'Q','start',-5);
       if(moved){P.guide(q2,p2);P.point(q2,p2,'var(--fg)');P.tag(q2,p2,'E2','end',-9);P.tag(1.5,p2,'P2','start',p2>p1?-4:14);P.tag(q2,0,'Q2','end',-5);}
-      const rows=[[tr('Outside wage per hour'),baht(w)],[tr('Labor cost of a 30-minute haircut'),baht(w/2)],[moved?'P1, Q1':'P, Q',baht(p1)+', '+num(Math.round(q1*10)/10)]];
+      const rows=[[tr('Outside wage per hour','外部時薪'),baht(w)],[tr('Labor cost of a 30-minute haircut','30 分鐘理髮的人工成本'),baht(w/2)],[moved?'P1, Q1':'P, Q',baht(p1)+', '+num(Math.round(q1*10)/10)]];
       if(moved)rows.push(['P2, Q2',baht(p2)+', '+num(Math.round(q2*10)/10),true]);
       let note;
-      if(!moved)note=tr('A barber could earn ฿100 an hour elsewhere. What happens to S if factories nearby start paying more?');
-      else if(movedS&&!rich)note=w>w0?tr('Each haircut now costs more to supply, so S shifts left (up). P rises and Q falls, though the barber is no more skilled than before.'):tr('Cheaper labor makes haircuts cheaper to supply, so S shifts right (down) and the price falls.');
-      else note=tr('Richer locals also want more haircuts, so D shifts right too. P rises even more; Q depends on which shift is bigger.');
+      if(!moved)note=tr('A barber could earn ฿100 an hour elsewhere. What happens to S if factories nearby start paying more?','理髮師在別處時薪 100 泰銖。如果附近工廠開始付更高薪水，S 會怎樣？');
+      else if(movedS&&!rich)note=w>w0?tr('Each haircut now costs more to supply, so S shifts left (up). P rises and Q falls, though the barber is no more skilled than before.','每次理髮的供給成本提高，所以 S 左移（上移）。P 上升、Q 下降，雖然理髮師的手藝沒有變好。'):tr('Cheaper labor makes haircuts cheaper to supply, so S shifts right (down) and the price falls.','勞動變便宜，理髮的供給成本下降，S 右移（下移），價格下降。');
+      else note=tr('Richer locals also want more haircuts, so D shifts right too. P rises even more; Q depends on which shift is bigger.','當地人變富也會想多理髮，所以 D 也右移。P 漲更多；Q 怎麼變，要看哪個移動比較大。');
       s.show(rows,note);
     };
-    const sl=s.slider('w',tr('Outside wage for a barber (baht per hour)'),40,500,10,w,baht,v=>{w=v;draw();});
-    s.seg(tr('Local demand'),[['same',tr('Local incomes unchanged')],['rich',tr('Local incomes rise too')]],'same',v=>{rich=v==='rich';draw();});
-    s.button(tr('Reset'),()=>{w=w0;sl.set(w);draw();});
+    const sl=s.slider('w',tr('Outside wage for a barber (baht per hour)','理髮師的外部時薪（泰銖）'),40,500,10,w,baht,v=>{w=v;draw();});
+    s.seg(tr('Local demand','當地需求'),[['same',tr('Local incomes unchanged','當地所得不變')],['rich',tr('Local incomes rise too','當地所得也提高')]],'same',v=>{rich=v==='rich';draw();});
+    s.button(tr('Reset','重設'),()=>{w=w0;sl.set(w);draw();});
     live(s,draw);
   };
 
   /* 5. Guess the gap: one square is one basket of goods a year. */
   W_.guess=host=>{
-    const s=shell(host,tr('Guess the gap'),tr('One square is one basket: $100 of buying power a year, adjusted for prices. The average person in the Central African Republic gets 6. Guess Mexico and the United States, then reveal.'),[[tr('Actual baskets'),'var(--ps)'],[tr('Your guess'),'var(--fg)']]);
+    const s=shell(host,tr('Guess the gap','猜猜差距'),tr('One square is one basket: $100 of buying power a year, adjusted for prices. The average person in the Central African Republic gets 6. Guess Mexico and the United States, then reveal.','一格代表一籃：每年 100 美元的購買力（已調整物價）。中非共和國的平均每人有 6 籃。先猜墨西哥和美國，再揭曉。'),[[tr('Actual baskets','實際籃數'),'var(--ps)'],[tr('Your guess','你的猜測'),'var(--fg)']]);
     let gm=40,gu=120,shown=false;
-    const C=[[L('CAR'),6],[L('Mexico'),178],[L('United States'),540]];
+    const C=[[L('CAR','中非'),6],[L('Mexico','墨西哥'),178],[L('United States','美國'),540]];
     const draw=()=>{
       const svg=s.svgs[0],W=Math.max(280,svg.getBoundingClientRect().width||500),colW=W/3,per=20,cell=Math.min(9,(colW-14)/per),gap=cell*.18;
       const rows=Math.ceil(Math.max(540,gu)/per),H=40+rows*cell+30;
@@ -761,20 +856,20 @@ svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
           const inA=shown&&k<actual,inG=k<guess;
           el('rect',{x:x+gap/2,y:y+gap/2,width:cell-gap,height:cell-gap,rx:1,fill:inA||i===0?'var(--ps)':'none',stroke:inG&&i>0?'var(--fg)':'none','stroke-width':inG&&i>0?.9:0},svg);}
         const cap=el('text',{x:i*colW+colW/2,y:y0+Math.ceil(n/per)*cell+16,'text-anchor':'middle',class:'tk'},svg);
-        cap.textContent=i===0?'6':shown?(i===2?'≈'+actual:String(actual))+' · '+tr('guess')+' '+guess:tr('guess')+' '+guess;
+        cap.textContent=i===0?'6':shown?(i===2?'≈'+actual:String(actual))+' · '+tr('guess','猜')+' '+guess:tr('guess','猜')+' '+guess;
       });
-      const rr=shown?[[tr('Mexico vs CAR'),'29×',true],[tr('United States vs Mexico'),'3×',true],[tr('United States vs CAR'),'90×',true],[tr('Actual US compared with your guess'),times(540/gu)]]:[[tr('Your Mexico guess'),String(gm)],[tr('Your US guess'),String(gu)]];
-      s.show(rr,shown?tr('Most people put Mexico near the CAR. It is about 29 times richer, and much closer to the United States than to the poorest countries.'):tr('Set your two guesses, then reveal.'));
+      const rr=shown?[[tr('Mexico vs CAR','墨西哥 vs 中非'),'29×',true],[tr('United States vs Mexico','美國 vs 墨西哥'),'3×',true],[tr('United States vs CAR','美國 vs 中非'),'90×',true],[tr('Actual US compared with your guess','美國實際值 ÷ 你的猜測'),times(540/gu)]]:[[tr('Your Mexico guess','你猜墨西哥'),String(gm)],[tr('Your US guess','你猜美國'),String(gu)]];
+      s.show(rr,shown?tr('Most people put Mexico near the CAR. It is about 29 times richer, and much closer to the United States than to the poorest countries.','大多數人以為墨西哥和中非差不多。其實墨西哥約是中非的 29 倍，離美國比離最窮的國家近得多。'):tr('Set your two guesses, then reveal.','設定兩個猜測，再揭曉。'));
     };
-    s.slider('gm',tr('Your guess: Mexico'),1,600,1,gm,v=>String(v),v=>{gm=v;draw();});
-    s.slider('gu',tr('Your guess: United States'),1,900,1,gu,v=>String(v),v=>{gu=v;draw();});
-    s.button(tr('Reveal or hide the answer'),()=>{shown=!shown;draw();});
+    s.slider('gm',tr('Your guess: Mexico','你的猜測：墨西哥'),1,600,1,gm,v=>String(v),v=>{gm=v;draw();});
+    s.slider('gu',tr('Your guess: United States','你的猜測：美國'),1,900,1,gu,v=>String(v),v=>{gu=v;draw();});
+    s.button(tr('Reveal or hide the answer','揭曉／隱藏答案'),()=>{shown=!shown;draw();});
     live(s,draw);
   };
 
   /* 6. Compound growth and the rule of 70. */
   W_.compound=host=>{
-    const s=shell(host,tr('Small growth gaps, huge level gaps'),tr('Two economies start at the same income. Predict how far apart they end up, then check the doubling times against the rule of 70.'),[[tr('Economy A'),colors.d],[tr('Economy B'),colors.mc]]);
+    const s=shell(host,tr('Small growth gaps, huge level gaps','成長率差一點，水準差很多'),tr('Two economies start at the same income. Predict how far apart they end up, then check the doubling times against the rule of 70.','兩個經濟體從同樣的所得出發。先預測最後差多遠，再用 70 法則核對倍增時間。'),[[tr('Economy A','經濟體 A'),colors.d],[tr('Economy B','經濟體 B'),colors.mc]]);
     let g1=2,g2=3,Y=140,scale='ord';
     const idx=(g,t)=>Math.pow(1+g/100,t);
     const dbl=g=>g<=0?'∞':(70/g).toFixed(1)+' / '+(Math.log(2)/Math.log(1+g/100)).toFixed(1);
@@ -782,22 +877,22 @@ svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
       const log=scale==='ratio',end=[idx(g1,Y),idx(g2,Y)],top=Math.max(...end);let P;
       if(log){const hi=Math.max(1,Math.ceil(Math.log2(top)));P=Plot(s.svgs[0],Y,hi,0);const st=Math.max(1,Math.ceil(hi/6)),tk=[];for(let k=0;k<=hi;k+=st)tk.push(k);P.yticks(tk,v=>num(2**v)+'×');}
       else{const step=niceStep(top,5),hi=Math.ceil(top/step)*step;P=Plot(s.svgs[0],Y,hi,0);const tk=[];for(let v=0;v<=hi+1e-9;v+=step)tk.push(v);P.yticks(tk,v=>num(v));}
-      P.axes(tr('Years'),log?tr('Income, start = 1 (ratio scale)'):tr('Income, start = 1'));
+      P.axes(tr('Years','年'),log?tr('Income, start = 1 (ratio scale)','所得（起點 = 1，比例尺）'):tr('Income, start = 1','所得（起點 = 1）'));
       const xs=niceStep(Y,4),xt=[];for(let t=0;t<=Y+1e-9;t+=xs)xt.push(t);P.xticks(xt);
       [[g1,colors.d],[g2,colors.mc]].forEach(([g,c])=>{const pts=[];for(let i=0;i<=80;i++){const t=Y*i/80,v=idx(g,t);pts.push([t,log?Math.log2(v):v]);}P.path(pts,c);});
       P.tag(Y,log?Math.log2(end[0]):end[0],'A','end',end[0]>=end[1]?-8:14);P.tag(Y,log?Math.log2(end[1]):end[1],'B','end',end[1]>end[0]?-8:14);
       const r=end[1]/end[0];
-      s.show([[tr('Years to double, A (rule of 70 / exact)'),dbl(g1)],[tr('Years to double, B (rule of 70 / exact)'),dbl(g2)],[tr(`A after ${Y} years`),times(end[0])],[tr(`B after ${Y} years`),times(end[1])],[tr('B compared with A'),times(r),true]],
-        Math.abs(g2-g1)<0.05?tr('Same growth rate, same path.'):(()=>{const gap=Math.abs(g2-g1).toFixed(1),m=times(Math.max(r,1/r));return tr(`A gap of ${gap} points a year leaves one economy ${m} as rich as the other after ${Y} years. On the ratio scale, steady growth is a straight line.`);})());
+      s.show([[tr('Years to double, A (rule of 70 / exact)','A 倍增年數（70 法則／精確）'),dbl(g1)],[tr('Years to double, B (rule of 70 / exact)','B 倍增年數（70 法則／精確）'),dbl(g2)],[tr(`A after ${Y} years`,`A 經過 ${Y} 年後`),times(end[0])],[tr(`B after ${Y} years`,`B 經過 ${Y} 年後`),times(end[1])],[tr('B compared with A','B 相對於 A'),times(r),true]],
+        Math.abs(g2-g1)<0.05?tr('Same growth rate, same path.','成長率相同，路徑也相同。'):(()=>{const gap=Math.abs(g2-g1).toFixed(1),m=times(Math.max(r,1/r));return tr(`A gap of ${gap} points a year leaves one economy ${m} as rich as the other after ${Y} years. On the ratio scale, steady growth is a straight line.`,`每年差 ${gap} 個百分點，${Y} 年後一個經濟體的所得是另一個的 ${m}。在比例尺上，穩定成長是一條直線。`);})());
     };
-    const a=s.slider('g1',tr('Growth rate of A'),0,10,.1,g1,v=>v.toFixed(1)+'%',v=>{g1=v;draw();});
-    const b=s.slider('g2',tr('Growth rate of B'),0,10,.1,g2,v=>v.toFixed(1)+'%',v=>{g2=v;draw();});
-    const c=s.slider('Y',tr('Years'),10,220,5,Y,v=>String(v),v=>{Y=v;draw();});
-    s.seg(tr('Scale'),[['ord',tr('Ordinary')],['ratio',tr('Ratio')]],scale,v=>{scale=v;draw();});
+    const a=s.slider('g1',tr('Growth rate of A','A 的成長率'),0,10,.1,g1,v=>v.toFixed(1)+'%',v=>{g1=v;draw();});
+    const b=s.slider('g2',tr('Growth rate of B','B 的成長率'),0,10,.1,g2,v=>v.toFixed(1)+'%',v=>{g2=v;draw();});
+    const c=s.slider('Y',tr('Years','年數'),10,220,5,Y,v=>String(v),v=>{Y=v;draw();});
+    s.seg(tr('Scale','刻度'),[['ord',tr('Ordinary','一般')],['ratio',tr('Ratio','比例尺')]],scale,v=>{scale=v;draw();});
     const set=(x,y,t)=>{g1=x;g2=y;Y=t;a.set(x);b.set(y);c.set(t);draw();};
-    s.button(tr('US since 1800: 1% vs 2%'),()=>set(1,2,215));
-    s.button(tr('2% vs 3% for 140 years'),()=>set(2,3,140));
-    s.button(tr('1.1% vs 8.5% for 20 years'),()=>set(1.1,8.5,20));
+    s.button(tr('US since 1800: 1% vs 2%','美國 1800 年起：1% vs 2%'),()=>set(1,2,215));
+    s.button(tr('2% vs 3% for 140 years','140 年的 2% vs 3%'),()=>set(2,3,140));
+    s.button(tr('1.1% vs 8.5% for 20 years','20 年的 1.1% vs 8.5%'),()=>set(1.1,8.5,20));
     live(s,draw);
   };
 
@@ -805,16 +900,16 @@ svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
   W_.ladder=host=>{
     host.classList.add('graph','wide');
     const steps=[
-      [L('Why is a farmer in a rich country so productive?'),L('Factors of production'),L('She works with physical capital (tractors, roads), human capital (skills in her head) and technological knowledge (soil science, genetics), brought together by entrepreneurs.')],
-      [L('Why does her country have so much of these?'),L('Incentives'),L('People build and learn when they keep the rewards. On China\'s collective farms, an extra bag of potatoes earned a worker 1/100 of a bag. Some 20 to 40 million people starved; growth came only after farmers could keep what they grew.')],
-      [L('Why do some countries have good incentives?'),L('Institutions'),L('Rules that protect rewards: property rights, honest government, political stability, a dependable legal system, and competitive, open markets.')],
-      [L('Why do some countries have good institutions?'),L('History, ideas, culture, geography, luck'),L('The least settled part of the puzzle. The US Constitution was written when the ideas of Locke and Smith were popular, and George Washington chose to stop at two terms.')]
+      [L('Why is a farmer in a rich country so productive?','為什麼富國的農民生產力這麼高？'),L('Factors of production','生產要素'),L('She works with physical capital (tractors, roads), human capital (skills in her head) and technological knowledge (soil science, genetics), brought together by entrepreneurs.','她擁有實體資本（曳引機、道路）、人力資本（腦中的技能）和技術知識（土壤學、遺傳學），由企業家組織起來。')],
+      [L('Why does her country have so much of these?','為什麼她的國家有這麼多生產要素？'),L('Incentives','誘因'),L('People build and learn when they keep the rewards. On China\'s collective farms, an extra bag of potatoes earned a worker 1/100 of a bag. Some 20 to 40 million people starved; growth came only after farmers could keep what they grew.','人們能保有成果時，才會建設和學習。在中國的集體農場，多種一袋馬鈴薯只能分到 1/100 袋。約 2,000 萬到 4,000 萬人餓死；直到農民能保有收成，成長才出現。')],
+      [L('Why do some countries have good incentives?','為什麼有些國家的誘因比較好？'),L('Institutions','制度'),L('Rules that protect rewards: property rights, honest government, political stability, a dependable legal system, and competitive, open markets.','保護成果的規則：財產權、誠實的政府、政治穩定、可靠的法律制度，以及競爭開放的市場。')],
+      [L('Why do some countries have good institutions?','為什麼有些國家有好制度？'),L('History, ideas, culture, geography, luck','歷史、思想、文化、地理、運氣'),L('The least settled part of the puzzle. The US Constitution was written when the ideas of Locke and Smith were popular, and George Washington chose to stop at two terms.','這是謎題中最沒有定論的部分。美國憲法寫於洛克和亞當斯密的思想盛行時，華盛頓也選擇在兩任後卸任。')]
     ];
-    const head=make('div','g-head',null,host);make('span','g-kicker',tr('Dig deeper'),head);make('h4',null,tr('Keep asking why'),head);make('p',null,tr('Each answer raises a deeper question. Move from the immediate cause of wealth to the ultimate one.'),head);
+    const head=make('div','g-head',null,host);make('span','g-kicker',tr('Dig deeper','往下挖'),head);make('h4',null,tr('Keep asking why','一直問為什麼'),head);make('p',null,tr('Each answer raises a deeper question. Move from the immediate cause of wealth to the ultimate one.','每個答案都帶出更深的問題。從財富的直接原因，一路挖到根本原因。'),head);
     const wrap=make('div','ladder',null,host);let d=0;
     const tools=make('div','g-ctrl sort-tools',null,host);
-    const next=make('button','g-btn',tr('Ask why again'),tools);next.type='button';
-    const reset=make('button','g-btn',tr('Start over'),tools);reset.type='button';
+    const next=make('button','g-btn',tr('Ask why again','再問一次為什麼'),tools);next.type='button';
+    const reset=make('button','g-btn',tr('Start over','重新開始'),tools);reset.type='button';
     const render=()=>{wrap.replaceChildren();steps.slice(0,d+1).forEach(([q,a,ex],i)=>{const card=make('div','rung rung-'+i,null,wrap);make('span','rung-n',String(i+1),card);const body=make('div','rung-b',null,card);make('p','rung-q',T(q),body);make('p','rung-a',T(a),body);make('p','rung-ex',T(ex),body);});next.disabled=d>=steps.length-1;};
     next.addEventListener('click',()=>{if(d<steps.length-1){d++;render();}});reset.addEventListener('click',()=>{d=0;render();});
     render();
@@ -822,25 +917,25 @@ svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
 
   /* 9. A natural tariff and a government tariff have the same shape. */
   W_.tariff=host=>{
-    const s=shell(host,tr('The natural tariff'),tr('Goods arrive at the port at a world price of ฿80. Raise the cost of getting them inland and watch imports shrink.'),[[tr('Demand D'),colors.d],[tr('Domestic supply S'),colors.mc],[tr('Lost trade'),'var(--dwl)']]);
+    const s=shell(host,tr('The natural tariff','天然關稅'),tr('Goods arrive at the port at a world price of ฿80. Raise the cost of getting them inland and watch imports shrink.','商品以世界價格 80 泰銖運到港口。提高運往內陸的成本，看進口怎麼縮小。'),[[tr('Demand D','需求 D'),colors.d],[tr('Domestic supply S','國內供給 S'),colors.mc],[tr('Lost trade','損失的交易'),'var(--dwl)']]);
     let t=0,kind='nat';const Pw=80;
     const draw=()=>{
       const p=Math.min(Pw+t,160),qd=(300-p)/2,qs=(p-20)/2,qd0=(300-Pw)/2,qs0=(Pw-20)/2,imp=Math.max(0,qd-qs),tt=p-Pw;
-      const P=Plot(s.svgs[0],150,320);P.axes(tr('Quantity'),tr('Baht per unit'));P.xticks([0,50,100,150]);P.yticks([0,80,160,240,320]);
+      const P=Plot(s.svgs[0],150,320);P.axes(tr('Quantity','數量'),tr('Baht per unit','每單位泰銖'));P.xticks([0,50,100,150]);P.yticks([0,80,160,240,320]);
       if(tt>0){if(imp>0)P.rect(qs,qd,Pw,p,'a-rev');P.poly([[qs0,Pw],[qs,p],[qs,Pw]],'a-dwl');P.poly([[qd,p],[qd0,Pw],[qd,Pw]],'a-dwl');}
       P.line(300,-2,colors.d);P.line(20,2,colors.mc);P.hline(Pw,'var(--world)',true);
       if(tt>0)P.hline(p,'var(--fg)');
-      P.tag(146,Pw,tr('World price at the port'),'end',-6);if(tt>0)P.tag(146,p,tr('Price inland'),'end',-6);
+      P.tag(146,Pw,tr('World price at the port','港口的世界價格'),'end',-6);if(tt>0)P.tag(146,p,tr('Price inland','內陸價格'),'end',-6);
       P.tag(8,280,'D','start');P.tag(140,296,'S','end');
       P.guide(qs,p);P.guide(qd,p);P.tag(qs,0,'Qs','middle',-5);P.tag(qd,0,'Qd','middle',-5);
       const lost=0.5*(qs-qs0)*tt+0.5*(qd0-qd)*tt;
-      const rect=kind==='nat'?tr('Spent on trucks and roads (used up)'):tr('Tariff revenue (moves to the government)');
-      s.show([[tr('Price inland'),baht(p)],[tr('Imports, Qd − Qs'),num(Math.round(imp*10)/10),true],[tr('Domestic production'),num(Math.round(qs*10)/10)],[rect,baht(Math.round(imp*tt))],[tr('Lost trade (two triangles)'),baht(Math.round(lost))]],
-        tt===0?tr('At the coast the country trades at the world price and imports a lot. Now make inland transport costly.'):kind==='nat'?tr('Transport costs act like a tariff: the inland price rises, imports shrink and two triangles of trade are lost. Unlike a tariff, even the rectangle is a real cost, not a transfer.'):tr('A government tariff of the same size gives the same price, the same imports and the same lost triangles. The rectangle becomes government revenue instead of trucking costs.'));
+      const rect=kind==='nat'?tr('Spent on trucks and roads (used up)','花在卡車與道路上（被用掉）'):tr('Tariff revenue (moves to the government)','關稅收入（轉給政府）');
+      s.show([[tr('Price inland','內陸價格'),baht(p)],[tr('Imports, Qd − Qs','進口量 Qd − Qs'),num(Math.round(imp*10)/10),true],[tr('Domestic production','國內生產'),num(Math.round(qs*10)/10)],[rect,baht(Math.round(imp*tt))],[tr('Lost trade (two triangles)','損失的交易（兩個三角形）'),baht(Math.round(lost))]],
+        tt===0?tr('At the coast the country trades at the world price and imports a lot. Now make inland transport costly.','在海岸，國家用世界價格交易，進口很多。現在讓內陸運輸變貴。'):kind==='nat'?tr('Transport costs act like a tariff: the inland price rises, imports shrink and two triangles of trade are lost. Unlike a tariff, even the rectangle is a real cost, not a transfer.','運輸成本就像關稅：內陸價格上升、進口縮小，損失兩個三角形的交易。和關稅不同的是，連長方形都是真實成本，不是移轉。'):tr('A government tariff of the same size gives the same price, the same imports and the same lost triangles. The rectangle becomes government revenue instead of trucking costs.','同樣大小的政府關稅，價格、進口量和損失的三角形都一樣，只是長方形變成政府收入，而不是運輸成本。'));
     };
-    const sl=s.slider('t',tr('Extra cost to bring goods inland (baht)'),0,100,5,t,baht,v=>{t=v;draw();});
-    s.seg(tr('Source of the extra cost'),[['nat',tr('Distance from the sea')],['gov',tr('Government tariff')]],kind,v=>{kind=v;draw();});
-    s.button(tr('Reset'),()=>{t=0;sl.set(0);draw();});
+    const sl=s.slider('t',tr('Extra cost to bring goods inland (baht)','運往內陸的額外成本（泰銖）'),0,100,5,t,baht,v=>{t=v;draw();});
+    s.seg(tr('Source of the extra cost','額外成本的來源'),[['nat',tr('Distance from the sea','離海遠')],['gov',tr('Government tariff','政府關稅')]],kind,v=>{kind=v;draw();});
+    s.button(tr('Reset','重設'),()=>{t=0;sl.set(0);draw();});
     live(s,draw);
   };
 
@@ -852,7 +947,7 @@ svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
 (() => {
  const toc=document.getElementById('toc'),rail=document.getElementById('rail'),button=document.getElementById('tocBtn');
  const headings=[...document.querySelectorAll('.doc > h2,.doc > h3')];
- headings.forEach(h=>{const li=document.createElement('li'),a=document.createElement('a');li.className=h.tagName.toLowerCase();li.dataset.id=h.id;a.href='#'+h.id;a.textContent=h.childNodes[0].textContent.trim();li.append(a);toc.append(li);});
+ headings.forEach(h=>{const li=document.createElement('li'),a=document.createElement('a');li.className=h.tagName.toLowerCase();li.dataset.id=h.id;a.href='#'+h.id;a.textContent=h.childNodes[0].textContent.trim();const z=h.querySelector(':scope > .zh-full');if(z){const s=document.createElement('span');s.className='zh-full';s.lang='zh-Hant';s.textContent=z.textContent;a.append(s);}li.append(a);toc.append(li);});
  const spy=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;toc.querySelectorAll('.on').forEach(a=>a.classList.remove('on'));const a=toc.querySelector('[data-id="'+e.target.id+'"] a');if(a)a.classList.add('on');}),{rootMargin:'-100px 0px -65% 0px'});headings.forEach(h=>spy.observe(h));
  function close(){rail.classList.remove('open');button.setAttribute('aria-expanded','false');}
  button.addEventListener('click',()=>{const open=rail.classList.toggle('open');button.setAttribute('aria-expanded',String(open));});
@@ -861,4 +956,39 @@ svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
  window.EconWidgets.mount(document);
 })();
 </script>
-</body></html>
+<script>(() => {
+ 'use strict';
+ const dict={
+  "Interactive graph":"互動圖表","Classification":"分類練習","Contents":"目錄","Show all answers":"展開全部答案","Hide all answers":"收合全部答案","View numerical readout":"查看數值結果","Yes":"是","No":"否","Reset":"重設"
+ };
+ const patterns=[];
+ const norm=s=>s.replace(/\s+/g,' ').trim();
+ function enText(el){const copy=el.cloneNode(true);copy.querySelectorAll('.zh-full,.zh-svg,.zh').forEach(n=>n.remove());return norm(copy.textContent);}
+ function translate(en){if(dict[en])return dict[en];const dyn=window.ZH_DYN||{};if(dyn[en])return dyn[en];for(const [re,f] of patterns){const m=en.match(re);if(m)return f(m);}return '';}
+ const observer=new MutationObserver(()=>schedule());let pending=false;
+ const selector='.doc h4,.doc p,.doc th,.doc td,.doc summary,.doc .formula,.doc .plot-legend>span,.doc .tw-t,.doc .g-stats dt,.doc .g-stats dd,.doc .g-ctrl button,.doc .g-btn,.doc .rc-t,.doc .rc-tag,.doc .sl label>span,.doc .sl output,.g-kicker,.rail a,#tocBtn,#qaAll';
+ function apply(){
+  pending=false;observer.disconnect();
+  document.querySelectorAll(selector).forEach(el=>{
+   if(el.closest('.zh-full,.hint,.practice-prompt')||el.querySelector(':scope > .zh-full'))return;
+   const chinese=translate(enText(el));if(!chinese)return;
+   const span=document.createElement('span');span.className='zh-full';span.lang='zh-Hant';span.textContent=chinese;el.append(span);
+  });
+  document.querySelectorAll('.g-plot svg text.axl,.g-plot svg text.tk').forEach(el=>{
+   if(el.querySelector('.zh-svg'))return;const chinese=translate(enText(el));if(!chinese)return;
+   const t=document.createElementNS('http://www.w3.org/2000/svg','tspan');t.setAttribute('class','zh-svg');t.setAttribute('lang','zh-Hant');t.setAttribute('x',el.getAttribute('x')||'0');t.setAttribute('dy','13');t.textContent=chinese;el.append(t);
+  });
+  observer.observe(document.body,{subtree:true,childList:true,characterData:true});
+ }
+ function schedule(){if(!pending){pending=true;requestAnimationFrame(apply);}}
+ const toggle=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+ function setZh(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';try{localStorage.setItem('study-notes-show-zh',on?'1':'0')}catch(e){}window.dispatchEvent(new Event('econ-language-change'));apply();}
+ let initial=false;try{initial=localStorage.getItem('study-notes-show-zh')==='1'}catch(e){}
+ toggle.addEventListener('change',()=>setZh(toggle.checked));
+ const practice=document.getElementById('practiceToggle'),state=document.getElementById('practiceState');
+ practice.addEventListener('click',()=>{const on=practice.getAttribute('aria-pressed')!=='true';practice.setAttribute('aria-pressed',String(on));state.textContent=on?'On':'Off';practice.querySelector(':scope > .zh-full').textContent='練習模式：'+(on?'開啟':'關閉');document.querySelectorAll('.practice-prompt').forEach(p=>p.hidden=!on);});
+ const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px');}
+ if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();setZh(initial);
+ window.refreshChineseSupport=apply;
+})();
+</script></body></html>
