@@ -1,53 +1,1147 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Marketing Session 8 · Study Notes</title>
-<style>
-:root{--bg:var(--tone-fdf9f9);--paper:var(--tone-ffffff);--tint:var(--tone-fae9ed);--line:var(--tone-efdde2);--fg:var(--tone-2f282b);--muted:var(--tone-7e6f74);--accent:var(--tone-c06c84);--accent-ink:var(--tone-9c4862);--sans:"Noto Sans TC","PingFang TC",system-ui,sans-serif;--serif:"Noto Serif TC",Georgia,serif}
-*{box-sizing:border-box}html{color-scheme:light;background:var(--bg)}body{margin:0;font:16px/1.75 var(--sans);color:var(--fg)}a{color:var(--accent-ink)}:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-header{border-bottom:1px solid var(--line);background:rgba(var(--header-rgb), .96)}.top{max-width:1160px;margin:auto;padding:13px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
-.crumbs{font-size:.86rem;display:flex;align-items:center;flex-wrap:wrap;gap:8px;color:var(--muted)}.crumbs a{text-decoration:none;color:var(--muted)}.crumbs a:hover{color:var(--accent-ink)}
-.sessions{display:flex;gap:5px;margin-left:auto}.pill{font:.85rem var(--sans);text-decoration:none;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--muted)}.pill[aria-current="page"]{background:var(--accent);border-color:var(--accent);color:var(--tone-ffffff)}.sessions a.pill:hover,.sessions a.pill:focus-visible{background:var(--tone-fceef2);border-color:var(--tone-b86b7b);color:var(--tone-8e4357)}
-main{max-width:780px;margin:0 auto;padding:74px 22px 120px}.kick{color:var(--accent-ink);letter-spacing:.15em;text-transform:uppercase;font-size:.76rem;font-weight:700}h1{font:700 clamp(2.2rem,5vw,3.2rem)/1.23 var(--serif);margin:6px 0 16px}.note{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin-top:30px}.label{font-weight:700;color:var(--accent-ink);font-size:.82rem;letter-spacing:.07em;text-transform:uppercase}.note p{margin:9px 0 0}.back{display:inline-block;margin-top:22px;text-decoration:none;border-bottom:1px solid var(--accent);font-weight:600}
-@media(max-width:520px){.sessions{margin-left:0}main{padding-top:50px}.note{padding:20px}}
+<!DOCTYPE html>
+<html lang="en" data-bilingual="true"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light"><title>New Products, Pricing and Grey Markets | CMMU Study Notes</title><style>
+/* Layout: one reading column with a sticky chapter rail; colors follow system appearance. */
+:root {
+  color-scheme: light;
+  --bg: var(--tone-fdf9f9); --panel: var(--tone-f8eef0); --paper: var(--tone-ffffff); --tint: var(--tone-fae9ed); --line: var(--tone-efdde2);
+  --fg: var(--tone-2f282b); --muted: var(--tone-7e6f74); --accent: var(--tone-c06c84); --accent-ink: var(--tone-9c4862);
+  --demand: var(--tone-3f5675); --supply: var(--tone-c06c84); --ext: var(--tone-6e3f55); --world: var(--tone-8a7a5c); --policy: var(--tone-3f7f7a);
+  --cs: var(--tone-a7cdb6); --ps: var(--tone-b2c4e3); --dwl: var(--tone-d9674f); --rev: var(--tone-e5c171); --rev2: var(--tone-f1dca8); --time: var(--tone-ddb3cb); --ts: var(--tone-bfdcc9);
+  --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; background: var(--bg); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.75; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(var(--header-rgb), .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
+.top-in { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 14px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.02rem; white-space: nowrap; }
+.brand small { font-family: var(--sans); font-weight: 500; color: var(--muted); font-size: .76rem; margin-left: 6px; letter-spacing: .06em; }
+.sessions { display: flex; gap: 4px; margin-left: auto; }
+.crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
+.sessions a.pill { text-decoration: none; }
+.sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
+.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--tone-ffffff); }
+.sessions .pill.off { opacity: .5; cursor: not-allowed; }
+.toc-btn { display: none; font: 500 .85rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--fg); border-radius: 8px; padding: 5px 12px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 52px; }
+.rail { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow: auto; padding-block: 34px 40px; font-size: .86rem; line-height: 1.5; }
+.rail .lbl { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.rail ol { list-style: none; margin: 0; padding: 0; }
+.rail li a { display: block; padding: 4px 10px; color: var(--muted); text-decoration: none; border-radius: 6px; }
+.rail li a:hover { color: var(--fg); background: var(--tint); }
+.rail li.h3 a { padding-left: 22px; font-size: .8rem; }
+.rail li a.on { color: var(--accent-ink); background: var(--tint); font-weight: 500; }
+
+main { min-width: 0; padding-block: 30px 120px; }
+.doc { max-width: 780px; }
+.hero { padding-block: 8px 26px; border-bottom: 1px solid var(--line); }
+.kick { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px; font-weight: 500; }
+.hero h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.25; margin: 0 0 12px; text-wrap: balance; }
+.lead { margin: 0; font-size: 1.04rem; max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.doc h2 { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 3.4rem 0 .3rem; text-wrap: balance; }
+.doc h3 { font-size: 1.1rem; line-height: 1.45; margin: 2.2rem 0 .5rem; color: var(--accent-ink); text-wrap: balance; }
+.sub { margin: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
+.doc p, .doc li { max-width: none; }
+.doc ul, .doc ol { padding-left: 1.25em; }
+.doc li { margin: .25rem 0; }
+.zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
+.hint { font-size: .9rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.hint b { flex: none; font-size: .72rem; color: var(--tone-ffffff); background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
+.key { background: var(--tint); padding: 12px 16px; border-radius: 8px; font-weight: 500; }
+.note-small { font-size: .8rem; color: var(--muted); }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.pair > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.pair b { color: var(--accent-ink); }
+.pair p { margin: 4px 0 0; font-size: .92rem; }
+
+.matrix { display: grid; grid-template-columns: minmax(90px, .7fr) repeat(2, minmax(0, 1fr)); gap: 6px; margin: 1rem 0 1.2rem; font-size: .9rem; max-width: 620px; }
+.matrix .mh { font-weight: 700; font-size: .8rem; color: var(--muted); align-self: end; padding: 0 4px 2px; }
+.matrix .mh.side { align-self: center; }
+.matrix .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-weight: 500; }
+.matrix .cell.hi { background: var(--tint); border-color: var(--accent); }
+.matrix small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; margin-top: 2px; line-height: 1.45; }
+
+.map { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 1rem 0; }
+.mcol { display: flex; flex-direction: column; gap: 8px; }
+.mbox { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; display: flex; flex-direction: column; gap: 2px; }
+.mbox b { font-size: .9rem; } .mbox span { color: var(--muted); } .mbox em { font-style: normal; color: var(--accent-ink); font-size: .78rem; font-weight: 500; }
+.mbox.good { border-color: var(--cs); } .mbox.ask { background: var(--tint); border-color: var(--accent); }
+.marrow { color: var(--accent); font-weight: 700; }
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.flow span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; line-height: 1.45; }
+.flow i { font-style: normal; color: var(--accent); font-weight: 700; }
+.formula { font-family: var(--mono); font-size: .9rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; line-height: 1.9; overflow-x: auto; }
+.steps { counter-reset: s; list-style: none; padding-left: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 10px; }
+.steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .75rem/22px var(--sans); text-align: center; margin-top: 3px; }
+.assign { margin: 1.6rem 0; border: 1px dashed var(--accent); border-radius: 10px; padding: 14px 16px; background: var(--paper); }
+.assign p { margin: 6px 0 0; font-size: .92rem; }
+
+.tbl { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.doc table { border-collapse: collapse; width: 100%; font-size: .88rem; line-height: 1.55; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.doc th { background: var(--panel); font-weight: 700; }
+.doc tr:last-child td { border-bottom: 0; }
+.drill .ans { filter: blur(5px); cursor: pointer; user-select: none; transition: filter .2s; }
+.drill .ans.shown { filter: none; user-select: auto; }
+
+.traps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 1rem; }
+.traps > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: .88rem; line-height: 1.55; }
+.traps s { color: var(--muted); text-decoration-color: var(--dwl); }
+.traps p { margin: 6px 0 0; font-weight: 500; }
+
+.qa-tools { margin: .4rem 0 .8rem; }
+.qa-tools button { font: 500 .82rem var(--sans); border: 1px solid var(--accent); background: var(--paper); color: var(--accent-ink); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+.qa { display: flex; flex-direction: column; gap: 6px; }
+.qa details { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.qa summary { cursor: pointer; padding: 10px 14px; font-weight: 500; font-size: .93rem; list-style: none; display: flex; gap: 10px; }
+.qa summary::before { content: "Q"; color: var(--accent); font-weight: 700; }
+.qa details[open] summary { border-bottom: 1px dashed var(--line); }
+.qa details p { margin: 0; padding: 10px 14px 12px 36px; font-size: .9rem; }
+
+/* graphs */
+.graph { max-width: 900px; margin: 1.8rem 0 2.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; }
+.g-head h4 { font-family: var(--serif); font-size: 1.12rem; margin: 2px 0 2px; line-height: 1.45; }
+.g-head p { margin: 0 0 10px; color: var(--muted); font-size: .86rem; }
+.g-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+.g-body { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.g-plot svg { width: 100%; height: auto; display: block; }
+.g-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.g-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.sl label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); line-height: 1.3; }
+.sl output { font-family: var(--mono); color: var(--fg); font-size: .8rem; }
+.sl input { width: 100%; accent-color: var(--accent); margin: 4px 0 0; }
+.g-btn { align-self: flex-start; font: 500 .8rem var(--sans); border: 1px solid var(--accent); color: var(--accent-ink); background: transparent; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.g-btn:hover { background: var(--tint); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; align-self: flex-start; }
+.seg button { font: 500 .8rem var(--sans); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--paper); }
+.chk { display: flex; gap: 8px; align-items: center; font-size: .8rem; color: var(--muted); }
+.chk input { accent-color: var(--accent); }
+.g-stats { margin: 0; border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+.st { display: flex; justify-content: space-between; gap: 10px; font-size: .8rem; line-height: 1.45; }
+.st dt { color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.st dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.st.big dd { font-weight: 500; color: var(--accent-ink); font-size: .92rem; }
+.g-note { margin: 12px 0 0; padding: 9px 12px; background: var(--tint); border-radius: 6px; font-size: .85rem; line-height: 1.6; }
+
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; flex: none; }
+.sw.none { background: transparent; }
+.sw.a-cs { background: var(--cs); } .sw.a-ps { background: var(--ps); } .sw.a-ps2 { background: var(--ps); outline: 1px solid var(--demand); }
+.sw.a-dwl { background: repeating-linear-gradient(45deg, var(--dwl) 0 2px, transparent 2px 4px); outline: 1px solid var(--dwl); }
+.sw.a-rev { background: var(--rev); } .sw.a-rev2 { background: var(--rev2); } .sw.a-time { background: var(--time); } .sw.a-ts { background: var(--ts); }
+.sw.ln { height: 3px; border-radius: 2px; width: 16px; }
+
+svg .ax { stroke: var(--muted); stroke-width: 1.2; }
+svg .axl { fill: var(--muted); font: 500 11px var(--sans); }
+svg .tk { fill: var(--muted); font: 500 10.5px var(--mono); }
+svg .gd { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+svg .cv { stroke-width: 2.6; fill: none; stroke-linecap: round; }
+svg .cv.dash { stroke-dasharray: 7 5; stroke-width: 2; }
+svg .cvl { font: 700 11.5px var(--sans); }
+svg .c-d { stroke: var(--demand); fill: var(--demand); } svg .c-s { stroke: var(--supply); fill: var(--supply); }
+svg .c-x { stroke: var(--ext); fill: var(--ext); } svg .c-w { stroke: var(--world); fill: var(--world); } svg .c-t { stroke: var(--policy); fill: var(--policy); }
+svg text.cvl { stroke: none; }
+svg .pt { fill: var(--paper); stroke: var(--fg); stroke-width: 2; }
+svg .ptl { fill: var(--fg); font: 700 11px var(--sans); }
+svg .atag { fill: var(--fg); font: 700 11px var(--sans); opacity: .8; }
+svg .a-cs { fill: var(--cs); fill-opacity: .6; } svg .a-ps { fill: var(--ps); fill-opacity: .6; }
+svg .a-ps2 { fill: var(--ps); fill-opacity: .95; } svg .a-ts { fill: var(--ts); fill-opacity: .6; }
+svg .a-dwl { fill: url(#dwlHatch); stroke: var(--dwl); stroke-width: 1.2; }
+svg .a-rev { fill: var(--rev); fill-opacity: .75; } svg .a-rev2 { fill: var(--rev2); fill-opacity: .8; } svg .a-time { fill: var(--time); fill-opacity: .65; }
+
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .a-prof { fill: var(--cs); fill-opacity: .75; } svg .a-loss { fill: var(--dwl); fill-opacity: .35; }
+.sw.a-prof { background: var(--cs); } .sw.a-loss { background: var(--dwl); opacity: .5; }
+.twin { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tw-t { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.g-ctrl .g-btn + .g-btn { margin-top: -4px; }
+.graph.wide .g-body { grid-template-columns: minmax(0, 1fr); }
+.graph.wide .g-side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 700px) { .twin, .graph.wide .g-side { grid-template-columns: minmax(0, 1fr); } }
+svg polyline.cv { fill: none !important; }
+
+.graph { background: var(--paper); }
+.g-note { background: var(--tint); }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail { display: none; position: fixed; inset: 64px 0 0 0; max-height: none; background: var(--bg); z-index: 15; padding: 20px 16px 60px; }
+  .rail.open { display: block; }
+  .toc-btn { display: inline-block; }
+  .g-body { grid-template-columns: minmax(0, 1fr); }
+  .map { grid-template-columns: minmax(0, 1fr); }
+  .marrow { transform: rotate(90deg); justify-self: center; }
+}
+@media (max-width: 560px) { .pair, .traps { grid-template-columns: minmax(0, 1fr); } }
+/* Management components */
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.tcard { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.tcard .tnum { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: var(--tone-ffffff); font: 700 .78rem/24px var(--sans); text-align: center; }
+.tcard p { margin: 0; color: var(--muted); font-size: .88rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.tags span { font-size: .74rem; background: var(--tint); color: var(--accent-ink); padding: 1px 8px; border-radius: 999px; font-weight: 500; }
+.method, .loop, .cascade { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.method span, .loop span, .cascade span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 5px 11px; line-height: 1.4; }
+.method span.hi { background: var(--tint); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+.method i, .loop i, .cascade i { font-style: normal; color: var(--accent); font-weight: 700; }
+.loop i.back { font-size: 1.1rem; }
+.cascade { flex-direction: column; align-items: flex-start; gap: 2px; }
+.cascade span:nth-of-type(2) { margin-left: 18px; } .cascade span:nth-of-type(3) { margin-left: 36px; } .cascade span:nth-of-type(4) { margin-left: 54px; }
+.cascade i:nth-of-type(1) { margin-left: 14px; } .cascade i:nth-of-type(2) { margin-left: 32px; } .cascade i:nth-of-type(3) { margin-left: 50px; }
+.four { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.four > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+.four b { font-size: .9rem; color: var(--accent-ink); } .four p { margin: 4px 0 0; font-size: .84rem; color: var(--muted); line-height: 1.5; }
+
+.ladder { display: grid; grid-template-columns: minmax(0, 1fr) 118px 118px; grid-template-rows: repeat(5, auto); gap: 5px 8px; margin: 1rem 0 .3rem; max-width: 640px; }
+.lv { grid-column: 1; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; font-weight: 700; font-size: .9rem; line-height: 1.35; }
+.lv small { display: block; font-weight: 400; color: var(--muted); font-size: .78rem; }
+.lv.l5 { grid-row: 1; margin-inline: 22%; } .lv.l4 { grid-row: 2; margin-inline: 16%; } .lv.l3 { grid-row: 3; margin-inline: 10%; } .lv.l2 { grid-row: 4; margin-inline: 5%; } .lv.l1 { grid-row: 5; }
+.lv.l5, .lv.l4 { background: var(--tone-f6e9f4); } .lv.l3 { background: var(--tint); } .lv.l2, .lv.l1 { background: var(--tone-eaf2ee); }
+.erg { border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .84rem; text-align: center; padding: 6px; }
+.erg.g { grid-column: 2; grid-row: 1 / span 2; background: var(--tone-ebd7ea); color: var(--tone-6e3f6a); }
+.erg.r { grid-column: 3; grid-row: 2 / span 2; background: var(--tint); color: var(--accent-ink); }
+.erg.e { grid-column: 2; grid-row: 4 / span 2; background: var(--tone-d9ebe1); color: var(--tone-2f6b4f); }
+
+.mw { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 1.6rem 0 2rem; }
+.mw-body { margin-top: 10px; }
+.hz-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.hz-t { margin: 0 0 6px; font-weight: 700; font-size: .88rem; } .hz-t small { font-weight: 400; color: var(--muted); }
+.chips { display: flex; flex-direction: column; gap: 5px; }
+.chip { display: flex; justify-content: space-between; gap: 10px; font: 500 .84rem var(--sans); text-align: left; background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 7px; padding: 6px 10px; cursor: pointer; }
+.chip em { font-style: normal; font-size: .74rem; color: var(--muted); }
+.hz-cols > div:first-child .chip[aria-pressed="true"] { border-color: var(--dwl); background: var(--tone-fcedea); }
+.hz-cols > div:first-child .chip[aria-pressed="true"] em { color: var(--tone-a8432f); }
+.hz-cols > div:last-child .chip[aria-pressed="true"] { border-color: var(--tone-6fae8b); background: var(--tone-eaf5ee); }
+.hz-cols > div:last-child .chip[aria-pressed="true"] em { color: var(--tone-2f6b4f); }
+.scale { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 6px; margin-top: 18px; }
+.half { height: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; position: relative; overflow: hidden; }
+.half i { position: absolute; top: 0; bottom: 0; transition: width .25s; }
+.half.left i { right: 0; background: var(--dwl); } .half.right i { left: 0; background: var(--tone-6fae8b); }
+@media (prefers-reduced-motion: reduce) { .half i { transition: none; } }
+.zero { font: 700 .8rem var(--mono); color: var(--muted); }
+.scale-l { display: flex; justify-content: space-between; font-size: .74rem; color: var(--muted); margin-top: 4px; }
+
+.kpi-flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, .8fr) auto minmax(0, 1fr); gap: 8px; align-items: stretch; margin-top: 12px; font-size: .84rem; }
+.kpi-flow > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; line-height: 1.45; }
+.kpi-flow > i { font-style: normal; color: var(--accent); font-weight: 700; align-self: center; }
+.kpi-flow b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.kpi-flow p { margin: 3px 0 0; } .kpi-flow ul { margin: 3px 0 0; padding-left: 1.1em; }
+.kpi-flow .bad { border-color: var(--dwl); background: var(--tone-fcedea); } .kpi-flow .good { border-color: var(--tone-6fae8b); background: var(--tone-eaf5ee); }
+
+.cmp-sel { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: .84rem; color: var(--muted); }
+.cmp-sel select { font: 500 .88rem var(--sans); padding: 5px 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); color: var(--fg); }
+table.cmp td:first-child { font-weight: 700; color: var(--muted); width: 22%; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); }
+.tabs button { font: 500 .86rem var(--sans); background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); padding: 6px 12px; cursor: pointer; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--accent-ink); border-bottom-color: var(--accent); }
+.ev { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+.ev > div { display: grid; grid-template-columns: 190px auto minmax(0, 1fr); gap: 10px; align-items: baseline; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: .86rem; line-height: 1.5; }
+.ev p { margin: 0; }
+.tag { font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.tag.gap { background: var(--tone-fce3dd); color: var(--tone-a8432f); } .tag.ok { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); }
+.tag.maybe { background: var(--tone-fbf0d9); color: var(--tone-8a6216); } .tag.na { background: var(--tone-eee9eb); color: var(--muted); }
+.issue { margin-top: 12px; background: var(--tint); border-radius: 8px; padding: 10px 14px; font-size: .9rem; }
+.issue p { margin: 4px 0 0; }
+
+.xgrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.xgrid > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 5px; font-size: .84rem; line-height: 1.4; }
+.xgrid small { color: var(--muted); font-size: .76rem; }
+.xgrid .ok, .xgrid .gap { align-self: flex-start; font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; }
+.xgrid .ok { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); } .xgrid .gap { background: var(--tone-fce3dd); color: var(--tone-a8432f); }
+
+@media (max-width: 760px) {
+  .three, .four { grid-template-columns: minmax(0, 1fr); }
+  .xgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hz-cols { grid-template-columns: minmax(0, 1fr); }
+  .kpi-flow { grid-template-columns: minmax(0, 1fr); } .kpi-flow > i { transform: rotate(90deg); justify-self: center; }
+  .ev > div { grid-template-columns: minmax(0, 1fr); gap: 3px; } .ev .tag { justify-self: start; }
+  .ladder { grid-template-columns: minmax(0, 1fr) 84px 84px; }
+}
+
+/* Session 4 + case page */
+.tcard small.dont { color: var(--muted); font-size: .78rem; border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 4px; }
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: .6rem 0 1rem; }
+.quotes q { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-style: italic; color: var(--muted); font-size: .9rem; }
+.six { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.six > div { display: flex; gap: 10px; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .88rem; line-height: 1.5; }
+.six span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
+a.cta { display: inline-block; background: var(--accent); color: var(--tone-ffffff); text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+a.cta:hover { background: var(--accent-ink); }
+blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; font-size: .92rem; line-height: 1.7; }
+.timeline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.timeline > div { background: var(--paper); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 10px; padding: 10px 14px; font-size: .88rem; line-height: 1.5; }
+.timeline time { font: 500 .76rem var(--mono); color: var(--accent-ink); display: block; }
+.timeline p { margin: 4px 0 0; color: var(--muted); }
+.score { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.score > div { border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; border: 1px solid var(--line); }
+.score .up { background: var(--tone-eaf5ee); border-color: var(--tone-a9d3ba); } .score .down { background: var(--tone-fcedea); border-color: var(--tone-edc2b8); }
+.score b::after { margin-left: 6px; font-size: .78rem; } .score .up b::after { content: "improved"; color: var(--tone-2f6b4f); } .score .down b::after { content: "worse"; color: var(--tone-a8432f); }
+.score ul { margin: 6px 0 0; padding-left: 1.1em; }
+
+.jcm { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, .9fr); gap: 16px; }
+.jdims { display: flex; flex-direction: column; gap: 8px; }
+.jd.g0 label span { color: var(--tone-6e3f6a); } .jd.g1 label span { color: var(--accent-ink); } .jd.g2 label span { color: var(--tone-2f6b4f); }
+.jstates { display: flex; flex-direction: column; gap: 12px; padding-top: 4px; }
+.jst span { font-size: .8rem; font-weight: 500; }
+.jbar { height: 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); overflow: hidden; margin-top: 3px; }
+.jbar i { display: block; height: 100%; transition: width .25s; }
+.jst.g0 .jbar i { background: var(--tone-b98ab5); } .jst.g1 .jbar i { background: var(--accent); } .jst.g2 .jbar i { background: var(--tone-6fae8b); }
+@media (prefers-reduced-motion: reduce) { .jbar i { transition: none; } }
+.jout ul { margin: 8px 0 0; padding-left: 1.1em; font-size: .82rem; color: var(--muted); }
+.jlvl { display: inline-block; font-weight: 700; padding: 3px 12px; border-radius: 999px; font-size: .86rem; }
+.jlvl.strong { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); } .jlvl.moderate { background: var(--tone-fbf0d9); color: var(--tone-8a6216); } .jlvl.weak { background: var(--tone-fce3dd); color: var(--tone-a8432f); }
+.jgns { margin-top: 14px; }
+
+.qz-item { font-size: 1rem; font-weight: 500; margin: 4px 0 12px; }
+.qz-opts { display: grid; gap: 8px; }
+.qz-opts.grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 520px; }
+.qz-opts.row5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.qz-o { font: 500 .88rem var(--sans); background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 8px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; text-align: center; }
+.qz-o small { color: var(--muted); font-size: .74rem; font-weight: 400; }
+.qz-o:hover { border-color: var(--accent); }
+.qz-o.right { background: var(--tone-e3f2e9); border-color: var(--tone-6fae8b); } .qz-o.wrong { background: var(--tone-fce3dd); border-color: var(--dwl); }
+.qz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: .8rem; color: var(--muted); }
+
+.rsteps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.rsteps > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: .85rem; line-height: 1.5; }
+.rsteps > div.g { background: var(--tint); border-color: var(--accent); }
+.rsteps b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.rsteps p { margin: 4px 0 0; }
+.risk { font-size: .88rem; } .risk b { font-size: .72rem; color: var(--tone-ffffff); background: var(--tone-b98a2e); padding: 1px 7px; border-radius: 4px; margin-right: 6px; }
+.sayd summary { cursor: pointer; font-weight: 500; color: var(--accent-ink); font-size: .9rem; }
+
+@media (max-width: 760px) {
+  .quotes, .six, .timeline, .rsteps { grid-template-columns: minmax(0, 1fr); }
+  .score { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jcm { grid-template-columns: minmax(0, 1fr); }
+  .qz-opts.row5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Marketing interactions: same CMMU palette, different learning mechanics */
+body {margin:0}
+.doc h2 {border-top:1px solid var(--line);padding-top:1.35rem;margin-top:2.5rem}
+.doc h2#map {border-top:0;padding-top:0}
+.doc h3 {margin-top:1.7rem}
+.doc > .hero {border-bottom:1px solid var(--line)}
+.hero .lead {max-width:68ch}
+.m-widget {background:var(--paper);border:1px solid var(--line);border-radius:12px;margin:1.3rem 0 1.6rem;padding:18px}
+.m-widget h4 {font-family:var(--serif);font-size:1.12rem;margin:0 0 3px}
+.m-widget .mw-sub {margin:0 0 14px;color:var(--muted);font-size:.88rem}
+.m-widget .m-grid {display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:22px;align-items:start}
+.m-control {margin:.6rem 0 1.1rem}
+.m-control label{display:flex;gap:8px;align-items:baseline;justify-content:space-between;font-size:.88rem;font-weight:500}
+.m-control output{font-family:var(--mono);color:var(--accent-ink);font-weight:700}
+.m-control input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;min-height:23px}
+.m-pillrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.m-pillrow button,.m-action,.flash button {font:500 .85rem var(--sans);padding:9px 12px;border:1px solid var(--line);border-radius:8px;color:var(--fg);background:var(--paper);cursor:pointer}
+.m-pillrow button:hover,.m-action:hover,.flash button:hover{border-color:var(--accent)}
+.m-pillrow button[aria-pressed=true] {background:var(--accent);color:var(--tone-ffffff);border-color:var(--accent)}
+.m-action {border-color:var(--accent);color:var(--accent-ink)}
+.m-action.primary{background:var(--accent);border-color:var(--accent);color:var(--tone-ffffff)}
+.m-answer{background:var(--tint);padding:13px 15px;border-radius:9px;line-height:1.6;font-size:.88rem}
+.m-answer b{color:var(--accent-ink)}
+.m-answer p{margin:5px 0 0}
+.m-two {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.m-two>div {background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 13px}
+.m-two strong{display:block;color:var(--accent-ink)}
+.m-two small{color:var(--muted)}
+.m-interact-note{font-size:.78rem;color:var(--muted);margin-top:12px;line-height:1.55}
+.bcg-svg {width:100%;height:auto;display:block;touch-action:none;cursor:crosshair;border:1px solid var(--line);border-radius:8px;background:var(--tone-ffffff)}
+.bcg-svg text{font-family:var(--sans)}
+.bcg-svg .bq-label{font-weight:700;font-size:13px;fill:var(--tone-3a2830)}
+.bcg-svg .bq-axis{font-size:10px;fill:var(--tone-77636e)}
+.bcg-point{stroke:var(--tone-ffffff);stroke-width:3;filter:drop-shadow(0 1px 2px var(--tone-887766))}
+.m-feedback{min-height:65px;margin:12px 0;padding:12px 14px;border-radius:8px;border:1px solid var(--line);background:var(--bg);font-size:.9rem}
+.m-feedback.good{border-color:var(--tone-88bb9c);background:var(--tone-eff9f1)}
+.m-feedback.bad{border-color:var(--tone-dfb6ac);background:var(--tone-fff3ee)}
+.m-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
+.m-choices button{font:500 .89rem var(--sans);border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:8px;padding:12px 9px;cursor:pointer;min-height:50px}
+.m-choices button:hover,.m-choices button:focus-visible{border-color:var(--accent)}
+.m-choices button.correct{border-color:var(--tone-70ae85);background:var(--tone-eff9f1)}
+.m-choices button.incorrect{border-color:var(--tone-cf8877);background:var(--tone-fff1ed)}
+.m-choices button:disabled{cursor:default;opacity:.88}
+.m-progress{font-size:.81rem;color:var(--muted)}
+.decision-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:16px 0}
+.decision-step{font:500 .79rem var(--sans);color:var(--fg);border:1px solid var(--line);border-top:4px solid var(--tone-b5a4a9);background:var(--tone-ffffff);border-radius:8px;min-height:95px;padding:10px 7px;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;line-height:1.4}
+.decision-step b{color:var(--accent-ink);font-size:.75rem}
+.decision-step span{font-size:.74rem;color:var(--muted)}
+.decision-step.active{border-color:var(--accent);background:var(--tint)}
+.decision-step.long{border-top-color:var(--tone-53866c)}
+.decision-step.quick{border-top-color:var(--tone-d6ba68)}
+.decision-step.optional{border-top-color:var(--tone-c7bcc0)}
+.weight-row{display:grid;grid-template-columns:140px minmax(0,1fr) 52px;align-items:center;gap:8px;font-size:.85rem;margin:10px 0}
+.weight-track{height:17px;border-radius:6px;background:var(--panel);overflow:hidden}
+.weight-fill{height:100%;width:0;background:var(--accent);border-radius:6px;transition:width .25s}
+.weight-row:nth-of-type(2) .weight-fill{background:var(--tone-6f99ba)}
+.weight-row:nth-of-type(3) .weight-fill{background:var(--tone-86ad95)}
+.weight-row:nth-of-type(4) .weight-fill{background:var(--tone-ceb17d)}
+.m-funnel{display:flex;flex-direction:column;align-items:center;gap:9px;margin:14px 0}
+.funnel-level{background:var(--accent);min-width:16%;max-width:100%;height:57px;color:var(--tone-ffffff);border-radius:8px;display:flex;align-items:center;justify-content:center;gap:12px;transition:width .25s;white-space:nowrap;padding:0 5px;text-align:center}
+.funnel-level:nth-child(2){background:var(--tone-ba8299)}
+.funnel-level:nth-child(3){background:var(--tone-987a92)}
+.funnel-level strong{font-size:1.06rem}
+.flash-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0 18px}
+.flash{min-height:102px;perspective:700px}
+.flash button{height:100%;width:100%;text-align:left;padding:14px 16px;display:block;transition:background .15s}
+.flash button[aria-pressed=true]{background:var(--tint);border-color:var(--accent)}
+.flash .front{display:block;font-weight:700;color:var(--accent-ink);font-size:.94rem}
+.flash .back{display:none;font-weight:400;margin-top:8px;font-size:.83rem;color:var(--fg);line-height:1.5}
+.flash button[aria-pressed=true] .back{display:block}
+.flash button[aria-pressed=true] .front{color:var(--fg)}
+.mnemonic{padding:10px 13px;border-left:3px solid var(--accent);margin:.9rem 0;background:var(--paper)}
+.zhtext{color:var(--accent-ink)}
+.doc .note-small{font-size:.8rem}
+.chapterline{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:12px 0}
+.chapterline span{font-size:.81rem;border:1px solid var(--line);border-radius:99px;background:var(--tone-ffffff);padding:5px 9px}
+.chapterline i{font-style:normal;color:var(--accent)}
+@media(max-width:760px){
+ .m-widget{padding:13px}
+ .m-widget .m-grid,.m-two,.flash-grid{grid-template-columns:minmax(0,1fr)}
+ .decision-flow{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .weight-row{grid-template-columns:111px minmax(0,1fr) 36px;font-size:.76rem}
+ .m-choices{grid-template-columns:minmax(0,1fr)}
+ .decision-step{min-height:66px}
+ .funnel-level{font-size:.78rem}
+}
+@media(max-width:460px){.hero h1{font-size:1.7rem}.decision-flow{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){.weight-fill,.funnel-level{transition:none}}
+
+/* Small, restrained retrieval disclosures; Chinese glossary remains persistent. */
+.m-reveal{background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:10px 14px;margin:12px 0;font-size:.91rem}
+.m-reveal summary{cursor:pointer;color:var(--accent-ink);font-weight:600;line-height:1.55}
+.m-reveal p{margin:10px 0 2px;font-size:.91rem;line-height:1.7}
+
+.sessions a.pill[href]:not([aria-current=page]):hover,
+.sessions a.pill[href]:not([aria-current=page]):focus-visible{
+ background:var(--tone-fceef2);border-color:var(--tone-b86b7b);color:var(--tone-8e4357);
+}
+.sessions a.pill[href]:not([aria-current=page]):focus-visible{outline:2px solid var(--tone-b86b7b);outline-offset:2px}
+
+/* These elements extend the existing S4 design rather than replacing it. */
+.doc h2{scroll-margin-top:90px}.doc h3{scroll-margin-top:95px}
+.chapterline{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:1.1rem 0;font-size:.84rem}
+.chapterline>span{background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:7px 11px;font-weight:500}
+.chapterline>i{font-style:normal;color:var(--accent);font-weight:800}
+.s5-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:1rem 0}
+.s5-cards>div{background:var(--paper);border:1px solid var(--line);padding:13px 15px;border-radius:10px}
+.s5-cards b{display:block;color:var(--accent-ink)}.s5-cards p{font-size:.87rem;line-height:1.55;margin:5px 0 0}
+.mw{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:17px 18px;margin:1.3rem 0 1.7rem}
+.mw h4{font-family:var(--serif);font-size:1.05rem;margin:0 0 4px}
+.mw>.sub{font-size:.86rem;margin:0 0 12px}
+.mw-label{color:var(--accent-ink);text-transform:uppercase;letter-spacing:.13em;font-size:.68rem;font-weight:700;margin:0 0 4px}
+.s5-muted{font-size:.82rem;color:var(--muted)}
+.s5-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.s5-grid .field{min-width:0}
+.s5-grid label{font-size:.81rem;color:var(--muted);display:block;margin-bottom:5px}
+.s5-grid input[type=number],.s5-grid select{width:100%;min-width:0;border:1px solid var(--line);border-radius:7px;padding:8px 10px;background:var(--bg);font:500 .93rem var(--sans);color:var(--fg)}
+.mw select{font:500 .88rem var(--sans);border:1px solid var(--line);padding:7px 9px;background:var(--paper);border-radius:7px;color:var(--fg)}
+.result{background:var(--tint);border-radius:9px;padding:11px 14px;margin-top:12px}
+.result strong{color:var(--accent-ink);font-variant-numeric:tabular-nums}
+.result p{margin:0;font-size:.86rem;line-height:1.55}
+.result .big{font:700 1.2rem var(--serif);margin-bottom:5px}
+.buttonrow{display:flex;flex-wrap:wrap;gap:7px;margin:9px 0 12px}
+.buttonrow button{font:500 .8rem var(--sans);border:1px solid var(--line);color:var(--muted);padding:7px 10px;border-radius:7px;background:var(--paper);cursor:pointer}
+.buttonrow button:hover,.buttonrow button:focus-visible{background:var(--tint);border-color:var(--accent);color:var(--accent-ink)}
+.buttonrow button[aria-pressed=true]{background:var(--accent);color:var(--tone-ffffff);border-color:var(--accent)}
+.seg-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:1rem 0}
+.seg-flow>div{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 9px;text-align:center}
+.seg-flow>b{display:none}
+.seg-flow strong{display:block;color:var(--accent-ink);font-size:.88rem}.seg-flow small{display:block;color:var(--muted);margin-top:4px;font-size:.77rem;line-height:1.45}
+.mapbox{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(170px,1fr);gap:12px;align-items:start;margin-top:10px}
+.mapbox svg{width:100%;height:auto;display:block;background:var(--bg);border:1px solid var(--line);border-radius:10px}
+.mapbox .mapexplainer{font-size:.84rem;line-height:1.55}.mapbox .mapexplainer p{margin:.25rem 0 .8rem}
+.mapbox .mapexplainer b{color:var(--accent-ink)}
+.mapbox text{font-family:var(--sans);fill:var(--fg)}
+.mapbox .axis{stroke:var(--muted);stroke-width:1.5}.mapbox .gridline{stroke:var(--line);stroke-dasharray:4 5}
+.mapbox .axislabel{fill:var(--muted);font-size:11px}.mapbox .brandlabel{font-size:12px;font-weight:600}
+.mapbox circle{stroke:var(--tone-ffffff);stroke-width:2;filter:drop-shadow(0 1px 1px var(--tone-00000033))}
+.value-chain{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin:8px 0 12px;font-size:.84rem}
+.value-chain span{background:var(--tint);border:1px solid var(--line);border-radius:7px;padding:6px 9px}
+.value-chain i{font-style:normal;color:var(--accent);font-weight:700}
+.kpi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:11px 0}
+.kpi div{background:var(--bg);border:1px solid var(--line);padding:10px;border-radius:8px;font-size:.8rem;color:var(--muted)}
+.kpi b{display:block;color:var(--fg);font-size:1.03rem;font-variant-numeric:tabular-nums}
+.flashgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}
+.flash button{display:block;width:100%;text-align:left;cursor:pointer;min-height:97px;background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:12px;color:var(--fg);font:500 .87rem/1.5 var(--sans)}
+.flash button:hover,.flash button:focus-visible{border-color:var(--accent);background:var(--tint)}
+.flash .front{display:block}.flash .back{display:none;font-weight:400}
+.flash button[aria-pressed=true]{background:var(--tint);border-color:var(--accent)}
+.flash button[aria-pressed=true] .front{display:none}.flash button[aria-pressed=true] .back{display:block}
+.flash .back strong{color:var(--accent-ink)}
+.qa{display:flex;flex-direction:column;gap:6px}
+.qa details{background:var(--paper);border:1px solid var(--line);border-radius:8px}
+.qa summary{cursor:pointer;padding:10px 14px;font-weight:500;font-size:.92rem;list-style:none;display:flex;gap:9px}
+.qa summary::before{content:'Q';color:var(--accent);font-weight:700}
+.qa details[open] summary{border-bottom:1px dashed var(--line)}
+.qa details p{margin:0;padding:10px 16px 12px 36px;font-size:.88rem}
+.qa-tools{margin:.6rem 0}
+.qa-tools button{font:500 .8rem var(--sans);border:1px solid var(--accent);border-radius:7px;background:var(--paper);padding:7px 11px;color:var(--accent-ink);cursor:pointer}
+.practice{border:1px dashed var(--accent);padding:12px 15px;border-radius:10px;background:var(--paper);margin:17px 0}
+.practice b{color:var(--accent-ink)}.practice p{margin:4px 0;font-size:.91rem}
+.note-small{font-size:.8rem;color:var(--muted)}
+@media(max-width:900px){.rail{inset:var(--header-height,64px) 0 0 0!important;max-height:calc(100vh - var(--header-height,64px))!important}}
+@media(max-width:700px){.mapbox{grid-template-columns:1fr}.s5-cards,.kpi{grid-template-columns:1fr 1fr}.seg-flow{grid-template-columns:1fr 1fr}}
+@media(max-width:510px){.s5-cards,.kpi,.s5-grid,.flashgrid{grid-template-columns:1fr}}
+@media print{.rail,.toc-btn,.buttonrow,.qa-tools{display:none!important}.wrap{display:block}.doc{max-width:none}.mw,.mapbox{break-inside:avoid}.flash .back{display:block}.flash .front{display:none}}
 </style>
 <style id="system-theme">
 /* System appearance only changes colors. Print retains the light palette. */
 :root {
   --header-rgb: 253, 249, 249;
+  --tone-00000033: #00000033;
   --tone-2f282b: #2f282b;
+  --tone-2f6b4f: #2f6b4f;
+  --tone-3a2830: #3a2830;
+  --tone-3f5675: #3f5675;
+  --tone-3f7f7a: #3f7f7a;
+  --tone-53866c: #53866c;
+  --tone-6e3f55: #6e3f55;
+  --tone-6e3f6a: #6e3f6a;
+  --tone-6f99ba: #6f99ba;
+  --tone-6fae8b: #6fae8b;
+  --tone-70ae85: #70ae85;
+  --tone-7657a8: #7657a8;
+  --tone-77636e: #77636e;
   --tone-7e6f74: #7e6f74;
+  --tone-86ad95: #86ad95;
+  --tone-887766: #887766;
+  --tone-88bb9c: #88bb9c;
+  --tone-8a6216: #8a6216;
+  --tone-8a7a5c: #8a7a5c;
   --tone-8e4357: #8e4357;
+  --tone-987a92: #987a92;
   --tone-9c4862: #9c4862;
+  --tone-a7cdb6: #a7cdb6;
+  --tone-a8432f: #a8432f;
+  --tone-a9d3ba: #a9d3ba;
+  --tone-b2c4e3: #b2c4e3;
+  --tone-b5a4a9: #b5a4a9;
   --tone-b86b7b: #b86b7b;
+  --tone-b98a2e: #b98a2e;
+  --tone-b98ab5: #b98ab5;
+  --tone-ba8299: #ba8299;
+  --tone-bfdcc9: #bfdcc9;
   --tone-c06c84: #c06c84;
+  --tone-c7bcc0: #c7bcc0;
+  --tone-ceb17d: #ceb17d;
+  --tone-cf8877: #cf8877;
+  --tone-d6ba68: #d6ba68;
+  --tone-d9674f: #d9674f;
+  --tone-d9ebe1: #d9ebe1;
+  --tone-ddb3cb: #ddb3cb;
+  --tone-dfb6ac: #dfb6ac;
+  --tone-e3f2e9: #e3f2e9;
+  --tone-e5c171: #e5c171;
+  --tone-eaf2ee: #eaf2ee;
+  --tone-eaf5ee: #eaf5ee;
+  --tone-ebd7ea: #ebd7ea;
+  --tone-edc2b8: #edc2b8;
+  --tone-eee9eb: #eee9eb;
   --tone-efdde2: #efdde2;
+  --tone-eff9f1: #eff9f1;
+  --tone-f1dca8: #f1dca8;
+  --tone-f6e9f4: #f6e9f4;
+  --tone-f8eef0: #f8eef0;
   --tone-fae9ed: #fae9ed;
+  --tone-fbf0d9: #fbf0d9;
+  --tone-fce3dd: #fce3dd;
+  --tone-fcedea: #fcedea;
   --tone-fceef2: #fceef2;
   --tone-fdf9f9: #fdf9f9;
+  --tone-fff1ed: #fff1ed;
+  --tone-fff3ee: #fff3ee;
   --tone-ffffff: #ffffff;
 }
 @media screen and (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
     --header-rgb: 29, 24, 26;
+    --tone-00000033: #00000055;
     --tone-2f282b: #EEE4E6;
+    --tone-2f6b4f: #A0D2B2;
+    --tone-3a2830: #EEE4E6;
+    --tone-3f5675: #93AECB;
+    --tone-3f7f7a: #8CC4BE;
+    --tone-53866c: #91C1A4;
+    --tone-6e3f55: #C9A3D6;
+    --tone-6e3f6a: #DAB3D6;
+    --tone-6f99ba: #91B7D6;
+    --tone-6fae8b: #8CC3A0;
+    --tone-70ae85: #8CC3A0;
+    --tone-7657a8: #C3A5E8;
+    --tone-77636e: #BEACB2;
     --tone-7e6f74: #BEACB2;
+    --tone-86ad95: #A0CAB0;
+    --tone-887766: #181215;
+    --tone-88bb9c: #78AA8C;
+    --tone-8a6216: #E3C480;
+    --tone-8a7a5c: #C9B68C;
     --tone-8e4357: #E6B3BE;
+    --tone-987a92: #B39AAF;
     --tone-9c4862: #E6B3BE;
+    --tone-a7cdb6: #6E8C6B;
+    --tone-a8432f: #F0A48D;
+    --tone-a9d3ba: #669C7D;
+    --tone-b2c4e3: #667C96;
+    --tone-b5a4a9: #A08C95;
     --tone-b86b7b: #D79AA7;
+    --tone-b98a2e: #D8B66B;
+    --tone-b98ab5: #BD99C1;
+    --tone-ba8299: #C89AAF;
+    --tone-bfdcc9: #5F7A5C;
     --tone-c06c84: #D79AA7;
+    --tone-c7bcc0: #9D8D94;
+    --tone-ceb17d: #D6BC8D;
+    --tone-cf8877: #D39483;
+    --tone-d6ba68: #D6BA68;
+    --tone-d9674f: #E08A6F;
+    --tone-d9ebe1: #2C4135;
+    --tone-ddb3cb: #8C6680;
+    --tone-dfb6ac: #B77F70;
+    --tone-e3f2e9: #23372D;
+    --tone-e5c171: #C9A250;
+    --tone-eaf2ee: #29362F;
+    --tone-eaf5ee: #25372D;
+    --tone-ebd7ea: #413047;
+    --tone-edc2b8: #B77F70;
+    --tone-eee9eb: #30282D;
     --tone-efdde2: #55424A;
+    --tone-eff9f1: #25372D;
+    --tone-f1dca8: #8F7A4A;
+    --tone-f6e9f4: #342938;
+    --tone-f8eef0: #2B2226;
     --tone-fae9ed: #35272D;
+    --tone-fbf0d9: #3C3223;
+    --tone-fce3dd: #412B28;
+    --tone-fcedea: #382724;
     --tone-fceef2: #35272D;
     --tone-fdf9f9: #1D181A;
+    --tone-fff1ed: #382724;
+    --tone-fff3ee: #382724;
     --tone-ffffff: #241E21;
   }
+}
+</style>
+<style id="learning-revision">
+/* Reading additions use the established system palette and full body column. */
+.doc p,.doc li,.hero .lead{max-width:none}
+.doc h2,.doc h3{scroll-margin-top:calc(var(--header-height,80px) + 20px)}
+.doc .tbl{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+.doc .tbl table{width:100%}
+.doc .tbl th{vertical-align:top}
+.doc .tbl td{vertical-align:top;overflow-wrap:break-word}
+.doc .method,.doc .flow{max-width:100%;flex-wrap:wrap}
+.answer-example{margin:1rem 0;padding:16px 18px;background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px}
+.answer-example>b{color:var(--accent-ink);font-size:.9rem}
+.answer-example p{margin:.5rem 0 0}
+.sessions a.pill:hover{background:var(--tint);color:var(--accent-ink);border-color:var(--accent)}
+@media(max-width:600px){.top-in{gap:8px 10px}.page-tools{flex-basis:100%;justify-content:flex-end;flex-wrap:wrap;margin:0}.answer-example{padding:14px}.doc .tbl td,.doc .tbl th{min-width:130px}}
+</style><style id="midterm-components">
+.study-widget{margin:1.25rem 0;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
+.study-widget .mw-label{margin:0 0 .5rem;color:var(--accent-ink);font-size:.75rem;letter-spacing:.09em;text-transform:uppercase}
+.study-widget button{font:500 .86rem var(--sans);border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--fg);padding:8px 12px;cursor:pointer}
+.study-widget button:hover{background:var(--tint);border-color:var(--accent)}
+.study-widget button[aria-pressed=true]{background:var(--tint);color:var(--accent-ink);border-color:var(--accent)}
+.map-tools{display:flex;flex-wrap:wrap;gap:8px;margin:1rem 0}
+.plot{max-width:100%;margin:8px 0;background:var(--paper)}
+.plot svg{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y}
+.plot text{font-family:var(--sans);fill:var(--fg)}
+.plot .axis-title{font-size:17px;font-weight:600}
+.plot .axis-number,.plot .axis-end{font-size:16px;fill:var(--muted)}
+.plot .point-label{font-size:18px;font-weight:600}
+.plot .zh-svg{font-size:13px;fill:var(--muted)}
+.map-point{cursor:grab;touch-action:none;outline:none}
+.map-point.selected circle,.map-point:focus-visible circle{stroke:var(--fg);stroke-width:3}
+.map-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.map-controls label,.contribution-inputs label{display:block;min-width:0;font-size:.85rem;color:var(--fg)}
+.map-controls input{display:block;width:100%;accent-color:var(--accent);margin:.65rem 0 .25rem}
+.map-controls output{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--accent-ink)}
+.contribution-inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.contribution-inputs input{display:block;width:100%;min-width:0;margin-top:6px;padding:9px;border:1px solid var(--line);border-radius:7px;background:var(--paper);color:var(--fg);font-family:var(--mono)}
+.contribution-result{margin-top:1rem}.contribution-result p{margin:.5rem 0 0}.net-contribution{font-family:var(--mono);font-size:1.25rem}
+.doc p,.doc li,.hero .lead{max-width:none}
+.doc h2,.doc h3{scroll-margin-top:calc(var(--header-height,80px) + 20px)}
+.doc .tbl{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+.doc .tbl td,.doc .tbl th{vertical-align:top}
+.doc .method,.doc .flow{max-width:100%;flex-wrap:wrap}
+.doc .hint>span{min-width:0}.doc a{overflow-wrap:break-word}
+.answer-example summary{font-weight:600;color:var(--accent-ink);cursor:pointer}
+@media(max-width:600px){.study-widget{padding:14px}.map-controls,.contribution-inputs{grid-template-columns:minmax(0,1fr)}.top-in{gap:8px 10px}.page-tools{flex-basis:100%;justify-content:flex-end;flex-wrap:wrap;margin:0}}
+
+.question-brief{padding:14px 18px;background:var(--tint);border-radius:10px;border:1px solid var(--line);font-size:.92rem}
+.worked-answer{margin:1.2rem 0;padding:20px 24px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;background:var(--paper)}
+.worked-answer .answer-label{font:600 .72rem var(--sans);text-transform:uppercase;letter-spacing:.08em;color:var(--accent-ink);margin:0 0 14px}
+.worked-answer>p:last-child{margin-bottom:0}
+.optional{margin:1.2rem 0;padding:14px 18px;border:1px solid var(--line);border-radius:10px}
+.optional>summary{cursor:pointer;font-weight:600;color:var(--accent-ink)}
+.optional[open]>summary{margin-bottom:1rem}
+.optional .study-widget{margin-bottom:0}
+@media(max-width:600px){.worked-answer{padding:16px}.question-brief,.optional{padding:12px 14px}}
+</style><style id="reading-design">
+:root{--example-bg:#EDF3F7;--example-line:#C4D5E0;--example-ink:#385E75;--extra-bg:#F5F3F4}
+@media(prefers-color-scheme:dark){:root{--example-bg:#202B33;--example-line:#405D70;--example-ink:#B5D5E8;--extra-bg:#252124}}
+.doc p,.doc li,.hero .lead{max-width:none}
+.reading-block{margin:18px 0;padding:18px 22px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+.reading-block>p{margin:0 0 12px}.reading-block>p:last-child{margin-bottom:0}
+.reading-block>.reading-label,.case-story>.reading-label{font:650 .7rem var(--sans);text-transform:uppercase;letter-spacing:.09em;margin:0 0 10px;color:var(--muted)}
+.reading-key{background:var(--tint);border-left:4px solid var(--accent)}
+.reading-key>.reading-label{color:var(--accent-ink)}
+.reading-key>p:not(.reading-label){font-weight:550}
+.reading-why{border-left:3px solid var(--line)}
+.reading-example,.case-story{background:var(--example-bg);border-color:var(--example-line);border-left:4px solid var(--example-line)}
+.reading-example>.reading-label,.case-story>.reading-label{color:var(--example-ink)}
+.reading-extra{background:var(--extra-bg);border-style:dashed;font-size:.92rem}
+.case-story{padding:20px 24px;border:1px solid var(--example-line);border-left:4px solid var(--example-line);border-radius:12px;margin:1.2rem 0}
+.case-story>p:last-child{margin-bottom:0}
+.example-table{border-top:3px solid var(--example-line);border-radius:10px}
+.example-table th{background:var(--example-bg);color:var(--example-ink)}
+.worked-answer,.answer-example{border:1px solid var(--line);border-left:4px solid var(--accent);background:var(--paper);border-radius:12px;padding:20px 24px;margin:1.2rem 0}
+.question-brief{background:var(--example-bg);border:1px solid var(--example-line);border-radius:10px;padding:16px 20px}
+.doc .abbr-full{font-size:.88em;font-weight:450;text-transform:none;letter-spacing:normal}
+.doc h2 .abbr-full,.doc h3 .abbr-full{color:var(--muted);font-family:var(--sans);font-size:.68em;line-height:1.55}
+.rail .abbr-full{display:none}
+.table-scroll-hint{font-size:.73rem;color:var(--muted);margin:0 0 6px;text-align:right}
+.reading-block>.reading-label{display:block}
+.case-source{font-size:.8rem;color:var(--muted)}
+.doc :is(h2,h3){scroll-margin-top:calc(var(--header-height,80px) + 20px)}
+.doc :is(.mw,.mk,.study-widget){border-top:3px solid var(--accent)}
+@media(max-width:600px){.reading-block,.case-story,.worked-answer,.answer-example{padding:16px}.question-brief{padding:14px}}
+</style><style id="bilingual-practice">
+/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
+
+.page-tools{display:flex;align-items:center;gap:14px;margin-left:8px;flex-shrink:0}
+.page-tools .topswitch{margin-left:0}
+.page-tools .practice-toggle{font-size:.72rem;padding:5px 10px}
+.page-tools .practice-toggle>.zh-full{display:none!important}
+body.show-zh .page-tools .practice-toggle{white-space:normal}
+@media(max-width:560px){.top-in .sessions{order:2}.top-in .page-tools{order:3;flex-basis:100%;margin-left:0;justify-content:flex-end;padding-bottom:3px;gap:14px}.top-in .page-tools .topswitch{margin-left:0}.top-in{row-gap:6px}}
+@media print{.page-tools{display:none}}
+</style><style>
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid var(--tone-d5c6ca);border-radius:999px;background:var(--tone-eee6e8);position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:var(--tone-ffffff);border-radius:50%;box-shadow:0 1px 2px var(--tone-77777755)}
+.topswitch input:checked{background:var(--accent)}
+.topswitch input:checked:after{left:14px}
+.topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+
+/* Session 5: the same full-Chinese switch, with local widget layout support. */
+.buttonrow button[aria-pressed=true] .zh-full{color:inherit}
+body.show-zh .kpi>div>.zh-full{font-size:.86em}
+body.show-zh .mapbox .zh-svg{font-size:10px;fill:var(--accent-ink)}
+body.show-zh .legend>span{display:grid;grid-template-columns:9px minmax(0,1fr);gap:3px 6px}
+body.show-zh .legend>span>.sw{align-self:center}
+body.show-zh .legend>span>.zh-full{grid-column:2;margin:0}
+body.show-zh .flash button{height:auto;min-height:125px}
+body.show-zh .qa summary{flex-wrap:wrap}
+body.show-zh .qa summary>.zh-full{flex-basis:100%;margin-left:21px}
+@media(max-width:560px){body.show-zh .kpi{grid-template-columns:minmax(0,1fr)}}
+</style><style id="bilingual-tones">
+:root{--tone-d5c6ca:#d5c6ca;--tone-eee6e8:#eee6e8;--tone-77777755:#77777755}
+@media screen and (prefers-color-scheme: dark){
+  :root{--tone-d5c6ca:#8B737F;--tone-eee6e8:#4B3E45;--tone-77777755:#00000066}
   .topswitch input:after { background: var(--fg); }
   .topswitch input:checked:after { background: var(--paper); }
   .m-action.primary .zh-full, .m-pillrow button[aria-pressed="true"] .zh-full,
   a.cta .zh-full, .risk b .zh-full, .hint b .zh-full, .tcard .tnum .zh-full { color: inherit; }
 }
-</style>
+.m-choices button.correct .zh-full,.m-choices button.incorrect .zh-full{color:inherit}
+</style><style id="range-input">.field input[type=range]{width:100%;accent-color:var(--accent);margin:.4rem 0}</style>
 </head><body>
-<header><div class="top"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes</a><span>/</span><a href="marketing.html">Marketing</a><span>/</span><b>Session 8</b></nav><nav class="sessions" aria-label="Sessions 5–8"><a class="pill" href="marketing-s5.html">S5</a><a class="pill" href="marketing-s6.html">S6</a><a class="pill" href="marketing-s7.html">S7</a><span class="pill" aria-current="page">S8</span></nav></div></header>
-<main><p class="kick">CMMU · Session 8</p><h1>Marketing — Session 8</h1><section class="note"><div class="label">Coming soon</div><p>This lesson is not published yet. This reserved page keeps the S5–S8 navigation working in the meantime.</p><p>When the lesson is ready, the completed HTML can replace this file directly.</p></section><a class="back" href="marketing.html">← Back to Marketing sessions</a></main></body></html>
+<header class="top"><div class="top-in">
+ <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="marketing.html">Marketing<span class="zh-full" lang="zh-Hant">行銷學</span></a><span>/</span><b>Session 8<span class="zh-full" lang="zh-Hant">第 8 堂</span></b></nav>
+ <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false" aria-controls="rail">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
+ <nav class="sessions" aria-label="Sessions 5–8"><a class="pill" href="marketing-s5.html">S5</a><a class="pill" href="marketing-s6.html">S6</a><a class="pill" href="marketing-s7.html">S7</a><span class="pill" aria-current="page">S8</span></nav>
+<div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
+<div class="wrap"><aside class="rail" id="rail" aria-label="Chapter navigation"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
+<main><article class="doc">
+<div class="hero"><p class="kick">Strategic Marketing Management · Session 8<span class="zh-full" lang="zh-Hant">策略行銷管理｜第 8 堂</span></p><h1>New Products, Pricing and Grey Markets<span class="zh-full" lang="zh-Hant">新產品、定價與灰色市場</span></h1><p class="lead">Most new products fail because buyers see no real benefit, and most price cuts backfire because they teach buyers to watch price instead of the brand. This session covers where ideas come from, why tests mislead, how to set and signal a price, and why price gaps between markets invite grey imports.<span class="zh-full" lang="zh-Hant">大多數新產品失敗，是因為買家看不到真正的好處；大多數降價會反噬，是因為它教會買家看價格而不是看品牌。本章說明點子從哪裡來、測試為何會誤導、怎麼訂價和用價格傳遞訊號，以及市場間的價差為何會引來灰色進口。</span></p></div>
+
+<h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">本章地圖</span></h2>
+<div class="method"><span>Real benefit<span class="zh-full" lang="zh-Hant">真正的利益</span></span><i aria-hidden="true">→</i><span>Test it honestly<span class="zh-full" lang="zh-Hant">誠實測試</span></span><i aria-hidden="true">→</i><span>Price that fits the position<span class="zh-full" lang="zh-Hant">符合定位的價格</span></span><i aria-hidden="true">→</i><span>Price psychology<span class="zh-full" lang="zh-Hant">價格心理</span></span><i aria-hidden="true">→</i><span>Avoid discount traps<span class="zh-full" lang="zh-Hant">避開折扣陷阱</span></span><i aria-hidden="true">→</i><span>Grey markets<span class="zh-full" lang="zh-Hant">灰色市場</span></span></div>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p>A new product needs a <b>benefit people will pay for</b>, not just a new form. Price is the only part of the marketing mix that brings in money, so it must <b>match the brand's position and stay consistent</b>.<span class="zh-full" lang="zh-Hant">新產品需要一個<b>人們願意付錢的利益</b>，而不只是新的形式。價格是行銷組合裡唯一帶進收入的部分，所以必須<b>符合品牌定位並保持一致</b>。</span></p></div>
+<p class="note-small">Based on the Session 8 slides and lecture, with questions from the lecturer's two discussion videos added to the practice items. Prices and figures are the lecturer's classroom examples, not verified market data.<span class="zh-full" lang="zh-Hant">內容依據第 8 堂投影片與講課，並把老師兩支討論影片的問題加入練習。價格與數字是老師的課堂例子，不是經查證的市場資料。</span></p>
+
+<h2 id="fail">1. Why most new products fail<span class="zh-full" lang="zh-Hant">1. 為什麼大多數新產品會失敗</span></h2>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p>Huge amounts are spent on new products, yet most fail. The lecturer's main reason is simple: <b>a lack of real benefits</b>. The product is not very new, and buyers do not see a need for it.<span class="zh-full" lang="zh-Hant">企業在新產品上花了大筆資金，但大多數仍失敗。老師給的主因很簡單：<b>缺乏真正的利益</b>。產品不夠新，買家也看不出需要它。</span></p></div>
+<div class="tbl"><table><thead><tr><th scope="col">Part of a concept<span class="zh-full" lang="zh-Hant">概念的組成</span></th><th scope="col">Meaning<span class="zh-full" lang="zh-Hant">意思</span></th><th scope="col">Example<span class="zh-full" lang="zh-Hant">例子</span></th><th scope="col">Do not confuse with<span class="zh-full" lang="zh-Hant">不要混淆</span></th></tr></thead><tbody>
+<tr><td><b>Form</b><span class="zh-full" lang="zh-Hant">形式</span></td><td>What the product actually is<span class="zh-full" lang="zh-Hant">產品實際是什麼樣子</span></td><td>Toothpaste as a paste, a powder or a liquid<span class="zh-full" lang="zh-Hant">牙膏做成膏狀、粉狀或液狀</span></td><td>A new benefit<span class="zh-full" lang="zh-Hant">新的利益</span></td></tr>
+<tr><td><b>Technology</b><span class="zh-full" lang="zh-Hant">技術</span></td><td>How it is made; can we do it?<span class="zh-full" lang="zh-Hant">怎麼做出來；我們做得到嗎？</span></td><td>A foldable screen<span class="zh-full" lang="zh-Hant">可摺疊螢幕</span></td><td>A reason to buy<span class="zh-full" lang="zh-Hant">購買的理由</span></td></tr>
+<tr><td><b>Benefit</b> <span class="zh">利益</span><span class="zh-full" lang="zh-Hant">利益</span></td><td>Something buyers want <b>and will pay for</b><span class="zh-full" lang="zh-Hant">買家想要<b>而且願意付錢</b>的東西</span></td><td>Shaving cream as a paper sheet you can carry on a flight or a camping trip<span class="zh-full" lang="zh-Hant">做成紙片的刮鬍膏，可以帶上飛機或去露營</span></td><td>Novelty that works only once<span class="zh-full" lang="zh-Hant">只撐得過一次購買的新奇感</span></td></tr>
+</tbody></table></div>
+<div class="reading-block reading-why"><p class="reading-label">How it works<span class="zh-full" lang="zh-Hant">為什麼</span></p><p>Changing the form is the easiest way to make something look new, so ask "why?" each time. A new form can also change the benefit, for better or worse. Whatever you make will probably be copied quickly. Being too different is a risk too, because people resist change at first.<span class="zh-full" lang="zh-Hant">改變形式是讓東西看起來新最容易的方法，所以每次都要問「為什麼？」。新形式也可能改變利益，變好或變差都有可能。你做出來的東西很可能很快被模仿。太不一樣也有風險，因為人一開始會抗拒改變。</span></p></div>
+<p class="hint"><b>中文邏輯</b><span>形式、技術、利益三者裡，最常缺的是利益。換個形式不等於多了好處，要一直問「為什麼要買」。</span></p>
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Why is a shaving-cream sheet a stronger form change than liquid toothpaste? Use the word "benefit" in your answer.<span class="zh-full" lang="zh-Hant">為什麼刮鬍膏紙片是比液態牙膏更好的形式改變？回答時要用到「利益」這個詞。</span></p></aside>
+
+<h2 id="ideas">2. Where new product ideas come from<span class="zh-full" lang="zh-Hant">2. 新產品點子從哪裡來</span></h2>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p>Start close to the customer. People may not know what engineers can build, but pain points show what is worth building. Grab spread fast because it solved a real problem with taxis.<span class="zh-full" lang="zh-Hant">從靠近顧客的地方開始。顧客也許不知道工程師能做出什麼，但痛點會告訴你什麼值得做。Grab 擴張得很快，因為它解決了叫計程車的真實問題。</span></p></div>
+<div class="tbl"><table><thead><tr><th scope="col">Source<span class="zh-full" lang="zh-Hant">來源</span></th><th scope="col">What it reveals<span class="zh-full" lang="zh-Hant">能看出什麼</span></th><th scope="col">Class example<span class="zh-full" lang="zh-Hant">課堂例子</span></th></tr></thead><tbody>
+<tr><td>Complaints and repair logs<span class="zh-full" lang="zh-Hant">客訴與維修紀錄</span></td><td>What keeps going wrong<span class="zh-full" lang="zh-Hant">哪裡一直出問題</span></td><td>Many repairs point to a needed improvement<span class="zh-full" lang="zh-Hant">維修多就代表需要改良</span></td></tr>
+<tr><td>Employees<span class="zh-full" lang="zh-Hant">員工</span></td><td>Daily problems outsiders miss<span class="zh-full" lang="zh-Hant">外人看不到的日常問題</span></td><td>Toyota is known for using staff suggestions<span class="zh-full" lang="zh-Hant">Toyota 以採用員工建議聞名</span></td></tr>
+<tr><td>Salespeople<span class="zh-full" lang="zh-Hant">業務人員</span></td><td>What customers and rivals say<span class="zh-full" lang="zh-Hant">顧客和對手在說什麼</span></td><td>They meet both, and people talk to them freely<span class="zh-full" lang="zh-Hant">他們兩邊都接觸，大家也願意跟他們聊</span></td></tr>
+<tr><td>Watching customers<span class="zh-full" lang="zh-Hant">觀察顧客</span></td><td>Real behavior before formal research<span class="zh-full" lang="zh-Hant">正式研究前的真實行為</span></td><td>A film producer who listens to audience reactions in cinemas<span class="zh-full" lang="zh-Hant">在電影院聽觀眾反應的電影製作人</span></td></tr>
+<tr><td>Competitors<span class="zh-full" lang="zh-Hant">競爭者</span></td><td>Ideas to copy or improve<span class="zh-full" lang="zh-Hant">可以模仿或改良的點子</span></td><td>Watch launches and ads; reverse-engineer<span class="zh-full" lang="zh-Hant">觀察新品和廣告；逆向工程</span></td></tr>
+</tbody></table></div>
+<div class="reading-block reading-example"><p class="reading-label">Class example · the problem list<span class="zh-full" lang="zh-Hant">課堂例子｜問題清單</span></p><p>List the problems people have with a product, how often and how serious they are, then look for clusters. The telephone story shows both the method and its trap:<span class="zh-full" lang="zh-Hant">列出人們使用產品時遇到的問題、多常發生、有多嚴重，再找出相似的群組。電話的故事同時示範了方法和陷阱：</span></p></div>
+<div class="flow"><span>Rotary phone<span class="zh-full" lang="zh-Hant">轉盤電話</span></span><i>→</i><span>Push-button<span class="zh-full" lang="zh-Hant">按鍵電話</span></span><i>→</i><span>Hand tied up, wired to the wall<span class="zh-full" lang="zh-Hant">手被綁住、線接在牆上</span></span><i>→</i><span>Cordless phone<span class="zh-full" lang="zh-Hant">無線電話</span></span><i>→</i><span>"I lost my phone"<span class="zh-full" lang="zh-Hant">「我的電話不見了」</span></span><i>→</i><span>Idea: connect it to the wall<span class="zh-full" lang="zh-Hant">點子：把它接回牆上</span></span></div>
+<p class="note-small">Ideas can drift into "stupid territory", like a paid service to remember where you parked. Test every idea with one question: would people pay for this?<span class="zh-full" lang="zh-Hant">點子可能越走越離譜，例如付費幫你記住車停在哪。每個點子都用一個問題檢驗：人們會為此付錢嗎？</span></p>
+<div class="pair"><div><b>Gap map</b> <span class="zh">缺口圖</span><span class="zh-full" lang="zh-Hant">缺口圖</span><p>A perceptual map can show empty positions. On a "crunch" axis, apples sit next to potato chips; on "healthy crunch", apple chips win. But a gap is not automatically an opportunity: think of cheap luxury cars.<span class="zh-full" lang="zh-Hant">知覺圖可以顯示空白位置。以「酥脆」為軸，蘋果和洋芋片放在一起；換成「健康的酥脆」，蘋果脆片勝出。但空白不等於機會：想想便宜的豪華車。</span></p></div><div><b>Product Innovation Charter (PIC)</b><span class="zh-full" lang="zh-Hant">產品創新章程</span><p>Before investing, check the fit: do we have the skills and technology, do we know these customers, what are cost and competition, and how long before others copy us? Then size the market, profit and rivals.<span class="zh-full" lang="zh-Hant">投資前先檢查是否合適：我們有沒有技術與能力、了不了解這群顧客、成本與競爭如何、多久會被模仿？接著估算市場規模、利潤和對手。</span></p></div></div>
+
+<h2 id="form">3. New benefit, or just a new form?<span class="zh-full" lang="zh-Hant">3. 是新利益，還是只是新形式？</span></h2>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p>Read each class product with one question: <b>what new benefit does it give, and would people buy it a second time?</b> Being new only drives the first purchase.<span class="zh-full" lang="zh-Hant">用同一個問題看每個課堂產品：<b>它帶來什麼新利益？人們會買第二次嗎？</b>「新」只能帶動第一次購買。</span></p></div>
+<div class="tbl example-table"><table><thead><tr><th scope="col">Class case<span class="zh-full" lang="zh-Hant">課堂案例</span></th><th scope="col">What changed<span class="zh-full" lang="zh-Hant">改了什麼</span></th><th scope="col">The lecturer's view<span class="zh-full" lang="zh-Hant">老師的看法</span></th></tr></thead><tbody>
+<tr><td>Heinz squeeze bottle<span class="zh-full" lang="zh-Hant">Heinz 擠壓瓶</span></td><td>Glass to plastic, easy to open and pour<span class="zh-full" lang="zh-Hant">玻璃改塑膠，好開好倒</span></td><td>A real improvement: no shattering, no crusty lid, no shaking<span class="zh-full" lang="zh-Hant">真正的改良：不會碎、瓶蓋不結塊、不用狂搖</span></td></tr>
+<tr><td>Heinz blue and green ketchup<span class="zh-full" lang="zh-Hant">Heinz 藍色與綠色番茄醬</span></td><td>Color only<span class="zh-full" lang="zh-Hant">只改顏色</span></td><td>No reason for the color; ketchup is not health food<span class="zh-full" lang="zh-Hant">顏色沒有理由；番茄醬又不是健康食品</span></td></tr>
+<tr><td>Colgate 2in1; Nude liquid toothpaste<span class="zh-full" lang="zh-Hant">Colgate 二合一；Nude 液態牙膏</span></td><td>Paste to gel to liquid<span class="zh-full" lang="zh-Hant">膏狀變凝膠再變液態</span></td><td>"Just a runny toothpaste"; liquid is hard to keep in your mouth while brushing<span class="zh-full" lang="zh-Hant">「只是比較稀的牙膏」；液體刷牙時很難含在嘴裡</span></td></tr>
+<tr><td>Listerine spray, strips, chewable tablets<span class="zh-full" lang="zh-Hant">Listerine 噴霧、薄片、咀嚼錠</span></td><td>New portable forms<span class="zh-full" lang="zh-Hant">新的隨身形式</span></td><td>Spray freshens breath but is not mouthwash; tablets are expensive and unproven<span class="zh-full" lang="zh-Hant">噴霧能清新口氣但不是漱口水；咀嚼錠很貴，效果也沒被證實</span></td></tr>
+<tr><td>Vaseline tube, pump, spray<span class="zh-full" lang="zh-Hant">Vaseline 軟管、按壓瓶、噴霧</span></td><td>Dispensing format<span class="zh-full" lang="zh-Hant">取用方式</span></td><td>"Is it really necessary?"<span class="zh-full" lang="zh-Hant">「真的有必要嗎？」</span></td></tr>
+<tr><td>Oreo Crunchies<span class="zh-full" lang="zh-Hant">Oreo 碎餅乾</span></td><td>Broken cookies sold as ice-cream topping<span class="zh-full" lang="zh-Hant">把碎掉的餅乾包裝成冰淇淋配料</span></td><td>Clever use of factory leftovers, with a small convenience benefit<span class="zh-full" lang="zh-Hant">巧妙利用工廠剩料，帶一點便利</span></td></tr>
+<tr><td>Foldable phones<span class="zh-full" lang="zh-Hant">摺疊手機</span></td><td>A screen that folds<span class="zh-full" lang="zh-Hant">可以摺的螢幕</span></td><td>"Different just to be different": high price, reported high failure rate<span class="zh-full" lang="zh-Hant">「為了不同而不同」：價格高，故障率據說也高</span></td></tr>
+</tbody></table></div>
+<div class="study-widget" data-mk="choice-quiz" data-set="benefit"><p class="mw-label">Practice · Real benefit or just a new form?<span class="zh-full" lang="zh-Hant">練習｜真正的利益，還是只是新形式？</span></p><p class="quiz-item qz-item" aria-live="polite"></p><div class="m-choices" role="group" aria-label="Benefit test"></div><div class="m-feedback" aria-live="polite"></div><div class="qz-nav"><span class="m-progress"></span><button type="button" class="m-action quiz-next">Next item<span class="zh-full" lang="zh-Hant">下一題</span></button></div></div>
+<div class="reading-block reading-example"><p class="reading-label">Class example · detergent<span class="zh-full" lang="zh-Hant">課堂例子｜洗衣劑</span></p><p>Powder could turn hard in a wet or humid yard. Liquid is easier but heavy, and "you're paying me for the water". Tablets are tidy, yet people stop over-pouring because nobody breaks a tablet in half, so the seller loses volume. Pods combine detergent, softener and color care: convenient, expensive, and quickly copied by every brand.<span class="zh-full" lang="zh-Hant">粉狀洗衣粉放在潮濕的戶外會結塊變硬。液態比較好用但很重，「你是在付錢買水」。錠狀很整齊，但大家不再多倒，因為沒人會把一錠剝成一半，賣方反而少賣。洗衣球把洗劑、柔軟精和護色合在一起：方便、昂貴，而且很快被每個品牌模仿。</span></p></div>
+<div class="tbl"><table><thead><tr><th scope="col">Type of new product<span class="zh-full" lang="zh-Hant">新產品類型</span></th><th scope="col">Meaning<span class="zh-full" lang="zh-Hant">意思</span></th><th scope="col">Example<span class="zh-full" lang="zh-Hant">例子</span></th></tr></thead><tbody>
+<tr><td>New-to-the-world<span class="zh-full" lang="zh-Hant">全新問世</span></td><td>Creates a category; hardest to test<span class="zh-full" lang="zh-Hant">創造新品類；最難測試</span></td><td>The first Walkman<span class="zh-full" lang="zh-Hant">第一台 Walkman</span></td></tr>
+<tr><td>New category entry<span class="zh-full" lang="zh-Hant">進入新品類</span></td><td>New to the firm, not to the market<span class="zh-full" lang="zh-Hant">對公司是新的，對市場不是</span></td><td>Pepsi and Coke selling coffee drinks<span class="zh-full" lang="zh-Hant">Pepsi 和 Coke 推出咖啡飲料</span></td></tr>
+<tr><td>Category (brand) extension<span class="zh-full" lang="zh-Hant">品類（品牌）延伸</span></td><td>An existing name in a new category<span class="zh-full" lang="zh-Hant">現有名字進入新品類</span></td><td>Gatorade chews<span class="zh-full" lang="zh-Hant">Gatorade 軟糖</span></td></tr>
+<tr><td>Product improvement<span class="zh-full" lang="zh-Hant">產品改良</span></td><td>A better version replaces the old one<span class="zh-full" lang="zh-Hant">更好的版本取代舊的</span></td><td>Heinz squeeze bottle<span class="zh-full" lang="zh-Hant">Heinz 擠壓瓶</span></td></tr>
+<tr><td>Line extension <span class="zh">產品線延伸</span><span class="zh-full" lang="zh-Hant">產品線延伸</span></td><td>New flavor, size or form in the same category<span class="zh-full" lang="zh-Hant">同品類的新口味、規格或形式</span></td><td>New Lay's flavors; the original still sells most<span class="zh-full" lang="zh-Hant">Lay's 新口味；原味仍賣最好</span></td></tr>
+</tbody></table></div>
+<p class="note-small">The discussion video estimates that 80–90% of new products are line extensions, costing about a fifth of a completely new product; no source is given.<span class="zh-full" lang="zh-Hant">討論影片估計 80% 到 90% 的新產品是產品線延伸，成本約為全新產品的五分之一；影片沒有附來源。</span></p>
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Detergent tablets are tidier than powder. Explain how they could still reduce the seller's total sales.<span class="zh-full" lang="zh-Hant">洗衣錠比洗衣粉整潔。請說明它為什麼仍可能讓賣方總銷量下降。</span></p></aside>
+
+<h2 id="testing">4. Testing new products, and why tests mislead<span class="zh-full" lang="zh-Hant">4. 測試新產品，以及測試為何會誤導</span></h2>
+<div class="flow"><span>Idea generation<span class="zh-full" lang="zh-Hant">產生點子</span></span><i>→</i><span>Screening<span class="zh-full" lang="zh-Hant">篩選</span></span><i>→</i><span>Concept development and testing<span class="zh-full" lang="zh-Hant">概念發展與測試</span></span><i>→</i><span>Business analysis<span class="zh-full" lang="zh-Hant">商業分析</span></span><i>→</i><span>Prototype<span class="zh-full" lang="zh-Hant">原型</span></span><i>→</i><span>Test marketing<span class="zh-full" lang="zh-Hant">試銷</span></span><i>→</i><span>Commercialization<span class="zh-full" lang="zh-Hant">商品化</span></span></div>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p>Concept testing checks the biggest cause of failure early: <b>the buyer did not see a need</b>. It saves money and sets the positioning, but no test is 100% sure.<span class="zh-full" lang="zh-Hant">概念測試提早檢查失敗的最大原因：<b>買家看不出需要</b>。它能省錢、也能定下定位，但沒有任何測試是百分之百準確的。</span></p></div>
+<div class="pair"><div><b>Too new: people say no<span class="zh-full" lang="zh-Hant">太新：大家說不要</span></b><p>People resist change and cannot imagine a microwave, fax or video call before using one. Computers, fax machines and VCRs were rejected at first. Do not kill a radical idea too quickly.<span class="zh-full" lang="zh-Hant">人會抗拒改變，在用過之前想像不到微波爐、傳真機或視訊通話的好處。電腦、傳真機和錄影機一開始都被拒絕。不要太快扼殺激進的點子。</span></p></div><div><b>Not new: people say yes<span class="zh-full" lang="zh-Hant">不新：大家說好</span></b><p>Politeness and over-claiming push stated intent up: "Would you buy it? Yes", then they don't. The honeymoon effect gives high early scores that fade. New Coke and Cherry Coke scored well and failed.<span class="zh-full" lang="zh-Hant">禮貌和過度宣稱會拉高表面意願：「你會買嗎？會」，結果沒買。蜜月效應讓早期分數很高，之後下滑。New Coke 和 Cherry Coke 測試分數很好，上市卻失敗。</span></p></div></div>
+<div class="reading-block reading-why"><p class="reading-label">How it works<span class="zh-full" lang="zh-Hant">為什麼</span></p><p>The discussion video asks why the most successful new products were often kept away from the formal NPD system. Its own answer: formal systems are routine and slow, big committees lose a shared team identity, and they judge new ideas by old criteria, which favors more of the same.<span class="zh-full" lang="zh-Hant">討論影片問：為什麼最成功的新產品常常不是走正式的新產品開發流程？影片自己的答案：正式流程按部就班又慢，大型委員會失去團隊的共同認同，而且用舊標準評判新點子，結果偏向做更多相同的東西。</span></p></div>
+<p class="hint"><b>中文邏輯</b><span>測試兩頭都會錯：太新的東西大家先說不要，不新的東西大家客氣說要。所以要看實際的重複購買，而不是嘴上說的意願。</span></p>
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Test-market results are usually better than results after launch. Give three reasons, and say what you would measure instead of first-time sales.<span class="zh-full" lang="zh-Hant">試銷結果通常比正式上市後好。請給出三個理由，並說明你會用什麼指標取代首購銷量。</span></p></aside>
+
+<h2 id="price-role">5. Price: the only P that brings in money<span class="zh-full" lang="zh-Hant">5. 價格：唯一帶進收入的 P</span></h2>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p>Product, place and promotion are costs; <b>price is the only P that generates revenue</b>. It must link to positioning and stay consistent, because switching between premium and value makes a brand look like a yo-yo. "Me too but cheaper" means everyone makes less money.<span class="zh-full" lang="zh-Hant">產品、通路和推廣都是成本；<b>價格是唯一帶來收入的 P</b>。它必須和定位連結並保持一致，因為在高價和平價之間跳來跳去，品牌看起來就像溜溜球。「我也有，但更便宜」只會讓大家都少賺。</span></p></div>
+<div class="tbl"><table><thead><tr><th scope="col">Pricing objective<span class="zh-full" lang="zh-Hant">定價目標</span></th><th scope="col">Meaning<span class="zh-full" lang="zh-Hant">意思</span></th><th scope="col">Lecture point<span class="zh-full" lang="zh-Hant">課堂重點</span></th></tr></thead><tbody>
+<tr><td>Survival<span class="zh-full" lang="zh-Hant">求生存</span></td><td>Cope with fierce competition or excess capacity<span class="zh-full" lang="zh-Hant">應付激烈競爭或過剩產能</span></td><td>"Not good at all"<span class="zh-full" lang="zh-Hant">「一點都不好」</span></td></tr>
+<tr><td>Current profit maximization<span class="zh-full" lang="zh-Hant">當期利潤最大化</span></td><td>Choose the price that gives the most profit now<span class="zh-full" lang="zh-Hant">選擇現在利潤最高的價格</span></td><td>Do not say it out loud; a Thai firm named "The Profitable Group" invites the question "profit from whom?"<span class="zh-full" lang="zh-Hant">不要說出口；一家叫「The Profitable Group」的泰國公司，會讓人問「賺誰的錢？」</span></td></tr>
+<tr><td>Market-share leadership<span class="zh-full" lang="zh-Hant">市占率領先</span></td><td>Largest share, often through the lowest price<span class="zh-full" lang="zh-Hant">追求最大市占，常靠最低價</span></td><td>Discounts can buy share, but not profit or loyalty<span class="zh-full" lang="zh-Hant">折扣買得到市占，買不到利潤或忠誠</span></td></tr>
+<tr><td>Product-quality leadership<span class="zh-full" lang="zh-Hant">品質領先</span></td><td>Higher price, higher quality, more R&amp;D<span class="zh-full" lang="zh-Hant">較高價、較高品質、較多研發</span></td><td>"Expensive, so it must be good" is learned, not a law<span class="zh-full" lang="zh-Hant">「貴所以一定好」是學來的想法，不是定律</span></td></tr>
+</tbody></table></div>
+<div class="reading-block reading-why"><p class="reading-label">How it works · buying share is not buying loyalty<span class="zh-full" lang="zh-Hant">為什麼｜買到市占不等於買到忠誠</span></p><p>Many firms enter cheap, planning to raise prices once customers are "loyal". When the price rises, people move to the next cheap brand. Blank CDs at 4–5 baht kept creeping up, and buyers left. Oppo entered around 4,000 baht against a 25,000-baht iPhone and has had to launch higher models to build reputation.<span class="zh-full" lang="zh-Hant">很多公司低價進場，打算等顧客「忠誠」後再漲價。價格一漲，大家就換到下一個便宜品牌。4 到 5 泰銖的空白光碟價格一路往上加，買家就走了。Oppo 以約 4,000 泰銖對抗 25,000 泰銖的 iPhone，之後只能推出更高階的機種來建立聲譽。</span></p></div>
+<div class="tbl"><table><thead><tr><th scope="col">Phone brand<span class="zh-full" lang="zh-Hant">手機品牌</span></th><th scope="col">Pricing path<span class="zh-full" lang="zh-Hant">定價路線</span></th><th scope="col">Lesson<span class="zh-full" lang="zh-Hant">啟示</span></th></tr></thead><tbody>
+<tr><td>Apple</td><td>Always premium<span class="zh-full" lang="zh-Hant">一直維持高價</span></td><td>A consistent price protects the image<span class="zh-full" lang="zh-Hant">一致的價格保護形象</span></td></tr>
+<tr><td>Oppo</td><td>Low, then trading up<span class="zh-full" lang="zh-Hant">低價進場，再往上走</span></td><td>Share first, credibility later<span class="zh-full" lang="zh-Hant">先拿市占，之後才建立可信度</span></td></tr>
+<tr><td>iMobile</td><td>Phones made by others under a local name<span class="zh-full" lang="zh-Hant">別人製造、掛本地品牌名</span></td><td>Works like a private label<span class="zh-full" lang="zh-Hant">運作方式像自有品牌</span></td></tr>
+<tr><td>Samsung</td><td>Entered Thai phones high, despite a cheap image<span class="zh-full" lang="zh-Hant">形象便宜，卻以高價進入泰國手機市場</span></td><td>A high price plus real features shifted the whole brand upward<span class="zh-full" lang="zh-Hant">高價加上真正的功能，把整個品牌往上推</span></td></tr>
+</tbody></table></div>
+
+<h2 id="signals">6. Price signals and reference prices<span class="zh-full" lang="zh-Hant">6. 價格訊號與參考價格</span></h2>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p><b>Price signaling</b> <span class="zh">價格訊號</span>: a high price suggests high quality, a low price suggests "must be pretty bad". A <b>reference price</b> <span class="zh">參考價格</span> is the rough price in a buyer's head used to judge every brand in a category.<span class="zh-full" lang="zh-Hant"><b>價格訊號</b>：高價暗示高品質，低價暗示「大概不怎麼樣」。<b>參考價格</b>是買家心中用來評判同品類所有品牌的大概價格。</span></p></div>
+<div class="reading-block reading-example"><p class="reading-label">Class example · Thai green tea<span class="zh-full" lang="zh-Hant">課堂例子｜泰國綠茶</span></p><p>For years most people said a bottle of green tea costs 20 baht, because Oishi and Unif priced there. Unif's Haru-cha at 35 baht, sold as first-harvest leaves, failed. The lecturer heard that the tea costs about 2 baht to produce, before transport, distribution and marketing.<span class="zh-full" lang="zh-Hant">多年來大多數人都說一瓶綠茶 20 泰銖，因為 Oishi 和 Unif 都訂這個價。Unif 的 Haru-cha 標榜第一次採收的茶葉、賣 35 泰銖，結果失敗。老師聽說茶的生產成本大約 2 泰銖，還沒算運輸、配銷和行銷。</span></p></div>
+<div class="study-widget" data-mk="launch-price"><p class="mw-label">Decision lab · Price a new green tea<span class="zh-full" lang="zh-Hant">決策實驗｜替新綠茶訂價</span></p><p class="sub">The shelf already has famous brands at a 20-baht reference price. Choose a launch price and see what the shopper is likely to think.<span class="zh-full" lang="zh-Hant">貨架上已有知名品牌，參考價格是 20 泰銖。選一個上市價格，看購物者可能怎麼想。</span></p><div class="buttonrow" role="group" aria-label="Launch price"><button type="button" data-price="0" aria-pressed="true">18 baht<span class="zh-full" lang="zh-Hant">18 泰銖</span></button><button type="button" data-price="1" aria-pressed="false">20 baht<span class="zh-full" lang="zh-Hant">20 泰銖</span></button><button type="button" data-price="2" aria-pressed="false">20 baht, intro offer 18<span class="zh-full" lang="zh-Hant">原價 20，首發 18</span></button><button type="button" data-price="3" aria-pressed="false">35 baht premium<span class="zh-full" lang="zh-Hant">35 泰銖高價</span></button></div><div class="result" aria-live="polite"><p class="big" data-out="title"></p><p data-out="body"></p></div></div>
+<div class="tbl"><table><thead><tr><th scope="col">Retail pricing<span class="zh-full" lang="zh-Hant">零售定價</span></th><th scope="col">Pattern<span class="zh-full" lang="zh-Hant">模式</span></th><th scope="col">Examples<span class="zh-full" lang="zh-Hant">例子</span></th></tr></thead><tbody>
+<tr><td><b>EDLP</b> (everyday low price)<span class="zh-full" lang="zh-Hant">天天低價</span></td><td>Cheap all the time; a volume model<span class="zh-full" lang="zh-Hant">一直便宜；靠量</span></td><td>Big C, Tesco Lotus, Walmart</td></tr>
+<tr><td><b>High-Low</b><span class="zh-full" lang="zh-Hant">高低價</span></td><td>High every day, with some promotions<span class="zh-full" lang="zh-Hant">平時價高，偶爾促銷</span></td><td>Villa Market</td></tr>
+<tr><td><b>Private label</b> <span class="zh">自有品牌</span><span class="zh-full" lang="zh-Hant">自有品牌</span></td><td>Usually 20–30% cheaper than national brands; in Thailand often only about 10%<span class="zh-full" lang="zh-Hant">通常比全國品牌便宜 20% 到 30%；在泰國常只便宜約 10%</span></td><td>Tops' My Choice and Smarter<span class="zh-full" lang="zh-Hant">Tops 的 My Choice 與 Smarter</span></td></tr>
+</tbody></table></div>
+<div class="reading-block reading-why"><p class="reading-label">How it works<span class="zh-full" lang="zh-Hant">為什麼</span></p><p>In surveys people say price is "extremely important", yet asked right after an item goes into the cart, most cannot say what they paid or whether it was on sale. "Customers don't care about price" sounds good but can be bad news: it may mean they see all brands as the same and will drift to private label.<span class="zh-full" lang="zh-Hant">問卷裡大家都說價格「極度重要」，但在商品剛放進購物車時問，多數人說不出付了多少錢、有沒有特價。「顧客不在乎價格」聽起來很好，其實可能是壞消息：代表他們覺得所有品牌都一樣，最後會轉向自有品牌。</span></p></div>
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>On a 7-Eleven shelf, a new tea sells at 18 baht and Oishi is on sale from 20 to 18 baht. Which do most shoppers pick, and what does that say about launching low?<span class="zh-full" lang="zh-Hant">7-Eleven 貨架上，新茶賣 18 泰銖，Oishi 從 20 泰銖特價到 18 泰銖。大多數人會選哪一個？這對低價上市說明了什麼？</span></p></aside>
+
+<h2 id="setting">7. Setting the price: floor, ceiling and strategy<span class="zh-full" lang="zh-Hant">7. 訂價：下限、上限與策略</span></h2>
+<div class="flow"><span>Floor = production cost<span class="zh-full" lang="zh-Hant">下限＝生產成本</span></span><i>→</i><span>Price somewhere between<span class="zh-full" lang="zh-Hant">價格落在中間</span></span><i>→</i><span>Ceiling = consumer perception<span class="zh-full" lang="zh-Hant">上限＝消費者認知</span></span><i>→</i><span>Capped in practice by competition<span class="zh-full" lang="zh-Hant">實際上受競爭限制</span></span></div>
+<div class="reading-block reading-why"><p class="reading-label">How it works<span class="zh-full" lang="zh-Hant">為什麼</span></p><p>Textbook models say nobody would pay 500 baht for water. The lecturer disagrees: some people always buy the most expensive brand, applied unevenly across categories. What really caps the price is that "you're not usually alone in the market": Intel faces AMD, and Oculus leans on its game library, because hardware without games is "a TV with no channels".<span class="zh-full" lang="zh-Hant">教科書模型說沒人會花 500 泰銖買水。老師不同意：有些人總是買最貴的品牌，只是在不同品類套用得不一致。真正壓住價格的是「市場上通常不只你一家」：Intel 要面對 AMD；Oculus 靠的是遊戲庫，因為沒有遊戲的硬體就像「沒有頻道的電視」。</span></p></div>
+<div class="tbl"><table><thead><tr><th scope="col">Approach<span class="zh-full" lang="zh-Hant">方法</span></th><th scope="col">Definition<span class="zh-full" lang="zh-Hant">定義</span></th><th scope="col">Class example<span class="zh-full" lang="zh-Hant">課堂例子</span></th><th scope="col">Do not confuse with<span class="zh-full" lang="zh-Hant">不要混淆</span></th></tr></thead><tbody>
+<tr><td><b>Cost-plus</b><span class="zh-full" lang="zh-Hant">成本加成</span></td><td>Cost plus a standard markup<span class="zh-full" lang="zh-Hant">成本加上固定加成</span></td><td>A shoemaker's cost is 100 baht, sold at 110; retail is about 500<span class="zh-full" lang="zh-Hant">鞋廠成本 100 泰銖、賣 110；零售約 500</span></td><td>What buyers would pay<span class="zh-full" lang="zh-Hant">買家願意付多少</span></td></tr>
+<tr><td><b>Value-based</b> <span class="zh">價值定價</span><span class="zh-full" lang="zh-Hant">價值定價</span></td><td>What customers will pay; unrelated to cost<span class="zh-full" lang="zh-Hant">顧客願意付的價格；和成本無關</span></td><td>Nike: about 200 baht to make, 5,000 to buy<span class="zh-full" lang="zh-Hant">Nike：製造約 200 泰銖，售價 5,000</span></td><td>Overcharging (price gouging)<span class="zh-full" lang="zh-Hant">哄抬價格</span></td></tr>
+<tr><td><b>Market skimming</b> <span class="zh">吸脂定價</span><span class="zh-full" lang="zh-Hant">吸脂定價</span></td><td>High launch price for an innovation, falling later<span class="zh-full" lang="zh-Hant">創新產品高價上市，之後降價</span></td><td>Intel's top chip; PlayStation 3<span class="zh-full" lang="zh-Hant">Intel 頂級晶片；PlayStation 3</span></td><td>Permanent premium positioning<span class="zh-full" lang="zh-Hant">永久的高價定位</span></td></tr>
+<tr><td><b>Market penetration</b> <span class="zh">滲透定價</span><span class="zh-full" lang="zh-Hant">滲透定價</span></td><td>Low price, low margin, high volume<span class="zh-full" lang="zh-Hant">低價、低毛利、高銷量</span></td><td>Two Lancer pens for 5 baht; McDonald's in Western markets<span class="zh-full" lang="zh-Hant">Lancer 筆兩支 5 泰銖；西方市場的麥當勞</span></td><td>A price war<span class="zh-full" lang="zh-Hant">價格戰</span></td></tr>
+</tbody></table></div>
+<div class="four"><div><b>Unique or prestigious</b><span class="zh-full" lang="zh-Hant">獨特或有聲望</span><p>Buyers are less price sensitive.<span class="zh-full" lang="zh-Hant">買家對價格較不敏感。</span></p></div><div><b>Hard to substitute</b><span class="zh-full" lang="zh-Hant">難以替代</span><p>Few alternatives, like gasoline for commuters.<span class="zh-full" lang="zh-Hant">替代選擇少，例如通勤者的汽油。</span></p></div><div><b>Small total cost</b><span class="zh-full" lang="zh-Hant">總花費小</span><p>The price barely matters to the buyer.<span class="zh-full" lang="zh-Hant">價格對買家幾乎沒影響。</span></p></div><div><b>Someone else pays</b><span class="zh-full" lang="zh-Hant">別人付錢</span><p>Buyer, payer and user differ, as with a conference the university pays for.<span class="zh-full" lang="zh-Hant">購買者、付款者、使用者不同，例如大學出錢的研討會。</span></p></div></div>
+<p class="note-small">These four conditions make demand less price elastic. The lecturer's examples to test them: gasoline, cigarettes, eating out, movies and magazines.<span class="zh-full" lang="zh-Hant">這四個條件會讓需求的價格彈性變小。老師用來檢驗的例子：汽油、香菸、外食、電影和雜誌。</span></p>
+<div class="study-widget" data-mk="choice-quiz" data-set="strategy"><p class="mw-label">Practice · Name the pricing strategy<span class="zh-full" lang="zh-Hant">練習｜判斷定價策略</span></p><p class="quiz-item qz-item" aria-live="polite"></p><div class="m-choices" role="group" aria-label="Pricing strategy"></div><div class="m-feedback" aria-live="polite"></div><div class="qz-nav"><span class="m-progress"></span><button type="button" class="m-action quiz-next">Next item<span class="zh-full" lang="zh-Hant">下一題</span></button></div></div>
+<div class="reading-block reading-example"><p class="reading-label">Class example · Tata Nano<span class="zh-full" lang="zh-Hant">課堂例子｜Tata Nano</span></p><p>Tata built "the cheapest car in the world" to replace families of five on one motorcycle. People said it was "a motorcycle with four wheels" and feared being judged as poor, so it did not sell. A low price can send a low-status signal.<span class="zh-full" lang="zh-Hant">Tata 打造「世界上最便宜的車」，想取代一家五口擠一台機車的情況。大家卻說它是「四個輪子的機車」，怕被別人看成窮人，結果賣不好。低價可能傳遞低地位的訊號。</span></p></div>
+
+<h2 id="mix">8. Product mix pricing<span class="zh-full" lang="zh-Hant">8. 產品組合定價</span></h2>
+<div class="tbl"><table><thead><tr><th scope="col">Strategy<span class="zh-full" lang="zh-Hant">策略</span></th><th scope="col">Definition<span class="zh-full" lang="zh-Hant">定義</span></th><th scope="col">Class example<span class="zh-full" lang="zh-Hant">課堂例子</span></th></tr></thead><tbody>
+<tr><td>Product line pricing<span class="zh-full" lang="zh-Hant">產品線定價</span></td><td>Price steps within one line<span class="zh-full" lang="zh-Hant">同一產品線內的價格階梯</span></td><td>Suits at 18,000, 28,000 and 34,000 baht<span class="zh-full" lang="zh-Hant">西裝 18,000、28,000、34,000 泰銖</span></td></tr>
+<tr><td>Optional product pricing<span class="zh-full" lang="zh-Hant">選購品定價</span></td><td>Accessories you may add<span class="zh-full" lang="zh-Hant">可加購的配件</span></td><td>Phone cases, cables, iPod socks<span class="zh-full" lang="zh-Hant">手機殼、充電線、iPod 襪套</span></td></tr>
+<tr><td><b>Captive product pricing</b> <span class="zh">專屬耗材定價</span><span class="zh-full" lang="zh-Hant">專屬耗材定價</span></td><td>Items that <b>must</b> be used with the main product, which may sell cheap<span class="zh-full" lang="zh-Hant"><b>必須</b>搭配主產品使用的品項，主產品可能賣得很便宜</span></td><td>Gillette blades, printer ink, Nespresso capsules<span class="zh-full" lang="zh-Hant">Gillette 刀片、印表機墨水、Nespresso 膠囊</span></td></tr>
+<tr><td>Bundle pricing<span class="zh-full" lang="zh-Hant">組合定價</span></td><td>A set costs less than items bought separately<span class="zh-full" lang="zh-Hant">套組比單買便宜</span></td><td>McDonald's set meal; prepaid movie tickets<span class="zh-full" lang="zh-Hant">麥當勞套餐；預購電影票</span></td></tr>
+</tbody></table></div>
+<div class="study-widget" data-mk="captive"><p class="mw-label">Interactive · Captive pricing calculator<span class="zh-full" lang="zh-Hant">互動｜專屬耗材計算器</span></p><h4>Is a refill almost the price of a new machine?<span class="zh-full" lang="zh-Hant">補充耗材是不是快跟新機一樣貴？</span></h4><p class="sub">Start from the lecturer's printer and camera stories, then change the numbers.<span class="zh-full" lang="zh-Hant">先用老師的印表機和相機故事，再自己改數字。</span></p><div class="buttonrow" role="group" aria-label="Captive presets"><button type="button" data-preset="0" aria-pressed="true">Inkjet printer<span class="zh-full" lang="zh-Hant">噴墨印表機</span></button><button type="button" data-preset="1" aria-pressed="false">Color laser<span class="zh-full" lang="zh-Hant">彩色雷射</span></button><button type="button" data-preset="2" aria-pressed="false">Instant camera<span class="zh-full" lang="zh-Hant">拍立得相機</span></button></div><div class="s5-grid"><div class="field"><label for="capMain">Main product price (THB)<span class="zh-full" lang="zh-Hant">主產品價格（泰銖）</span></label><input id="capMain" type="number" min="1" max="1000000" step="50" value="4000"></div><div class="field"><label for="capRefill">Price per refill item (THB)<span class="zh-full" lang="zh-Hant">每個補充品價格（泰銖）</span></label><input id="capRefill" type="number" min="0" max="100000" step="10" value="750"></div><div class="field"><label for="capCount">Refill items needed<span class="zh-full" lang="zh-Hant">需要的補充品數量</span></label><input id="capCount" type="number" min="1" max="20" step="1" value="4"></div></div><div class="kpi"><div>One full refill<span class="zh-full" lang="zh-Hant">補充一次的花費</span><b data-out="refill">THB 3,000</b></div><div>Refill as % of main product<span class="zh-full" lang="zh-Hant">補充費占主產品比例</span><b data-out="pct">75%</b></div><div>Refills before spending the machine price again<span class="zh-full" lang="zh-Hant">補充幾次就等於再買一台</span><b data-out="times">1.3</b></div></div><p class="s5-muted" data-out="note"></p></div>
+<div class="reading-block reading-example"><p class="reading-label">Class example<span class="zh-full" lang="zh-Hant">課堂例子</span></p><p>The lecturer bought a multifunction inkjet just to send faxes. It used ink to calibrate each time it was switched on, and refused to scan once the ink ran out. HP's counter to refilling: each new cartridge includes a new print head, "like getting a new printer".<span class="zh-full" lang="zh-Hant">老師買多功能噴墨印表機只是為了傳真。它每次開機都用墨水校正，墨水用完就連掃描都不讓用。HP 對付補充墨水的方法：每個新墨水匣都附新的列印頭，「就像拿到一台新印表機」。</span></p></div>
+
+<h2 id="psychology">9. Price psychology<span class="zh-full" lang="zh-Hant">9. 價格心理</span></h2>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p>The <b>contrast principle</b> <span class="zh">對比原則</span>: when two things are compared and the second is quite different, people see the gap as bigger than it is. Start high and work down, and later items feel cheap.<span class="zh-full" lang="zh-Hant"><b>對比原則</b>：比較兩樣東西時，如果第二樣差很多，人會覺得差距比實際更大。從高價開始往下介紹，後面的東西就顯得便宜。</span></p></div>
+<div class="tbl example-table"><table><thead><tr><th scope="col">Class example<span class="zh-full" lang="zh-Hant">課堂例子</span></th><th scope="col">What happens<span class="zh-full" lang="zh-Hant">發生什麼事</span></th></tr></thead><tbody>
+<tr><td>Suits at 18,000 and 34,000; add 28,000<span class="zh-full" lang="zh-Hant">西裝 18,000 與 34,000；加入 28,000</span></td><td>With two prices, shoppers stay on one side. A middle option lets 18,000 shoppers step up and 34,000 shoppers land at 28,000 instead of 18,000 (decoy pricing).<span class="zh-full" lang="zh-Hant">只有兩個價位時，顧客會停在其中一邊。中間選項讓 18,000 的顧客往上走，34,000 的顧客往下時停在 28,000 而不是 18,000（誘餌定價）。</span></td></tr>
+<tr><td>Tailor shops<span class="zh-full" lang="zh-Hant">西裝訂做店</span></td><td>Start with imported Armani fabric, then step down; the cheapest level then looks poor.<span class="zh-full" lang="zh-Hant">先介紹進口 Armani 布料再往下；最便宜的那級就顯得很差。</span></td></tr>
+<tr><td>Accessories after a big purchase<span class="zh-full" lang="zh-Hant">大額購買後的配件</span></td><td>Shirts after a suit, a wallet after a handbag, a warranty after a laptop.<span class="zh-full" lang="zh-Hant">買了西裝再買襯衫、買了包再買皮夾、買了筆電再買保固。</span></td></tr>
+<tr><td>Photocopiers A, B, C<span class="zh-full" lang="zh-Hant">影印機 A、B、C</span></td><td>Model A, the most expensive, sold poorly; after a pricier model was added above it, A started selling.<span class="zh-full" lang="zh-Hant">最貴的 A 賣得差；在它上面加一台更貴的機型後，A 開始賣得動。</span></td></tr>
+<tr><td>Odd pricing: 199, 6,999<span class="zh-full" lang="zh-Hant">尾數定價：199、6,999</span></td><td>Buyers anchor on the first digit: "six something" is really seven.<span class="zh-full" lang="zh-Hant">買家只看第一位數：「六千多」其實就是七千。</span></td></tr>
+</tbody></table></div>
+<div class="study-widget" data-mk="unit-price"><p class="mw-label">Interactive · Which pack is really cheaper?<span class="zh-full" lang="zh-Hant">互動｜哪一包真的比較便宜？</span></p><h4>Slide question: detergent A vs B<span class="zh-full" lang="zh-Hant">投影片題目：洗衣劑 A 對 B</span></h4><p class="sub">A is 219 baht for 320 g; B is 199 baht for 260 g. Most shoppers do not do the math. Change the numbers to test other packs.<span class="zh-full" lang="zh-Hant">A 是 320 公克 219 泰銖；B 是 260 公克 199 泰銖。大多數人不會算。改數字可以試別的包裝。</span></p><div class="s5-grid"><div class="field"><label for="upAp">Pack A price (THB)<span class="zh-full" lang="zh-Hant">A 包價格（泰銖）</span></label><input id="upAp" type="number" min="0.01" step="1" value="219"></div><div class="field"><label for="upAq">Pack A size (g)<span class="zh-full" lang="zh-Hant">A 包重量（公克）</span></label><input id="upAq" type="number" min="1" step="10" value="320"></div><div class="field"><label for="upBp">Pack B price (THB)<span class="zh-full" lang="zh-Hant">B 包價格（泰銖）</span></label><input id="upBp" type="number" min="0.01" step="1" value="199"></div><div class="field"><label for="upBq">Pack B size (g)<span class="zh-full" lang="zh-Hant">B 包重量（公克）</span></label><input id="upBq" type="number" min="1" step="10" value="260"></div></div><div class="kpi"><div>A per 100 g<span class="zh-full" lang="zh-Hant">A 每 100 公克</span><b data-out="a">THB 68.44</b></div><div>B per 100 g<span class="zh-full" lang="zh-Hant">B 每 100 公克</span><b data-out="b">THB 76.54</b></div><div>Better value<span class="zh-full" lang="zh-Hant">較划算</span><b data-out="win">A</b></div></div><p class="s5-muted" data-out="note"></p></div>
+<p class="hint"><b>中文邏輯</b><span>先貴後便宜，便宜的就顯得划算；加一個中間價位，客人會往中間靠。標價看起來便宜，不代表每公克比較便宜。</span></p>
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Pack B looks cheaper on the shelf but costs more per gram. Name two psychological reasons a seller might price it this way.<span class="zh-full" lang="zh-Hant">B 包在貨架上看起來比較便宜，但每公克比較貴。說出賣方這樣訂價的兩個心理原因。</span></p></aside>
+
+<h2 id="promotions">10. Price promotions and price cuts<span class="zh-full" lang="zh-Hant">10. 價格促銷與降價</span></h2>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p>The more often a brand runs price promotions, the more shoppers focus on price, and everyone ends up trapped in promotions that cost money. The lecturer's advice: <b>"stand tall"</b>, support the brand with marketing, and stay away from discounting unless you are clearing old stock.<span class="zh-full" lang="zh-Hant">品牌越常做價格促銷，購物者就越注意價格，最後大家都被困在花錢的促銷裡。老師的建議：<b>「站穩腳步」</b>，用行銷支持品牌，除非是清舊庫存，否則遠離打折。</span></p></div>
+<div class="tbl"><table><thead><tr><th scope="col">Term<span class="zh-full" lang="zh-Hant">名詞</span></th><th scope="col">Definition<span class="zh-full" lang="zh-Hant">定義</span></th><th scope="col">Class example<span class="zh-full" lang="zh-Hant">課堂例子</span></th></tr></thead><tbody>
+<tr><td><b>Loss leader</b> <span class="zh">犧牲打</span><span class="zh-full" lang="zh-Hant">犧牲打商品</span></td><td>An item sold below cost to bring shoppers into a store<span class="zh-full" lang="zh-Hant">以低於成本的價格賣出，吸引顧客進店</span></td><td>Coke 1.25 L at 19 instead of about 35 baht; small-shop owners came back many times to resell it<span class="zh-full" lang="zh-Hant">1.25 公升可樂從約 35 泰銖賣 19；小店老闆來回買好多次再轉賣</span></td></tr>
+<tr><td><b>Forward buying</b><span class="zh-full" lang="zh-Hant">提前進貨</span></td><td>Retailers stock up during a deal, then stop ordering<span class="zh-full" lang="zh-Hant">零售商趁優惠大量進貨，之後停止下單</span></td><td>Often driven by year-end targets; can feed grey markets<span class="zh-full" lang="zh-Hant">常因年底業績目標；可能助長灰色市場</span></td></tr>
+<tr><td><b>Stockpiling</b><span class="zh-full" lang="zh-Hant">囤貨</span></td><td>Consumers buy extra during a deal<span class="zh-full" lang="zh-Hant">消費者趁優惠多買</span></td><td>Few do it; mostly educated, higher-income deal lovers. Nivea "25% off" was 40 to 30 baht<span class="zh-full" lang="zh-Hant">很少人這樣做；多半是教育程度和收入較高、喜歡撿便宜的人。Nivea 標「25% off」其實是 40 降到 30 泰銖</span></td></tr>
+<tr><td>Model-year discount<span class="zh-full" lang="zh-Hant">換代折扣</span></td><td>Old models lose value when new ones arrive<span class="zh-full" lang="zh-Hant">新款上市，舊款就貶值</span></td><td>A logical reason to cut price<span class="zh-full" lang="zh-Hant">降價的合理理由</span></td></tr>
+</tbody></table></div>
+<div class="three"><div class="tcard"><span class="tnum">1</span><b>Low-quality trap</b><span class="zh-full" lang="zh-Hant">低品質陷阱</span><p>Buyers question the product's quality.<span class="zh-full" lang="zh-Hant">買家開始懷疑產品品質。</span></p></div><div class="tcard"><span class="tnum">2</span><b>Fragile market-share trap</b><span class="zh-full" lang="zh-Hant">脆弱市占陷阱</span><p>Price-sensitive buyers switch to the next cheaper rival.<span class="zh-full" lang="zh-Hant">對價格敏感的買家會換到下一個更便宜的對手。</span></p></div><div class="tcard"><span class="tnum">3</span><b>Shallow-pockets trap</b><span class="zh-full" lang="zh-Hant">口袋不夠深陷阱</span><p>Bigger rivals can last longer; a family firm with one brand against Unilever's hundreds. Fabric softener fell from 67 to 13 baht.<span class="zh-full" lang="zh-Hant">更大的對手撐得更久；只有一個品牌的家族企業對上擁有上百個品牌的 Unilever。衣物柔軟精從 67 跌到 13 泰銖。</span></p></div></div>
+<div class="reading-block reading-why"><p class="reading-label">How it works<span class="zh-full" lang="zh-Hant">為什麼</span></p><p>An unexplained cut makes buyers wonder whether the product has a problem, is being replaced, the company is in trouble, quality has dropped, or the price will fall further. Give a real reason, such as an anniversary or a share of proceeds for disaster relief, and do not promote so often that people learn to wait. When Chester's gave the lecturer 50% off on a Wednesday he never asked for, it raised the question: why full price on other days? Cutting prices to bankrupt rivals and then raising them is predatory pricing, which is illegal.<span class="zh-full" lang="zh-Hant">沒有說明的降價，會讓買家懷疑產品有問題、要被取代、公司出狀況、品質變差，或價格還會再跌。要給真正的理由，例如週年慶或捐出部分收入幫助災民，而且不要促銷到大家學會等待。Chester's 在週三主動給老師打五折，反而讓人想問：那其他天為什麼要付全價？為了讓對手倒閉而降價、之後再漲回來，是違法的掠奪性定價。</span></p></div>
+<div class="study-widget" data-mk="choice-quiz" data-set="traps"><p class="mw-label">Practice · Which price-cut trap?<span class="zh-full" lang="zh-Hant">練習｜哪一種降價陷阱？</span></p><p class="quiz-item qz-item" aria-live="polite"></p><div class="m-choices" role="group" aria-label="Price-cut trap"></div><div class="m-feedback" aria-live="polite"></div><div class="qz-nav"><span class="m-progress"></span><button type="button" class="m-action quiz-next">Next item<span class="zh-full" lang="zh-Hant">下一題</span></button></div></div>
+
+<h2 id="grey">11. Grey markets<span class="zh-full" lang="zh-Hant">11. 灰色市場</span></h2>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p>A <b>grey market</b> <span class="zh">灰色市場</span> (parallel import <span class="zh">平行輸入</span>) is genuine branded goods bought in one market and resold in another outside authorized channels. It is <b>unauthorized, but not illegal by definition</b>, though tax or other laws may be broken in practice. The elderly market, once also called "grey", is now the silver market.<span class="zh-full" lang="zh-Hant"><b>灰色市場</b>（平行輸入）是在一個市場買進真品，再到另一個市場、在授權通路之外轉賣。它<b>未經授權，但本質上不違法</b>，不過實務上可能違反稅法或其他法規。過去也被叫做「灰色」的高齡市場，現在改稱銀髮市場。</span></p></div>
+<div class="three"><div class="tcard"><span class="tnum">1</span><b>A big price gap</b><span class="zh-full" lang="zh-Hant">價差大</span><p>The legitimate channel offers significant value to undercut.<span class="zh-full" lang="zh-Hant">正規通路的價格有很大空間可以壓低。</span></p></div><div class="tcard"><span class="tnum">2</span><b>A well-known product</b><span class="zh-full" lang="zh-Hant">知名產品</span><p>It sells itself, so no marketing is needed.<span class="zh-full" lang="zh-Hant">產品自己會賣，不需要行銷。</span></p></div><div class="tcard"><span class="tnum">3</span><b>Price or currency differences</b><span class="zh-full" lang="zh-Hant">價格或匯率差異</span><p>Taxes, refunds or exchange rates create the margin.<span class="zh-full" lang="zh-Hant">稅、退稅或匯率創造利潤空間。</span></p></div></div>
+<div class="tbl example-table"><table><thead><tr><th scope="col">Class case<span class="zh-full" lang="zh-Hant">課堂案例</span></th><th scope="col">What happened<span class="zh-full" lang="zh-Hant">發生什麼事</span></th></tr></thead><tbody>
+<tr><td>Marlboro (slide, 2025)<span class="zh-full" lang="zh-Hant">Marlboro（投影片，2025）</span></td><td>About $4 a pack in Thailand vs $21.6 in the UK. "Would you not feel some temptation?" The same logic applies to SCG cement within ASEAN.<span class="zh-full" lang="zh-Hant">一包在泰國約 4 美元，在英國 21.6 美元。「你不會心動嗎？」同樣的邏輯也適用於 SCG 水泥在東協內流動。</span></td></tr>
+<tr><td>Video games at MBK<span class="zh-full" lang="zh-Hant">MBK 的電玩</span></td><td>Grey sellers let buyers play today, instead of waiting, paying shipping and tax online.<span class="zh-full" lang="zh-Hant">灰色賣家讓人今天就能玩，不必在網路上等貨、付運費和稅。</span></td></tr>
+<tr><td>Vietnam<span class="zh-full" lang="zh-Hant">越南</span></td><td>Shoppers buy Thai-made Colgate, Pantene and Coke over locally made versions of the same brands.<span class="zh-full" lang="zh-Hant">消費者寧可買泰國製的 Colgate、Pantene 和可口可樂，而不買同品牌的本地製造版。</span></td></tr>
+<tr><td>Carrefour perfume<span class="zh-full" lang="zh-Hant">Carrefour 香水</span></td><td>Sold 50% below normal price; people did not buy because they doubted it was real.<span class="zh-full" lang="zh-Hant">比平常便宜一半；大家懷疑是假貨，所以不買。</span></td></tr>
+<tr><td>Tesco and a jeans brand<span class="zh-full" lang="zh-Hant">Tesco 與牛仔褲品牌</span></td><td>The brand refused to supply a low-image store; Tesco sourced the jeans abroad, and in court the supplier was revealed and blacklisted. The lecturer named Tommy Hilfiger; the well-known court case was Levi's.<span class="zh-full" lang="zh-Hant">品牌拒絕供貨給形象低的店；Tesco 從海外進貨，供應商在法庭上曝光並被列入黑名單。老師說的是 Tommy Hilfiger；知名的法院案例是 Levi's。</span></td></tr>
+<tr><td>Johnnie Walker<span class="zh-full" lang="zh-Hant">Johnnie Walker</span></td><td>Bans discounting; a Thai retailer caught discounting got no stock for six months.<span class="zh-full" lang="zh-Hant">禁止打折；被抓到打折的泰國零售商六個月拿不到貨。</span></td></tr>
+<tr><td>Grey-market cars<span class="zh-full" lang="zh-Hant">平行輸入車</span></td><td>Mercedes may refuse service; Toyota services them at 15% more, which the lecturer calls "pretty clever".<span class="zh-full" lang="zh-Hant">Mercedes 可能拒絕維修；Toyota 照修但貴 15%，老師說這「相當聰明」。</span></td></tr>
+</tbody></table></div>
+<div class="pair"><div><b>Pros<span class="zh-full" lang="zh-Hant">優點</span></b><p>Lower prices, access to models not sold locally, and more coverage for the brand, which still sells its product.<span class="zh-full" lang="zh-Hant">價格較低、買得到本地沒賣的型號，品牌的覆蓋面也更廣，產品照樣賣得出去。</span></p></div><div><b>Cons<span class="zh-full" lang="zh-Hant">缺點</span></b><p>Image damage, warranty disputes, conflict with official distributors, and broken price discipline. Buyers often do not know an item is grey market, which is not their fault.<span class="zh-full" lang="zh-Hant">傷害形象、保固糾紛、和正式代理商起衝突、破壞價格紀律。買家常不知道自己買到的是平行輸入，這不是他們的錯。</span></p></div></div>
+<p class="note-small">Any price difference between areas, such as zone pricing, opens the door to grey markets.<span class="zh-full" lang="zh-Hant">只要地區之間有價差，例如分區定價，就會給灰色市場留下空間。</span></p>
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A brand finds its products resold from Thailand into a higher-priced market. Give one reason to tolerate it and one reason to act, and suggest a response like Toyota's.<span class="zh-full" lang="zh-Hant">某品牌發現自家產品從泰國被轉賣到價格更高的市場。請給一個容忍的理由、一個該採取行動的理由，並提出類似 Toyota 的做法。</span></p></aside>
+
+<h2 id="traps">12. Do not mix these up<span class="zh-full" lang="zh-Hant">12. 不要混淆</span></h2>
+<div class="tbl"><table><thead><tr><th scope="col">Keep separate<span class="zh-full" lang="zh-Hant">分清楚</span></th><th scope="col">Reason<span class="zh-full" lang="zh-Hant">原因</span></th></tr></thead><tbody>
+<tr><td>New form / new benefit<span class="zh-full" lang="zh-Hant">新形式／新利益</span></td><td>Liquid toothpaste changes the form, not what it does for you.<span class="zh-full" lang="zh-Hant">液態牙膏改的是形式，不是它能為你做什麼。</span></td></tr>
+<tr><td>Stated intent / real buying<span class="zh-full" lang="zh-Hant">嘴上意願／實際購買</span></td><td>Politeness and the honeymoon effect inflate test scores.<span class="zh-full" lang="zh-Hant">禮貌和蜜月效應會灌水測試分數。</span></td></tr>
+<tr><td>Market share / profit<span class="zh-full" lang="zh-Hant">市占／利潤</span></td><td>Share bought with discounts is not loyal and may lose money.<span class="zh-full" lang="zh-Hant">用折扣買來的市占不忠誠，還可能賠錢。</span></td></tr>
+<tr><td>High price / high quality<span class="zh-full" lang="zh-Hant">高價／高品質</span></td><td>A learned signal, not a law.<span class="zh-full" lang="zh-Hant">這是學來的訊號，不是定律。</span></td></tr>
+<tr><td>Cost-plus / value-based<span class="zh-full" lang="zh-Hant">成本加成／價值定價</span></td><td>Cost plus markup versus what customers will pay.<span class="zh-full" lang="zh-Hant">成本加成數，對比顧客願意付多少。</span></td></tr>
+<tr><td>Optional / captive product<span class="zh-full" lang="zh-Hant">選購品／專屬耗材</span></td><td>You may add an accessory; you must buy a captive refill.<span class="zh-full" lang="zh-Hant">配件可以不買；專屬耗材一定要買。</span></td></tr>
+<tr><td>Forward buying / stockpiling<span class="zh-full" lang="zh-Hant">提前進貨／囤貨</span></td><td>Retailers stocking up versus consumers stocking up.<span class="zh-full" lang="zh-Hant">零售商囤貨，對比消費者囤貨。</span></td></tr>
+<tr><td>Grey market / counterfeit<span class="zh-full" lang="zh-Hant">灰色市場／仿冒品</span></td><td>Genuine goods through unauthorized channels versus fakes.<span class="zh-full" lang="zh-Hant">經非授權通路流通的真品，對比假貨。</span></td></tr>
+</tbody></table></div>
+
+<h2 id="coldcall">13. Cold call practice<span class="zh-full" lang="zh-Hant">13. Cold call 練習</span></h2>
+<div class="qa-tools"><button type="button" data-reveal-all aria-expanded="false">Show all answers<span class="zh-full" lang="zh-Hant">顯示全部答案</span></button></div>
+<div class="qa">
+<details><summary>Why do most new products fail?<span class="zh-full" lang="zh-Hant">為什麼大多數新產品會失敗？</span></summary><p>Mostly because buyers do not see a need: the product is not very new and offers no real benefit beyond a new form.<span class="zh-full" lang="zh-Hant">主要是買家看不出需要：產品不夠新，除了新形式之外沒有真正的利益。</span></p></details>
+<details><summary>Should new products be technology-driven or market-driven?<span class="zh-full" lang="zh-Hant">新產品應該由技術驅動還是市場驅動？</span></summary><p>Start from the customer's pain point. Technology answers "can we?", while the market answers "should we?". Grab and online banking spread quickly because they solved real problems.<span class="zh-full" lang="zh-Hant">從顧客的痛點出發。技術回答「做不做得到」，市場回答「該不該做」。Grab 和網路銀行擴散得快，是因為解決了真實問題。</span></p></details>
+<details><summary>Why are test-market results usually better than results after launch?<span class="zh-full" lang="zh-Hant">為什麼試銷結果通常比上市後好？</span></summary><p>Novelty and the honeymoon effect, extra support in test areas, competitors not yet reacting, and politeness inflating stated intent.<span class="zh-full" lang="zh-Hant">新奇感與蜜月效應、試銷區有額外支援、對手還沒反應，以及禮貌讓表面意願偏高。</span></p></details>
+<details><summary>Why is price the most important P for revenue?<span class="zh-full" lang="zh-Hant">為什麼價格是帶來收入最重要的 P？</span></summary><p>It is the only part of the mix that generates revenue; product, place and promotion are costs.<span class="zh-full" lang="zh-Hant">它是行銷組合中唯一產生收入的部分；產品、通路和推廣都是成本。</span></p></details>
+<details><summary>What is a reference price?<span class="zh-full" lang="zh-Hant">什麼是參考價格？</span></summary><p>The rough price in a buyer's head for a category, used to judge every brand. For bottled green tea in Thailand, it was about 20 baht.<span class="zh-full" lang="zh-Hant">買家心中某個品類的大概價格，用來評判每個品牌。在泰國，瓶裝綠茶大約是 20 泰銖。</span></p></details>
+<details><summary>What is price signaling?<span class="zh-full" lang="zh-Hant">什麼是價格訊號？</span></summary><p>Using price as a quality cue: a high price suggests high quality and a low price suggests low quality, which private labels suffer from.<span class="zh-full" lang="zh-Hant">把價格當作品質線索：高價暗示高品質，低價暗示低品質，自有品牌常吃這個虧。</span></p></details>
+<details><summary>Skimming or penetration: what is the difference?<span class="zh-full" lang="zh-Hant">吸脂定價和滲透定價有什麼不同？</span></summary><p>Skimming launches an innovation at a high price that falls later; penetration sets a low price for high volume and share.<span class="zh-full" lang="zh-Hant">吸脂定價讓創新產品高價上市、之後再降；滲透定價用低價換取高銷量和市占。</span></p></details>
+<details><summary>Why did the Tata Nano fail?<span class="zh-full" lang="zh-Hant">Tata Nano 為什麼失敗？</span></summary><p>Its very low price signaled low status; people saw it as "a motorcycle with four wheels" and feared being judged as poor.<span class="zh-full" lang="zh-Hant">超低價傳遞了低地位的訊號；大家把它看成「四個輪子的機車」，怕被人當成窮人。</span></p></details>
+<details><summary>What is captive product pricing?<span class="zh-full" lang="zh-Hant">什麼是專屬耗材定價？</span></summary><p>Selling the main product cheaply and earning the margin on items that must be used with it, such as razor blades or printer ink.<span class="zh-full" lang="zh-Hant">主產品賣得便宜，利潤賺在必須搭配使用的品項上，例如刮鬍刀片或印表機墨水。</span></p></details>
+<details><summary>What is the contrast principle?<span class="zh-full" lang="zh-Hant">什麼是對比原則？</span></summary><p>When the second item compared is quite different from the first, the gap seems bigger than it is, so starting high makes later items feel cheaper.<span class="zh-full" lang="zh-Hant">比較時如果第二樣和第一樣差很多，差距會顯得比實際大，所以先貴後便宜，後面的就顯得划算。</span></p></details>
+<details><summary>Why are price promotions dangerous?<span class="zh-full" lang="zh-Hant">為什麼價格促銷很危險？</span></summary><p>They train shoppers to focus on price and wait for sales, lower margins, and can trigger the low-quality, fragile-share and shallow-pockets traps.<span class="zh-full" lang="zh-Hant">它們訓練購物者只看價格、等特價，壓低毛利，還可能觸發低品質、脆弱市占和口袋不夠深三種陷阱。</span></p></details>
+<details><summary>What is a grey market, and when is it most likely?<span class="zh-full" lang="zh-Hant">什麼是灰色市場？什麼時候最可能出現？</span></summary><p>Genuine goods resold across markets outside authorized channels. It is likely when the price gap is large, the product is well known and sells itself, and prices or currencies differ.<span class="zh-full" lang="zh-Hant">在授權通路之外跨市場轉賣的真品。價差大、產品知名到自己會賣、價格或匯率有差異時最可能出現。</span></p></details>
+</div>
+
+<h2 id="answer-templates">14. Answer templates<span class="zh-full" lang="zh-Hant">14. 答題模板</span></h2>
+<div class="answer-example"><b>Evaluate a new product<span class="zh-full" lang="zh-Hant">評估新產品</span></b><p>Changing the form from [A] to [B] may look new, but the question is what benefit it adds. Unless customers see a need, it will mostly win one-time trial. I would test repeat purchase, not just stated intent.<span class="zh-full" lang="zh-Hant">從［A］改成［B］看起來很新，但問題是它增加了什麼利益。除非顧客看到需要，否則多半只會換來一次試買。我會測重複購買，而不只是嘴上的意願。</span></p></div>
+<div class="answer-example"><b>Recommend a launch price<span class="zh-full" lang="zh-Hant">建議上市價格</span></b><p>Shoppers judge this category against a reference price of about [X]. A lower price may simply look cheap and is hard to raise later, so I would price at [level] because [benefit or positioning], and state any introductory discount clearly.<span class="zh-full" lang="zh-Hant">購物者用大約［X］的參考價格評判這個品類。低價可能只會顯得廉價，之後也很難漲回來，所以我會因為［利益或定位］訂在［價位］，若有首發折扣也會清楚標示。</span></p></div>
+<div class="answer-example"><b>Advise on a price cut<span class="zh-full" lang="zh-Hant">對降價提出建議</span></b><p>I would avoid cutting the price because buyers may read it as [problem or lower quality], price-sensitive buyers will switch again, and [rival] can outlast us. If we must, I would give a clear reason, limit how often we do it, and compare the extra volume with the lost margin.<span class="zh-full" lang="zh-Hant">我會避免降價，因為買家可能解讀成［有問題或品質變差］，價格敏感的買家還會再換品牌，而且［對手］撐得比我們久。如果非降不可，我會給清楚的理由、限制頻率，並比較多出來的銷量和損失的毛利。</span></p></div>
+<div class="answer-example"><b>Explain a grey market<span class="zh-full" lang="zh-Hant">說明灰色市場</span></b><p>This is a grey market: genuine products moving between markets outside authorized channels because of a price gap. It widens reach, but it can hurt image and cause warranty and distributor conflicts. I would [tolerate, service at a premium or narrow the price gap] depending on [brand and channel impact].<span class="zh-full" lang="zh-Hant">這是灰色市場：因為價差，真品在授權通路之外跨市場流通。它擴大了覆蓋面，但可能傷害形象，並引發保固和代理商衝突。我會依［對品牌和通路的影響］選擇［容忍、加價提供維修或縮小價差］。</span></p></div>
+
+</article></main></div>
+<script>'use strict';
+(() => {
+  const isBilingual=document.documentElement.dataset.bilingual==='true';
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const bi=(en,zh)=>esc(en)+(isBilingual?'<span class="zh-full" lang="zh-Hant">'+esc(zh)+'</span>':'');
+  const header=document.querySelector('.top');
+  const measure=()=>document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px');
+  measure();window.addEventListener('resize',measure);if('ResizeObserver' in window)new ResizeObserver(measure).observe(header);
+  const toc=document.getElementById('toc'),rail=document.getElementById('rail'),tocButton=document.getElementById('tocBtn');
+  toc.replaceChildren();
+  const headings=[...document.querySelectorAll('.doc>h2,.doc>h3')];
+  headings.forEach(h=>{const li=document.createElement('li'),a=document.createElement('a');li.className=h.tagName.toLowerCase();li.dataset.id=h.id;a.href='#'+h.id;a.innerHTML=h.innerHTML;li.append(a);toc.append(li)});
+  tocButton.setAttribute('aria-controls','rail');
+  tocButton.addEventListener('click',()=>{const on=rail.classList.toggle('open');tocButton.setAttribute('aria-expanded',String(on))});
+  toc.addEventListener('click',e=>{if(e.target.closest('a')){rail.classList.remove('open');tocButton.setAttribute('aria-expanded','false')}});
+  if('IntersectionObserver' in window){const ob=new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting)return;toc.querySelectorAll('.on').forEach(x=>x.classList.remove('on'));toc.querySelector('li[data-id="'+e.target.id+'"] a')?.classList.add('on')}),{rootMargin:'-100px 0px -65% 0px'});headings.forEach(h=>ob.observe(h))}
+  document.querySelectorAll('[data-reveal-all]').forEach(button=>button.addEventListener('click',()=>{
+    const items=[...button.parentElement.nextElementSibling.querySelectorAll('details')],open=!items.every(d=>d.open);
+    items.forEach(d=>d.open=open);button.setAttribute('aria-expanded',String(open));button.innerHTML=open?bi('Hide all answers','隱藏全部答案'):bi('Show all answers','顯示全部答案');
+  }));
+
+
+  const Widgets={};
+  Widgets['choice-quiz']=host=>{
+    const set=quizSets[host.dataset.set];if(!set)return;let index=0;
+    const item=host.querySelector('.quiz-item'),choices=host.querySelector('.m-choices'),feedback=host.querySelector('.m-feedback'),progress=host.querySelector('.m-progress'),next=host.querySelector('.quiz-next');
+    const buttons=set.options.map((opt,i)=>{const b=document.createElement('button');b.type='button';b.dataset.option=String(i);b.innerHTML=bi(opt[0],opt[1]);choices.append(b);return b});
+    const render=()=>{
+      const [prompt]=set.items[index];
+      item.innerHTML=bi(prompt[0],prompt[1]);
+      progress.innerHTML=bi('Item '+(index+1)+' of '+set.items.length,'第 '+(index+1)+'／'+set.items.length+' 題');
+      feedback.className='m-feedback';feedback.innerHTML=bi('Choose an answer to see the reasoning.','選一個答案，看推理。');
+      buttons.forEach(b=>{b.disabled=false;b.classList.remove('correct','incorrect');b.removeAttribute('aria-pressed')});
+    };
+    buttons.forEach((b,i)=>b.addEventListener('click',()=>{
+      const [,answer,why]=set.items[index],right=i===answer;
+      buttons.forEach((x,j)=>{x.disabled=true;x.setAttribute('aria-pressed',String(j===i));if(j===answer)x.classList.add('correct');else if(j===i)x.classList.add('incorrect')});
+      const correct=set.options[answer];
+      feedback.className='m-feedback '+(right?'good':'bad');
+      feedback.innerHTML='<b>'+bi(right?'Correct: '+correct[0]+'.':'Answer: '+correct[0]+'.',right?'答對：'+correct[1]+'。':'答案：'+correct[1]+'。')+'</b> '+bi(why[0],why[1]);
+    }));
+    next.addEventListener('click',()=>{index=(index+1)%set.items.length;render()});
+    render();
+  };
+  const quizSets={
+    benefit:{options:[['Real new benefit','真正的新利益'],['Mostly a new form','主要只是新形式']],items:[
+      [['Heinz moves ketchup from glass bottles to a squeeze bottle','Heinz 番茄醬從玻璃瓶改成擠壓瓶'],0,['No shattering, no crusty lid, easy to pour: a daily problem is solved.','不會碎、瓶蓋不結塊、好倒：解決了日常的問題。']],
+      [['Heinz sells blue and green ketchup','Heinz 推出藍色與綠色番茄醬'],1,['The color adds nothing buyers need, so it mostly wins one-time curiosity.','顏色沒有增加買家需要的東西，多半只換到一次好奇。']],
+      [['Nude sells toothpaste as a liquid','Nude 推出液態牙膏'],1,['It is a runnier paste and harder to keep in your mouth while brushing.','只是更稀的牙膏，刷牙時還更難含住。']],
+      [['Shaving cream sold as a dry paper sheet','做成乾紙片的刮鬍膏'],0,['You can take it on a flight or a camping trip, which a can cannot do.','可以帶上飛機或去露營，罐裝做不到。']],
+      [['Vaseline in a spray as well as a tube and pump','Vaseline 除了軟管和按壓瓶，再加噴霧'],1,['The lecturer asks whether it is really necessary; the job stays the same.','老師問這真的有必要嗎；用途沒變。']],
+      [['A foldable phone at a high price','高價的摺疊手機'],1,['The class view is "different just to be different", with a reported high failure rate.','課堂看法是「為了不同而不同」，故障率據說也高。']],
+      [['Detergent pods that combine detergent, softener and color care','結合洗劑、柔軟精和護色的洗衣球'],0,['One step replaces three, so convenience is a real benefit, even though rivals copied it quickly.','一步取代三步，便利是真正的利益，雖然對手很快就模仿。']]
+    ]},
+    strategy:{options:[['Market skimming','吸脂定價'],['Market penetration','滲透定價']],items:[
+      [['Intel launches its newest top chip at a very high price','Intel 以很高的價格推出最新頂級晶片'],0,['Early adopters pay most for the innovation; the price falls later.','早期採用者為創新付最多錢；之後價格下降。']],
+      [['Two Lancer pens for 5 baht','Lancer 筆兩支 5 泰銖'],1,['Low price, low margin, high volume.','低價、低毛利、高銷量。']],
+      [['PlayStation 3 launches far above rival consoles','PlayStation 3 以遠高於對手的價格上市'],0,['A high launch price for new technology, cut later.','新技術高價上市，之後再降。']],
+      [['McDonald’s in Western markets','西方市場的麥當勞'],1,['It wins on low prices and large volume.','靠低價和大量取勝。']],
+      [['Tata Nano, "the cheapest car in the world"','Tata Nano，「世界上最便宜的車」'],1,['Penetration by design, but the low price sent a low-status signal.','刻意走滲透定價，但低價傳遞了低地位的訊號。']]
+    ]},
+    traps:{options:[['Low-quality trap','低品質陷阱'],['Fragile market-share trap','脆弱市占陷阱'],['Shallow-pockets trap','口袋不夠深陷阱']],items:[
+      [['After a deep cut, shoppers start asking whether something is wrong with the product','大幅降價後，購物者開始懷疑產品是不是有問題'],0,['A low price makes buyers question quality.','低價讓買家懷疑品質。']],
+      [['Customers won with a discount leave as soon as a rival is cheaper','靠折扣搶來的顧客，一看到對手更便宜就走'],1,['Share bought with price is not loyal.','用價格買來的市占不忠誠。']],
+      [['A one-brand family firm starts a price war with Unilever','只有一個品牌的家族企業對 Unilever 發動價格戰'],2,['The bigger rival can carry losses far longer.','較大的對手可以承受虧損更久。']],
+      [['A cheap new tea gains buyers who switch again next month','便宜的新茶吸引到買家，但下個月他們又換了'],1,['Price-sensitive switchers keep switching.','對價格敏感的人會一直換。']],
+      [['Fabric softener prices fall from 67 to 13 baht as rivals keep matching','衣物柔軟精在對手不斷跟價下，從 67 跌到 13 泰銖'],2,['Whoever has the deepest pockets wins a long price war.','口袋最深的人才能打贏長期價格戰。']]
+    ]}
+  };
+  const fmt=n=>Number(n).toLocaleString('en-US',{maximumFractionDigits:2});
+  const press=(btns,on)=>btns.forEach(b=>b.setAttribute('aria-pressed',String(b===on)));
+  Widgets['launch-price']=host=>{
+    const opts=[
+      [['Looks cheap, may not be chosen','看起來廉價，不一定被選'],['Next to a famous brand at 20, an unknown tea at 18 can look like the lower-quality option. And if Oishi runs a sale at 18, most shoppers pick the known brand. Raising the price later is also hard.','在知名品牌 20 泰銖旁邊，無名的 18 泰銖茶可能看起來比較差。若 Oishi 特價到 18，大多數人會選知名品牌。之後要漲價也很難。']],
+      [['Fits the reference price','符合參考價格'],['At 20 baht you match what shoppers expect, so the decision moves to brand, taste and benefit. You need a real reason to choose you.','20 泰銖符合購物者的預期，所以決定點回到品牌、口味和利益。你需要一個讓人選你的真正理由。']],
+      [['Fits the reference, with a reason to try','符合參考價格，又有試喝的理由'],['The regular price stays at the category level, and a clearly labeled launch offer gives a reason to try without teaching shoppers that 18 is the real price.','原價維持在品類水準，清楚標示的上市優惠給人試喝的理由，又不會讓人以為 18 才是真正的價格。']],
+      [['Needs a benefit people can see','需要看得見的利益'],['Far above the 20-baht reference. Unif’s Haru-cha tried 35 baht with a first-harvest story and failed. A premium only works if buyers can see and believe the extra benefit.','遠高於 20 泰銖的參考價格。Unif 的 Haru-cha 以第一次採收的故事賣 35 泰銖，結果失敗。高價只有在買家看得到也相信額外利益時才行得通。']]
+    ];
+    const btns=[...host.querySelectorAll('[data-price]')],t=host.querySelector('[data-out="title"]'),b=host.querySelector('[data-out="body"]');
+    const show=i=>{press(btns,btns[i]);t.innerHTML=bi(opts[i][0][0],opts[i][0][1]);b.innerHTML=bi(opts[i][1][0],opts[i][1][1])};
+    btns.forEach((x,i)=>x.addEventListener('click',()=>show(i)));show(0);
+  };
+  Widgets['captive']=host=>{
+    const presets=[[4000,750,4,'Inkjet: four cartridges cost about three quarters of the printer.','噴墨：四個墨水匣約等於印表機價格的四分之三。'],[17000,4000,4,'Color laser: the lecturer recalled about 16,000 baht for four toners. The slide figure of 177,000 for the printer looks like a typo for 17,000.','彩色雷射：老師記得四支碳粉約 16,000 泰銖。投影片上印表機 177,000 的數字看起來是 17,000 的筆誤。'],[3500,30,100,'Instant camera: film at about 30 baht a shot; 100 shots cost close to a new camera.','拍立得：底片每張約 30 泰銖；拍 100 張就接近一台新相機。']];
+    const [m,r,c]=['capMain','capRefill','capCount'].map(id=>host.querySelector('#'+id)),btns=[...host.querySelectorAll('[data-preset]')];
+    const out=k=>host.querySelector('[data-out="'+k+'"]');let note=presets[0];
+    const calc=()=>{const main=+m.value||0,refill=(+r.value||0)*(+c.value||0);out('refill').textContent='THB '+fmt(refill);out('pct').textContent=main?Math.round(refill/main*100)+'%':'-';out('times').textContent=refill?fmt(Math.round(main/refill*10)/10):'-';out('note').innerHTML=note?bi(note[3],note[4]):bi('Custom numbers. Above about 80%, many buyers start asking whether to replace the machine instead.','自訂數字。超過約 80% 時，很多買家會開始考慮乾脆換新機。')};
+    btns.forEach((x,i)=>x.addEventListener('click',()=>{press(btns,x);note=presets[i];m.value=note[0];r.value=note[1];c.value=note[2];calc()}));
+    [m,r,c].forEach(x=>x.addEventListener('input',()=>{note=null;press(btns,null);calc()}));calc();
+  };
+  Widgets['unit-price']=host=>{
+    const ids=['upAp','upAq','upBp','upBq'].map(id=>host.querySelector('#'+id)),out=k=>host.querySelector('[data-out="'+k+'"]');
+    const calc=()=>{const [ap,aq,bp,bq]=ids.map(x=>+x.value||0);if(!aq||!bq)return;const a=ap/aq*100,b=bp/bq*100;out('a').textContent='THB '+a.toFixed(2);out('b').textContent='THB '+b.toFixed(2);
+      if(Math.abs(a-b)<0.005){out('win').textContent='Same';out('note').innerHTML=bi('Both packs cost the same per 100 g.','兩包每 100 公克價格相同。');return}
+      const cheap=a<b?'A':'B',pct=Math.round((Math.max(a,b)/Math.min(a,b)-1)*1000)/10,dear=cheap==='A'?'B':'A',lowerTag=(cheap==='A'?ap>bp:bp>ap);
+      out('win').textContent=cheap;
+      out('note').innerHTML=bi('Pack '+dear+' costs about '+pct+'% more per gram'+(lowerTag?', even though its shelf price is lower.':'.'),dear+' 包每公克貴約 '+pct+'%'+(lowerTag?'，雖然它的標價比較低。':'。'));};
+    ids.forEach(x=>x.addEventListener('input',calc));calc();
+  };
+
+  window.MktWidgets={mount:root=>root.querySelectorAll('[data-mk]').forEach(host=>{if(!host.dataset.mounted&&Widgets[host.dataset.mk]){Widgets[host.dataset.mk](host);host.dataset.mounted='true'}})};
+  window.MktWidgets.mount(document);
+})();
+</script>
+
+<script>
+'use strict';
+(function(){
+ const $=(id)=>document.getElementById(id);
+ // Practice mode does not affect the teaching tools or cold-call answers.
+ const practiceToggle=$('practiceToggle'),practiceState=$('practiceState');
+ const practicePrompts=[...document.querySelectorAll('.practice-prompt')];
+ practiceToggle.addEventListener('click',()=>{
+   const isOn=practiceToggle.getAttribute('aria-pressed')!=='true';
+   practiceToggle.setAttribute('aria-pressed',String(isOn));
+   practiceState.innerHTML=isOn?'On':'Off';practiceToggle.querySelector(':scope > .zh-full').innerHTML='練習模式：'+(isOn?'開啟':'關閉');
+   practicePrompts.forEach(prompt=>{prompt.hidden=!isOn});
+ });
+})();
+</script><script>
+(function(){
+const toggle=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+const key='study-notes-show-zh';
+function syncOptions(on){document.querySelectorAll('option[data-zh]').forEach(o=>{if(!o.dataset.en)o.dataset.en=o.textContent;o.textContent=o.dataset.en+(on&&o.dataset.zh?'／'+o.dataset.zh:'')})}
+function set(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';syncOptions(on);try{localStorage.setItem(key,on?'1':'0')}catch(e){}}
+let initial=false;
+set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
+const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
+if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
+})();
+</script><script>(()=>{const h=document.querySelector('.top');if(!h)return;const f=()=>document.documentElement.style.setProperty('--header-height',Math.ceil(h.getBoundingClientRect().height)+'px');f();if('ResizeObserver'in window)new ResizeObserver(f).observe(h);window.addEventListener('resize',f)})();</script><script>(() => {
+  const bilingual=!!document.getElementById('zhToggle');
+  const tables=[...document.querySelectorAll('article .tbl')];
+  const entries=tables.map(table=>{
+    const hint=document.createElement('p');hint.className='table-scroll-hint';
+    hint.textContent='Swipe or use arrow keys to see the rest of the table.';
+    if(bilingual){const zh=document.createElement('span');zh.className='zh-full';zh.lang='zh-Hant';zh.textContent='可左右滑動，或用方向鍵查看完整表格。';hint.append(zh)}
+    table.before(hint);table.setAttribute('aria-label','Scrollable study table');
+    return {table,hint};
+  });
+  const refresh=()=>entries.forEach(({table,hint})=>{
+    const wide=table.scrollWidth>table.clientWidth+2;hint.hidden=!wide;
+    if(wide)table.tabIndex=0;else table.removeAttribute('tabindex');
+  });
+  refresh();window.addEventListener('resize',refresh);
+  if('ResizeObserver'in window){const observer=new ResizeObserver(refresh);tables.forEach(t=>observer.observe(t))}
+  if(document.fonts)document.fonts.ready.then(refresh);
+})();
+</script></body></html>

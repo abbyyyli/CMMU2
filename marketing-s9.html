@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en" data-bilingual="true"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light"><title>Distribution, Logistics and Retailing | CMMU Study Notes</title><style>
+/* Layout: one reading column with a sticky chapter rail; colors follow system appearance. */
+:root {
+  color-scheme: light;
+  --bg: var(--tone-fdf9f9); --panel: var(--tone-f8eef0); --paper: var(--tone-ffffff); --tint: var(--tone-fae9ed); --line: var(--tone-efdde2);
+  --fg: var(--tone-2f282b); --muted: var(--tone-7e6f74); --accent: var(--tone-c06c84); --accent-ink: var(--tone-9c4862);
+  --demand: var(--tone-3f5675); --supply: var(--tone-c06c84); --ext: var(--tone-6e3f55); --world: var(--tone-8a7a5c); --policy: var(--tone-3f7f7a);
+  --cs: var(--tone-a7cdb6); --ps: var(--tone-b2c4e3); --dwl: var(--tone-d9674f); --rev: var(--tone-e5c171); --rev2: var(--tone-f1dca8); --time: var(--tone-ddb3cb); --ts: var(--tone-bfdcc9);
+  --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; background: var(--bg); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.75; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(var(--header-rgb), .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
+.top-in { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 14px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.02rem; white-space: nowrap; }
+.brand small { font-family: var(--sans); font-weight: 500; color: var(--muted); font-size: .76rem; margin-left: 6px; letter-spacing: .06em; }
+.sessions { display: flex; gap: 4px; margin-left: auto; }
+.crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
+.sessions a.pill { text-decoration: none; }
+.sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
+.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--tone-ffffff); }
+.sessions .pill.off { opacity: .5; cursor: not-allowed; }
+.toc-btn { display: none; font: 500 .85rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--fg); border-radius: 8px; padding: 5px 12px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 52px; }
+.rail { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow: auto; padding-block: 34px 40px; font-size: .86rem; line-height: 1.5; }
+.rail .lbl { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.rail ol { list-style: none; margin: 0; padding: 0; }
+.rail li a { display: block; padding: 4px 10px; color: var(--muted); text-decoration: none; border-radius: 6px; }
+.rail li a:hover { color: var(--fg); background: var(--tint); }
+.rail li.h3 a { padding-left: 22px; font-size: .8rem; }
+.rail li a.on { color: var(--accent-ink); background: var(--tint); font-weight: 500; }
+
+main { min-width: 0; padding-block: 30px 120px; }
+.doc { max-width: 780px; }
+.hero { padding-block: 8px 26px; border-bottom: 1px solid var(--line); }
+.kick { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px; font-weight: 500; }
+.hero h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.25; margin: 0 0 12px; text-wrap: balance; }
+.lead { margin: 0; font-size: 1.04rem; max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.doc h2 { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 3.4rem 0 .3rem; text-wrap: balance; }
+.doc h3 { font-size: 1.1rem; line-height: 1.45; margin: 2.2rem 0 .5rem; color: var(--accent-ink); text-wrap: balance; }
+.sub { margin: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
+.doc p, .doc li { max-width: none; }
+.doc ul, .doc ol { padding-left: 1.25em; }
+.doc li { margin: .25rem 0; }
+.zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
+.hint { font-size: .9rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.hint b { flex: none; font-size: .72rem; color: var(--tone-ffffff); background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
+.key { background: var(--tint); padding: 12px 16px; border-radius: 8px; font-weight: 500; }
+.note-small { font-size: .8rem; color: var(--muted); }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.pair > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.pair b { color: var(--accent-ink); }
+.pair p { margin: 4px 0 0; font-size: .92rem; }
+
+.matrix { display: grid; grid-template-columns: minmax(90px, .7fr) repeat(2, minmax(0, 1fr)); gap: 6px; margin: 1rem 0 1.2rem; font-size: .9rem; max-width: 620px; }
+.matrix .mh { font-weight: 700; font-size: .8rem; color: var(--muted); align-self: end; padding: 0 4px 2px; }
+.matrix .mh.side { align-self: center; }
+.matrix .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-weight: 500; }
+.matrix .cell.hi { background: var(--tint); border-color: var(--accent); }
+.matrix small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; margin-top: 2px; line-height: 1.45; }
+
+.map { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 1rem 0; }
+.mcol { display: flex; flex-direction: column; gap: 8px; }
+.mbox { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; display: flex; flex-direction: column; gap: 2px; }
+.mbox b { font-size: .9rem; } .mbox span { color: var(--muted); } .mbox em { font-style: normal; color: var(--accent-ink); font-size: .78rem; font-weight: 500; }
+.mbox.good { border-color: var(--cs); } .mbox.ask { background: var(--tint); border-color: var(--accent); }
+.marrow { color: var(--accent); font-weight: 700; }
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.flow span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; line-height: 1.45; }
+.flow i { font-style: normal; color: var(--accent); font-weight: 700; }
+.formula { font-family: var(--mono); font-size: .9rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; line-height: 1.9; overflow-x: auto; }
+.steps { counter-reset: s; list-style: none; padding-left: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 10px; }
+.steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .75rem/22px var(--sans); text-align: center; margin-top: 3px; }
+.assign { margin: 1.6rem 0; border: 1px dashed var(--accent); border-radius: 10px; padding: 14px 16px; background: var(--paper); }
+.assign p { margin: 6px 0 0; font-size: .92rem; }
+
+.tbl { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.doc table { border-collapse: collapse; width: 100%; font-size: .88rem; line-height: 1.55; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.doc th { background: var(--panel); font-weight: 700; }
+.doc tr:last-child td { border-bottom: 0; }
+.drill .ans { filter: blur(5px); cursor: pointer; user-select: none; transition: filter .2s; }
+.drill .ans.shown { filter: none; user-select: auto; }
+
+.traps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 1rem; }
+.traps > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: .88rem; line-height: 1.55; }
+.traps s { color: var(--muted); text-decoration-color: var(--dwl); }
+.traps p { margin: 6px 0 0; font-weight: 500; }
+
+.qa-tools { margin: .4rem 0 .8rem; }
+.qa-tools button { font: 500 .82rem var(--sans); border: 1px solid var(--accent); background: var(--paper); color: var(--accent-ink); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+.qa { display: flex; flex-direction: column; gap: 6px; }
+.qa details { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.qa summary { cursor: pointer; padding: 10px 14px; font-weight: 500; font-size: .93rem; list-style: none; display: flex; gap: 10px; }
+.qa summary::before { content: "Q"; color: var(--accent); font-weight: 700; }
+.qa details[open] summary { border-bottom: 1px dashed var(--line); }
+.qa details p { margin: 0; padding: 10px 14px 12px 36px; font-size: .9rem; }
+
+/* graphs */
+.graph { max-width: 900px; margin: 1.8rem 0 2.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; }
+.g-head h4 { font-family: var(--serif); font-size: 1.12rem; margin: 2px 0 2px; line-height: 1.45; }
+.g-head p { margin: 0 0 10px; color: var(--muted); font-size: .86rem; }
+.g-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+.g-body { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.g-plot svg { width: 100%; height: auto; display: block; }
+.g-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.g-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.sl label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); line-height: 1.3; }
+.sl output { font-family: var(--mono); color: var(--fg); font-size: .8rem; }
+.sl input { width: 100%; accent-color: var(--accent); margin: 4px 0 0; }
+.g-btn { align-self: flex-start; font: 500 .8rem var(--sans); border: 1px solid var(--accent); color: var(--accent-ink); background: transparent; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.g-btn:hover { background: var(--tint); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; align-self: flex-start; }
+.seg button { font: 500 .8rem var(--sans); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--paper); }
+.chk { display: flex; gap: 8px; align-items: center; font-size: .8rem; color: var(--muted); }
+.chk input { accent-color: var(--accent); }
+.g-stats { margin: 0; border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+.st { display: flex; justify-content: space-between; gap: 10px; font-size: .8rem; line-height: 1.45; }
+.st dt { color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.st dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.st.big dd { font-weight: 500; color: var(--accent-ink); font-size: .92rem; }
+.g-note { margin: 12px 0 0; padding: 9px 12px; background: var(--tint); border-radius: 6px; font-size: .85rem; line-height: 1.6; }
+
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; flex: none; }
+.sw.none { background: transparent; }
+.sw.a-cs { background: var(--cs); } .sw.a-ps { background: var(--ps); } .sw.a-ps2 { background: var(--ps); outline: 1px solid var(--demand); }
+.sw.a-dwl { background: repeating-linear-gradient(45deg, var(--dwl) 0 2px, transparent 2px 4px); outline: 1px solid var(--dwl); }
+.sw.a-rev { background: var(--rev); } .sw.a-rev2 { background: var(--rev2); } .sw.a-time { background: var(--time); } .sw.a-ts { background: var(--ts); }
+.sw.ln { height: 3px; border-radius: 2px; width: 16px; }
+
+svg .ax { stroke: var(--muted); stroke-width: 1.2; }
+svg .axl { fill: var(--muted); font: 500 11px var(--sans); }
+svg .tk { fill: var(--muted); font: 500 10.5px var(--mono); }
+svg .gd { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+svg .cv { stroke-width: 2.6; fill: none; stroke-linecap: round; }
+svg .cv.dash { stroke-dasharray: 7 5; stroke-width: 2; }
+svg .cvl { font: 700 11.5px var(--sans); }
+svg .c-d { stroke: var(--demand); fill: var(--demand); } svg .c-s { stroke: var(--supply); fill: var(--supply); }
+svg .c-x { stroke: var(--ext); fill: var(--ext); } svg .c-w { stroke: var(--world); fill: var(--world); } svg .c-t { stroke: var(--policy); fill: var(--policy); }
+svg text.cvl { stroke: none; }
+svg .pt { fill: var(--paper); stroke: var(--fg); stroke-width: 2; }
+svg .ptl { fill: var(--fg); font: 700 11px var(--sans); }
+svg .atag { fill: var(--fg); font: 700 11px var(--sans); opacity: .8; }
+svg .a-cs { fill: var(--cs); fill-opacity: .6; } svg .a-ps { fill: var(--ps); fill-opacity: .6; }
+svg .a-ps2 { fill: var(--ps); fill-opacity: .95; } svg .a-ts { fill: var(--ts); fill-opacity: .6; }
+svg .a-dwl { fill: url(#dwlHatch); stroke: var(--dwl); stroke-width: 1.2; }
+svg .a-rev { fill: var(--rev); fill-opacity: .75; } svg .a-rev2 { fill: var(--rev2); fill-opacity: .8; } svg .a-time { fill: var(--time); fill-opacity: .65; }
+
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .a-prof { fill: var(--cs); fill-opacity: .75; } svg .a-loss { fill: var(--dwl); fill-opacity: .35; }
+.sw.a-prof { background: var(--cs); } .sw.a-loss { background: var(--dwl); opacity: .5; }
+.twin { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tw-t { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.g-ctrl .g-btn + .g-btn { margin-top: -4px; }
+.graph.wide .g-body { grid-template-columns: minmax(0, 1fr); }
+.graph.wide .g-side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 700px) { .twin, .graph.wide .g-side { grid-template-columns: minmax(0, 1fr); } }
+svg polyline.cv { fill: none !important; }
+
+.graph { background: var(--paper); }
+.g-note { background: var(--tint); }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail { display: none; position: fixed; inset: 64px 0 0 0; max-height: none; background: var(--bg); z-index: 15; padding: 20px 16px 60px; }
+  .rail.open { display: block; }
+  .toc-btn { display: inline-block; }
+  .g-body { grid-template-columns: minmax(0, 1fr); }
+  .map { grid-template-columns: minmax(0, 1fr); }
+  .marrow { transform: rotate(90deg); justify-self: center; }
+}
+@media (max-width: 560px) { .pair, .traps { grid-template-columns: minmax(0, 1fr); } }
+/* Management components */
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.tcard { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.tcard .tnum { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: var(--tone-ffffff); font: 700 .78rem/24px var(--sans); text-align: center; }
+.tcard p { margin: 0; color: var(--muted); font-size: .88rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.tags span { font-size: .74rem; background: var(--tint); color: var(--accent-ink); padding: 1px 8px; border-radius: 999px; font-weight: 500; }
+.method, .loop, .cascade { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.method span, .loop span, .cascade span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 5px 11px; line-height: 1.4; }
+.method span.hi { background: var(--tint); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+.method i, .loop i, .cascade i { font-style: normal; color: var(--accent); font-weight: 700; }
+.loop i.back { font-size: 1.1rem; }
+.cascade { flex-direction: column; align-items: flex-start; gap: 2px; }
+.cascade span:nth-of-type(2) { margin-left: 18px; } .cascade span:nth-of-type(3) { margin-left: 36px; } .cascade span:nth-of-type(4) { margin-left: 54px; }
+.cascade i:nth-of-type(1) { margin-left: 14px; } .cascade i:nth-of-type(2) { margin-left: 32px; } .cascade i:nth-of-type(3) { margin-left: 50px; }
+.four { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.four > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+.four b { font-size: .9rem; color: var(--accent-ink); } .four p { margin: 4px 0 0; font-size: .84rem; color: var(--muted); line-height: 1.5; }
+
+.ladder { display: grid; grid-template-columns: minmax(0, 1fr) 118px 118px; grid-template-rows: repeat(5, auto); gap: 5px 8px; margin: 1rem 0 .3rem; max-width: 640px; }
+.lv { grid-column: 1; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; font-weight: 700; font-size: .9rem; line-height: 1.35; }
+.lv small { display: block; font-weight: 400; color: var(--muted); font-size: .78rem; }
+.lv.l5 { grid-row: 1; margin-inline: 22%; } .lv.l4 { grid-row: 2; margin-inline: 16%; } .lv.l3 { grid-row: 3; margin-inline: 10%; } .lv.l2 { grid-row: 4; margin-inline: 5%; } .lv.l1 { grid-row: 5; }
+.lv.l5, .lv.l4 { background: var(--tone-f6e9f4); } .lv.l3 { background: var(--tint); } .lv.l2, .lv.l1 { background: var(--tone-eaf2ee); }
+.erg { border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .84rem; text-align: center; padding: 6px; }
+.erg.g { grid-column: 2; grid-row: 1 / span 2; background: var(--tone-ebd7ea); color: var(--tone-6e3f6a); }
+.erg.r { grid-column: 3; grid-row: 2 / span 2; background: var(--tint); color: var(--accent-ink); }
+.erg.e { grid-column: 2; grid-row: 4 / span 2; background: var(--tone-d9ebe1); color: var(--tone-2f6b4f); }
+
+.mw { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 1.6rem 0 2rem; }
+.mw-body { margin-top: 10px; }
+.hz-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.hz-t { margin: 0 0 6px; font-weight: 700; font-size: .88rem; } .hz-t small { font-weight: 400; color: var(--muted); }
+.chips { display: flex; flex-direction: column; gap: 5px; }
+.chip { display: flex; justify-content: space-between; gap: 10px; font: 500 .84rem var(--sans); text-align: left; background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 7px; padding: 6px 10px; cursor: pointer; }
+.chip em { font-style: normal; font-size: .74rem; color: var(--muted); }
+.hz-cols > div:first-child .chip[aria-pressed="true"] { border-color: var(--dwl); background: var(--tone-fcedea); }
+.hz-cols > div:first-child .chip[aria-pressed="true"] em { color: var(--tone-a8432f); }
+.hz-cols > div:last-child .chip[aria-pressed="true"] { border-color: var(--tone-6fae8b); background: var(--tone-eaf5ee); }
+.hz-cols > div:last-child .chip[aria-pressed="true"] em { color: var(--tone-2f6b4f); }
+.scale { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 6px; margin-top: 18px; }
+.half { height: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; position: relative; overflow: hidden; }
+.half i { position: absolute; top: 0; bottom: 0; transition: width .25s; }
+.half.left i { right: 0; background: var(--dwl); } .half.right i { left: 0; background: var(--tone-6fae8b); }
+@media (prefers-reduced-motion: reduce) { .half i { transition: none; } }
+.zero { font: 700 .8rem var(--mono); color: var(--muted); }
+.scale-l { display: flex; justify-content: space-between; font-size: .74rem; color: var(--muted); margin-top: 4px; }
+
+.kpi-flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, .8fr) auto minmax(0, 1fr); gap: 8px; align-items: stretch; margin-top: 12px; font-size: .84rem; }
+.kpi-flow > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; line-height: 1.45; }
+.kpi-flow > i { font-style: normal; color: var(--accent); font-weight: 700; align-self: center; }
+.kpi-flow b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.kpi-flow p { margin: 3px 0 0; } .kpi-flow ul { margin: 3px 0 0; padding-left: 1.1em; }
+.kpi-flow .bad { border-color: var(--dwl); background: var(--tone-fcedea); } .kpi-flow .good { border-color: var(--tone-6fae8b); background: var(--tone-eaf5ee); }
+
+.cmp-sel { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: .84rem; color: var(--muted); }
+.cmp-sel select { font: 500 .88rem var(--sans); padding: 5px 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); color: var(--fg); }
+table.cmp td:first-child { font-weight: 700; color: var(--muted); width: 22%; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); }
+.tabs button { font: 500 .86rem var(--sans); background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); padding: 6px 12px; cursor: pointer; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--accent-ink); border-bottom-color: var(--accent); }
+.ev { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+.ev > div { display: grid; grid-template-columns: 190px auto minmax(0, 1fr); gap: 10px; align-items: baseline; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: .86rem; line-height: 1.5; }
+.ev p { margin: 0; }
+.tag { font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.tag.gap { background: var(--tone-fce3dd); color: var(--tone-a8432f); } .tag.ok { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); }
+.tag.maybe { background: var(--tone-fbf0d9); color: var(--tone-8a6216); } .tag.na { background: var(--tone-eee9eb); color: var(--muted); }
+.issue { margin-top: 12px; background: var(--tint); border-radius: 8px; padding: 10px 14px; font-size: .9rem; }
+.issue p { margin: 4px 0 0; }
+
+.xgrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.xgrid > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 5px; font-size: .84rem; line-height: 1.4; }
+.xgrid small { color: var(--muted); font-size: .76rem; }
+.xgrid .ok, .xgrid .gap { align-self: flex-start; font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; }
+.xgrid .ok { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); } .xgrid .gap { background: var(--tone-fce3dd); color: var(--tone-a8432f); }
+
+@media (max-width: 760px) {
+  .three, .four { grid-template-columns: minmax(0, 1fr); }
+  .xgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hz-cols { grid-template-columns: minmax(0, 1fr); }
+  .kpi-flow { grid-template-columns: minmax(0, 1fr); } .kpi-flow > i { transform: rotate(90deg); justify-self: center; }
+  .ev > div { grid-template-columns: minmax(0, 1fr); gap: 3px; } .ev .tag { justify-self: start; }
+  .ladder { grid-template-columns: minmax(0, 1fr) 84px 84px; }
+}
+
+/* Session 4 + case page */
+.tcard small.dont { color: var(--muted); font-size: .78rem; border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 4px; }
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: .6rem 0 1rem; }
+.quotes q { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-style: italic; color: var(--muted); font-size: .9rem; }
+.six { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.six > div { display: flex; gap: 10px; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .88rem; line-height: 1.5; }
+.six span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
+a.cta { display: inline-block; background: var(--accent); color: var(--tone-ffffff); text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+a.cta:hover { background: var(--accent-ink); }
+blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; font-size: .92rem; line-height: 1.7; }
+.timeline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.timeline > div { background: var(--paper); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 10px; padding: 10px 14px; font-size: .88rem; line-height: 1.5; }
+.timeline time { font: 500 .76rem var(--mono); color: var(--accent-ink); display: block; }
+.timeline p { margin: 4px 0 0; color: var(--muted); }
+.score { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.score > div { border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; border: 1px solid var(--line); }
+.score .up { background: var(--tone-eaf5ee); border-color: var(--tone-a9d3ba); } .score .down { background: var(--tone-fcedea); border-color: var(--tone-edc2b8); }
+.score b::after { margin-left: 6px; font-size: .78rem; } .score .up b::after { content: "improved"; color: var(--tone-2f6b4f); } .score .down b::after { content: "worse"; color: var(--tone-a8432f); }
+.score ul { margin: 6px 0 0; padding-left: 1.1em; }
+
+.jcm { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, .9fr); gap: 16px; }
+.jdims { display: flex; flex-direction: column; gap: 8px; }
+.jd.g0 label span { color: var(--tone-6e3f6a); } .jd.g1 label span { color: var(--accent-ink); } .jd.g2 label span { color: var(--tone-2f6b4f); }
+.jstates { display: flex; flex-direction: column; gap: 12px; padding-top: 4px; }
+.jst span { font-size: .8rem; font-weight: 500; }
+.jbar { height: 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); overflow: hidden; margin-top: 3px; }
+.jbar i { display: block; height: 100%; transition: width .25s; }
+.jst.g0 .jbar i { background: var(--tone-b98ab5); } .jst.g1 .jbar i { background: var(--accent); } .jst.g2 .jbar i { background: var(--tone-6fae8b); }
+@media (prefers-reduced-motion: reduce) { .jbar i { transition: none; } }
+.jout ul { margin: 8px 0 0; padding-left: 1.1em; font-size: .82rem; color: var(--muted); }
+.jlvl { display: inline-block; font-weight: 700; padding: 3px 12px; border-radius: 999px; font-size: .86rem; }
+.jlvl.strong { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); } .jlvl.moderate { background: var(--tone-fbf0d9); color: var(--tone-8a6216); } .jlvl.weak { background: var(--tone-fce3dd); color: var(--tone-a8432f); }
+.jgns { margin-top: 14px; }
+
+.qz-item { font-size: 1rem; font-weight: 500; margin: 4px 0 12px; }
+.qz-opts { display: grid; gap: 8px; }
+.qz-opts.grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 520px; }
+.qz-opts.row5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.qz-o { font: 500 .88rem var(--sans); background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 8px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; text-align: center; }
+.qz-o small { color: var(--muted); font-size: .74rem; font-weight: 400; }
+.qz-o:hover { border-color: var(--accent); }
+.qz-o.right { background: var(--tone-e3f2e9); border-color: var(--tone-6fae8b); } .qz-o.wrong { background: var(--tone-fce3dd); border-color: var(--dwl); }
+.qz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: .8rem; color: var(--muted); }
+
+.rsteps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.rsteps > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: .85rem; line-height: 1.5; }
+.rsteps > div.g { background: var(--tint); border-color: var(--accent); }
+.rsteps b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.rsteps p { margin: 4px 0 0; }
+.risk { font-size: .88rem; } .risk b { font-size: .72rem; color: var(--tone-ffffff); background: var(--tone-b98a2e); padding: 1px 7px; border-radius: 4px; margin-right: 6px; }
+.sayd summary { cursor: pointer; font-weight: 500; color: var(--accent-ink); font-size: .9rem; }
+
+@media (max-width: 760px) {
+  .quotes, .six, .timeline, .rsteps { grid-template-columns: minmax(0, 1fr); }
+  .score { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jcm { grid-template-columns: minmax(0, 1fr); }
+  .qz-opts.row5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Marketing interactions: same CMMU palette, different learning mechanics */
+body {margin:0}
+.doc h2 {border-top:1px solid var(--line);padding-top:1.35rem;margin-top:2.5rem}
+.doc h2#map {border-top:0;padding-top:0}
+.doc h3 {margin-top:1.7rem}
+.doc > .hero {border-bottom:1px solid var(--line)}
+.hero .lead {max-width:68ch}
+.m-widget {background:var(--paper);border:1px solid var(--line);border-radius:12px;margin:1.3rem 0 1.6rem;padding:18px}
+.m-widget h4 {font-family:var(--serif);font-size:1.12rem;margin:0 0 3px}
+.m-widget .mw-sub {margin:0 0 14px;color:var(--muted);font-size:.88rem}
+.m-widget .m-grid {display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:22px;align-items:start}
+.m-control {margin:.6rem 0 1.1rem}
+.m-control label{display:flex;gap:8px;align-items:baseline;justify-content:space-between;font-size:.88rem;font-weight:500}
+.m-control output{font-family:var(--mono);color:var(--accent-ink);font-weight:700}
+.m-control input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;min-height:23px}
+.m-pillrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.m-pillrow button,.m-action,.flash button {font:500 .85rem var(--sans);padding:9px 12px;border:1px solid var(--line);border-radius:8px;color:var(--fg);background:var(--paper);cursor:pointer}
+.m-pillrow button:hover,.m-action:hover,.flash button:hover{border-color:var(--accent)}
+.m-pillrow button[aria-pressed=true] {background:var(--accent);color:var(--tone-ffffff);border-color:var(--accent)}
+.m-action {border-color:var(--accent);color:var(--accent-ink)}
+.m-action.primary{background:var(--accent);border-color:var(--accent);color:var(--tone-ffffff)}
+.m-answer{background:var(--tint);padding:13px 15px;border-radius:9px;line-height:1.6;font-size:.88rem}
+.m-answer b{color:var(--accent-ink)}
+.m-answer p{margin:5px 0 0}
+.m-two {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.m-two>div {background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 13px}
+.m-two strong{display:block;color:var(--accent-ink)}
+.m-two small{color:var(--muted)}
+.m-interact-note{font-size:.78rem;color:var(--muted);margin-top:12px;line-height:1.55}
+.bcg-svg {width:100%;height:auto;display:block;touch-action:none;cursor:crosshair;border:1px solid var(--line);border-radius:8px;background:var(--tone-ffffff)}
+.bcg-svg text{font-family:var(--sans)}
+.bcg-svg .bq-label{font-weight:700;font-size:13px;fill:var(--tone-3a2830)}
+.bcg-svg .bq-axis{font-size:10px;fill:var(--tone-77636e)}
+.bcg-point{stroke:var(--tone-ffffff);stroke-width:3;filter:drop-shadow(0 1px 2px var(--tone-887766))}
+.m-feedback{min-height:65px;margin:12px 0;padding:12px 14px;border-radius:8px;border:1px solid var(--line);background:var(--bg);font-size:.9rem}
+.m-feedback.good{border-color:var(--tone-88bb9c);background:var(--tone-eff9f1)}
+.m-feedback.bad{border-color:var(--tone-dfb6ac);background:var(--tone-fff3ee)}
+.m-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
+.m-choices button{font:500 .89rem var(--sans);border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:8px;padding:12px 9px;cursor:pointer;min-height:50px}
+.m-choices button:hover,.m-choices button:focus-visible{border-color:var(--accent)}
+.m-choices button.correct{border-color:var(--tone-70ae85);background:var(--tone-eff9f1)}
+.m-choices button.incorrect{border-color:var(--tone-cf8877);background:var(--tone-fff1ed)}
+.m-choices button:disabled{cursor:default;opacity:.88}
+.m-progress{font-size:.81rem;color:var(--muted)}
+.decision-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:16px 0}
+.decision-step{font:500 .79rem var(--sans);color:var(--fg);border:1px solid var(--line);border-top:4px solid var(--tone-b5a4a9);background:var(--tone-ffffff);border-radius:8px;min-height:95px;padding:10px 7px;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;line-height:1.4}
+.decision-step b{color:var(--accent-ink);font-size:.75rem}
+.decision-step span{font-size:.74rem;color:var(--muted)}
+.decision-step.active{border-color:var(--accent);background:var(--tint)}
+.decision-step.long{border-top-color:var(--tone-53866c)}
+.decision-step.quick{border-top-color:var(--tone-d6ba68)}
+.decision-step.optional{border-top-color:var(--tone-c7bcc0)}
+.weight-row{display:grid;grid-template-columns:140px minmax(0,1fr) 52px;align-items:center;gap:8px;font-size:.85rem;margin:10px 0}
+.weight-track{height:17px;border-radius:6px;background:var(--panel);overflow:hidden}
+.weight-fill{height:100%;width:0;background:var(--accent);border-radius:6px;transition:width .25s}
+.weight-row:nth-of-type(2) .weight-fill{background:var(--tone-6f99ba)}
+.weight-row:nth-of-type(3) .weight-fill{background:var(--tone-86ad95)}
+.weight-row:nth-of-type(4) .weight-fill{background:var(--tone-ceb17d)}
+.m-funnel{display:flex;flex-direction:column;align-items:center;gap:9px;margin:14px 0}
+.funnel-level{background:var(--accent);min-width:16%;max-width:100%;height:57px;color:var(--tone-ffffff);border-radius:8px;display:flex;align-items:center;justify-content:center;gap:12px;transition:width .25s;white-space:nowrap;padding:0 5px;text-align:center}
+.funnel-level:nth-child(2){background:var(--tone-ba8299)}
+.funnel-level:nth-child(3){background:var(--tone-987a92)}
+.funnel-level strong{font-size:1.06rem}
+.flash-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0 18px}
+.flash{min-height:102px;perspective:700px}
+.flash button{height:100%;width:100%;text-align:left;padding:14px 16px;display:block;transition:background .15s}
+.flash button[aria-pressed=true]{background:var(--tint);border-color:var(--accent)}
+.flash .front{display:block;font-weight:700;color:var(--accent-ink);font-size:.94rem}
+.flash .back{display:none;font-weight:400;margin-top:8px;font-size:.83rem;color:var(--fg);line-height:1.5}
+.flash button[aria-pressed=true] .back{display:block}
+.flash button[aria-pressed=true] .front{color:var(--fg)}
+.mnemonic{padding:10px 13px;border-left:3px solid var(--accent);margin:.9rem 0;background:var(--paper)}
+.zhtext{color:var(--accent-ink)}
+.doc .note-small{font-size:.8rem}
+.chapterline{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:12px 0}
+.chapterline span{font-size:.81rem;border:1px solid var(--line);border-radius:99px;background:var(--tone-ffffff);padding:5px 9px}
+.chapterline i{font-style:normal;color:var(--accent)}
+@media(max-width:760px){
+ .m-widget{padding:13px}
+ .m-widget .m-grid,.m-two,.flash-grid{grid-template-columns:minmax(0,1fr)}
+ .decision-flow{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .weight-row{grid-template-columns:111px minmax(0,1fr) 36px;font-size:.76rem}
+ .m-choices{grid-template-columns:minmax(0,1fr)}
+ .decision-step{min-height:66px}
+ .funnel-level{font-size:.78rem}
+}
+@media(max-width:460px){.hero h1{font-size:1.7rem}.decision-flow{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){.weight-fill,.funnel-level{transition:none}}
+
+/* Small, restrained retrieval disclosures; Chinese glossary remains persistent. */
+.m-reveal{background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:10px 14px;margin:12px 0;font-size:.91rem}
+.m-reveal summary{cursor:pointer;color:var(--accent-ink);font-weight:600;line-height:1.55}
+.m-reveal p{margin:10px 0 2px;font-size:.91rem;line-height:1.7}
+
+.sessions a.pill[href]:not([aria-current=page]):hover,
+.sessions a.pill[href]:not([aria-current=page]):focus-visible{
+ background:var(--tone-fceef2);border-color:var(--tone-b86b7b);color:var(--tone-8e4357);
+}
+.sessions a.pill[href]:not([aria-current=page]):focus-visible{outline:2px solid var(--tone-b86b7b);outline-offset:2px}
+
+/* These elements extend the existing S4 design rather than replacing it. */
+.doc h2{scroll-margin-top:90px}.doc h3{scroll-margin-top:95px}
+.chapterline{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:1.1rem 0;font-size:.84rem}
+.chapterline>span{background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:7px 11px;font-weight:500}
+.chapterline>i{font-style:normal;color:var(--accent);font-weight:800}
+.s5-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:1rem 0}
+.s5-cards>div{background:var(--paper);border:1px solid var(--line);padding:13px 15px;border-radius:10px}
+.s5-cards b{display:block;color:var(--accent-ink)}.s5-cards p{font-size:.87rem;line-height:1.55;margin:5px 0 0}
+.mw{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:17px 18px;margin:1.3rem 0 1.7rem}
+.mw h4{font-family:var(--serif);font-size:1.05rem;margin:0 0 4px}
+.mw>.sub{font-size:.86rem;margin:0 0 12px}
+.mw-label{color:var(--accent-ink);text-transform:uppercase;letter-spacing:.13em;font-size:.68rem;font-weight:700;margin:0 0 4px}
+.s5-muted{font-size:.82rem;color:var(--muted)}
+.s5-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.s5-grid .field{min-width:0}
+.s5-grid label{font-size:.81rem;color:var(--muted);display:block;margin-bottom:5px}
+.s5-grid input[type=number],.s5-grid select{width:100%;min-width:0;border:1px solid var(--line);border-radius:7px;padding:8px 10px;background:var(--bg);font:500 .93rem var(--sans);color:var(--fg)}
+.mw select{font:500 .88rem var(--sans);border:1px solid var(--line);padding:7px 9px;background:var(--paper);border-radius:7px;color:var(--fg)}
+.result{background:var(--tint);border-radius:9px;padding:11px 14px;margin-top:12px}
+.result strong{color:var(--accent-ink);font-variant-numeric:tabular-nums}
+.result p{margin:0;font-size:.86rem;line-height:1.55}
+.result .big{font:700 1.2rem var(--serif);margin-bottom:5px}
+.buttonrow{display:flex;flex-wrap:wrap;gap:7px;margin:9px 0 12px}
+.buttonrow button{font:500 .8rem var(--sans);border:1px solid var(--line);color:var(--muted);padding:7px 10px;border-radius:7px;background:var(--paper);cursor:pointer}
+.buttonrow button:hover,.buttonrow button:focus-visible{background:var(--tint);border-color:var(--accent);color:var(--accent-ink)}
+.buttonrow button[aria-pressed=true]{background:var(--accent);color:var(--tone-ffffff);border-color:var(--accent)}
+.seg-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:1rem 0}
+.seg-flow>div{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 9px;text-align:center}
+.seg-flow>b{display:none}
+.seg-flow strong{display:block;color:var(--accent-ink);font-size:.88rem}.seg-flow small{display:block;color:var(--muted);margin-top:4px;font-size:.77rem;line-height:1.45}
+.mapbox{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(170px,1fr);gap:12px;align-items:start;margin-top:10px}
+.mapbox svg{width:100%;height:auto;display:block;background:var(--bg);border:1px solid var(--line);border-radius:10px}
+.mapbox .mapexplainer{font-size:.84rem;line-height:1.55}.mapbox .mapexplainer p{margin:.25rem 0 .8rem}
+.mapbox .mapexplainer b{color:var(--accent-ink)}
+.mapbox text{font-family:var(--sans);fill:var(--fg)}
+.mapbox .axis{stroke:var(--muted);stroke-width:1.5}.mapbox .gridline{stroke:var(--line);stroke-dasharray:4 5}
+.mapbox .axislabel{fill:var(--muted);font-size:11px}.mapbox .brandlabel{font-size:12px;font-weight:600}
+.mapbox circle{stroke:var(--tone-ffffff);stroke-width:2;filter:drop-shadow(0 1px 1px var(--tone-00000033))}
+.value-chain{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin:8px 0 12px;font-size:.84rem}
+.value-chain span{background:var(--tint);border:1px solid var(--line);border-radius:7px;padding:6px 9px}
+.value-chain i{font-style:normal;color:var(--accent);font-weight:700}
+.kpi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:11px 0}
+.kpi div{background:var(--bg);border:1px solid var(--line);padding:10px;border-radius:8px;font-size:.8rem;color:var(--muted)}
+.kpi b{display:block;color:var(--fg);font-size:1.03rem;font-variant-numeric:tabular-nums}
+.flashgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}
+.flash button{display:block;width:100%;text-align:left;cursor:pointer;min-height:97px;background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:12px;color:var(--fg);font:500 .87rem/1.5 var(--sans)}
+.flash button:hover,.flash button:focus-visible{border-color:var(--accent);background:var(--tint)}
+.flash .front{display:block}.flash .back{display:none;font-weight:400}
+.flash button[aria-pressed=true]{background:var(--tint);border-color:var(--accent)}
+.flash button[aria-pressed=true] .front{display:none}.flash button[aria-pressed=true] .back{display:block}
+.flash .back strong{color:var(--accent-ink)}
+.qa{display:flex;flex-direction:column;gap:6px}
+.qa details{background:var(--paper);border:1px solid var(--line);border-radius:8px}
+.qa summary{cursor:pointer;padding:10px 14px;font-weight:500;font-size:.92rem;list-style:none;display:flex;gap:9px}
+.qa summary::before{content:'Q';color:var(--accent);font-weight:700}
+.qa details[open] summary{border-bottom:1px dashed var(--line)}
+.qa details p{margin:0;padding:10px 16px 12px 36px;font-size:.88rem}
+.qa-tools{margin:.6rem 0}
+.qa-tools button{font:500 .8rem var(--sans);border:1px solid var(--accent);border-radius:7px;background:var(--paper);padding:7px 11px;color:var(--accent-ink);cursor:pointer}
+.practice{border:1px dashed var(--accent);padding:12px 15px;border-radius:10px;background:var(--paper);margin:17px 0}
+.practice b{color:var(--accent-ink)}.practice p{margin:4px 0;font-size:.91rem}
+.note-small{font-size:.8rem;color:var(--muted)}
+@media(max-width:900px){.rail{inset:var(--header-height,64px) 0 0 0!important;max-height:calc(100vh - var(--header-height,64px))!important}}
+@media(max-width:700px){.mapbox{grid-template-columns:1fr}.s5-cards,.kpi{grid-template-columns:1fr 1fr}.seg-flow{grid-template-columns:1fr 1fr}}
+@media(max-width:510px){.s5-cards,.kpi,.s5-grid,.flashgrid{grid-template-columns:1fr}}
+@media print{.rail,.toc-btn,.buttonrow,.qa-tools{display:none!important}.wrap{display:block}.doc{max-width:none}.mw,.mapbox{break-inside:avoid}.flash .back{display:block}.flash .front{display:none}}
+</style>
+<style id="system-theme">
+/* System appearance only changes colors. Print retains the light palette. */
+:root {
+  --header-rgb: 253, 249, 249;
+  --tone-00000033: #00000033;
+  --tone-2f282b: #2f282b;
+  --tone-2f6b4f: #2f6b4f;
+  --tone-3a2830: #3a2830;
+  --tone-3f5675: #3f5675;
+  --tone-3f7f7a: #3f7f7a;
+  --tone-53866c: #53866c;
+  --tone-6e3f55: #6e3f55;
+  --tone-6e3f6a: #6e3f6a;
+  --tone-6f99ba: #6f99ba;
+  --tone-6fae8b: #6fae8b;
+  --tone-70ae85: #70ae85;
+  --tone-7657a8: #7657a8;
+  --tone-77636e: #77636e;
+  --tone-7e6f74: #7e6f74;
+  --tone-86ad95: #86ad95;
+  --tone-887766: #887766;
+  --tone-88bb9c: #88bb9c;
+  --tone-8a6216: #8a6216;
+  --tone-8a7a5c: #8a7a5c;
+  --tone-8e4357: #8e4357;
+  --tone-987a92: #987a92;
+  --tone-9c4862: #9c4862;
+  --tone-a7cdb6: #a7cdb6;
+  --tone-a8432f: #a8432f;
+  --tone-a9d3ba: #a9d3ba;
+  --tone-b2c4e3: #b2c4e3;
+  --tone-b5a4a9: #b5a4a9;
+  --tone-b86b7b: #b86b7b;
+  --tone-b98a2e: #b98a2e;
+  --tone-b98ab5: #b98ab5;
+  --tone-ba8299: #ba8299;
+  --tone-bfdcc9: #bfdcc9;
+  --tone-c06c84: #c06c84;
+  --tone-c7bcc0: #c7bcc0;
+  --tone-ceb17d: #ceb17d;
+  --tone-cf8877: #cf8877;
+  --tone-d6ba68: #d6ba68;
+  --tone-d9674f: #d9674f;
+  --tone-d9ebe1: #d9ebe1;
+  --tone-ddb3cb: #ddb3cb;
+  --tone-dfb6ac: #dfb6ac;
+  --tone-e3f2e9: #e3f2e9;
+  --tone-e5c171: #e5c171;
+  --tone-eaf2ee: #eaf2ee;
+  --tone-eaf5ee: #eaf5ee;
+  --tone-ebd7ea: #ebd7ea;
+  --tone-edc2b8: #edc2b8;
+  --tone-eee9eb: #eee9eb;
+  --tone-efdde2: #efdde2;
+  --tone-eff9f1: #eff9f1;
+  --tone-f1dca8: #f1dca8;
+  --tone-f6e9f4: #f6e9f4;
+  --tone-f8eef0: #f8eef0;
+  --tone-fae9ed: #fae9ed;
+  --tone-fbf0d9: #fbf0d9;
+  --tone-fce3dd: #fce3dd;
+  --tone-fcedea: #fcedea;
+  --tone-fceef2: #fceef2;
+  --tone-fdf9f9: #fdf9f9;
+  --tone-fff1ed: #fff1ed;
+  --tone-fff3ee: #fff3ee;
+  --tone-ffffff: #ffffff;
+}
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --header-rgb: 29, 24, 26;
+    --tone-00000033: #00000055;
+    --tone-2f282b: #EEE4E6;
+    --tone-2f6b4f: #A0D2B2;
+    --tone-3a2830: #EEE4E6;
+    --tone-3f5675: #93AECB;
+    --tone-3f7f7a: #8CC4BE;
+    --tone-53866c: #91C1A4;
+    --tone-6e3f55: #C9A3D6;
+    --tone-6e3f6a: #DAB3D6;
+    --tone-6f99ba: #91B7D6;
+    --tone-6fae8b: #8CC3A0;
+    --tone-70ae85: #8CC3A0;
+    --tone-7657a8: #C3A5E8;
+    --tone-77636e: #BEACB2;
+    --tone-7e6f74: #BEACB2;
+    --tone-86ad95: #A0CAB0;
+    --tone-887766: #181215;
+    --tone-88bb9c: #78AA8C;
+    --tone-8a6216: #E3C480;
+    --tone-8a7a5c: #C9B68C;
+    --tone-8e4357: #E6B3BE;
+    --tone-987a92: #B39AAF;
+    --tone-9c4862: #E6B3BE;
+    --tone-a7cdb6: #6E8C6B;
+    --tone-a8432f: #F0A48D;
+    --tone-a9d3ba: #669C7D;
+    --tone-b2c4e3: #667C96;
+    --tone-b5a4a9: #A08C95;
+    --tone-b86b7b: #D79AA7;
+    --tone-b98a2e: #D8B66B;
+    --tone-b98ab5: #BD99C1;
+    --tone-ba8299: #C89AAF;
+    --tone-bfdcc9: #5F7A5C;
+    --tone-c06c84: #D79AA7;
+    --tone-c7bcc0: #9D8D94;
+    --tone-ceb17d: #D6BC8D;
+    --tone-cf8877: #D39483;
+    --tone-d6ba68: #D6BA68;
+    --tone-d9674f: #E08A6F;
+    --tone-d9ebe1: #2C4135;
+    --tone-ddb3cb: #8C6680;
+    --tone-dfb6ac: #B77F70;
+    --tone-e3f2e9: #23372D;
+    --tone-e5c171: #C9A250;
+    --tone-eaf2ee: #29362F;
+    --tone-eaf5ee: #25372D;
+    --tone-ebd7ea: #413047;
+    --tone-edc2b8: #B77F70;
+    --tone-eee9eb: #30282D;
+    --tone-efdde2: #55424A;
+    --tone-eff9f1: #25372D;
+    --tone-f1dca8: #8F7A4A;
+    --tone-f6e9f4: #342938;
+    --tone-f8eef0: #2B2226;
+    --tone-fae9ed: #35272D;
+    --tone-fbf0d9: #3C3223;
+    --tone-fce3dd: #412B28;
+    --tone-fcedea: #382724;
+    --tone-fceef2: #35272D;
+    --tone-fdf9f9: #1D181A;
+    --tone-fff1ed: #382724;
+    --tone-fff3ee: #382724;
+    --tone-ffffff: #241E21;
+  }
+}
+</style>
+<style id="learning-revision">
+/* Reading additions use the established system palette and full body column. */
+.doc p,.doc li,.hero .lead{max-width:none}
+.doc h2,.doc h3{scroll-margin-top:calc(var(--header-height,80px) + 20px)}
+.doc .tbl{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+.doc .tbl table{width:100%}
+.doc .tbl th{vertical-align:top}
+.doc .tbl td{vertical-align:top;overflow-wrap:break-word}
+.doc .method,.doc .flow{max-width:100%;flex-wrap:wrap}
+.answer-example{margin:1rem 0;padding:16px 18px;background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px}
+.answer-example>b{color:var(--accent-ink);font-size:.9rem}
+.answer-example p{margin:.5rem 0 0}
+.sessions a.pill:hover{background:var(--tint);color:var(--accent-ink);border-color:var(--accent)}
+@media(max-width:600px){.top-in{gap:8px 10px}.page-tools{flex-basis:100%;justify-content:flex-end;flex-wrap:wrap;margin:0}.answer-example{padding:14px}.doc .tbl td,.doc .tbl th{min-width:130px}}
+</style><style id="midterm-components">
+.study-widget{margin:1.25rem 0;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
+.study-widget .mw-label{margin:0 0 .5rem;color:var(--accent-ink);font-size:.75rem;letter-spacing:.09em;text-transform:uppercase}
+.study-widget button{font:500 .86rem var(--sans);border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--fg);padding:8px 12px;cursor:pointer}
+.study-widget button:hover{background:var(--tint);border-color:var(--accent)}
+.study-widget button[aria-pressed=true]{background:var(--tint);color:var(--accent-ink);border-color:var(--accent)}
+.map-tools{display:flex;flex-wrap:wrap;gap:8px;margin:1rem 0}
+.plot{max-width:100%;margin:8px 0;background:var(--paper)}
+.plot svg{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y}
+.plot text{font-family:var(--sans);fill:var(--fg)}
+.plot .axis-title{font-size:17px;font-weight:600}
+.plot .axis-number,.plot .axis-end{font-size:16px;fill:var(--muted)}
+.plot .point-label{font-size:18px;font-weight:600}
+.plot .zh-svg{font-size:13px;fill:var(--muted)}
+.map-point{cursor:grab;touch-action:none;outline:none}
+.map-point.selected circle,.map-point:focus-visible circle{stroke:var(--fg);stroke-width:3}
+.map-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.map-controls label,.contribution-inputs label{display:block;min-width:0;font-size:.85rem;color:var(--fg)}
+.map-controls input{display:block;width:100%;accent-color:var(--accent);margin:.65rem 0 .25rem}
+.map-controls output{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--accent-ink)}
+.contribution-inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.contribution-inputs input{display:block;width:100%;min-width:0;margin-top:6px;padding:9px;border:1px solid var(--line);border-radius:7px;background:var(--paper);color:var(--fg);font-family:var(--mono)}
+.contribution-result{margin-top:1rem}.contribution-result p{margin:.5rem 0 0}.net-contribution{font-family:var(--mono);font-size:1.25rem}
+.doc p,.doc li,.hero .lead{max-width:none}
+.doc h2,.doc h3{scroll-margin-top:calc(var(--header-height,80px) + 20px)}
+.doc .tbl{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+.doc .tbl td,.doc .tbl th{vertical-align:top}
+.doc .method,.doc .flow{max-width:100%;flex-wrap:wrap}
+.doc .hint>span{min-width:0}.doc a{overflow-wrap:break-word}
+.answer-example summary{font-weight:600;color:var(--accent-ink);cursor:pointer}
+@media(max-width:600px){.study-widget{padding:14px}.map-controls,.contribution-inputs{grid-template-columns:minmax(0,1fr)}.top-in{gap:8px 10px}.page-tools{flex-basis:100%;justify-content:flex-end;flex-wrap:wrap;margin:0}}
+
+.question-brief{padding:14px 18px;background:var(--tint);border-radius:10px;border:1px solid var(--line);font-size:.92rem}
+.worked-answer{margin:1.2rem 0;padding:20px 24px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;background:var(--paper)}
+.worked-answer .answer-label{font:600 .72rem var(--sans);text-transform:uppercase;letter-spacing:.08em;color:var(--accent-ink);margin:0 0 14px}
+.worked-answer>p:last-child{margin-bottom:0}
+.optional{margin:1.2rem 0;padding:14px 18px;border:1px solid var(--line);border-radius:10px}
+.optional>summary{cursor:pointer;font-weight:600;color:var(--accent-ink)}
+.optional[open]>summary{margin-bottom:1rem}
+.optional .study-widget{margin-bottom:0}
+@media(max-width:600px){.worked-answer{padding:16px}.question-brief,.optional{padding:12px 14px}}
+</style><style id="reading-design">
+:root{--example-bg:#EDF3F7;--example-line:#C4D5E0;--example-ink:#385E75;--extra-bg:#F5F3F4}
+@media(prefers-color-scheme:dark){:root{--example-bg:#202B33;--example-line:#405D70;--example-ink:#B5D5E8;--extra-bg:#252124}}
+.doc p,.doc li,.hero .lead{max-width:none}
+.reading-block{margin:18px 0;padding:18px 22px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+.reading-block>p{margin:0 0 12px}.reading-block>p:last-child{margin-bottom:0}
+.reading-block>.reading-label,.case-story>.reading-label{font:650 .7rem var(--sans);text-transform:uppercase;letter-spacing:.09em;margin:0 0 10px;color:var(--muted)}
+.reading-key{background:var(--tint);border-left:4px solid var(--accent)}
+.reading-key>.reading-label{color:var(--accent-ink)}
+.reading-key>p:not(.reading-label){font-weight:550}
+.reading-why{border-left:3px solid var(--line)}
+.reading-example,.case-story{background:var(--example-bg);border-color:var(--example-line);border-left:4px solid var(--example-line)}
+.reading-example>.reading-label,.case-story>.reading-label{color:var(--example-ink)}
+.reading-extra{background:var(--extra-bg);border-style:dashed;font-size:.92rem}
+.case-story{padding:20px 24px;border:1px solid var(--example-line);border-left:4px solid var(--example-line);border-radius:12px;margin:1.2rem 0}
+.case-story>p:last-child{margin-bottom:0}
+.example-table{border-top:3px solid var(--example-line);border-radius:10px}
+.example-table th{background:var(--example-bg);color:var(--example-ink)}
+.worked-answer,.answer-example{border:1px solid var(--line);border-left:4px solid var(--accent);background:var(--paper);border-radius:12px;padding:20px 24px;margin:1.2rem 0}
+.question-brief{background:var(--example-bg);border:1px solid var(--example-line);border-radius:10px;padding:16px 20px}
+.doc .abbr-full{font-size:.88em;font-weight:450;text-transform:none;letter-spacing:normal}
+.doc h2 .abbr-full,.doc h3 .abbr-full{color:var(--muted);font-family:var(--sans);font-size:.68em;line-height:1.55}
+.rail .abbr-full{display:none}
+.table-scroll-hint{font-size:.73rem;color:var(--muted);margin:0 0 6px;text-align:right}
+.reading-block>.reading-label{display:block}
+.case-source{font-size:.8rem;color:var(--muted)}
+.doc :is(h2,h3){scroll-margin-top:calc(var(--header-height,80px) + 20px)}
+.doc :is(.mw,.mk,.study-widget){border-top:3px solid var(--accent)}
+@media(max-width:600px){.reading-block,.case-story,.worked-answer,.answer-example{padding:16px}.question-brief{padding:14px}}
+</style><style id="bilingual-practice">
+/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
+
+.page-tools{display:flex;align-items:center;gap:14px;margin-left:8px;flex-shrink:0}
+.page-tools .topswitch{margin-left:0}
+.page-tools .practice-toggle{font-size:.72rem;padding:5px 10px}
+.page-tools .practice-toggle>.zh-full{display:none!important}
+body.show-zh .page-tools .practice-toggle{white-space:normal}
+@media(max-width:560px){.top-in .sessions{order:2}.top-in .page-tools{order:3;flex-basis:100%;margin-left:0;justify-content:flex-end;padding-bottom:3px;gap:14px}.top-in .page-tools .topswitch{margin-left:0}.top-in{row-gap:6px}}
+@media print{.page-tools{display:none}}
+</style><style>
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid var(--tone-d5c6ca);border-radius:999px;background:var(--tone-eee6e8);position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:var(--tone-ffffff);border-radius:50%;box-shadow:0 1px 2px var(--tone-77777755)}
+.topswitch input:checked{background:var(--accent)}
+.topswitch input:checked:after{left:14px}
+.topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+
+/* Session 5: the same full-Chinese switch, with local widget layout support. */
+.buttonrow button[aria-pressed=true] .zh-full{color:inherit}
+body.show-zh .kpi>div>.zh-full{font-size:.86em}
+body.show-zh .mapbox .zh-svg{font-size:10px;fill:var(--accent-ink)}
+body.show-zh .legend>span{display:grid;grid-template-columns:9px minmax(0,1fr);gap:3px 6px}
+body.show-zh .legend>span>.sw{align-self:center}
+body.show-zh .legend>span>.zh-full{grid-column:2;margin:0}
+body.show-zh .flash button{height:auto;min-height:125px}
+body.show-zh .qa summary{flex-wrap:wrap}
+body.show-zh .qa summary>.zh-full{flex-basis:100%;margin-left:21px}
+@media(max-width:560px){body.show-zh .kpi{grid-template-columns:minmax(0,1fr)}}
+</style><style id="bilingual-tones">
+:root{--tone-d5c6ca:#d5c6ca;--tone-eee6e8:#eee6e8;--tone-77777755:#77777755}
+@media screen and (prefers-color-scheme: dark){
+  :root{--tone-d5c6ca:#8B737F;--tone-eee6e8:#4B3E45;--tone-77777755:#00000066}
+  .topswitch input:after { background: var(--fg); }
+  .topswitch input:checked:after { background: var(--paper); }
+  .m-action.primary .zh-full, .m-pillrow button[aria-pressed="true"] .zh-full,
+  a.cta .zh-full, .risk b .zh-full, .hint b .zh-full, .tcard .tnum .zh-full { color: inherit; }
+}
+.m-choices button.correct .zh-full,.m-choices button.incorrect .zh-full{color:inherit}
+</style><style id="range-input">.field input[type=range]{width:100%;accent-color:var(--accent);margin:.4rem 0}</style>
+</head><body>
+<header class="top"><div class="top-in">
+ <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="marketing.html">Marketing<span class="zh-full" lang="zh-Hant">行銷學</span></a><span>/</span><b>Session 9<span class="zh-full" lang="zh-Hant">第 9 堂</span></b></nav>
+ <button class="toc-btn" type="button" id="tocBtn" aria-expanded="false" aria-controls="rail">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button>
+ <nav class="sessions" aria-label="Sessions 9–12"><span class="pill" aria-current="page">S9</span><span class="pill off">S10</span><span class="pill off">S11</span><span class="pill off">S12</span></nav>
+<div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input id="zhToggle" type="checkbox" role="switch" aria-label="顯示完整繁體中文對照">中文 <span id="zhModeLabel">OFF</span></label><button type="button" class="practice-toggle" id="practiceToggle" aria-pressed="false" title="Show or hide short questions within chapters">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
+<div class="wrap"><aside class="rail" id="rail" aria-label="Chapter navigation"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside>
+<main><article class="doc">
+<div class="hero"><p class="kick">Strategic Marketing Management · Session 9<span class="zh-full" lang="zh-Hant">策略行銷管理｜第 9 堂</span></p><h1>Distribution, Logistics and Retailing<span class="zh-full" lang="zh-Hant">通路、物流與零售</span></h1><p class="lead">The best product fails if nobody can find it. This session covers why middlemen exist, when to own the chain yourself, how logistics quietly decides profit, and how retailers use format, service, location and atmosphere to fit the shopper.<span class="zh-full" lang="zh-Hant">再好的產品，找不到就賣不出去。本章說明中間商為什麼存在、什麼時候該自己掌握整條鏈、物流如何默默決定利潤，以及零售商如何用業態、服務、地點和氛圍去配合顧客。</span></p></div>
+
+<h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">本章地圖</span></h2>
+<div class="method"><span>Why channels exist<span class="zh-full" lang="zh-Hant">通路為何存在</span></span><i aria-hidden="true">→</i><span>Own or partner<span class="zh-full" lang="zh-Hant">自己做或合作</span></span><i aria-hidden="true">→</i><span>How widely to sell<span class="zh-full" lang="zh-Hant">要賣得多廣</span></span><i aria-hidden="true">→</i><span>Logistics cost<span class="zh-full" lang="zh-Hant">物流成本</span></span><i aria-hidden="true">→</i><span>Retail format and atmosphere<span class="zh-full" lang="zh-Hant">零售業態與氛圍</span></span><i aria-hidden="true">→</i><span>Who holds the power<span class="zh-full" lang="zh-Hant">誰握有權力</span></span></div>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p>The work of distribution <b>cannot be eliminated, only reassigned</b>, so the real question is who does it best. Control what is strategic, outsource the rest, and keep building the brand so retailers cannot cut you out.<span class="zh-full" lang="zh-Hant">配銷的工作<b>不能被消除，只能換人做</b>，所以真正的問題是誰做得最好。戰略關鍵的部分自己掌握，其餘外包，並持續建立品牌，讓零售商無法把你下架。</span></p></div>
+<p class="note-small">Based on the Session 9 slides and lecture, with questions from the lecturer's discussion video added to the practice items. Store counts, ownership and other market facts are as stated in class around 2021 and may have changed.<span class="zh-full" lang="zh-Hant">內容依據第 9 堂投影片與講課，並把老師討論影片的問題加入練習。店數、所有權等市場資訊是 2021 年左右課堂上的說法，可能已經改變。</span></p>
+
+<h2 id="why">1. Which P matters most, and why middlemen exist<span class="zh-full" lang="zh-Hant">1. 哪個 P 最重要，以及中間商為何存在</span></h2>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p>"You could have the best product in the world, but if nobody can find it, how are they going to buy it?" An ordinary private-label item still sells if 10,000 shoppers walk past it. The lecturer's view: <b>if there is a most important P, it might be place</b>, especially with the online boom.<span class="zh-full" lang="zh-Hant">「你可能有全世界最好的產品，但沒人找得到，他們要怎麼買？」一個普通的自有品牌，只要有一萬個購物者走過，總會有人買。老師的看法：<b>如果有最重要的 P，可能是通路</b>，在網購興起後更是如此。</span></p></div>
+<div class="study-widget" data-mk="contacts"><p class="mw-label">Interactive · Contact efficiency<span class="zh-full" lang="zh-Hant">互動｜接觸效率</span></p><h4>How many contacts does a distributor save?<span class="zh-full" lang="zh-Hant">經銷商可以省下多少次接觸？</span></h4><p class="sub">The slide uses 3 makers and 3 customers. Move the sliders to see why the gap explodes as the market grows.<span class="zh-full" lang="zh-Hant">投影片用 3 家製造商和 3 位顧客。拉動滑桿，看市場變大時差距如何暴增。</span></p><div class="s5-grid"><div class="field"><label for="ceM">Makers: <b data-out="m">3</b><span class="zh-full" lang="zh-Hant">製造商數量</span></label><input id="ceM" type="range" min="1" max="50" value="3"></div><div class="field"><label for="ceC">Customers: <b data-out="c">3</b><span class="zh-full" lang="zh-Hant">顧客數量</span></label><input id="ceC" type="range" min="1" max="1000" value="3"></div></div><div class="kpi"><div>Without a distributor (makers × customers)<span class="zh-full" lang="zh-Hant">沒有經銷商（製造商 × 顧客）</span><b data-out="direct">9</b></div><div>With a distributor (makers + customers)<span class="zh-full" lang="zh-Hant">有經銷商（製造商 ＋ 顧客）</span><b data-out="via">6</b></div><div>Contacts saved<span class="zh-full" lang="zh-Hant">省下的接觸次數</span><b data-out="saved">3</b></div></div></div>
+<div class="tbl"><table><thead><tr><th scope="col">Why use intermediaries<span class="zh-full" lang="zh-Hant">為什麼用中間商</span></th><th scope="col">Class example<span class="zh-full" lang="zh-Hant">課堂例子</span></th></tr></thead><tbody>
+<tr><td>They meet consumers every day and see real behavior<span class="zh-full" lang="zh-Hant">他們每天接觸消費者，看得到真實行為</span></td><td>Marketers risk an "ivory tower"; Unilever sends staff to the countryside<span class="zh-full" lang="zh-Hant">行銷人容易待在「象牙塔」；Unilever 派員工到鄉下</span></td></tr>
+<tr><td>They fix the supply and demand mismatch<span class="zh-full" lang="zh-Hant">他們解決供需不對稱</span></td><td>"How many tons would you like?": a coffee producer thinks in tons, a shopper in grams<span class="zh-full" lang="zh-Hant">「你要幾噸？」：咖啡廠以噸計算，顧客以公克計算</span></td></tr>
+<tr><td>Buying direct is not automatically cheaper<span class="zh-full" lang="zh-Hant">直接跟原廠買不一定比較便宜</span></td><td>A big retailer buys in volume, so even after its markup you get a fair price plus convenience and choice<span class="zh-full" lang="zh-Hant">大型零售商大量進貨，加價後你仍拿到合理價格，還多了便利和選擇</span></td></tr>
+<tr><td>They add services<span class="zh-full" lang="zh-Hant">他們增加服務</span></td><td>0% TV financing may come from the maker, the store or the card company<span class="zh-full" lang="zh-Hant">電視零利率分期可能來自製造商、店家或發卡公司</span></td></tr>
+</tbody></table></div>
+<div class="reading-block reading-why"><p class="reading-label">How it works · not if, but who<span class="zh-full" lang="zh-Hant">為什麼｜不是要不要，而是誰來做</span></p><p>Channel functions include information, promotion, contact, matching, negotiation, ownership, transport, finance and risk. The work takes time and money and is best done by specialists. <b>You can remove a middleman, but not the function.</b> Somebody still has to do it.<span class="zh-full" lang="zh-Hant">通路功能包括資訊、推廣、接觸、配對、談判、所有權、運輸、融資和風險。這些工作花時間也花錢，最好由專業者來做。<b>你可以去掉中間商，但去不掉功能。</b>總要有人做。</span></p></div>
+<p class="hint"><b>中文邏輯</b><span>中間商不是多賺一手的人，而是幫雙方減少交易次數、拆大包、湊齊選擇。去掉中間商，工作還是要有人做。</span></p>
+
+<h2 id="levels">2. Channel levels and channel conflict<span class="zh-full" lang="zh-Hant">2. 通路階層與通路衝突</span></h2>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p>A <b>level</b> <span class="zh">通路階層</span> is a layer of middlemen doing some of the work; the number of levels is the channel's length. If every level adds profit, a price rise high in the chain multiplies lower down and the whole channel becomes uncompetitive.<span class="zh-full" lang="zh-Hant"><b>通路階層</b>是做部分工作的一層中間商；階層數就是通路的長度。如果每層都加利潤，上游的漲價會在下游被放大，整條通路就失去競爭力。</span></p></div>
+<div class="pair"><div><b>Direct<span class="zh-full" lang="zh-Hant">直接通路</span></b><p>Dell in the US sold straight to consumers. In Thailand, mom-and-pop shops even buy from Makro or Big C and resell to us.<span class="zh-full" lang="zh-Hant">Dell 在美國直接賣給消費者。在泰國，小雜貨店甚至向 Makro 或 Big C 進貨再賣給我們。</span></p></div><div><b>Indirect<span class="zh-full" lang="zh-Hant">間接通路</span></b><p>Flowers pass grower, wholesale florist and retail florist. Buy cheap at the flower market if you know where it is, or pay for convenience at a mall florist.<span class="zh-full" lang="zh-Hant">花卉經過種植者、花卉批發商和零售花店。知道花市在哪就去買便宜的，否則在商場花店付錢買便利。</span></p></div></div>
+<div class="tbl"><table><thead><tr><th scope="col">Conflict<span class="zh-full" lang="zh-Hant">衝突類型</span></th><th scope="col">Definition<span class="zh-full" lang="zh-Hant">定義</span></th><th scope="col">Example<span class="zh-full" lang="zh-Hant">例子</span></th><th scope="col">Do not confuse with<span class="zh-full" lang="zh-Hant">不要混淆</span></th></tr></thead><tbody>
+<tr><td><b>Horizontal</b> <span class="zh">水平衝突</span><span class="zh-full" lang="zh-Hant">水平衝突</span></td><td>Members at the same level compete<span class="zh-full" lang="zh-Hant">同一層的成員互相競爭</span></td><td>Two BMW dealers too close together; reduced by catchment areas, as with 7-Eleven franchise spacing<span class="zh-full" lang="zh-Hant">兩家 BMW 經銷商離太近；用商圈範圍降低，就像 7-Eleven 加盟店的間距</span></td><td>Normal competition between brands<span class="zh-full" lang="zh-Hant">品牌之間的一般競爭</span></td></tr>
+<tr><td><b>Vertical</b> <span class="zh">垂直衝突</span><span class="zh-full" lang="zh-Hant">垂直衝突</span></td><td>Conflict between levels of one channel<span class="zh-full" lang="zh-Hant">同一通路上下游之間的衝突</span></td><td>Apple depending on rival Samsung for parts; a supermarket selling insurance; 7-Eleven taking bill payments<span class="zh-full" lang="zh-Hant">Apple 依賴對手 Samsung 供應零件；超市賣保險；7-Eleven 代收帳單</span></td><td>Horizontal conflict<span class="zh-full" lang="zh-Hant">水平衝突</span></td></tr>
+</tbody></table></div>
+<p class="note-small">The slide's view: some competition is healthy, but avoid serious conflict.<span class="zh-full" lang="zh-Hant">投影片的看法：適度競爭是健康的，但要避免嚴重衝突。</span></p>
+
+<h2 id="vms">3. Vertical integration and vertical marketing systems<span class="zh-full" lang="zh-Hant">3. 垂直整合與垂直行銷系統</span></h2>
+<div class="flow"><span>Supplier<span class="zh-full" lang="zh-Hant">供應商</span></span><i>→</i><span>Manufacturer<span class="zh-full" lang="zh-Hant">製造商</span></span><i>→</i><span>Wholesaler<span class="zh-full" lang="zh-Hant">批發商</span></span><i>→</i><span>Retailer<span class="zh-full" lang="zh-Hant">零售商</span></span><i>→</i><span>Customer<span class="zh-full" lang="zh-Hant">顧客</span></span></div>
+<p class="note-small">Moving up the chain means supplying yourself; moving down means distributing yourself.<span class="zh-full" lang="zh-Hant">往上游走代表自己供應；往下游走代表自己配銷。</span></p>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p>In a conventional channel each member maximizes its own profit, the end price gets too high and "we all lose". A <b>vertical marketing system (VMS)</b> <span class="zh">垂直行銷系統</span> acts as one unit. Asking everyone to "play nice" will not work, so firms either <b>integrate</b> (own the stages) or <b>dominate</b> (become so big that others follow their rules).<span class="zh-full" lang="zh-Hant">傳統通路裡每個成員只顧自己的利潤，最終價格太高，「大家都輸」。<b>垂直行銷系統</b>讓整條通路像一個單位運作。叫大家「好好合作」行不通，所以企業要嘛<b>整合</b>（擁有各階段），要嘛<b>主導</b>（大到別人只能照它的規則）。</span></p></div>
+<div class="tbl example-table"><table><thead><tr><th scope="col">Class case<span class="zh-full" lang="zh-Hant">課堂案例</span></th><th scope="col">Why integrate<span class="zh-full" lang="zh-Hant">為什麼整合</span></th></tr></thead><tbody>
+<tr><td>Apple chips and modems<span class="zh-full" lang="zh-Hant">Apple 晶片與數據機</span></td><td>Screens, memory and chips came largely from rival Samsung. Apple's own A-series chips are efficient and "best of all, it's theirs". It bought Intel's modem unit after a dispute with Qualcomm.<span class="zh-full" lang="zh-Hant">螢幕、記憶體和晶片大多來自對手 Samsung。Apple 自己的 A 系列晶片效率高，「最棒的是，那是他們自己的」。與 Qualcomm 爭議後，它買下 Intel 的數據機部門。</span></td></tr>
+<tr><td>McDonald's fries<span class="zh-full" lang="zh-Hant">McDonald's 薯條</span></td><td>Its most popular item worldwide is fries; if rivals bought up the potatoes, it would be stuck, so it invested in its own supply.<span class="zh-full" lang="zh-Hant">它全球最受歡迎的品項是薯條；若對手把馬鈴薯買光就完了，所以投資自己的供應。</span></td></tr>
+<tr><td>Coca-Cola in new markets<span class="zh-full" lang="zh-Hant">Coca-Cola 進入新市場</span></td><td>No supermarkets and heavy product: is there anyone who can do this better? If not, do it yourself.<span class="zh-full" lang="zh-Hant">沒有超市，產品又重：有沒有人能做得比你好？沒有的話，就自己做。</span></td></tr>
+<tr><td>Lay's and Dole in Thailand<span class="zh-full" lang="zh-Hant">泰國的 Lay's 與 Dole</span></td><td>Potatoes "looked like golf balls", so Lay's helped farmers grow better ones; Dole did the same with pineapple.<span class="zh-full" lang="zh-Hant">馬鈴薯「看起來像高爾夫球」，所以 Lay's 協助農民種出更好的；Dole 對鳳梨農也一樣。</span></td></tr>
+<tr><td>CP<span class="zh-full" lang="zh-Hant">卜蜂集團</span></td><td>"Incredibly vertically integrated": seeds and feed to farmers, buy-back of crops and animals, CP Foods, CP ALL (7-Eleven) and ready meals for 7-Eleven.<span class="zh-full" lang="zh-Hant">「垂直整合到不可思議」：提供農民種子和飼料、收購作物與牲畜，還有 CP Foods、CP ALL（7-Eleven）以及供 7-Eleven 的即食餐。</span></td></tr>
+<tr><td>Amazon<span class="zh-full" lang="zh-Hant">Amazon</span></td><td>Partners like UPS and DHL expected to grow with it; then Amazon built its own airline and trucks. Integration can turn partners into rivals.<span class="zh-full" lang="zh-Hant">UPS、DHL 等夥伴以為會跟著它成長；後來 Amazon 自建航空和車隊。整合可能讓夥伴變成對手。</span></td></tr>
+</tbody></table></div>
+<p class="note-small">The slide says Apple no longer uses Qualcomm. In practice most iPhones kept Qualcomm modems for years, and Apple's own modems only began appearing in 2025.<span class="zh-full" lang="zh-Hant">投影片說 Apple 不再使用 Qualcomm。實際上大多數 iPhone 多年來仍用 Qualcomm 數據機，Apple 自家數據機到 2025 年才開始出現。</span></p>
+<p class="hint"><b>中文邏輯</b><span>垂直整合不是為了省一點錢，而是關鍵供應不能被對手卡住（Apple 的晶片、McDonald's 的馬鈴薯），或市場上根本沒人能做（Coke 早期配送）。</span></p>
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Apple moved up the chain into chips; Coke moved down into delivery. State the different reason behind each move.<span class="zh-full" lang="zh-Hant">Apple 往上游做晶片；Coke 往下游做配送。說出兩者背後不同的理由。</span></p></aside>
+
+<h2 id="hybrid">4. Hybrid channels<span class="zh-full" lang="zh-Hant">4. 混合通路</span></h2>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p>A <b>hybrid (multichannel) system</b> <span class="zh">混合通路</span> uses two or more channels for different segments. It can tailor service and reduce conflict, <b>but it can also create conflict</b>. Check two things: does it meet customer needs, and does it match your image and ability?<span class="zh-full" lang="zh-Hant"><b>混合（多通路）系統</b>針對不同區隔使用兩個以上的通路。它能量身提供服務、減少衝突，<b>但也可能製造衝突</b>。要檢查兩件事：是否符合顧客需要？是否符合你的形象和能力？</span></p></div>
+<div class="tbl example-table"><table><thead><tr><th scope="col">Case<span class="zh-full" lang="zh-Hant">案例</span></th><th scope="col">Point<span class="zh-full" lang="zh-Hant">重點</span></th></tr></thead><tbody>
+<tr><td>Yakult<span class="zh-full" lang="zh-Hant">養樂多</span></td><td>Ladies on bicycles sell door to door; adding 7-Eleven creates conflict with that sales force.<span class="zh-full" lang="zh-Hant">騎腳踏車的阿姨挨家挨戶銷售；加入 7-Eleven 就和這支銷售團隊起衝突。</span></td></tr>
+<tr><td>Louis Vuitton<span class="zh-full" lang="zh-Hant">Louis Vuitton</span></td><td>Will not use door-to-door selling, because it does not fit the image.<span class="zh-full" lang="zh-Hant">不會挨家挨戶推銷，因為不符合形象。</span></td></tr>
+<tr><td>7-Eleven Thailand<span class="zh-full" lang="zh-Hant">泰國 7-Eleven</span></td><td>Stores plus catalog plus online: three channels. The lecturer cited over 11,000 stores.<span class="zh-full" lang="zh-Hant">門市加型錄加網路：三個通路。老師提到超過 11,000 家店。</span></td></tr>
+<tr><td>Mini Big C truck, canal boats, pickups<span class="zh-full" lang="zh-Hant">Mini Big C 貨車、運河船、皮卡</span></td><td>Use whatever reaches the shopper: a Wall's ice-cream boat stops when flagged, and pickups carry pineapples where big trucks are banned.<span class="zh-full" lang="zh-Hant">用任何到得了顧客的方式：Wall's 冰淇淋船招手就停，皮卡在大貨車禁行的地方載鳳梨。</span></td></tr>
+<tr><td>Papa John's<span class="zh-full" lang="zh-Hant">Papa John's</span></td><td>Take-away pizza you bake yourself: how many Thai homes have an oven? A channel that assumes equipment customers lack will fail.<span class="zh-full" lang="zh-Hant">外帶回家自己烤的披薩：有多少泰國家庭有烤箱？假設顧客有設備、但其實沒有的通路會失敗。</span></td></tr>
+</tbody></table></div>
+
+<h2 id="intensity">5. How widely to distribute<span class="zh-full" lang="zh-Hant">5. 要配銷得多廣</span></h2>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p>Start from what customers want: to buy nearby, in person, or right away? Important, risky purchases need knowledgeable sellers and narrower distribution; low-involvement items need to be everywhere.<span class="zh-full" lang="zh-Hant">從顧客想要什麼開始：就近買、親自買，還是馬上拿到？重要、高風險的購買需要懂行的銷售人員和較窄的配銷；低涉入商品則要隨處都買得到。</span></p></div>
+<div class="tbl"><table><thead><tr><th scope="col">Intensity<span class="zh-full" lang="zh-Hant">配銷密度</span></th><th scope="col">Definition<span class="zh-full" lang="zh-Hant">定義</span></th><th scope="col">Class example<span class="zh-full" lang="zh-Hant">課堂例子</span></th><th scope="col">Trade-off<span class="zh-full" lang="zh-Hant">取捨</span></th></tr></thead><tbody>
+<tr><td><b>Intensive</b> <span class="zh">密集配銷</span><span class="zh-full" lang="zh-Hant">密集配銷</span></td><td>Everywhere possible<span class="zh-full" lang="zh-Hant">盡可能到處都有</span></td><td>Pepsi on sidewalks and boats<span class="zh-full" lang="zh-Hant">人行道和船上都有 Pepsi</span></td><td>Hard to control: an ice-cream freezer given to a small shop gets filled with meat and beer<span class="zh-full" lang="zh-Hant">難以控制：送給小店的冰淇淋冰櫃被塞滿肉和啤酒</span></td></tr>
+<tr><td><b>Selective</b> <span class="zh">選擇性配銷</span><span class="zh-full" lang="zh-Hant">選擇性配銷</span></td><td>Several carefully chosen outlets<span class="zh-full" lang="zh-Hant">幾個精挑細選的據點</span></td><td>Lexus, BMW dealers; Volvo showrooms of at least 4,000 m²<span class="zh-full" lang="zh-Hant">Lexus、BMW 經銷商；Volvo 展示間至少 4,000 平方公尺</span></td><td>Controls image; the brand can take a dealership back<span class="zh-full" lang="zh-Hant">能控制形象；品牌可以收回經銷權</span></td></tr>
+<tr><td><b>Exclusive</b> <span class="zh">獨家配銷</span><span class="zh-full" lang="zh-Hant">獨家配銷</span></td><td>Very few dealers<span class="zh-full" lang="zh-Hant">極少數經銷商</span></td><td>Rolls-Royce: one dealer for all of Thailand; Piaget<span class="zh-full" lang="zh-Hant">Rolls-Royce：全泰國一家經銷商；Piaget</span></td><td>Prestige and control, but inconvenient<span class="zh-full" lang="zh-Hant">有聲望也能控制，但不方便</span></td></tr>
+</tbody></table></div>
+<div class="study-widget" data-mk="choice-quiz" data-set="intensity"><p class="mw-label">Practice · Which distribution intensity?<span class="zh-full" lang="zh-Hant">練習｜哪一種配銷密度？</span></p><p class="quiz-item qz-item" aria-live="polite"></p><div class="m-choices" role="group" aria-label="Distribution intensity"></div><div class="m-feedback" aria-live="polite"></div><div class="qz-nav"><span class="m-progress"></span><button type="button" class="m-action quiz-next">Next item<span class="zh-full" lang="zh-Hant">下一題</span></button></div></div>
+<div class="reading-block reading-example"><p class="reading-label">Class example · Gucci<span class="zh-full" lang="zh-Hant">課堂例子｜Gucci</span></p><p>Gucci had expanded without a strategy through franchises and duty-free shops. New management bought back most franchise stores for over $100 million, closed them, hired new designers and <b>raised prices</b>. For luxury, being everywhere "like KFC or 7-Eleven" does not feel special; limited access supports a higher price.<span class="zh-full" lang="zh-Hant">Gucci 過去透過加盟和免稅店毫無策略地擴張。新經營團隊花超過一億美元買回大部分加盟店、關掉它們、聘請新設計師並<b>調高價格</b>。對精品來說，像「KFC 或 7-Eleven」一樣到處都有並不特別；限制取得管道才撐得起高價。</span></p></div>
+<p class="note-small">The slide quotes up to $500,000 for a Piaget watch on one page and "$3.3 million!" for a diamond Piaget on the next; they refer to different pieces.<span class="zh-full" lang="zh-Hant">投影片一頁寫 Piaget 手錶最高 50 萬美元，下一頁寫鑽石 Piaget「330 萬美元！」；指的是不同款式。</span></p>
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Gucci closed stores and raised prices, which goes against simple supply and demand. Explain why it worked for a luxury brand, and why it would fail for Pepsi.<span class="zh-full" lang="zh-Hant">Gucci 關店又漲價，這違反簡單的供需邏輯。說明為什麼對精品有效，又為什麼對 Pepsi 會失敗。</span></p></aside>
+
+<h2 id="logistics">6. Logistics: small details, big costs<span class="zh-full" lang="zh-Hant">6. 物流：小細節，大成本</span></h2>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p><b>Marketing logistics</b> <span class="zh">行銷物流</span> plans and controls the physical flow of goods from supplies to the customer's payment, affecting both satisfaction and cost. Modern thinking starts with the customer and works back: <b>supply chain management</b>. The goal is a targeted service level at the least cost.<span class="zh-full" lang="zh-Hant"><b>行銷物流</b>規劃並控制從原料到顧客付款的實體流動，同時影響滿意度與成本。現代思維從顧客出發往回推：<b>供應鏈管理</b>。目標是以最低成本達到設定的服務水準。</span></p></div>
+<div class="four"><div><b>Spatial</b><span class="zh-full" lang="zh-Hant">空間</span><p>Goods where people want them: nearby stores.<span class="zh-full" lang="zh-Hant">在顧客想要的地方：附近的店。</span></p></div><div><b>Temporal</b><span class="zh-full" lang="zh-Hant">時間</span><p>When people want them: 7-Eleven went to 24 hours.<span class="zh-full" lang="zh-Hant">在顧客想要的時間：7-Eleven 改成 24 小時。</span></p></div><div><b>Quantity and assortment</b><span class="zh-full" lang="zh-Hant">數量與品項</span><p><b>Bulk breaking</b> <span class="zh">拆大包</span>: the maker sells 100,000 units, you want one, plus a choice of brands.<span class="zh-full" lang="zh-Hant"><b>拆大包</b>：製造商一次賣十萬件，你只要一件，還要能挑品牌。</span></p></div><div><b>Specialization</b><span class="zh-full" lang="zh-Hant">專業化</span><p>Daily contact means knowing what customers want.<span class="zh-full" lang="zh-Hant">每天接觸，所以了解顧客要什麼。</span></p></div></div>
+<p class="note-small">The slide lists eight flows: physical possession, ownership, promotion, negotiation, financing, risk taking, ordering and payment. Its reminder: you cannot eliminate functions.<span class="zh-full" lang="zh-Hant">投影片列出八種流程：實體持有、所有權、推廣、談判、融資、風險承擔、訂購和付款。它提醒：功能無法消除。</span></p>
+<div class="reading-block reading-example"><p class="reading-label">Class example<span class="zh-full" lang="zh-Hant">課堂例子</span></p><p>Repacking let 16 servers fit where 10 used to go. Pallets make forklift work easy, but they cost money, break, may not fit every truck, and raise questions such as who pays for a broken one. Saving less than one baht per lid across hundreds of millions of units adds up. A full truck that comes home empty is simple waste.<span class="zh-full" lang="zh-Hant">重新包裝後，原本放 10 台伺服器的空間能放 16 台。棧板讓堆高機作業方便，但要花錢、會壞、不一定適合每台貨車，還會引發誰賠壞掉的棧板之類的問題。每個瓶蓋省不到一泰銖，乘上數億件就很可觀。滿載出去、空車回來，就是最簡單的浪費。</span></p></div>
+
+<h2 id="dell">7. Do it yourself or outsource? Dell's model<span class="zh-full" lang="zh-Hant">7. 自己做還是外包？Dell 的模式</span></h2>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p>The lecturer's rule: <b>if it is not that important and someone can do it better, cheaper and faster, hire them</b> (payroll, IT). <b>If it is strategically important</b> (Apple, McDonald's) <b>or nobody else can do it</b> (Coke), consider doing it yourself. MBA advice has swung back and forth on this for decades.<span class="zh-full" lang="zh-Hant">老師的原則：<b>不那麼重要、別人又能做得更好更便宜更快，就交給他們</b>（薪資、IT）。<b>如果具戰略重要性</b>（Apple、McDonald's）<b>或沒有別人能做</b>（Coke），就考慮自己做。MBA 對這件事的建議幾十年來來回擺盪。</span></p></div>
+<div class="reading-block reading-why"><p class="reading-label">How it works · Dell<span class="zh-full" lang="zh-Hant">為什麼｜Dell</span></p><p>Dell sold direct to tech-savvy buyers, built a PC within 14 hours of the order, and beat stores that paid rent, staff and inventory. The risks: returns with no store to put them in, and inventory that loses value fast ("gold goes up and down, but thumb drives only go down"). Margins were only 5–7%, so cash flow was everything: get paid fast, pay suppliers slowly.<span class="zh-full" lang="zh-Hant">Dell 直接賣給懂科技的買家，接單後 14 小時內組好電腦，打敗了要付租金、人事和庫存的店家。風險在於：退貨沒有門市可放，庫存又貶值很快（「黃金會漲會跌，隨身碟只會跌」）。毛利只有 5% 到 7%，所以現金流就是一切：收款要快、付款要慢。</span></p></div>
+<div class="study-widget" data-mk="cash-cycle"><p class="mw-label">Interactive · Cash conversion cycle<span class="zh-full" lang="zh-Hant">互動｜現金轉換週期</span></p><h4>Who is funding the business?<span class="zh-full" lang="zh-Hant">誰在幫這家公司出錢？</span></h4><p class="sub">Cash cycle = inventory days + receivable days − payable days. Start from the slide's Dell and Compaq figures.<span class="zh-full" lang="zh-Hant">現金週期 ＝ 庫存天數 ＋ 應收帳款天數 − 應付帳款天數。先用投影片上 Dell 和 Compaq 的數字。</span></p><div class="buttonrow" role="group" aria-label="Company presets"><button type="button" data-preset="0" aria-pressed="true">Dell<span class="zh-full" lang="zh-Hant">Dell</span></button><button type="button" data-preset="1" aria-pressed="false">Compaq<span class="zh-full" lang="zh-Hant">Compaq</span></button></div><div class="s5-grid"><div class="field"><label for="ccInv">Inventory days<span class="zh-full" lang="zh-Hant">庫存天數</span></label><input id="ccInv" type="number" min="0" max="365" step="0.1" value="6.8"></div><div class="field"><label for="ccRec">Receivable days<span class="zh-full" lang="zh-Hant">應收帳款天數</span></label><input id="ccRec" type="number" min="0" max="365" step="0.1" value="22"></div><div class="field"><label for="ccPay">Payable days<span class="zh-full" lang="zh-Hant">應付帳款天數</span></label><input id="ccPay" type="number" min="0" max="365" step="0.1" value="62"></div></div><div class="kpi"><div>Cash cycle (days)<span class="zh-full" lang="zh-Hant">現金週期（天）</span><b data-out="cycle">-33.2</b></div><div>Who funds operations<span class="zh-full" lang="zh-Hant">誰在出資營運</span><b data-out="who">Suppliers</b></div></div><p class="s5-muted" data-out="note"></p></div>
+<div class="tbl"><table><thead><tr><th scope="col">Lesson<span class="zh-full" lang="zh-Hant">課題</span></th><th scope="col">Class example<span class="zh-full" lang="zh-Hant">課堂例子</span></th></tr></thead><tbody>
+<tr><td>Know your cost of doing business<span class="zh-full" lang="zh-Hant">了解你的經營成本</span></td><td>Some online grocers had no minimum order and went bankrupt, because picking and delivery cost more than small orders earned. Quick fix: a minimum order.<span class="zh-full" lang="zh-Hant">有些網路生鮮業者不設最低訂購金額，結果倒閉，因為揀貨和配送的成本比小訂單賺的還多。快速解法：設最低訂購金額。</span></td></tr>
+<tr><td>Control by rewarding behavior<span class="zh-full" lang="zh-Hant">用獎勵行為來控制通路</span></td><td>Offer a discount per case for standard pallets, online ordering, or arriving in a fixed time slot, because you save more than you give.<span class="zh-full" lang="zh-Hant">使用標準棧板、線上下單或在固定時段到貨，就給每箱折扣，因為你省下的比給出去的多。</span></td></tr>
+<tr><td>Change the other side's payoff<span class="zh-full" lang="zh-Hant">改變對方的利害</span></td><td>Mercedes refused an insurer's request to fit GPS trackers, until the insurer said it would raise premiums for Mercedes only. "No problem, we can do that."<span class="zh-full" lang="zh-Hant">Mercedes 拒絕保險公司加裝 GPS 追蹤器的要求，直到保險公司說只會調高 Mercedes 的保費。「沒問題，我們可以做。」</span></td></tr>
+</tbody></table></div>
+<p class="hint"><b>中文邏輯</b><span>不重要又有人做得更好就外包，戰略關鍵或沒人能做就自己來。要控制通路，不是靠拜託，而是讓對方照你的方式做會更划算。</span></p>
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Dell's cash cycle is negative. In your own words, whose money pays for Dell's inventory, and why does that matter when margins are only 5–7%?<span class="zh-full" lang="zh-Hant">Dell 的現金週期是負的。用你自己的話說，Dell 的庫存是用誰的錢付的？毛利只有 5% 到 7% 時，這為什麼重要？</span></p></aside>
+
+<h2 id="copy">8. Do not copy and paste; transport choices<span class="zh-full" lang="zh-Hant">8. 不要照抄；運輸方式的選擇</span></h2>
+<div class="tbl example-table"><table><thead><tr><th scope="col">Case<span class="zh-full" lang="zh-Hant">案例</span></th><th scope="col">What happened<span class="zh-full" lang="zh-Hant">發生什麼事</span></th><th scope="col">Lesson<span class="zh-full" lang="zh-Hant">啟示</span></th></tr></thead><tbody>
+<tr><td>A European food retailer in Bangkok<span class="zh-full" lang="zh-Hant">在曼谷的歐洲食品零售商</span></td><td>Big trucks were banned in the city until late at night, so it bought pickups and crawled back from Talad Thai market in the sun with fresh produce.<span class="zh-full" lang="zh-Hant">市區白天禁止大貨車，所以它買皮卡，在大太陽下載著生鮮從 Talad Thai 市場慢慢開回來。</span></td><td>Success at home does not transfer<span class="zh-full" lang="zh-Hant">在母國成功不代表能移植</span></td></tr>
+<tr><td>Tops<span class="zh-full" lang="zh-Hant">Tops</span></td><td>Invested in software and a huge distribution center: high fixed cost, savings only at scale. It nearly went bankrupt, then led the Thai market.<span class="zh-full" lang="zh-Hant">投資軟體和大型配送中心：固定成本高，要有規模才省得到。它差點破產，之後成為泰國市場龍頭。</span></td><td>Efficiency investments need volume<span class="zh-full" lang="zh-Hant">效率投資需要量</span></td></tr>
+<tr><td>Toyota JIT in the US<span class="zh-full" lang="zh-Hant">Toyota 的及時生產在美國</span></td><td>Works in small Japan with expensive land; copied in the US, with huge distances and cheap land, it did not work the same way.<span class="zh-full" lang="zh-Hant">在土地昂貴、面積小的日本行得通；在距離遠、土地便宜的美國照抄，效果就不一樣。</span></td><td>Find out <b>why</b> it was the answer<span class="zh-full" lang="zh-Hant">先搞懂它<b>為什麼</b>是答案</span></td></tr>
+<tr><td>Dell supplier park<span class="zh-full" lang="zh-Hant">Dell 供應商園區</span></td><td>Parts came from about 2,000 km away, so Dell asked key suppliers to build plants next door in exchange for guaranteed orders for several years.<span class="zh-full" lang="zh-Hant">零件來自約 2,000 公里外，所以 Dell 請主要供應商在旁邊設廠，交換條件是保證數年的訂單。</span></td><td>Adapt JIT, do not copy it<span class="zh-full" lang="zh-Hant">調整及時生產，而不是照抄</span></td></tr>
+</tbody></table></div>
+<div class="tbl"><table><thead><tr><th scope="col">Mode<span class="zh-full" lang="zh-Hant">運輸方式</span></th><th scope="col">Strength<span class="zh-full" lang="zh-Hant">優勢</span></th><th scope="col">Limit<span class="zh-full" lang="zh-Hant">限制</span></th></tr></thead><tbody>
+<tr><td>Air<span class="zh-full" lang="zh-Hant">空運</span></td><td>Fast<span class="zh-full" lang="zh-Hant">快</span></td><td>Weight; we pay for speed<span class="zh-full" lang="zh-Hant">重量；我們為速度付錢</span></td></tr>
+<tr><td>Boat<span class="zh-full" lang="zh-Hant">海運</span></td><td>Heavy loads, cheap; a three-week voyage is "a moving warehouse" with no rent<span class="zh-full" lang="zh-Hant">載重大、便宜；三週航程就是不用付租金的「移動倉庫」</span></td><td>Slow<span class="zh-full" lang="zh-Hant">慢</span></td></tr>
+<tr><td>Rail<span class="zh-full" lang="zh-Hant">鐵路</span></td><td>Heavy loads, efficient; piggybacking puts loaded trucks on trains<span class="zh-full" lang="zh-Hant">載重大、有效率；背負式運輸把裝滿的貨車放上火車</span></td><td>Point to point only<span class="zh-full" lang="zh-Hant">只能點對點</span></td></tr>
+<tr><td>Pipeline<span class="zh-full" lang="zh-Hant">管線</span></td><td>Continuous flow<span class="zh-full" lang="zh-Hant">連續輸送</span></td><td>Liquids or gas<span class="zh-full" lang="zh-Hant">液體或氣體</span></td></tr>
+<tr><td>Truck<span class="zh-full" lang="zh-Hant">卡車</span></td><td>Flexible; what Thailand mostly uses<span class="zh-full" lang="zh-Hant">彈性高；泰國主要使用</span></td><td>Fuel cost and carbon<span class="zh-full" lang="zh-Hant">油價和碳排放</span></td></tr>
+<tr><td>Drone<span class="zh-full" lang="zh-Hant">無人機</span></td><td>New<span class="zh-full" lang="zh-Hant">新</span></td><td>One drop per trip; cannot match a truck's route density yet<span class="zh-full" lang="zh-Hant">一趟只送一處；目前比不上卡車的路線密度</span></td></tr>
+</tbody></table></div>
+<p class="note-small">LINE MAN rides out empty, picks up, delivers and returns empty: "pretty darn expensive, not very efficient, but we pay for the convenience". The slide criteria for choosing a mode are speed, dependability, capability, availability and cost.<span class="zh-full" lang="zh-Hant">LINE MAN 空車出發、取餐、送達、再空車回來：「相當貴、不太有效率，但我們為便利付錢」。投影片選擇運輸方式的標準是速度、可靠度、承載能力、可得性和成本。</span></p>
+
+<h2 id="retail">9. Retail formats, service levels and atmosphere<span class="zh-full" lang="zh-Hant">9. 零售業態、服務層級與氛圍</span></h2>
+<div class="reading-block reading-key"><p class="reading-label">Key idea<span class="zh-full" lang="zh-Hant">重點</span></p><p><b>Retailing</b> is selling to final consumers for personal use. Thailand moved from about 70% traditional trade (fresh markets, mom-and-pop shops) to about 70% modern trade (supermarkets, hypermarkets, convenience stores) in 15–20 years. <b>Atmospherics</b> <span class="zh">賣場氛圍</span>, meaning color, light, music, smell and materials, should be strategic.<span class="zh-full" lang="zh-Hant"><b>零售</b>是賣給最終消費者個人使用。泰國在 15 到 20 年內，從約 70% 傳統通路（傳統市場、小雜貨店）轉為約 70% 現代通路（超市、大賣場、便利商店）。<b>賣場氛圍</b>，也就是顏色、燈光、音樂、氣味和材質，應該有策略。</span></p></div>
+<div class="tbl example-table"><table><thead><tr><th scope="col">Atmospheric choice<span class="zh-full" lang="zh-Hant">氛圍設計</span></th><th scope="col">Intended effect<span class="zh-full" lang="zh-Hant">想要的效果</span></th></tr></thead><tbody>
+<tr><td>KFC: bright lights, fast music, not very comfortable chairs<span class="zh-full" lang="zh-Hant">KFC：燈光亮、音樂快、椅子不太舒服</span></td><td>"Eat and get out": fast table turns<span class="zh-full" lang="zh-Hant">「吃完就走」：翻桌快</span></td></tr>
+<tr><td>Upscale restaurant: dim lights, slow music<span class="zh-full" lang="zh-Hant">高級餐廳：燈光暗、音樂慢</span></td><td>Stay longer and spend more<span class="zh-full" lang="zh-Hant">待久一點、花多一點</span></td></tr>
+<tr><td>Bakery or coffee smell near the entrance<span class="zh-full" lang="zh-Hant">入口附近的麵包或咖啡香</span></td><td>Hungry shoppers buy more on impulse<span class="zh-full" lang="zh-Hant">肚子餓的人更容易衝動購買</span></td></tr>
+<tr><td>Terminal 21: each floor themed as a city<span class="zh-full" lang="zh-Hant">Terminal 21：每層樓是一個城市主題</span></td><td>Distinct from malls with the same chain stores<span class="zh-full" lang="zh-Hant">和充滿相同連鎖店的商場做出區隔</span></td></tr>
+<tr><td>Costco: pallets, cut-open boxes, no bags<span class="zh-full" lang="zh-Hant">Costco：棧板、拆開的紙箱、不給袋子</span></td><td>The raw warehouse look says "cheap"<span class="zh-full" lang="zh-Hant">粗獷的倉庫感在說「便宜」</span></td></tr>
+<tr><td>Staff restocking in the aisles<span class="zh-full" lang="zh-Hant">員工在走道上補貨</span></td><td>Blocks shoppers; restock at night<span class="zh-full" lang="zh-Hant">擋住顧客；應該晚上補貨</span></td></tr>
+</tbody></table></div>
+<div class="three"><div class="tcard"><span class="tnum">1</span><b>Self service</b><span class="zh-full" lang="zh-Hant">自助服務</span><p>Few services, low prices: Costco, Payless ShoeSource.<span class="zh-full" lang="zh-Hant">服務少、價格低：Costco、Payless ShoeSource。</span></p></div><div class="tcard"><span class="tnum">2</span><b>Limited service</b><span class="zh-full" lang="zh-Hant">有限服務</span><p>More help, higher overhead: Makro, SCG Home Solutions.<span class="zh-full" lang="zh-Hant">多一點協助、管銷較高：Makro、SCG Home Solutions。</span></p></div><div class="tcard"><span class="tnum">3</span><b>Full service</b><span class="zh-full" lang="zh-Hant">完整服務</span><p>Personal help, higher prices: Central Chidlom's shoe department, where staff kneel to fit shoes.<span class="zh-full" lang="zh-Hant">個人化協助、價格較高：Central Chidlom 鞋區，店員跪下幫你試穿。</span></p></div></div>
+<div class="tbl"><table><thead><tr><th scope="col">Retailer type<span class="zh-full" lang="zh-Hant">零售商類型</span></th><th scope="col">Class example<span class="zh-full" lang="zh-Hant">課堂例子</span></th></tr></thead><tbody>
+<tr><td>Department store<span class="zh-full" lang="zh-Hant">百貨公司</span></td><td>Central, Robinson; brands often sell on consignment and give up about 30–40% of the price<span class="zh-full" lang="zh-Hant">Central、Robinson；品牌常以寄賣方式進駐，讓出約 30% 到 40% 的售價</span></td></tr>
+<tr><td>Supermarket<span class="zh-full" lang="zh-Hant">超市</span></td><td>Villa, Foodland, Tops</td></tr>
+<tr><td>Hypermarket<span class="zh-full" lang="zh-Hant">大賣場</span></td><td>Big C, Tesco Lotus; Carrefour invented the format<span class="zh-full" lang="zh-Hant">Big C、Tesco Lotus；Carrefour 發明了這種業態</span></td></tr>
+<tr><td>Convenience store<span class="zh-full" lang="zh-Hant">便利商店</span></td><td>7-Eleven, Lawson 108, FamilyMart</td></tr>
+<tr><td>Category killer<span class="zh-full" lang="zh-Hant">品類殺手</span></td><td>Makro Office, Toys R Us; small shops fight back with passion and events<span class="zh-full" lang="zh-Hant">Makro Office、Toys R Us；小店用熱情和活動反擊</span></td></tr>
+<tr><td>Outlet mall<span class="zh-full" lang="zh-Hant">暢貨中心</span></td><td>Many goods are made for outlets, so "regular vs sale price" can mislead<span class="zh-full" lang="zh-Hant">很多商品是專為暢貨中心生產的，所以「原價對比特價」可能誤導</span></td></tr>
+</tbody></table></div>
+<div class="study-widget" data-mk="choice-quiz" data-set="service"><p class="mw-label">Practice · Self, limited or full service?<span class="zh-full" lang="zh-Hant">練習｜自助、有限還是完整服務？</span></p><p class="quiz-item qz-item" aria-live="polite"></p><div class="m-choices" role="group" aria-label="Service level"></div><div class="m-feedback" aria-live="polite"></div><div class="qz-nav"><span class="m-progress"></span><button type="button" class="m-action quiz-next">Next item<span class="zh-full" lang="zh-Hant">下一題</span></button></div></div>
+<div class="reading-block reading-why"><p class="reading-label">How it works · polarization<span class="zh-full" lang="zh-Hant">為什麼｜兩極化</span></p><p>Shoppers move to the discount end (hypermarkets) or the boutique end (a neighborhood butcher with passion and knowledge), or go online. The squeezed middle, such as standalone computer stores and many department stores, ends up "in limbo".<span class="zh-full" lang="zh-Hant">購物者往低價端（大賣場）或精品端（有熱情和專業的社區肉舖）移動，或轉向網路。被夾在中間的，例如獨立電腦店和許多百貨公司，最後陷入「不上不下」。</span></p></div>
+<p class="note-small">Match the place to the product: an underwear kiosk on a BTS walkway has no privacy, few choices and people rushing past, with a nicer mall at either end.<span class="zh-full" lang="zh-Hant">地點要配合產品：BTS 天橋上的內衣小攤沒有隱私、選擇少、人潮匆匆走過，兩端還各有一間更好的商場。</span></p>
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>You are opening a café for people holding business meetings. Pick three atmospheric choices and say what each is meant to do.<span class="zh-full" lang="zh-Hant">你要開一間給人談生意的咖啡店。選三種氛圍設計，並說明各自的目的。</span></p></aside>
+
+<h2 id="location">10. Location, fresh markets and the wheel of retailing<span class="zh-full" lang="zh-Hant">10. 地點、傳統市場與零售之輪</span></h2>
+<div class="pair"><div><b>Dissimilar cluster</b> <span class="zh">異質聚集</span><span class="zh-full" lang="zh-Hant">異質聚集</span><p>A shopping center with a department store as anchor, plus banks, cinemas and restaurants: one-stop convenience.<span class="zh-full" lang="zh-Hant">以百貨公司為主力店，加上銀行、電影院和餐廳的購物中心：一站購足的便利。</span></p></div><div><b>Similar cluster</b> <span class="zh">同質聚集</span><span class="zh-full" lang="zh-Hant">同質聚集</span><p>Platinum fashion mall, about 1,300 clothing shops: a high chance of finding exactly what you need.<span class="zh-full" lang="zh-Hant">Platinum 服飾商場，約 1,300 家服飾店：很有機會找到你要的那一件。</span></p></div></div>
+<div class="reading-block reading-why"><p class="reading-label">How it works · why the fresh market survives<span class="zh-full" lang="zh-Hant">為什麼｜傳統市場為何還在</span></p><p>It is hot, wet and smelly, yet people still go: it is close by, the seafood is still alive, the habit of shopping daily in small amounts dates from before refrigerators, and prices can be about 30% lower, though you must know your stuff. A seller will thump a durian to pick one for tonight; in modern trade, "don't touch the durian!"<span class="zh-full" lang="zh-Hant">又熱又濕又有味道，大家還是去：離家近、海鮮還活著、每天少量採買的習慣從沒有冰箱的年代就有了，價格可能便宜約 30%，但你要懂得挑。攤販會敲敲榴槤幫你挑一顆今晚吃的；在現代通路，「不要摸榴槤！」</span></p></div>
+<div class="flow"><span>Entry: low price, low status, minimal service<span class="zh-full" lang="zh-Hant">進入：低價、低地位、最少服務</span></span><i>→</i><span>Trading up: nicer stores, more services, higher prices<span class="zh-full" lang="zh-Hant">升級：更好的店面、更多服務、更高價格</span></span><i>→</i><span>Vulnerability: top-heavy, conservative<span class="zh-full" lang="zh-Hant">脆弱：頭重腳輕、保守</span></span><i>→</i><span>Attacked by the next low-cost entrant<span class="zh-full" lang="zh-Hant">被下一個低成本新進者攻擊</span></span></div>
+<p class="note-small">The <b>wheel of retailing</b> is "an observation, not a theory, and not a necessity". The lecturer's comparison: "When I grow up I'm not going to be anything like my father", and then you become just like him.<span class="zh-full" lang="zh-Hant"><b>零售之輪</b>是「一種觀察，不是理論，也不是必然」。老師的比喻：「長大後我絕對不會像我爸」，結果你變得跟他一模一樣。</span></p>
+<div class="tbl"><table><thead><tr><th scope="col">Thai retail stage<span class="zh-full" lang="zh-Hant">泰國零售發展階段</span></th><th scope="col">Example<span class="zh-full" lang="zh-Hant">例子</span></th></tr></thead><tbody>
+<tr><td>Traditional stores<span class="zh-full" lang="zh-Hant">傳統商店</span></td><td>Mom-and-pop shops, fresh markets<span class="zh-full" lang="zh-Hant">小雜貨店、傳統市場</span></td></tr>
+<tr><td>Supermarkets (1960s)<span class="zh-full" lang="zh-Hant">超市（1960 年代）</span></td><td>Villa, Foodland, copied from US military bases<span class="zh-full" lang="zh-Hant">Villa、Foodland，仿照美軍基地</span></td></tr>
+<tr><td>Department stores, then shopping and entertainment complexes<span class="zh-full" lang="zh-Hant">百貨公司，再到購物與娛樂複合中心</span></td><td>Central; malls with ice rinks and IMAX<span class="zh-full" lang="zh-Hant">Central；有溜冰場和 IMAX 的商場</span></td></tr>
+<tr><td>Community malls<span class="zh-full" lang="zh-Hant">社區型商場</span></td><td>J Avenue, K Village: easy parking, quick trips<span class="zh-full" lang="zh-Hant">J Avenue、K Village：好停車、快進快出</span></td></tr>
+<tr><td>Foreign retailers<span class="zh-full" lang="zh-Hant">外資零售商</span></td><td>Food Lion gave up; Tops succeeded then sold to Central; Carrefour left; Tesco Lotus and Makro later came under CP<span class="zh-full" lang="zh-Hant">Food Lion 放棄；Tops 成功後賣給 Central；Carrefour 退出；Tesco Lotus 和 Makro 後來歸 CP</span></td></tr>
+</tbody></table></div>
+<p class="note-small">The lecturer said 7-Eleven Thailand opened in 1986; the first store is commonly dated to 1989. Ownership and store counts have changed since the recording.<span class="zh-full" lang="zh-Hant">老師說泰國 7-Eleven 1986 年開業；第一家店一般記載為 1989 年。錄影後所有權和店數都已改變。</span></p>
+
+<h2 id="power">11. Retailer vs manufacturer power<span class="zh-full" lang="zh-Hant">11. 零售商與製造商的權力</span></h2>
+<div class="pair"><div><b>Manufacturer<span class="zh-full" lang="zh-Hant">製造商</span></b><p>"I don't care where you buy, as long as you buy Pantene."<span class="zh-full" lang="zh-Hant">「我不在乎你在哪裡買，只要你買 Pantene。」</span></p></div><div><b>Retailer<span class="zh-full" lang="zh-Hant">零售商</span></b><p>"I don't care what brand you buy, as long as you shop in my store."<span class="zh-full" lang="zh-Hant">「我不在乎你買什麼品牌，只要你在我店裡買。」</span></p></div></div>
+<div class="three"><div class="tcard"><span class="tnum">1</span><b>Traditional</b><span class="zh-full" lang="zh-Hant">傳統期</span><p>Dominant supplier, weak retailer: P&amp;G could even tell small shops how to lay out the store.<span class="zh-full" lang="zh-Hant">供應商強、零售商弱：P&amp;G 甚至能告訴小店怎麼擺設。</span></p></div><div class="tcard"><span class="tnum">2</span><b>Conflict</b><span class="zh-full" lang="zh-Hant">衝突期</span><p>Stronger retailer: "You only know your sales; I know the sales of every brand." Retailers push for margin and charge for events and in-store ads.<span class="zh-full" lang="zh-Hant">零售商變強：「你只知道你的銷量，我知道每個品牌的銷量。」零售商要求更多毛利，並對活動和店內廣告收費。</span></p></div><div class="tcard"><span class="tnum">3</span><b>Cooperation</b><span class="zh-full" lang="zh-Hant">合作期</span><p>An alliance is what we hope for, "but in reality you have a lot of conflict".<span class="zh-full" lang="zh-Hant">聯盟是我們希望的，「但現實中衝突很多」。</span></p></div></div>
+<div class="reading-block reading-example"><p class="reading-label">Class example<span class="zh-full" lang="zh-Hant">課堂例子</span></p><p>Saha Group, tired of retailer power, helped traditional shops modernize for a fee under the 108 Shop name. Meanwhile retailers are carrying fewer brands: there may be about 50 green teas, but a supermarket stocks only some, and one day a lesser-known brand gets cut, "game over". The lecturer's advice: <b>keep building and supporting your brand</b>.<span class="zh-full" lang="zh-Hant">盛泰集團受夠了零售商的強勢，以 108 Shop 的名義收費協助傳統商店現代化。同時零售商販售的品牌越來越少：綠茶可能有 50 種，但超市只放其中一些，總有一天知名度較低的品牌會被下架，「遊戲結束」。老師的建議：<b>持續建立並支持你的品牌</b>。</span></p></div>
+<aside class="practice-prompt" hidden><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A supermarket offers your snack brand shelf space but asks for a margin cut and an in-store ad fee. Which relationship stage is this, and what is your longer-term defense?<span class="zh-full" lang="zh-Hant">某超市願意給你的零食品牌貨架，但要求降低毛利並收店內廣告費。這是哪個關係階段？你長期的防守方法是什麼？</span></p></aside>
+
+<h2 id="traps">12. Do not mix these up<span class="zh-full" lang="zh-Hant">12. 不要混淆</span></h2>
+<div class="tbl"><table><thead><tr><th scope="col">Keep separate<span class="zh-full" lang="zh-Hant">分清楚</span></th><th scope="col">Reason<span class="zh-full" lang="zh-Hant">原因</span></th></tr></thead><tbody>
+<tr><td>Removing a middleman / removing the function<span class="zh-full" lang="zh-Hant">去掉中間商／去掉功能</span></td><td>The work still has to be done by someone.<span class="zh-full" lang="zh-Hant">工作還是要有人做。</span></td></tr>
+<tr><td>Horizontal / vertical conflict<span class="zh-full" lang="zh-Hant">水平衝突／垂直衝突</span></td><td>Same level versus different levels of the channel.<span class="zh-full" lang="zh-Hant">同一層對比不同層。</span></td></tr>
+<tr><td>Integrate / dominate<span class="zh-full" lang="zh-Hant">整合／主導</span></td><td>Owning the stages versus being big enough to set the rules.<span class="zh-full" lang="zh-Hant">擁有各階段，對比大到能定規則。</span></td></tr>
+<tr><td>Selective / exclusive distribution<span class="zh-full" lang="zh-Hant">選擇性配銷／獨家配銷</span></td><td>Several chosen dealers versus very few.<span class="zh-full" lang="zh-Hant">幾個精選經銷商，對比極少數。</span></td></tr>
+<tr><td>Outsourcing / doing it yourself<span class="zh-full" lang="zh-Hant">外包／自己做</span></td><td>Depends on strategic importance and whether anyone else can do it.<span class="zh-full" lang="zh-Hant">取決於戰略重要性，以及有沒有別人能做。</span></td></tr>
+<tr><td>Similar / dissimilar cluster<span class="zh-full" lang="zh-Hant">同質聚集／異質聚集</span></td><td>Many shops of one kind versus one-stop variety.<span class="zh-full" lang="zh-Hant">同類店很多，對比一站購足的多樣性。</span></td></tr>
+<tr><td>Department store / mall<span class="zh-full" lang="zh-Hant">百貨公司／購物中心</span></td><td>Selling inside one store versus managing real estate and rent.<span class="zh-full" lang="zh-Hant">在一間店裡賣東西，對比管理不動產和租金。</span></td></tr>
+</tbody></table></div>
+
+<h2 id="coldcall">13. Cold call practice<span class="zh-full" lang="zh-Hant">13. Cold call 練習</span></h2>
+<div class="qa-tools"><button type="button" data-reveal-all aria-expanded="false">Show all answers<span class="zh-full" lang="zh-Hant">顯示全部答案</span></button></div>
+<div class="qa">
+<details><summary>Why might place be the most important P?<span class="zh-full" lang="zh-Hant">為什麼通路可能是最重要的 P？</span></summary><p>A great product that nobody can find will not sell, while an ordinary product seen by enough shoppers will.<span class="zh-full" lang="zh-Hant">再好的產品找不到就賣不出去，而普通產品只要被夠多人看到就賣得動。</span></p></details>
+<details><summary>How many contacts do 3 makers and 3 customers need, with and without a distributor?<span class="zh-full" lang="zh-Hant">3 家製造商和 3 位顧客，有無經銷商各需要幾次接觸？</span></summary><p>Nine without (3 × 3), six with (3 + 3).<span class="zh-full" lang="zh-Hant">沒有經銷商 9 次（3 × 3），有經銷商 6 次（3 ＋ 3）。</span></p></details>
+<details><summary>What does "not a question of if, but who" mean?<span class="zh-full" lang="zh-Hant">「不是要不要，而是誰來做」是什麼意思？</span></summary><p>Channel functions cannot be eliminated; the question is which party performs them best.<span class="zh-full" lang="zh-Hant">通路功能無法消除；問題在於誰做得最好。</span></p></details>
+<details><summary>What is a vertical marketing system?<span class="zh-full" lang="zh-Hant">什麼是垂直行銷系統？</span></summary><p>A channel that acts as one unit, either because one firm owns the stages or because one member is strong enough to set the rules.<span class="zh-full" lang="zh-Hant">像一個單位運作的通路，可能是一家企業擁有各階段，或某個成員強到能定規則。</span></p></details>
+<details><summary>Why did McDonald's invest in its own potato supply?<span class="zh-full" lang="zh-Hant">McDonald's 為什麼投資自己的馬鈴薯供應？</span></summary><p>Fries are its most popular item worldwide, so it cannot risk rivals controlling the supply.<span class="zh-full" lang="zh-Hant">薯條是它全球最受歡迎的品項，不能冒著被對手控制供應的風險。</span></p></details>
+<details><summary>Give one benefit and one risk of a hybrid channel.<span class="zh-full" lang="zh-Hant">說出混合通路的一個好處和一個風險。</span></summary><p>It reaches more segments, but it can create conflict, as when Yakult's door-to-door sellers faced 7-Eleven.<span class="zh-full" lang="zh-Hant">它能接觸更多區隔，但可能製造衝突，例如養樂多的挨家挨戶銷售員碰上 7-Eleven。</span></p></details>
+<details><summary>Piaget, Lexus and Pepsi: which distribution intensity?<span class="zh-full" lang="zh-Hant">Piaget、Lexus 和 Pepsi 各是哪種配銷密度？</span></summary><p>Piaget exclusive, Lexus selective, Pepsi intensive.<span class="zh-full" lang="zh-Hant">Piaget 獨家、Lexus 選擇性、Pepsi 密集。</span></p></details>
+<details><summary>When should a company outsource logistics?<span class="zh-full" lang="zh-Hant">企業什麼時候該把物流外包？</span></summary><p>When the work is not strategic and someone else can do it better, cheaper and faster.<span class="zh-full" lang="zh-Hant">當工作不具戰略性，而且別人能做得更好、更便宜、更快時。</span></p></details>
+<details><summary>What does Dell's negative cash cycle mean?<span class="zh-full" lang="zh-Hant">Dell 的現金週期為負代表什麼？</span></summary><p>Dell collects from customers before it pays suppliers, so suppliers' money funds its operations: 6.8 + 22 − 62 = −33.2 days.<span class="zh-full" lang="zh-Hant">Dell 先向顧客收款、後付供應商，所以是供應商的錢在支撐營運：6.8 ＋ 22 − 62 ＝ −33.2 天。</span></p></details>
+<details><summary>Why did Toyota's JIT not work the same in the US?<span class="zh-full" lang="zh-Hant">為什麼 Toyota 的及時生產在美國效果不同？</span></summary><p>It fit a small country with expensive land; the US has long distances and cheap land.<span class="zh-full" lang="zh-Hant">它適合面積小、土地貴的國家；美國距離遠、土地便宜。</span></p></details>
+<details><summary>Name the three service levels with one example each.<span class="zh-full" lang="zh-Hant">說出三種服務層級，各舉一例。</span></summary><p>Self service (Costco), limited service (Makro), full service (a department store shoe section).<span class="zh-full" lang="zh-Hant">自助服務（Costco）、有限服務（Makro）、完整服務（百貨公司鞋區）。</span></p></details>
+<details><summary>What is the wheel of retailing?<span class="zh-full" lang="zh-Hant">什麼是零售之輪？</span></summary><p>Low-cost entrants trade up over time, become top-heavy and vulnerable, and are attacked by the next low-cost entrant.<span class="zh-full" lang="zh-Hant">低成本新進者隨時間升級，變得頭重腳輕又脆弱，再被下一個低成本新進者攻擊。</span></p></details>
+<details><summary>What are the three stages of the retailer and supplier relationship?<span class="zh-full" lang="zh-Hant">零售商和供應商關係的三個階段是什麼？</span></summary><p>Traditional (supplier dominant), conflict (retailer stronger), and cooperation (an alliance).<span class="zh-full" lang="zh-Hant">傳統期（供應商主導）、衝突期（零售商變強）和合作期（結盟）。</span></p></details>
+</div>
+
+<h2 id="answer-templates">14. Answer templates<span class="zh-full" lang="zh-Hant">14. 答題模板</span></h2>
+<div class="answer-example"><b>Choose a distribution intensity<span class="zh-full" lang="zh-Hant">選擇配銷密度</span></b><p>Because [product] is [high or low involvement] and the brand image is [premium or mass], I would use [intensive, selective or exclusive] distribution. It gives [reach or control], and I would manage the trade-off of [control problem or inconvenience] by [action].<span class="zh-full" lang="zh-Hant">因為［產品］是［高或低涉入］，品牌形象是［高端或大眾］，我會採用［密集、選擇性或獨家］配銷。它帶來［覆蓋面或控制力］，我會用［行動］處理［控制問題或不便］這個取捨。</span></p></div>
+<div class="answer-example"><b>Do it yourself or outsource<span class="zh-full" lang="zh-Hant">自己做或外包</span></b><p>[Activity] is [strategic or not] because [reason]. If a partner can do it better and cheaper, I would outsource it; if a rival could control it or no one can do it, I would bring it in-house, as [Apple, McDonald's or Coke] did.<span class="zh-full" lang="zh-Hant">［活動］［是或不是］戰略關鍵，因為［理由］。如果夥伴能做得更好更便宜，我會外包；如果對手可能卡住它或沒人能做，我會自己來，就像［Apple、McDonald's 或 Coke］那樣。</span></p></div>
+<div class="answer-example"><b>Adding a new channel<span class="zh-full" lang="zh-Hant">增加新通路</span></b><p>Adding [new channel] would reach [segment], but it may conflict with [existing channel]. I would check that it fits our image and ability, and reduce the conflict by [different products, prices or territories].<span class="zh-full" lang="zh-Hant">增加［新通路］可以接觸［區隔］，但可能和［現有通路］衝突。我會確認它符合我們的形象和能力，並透過［不同產品、價格或區域］降低衝突。</span></p></div>
+<div class="answer-example"><b>Retail format and atmosphere<span class="zh-full" lang="zh-Hant">零售業態與氛圍</span></b><p>Our target shopper wants [speed, price or experience], so I would choose [service level] and an atmosphere of [lights, music, layout] that signals [cheap, fast or premium]. The location should [cluster with or stay away from] [competitors or anchors].<span class="zh-full" lang="zh-Hant">我們的目標顧客要的是［速度、價格或體驗］，所以我會選擇［服務層級］，並用［燈光、音樂、動線］營造傳達［便宜、快速或高端］的氛圍。地點應該［靠近或遠離］［競爭者或主力店］。</span></p></div>
+
+</article></main></div>
+<script>'use strict';
+(() => {
+  const isBilingual=document.documentElement.dataset.bilingual==='true';
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const bi=(en,zh)=>esc(en)+(isBilingual?'<span class="zh-full" lang="zh-Hant">'+esc(zh)+'</span>':'');
+  const header=document.querySelector('.top');
+  const measure=()=>document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px');
+  measure();window.addEventListener('resize',measure);if('ResizeObserver' in window)new ResizeObserver(measure).observe(header);
+  const toc=document.getElementById('toc'),rail=document.getElementById('rail'),tocButton=document.getElementById('tocBtn');
+  toc.replaceChildren();
+  const headings=[...document.querySelectorAll('.doc>h2,.doc>h3')];
+  headings.forEach(h=>{const li=document.createElement('li'),a=document.createElement('a');li.className=h.tagName.toLowerCase();li.dataset.id=h.id;a.href='#'+h.id;a.innerHTML=h.innerHTML;li.append(a);toc.append(li)});
+  tocButton.setAttribute('aria-controls','rail');
+  tocButton.addEventListener('click',()=>{const on=rail.classList.toggle('open');tocButton.setAttribute('aria-expanded',String(on))});
+  toc.addEventListener('click',e=>{if(e.target.closest('a')){rail.classList.remove('open');tocButton.setAttribute('aria-expanded','false')}});
+  if('IntersectionObserver' in window){const ob=new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting)return;toc.querySelectorAll('.on').forEach(x=>x.classList.remove('on'));toc.querySelector('li[data-id="'+e.target.id+'"] a')?.classList.add('on')}),{rootMargin:'-100px 0px -65% 0px'});headings.forEach(h=>ob.observe(h))}
+  document.querySelectorAll('[data-reveal-all]').forEach(button=>button.addEventListener('click',()=>{
+    const items=[...button.parentElement.nextElementSibling.querySelectorAll('details')],open=!items.every(d=>d.open);
+    items.forEach(d=>d.open=open);button.setAttribute('aria-expanded',String(open));button.innerHTML=open?bi('Hide all answers','隱藏全部答案'):bi('Show all answers','顯示全部答案');
+  }));
+
+
+  const Widgets={};
+  Widgets['choice-quiz']=host=>{
+    const set=quizSets[host.dataset.set];if(!set)return;let index=0;
+    const item=host.querySelector('.quiz-item'),choices=host.querySelector('.m-choices'),feedback=host.querySelector('.m-feedback'),progress=host.querySelector('.m-progress'),next=host.querySelector('.quiz-next');
+    const buttons=set.options.map((opt,i)=>{const b=document.createElement('button');b.type='button';b.dataset.option=String(i);b.innerHTML=bi(opt[0],opt[1]);choices.append(b);return b});
+    const render=()=>{
+      const [prompt]=set.items[index];
+      item.innerHTML=bi(prompt[0],prompt[1]);
+      progress.innerHTML=bi('Item '+(index+1)+' of '+set.items.length,'第 '+(index+1)+'／'+set.items.length+' 題');
+      feedback.className='m-feedback';feedback.innerHTML=bi('Choose an answer to see the reasoning.','選一個答案，看推理。');
+      buttons.forEach(b=>{b.disabled=false;b.classList.remove('correct','incorrect');b.removeAttribute('aria-pressed')});
+    };
+    buttons.forEach((b,i)=>b.addEventListener('click',()=>{
+      const [,answer,why]=set.items[index],right=i===answer;
+      buttons.forEach((x,j)=>{x.disabled=true;x.setAttribute('aria-pressed',String(j===i));if(j===answer)x.classList.add('correct');else if(j===i)x.classList.add('incorrect')});
+      const correct=set.options[answer];
+      feedback.className='m-feedback '+(right?'good':'bad');
+      feedback.innerHTML='<b>'+bi(right?'Correct: '+correct[0]+'.':'Answer: '+correct[0]+'.',right?'答對：'+correct[1]+'。':'答案：'+correct[1]+'。')+'</b> '+bi(why[0],why[1]);
+    }));
+    next.addEventListener('click',()=>{index=(index+1)%set.items.length;render()});
+    render();
+  };
+  const quizSets={
+    intensity:{options:[['Intensive','密集'],['Selective','選擇性'],['Exclusive','獨家']],items:[
+      [['Pepsi','Pepsi'],0,['Low involvement and bought on impulse, so it needs to be everywhere.','低涉入又常衝動購買，所以要到處都有。']],
+      [['Lexus','Lexus'],1,['A few carefully chosen dealers protect the image and service.','幾家精選經銷商保護形象和服務。']],
+      [['Piaget watches','Piaget 手錶'],2,['Very high price and prestige; scarcity is part of the value.','價格極高又有聲望；稀少本身就是價值的一部分。']],
+      [['Rolls-Royce in Thailand','泰國的 Rolls-Royce'],2,['One dealer for the whole country.','全國只有一家經銷商。']],
+      [['Magazines and soft drinks','雜誌與汽水'],0,['Cheap, frequent purchases bought wherever people happen to be.','便宜、常買，人在哪裡就在哪裡買。']],
+      [['BMW dealerships with catchment areas','劃分商圈的 BMW 經銷商'],1,['Several outlets, chosen and spaced by the brand.','由品牌挑選並控制間距的數個據點。']]
+    ]},
+    service:{options:[['Self service','自助服務'],['Limited service','有限服務'],['Full service','完整服務']],items:[
+      [['Costco: goods on pallets, giant packs, no bags','Costco：貨物放在棧板上、超大包裝、不給袋子'],0,['Minimal service keeps prices low.','最少的服務讓價格維持低廉。']],
+      [['Makro: no membership needed, some help, warehouse feel','Makro：不需會員、有些協助、倉庫感'],1,['More help than a warehouse club, still basic.','比倉儲會員店多一點協助，但仍很基本。']],
+      [['Central Chidlom shoes: you sit, staff bring pairs and kneel to fit them','Central Chidlom 鞋區：你坐著，店員拿鞋來並跪下幫你試穿'],2,['Personal help throughout, at higher prices.','全程個人化協助，價格也較高。']],
+      [['Payless ShoeSource: aisles by size, carry the box to the cashier','Payless ShoeSource：依尺寸分走道，自己拿鞋盒去結帳'],0,['Shoppers do the work themselves.','購物者自己完成大部分工作。']],
+      [['An upscale supermarket with a fishmonger and butcher','有魚販和肉販服務的高級超市'],2,['Specialist staff serve you personally.','專業人員親自為你服務。']],
+      [['SCG Home Solutions: DIY warehouse with a bit more advice','SCG Home Solutions：DIY 倉儲型賣場，多一點建議'],1,['Warehouse-like, with some added service.','像倉庫，但多了一些服務。']]
+    ]}
+  };
+  const press=(btns,on)=>btns.forEach(b=>b.setAttribute('aria-pressed',String(b===on)));
+  Widgets['contacts']=host=>{
+    const m=host.querySelector('#ceM'),c=host.querySelector('#ceC'),out=k=>host.querySelector('[data-out="'+k+'"]'),f=n=>Number(n).toLocaleString('en-US');
+    const calc=()=>{const a=+m.value,b=+c.value;out('m').textContent=a;out('c').textContent=b;out('direct').textContent=f(a*b);out('via').textContent=f(a+b);out('saved').textContent=f(Math.max(0,a*b-a-b))};
+    [m,c].forEach(x=>x.addEventListener('input',calc));calc();
+  };
+  Widgets['cash-cycle']=host=>{
+    const presets=[[6.8,22,62],[34,52,35]];
+    const ids=['ccInv','ccRec','ccPay'].map(id=>host.querySelector('#'+id)),btns=[...host.querySelectorAll('[data-preset]')],out=k=>host.querySelector('[data-out="'+k+'"]');
+    const calc=()=>{const [i,r,p]=ids.map(x=>+x.value||0),cy=Math.round((i+r-p)*10)/10;out('cycle').textContent=String(cy);
+      if(cy<0){out('who').innerHTML=bi('Suppliers','供應商');out('note').innerHTML=bi('Customers pay about '+Math.abs(cy)+' days before suppliers are paid, so suppliers’ money funds operations.','顧客付款比付給供應商早約 '+Math.abs(cy)+' 天，所以是供應商的錢在支撐營運。')}
+      else if(cy>0){out('who').innerHTML=bi('The company','公司自己');out('note').innerHTML=bi('Cash is tied up for about '+cy+' days before it comes back, so the company must fund that gap.','現金要卡約 '+cy+' 天才回來，公司必須自己補這段缺口。')}
+      else{out('who').innerHTML=bi('Break-even','剛好打平');out('note').innerHTML=bi('Money comes in exactly when it goes out.','收款和付款時間剛好相同。')}};
+    btns.forEach((x,i)=>x.addEventListener('click',()=>{press(btns,x);presets[i].forEach((v,j)=>ids[j].value=v);calc()}));
+    ids.forEach(x=>x.addEventListener('input',()=>{press(btns,null);calc()}));calc();
+  };
+
+  window.MktWidgets={mount:root=>root.querySelectorAll('[data-mk]').forEach(host=>{if(!host.dataset.mounted&&Widgets[host.dataset.mk]){Widgets[host.dataset.mk](host);host.dataset.mounted='true'}})};
+  window.MktWidgets.mount(document);
+})();
+</script>
+
+<script>
+'use strict';
+(function(){
+ const $=(id)=>document.getElementById(id);
+ // Practice mode does not affect the teaching tools or cold-call answers.
+ const practiceToggle=$('practiceToggle'),practiceState=$('practiceState');
+ const practicePrompts=[...document.querySelectorAll('.practice-prompt')];
+ practiceToggle.addEventListener('click',()=>{
+   const isOn=practiceToggle.getAttribute('aria-pressed')!=='true';
+   practiceToggle.setAttribute('aria-pressed',String(isOn));
+   practiceState.innerHTML=isOn?'On':'Off';practiceToggle.querySelector(':scope > .zh-full').innerHTML='練習模式：'+(isOn?'開啟':'關閉');
+   practicePrompts.forEach(prompt=>{prompt.hidden=!isOn});
+ });
+})();
+</script><script>
+(function(){
+const toggle=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+const key='study-notes-show-zh';
+function syncOptions(on){document.querySelectorAll('option[data-zh]').forEach(o=>{if(!o.dataset.en)o.dataset.en=o.textContent;o.textContent=o.dataset.en+(on&&o.dataset.zh?'／'+o.dataset.zh:'')})}
+function set(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';syncOptions(on);try{localStorage.setItem(key,on?'1':'0')}catch(e){}}
+let initial=false;
+set(initial);toggle.addEventListener('change',()=>set(toggle.checked));
+const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}
+if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();
+})();
+</script><script>(()=>{const h=document.querySelector('.top');if(!h)return;const f=()=>document.documentElement.style.setProperty('--header-height',Math.ceil(h.getBoundingClientRect().height)+'px');f();if('ResizeObserver'in window)new ResizeObserver(f).observe(h);window.addEventListener('resize',f)})();</script><script>(() => {
+  const bilingual=!!document.getElementById('zhToggle');
+  const tables=[...document.querySelectorAll('article .tbl')];
+  const entries=tables.map(table=>{
+    const hint=document.createElement('p');hint.className='table-scroll-hint';
+    hint.textContent='Swipe or use arrow keys to see the rest of the table.';
+    if(bilingual){const zh=document.createElement('span');zh.className='zh-full';zh.lang='zh-Hant';zh.textContent='可左右滑動，或用方向鍵查看完整表格。';hint.append(zh)}
+    table.before(hint);table.setAttribute('aria-label','Scrollable study table');
+    return {table,hint};
+  });
+  const refresh=()=>entries.forEach(({table,hint})=>{
+    const wide=table.scrollWidth>table.clientWidth+2;hint.hidden=!wide;
+    if(wide)table.tabIndex=0;else table.removeAttribute('tabindex');
+  });
+  refresh();window.addEventListener('resize',refresh);
+  if('ResizeObserver'in window){const observer=new ResizeObserver(refresh);tables.forEach(t=>observer.observe(t))}
+  if(document.fonts)document.fonts.ready.then(refresh);
+})();
+</script></body></html>
