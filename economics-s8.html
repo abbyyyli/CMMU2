@@ -1,28 +1,233 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Economics Session 8 · Study Notes</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>The Financial System · Economics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-:root{--bg:var(--tone-fdf9f9);--paper:var(--tone-ffffff);--tint:var(--tone-fae9ed);--line:var(--tone-efdde2);--fg:var(--tone-2f282b);--muted:var(--tone-7e6f74);--accent:var(--tone-c06c84);--accent-ink:var(--tone-9c4862);--sans:"Noto Sans TC","PingFang TC",system-ui,sans-serif;--serif:"Noto Serif TC",Georgia,serif}
-*{box-sizing:border-box}html{color-scheme:light;background:var(--bg)}body{margin:0;font:16px/1.75 var(--sans);color:var(--fg)}a{color:var(--accent-ink)}:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-header{border-bottom:1px solid var(--line);background:rgba(var(--header-rgb), .96)}.top{max-width:1160px;margin:auto;padding:13px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
-.crumbs{font-size:.86rem;display:flex;align-items:center;flex-wrap:wrap;gap:8px;color:var(--muted)}.crumbs a{text-decoration:none;color:var(--muted)}.crumbs a:hover{color:var(--accent-ink)}
-.sessions{display:flex;gap:5px;margin-left:auto}.pill{font:.85rem var(--sans);text-decoration:none;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--muted)}.pill[aria-current="page"]{background:var(--accent);border-color:var(--accent);color:var(--tone-ffffff)}.sessions a.pill:hover,.sessions a.pill:focus-visible{background:var(--tone-fceef2);border-color:var(--tone-b86b7b);color:var(--tone-8e4357)}
-main{max-width:780px;margin:0 auto;padding:74px 22px 120px}.kick{color:var(--accent-ink);letter-spacing:.15em;text-transform:uppercase;font-size:.76rem;font-weight:700}h1{font:700 clamp(2.2rem,5vw,3.2rem)/1.23 var(--serif);margin:6px 0 16px}.note{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin-top:30px}.label{font-weight:700;color:var(--accent-ink);font-size:.82rem;letter-spacing:.07em;text-transform:uppercase}.note p{margin:9px 0 0}.back{display:inline-block;margin-top:22px;text-decoration:none;border-bottom:1px solid var(--accent);font-weight:600}
-@media(max-width:520px){.sessions{margin-left:0}main{padding-top:50px}.note{padding:20px}}
+/* Layout: one reading column with a sticky chapter rail; colors follow system appearance. */
+:root {
+  color-scheme: light;
+  --bg: var(--tone-fdf9f9); --panel: var(--tone-f8eef0); --paper: var(--tone-ffffff); --tint: var(--tone-fae9ed); --line: var(--tone-efdde2);
+  --fg: var(--tone-2f282b); --muted: var(--tone-7e6f74); --accent: var(--tone-c06c84); --accent-ink: var(--tone-9c4862);
+  --demand: var(--tone-3f5675); --supply: var(--tone-c06c84); --ext: var(--tone-6e3f55); --world: var(--tone-8a7a5c); --policy: var(--tone-3f7f7a);
+  --cs: var(--tone-a7cdb6); --ps: var(--tone-b2c4e3); --dwl: var(--tone-d9674f); --rev: var(--tone-e5c171); --rev2: var(--tone-f1dca8); --time: var(--tone-ddb3cb); --ts: var(--tone-bfdcc9);
+  --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; background: var(--bg); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.75; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(var(--header-rgb), .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
+.top-in { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 14px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.02rem; white-space: nowrap; }
+.brand small { font-family: var(--sans); font-weight: 500; color: var(--muted); font-size: .76rem; margin-left: 6px; letter-spacing: .06em; }
+.sessions { display: flex; gap: 4px; margin-left: auto; }
+.crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
+.sessions a.pill { text-decoration: none; transition: border-color .15s, color .15s; }
+.sessions a.pill:hover, .sessions a.pill:focus-visible { border-color: var(--accent); color: var(--accent-ink); background: var(--tint); }
+.sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
+.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--tone-ffffff); }
+.sessions .pill.off { opacity: .5; cursor: not-allowed; }
+.toc-btn { display: none; font: 500 .85rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--fg); border-radius: 8px; padding: 5px 12px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 52px; }
+.rail { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow: auto; padding-block: 34px 40px; font-size: .86rem; line-height: 1.5; }
+.rail .lbl { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.rail ol { list-style: none; margin: 0; padding: 0; }
+.rail li a { display: block; padding: 4px 10px; color: var(--muted); text-decoration: none; border-radius: 6px; }
+.rail li a:hover { color: var(--fg); background: var(--tint); }
+.rail li.h3 a { padding-left: 22px; font-size: .8rem; }
+.rail li a.on { color: var(--accent-ink); background: var(--tint); font-weight: 500; }
+
+main { min-width: 0; padding-block: 30px 120px; }
+.doc { max-width: 780px; }
+.hero { padding-block: 8px 26px; border-bottom: 1px solid var(--line); }
+.kick { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px; font-weight: 500; }
+.hero h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.25; margin: 0 0 12px; text-wrap: balance; }
+.lead { margin: 0; font-size: 1.04rem; max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.doc h2 { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 3.4rem 0 .3rem; text-wrap: balance; }
+.doc h3 { font-size: 1.1rem; line-height: 1.45; margin: 2.2rem 0 .5rem; color: var(--accent-ink); text-wrap: balance; }
+.sub { margin: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
+.doc p, .doc li { max-width: none; }
+.doc ul, .doc ol { padding-left: 1.25em; }
+.doc li { margin: .25rem 0; }
+.zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
+.hint { font-size: .9rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.hint b { flex: none; font-size: .72rem; color: var(--tone-ffffff); background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
+.key { background: var(--tint); padding: 12px 16px; border-radius: 8px; font-weight: 500; }
+.note-small { font-size: .8rem; color: var(--muted); }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.pair > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.pair b { color: var(--accent-ink); }
+.pair p { margin: 4px 0 0; font-size: .92rem; }
+
+.matrix { display: grid; grid-template-columns: minmax(90px, .7fr) repeat(2, minmax(0, 1fr)); gap: 6px; margin: 1rem 0 1.2rem; font-size: .9rem; max-width: 620px; }
+.matrix .mh { font-weight: 700; font-size: .8rem; color: var(--muted); align-self: end; padding: 0 4px 2px; }
+.matrix .mh.side { align-self: center; }
+.matrix .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-weight: 500; }
+.matrix .cell.hi { background: var(--tint); border-color: var(--accent); }
+.matrix small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; margin-top: 2px; line-height: 1.45; }
+
+.map { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 1rem 0; }
+.mcol { display: flex; flex-direction: column; gap: 8px; }
+.mbox { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; display: flex; flex-direction: column; gap: 2px; }
+.mbox b { font-size: .9rem; } .mbox span { color: var(--muted); } .mbox em { font-style: normal; color: var(--accent-ink); font-size: .78rem; font-weight: 500; }
+.mbox.good { border-color: var(--cs); } .mbox.ask { background: var(--tint); border-color: var(--accent); }
+.marrow { color: var(--accent); font-weight: 700; }
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.flow span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; line-height: 1.45; }
+.flow i { font-style: normal; color: var(--accent); font-weight: 700; }
+.formula { font-family: var(--mono); font-size: .9rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; line-height: 1.9; overflow-x: auto; }
+.steps { counter-reset: s; list-style: none; padding-left: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 10px; }
+.steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .75rem/22px var(--sans); text-align: center; margin-top: 3px; }
+.assign { margin: 1.6rem 0; border: 1px dashed var(--accent); border-radius: 10px; padding: 14px 16px; background: var(--paper); }
+.assign p { margin: 6px 0 0; font-size: .92rem; }
+
+.tbl { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.doc table { border-collapse: collapse; width: 100%; font-size: .88rem; line-height: 1.55; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.doc th { background: var(--panel); font-weight: 700; }
+.doc tr:last-child td { border-bottom: 0; }
+.drill .ans { filter: blur(5px); cursor: pointer; user-select: none; transition: filter .2s; }
+.drill .ans.shown { filter: none; user-select: auto; }
+
+.traps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 1rem; }
+.traps > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: .88rem; line-height: 1.55; }
+.traps s { color: var(--muted); text-decoration-color: var(--dwl); }
+.traps p { margin: 6px 0 0; font-weight: 500; }
+
+.qa-tools { margin: .4rem 0 .8rem; }
+.qa-tools button { font: 500 .82rem var(--sans); border: 1px solid var(--accent); background: var(--paper); color: var(--accent-ink); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+.qa { display: flex; flex-direction: column; gap: 6px; }
+.qa details { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.qa summary { cursor: pointer; padding: 10px 14px; font-weight: 500; font-size: .93rem; list-style: none; display: flex; gap: 10px; }
+.qa summary::before { content: "Q"; color: var(--accent); font-weight: 700; }
+.qa details[open] summary { border-bottom: 1px dashed var(--line); }
+.qa details p { margin: 0; padding: 10px 14px 12px 36px; font-size: .9rem; }
+
+/* graphs */
+.graph { max-width: 900px; margin: 1.8rem 0 2.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; }
+.g-head h4 { font-family: var(--serif); font-size: 1.12rem; margin: 2px 0 2px; line-height: 1.45; }
+.g-head p { margin: 0 0 10px; color: var(--muted); font-size: .86rem; }
+.g-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+.g-body { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.g-plot svg { width: 100%; height: auto; display: block; }
+.g-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.g-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.sl label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); line-height: 1.3; }
+.sl output { font-family: var(--mono); color: var(--fg); font-size: .8rem; }
+.sl input { width: 100%; accent-color: var(--accent); margin: 4px 0 0; }
+.g-btn { align-self: flex-start; font: 500 .8rem var(--sans); border: 1px solid var(--accent); color: var(--accent-ink); background: transparent; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.g-btn:hover { background: var(--tint); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; align-self: flex-start; }
+.seg button { font: 500 .8rem var(--sans); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--paper); }
+.chk { display: flex; gap: 8px; align-items: center; font-size: .8rem; color: var(--muted); }
+.chk input { accent-color: var(--accent); }
+.g-stats { margin: 0; border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+.st { display: flex; justify-content: space-between; gap: 10px; font-size: .8rem; line-height: 1.45; }
+.st dt { color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.st dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.st.big dd { font-weight: 500; color: var(--accent-ink); font-size: .92rem; }
+.g-note { margin: 12px 0 0; padding: 9px 12px; background: var(--tint); border-radius: 6px; font-size: .85rem; line-height: 1.6; }
+
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; flex: none; }
+.sw.none { background: transparent; }
+.sw.a-cs { background: var(--cs); } .sw.a-ps { background: var(--ps); } .sw.a-ps2 { background: var(--ps); outline: 1px solid var(--demand); }
+.sw.a-dwl { background: repeating-linear-gradient(45deg, var(--dwl) 0 2px, transparent 2px 4px); outline: 1px solid var(--dwl); }
+.sw.a-rev { background: var(--rev); } .sw.a-rev2 { background: var(--rev2); } .sw.a-time { background: var(--time); } .sw.a-ts { background: var(--ts); }
+.sw.ln { height: 3px; border-radius: 2px; width: 16px; }
+
+svg .ax { stroke: var(--muted); stroke-width: 1.2; }
+svg .axl { fill: var(--muted); font: 500 11px var(--sans); }
+svg .tk { fill: var(--muted); font: 500 10.5px var(--mono); }
+svg .gd { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+svg .cv { stroke-width: 2.6; fill: none; stroke-linecap: round; }
+svg .cv.dash { stroke-dasharray: 7 5; stroke-width: 2; }
+svg .cvl { font: 700 11.5px var(--sans); }
+svg .c-d { stroke: var(--demand); fill: var(--demand); } svg .c-s { stroke: var(--supply); fill: var(--supply); }
+svg .c-x { stroke: var(--ext); fill: var(--ext); } svg .c-w { stroke: var(--world); fill: var(--world); } svg .c-t { stroke: var(--policy); fill: var(--policy); }
+svg text.cvl { stroke: none; }
+svg .pt { fill: var(--paper); stroke: var(--fg); stroke-width: 2; }
+svg .ptl { fill: var(--fg); font: 700 11px var(--sans); }
+svg .atag { fill: var(--fg); font: 700 11px var(--sans); opacity: .8; }
+svg .a-cs { fill: var(--cs); fill-opacity: .6; } svg .a-ps { fill: var(--ps); fill-opacity: .6; }
+svg .a-ps2 { fill: var(--ps); fill-opacity: .95; } svg .a-ts { fill: var(--ts); fill-opacity: .6; }
+svg .a-dwl { fill: url(#dwlHatch); stroke: var(--dwl); stroke-width: 1.2; }
+svg .a-rev { fill: var(--rev); fill-opacity: .75; } svg .a-rev2 { fill: var(--rev2); fill-opacity: .8; } svg .a-time { fill: var(--time); fill-opacity: .65; }
+
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .a-prof { fill: var(--cs); fill-opacity: .75; } svg .a-loss { fill: var(--dwl); fill-opacity: .35; }
+.sw.a-prof { background: var(--cs); } .sw.a-loss { background: var(--dwl); opacity: .5; }
+.twin { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tw-t { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.g-ctrl .g-btn + .g-btn { margin-top: -4px; }
+.graph.wide .g-body { grid-template-columns: minmax(0, 1fr); }
+.graph.wide .g-side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 700px) { .twin, .graph.wide .g-side { grid-template-columns: minmax(0, 1fr); } }
+svg polyline.cv { fill: none !important; }
+
+.graph { background: var(--paper); }
+.g-note { background: var(--tint); }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail { display: none; position: fixed; inset: 64px 0 0 0; max-height: none; background: var(--bg); z-index: 15; padding: 20px 16px 60px; }
+  .rail.open { display: block; }
+  .toc-btn { display: inline-block; }
+  .g-body { grid-template-columns: minmax(0, 1fr); }
+  .map { grid-template-columns: minmax(0, 1fr); }
+  .marrow { transform: rotate(90deg); justify-self: center; }
+}
+@media (max-width: 560px) { .pair, .traps { grid-template-columns: minmax(0, 1fr); } }
+.spectrum { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; margin: 1rem 0 .2rem; font-weight: 700; font-size: .9rem; }
+.spectrum .bar { height: 12px; border-radius: 6px; background: linear-gradient(90deg, var(--tone-d9674f), var(--tone-e5c171), var(--tone-a7cdb6)); }
+.spec-l { display: flex; justify-content: space-between; font-size: .78rem; color: var(--muted); margin-bottom: 1rem; }
+.no, .yes { font-size: .74rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; }
+.no { background: var(--tone-fce3dd); color: var(--tone-a8432f); } .yes { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); }
+table.oil { font-variant-numeric: tabular-nums; }
+table.oil th, table.oil td { text-align: right; padding: 6px 8px; white-space: nowrap; }
+table.oil th:first-child, table.oil td:first-child { text-align: left; font-weight: 700; }
+table.oil td.hi { background: var(--tint); color: var(--accent-ink); font-weight: 700; }
+
 </style>
 <style id="system-theme">
 /* System appearance only changes colors. Print retains the light palette. */
 :root {
   --header-rgb: 253, 249, 249;
   --tone-2f282b: #2f282b;
+  --tone-2f6b4f: #2f6b4f;
+  --tone-3f5675: #3f5675;
+  --tone-3f7f7a: #3f7f7a;
+  --tone-6e3f55: #6e3f55;
   --tone-7e6f74: #7e6f74;
-  --tone-8e4357: #8e4357;
+  --tone-8a7a5c: #8a7a5c;
   --tone-9c4862: #9c4862;
-  --tone-b86b7b: #b86b7b;
+  --tone-a7cdb6: #a7cdb6;
+  --tone-a8432f: #a8432f;
+  --tone-b2c4e3: #b2c4e3;
+  --tone-bfdcc9: #bfdcc9;
   --tone-c06c84: #c06c84;
+  --tone-d9674f: #d9674f;
+  --tone-ddb3cb: #ddb3cb;
+  --tone-e3f2e9: #e3f2e9;
+  --tone-e5c171: #e5c171;
   --tone-efdde2: #efdde2;
+  --tone-f1dca8: #f1dca8;
+  --tone-f8eef0: #f8eef0;
   --tone-fae9ed: #fae9ed;
-  --tone-fceef2: #fceef2;
+  --tone-fce3dd: #fce3dd;
   --tone-fdf9f9: #fdf9f9;
   --tone-ffffff: #ffffff;
 }
@@ -31,23 +236,714 @@ main{max-width:780px;margin:0 auto;padding:74px 22px 120px}.kick{color:var(--acc
     color-scheme: dark;
     --header-rgb: 29, 24, 26;
     --tone-2f282b: #EEE4E6;
+    --tone-2f6b4f: #A0D2B2;
+    --tone-3f5675: #93AECB;
+    --tone-3f7f7a: #8CC4BE;
+    --tone-6e3f55: #C9A3D6;
     --tone-7e6f74: #BEACB2;
-    --tone-8e4357: #E6B3BE;
+    --tone-8a7a5c: #C9B68C;
     --tone-9c4862: #E6B3BE;
-    --tone-b86b7b: #D79AA7;
+    --tone-a7cdb6: #6E8C6B;
+    --tone-a8432f: #F0A48D;
+    --tone-b2c4e3: #667C96;
+    --tone-bfdcc9: #5F7A5C;
     --tone-c06c84: #D79AA7;
+    --tone-d9674f: #E08A6F;
+    --tone-ddb3cb: #8C6680;
+    --tone-e3f2e9: #23372D;
+    --tone-e5c171: #C9A250;
     --tone-efdde2: #55424A;
+    --tone-f1dca8: #8F7A4A;
+    --tone-f8eef0: #2B2226;
     --tone-fae9ed: #35272D;
-    --tone-fceef2: #35272D;
+    --tone-fce3dd: #412B28;
     --tone-fdf9f9: #1D181A;
     --tone-ffffff: #241E21;
   }
-  .topswitch input:after { background: var(--fg); }
-  .topswitch input:checked:after { background: var(--paper); }
-  .m-action.primary .zh-full, .m-pillrow button[aria-pressed="true"] .zh-full,
-  a.cta .zh-full, .risk b .zh-full, .hint b .zh-full, .tcard .tnum .zh-full { color: inherit; }
 }
 </style>
-</head><body>
-<header><div class="top"><nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes</a><span>/</span><a href="economics.html">Economics</a><span>/</span><b>Session 8</b></nav><nav class="sessions" aria-label="Sessions 5–8"><a class="pill" href="economics-s5.html">S5</a><a class="pill" href="economics-s6.html">S6</a><a class="pill" href="economics-s7.html">S7</a><span class="pill" aria-current="page">S8</span></nav></div></header>
-<main><p class="kick">MGMG515 · Session 8</p><h1>Economics — Session 8</h1><section class="note"><div class="label">Coming soon</div><p>This lesson is not published yet. This reserved page keeps the S5–S8 navigation working in the meantime.</p><p>When the lesson is ready, the completed HTML can replace this file directly.</p></section><a class="back" href="economics.html">← Back to Economics sessions</a></main></body></html>
+
+<style>
+body{margin:0}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:1rem 0}
+.three>div,.method{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+.three b,.method>b{color:var(--accent-ink)}.three p,.method p{margin:4px 0 0;font-size:.92rem}
+.method{margin:12px 0}.endnote{margin-top:32px}
+.plot-legend{display:flex;flex-wrap:wrap;gap:7px 16px;margin:4px 0 14px;font-size:.78rem;color:var(--muted)}
+.plot-legend span{display:inline-flex;gap:6px;align-items:center}
+svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
+.seg{display:flex;flex-wrap:wrap;gap:2px;max-width:100%}.seg button{flex:1 1 auto;white-space:normal}
+.seg button[aria-pressed=true]{background:var(--accent);color:var(--paper)}
+.best-row{background:var(--tint);font-weight:700;color:var(--accent-ink)}
+.g-ctrl [hidden]{display:none!important}.sl label{gap:12px}.sl label span{min-width:0}
+.sl output{flex-shrink:0}.g-note:empty{display:none}.doc p,.doc li{overflow-wrap:break-word}
+@media(max-width:700px){.three{grid-template-columns:minmax(0,1fr)}.graph{padding:14px 12px}.st dd{white-space:normal;text-align:right;max-width:60%}.top-in{gap:8px 12px}}
+@media(max-width:420px){.top-in{align-items:center}.sessions{margin-left:0}.crumbs{flex:1 1 100%;font-size:.8rem}.toc-btn{order:2;margin-left:auto}.sessions{order:1}.rail{inset:108px 0 0}.graph.wide .g-side{gap:14px}.doc h2{font-size:1.4rem}}
+@media print{.top,.rail,.g-ctrl,.qa-tools{display:none}.wrap{display:block}.qa details p{display:block}.graph{break-inside:avoid}body{background:#fff}.doc{max-width:none}}
+</style>
+
+<style>
+.extra,.graph-guide,.number-readout{background:var(--paper);border:1px solid var(--line);border-radius:9px;margin:1rem 0;padding:0 14px}
+.extra>summary,.graph-guide>summary,.number-readout>summary{cursor:pointer;padding:11px 0;color:var(--accent-ink);font-size:.87rem;font-weight:500}
+.extra[open]>summary,.graph-guide[open]>summary,.number-readout[open]>summary{border-bottom:1px dashed var(--line)}
+.extra>p,.graph-guide>p{font-size:.9rem}.graph-guide .steps{font-size:.91rem;line-height:1.65}.graph-guide .steps li{margin:12px 0}
+.g-reading{min-width:0}.g-reading .g-note{margin:0}.number-readout{margin:12px 0 0;padding:0 10px}.number-readout .g-stats{border-top:0;padding-bottom:10px}
+</style>
+<style>
+.four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:1rem 0}
+.four>div{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.four b{color:var(--accent-ink)}.four p{margin:4px 0 0;font-size:.9rem;line-height:1.55}
+@media (max-width:980px){.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.four{grid-template-columns:minmax(0,1fr)}}
+.ring-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin:14px 0 4px}
+.ring-card{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;font:inherit;font-size:.86rem;line-height:1.45;color:var(--fg);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px 11px;cursor:pointer}
+.ring-card:hover{border-color:var(--accent)}
+.ring-card.done{background:var(--tint);border-color:var(--accent)}
+.ring-card.off-reg{border-style:dashed}.ring-card.off-reg .rc-t{text-decoration:line-through;color:var(--muted)}
+.rc-amt{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.78rem;color:var(--muted)}
+.rc-tag{font-size:.74rem;font-weight:700;letter-spacing:.04em;color:var(--accent-ink)}.rc-tag:empty{display:none}
+.sort-tools{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px;margin-top:6px}.sort-tools .g-btn+.g-btn{margin-top:0}
+.g-btn:disabled{opacity:.45;cursor:default}
+.ladder{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.rung{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--paper)}
+.rung-1{margin-left:14px}.rung-2{margin-left:28px;background:var(--tint)}.rung-3{margin-left:42px;background:var(--tint);border-color:var(--accent)}
+.rung-n{width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--paper);display:grid;place-items:center;font-weight:700;font-size:.85rem}
+.rung-b p{margin:0}.rung-q{font-size:.85rem;color:var(--muted)}.rung-a{font-family:var(--serif);font-weight:700;font-size:1.06rem;margin:2px 0 4px!important}.rung-ex{font-size:.92rem;line-height:1.6}
+@media (max-width:560px){.rung-1{margin-left:6px}.rung-2{margin-left:12px}.rung-3{margin-left:18px}}
+.timeline{list-style:none;margin:12px 0 12px 8px;padding:0 0 0 18px!important;border-left:2px solid var(--line)}
+.timeline li{position:relative;display:grid;grid-template-columns:64px minmax(0,1fr);gap:10px;padding:6px 0;margin:0}
+.timeline li::before{content:"";position:absolute;left:-25px;top:12px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.timeline li.what-if::before{background:var(--paper);border:2px dashed var(--accent);width:8px;height:8px}
+.timeline li.what-if>span{color:var(--muted);font-style:italic}
+.timeline b{font-family:"JetBrains Mono",ui-monospace,monospace;color:var(--accent-ink);font-weight:500}
+</style>
+<style id="bilingual-support">/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
+
+
+
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid var(--tone-d5c6ca);border-radius:999px;background:var(--tone-eee6e8);position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:var(--tone-ffffff);border-radius:50%;box-shadow:0 1px 2px var(--tone-77777755)}
+.topswitch input:checked{background:var(--accent)}
+.topswitch input:checked:after{left:14px}
+.topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+
+/* Shared reading rhythm, with room for each chapter's own teaching tools. */
+.doc select{font-family:var(--sans);font-size:.88rem}
+html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
+@media(max-width:900px){.rail.open{top:var(--header-height,64px);bottom:0;inset-inline:0;max-height:calc(100vh - var(--header-height,64px))}}
+body.show-zh .legend>span,body.show-zh .steps li,body.show-zh .six>div,body.show-zh .qa summary,body.show-zh .chk{flex-wrap:wrap}
+body.show-zh .legend>span>.zh-full,body.show-zh .steps li>.zh-full,body.show-zh .six>div>.zh-full,body.show-zh .qa summary>.zh-full,body.show-zh .chk>.zh-full{flex:0 0 100%;min-width:0}
+body.show-zh .steps li{display:list-item;list-style:none}
+body.show-zh .steps li:before{display:inline-block;margin-right:10px;vertical-align:middle}
+body.show-zh .six>div>.zh-full{margin-left:34px;flex-basis:calc(100% - 34px)}
+body.show-zh .seg{flex-wrap:wrap;max-width:100%}
+body.show-zh .seg button{min-width:0;white-space:normal}
+body.show-zh .spectrum{min-width:0}
+body.show-zh .spectrum>span{min-width:0;overflow-wrap:anywhere}
+body.show-zh .formula>.zh-full{white-space:normal;font-family:var(--sans)}
+body.show-zh .mw .tabs button,body.show-zh .mw .qz-o,body.show-zh .graph .g-btn{overflow-wrap:anywhere}
+body.show-zh .funnel-level{height:auto;min-height:68px;flex-direction:column;gap:1px;white-space:normal;line-height:1.3}
+body.show-zh .funnel-level .zh-full{color:inherit;margin-top:0;font-size:.75em}
+body.show-zh .decision-step{height:auto;min-height:100px}
+body.show-zh .m-control label{flex-wrap:wrap}
+body.show-zh .m-control label .zh-full{flex-basis:100%;text-align:left}
+body.show-zh .decision-step>.zh-full{font-size:.8em;line-height:1.45}
+body.show-zh .score .up b:after{content:'改善'}
+body.show-zh .score .down b:after{content:'惡化'}
+@media(max-width:560px){body.show-zh .spectrum{grid-template-columns:minmax(0,1fr)}body.show-zh .m-choices button{min-height:65px}}
+
+.page-tools{display:flex;align-items:center;gap:14px;margin-left:8px;flex-shrink:0}
+.page-tools .topswitch{margin-left:0}.page-tools .practice-toggle{font-size:.72rem;padding:5px 10px}
+.page-tools .practice-toggle>.zh-full{display:none!important}
+body.show-zh .page-tools .practice-toggle{white-space:normal}
+body.show-zh .seg button[aria-pressed=true] .zh-full{color:inherit}
+body.show-zh .steps li>span{min-width:0;flex:1}.formula>.zh-full{font-family:var(--sans)}
+body.show-zh .sl output{max-width:50%;white-space:normal;text-align:right}
+.plot-legend>span{align-items:flex-start;flex-wrap:wrap}.plot-legend .zh-full{flex-basis:100%;margin-top:1px}
+svg .zh-svg{fill:currentColor;font-size:10px}.g-plot svg text{color:var(--muted)}
+html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
+@media(max-width:900px){.rail.open{top:var(--header-height,64px);bottom:0;inset-inline:0;max-height:calc(100vh - var(--header-height,64px))}}
+@media(max-width:560px){.top-in .page-tools{order:3;flex-basis:100%;margin-left:0;justify-content:flex-end;padding-bottom:3px;gap:14px}.top-in{row-gap:6px}}
+@media(prefers-color-scheme:dark){.topswitch input{background:var(--panel);border-color:var(--line)}.topswitch input:after{background:var(--fg)}}
+@media print{.page-tools{display:none}}
+</style><style>:root{--tone-d5c6ca:#d5c6ca;--tone-eee6e8:#eee6e8;--tone-77777755:#77777755}</style><style>svg .a-faded{opacity:.28}.map .mbox{min-width:0}</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><pattern id="dwlHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" style="fill:var(--dwl);fill-opacity:.12"/><rect width="2.2" height="6" style="fill:var(--dwl);fill-opacity:.75"/></pattern></defs></svg>
+<header class="top"><div class="top-in">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes</a><span>/</span><a href="economics.html">Economics</a><span>/</span><b>Session 8</b></nav>
+<button class="toc-btn" type="button" id="tocBtn" aria-expanded="false" aria-controls="rail">Contents</button>
+<nav aria-label="Sessions 5–8" class="sessions"><a class="pill" href="economics-s5.html">S5</a><a class="pill" href="economics-s6.html">S6</a><a class="pill" href="economics-s7.html">S7</a><span aria-current="page" class="pill">S8</span></nav>
+<div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input aria-label="顯示完整繁體中文對照" id="zhToggle" role="switch" type="checkbox"/>中文 <span id="zhModeLabel">OFF</span></label><button aria-pressed="false" class="practice-toggle" id="practiceToggle" title="Show or hide short questions within chapters" type="button">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
+<div class="wrap"><aside class="rail" id="rail"><p class="lbl">Contents</p><ol id="toc"></ol></aside>
+<main><article class="doc"><div class="hero"><p class="kick">MGMG515 · Session 8<span class="zh-full" lang="zh-Hant">MGMG515 · 第 8 堂</span></p><h1>The Financial System<span class="zh-full" lang="zh-Hant">金融體系</span></h1><p class="lead">Some people have money they do not need yet; others have plans they cannot pay for yet. This chapter follows the bridges between them: the interest rate that prices the crossing, the banks and markets that carry the money, why the bridges collapsed in 2008, and what all of it means for your own savings.<span class="zh-full" lang="zh-Hant">有些人手上有暫時用不到的錢，有些人有計畫卻暫時付不起。本章追蹤連接兩邊的橋：決定過橋價格的利率、運送資金的銀行與市場、2008 年橋為什麼斷掉，以及這一切對你自己的儲蓄有什麼意義。</span></p></div>
+
+<h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
+<div class="map">
+<div class="mcol"><div class="mbox ask"><b>Market<span class="zh-full" lang="zh-Hant">市場</span></b><span>Saving meets borrowing; the interest rate is the price.<span class="zh-full" lang="zh-Hant">儲蓄與借款相遇，利率就是價格。</span></span></div></div>
+<div class="marrow">→</div>
+<div class="mcol">
+<div class="mbox"><b>Bridges<span class="zh-full" lang="zh-Hant">橋梁</span></b><span>Banks, bond markets and stock markets carry savings to borrowers.<span class="zh-full" lang="zh-Hant">銀行、債券市場和股票市場把儲蓄送到借款人手上。</span></span></div>
+<div class="mbox"><b>Collapse<span class="zh-full" lang="zh-Hant">斷橋</span></b><span>Four reasons bridges fail, and the 2008 crisis.<span class="zh-full" lang="zh-Hant">橋斷掉的四個原因，以及 2008 年金融危機。</span></span></div>
+</div>
+<div class="marrow">→</div>
+<div class="mcol"><div class="mbox good"><b>Your money<span class="zh-full" lang="zh-Hant">你自己的錢</span></b><span>Do not pick stocks, diversify, keep fees low, think twice before buying a house.<span class="zh-full" lang="zh-Hant">不要挑股、要分散、壓低費用，買房前多想一想。</span></span></div></div>
+</div>
+<p class="hint"><b>中文邏輯</b><span>金融體系就是把錢「在人之間、在時間上」搬動：利率是價格，銀行和市場是橋，信任一垮橋就斷。</span></p>
+
+<h2 id="ethics">1. Opening: two ways to judge an action<span class="zh-full" lang="zh-Hant">1. 開場：判斷一個行為的兩種方式</span></h2>
+<p class="sub">The session opened by returning to moral economics, with Alvin Roth's <i>Moral Economics</i> on the first slide.<span class="zh-full" lang="zh-Hant">本堂課先回到道德經濟學，第一張投影片是 Alvin Roth 的《Moral Economics》。</span></p>
+<div class="tbl"><table><thead><tr><th>Lens<span class="zh-full" lang="zh-Hant">觀點</span></th><th>Definition<span class="zh-full" lang="zh-Hant">定義</span></th><th>Example from the slides<span class="zh-full" lang="zh-Hant">投影片的例子</span></th><th>Do not confuse with<span class="zh-full" lang="zh-Hant">不要混淆</span></th></tr></thead><tbody>
+<tr><td><b>Deontology</b><span class="zh">義務論</span></td><td>"Deon" means duty: an act is right or wrong because of the rule or duty it follows, whatever the outcome.<span class="zh-full" lang="zh-Hant">「deon」是義務：行為的對錯取決於它遵守的規則或義務，不看結果。</span></td><td>Kneeling during the anthem is wrong, because patriotism is a duty and disrespecting the flag breaks it.<span class="zh-full" lang="zh-Hant">奏國歌時下跪是錯的，因為愛國是義務，不尊重國旗就違背了義務。</span></td><td>Following the law: a duty can be moral even where no law requires it.<span class="zh-full" lang="zh-Hant">守法：即使法律沒有要求，義務也可以是道德上的。</span></td></tr>
+<tr><td><b>Consequentialism</b><span class="zh">結果論</span></td><td>An act is judged by its consequences; utilitarianism, the best-known version, adds up the gains and harms to everyone.<span class="zh-full" lang="zh-Hant">用結果判斷行為；最有名的版本是效益主義，把所有人的得失加總。</span></td><td>Kneeling hurts nobody and raises awareness for oppressed minorities, so it is good.<span class="zh-full" lang="zh-Hant">下跪沒有傷害任何人，還能喚起對受壓迫少數群體的關注，所以是好的。</span></td><td>Self-interest: the consequences that count are everyone's, not only your own.<span class="zh-full" lang="zh-Hant">自利：要算的是所有人的結果，不只是自己的。</span></td></tr>
+</tbody></table></div>
+<p>The footbridge version of the trolley problem asks "focus on the consequences?" Pushing one person off the bridge would stop the trolley and save five. A strict consequentialist counts five against one; most people still refuse to push, which is a deontological intuition at work. Colin Kaepernick kneeling during the national anthem gets opposite verdicts from the two lenses, as the table shows.<span class="zh-full" lang="zh-Hant">天橋版的電車難題問：「只看結果嗎？」把一個人從橋上推下去可以擋住電車、救五個人。嚴格的結果論算的是五比一；但多數人仍然不願意推，這就是義務論的直覺。Colin Kaepernick 在國歌時下跪，兩種觀點給出相反的判斷，如上表。</span></p>
+<div class="pair"><div><b>Airbnb: a market experiment<span class="zh-full" lang="zh-Hant">Airbnb：一個市場實驗</span></b><p>Edelman, Luca and Svirsky (2016) sent booking requests from guest profiles that were identical except for names that signal race. Hosts said yes more often to guests with white-sounding names (about 1,150 against 940) and said no more often to guests with African-American-sounding names (about 870 against 660).<span class="zh-full" lang="zh-Hant">Edelman、Luca 和 Svirsky（2016）用只差在名字（名字透露種族）的房客帳號發出訂房請求。房東對白人名字的房客說「好」比較多（約 1,150 對 940），對非裔美國人名字的房客說「不」比較多（約 870 對 660）。</span></p></div><div><b>Reading it with both lenses<span class="zh-full" lang="zh-Hant">用兩種觀點來看</span></b><p>A deontologist says refusing a guest because of race is wrong whatever it costs or earns. A consequentialist asks about the harm to excluded guests and the gains and losses to hosts and the platform. Both lenses can condemn the same act for different reasons.<span class="zh-full" lang="zh-Hant">義務論者說：因為種族拒絕房客就是錯的，不管成本或收益。結果論者問的是被排除的房客受到多少傷害，以及房東和平台的得失。兩種觀點可以用不同理由譴責同一個行為。</span></p></div></div>
+<p class="note-small">Counts are read from Figure 2 of the paper as shown on the slide, and are approximate.<span class="zh-full" lang="zh-Hant">數字讀自投影片上論文的圖 2，為約略值。</span></p>
+
+<h2 id="why">2. Why people save and borrow<span class="zh-full" lang="zh-Hant">2. 人為什麼儲蓄和借錢</span></h2>
+<p class="sub">Saving and borrowing move spending across time. Income is hump-shaped over a life; spending does not have to be.<span class="zh-full" lang="zh-Hant">儲蓄和借款是把花費在時間上搬動。一生的所得像一座山丘，花費不必跟著起伏。</span></p>
+<div class="tbl"><table><thead><tr><th>Stage<span class="zh-full" lang="zh-Hant">階段</span></th><th>Income vs consumption<span class="zh-full" lang="zh-Hant">所得與消費</span></th><th>Action<span class="zh-full" lang="zh-Hant">行動</span></th><th>Example<span class="zh-full" lang="zh-Hant">例子</span></th></tr></thead><tbody>
+<tr><td><b>Young</b><span class="zh-full" lang="zh-Hant">年輕</span></td><td>Income below consumption<span class="zh-full" lang="zh-Hant">所得低於消費</span></td><td>Borrow<span class="zh-full" lang="zh-Hant">借款</span></td><td>A loan for CMMU tuition.<span class="zh-full" lang="zh-Hant">為 CMMU 學費貸款。</span></td></tr>
+<tr><td><b>Prime working years</b><span class="zh-full" lang="zh-Hant">工作高峰期</span></td><td>Income above consumption<span class="zh-full" lang="zh-Hant">所得高於消費</span></td><td>Repay debt, save<span class="zh-full" lang="zh-Hant">還債、儲蓄</span></td><td>Contributions to a provident fund.<span class="zh-full" lang="zh-Hant">提撥公積金。</span></td></tr>
+<tr><td><b>Retired</b><span class="zh-full" lang="zh-Hant">退休</span></td><td>Income below consumption<span class="zh-full" lang="zh-Hant">所得低於消費</span></td><td>Dissave: spend past savings<span class="zh-full" lang="zh-Hant">動用儲蓄</span></td><td>Living on the fund after 60.<span class="zh-full" lang="zh-Hant">60 歲後靠公積金生活。</span></td></tr>
+</tbody></table></div>
+<p>This is the <b>life-cycle theory of saving</b>. Smoothing consumption this way raises well-being even though lifetime income is unchanged. Three more forces shape how much people save. <b>Time preference</b>: some people strongly prefer spending now, others are patient. <b>Nudges</b>: when an employer enrolls workers in a retirement plan by default, they save more, although nothing about the incentives changed. <b>Big investments</b>: students borrow for education, firms borrow for projects, and entrepreneurs such as Howard Schultz, building Starbucks, raise money they do not have.<span class="zh-full" lang="zh-Hant">這就是<b>生命週期儲蓄理論</b>。這樣平滑消費，即使一生總所得不變，生活也會更好。另外三股力量影響人們存多少：<b>時間偏好</b>：有人很想現在花，有人很有耐心。<b>推力</b>：雇主預設幫員工加入退休計畫，員工就存得比較多，雖然誘因完全沒變。<b>大筆投資</b>：學生借錢念書、企業借錢做專案，像 Howard Schultz 這樣的創業者要籌自己沒有的錢來建立 Starbucks。</span></p>
+
+<h2 id="loanable">3. The market for loanable funds<span class="zh-full" lang="zh-Hant">3. 可貸資金市場</span></h2>
+<p class="sub">Treat saving and borrowing like any other market. The good being traded is the use of money for a while, and the interest rate is its price.<span class="zh-full" lang="zh-Hant">把儲蓄和借款當成一般市場來看。交易的是「一段時間的資金使用權」，利率就是它的價格。</span></p>
+<div class="tbl"><table><thead><tr><th>Part<span class="zh-full" lang="zh-Hant">組成</span></th><th>Definition<span class="zh-full" lang="zh-Hant">定義</span></th><th>Example<span class="zh-full" lang="zh-Hant">例子</span></th><th>Do not confuse with<span class="zh-full" lang="zh-Hant">不要混淆</span></th></tr></thead><tbody>
+<tr><td><b>Supply of savings</b></td><td>Slopes up: a higher interest rate brings more savings into the market.<span class="zh-full" lang="zh-Hant">向上斜：利率越高，進入市場的儲蓄越多。</span></td><td>Higher deposit rates pull cash out from under the mattress.<span class="zh-full" lang="zh-Hant">存款利率提高，把藏在床墊下的現金吸出來。</span></td><td>Money supply, which the central bank controls.<span class="zh-full" lang="zh-Hant">貨幣供給，那是央行控制的。</span></td></tr>
+<tr><td><b>Demand to borrow</b></td><td>Slopes down: a lower interest rate makes more projects worth borrowing for.<span class="zh-full" lang="zh-Hant">向下斜：利率越低，值得借錢去做的專案越多。</span></td><td>A Thai SME buys a machine when loan rates fall.<span class="zh-full" lang="zh-Hant">貸款利率下降時，泰國中小企業買新機器。</span></td><td>Demand for money to hold as cash.<span class="zh-full" lang="zh-Hant">持有現金的貨幣需求。</span></td></tr>
+<tr><td><b>Interest rate</b></td><td>The price of borrowing and the reward for saving.<span class="zh-full" lang="zh-Hant">借款的價格，也是儲蓄的報酬。</span></td><td>2% on a deposit, 7% on a business loan.<span class="zh-full" lang="zh-Hant">存款 2%，企業貸款 7%。</span></td><td>The <b>real</b> rate: nominal rate minus expected inflation.<span class="zh-full" lang="zh-Hant"><b>實質</b>利率：名目利率減預期通膨。</span></td></tr>
+</tbody></table></div>
+<p>Decide first whether an event changes how much people want to <b>save</b> or how much they want to <b>borrow</b>, then shift that curve.<span class="zh-full" lang="zh-Hant">先判斷事件改變的是人們想<b>存</b>多少，還是想<b>借</b>多少，再移動那條線。</span></p>
+<div class="tbl"><table><thead><tr><th>Event<span class="zh-full" lang="zh-Hant">事件</span></th><th>Curve<span class="zh-full" lang="zh-Hant">曲線</span></th><th>Interest rate<span class="zh-full" lang="zh-Hant">利率</span></th><th>Lending<span class="zh-full" lang="zh-Hant">放款量</span></th></tr></thead><tbody>
+<tr><td>Households decide to save more (MRU: South Korea, China)<span class="zh-full" lang="zh-Hant">家庭決定多存錢（MRU：南韓、中國）</span></td><td>Supply right<span class="zh-full" lang="zh-Hant">供給右移</span></td><td>↓</td><td>↑</td></tr>
+<tr><td>Firms become less optimistic<span class="zh-full" lang="zh-Hant">企業變得不樂觀</span></td><td>Demand left<span class="zh-full" lang="zh-Hant">需求左移</span></td><td>↓</td><td>↓</td></tr>
+<tr><td>Government gives an investment tax credit<span class="zh-full" lang="zh-Hant">政府提供投資抵減</span></td><td>Demand right<span class="zh-full" lang="zh-Hant">需求右移</span></td><td>↑</td><td>↑</td></tr>
+</tbody></table></div>
+<div data-widget="loanable" data-readout="optional"></div>
+<details class="graph-guide"><summary>How to build this graph</summary>
+<ol class="steps"><li><span>Quantity of loanable funds on the horizontal axis, the interest rate on the vertical axis. Draw S (savings) sloping up and D (borrowing) sloping down; mark E1, r1, Q1.<span class="zh-full" lang="zh-Hant">橫軸是可貸資金數量，縱軸是利率。畫向上的 S（儲蓄）和向下的 D（借款），標出 E1、r1、Q1。</span></span></li><li><span>Ask who the event affects. Savers: shift S. Borrowers, including the government: shift D.<span class="zh-full" lang="zh-Hant">問事件影響誰。影響儲蓄者就移 S；影響借款者（包括政府）就移 D。</span></span></li><li><span>Mark E2 and read the new r2 and Q2 off the axes.<span class="zh-full" lang="zh-Hant">標出 E2，從兩軸讀出新的 r2 和 Q2。</span></span></li></ol></details>
+<p>There is no single building called the market for loanable funds. There are many markets for different borrowers and lenders, linked by banks, bond markets and stock markets. The model shows the raw forces behind interest rates. The rate that matters for decisions is the <b>real interest rate</b><span class="zh">實質利率</span>: if a Thai bank pays 2% and prices rise 2%, a saver's buying power does not grow at all.<span class="zh-full" lang="zh-Hant">並沒有一棟叫「可貸資金市場」的建築。實際上是很多個市場，對應不同的借款人和放款人，由銀行、債市和股市串起來。這個模型呈現的是利率背後的基本力量。影響決策的是<b>實質利率</b>：泰國銀行給 2% 利息、物價也漲 2%，存款人的購買力完全沒有增加。</span></p>
+<p class="hint"><b>中文邏輯</b><span>利率是錢的價格。想存的人變多，錢就便宜（利率降）；想借的人變多，錢就變貴（利率升）。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Thailand's population ages, so households save more for retirement. At the same time, firms expect weaker exports. What can you say for sure about the interest rate, and what is uncertain?<span class="zh-full" lang="zh-Hant">泰國人口老化，家庭為退休多存錢；同時企業預期出口轉弱。關於利率你能確定什麼？什麼不確定？</span></p></aside>
+
+<h2 id="banks">4. What banks do<span class="zh-full" lang="zh-Hant">4. 銀行在做什麼</span></h2>
+<p class="sub">The slides draw three bridges from lenders and savers to borrowers: banks, bond markets and stock markets. These are <b>financial intermediaries</b><span class="zh">金融中介</span>.<span class="zh-full" lang="zh-Hant">投影片畫了三座從放款人與儲蓄者通往借款人的橋：銀行、債券市場和股票市場。它們就是<b>金融中介</b>。</span></p>
+<div class="four">
+<div><b>Pay interest<span class="zh-full" lang="zh-Hant">支付利息</span></b><p>Deposits earn interest, which attracts savings.<span class="zh-full" lang="zh-Hant">存款有利息，吸引儲蓄。</span></p></div>
+<div><b>Screen borrowers<span class="zh-full" lang="zh-Hant">篩選借款人</span></b><p>Loan officers do the due diligence that no single saver could afford.<span class="zh-full" lang="zh-Hant">放款人員做盡職調查，單一存款人負擔不起這種工作。</span></p></div>
+<div><b>Pool and spread risk<span class="zh-full" lang="zh-Hant">匯集資金、分散風險</span></b><p>Many small deposits fund many loans, so a few bad loans hurt no one badly.<span class="zh-full" lang="zh-Hant">許多小額存款支撐許多筆貸款，幾筆壞帳不會重傷任何人。</span></p></div>
+<div><b>Keep reserves<span class="zh-full" lang="zh-Hant">保留準備金</span></b><p>Only a fraction of deposits is kept as cash for withdrawals; the rest is lent.<span class="zh-full" lang="zh-Hant">只留一部分存款當現金應付提領，其餘都借出去。</span></p></div>
+</div>
+<p>The bank earns the <b>spread</b>: it might pay depositors 2% and lend at 7%. MRU builds the case with Starbucks.<span class="zh-full" lang="zh-Hant">銀行賺的是<b>利差</b>：例如付存款人 2%，放款收 7%。MRU 用 Starbucks 一步步說明。</span></p>
+<div class="tbl"><table><thead><tr><th>Arrangement<span class="zh-full" lang="zh-Hant">安排</span></th><th>Problem<span class="zh-full" lang="zh-Hant">問題</span></th></tr></thead><tbody>
+<tr><td>You alone lend Howard Schultz $1 million.<span class="zh-full" lang="zh-Hant">你一個人借 Howard Schultz 100 萬美元。</span></td><td>If the venture fails, the loss to you is huge.<span class="zh-full" lang="zh-Hant">事業失敗的話，你的損失很大。</span></td></tr>
+<tr><td>You and 99 friends lend $10,000 each.<span class="zh-full" lang="zh-Hant">你和 99 個朋友每人借 1 萬美元。</span></td><td>Risk is shared, but 100 people each studying the business plan is slow and costly.<span class="zh-full" lang="zh-Hant">風險分攤了，但 100 個人各自研究營運計畫又慢又貴。</span></td></tr>
+<tr><td>Appoint one coffee-market expert to evaluate for everyone.<span class="zh-full" lang="zh-Hant">指派一位咖啡市場專家替大家評估。</span></td><td>This is what a bank does: specialists do the screening.<span class="zh-full" lang="zh-Hant">這就是銀行在做的事：由專業人員篩選。</span></td></tr>
+<tr><td>A bank pools deposits.<span class="zh-full" lang="zh-Hant">銀行匯集存款。</span></td><td>Now it is like 100,000 people lending Schultz $10 each, and lending to thousands of other entrepreneurs too. A few bad loans will not bankrupt the bank.<span class="zh-full" lang="zh-Hant">變成像 10 萬人每人借 Schultz 10 美元，同時也借給其他數千位創業者。幾筆壞帳不會讓銀行倒閉。</span></td></tr>
+</tbody></table></div>
+<div data-widget="pool" data-readout="optional"></div>
+<p class="note-small">The graph assumes borrowers default independently. In 2008 many mortgages failed together, which pooling cannot fix (section 9).<span class="zh-full" lang="zh-Hant">圖表假設借款人彼此獨立違約。2008 年許多房貸同時違約，這是匯集資金解決不了的（第 9 節）。</span></p>
+<div class="pair"><div><b>Liquidity transformation</b><span class="zh">流動性轉換</span><p>Your deposit can be withdrawn any day, while the loan it funds is locked up for years.<span class="zh-full" lang="zh-Hant">你的存款隨時可以領，但它支撐的貸款要鎖好幾年。</span></p></div><div><b>Maturity transformation</b><span class="zh">期限轉換</span><p>Short-term deposits fund long-term loans such as a 20-year mortgage.<span class="zh-full" lang="zh-Hant">短期存款支撐長期貸款，例如 20 年房貸。</span></p></div></div>
+<p>The same feature makes banks both useful and fragile. A bank counts on depositors not all asking for their money on the same day. If they do, even a sound bank runs out of cash, because the money is tied up in loans. The 2022 Nobel Prize in economics, shown in the slides, went to Ben Bernanke, Douglas Diamond and Philip Dybvig "for research on banks and financial crises". Diamond and Dybvig modeled exactly this: why banks that turn short deposits into long loans are valuable, and why that leaves them open to runs.<span class="zh-full" lang="zh-Hant">同一個特性讓銀行既有用又脆弱。銀行賭的是存款人不會同一天都來領錢。如果真的同時來領，即使是健全的銀行也會缺現金，因為錢都綁在貸款裡。投影片上的 2022 年諾貝爾經濟學獎頒給 Ben Bernanke、Douglas Diamond 和 Philip Dybvig，理由是「對銀行與金融危機的研究」。Diamond 和 Dybvig 建立的模型正是在講這件事：把短期存款變成長期貸款的銀行為什麼有價值，又為什麼因此容易被擠兌。</span></p>
+<p class="hint"><b>中文邏輯</b><span>銀行賺的是「資訊和分散風險」的錢；它把隨時要還的存款變成很久才收回的貸款，這是它最大的貢獻，也是最容易出事的地方。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A rumor says your bank made bad loans. Even if the rumor is false, why might it be rational for you to withdraw your money early?<span class="zh-full" lang="zh-Hant">有傳言說你的銀行放了很多壞帳。即使傳言是假的，為什麼你提早把錢領出來仍可能是理性的？</span></p></aside>
+
+<h2 id="stocks">5. Stock markets<span class="zh-full" lang="zh-Hant">5. 股票市場</span></h2>
+<p class="sub">A stock is a share of ownership with a claim on the firm's profits. Most stock trading does not give the firm a single baht.<span class="zh-full" lang="zh-Hant">股票是公司所有權的一部分，可以分享公司利潤。但大部分的股票交易，公司一毛錢都拿不到。</span></p>
+<div class="tbl"><table><thead><tr><th>Market<span class="zh-full" lang="zh-Hant">市場</span></th><th>Definition<span class="zh-full" lang="zh-Hant">定義</span></th><th>Example<span class="zh-full" lang="zh-Hant">例子</span></th><th>Does the firm get money?<span class="zh-full" lang="zh-Hant">公司拿到錢嗎？</span></th></tr></thead><tbody>
+<tr><td><b>Primary market</b></td><td>The firm sells new shares, first at its <b>IPO</b><span class="zh">首次公開發行</span>, later in new issues.<span class="zh-full" lang="zh-Hant">公司出售新股，第一次是 <b>IPO</b>，之後是增資發行。</span></td><td>Starbucks went public in 1992; a Thai startup listing on the SET.<span class="zh-full" lang="zh-Hant">Starbucks 在 1992 年上市；泰國新創在 SET 掛牌。</span></td><td><span class="yes">Yes</span><span class="zh-full" lang="zh-Hant">是：儲蓄變成投資</span></td></tr>
+<tr><td><b>Secondary market</b></td><td>Investors trade existing shares with each other.<span class="zh-full" lang="zh-Hant">投資人之間買賣既有股票。</span></td><td>Everyday trading on the Stock Exchange of Thailand.<span class="zh-full" lang="zh-Hant">泰國證券交易所的日常交易。</span></td><td><span class="no">No</span><span class="zh-full" lang="zh-Hant">否：錢付給上一個股東</span></td></tr>
+</tbody></table></div>
+<p>The secondary market still matters. Because shares are easy to resell, investors are willing to buy new issues in the first place. An IPO also rewards founders and venture capitalists who backed the firm when it was risky, and lets them diversify. Buying a stock is a bet on the company, so some shareholders end up happy and others "a little bit sad"; bank depositors usually do not see the value of their deposits swing.<span class="zh-full" lang="zh-Hant">次級市場仍然重要：股票容易轉賣，投資人才願意一開始就買新股。IPO 也讓在公司還很冒險時投入的創辦人和創投拿到回報，並能分散自己的持股。買股票是押注這家公司，有些股東很開心，有些「有點難過」；銀行存款人通常不會看到存款價值上下起伏。</span></p>
+<p class="note-small">Same distinction as Session 7: buying existing shares is not investment in GDP, which counts only new capital goods.<span class="zh-full" lang="zh-Hant">和第 7 堂一樣的區分：買既有股票不是 GDP 裡的投資，GDP 的投資只算新的資本財。</span></p>
+
+<h2 id="bonds">6. Bonds: IOUs, risk and yield<span class="zh-full" lang="zh-Hant">6. 債券：借據、風險與殖利率</span></h2>
+<p class="sub">A bond is an IOU: it says who owes how much, and when. A well-known firm like Starbucks, which has issued over $1 billion of bonds, can borrow directly from investors and skip the bank.<span class="zh-full" lang="zh-Hant">債券是借據：寫明誰欠多少、何時還。像 Starbucks 這種知名企業（發行過超過 10 億美元的債券）可以直接向投資人借錢，不必透過銀行。</span></p>
+<div class="tbl"><table><thead><tr><th></th><th>Bond<span class="zh-full" lang="zh-Hant">債券</span></th><th>Stock<span class="zh-full" lang="zh-Hant">股票</span></th></tr></thead><tbody>
+<tr><td><b>You hold</b><span class="zh-full" lang="zh-Hant">你持有</span></td><td>A loan to the firm<span class="zh-full" lang="zh-Hant">對公司的貸款</span></td><td>Part ownership<span class="zh-full" lang="zh-Hant">部分所有權</span></td></tr>
+<tr><td><b>You receive</b><span class="zh-full" lang="zh-Hant">你得到</span></td><td>A fixed sum on a fixed date, sometimes with regular <b>coupon</b> payments<span class="zh-full" lang="zh-Hant">固定日期的固定金額，有時還有定期<b>票息</b></span></td><td>A share of profits, as dividends or growth<span class="zh-full" lang="zh-Hant">分享利潤：股利或增值</span></td></tr>
+<tr><td><b>Who is paid first</b><span class="zh-full" lang="zh-Hant">誰先拿錢</span></td><td>Bondholders<span class="zh-full" lang="zh-Hant">債券持有人</span></td><td>Shareholders get what is left<span class="zh-full" lang="zh-Hant">股東拿剩下的</span></td></tr>
+<tr><td><b>Main risk</b><span class="zh-full" lang="zh-Hant">主要風險</span></td><td><b>Default risk</b>: the borrower cannot pay<span class="zh-full" lang="zh-Hant"><b>違約風險</b>：借款人付不出來</span></td><td>The business does badly<span class="zh-full" lang="zh-Hant">公司經營不善</span></td></tr>
+</tbody></table></div>
+<p>Riskier borrowers pay more. Rating agencies such as Standard &amp; Poor's grade bonds from <b>AAA</b> down to <b>D</b>; anything below <b>BBB-</b> is called a junk bond. In the video Starbucks is rated A-, and Illinois (A-) pays more to borrow than Virginia (AAA). <b>Collateral</b> lowers the rate too: if you default on a mortgage the bank takes the house, but "once you've been to Maui, the bank can't repossess your vacation."<span class="zh-full" lang="zh-Hant">風險越高的借款人付越多利息。標準普爾等評等機構從 <b>AAA</b> 評到 <b>D</b>；低於 <b>BBB-</b> 的叫垃圾債。影片中 Starbucks 是 A-，伊利諾州（A-）借錢的成本比維吉尼亞州（AAA）高。<b>擔保品</b>也會降低利率：房貸違約，銀行可以收走房子；但「去過茂宜島之後，銀行收不回你的假期」。</span></p>
+<p>A bond's <b>yield</b><span class="zh">殖利率</span> is the gain from holding it divided by the price paid. The face value is fixed, so the only way a bond can offer a higher yield is to sell for less.<span class="zh-full" lang="zh-Hant">債券的<b>殖利率</b>是持有的收益除以買價。面額固定，所以債券要提供更高的殖利率，唯一的方法就是賣得更便宜。</span></p>
+<div data-widget="bond" data-readout="optional"></div>
+<p>MRU's lesson from the three bonds: the 14.8% bond is not a free lunch. <b>Equally risky assets must pay the same return</b>, or everyone would buy the higher-yield one until its price rose. A high yield is a signal of high risk. Which bond to buy depends on how much risk you can live with.<span class="zh-full" lang="zh-Hant">MRU 從三張債券得出的結論：14.8% 那張不是免費午餐。<b>風險相同的資產報酬必須相同</b>，否則大家都會去買高殖利率的那張，直到它的價格上升。高殖利率代表高風險。要買哪一張，取決於你能承受多少風險。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A Thai firm's rating is cut from A to BBB. What happens to the interest rate on its new bonds, and to the price of the bonds it already sold?<span class="zh-full" lang="zh-Hant">一家泰國公司的評等從 A 降到 BBB。它新發債券的利率會怎樣？已經賣出的舊債券價格又會怎樣？</span></p></aside>
+
+<h2 id="crowding">7. Crowding out: when the government borrows<span class="zh-full" lang="zh-Hant">7. 排擠效果：政府來借錢</span></h2>
+<p class="sub">In 2016 the US government owed the public almost $14 trillion. A borrower that large moves the whole market.<span class="zh-full" lang="zh-Hant">2016 年美國政府欠大眾將近 14 兆美元。這麼大的借款人會移動整個市場。</span></p>
+<div class="tbl"><table class="oil" aria-label="MRU crowding-out numbers"><thead><tr><th>$ billion<span class="zh-full" lang="zh-Hant">十億美元</span></th><th>Before<span class="zh-full" lang="zh-Hant">之前</span></th><th>After the government borrows 100<span class="zh-full" lang="zh-Hant">政府借 100 之後</span></th></tr></thead><tbody>
+<tr><td>Interest rate<span class="zh-full" lang="zh-Hant">利率</span></td><td>7%</td><td class="hi">9%</td></tr>
+<tr><td>Savings supplied<span class="zh-full" lang="zh-Hant">儲蓄供給量</span></td><td>200</td><td>250</td></tr>
+<tr><td>Private borrowing<span class="zh-full" lang="zh-Hant">民間借款</span></td><td>200</td><td>150</td></tr>
+<tr><td>Government borrowing<span class="zh-full" lang="zh-Hant">政府借款</span></td><td>0</td><td>100</td></tr>
+</tbody></table></div>
+<p>Two things give way. Saving rises by 50, and to save more people consume less, so <b>private consumption falls by 50</b>. At 9% private borrowers want only 150, so <b>private investment falls by 50</b>. Together that is <b>crowding out</b><span class="zh">排擠效果</span>: 100 of government borrowing displaces 50 of consumption and 50 of investment.<span class="zh-full" lang="zh-Hant">有兩樣東西讓路。儲蓄增加 50，多存就得少花，所以<b>民間消費減少 50</b>。利率 9% 時民間只想借 150，所以<b>民間投資減少 50</b>。合起來就是<b>排擠效果</b>：政府借 100，擠掉 50 的消費和 50 的投資。</span></p>
+<div data-widget="crowd" data-readout="optional"></div>
+<div class="pair"><div><b>The 50/50 split<span class="zh-full" lang="zh-Hant">五五分</span></b><p>It comes from the slopes MRU drew. A steeper savings supply curve puts more of the burden on investment.<span class="zh-full" lang="zh-Hant">這來自 MRU 畫的斜率。儲蓄供給線越陡，負擔越落在投資上。</span></p></div><div><b>Limit<span class="zh-full" lang="zh-Hant">限制</span></b><p>This is a full-employment, closed-economy result. Crowding out is smaller in a recession or when foreign savers fund the borrowing, and borrowing for productive infrastructure can raise future output.<span class="zh-full" lang="zh-Hant">這是充分就業、封閉經濟下的結果。在經濟衰退時，或由外國儲蓄者出錢時，排擠會比較小；借錢蓋有生產力的基礎建設也可能提高未來產出。</span></p></div></div>
+
+<h2 id="failures">8. Four reasons the bridges fail<span class="zh-full" lang="zh-Hant">8. 橋斷掉的四個原因</span></h2>
+<p class="sub">Tyler Cowen compares intermediaries to bridges: we notice how much we rely on them only when they crumble. In many poor countries a working bridge never existed.<span class="zh-full" lang="zh-Hant">Tyler Cowen 把金融中介比喻成橋：橋塌了，我們才發現自己多依賴它。在許多貧窮國家，能用的橋從來沒有存在過。</span></p>
+<div class="tbl"><table><thead><tr><th>Reason<span class="zh-full" lang="zh-Hant">原因</span></th><th>What it destroys<span class="zh-full" lang="zh-Hant">破壞了什麼</span></th><th>Mechanism<span class="zh-full" lang="zh-Hant">機制</span></th><th>MRU examples<span class="zh-full" lang="zh-Hant">MRU 例子</span></th></tr></thead><tbody>
+<tr><td><b>1. Insecure property rights</b></td><td>Willingness to save<span class="zh-full" lang="zh-Hant">儲蓄意願</span></td><td>If deposits or shares can be frozen or seized, people keep cash and gold instead.<span class="zh-full" lang="zh-Hant">存款或股票可能被凍結或沒收，大家就改存現金和黃金。</span></td><td>Cyprus seized deposits in 2013; Argentina and Brazil froze them; Russia and Yukos.<span class="zh-full" lang="zh-Hant">賽普勒斯 2013 年沒收存款；阿根廷、巴西凍結存款；俄羅斯與 Yukos。</span></td></tr>
+<tr><td><b>2. Interest rate controls</b></td><td>The price signal<span class="zh-full" lang="zh-Hant">價格訊號</span></td><td>A <b>usury law</b> is a price ceiling on loans: below equilibrium it creates a shortage of credit.<span class="zh-full" lang="zh-Hant"><b>利率上限法</b>是貸款的價格上限：低於均衡時造成資金短缺。</span></td><td>Cowen has seen loans at 50% or 100% and asks whether that is always bad.<span class="zh-full" lang="zh-Hant">Cowen 看過 50% 甚至 100% 的貸款，問這是否一定是壞事。</span></td></tr>
+<tr><td><b>3. Politicized lending</b></td><td>Screening by merit<span class="zh-full" lang="zh-Hant">依實力篩選</span></td><td>Loans follow political connections; insolvent <b>zombie banks</b> are kept alive.<span class="zh-full" lang="zh-Hant">貸款跟著政治關係走；資不抵債的<b>殭屍銀行</b>被救活。</span></td><td>Japan's lost decade, 1990 to 2000; more state-owned banks go with slower growth.<span class="zh-full" lang="zh-Hant">日本失落的十年（1990 到 2000）；國營銀行比例越高，成長越慢。</span></td></tr>
+<tr><td><b>4. Runs, panics, scandals</b></td><td>Trust<span class="zh-full" lang="zh-Hant">信任</span></td><td>With fractional reserves, a rush to withdraw can sink even a sound bank: a <b>bank run</b><span class="zh">擠兌</span>.<span class="zh-full" lang="zh-Hant">在部分準備制下，搶著提款可以弄垮健全的銀行：<b>擠兌</b>。</span></td><td>Almost half of US banks failed in the Great Depression; Enron, WorldCom, Madoff.<span class="zh-full" lang="zh-Hant">大蕭條時美國近一半銀行倒閉；Enron、WorldCom、Madoff。</span></td></tr>
+</tbody></table></div>
+<p>Use the "Interest rate cap" setting in the graph in section 7 to see reason 2: a cap at 5% raises the quantity demanded to 250, cuts the quantity supplied to 150, and actual lending falls from 200 to 150. The borrowers shut out are usually the riskiest, who then go without or turn to illegal lenders.<span class="zh-full" lang="zh-Hant">用第 7 節圖表的「利率上限」設定來看原因 2：上限定在 5%，需求量升到 250，供給量降到 150，實際放款從 200 降到 150。被擋在外面的通常是風險最高的借款人，他們只好不借，或轉向非法放款人。</span></p>
+<p>After the Depression runs, the US created <b>deposit insurance</b> (the FDIC). If depositors know they will be repaid even when the bank fails, nobody needs to rush. The cost is <b>moral hazard</b>: insured depositors stop watching the bank, and banks may take more risk, which is why insurance comes with regulation.<span class="zh-full" lang="zh-Hant">大蕭條的擠兌之後，美國設立了<b>存款保險</b>（FDIC）。存款人知道銀行倒了也拿得回錢，就沒有人需要搶著領。代價是<b>道德風險</b>：有保險的存款人不再盯著銀行，銀行可能冒更多風險，所以保險要搭配監理。</span></p>
+<p class="note-small">The link between state-owned banks and slower growth is a cross-country correlation; weak institutions may cause both.<span class="zh-full" lang="zh-Hant">國營銀行與成長較慢的關係是跨國相關性；薄弱的制度可能同時造成兩者。</span></p>
+<p class="hint"><b>中文邏輯</b><span>四個原因各破壞一樣東西：沒收存款破壞財產權，利率上限破壞價格，政治放款破壞篩選，擠兌讓信任瞬間崩潰。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Country F once froze bank deposits, caps loan rates at 6% while the market rate is about 10%, and its state banks lend to connected firms. Which of the four reasons are present, and which one is still only a risk?<span class="zh-full" lang="zh-Hant">F 國曾經凍結銀行存款，把貸款利率上限定在 6%（市場利率約 10%），國營銀行把錢借給有關係的企業。四個原因中出現了哪幾個？哪一個還只是風險？</span></p></aside>
+
+<h2 id="recession">9. The Great Recession<span class="zh-full" lang="zh-Hant">9. 大衰退</span></h2>
+<p class="sub">Most of the slides follow this story. The economy stands on a cliff edge with a load hanging below it, and MRU adds four weights one at a time. Then house prices fall, and the load drops.<span class="zh-full" lang="zh-Hant">大部分投影片都在講這個故事。經濟站在懸崖邊，下面吊著一個貨板，MRU 一次放上一個重物，共四個。接著房價下跌，貨板就掉下去了。</span></p>
+<h3 id="homeowners">Weight 1: homeowner leverage<span class="zh-full" lang="zh-Hant">重物 1：屋主槓桿</span></h3>
+<p>A $100,000 house bought with a typical 20% down payment carries an $80,000 mortgage and $20,000 of <b>owner's equity</b>: what the owner would keep after selling and repaying the loan. Equity is the cushion. The <b>leverage ratio</b><span class="zh">槓桿比率</span> divides the mortgage by the owner's equity.<span class="zh-full" lang="zh-Hant">一棟 10 萬美元的房子，頭期款照一般的 20%，就有 8 萬美元房貸和 2 萬美元<b>屋主權益</b>：賣掉房子、還完貸款後屋主留下的錢。權益就是緩衝墊。<b>槓桿比率</b>是房貸除以屋主權益。</span></p>
+<div class="formula">Leverage ratio = mortgage ÷ owner's equity<br>20% down: 80,000 ÷ 20,000 = 4<br>5% down: 95,000 ÷ 5,000 = 19<span class="zh-full" lang="zh-Hant">槓桿比率 = 房貸 ÷ 屋主權益；頭期 20%：4；頭期 5%：19</span></div>
+<p>Before the crisis many homes were bought with 10%, 5% or even zero down. With 5% down, a fall to $90,000 leaves the house worth less than the $95,000 still owed: the owner is <b>underwater</b>, and equity is gone. That hurts the bank too, because in a foreclosure it gets a house worth less than the loan.<span class="zh-full" lang="zh-Hant">危機前很多房子是用 10%、5%，甚至零頭期款買的。頭期 5% 時，房價跌到 9 萬美元，房子的價值就低於還欠的 9.5 萬：屋主<b>溺水</b>（資不抵債），權益歸零。銀行也受傷，因為法拍時拿到的房子價值低於貸款。</span></p>
+<div data-widget="leverage" data-readout="optional"></div>
+<h3 id="banklev">Weight 2: bank leverage<span class="zh-full" lang="zh-Hant">重物 2：銀行槓桿</span></h3>
+<p>Banks did the same thing with their own balance sheets. Lehman Brothers' leverage ratio rose from about 20 in 2004 to 44 by 2007. At 44, a fall of about 2.2% in the value of its assets wipes out its equity; when the fall came, Lehman was underwater and went bankrupt on September 15, 2008. Why would experienced managers do this? Cowen gives two reasons: <b>overconfidence</b> that house prices could not fall much, and <b>incentives</b>, since bonuses rose with profits while the managers did not personally go bankrupt when the bank did.<span class="zh-full" lang="zh-Hant">銀行在自己的資產負債表上也這樣做。雷曼兄弟的槓桿比率從 2004 年約 20 升到 2007 年的 44。44 倍時，資產價值只要跌約 2.2%，權益就歸零；跌勢一來，雷曼就資不抵債，在 2008 年 9 月 15 日破產。有經驗的經理人為什麼這樣做？Cowen 給了兩個理由：<b>過度自信</b>，認為房價不會大跌；以及<b>誘因</b>，獎金隨利潤上升，銀行倒了經理人自己卻不會破產。</span></p>
+<h3 id="securitization">Weight 3: securitization<span class="zh-full" lang="zh-Hant">重物 3：證券化</span></h3>
+<p><b>Securitization</b><span class="zh">證券化</span> bundles many individual mortgages into one tradable security and sells it to outside investors. The slides show four mortgages going into one package:<span class="zh-full" lang="zh-Hant"><b>證券化</b>把許多筆個別房貸包成一個可以交易的證券，賣給外部投資人。投影片把四筆房貸包進一個包裹：</span></p>
+<div class="tbl"><table class="oil" aria-label="Mortgages bundled into a security"><thead><tr><th>Mortgage<span class="zh-full" lang="zh-Hant">房貸</span></th><th>House value<span class="zh-full" lang="zh-Hant">房價</span></th><th>Mortgage<span class="zh-full" lang="zh-Hant">房貸金額</span></th><th>Equity<span class="zh-full" lang="zh-Hant">權益</span></th></tr></thead><tbody>
+<tr><td>1</td><td>$81,000</td><td>$77,000</td><td>$4,000</td></tr>
+<tr><td>2</td><td>$86,000</td><td>$78,000</td><td>$8,000</td></tr>
+<tr><td>3</td><td>$85,000</td><td>$75,000</td><td>$10,000</td></tr>
+<tr><td>4</td><td>$83,000</td><td>$71,000</td><td>$12,000</td></tr>
+</tbody></table></div>
+<p class="note-small">The slide labels the third mortgage's equity $8,000; house value minus mortgage gives $10,000.<span class="zh-full" lang="zh-Hant">投影片把第三筆的權益標成 8,000 美元；房價減房貸是 10,000 美元。</span></p>
+<p>Standard &amp; Poor's, Moody's and Fitch rated such packages, often AA- or even AAA. Many turned out to be riskier than advertised, through outright fraud, rating failures, and above all complacency about house prices. Securitization itself is a useful tool: it frees cash for banks and spreads risk to investors who want it. The failure was in quality, transparency and ratings.<span class="zh-full" lang="zh-Hant">標準普爾、穆迪和惠譽替這些包裹評等，常常是 AA-，甚至 AAA。結果很多比宣傳的更危險，原因包括詐欺、評等失靈，最主要是對房價過度安心。證券化本身是有用的工具：讓銀行拿回現金，把風險分給願意承擔的投資人。失敗出在品質、透明度和評等。</span></p>
+<h3 id="shadow">Weight 4: the shadow banking system<span class="zh-full" lang="zh-Hant">重物 4：影子銀行體系</span></h3>
+<div class="tbl"><table><thead><tr><th>Part of the shadow banking system<span class="zh-full" lang="zh-Hant">影子銀行的組成</span></th><th>Names on the slide<span class="zh-full" lang="zh-Hant">投影片上的名字</span></th></tr></thead><tbody>
+<tr><td>Investment banks<span class="zh-full" lang="zh-Hant">投資銀行</span></td><td>Lehman Brothers, Bear Stearns</td></tr>
+<tr><td>Parts of commercial banks<span class="zh-full" lang="zh-Hant">商業銀行的部分業務</span></td><td>Citibank, Bank of America</td></tr>
+<tr><td>Money market funds<span class="zh-full" lang="zh-Hant">貨幣市場基金</span></td><td>Vanguard, PIMCO</td></tr>
+<tr><td>Issuers of asset-backed securities<span class="zh-full" lang="zh-Hant">資產擔保證券發行機構</span></td><td>BNP Paribas</td></tr>
+<tr><td>Hedge funds<span class="zh-full" lang="zh-Hant">避險基金</span></td><td>Bridgewater, Man, Brevan Howard</td></tr>
+</tbody></table></div>
+<p>A commercial bank is funded by insured deposits. An investment bank such as Lehman is funded by investors, mostly through short-term loans, with no comparable guarantee: "use at your own risk." These lenders are watchful and quick to flee. Shadow banks borrow short to lend long like a bank, but without deposit insurance, and by 2008 they lent more than traditional commercial banks.<span class="zh-full" lang="zh-Hant">商業銀行的資金來自有保險的存款。雷曼這類投資銀行的資金來自投資人，大多是短期借款，沒有類似的保障：「風險自負」。這些放款人非常警覺，一有風吹草動就跑。影子銀行<b>像銀行一樣借短放長，卻沒有存款保險</b>，到 2008 年它們的放款已超過傳統商業銀行。</span></p>
+<h3 id="collapse">The nudge: house prices fall<span class="zh-full" lang="zh-Hant">最後一推：房價下跌</span></h3>
+<div class="flow"><span>2007: house prices fall<span class="zh-full" lang="zh-Hant">2007：房價下跌</span></span><i>→</i><span>Homeowners underwater, defaults rise<span class="zh-full" lang="zh-Hant">屋主溺水、違約增加</span></span><i>→</i><span>Mortgage securities, even AAA, lose value<span class="zh-full" lang="zh-Hant">房貸證券（連 AAA）貶值</span></span><i>→</i><span>Leveraged banks near insolvency<span class="zh-full" lang="zh-Hant">高槓桿銀行瀕臨資不抵債</span></span><i>→</i><span>Short-term lenders run from shadow banks<span class="zh-full" lang="zh-Hant">短期放款人從影子銀行撤資</span></span><i>→</i><span>Fire sales push prices lower<span class="zh-full" lang="zh-Hant">賤價拋售讓價格更低</span></span><i>→</i><span>Credit crunch, layoffs, store closings<span class="zh-full" lang="zh-Hant">信用緊縮、裁員、商店關門</span></span></div>
+<p>The last slide shows the response: a bank leverage ratio of 16.66, meaning more equity behind each dollar of assets. Cowen thinks requiring <b>more equity and less leverage</b> makes sense; it has been enacted, and "it remains to be seen" how well it works. A government guarantee for shadow banks would be the radical alternative, but it could expose taxpayers to trillions and would give leveraged managers even more reason to take risk.<span class="zh-full" lang="zh-Hant">最後一張投影片呈現的回應：銀行槓桿比率 16.66，也就是每一元資產背後有更多權益。Cowen 認為要求<b>更多權益、更少槓桿</b>是合理的；這已經立法實施，效果「還有待觀察」。激進的替代方案是政府為影子銀行提供擔保，但這可能讓納稅人承擔數兆美元，還會讓高槓桿的經理人更有理由冒險。</span></p>
+<p class="hint"><b>中文邏輯</b><span>2008 不是單一原因，而是四層脆弱疊在一起：屋主槓桿、銀行槓桿、看不懂的房貸證券、沒有存款保險的影子銀行。房價一跌，短期資金一夜抽走，橋就斷了。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Asset prices fall 3%. Who is underwater: a homeowner who put 5% down, or a bank with a leverage ratio of 44? Why does it matter that both kinds of borrower existed at the same time?<span class="zh-full" lang="zh-Hant">資產價格下跌 3%。誰會溺水：頭期付 5% 的屋主，還是槓桿 44 倍的銀行？為什麼這兩種借款人同時存在很重要？</span></p></aside>
+
+<h2 id="thai">10. The Thai bond market<span class="zh-full" lang="zh-Hant">10. 泰國債券市場</span></h2>
+<p class="sub">Before 1997 Thailand's financial system stood on one leg: bank loans. When banks and finance companies got into trouble, firms had nowhere else to borrow. After the crisis the country built a second bridge.<span class="zh-full" lang="zh-Hant">1997 年以前，泰國金融體系只靠一條腿：銀行放款。銀行和財務公司出問題時，企業沒有別的地方可以借錢。危機之後，泰國蓋了第二座橋。</span></p>
+<div class="tbl"><table class="oil" aria-label="Thai financial structure as a share of GDP"><thead><tr><th>Share of GDP<span class="zh-full" lang="zh-Hant">占 GDP 比例</span></th><th>1997</th><th>Sep 2021</th></tr></thead><tbody>
+<tr><td>Bank loans<span class="zh-full" lang="zh-Hant">銀行放款</span></td><td>131%</td><td>112%</td></tr>
+<tr><td>Bond market<span class="zh-full" lang="zh-Hant">債券市場</span></td><td>12%</td><td class="hi">94%</td></tr>
+<tr><td>Corporate bonds<span class="zh-full" lang="zh-Hant">公司債</span></td><td>3%</td><td>27%</td></tr>
+<tr><td>Stock market capitalization<span class="zh-full" lang="zh-Hant">股市市值</span></td><td>24%</td><td>117%</td></tr>
+</tbody></table></div>
+<p>In September 2021 the market held 14.9 trillion baht of bonds: government bonds including T-bills 45%, corporate bonds 27%, Bank of Thailand bonds 20%, state-enterprise bonds 7%, foreign bonds 1%. Government-related bonds are therefore about 72%. That shows who the big borrower is; on its own it does not prove crowding out, since corporate bonds grew over the same period.<span class="zh-full" lang="zh-Hant">2021 年 9 月，市場上有 14.9 兆泰銖的債券：政府債（含國庫券）45%、公司債 27%、泰國央行債券 20%、國營事業債 7%、外國債 1%。政府相關債券合計約 72%。這顯示誰是大借款人，但單憑這點不能證明有排擠效果，因為同期公司債也在成長。</span></p>
+<div class="tbl"><table><thead><tr><th>Step<span class="zh-full" lang="zh-Hant">環節</span></th><th>How it works in Thailand<span class="zh-full" lang="zh-Hant">在泰國怎麼運作</span></th><th>Link to the model<span class="zh-full" lang="zh-Hant">對應的概念</span></th></tr></thead><tbody>
+<tr><td><b>Issuing government bonds</b></td><td>Auctions through the Bank of Thailand: T-bills Monday, BoT bonds Tuesday, loan bonds Wednesday, SOE bonds Thursday. T-bills, under one year, are sold at a discount.<span class="zh-full" lang="zh-Hant">透過泰國央行標售：週一國庫券、週二央行債、週三政府公債、週四國營事業債。一年內到期的國庫券以折價出售。</span></td><td>Primary market; a T-bill works like the zero-coupon bonds in section 6.<span class="zh-full" lang="zh-Hant">初級市場；國庫券就像第 6 節的零息債。</span></td></tr>
+<tr><td><b>Issuing corporate bonds</b></td><td>A public offering can be sold to anyone but needs SEC approval, full disclosure and an investment-grade rating from TRIS or Fitch (Thailand). Private placements go to at most 10 investors, institutions, or high-net-worth investors.<span class="zh-full" lang="zh-Hant">公開發行可賣給任何人，但需要 SEC 核准、完整揭露，以及 TRIS 或惠譽（泰國）的投資等級評等。私募只賣給最多 10 位投資人、法人或高資產投資人。</span></td><td>Ratings price default risk.<span class="zh-full" lang="zh-Hant">評等為違約風險定價。</span></td></tr>
+<tr><td><b>Trading</b></td><td>Over the counter between dealers, by phone or broker; every trade reported to ThaiBMA within 30 minutes.<span class="zh-full" lang="zh-Hant">經紀商之間的店頭交易，用電話或透過經紀人；每筆交易 30 分鐘內回報 ThaiBMA。</span></td><td>Secondary market; reporting builds the trust that reason 4 needs.<span class="zh-full" lang="zh-Hant">次級市場；回報制度建立原因 4 所需要的信任。</span></td></tr>
+<tr><td><b>Who holds</b></td><td>Government bonds: pension funds and the Social Security Office 32%, insurers 29%, non-residents 16%. Corporate bonds: individual investors are the largest group, 33%.<span class="zh-full" lang="zh-Hant">政府債：退休基金與社會安全辦公室 32%、保險公司 29%、非居民 16%。公司債：個人投資人是最大族群，33%。</span></td><td>Ordinary savers bear default risk directly.<span class="zh-full" lang="zh-Hant">一般儲蓄者直接承擔違約風險。</span></td></tr>
+</tbody></table></div>
+<p class="note-small">Figures are from the ThaiBMA page "About Thai Bond Market", dated September 2021 (holders September 2020). Later estimates put the market near 18 trillion baht in 2026 and the retail share of corporate bonds near 40%.<span class="zh-full" lang="zh-Hant">數字來自 ThaiBMA 網頁「About Thai Bond Market」，日期為 2021 年 9 月（持有人為 2020 年 9 月）。較新的估計顯示 2026 年市場約 18 兆泰銖，散戶持有公司債比例約 40%。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Individuals are the largest holders of Thai corporate bonds. If several low-rated issuers default in the same year, what happens to the yields that similar firms must pay, and why?<span class="zh-full" lang="zh-Hant">個人是泰國公司債最大的持有人。如果同一年有幾家低評等發行人違約，同類公司要付的殖利率會怎樣？為什麼？</span></p></aside>
+
+<h2 id="money">11. Your own money: four rules<span class="zh-full" lang="zh-Hant">11. 你自己的錢：四條規則</span></h2>
+<p class="sub">MRU's Money Skills videos turn the same economics into personal advice.<span class="zh-full" lang="zh-Hant">MRU 的 Money Skills 影片把同一套經濟學變成個人理財建議。</span></p>
+<div class="tbl"><table><thead><tr><th>Rule<span class="zh-full" lang="zh-Hant">規則</span></th><th>Why<span class="zh-full" lang="zh-Hant">理由</span></th><th>Evidence MRU uses<span class="zh-full" lang="zh-Hant">MRU 的證據</span></th></tr></thead><tbody>
+<tr><td><b>1. Ignore expert stock pickers</b></td><td>Past winners rarely repeat, and luck is hard to tell from skill.<span class="zh-full" lang="zh-Hant">過去的贏家很少能再贏，運氣和實力很難分辨。</span></td><td>Malkiel's dart-throwing monkey; of the top quarter of funds, under 4% stay on top two years later, 1% after five.<span class="zh-full" lang="zh-Hant">Malkiel 擲飛鏢的猴子；前四分之一的基金，兩年後還在前段的不到 4%，五年後只剩 1%。</span></td></tr>
+<tr><td><b>2. It is hard to beat the market</b></td><td>The <b>efficient market hypothesis</b><span class="zh">效率市場假說</span>: prices already reflect public information.<span class="zh-full" lang="zh-Hant"><b>效率市場假說</b>：價格已經反映公開資訊。</span></td><td>"America is aging, buy nursing homes" is already priced in; after the 1986 Challenger explosion, Morton Thiokol fell over 11% that day, months before it was found responsible.<span class="zh-full" lang="zh-Hant">「美國在老化，買安養院股」早就反映在價格裡；1986 年挑戰者號爆炸當天，Morton Thiokol 就跌了超過 11%，比調查認定它有責任早了好幾個月。</span></td></tr>
+<tr><td><b>3. Diversify, keep fees low</b></td><td><b>Diversification</b><span class="zh">分散投資</span> lowers risk without lowering expected return.<span class="zh-full" lang="zh-Hant"><b>分散投資</b>降低風險而不降低預期報酬。</span></td><td>Enron employees held about 60% of their retirement savings in Enron stock and lost both job and savings.<span class="zh-full" lang="zh-Hant">Enron 員工把約 60% 的退休儲蓄放在 Enron 股票，結果工作和存款一起沒了。</span></td></tr>
+<tr><td><b>4. Even an imperfect market is more rational than you</b></td><td>Investors are overconfident and herd; anomalies exist but are small and fade once known.<span class="zh-full" lang="zh-Hant">投資人過度自信、從眾；異常現象存在，但很小，一被知道就消失。</span></td><td>Shiller's Nobel work; Monday, January and momentum effects; Buffett tells his heirs to buy index funds.<span class="zh-full" lang="zh-Hant">Shiller 獲諾貝爾獎的研究；週一、一月和動能效應；巴菲特叫繼承人買指數基金。</span></td></tr>
+</tbody></table></div>
+<p>The coin-flip experiment shows why rule 1 holds. Give 1,000 "experts" a coin to predict whether the market rises. After one year 500 are right, after two 250, and after five about 31 have never been wrong (MRU says 32). They will be called geniuses and write books, yet they were certain to exist whatever the market did.<span class="zh-full" lang="zh-Hant">擲銅板實驗說明規則 1。讓 1,000 位「專家」擲銅板預測市場漲跌。一年後 500 人猜對，兩年後 250 人，五年後約 31 人從沒錯過（MRU 說 32）。他們會被稱為天才、出書，但不管市場怎麼走，這些人一定會出現。</span></p>
+<div data-widget="fees" data-readout="optional"></div>
+<p class="note-small">MRU quotes about $57,000 and $70,000; those cannot be reproduced with a plain 8% return. The graph uses 10,000 × (1.08 − fee)^25, which gives $54,274 and $65,384. The lesson is the same.<span class="zh-full" lang="zh-Hant">MRU 說約 57,000 和 70,000 美元，用單純的 8% 報酬算不出來。圖表用 10,000 × (1.08 − 費用)^25，得到 54,274 和 65,384 美元。結論相同。</span></p>
+<p>Diversification removes the risk specific to one firm, not the risk of the whole market falling, as it did in 2008. It also argues against <b>home market bias</b>: a Thai investor with her savings in her employer's shares and a condo in the same city has job, shares and property all exposed to one local shock.<span class="zh-full" lang="zh-Hant">分散投資消除的是單一公司的風險，不是整個市場下跌的風險（像 2008 年）。它也反對<b>本國偏誤</b>：一位泰國投資人如果把儲蓄放在自己公司的股票，又在同一個城市買了公寓，工作、股票和房產就全部暴露在同一個地方性衝擊下。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A fund manager beat the SET index five years in a row. Before calling it skill, what else would you want to know?<span class="zh-full" lang="zh-Hant">一位基金經理人連續五年打敗 SET 指數。在說他有實力之前，你還想知道什麼？</span></p></aside>
+
+<h2 id="rent">12. Rent or buy?<span class="zh-full" lang="zh-Hant">12. 租房還是買房？</span></h2>
+<p class="sub">An MRU Econ Duel: Tyler Cowen argues for buying, Alex Tabarrok for renting. They end closer than they start.<span class="zh-full" lang="zh-Hant">MRU 的經濟對決：Tyler Cowen 主張買，Alex Tabarrok 主張租。最後兩人比一開始更接近。</span></p>
+<div class="tbl"><table><thead><tr><th>Issue<span class="zh-full" lang="zh-Hant">議題</span></th><th>Tyler: buy<span class="zh-full" lang="zh-Hant">Tyler：買</span></th><th>Alex: rent<span class="zh-full" lang="zh-Hant">Alex：租</span></th></tr></thead><tbody>
+<tr><td><b>Investment</b><span class="zh-full" lang="zh-Hant">投資</span></td><td>Does not dispute it.<span class="zh-full" lang="zh-Hant">沒有反駁。</span></td><td>House prices are not guaranteed to rise; do not expect a great investment.<span class="zh-full" lang="zh-Hant">房價不保證上漲；別期待它是很好的投資。</span></td></tr>
+<tr><td><b>Taxes</b><span class="zh-full" lang="zh-Hant">稅</span></td><td>Mortgage interest is deductible, so buying can be cheaper.<span class="zh-full" lang="zh-Hant">房貸利息可以抵稅，所以買可能比較便宜。</span></td><td>Much of the tax break is built into the price, so the seller captures it.<span class="zh-full" lang="zh-Hant">大部分稅惠已經反映在房價裡，被賣方拿走。</span></td></tr>
+<tr><td><b>Elasticity</b><span class="zh-full" lang="zh-Hant">彈性</span></td><td>Where builders can add homes (Texas, Florida), the price falls back and the buyer keeps the benefit.<span class="zh-full" lang="zh-Hant">能蓋新房的地方（德州、佛州），房價會回落，買方保有好處。</span></td><td>Where permits are nearly impossible (San Francisco, New York, Boston), landowners get it.<span class="zh-full" lang="zh-Hant">幾乎拿不到建照的地方（舊金山、紐約、波士頓），好處歸地主。</span></td></tr>
+<tr><td><b>Stability</b><span class="zh-full" lang="zh-Hant">穩定</span></td><td>A family wants the school district and no rent renegotiation.<span class="zh-full" lang="zh-Hant">家庭想要固定學區，不想重談租約。</span></td><td>Only if you value stability more than the average buyer; owners pay for roofs and heating.<span class="zh-full" lang="zh-Hant">前提是你比一般買家更重視穩定；屋主要付屋頂和暖氣的修繕費。</span></td></tr>
+<tr><td><b>Diversification</b><span class="zh-full" lang="zh-Hant">分散</span></td><td>Better for the wealthier.<span class="zh-full" lang="zh-Hant">比較適合較富裕的人。</span></td><td>A house puts a big share of wealth in one asset in one place.<span class="zh-full" lang="zh-Hant">房子把大部分財富放在同一個地方的同一項資產。</span></td></tr>
+</tbody></table></div>
+<div class="flow"><span>Tax break for buyers<span class="zh-full" lang="zh-Hant">買方稅惠</span></span><i>→</i><span>Housing demand shifts right<span class="zh-full" lang="zh-Hant">住房需求右移</span></span><i>→</i><span>Fixed supply: price up a lot, seller gains<span class="zh-full" lang="zh-Hant">供給固定：價格大漲，賣方得利</span></span><i>/</i><span>Elastic supply: more homes, buyer gains<span class="zh-full" lang="zh-Hant">供給有彈性：房子變多，買方得利</span></span></div>
+<p>Where they agree: it is a <b>marginal</b> question. The price already reflects the average buyer's tax benefit, taste for stability and repair costs, so you gain from buying only where you differ from the average buyer. A low down payment is also high leverage (5% down is a ratio of 19), and one house is the opposite of diversification.<span class="zh-full" lang="zh-Hant">兩人的共識：這是<b>邊際</b>問題。房價已經反映一般買家的稅惠、對穩定的偏好和修繕成本，所以只有在你跟一般買家不同的地方，買房才有好處。低頭期款也就是高槓桿（頭期 5% 等於槓桿 19），而一棟房子正是分散投資的反面。</span></p>
+<p class="note-small">The duel assumes US tax rules; Thai taxes, mortgage terms and condo markets differ.<span class="zh-full" lang="zh-Hant">這場對決以美國稅制為前提；泰國的稅制、房貸條件和公寓市場不同。</span></p>
+
+<h2 id="traps">13. Do not mix these up<span class="zh-full" lang="zh-Hant">13. 不要搞混</span></h2>
+<div class="traps">
+<div><s>Higher saving raises interest rates.<span class="zh-full" lang="zh-Hant">儲蓄增加會讓利率上升。</span></s><p>More saving shifts supply right, so the interest rate falls.<span class="zh-full" lang="zh-Hant">儲蓄增加使供給右移，利率下降。</span></p></div>
+<div><s>A 5% deposit rate makes me 5% richer.<span class="zh-full" lang="zh-Hant">存款利率 5%，我就變富 5%。</span></s><p>Subtract inflation: the real rate is what counts.<span class="zh-full" lang="zh-Hant">要扣掉通膨，看的是實質利率。</span></p></div>
+<div><s>The bank keeps my deposit in the vault.<span class="zh-full" lang="zh-Hant">銀行把我的存款放在金庫裡。</span></s><p>Most is lent out; only a fraction is held as reserves.<span class="zh-full" lang="zh-Hant">大部分都借出去了，只留一部分當準備金。</span></p></div>
+<div><s>Buying shares on the SET gives the company money.<span class="zh-full" lang="zh-Hant">在 SET 買股票，公司就拿到錢。</span></s><p>Only new issues do; trading existing shares pays the previous owner.<span class="zh-full" lang="zh-Hant">只有發行新股才有；買舊股的錢付給上一個股東。</span></p></div>
+<div><s>Bondholders own part of the firm.<span class="zh-full" lang="zh-Hant">債券持有人擁有公司的一部分。</span></s><p>They are lenders; shareholders are the owners.<span class="zh-full" lang="zh-Hant">他們是放款人，股東才是所有人。</span></p></div>
+<div><s>A high yield is a bargain.<span class="zh-full" lang="zh-Hant">高殖利率很划算。</span></s><p>Equally risky assets pay the same; a high yield signals high risk.<span class="zh-full" lang="zh-Hant">風險相同的資產報酬相同，高殖利率代表高風險。</span></p></div>
+<div><s>When interest rates rise, bond prices rise.<span class="zh-full" lang="zh-Hant">利率上升，債券價格也上升。</span></s><p>They move in opposite directions.<span class="zh-full" lang="zh-Hant">兩者反向變動。</span></p></div>
+<div><s>An interest rate cap makes loans cheaper for everyone.<span class="zh-full" lang="zh-Hant">利率上限讓所有人借錢都更便宜。</span></s><p>It creates a shortage; total lending falls and risky borrowers are shut out.<span class="zh-full" lang="zh-Hant">它造成短缺，總放款減少，高風險借款人被排除。</span></p></div>
+<div><s>Bank runs only hit bad banks.<span class="zh-full" lang="zh-Hant">擠兌只會打垮爛銀行。</span></s><p>With fractional reserves, even a sound bank cannot pay everyone at once.<span class="zh-full" lang="zh-Hant">部分準備制下，健全的銀行也無法同時付給所有人。</span></p></div>
+<div><s>Leverage ratio = debt ÷ assets.<span class="zh-full" lang="zh-Hant">槓桿比率 = 負債 ÷ 資產。</span></s><p>Here it is debt ÷ equity: 95,000 ÷ 5,000 = 19.<span class="zh-full" lang="zh-Hant">這裡是負債 ÷ 權益：95,000 ÷ 5,000 = 19。</span></p></div>
+<div><s>2008 was a run on ordinary bank deposits.<span class="zh-full" lang="zh-Hant">2008 年是一般銀行存款被擠兌。</span></s><p>It was a run on the uninsured shadow banking system.<span class="zh-full" lang="zh-Hant">被擠兌的是沒有保險的影子銀行體系。</span></p></div>
+<div><s>Securitization is fraud.<span class="zh-full" lang="zh-Hant">證券化就是詐欺。</span></s><p>It is a legitimate tool; the problem was quality, opacity and ratings.<span class="zh-full" lang="zh-Hant">它是正當工具，問題在品質、不透明和評等。</span></p></div>
+<div><s>A five-year winning record proves skill.<span class="zh-full" lang="zh-Hant">連贏五年證明有實力。</span></s><p>About 31 of 1,000 coin flippers would have one.<span class="zh-full" lang="zh-Hant">1,000 個擲銅板的人裡約有 31 個會做到。</span></p></div>
+<div><s>Diversification removes all risk.<span class="zh-full" lang="zh-Hant">分散投資能消除所有風險。</span></s><p>It removes firm-specific risk, not market-wide risk.<span class="zh-full" lang="zh-Hant">它消除單一公司風險，不能消除整體市場風險。</span></p></div>
+<div><s>The Thai bond market is mostly corporate bonds.<span class="zh-full" lang="zh-Hant">泰國債市主要是公司債。</span></s><p>Corporate bonds are 27%; government-related bonds are about 72% (Sep 2021).<span class="zh-full" lang="zh-Hant">公司債占 27%；政府相關債券約 72%（2021 年 9 月）。</span></p></div>
+<div><s>Deontology and consequentialism always disagree.<span class="zh-full" lang="zh-Hant">義務論和結果論一定意見相反。</span></s><p>They can condemn the same act, such as the Airbnb discrimination, for different reasons.<span class="zh-full" lang="zh-Hant">它們可以用不同理由譴責同一行為，例如 Airbnb 的歧視。</span></p></div>
+</div>
+
+<h2 id="coldcall">14. Cold call practice<span class="zh-full" lang="zh-Hant">14. 課堂口頭問答練習</span></h2>
+<div class="qa-tools"><button id="qaAll" type="button">Show all answers</button></div>
+<div class="qa">
+<details><summary>What is the difference between deontology and consequentialism?<span class="zh-full" lang="zh-Hant">義務論和結果論有什麼不同？</span></summary><p>Deontology judges an act by the duty or rule it follows; consequentialism judges it by its outcomes. On kneeling during the anthem, one calls it a breach of patriotic duty, the other a harmless way to raise awareness.<span class="zh-full" lang="zh-Hant">義務論用遵守的義務或規則判斷行為；結果論用結果判斷。對奏國歌時下跪，前者認為違背愛國義務，後者認為無害又能喚起關注。</span></p></details>
+<details><summary>What is the market for loanable funds?<span class="zh-full" lang="zh-Hant">什麼是可貸資金市場？</span></summary><p>The model where the supply of savings meets the demand to borrow, with the interest rate as the price, for example Thai household deposits meeting Thai firms' demand for loans.<span class="zh-full" lang="zh-Hant">儲蓄供給與借款需求相遇、以利率為價格的模型，例如泰國家庭的存款遇上泰國企業的貸款需求。</span></p></details>
+<details><summary>What happens when households save more?<span class="zh-full" lang="zh-Hant">家庭多存錢會怎樣？</span></summary><p>The supply of savings shifts right, so the interest rate falls and the quantity of lending rises.<span class="zh-full" lang="zh-Hant">儲蓄供給右移，利率下降，放款量增加。</span></p></details>
+<details><summary>What does a bank do beyond holding your money?<span class="zh-full" lang="zh-Hant">除了保管你的錢，銀行還做什麼？</span></summary><p>It pays interest, screens borrowers, pools many deposits into many loans so risk is spread, and keeps reserves for withdrawals. It earns the spread between loan and deposit rates.<span class="zh-full" lang="zh-Hant">它支付利息、篩選借款人、把許多存款匯集成許多貸款以分散風險，並保留準備金應付提領。它賺的是放款和存款利率的差。</span></p></details>
+<details><summary>When does the stock market turn saving into investment?<span class="zh-full" lang="zh-Hant">股票市場什麼時候把儲蓄變成投資？</span></summary><p>Only when new shares are issued and sold, as in an IPO. Trading existing shares only changes who owns them.<span class="zh-full" lang="zh-Hant">只有發行並出售新股時，例如 IPO。買賣既有股票只是換人持有。</span></p></details>
+<details><summary>A $1,000 one-year bond sells for $871. What is its yield, and what does it tell you?<span class="zh-full" lang="zh-Hant">一年期、面額 1,000 美元的債券賣 871 美元。殖利率多少？代表什麼？</span></summary><p>129 ÷ 871 = 14.8%. Equally risky assets pay the same return, so a yield this high signals high default risk.<span class="zh-full" lang="zh-Hant">129 ÷ 871 = 14.8%。風險相同的資產報酬相同，這麼高的殖利率代表違約風險高。</span></p></details>
+<details><summary>What is crowding out?<span class="zh-full" lang="zh-Hant">什麼是排擠效果？</span></summary><p>Government borrowing raises the interest rate and displaces private spending. In MRU's example, 100 billion of borrowing raises the rate from 7% to 9% and cuts investment and consumption by 50 billion each.<span class="zh-full" lang="zh-Hant">政府借款推高利率，排擠民間支出。MRU 的例子中，政府借 1,000 億使利率從 7% 升到 9%，投資和消費各減少 500 億。</span></p></details>
+<details><summary>Name the four reasons financial intermediaries fail.<span class="zh-full" lang="zh-Hant">說出金融中介失靈的四個原因。</span></summary><p>Insecure property rights, interest rate controls, politicized lending, and runs, panics and scandals.<span class="zh-full" lang="zh-Hant">財產權不安全、利率管制、政治化放款，以及擠兌、恐慌和醜聞。</span></p></details>
+<details><summary>Why can a bank run destroy a healthy bank?<span class="zh-full" lang="zh-Hant">擠兌為什麼能弄垮健全的銀行？</span></summary><p>Banks hold only fractional reserves and lend the rest long term, so no bank can repay all depositors at once.<span class="zh-full" lang="zh-Hant">銀行只保留部分準備金，其餘長期貸出，所以沒有銀行能同時還給所有存款人。</span></p></details>
+<details><summary>What is the leverage ratio with 5% down on a $100,000 house?<span class="zh-full" lang="zh-Hant">10 萬美元的房子頭期 5%，槓桿比率是多少？</span></summary><p>95,000 ÷ 5,000 = 19. A fall of just 5% in the house price wipes out the owner's equity.<span class="zh-full" lang="zh-Hant">95,000 ÷ 5,000 = 19。房價只要跌 5%，屋主權益就歸零。</span></p></details>
+<details><summary>What is the shadow banking system, and why was it vulnerable?<span class="zh-full" lang="zh-Hant">什麼是影子銀行體系？為什麼脆弱？</span></summary><p>Investment banks, hedge funds, money market funds and other institutions that borrow short and lend long like banks, but without deposit insurance, so lenders run at the first sign of trouble.<span class="zh-full" lang="zh-Hant">投資銀行、避險基金、貨幣市場基金等機構，像銀行一樣借短放長，卻沒有存款保險，所以一有風吹草動放款人就跑。</span></p></details>
+<details><summary>What is the efficient market hypothesis?<span class="zh-full" lang="zh-Hant">什麼是效率市場假說？</span></summary><p>Prices already reflect all public information, so you cannot systematically beat the market by trading on it. Morton Thiokol's shares fell within hours of the Challenger explosion.<span class="zh-full" lang="zh-Hant">價格已經反映所有公開資訊，所以靠它交易無法持續打敗市場。挑戰者號爆炸後幾小時內，Morton Thiokol 的股價就下跌了。</span></p></details>
+<details><summary>Why is your employer's stock a bad retirement investment?<span class="zh-full" lang="zh-Hant">為什麼自己公司的股票不適合當退休投資？</span></summary><p>It concentrates wealth in one asset, and if the company fails you lose your job and your savings together, as Enron's employees did.<span class="zh-full" lang="zh-Hant">它把財富集中在單一資產上，而且公司倒了，你會同時失去工作和存款，就像 Enron 員工那樣。</span></p></details>
+<details><summary>How did Thailand's financial system change after 1997?<span class="zh-full" lang="zh-Hant">1997 年後泰國金融體系怎麼改變？</span></summary><p>The bond market grew from 12% to 94% of GDP while bank loans fell from 131% to 112%, giving firms a second way to borrow. About 72% of bonds are government-related.<span class="zh-full" lang="zh-Hant">債市從 GDP 的 12% 成長到 94%，銀行放款從 131% 降到 112%，企業多了第二條借錢管道。約 72% 的債券與政府相關。</span></p></details>
+</div>
+
+<h2 id="templates">15. Answer templates<span class="zh-full" lang="zh-Hant">15. 答題模板</span></h2>
+<div class="method"><b>Loanable funds<span class="zh-full" lang="zh-Hant">可貸資金</span></b><p>“In the market for loanable funds, savers supply funds and borrowers demand them, and the interest rate is the price. If households save more, supply shifts right, the interest rate falls and lending rises. If firms become more optimistic or get an investment tax credit, demand shifts right and the interest rate rises.”<span class="zh-full" lang="zh-Hant">「在可貸資金市場，儲蓄者供給資金、借款人需求資金，利率是價格。家庭多存錢，供給右移，利率下降、放款增加。企業更樂觀或獲得投資抵減，需求右移，利率上升。」</span></p></div>
+<div class="method"><b>What banks do<span class="zh-full" lang="zh-Hant">銀行做什麼</span></b><p>“A bank pools many small deposits, screens borrowers on savers' behalf, and spreads risk across many loans, earning the spread between loan and deposit rates. Because it turns deposits that can be withdrawn any day into long-term loans, it is useful but open to runs.”<span class="zh-full" lang="zh-Hant">「銀行匯集許多小額存款，替儲蓄者篩選借款人，並把風險分散到許多貸款上，賺取放款與存款利率的差。因為它把隨時可提領的存款變成長期貸款，所以既有用又容易被擠兌。」</span></p></div>
+<div class="method"><b>Bonds and risk<span class="zh-full" lang="zh-Hant">債券與風險</span></b><p>“A bond is an IOU with a fixed face value. Riskier issuers must offer higher yields, and since the face value is fixed, a higher yield means a lower price. Ratings and collateral lower the rate a borrower pays.”<span class="zh-full" lang="zh-Hant">「債券是面額固定的借據。風險較高的發行人必須提供較高的殖利率；面額固定，殖利率高就代表價格低。評等和擔保品可以降低借款人要付的利率。」</span></p></div>
+<div class="method"><b>Crowding out<span class="zh-full" lang="zh-Hant">排擠效果</span></b><p>“Government borrowing shifts the demand for loanable funds right and raises the interest rate. In MRU's example, 100 billion of borrowing raises the rate from 7 to 9 percent, cutting private investment by 50 billion and consumption by 50 billion.”<span class="zh-full" lang="zh-Hant">「政府借款使可貸資金需求右移、利率上升。MRU 的例子中，借 1,000 億使利率從 7% 升到 9%，民間投資減少 500 億、消費減少 500 億。」</span></p></div>
+<div class="method"><b>The Great Recession<span class="zh-full" lang="zh-Hant">大衰退</span></b><p>“Four weights hung on the economy: homeowners with little equity, banks such as Lehman with leverage of 44, mortgage securities riskier than their ratings, and shadow banks funded by uninsured short-term loans. When house prices fell in 2007, lenders ran from the shadow banks, fire sales pushed prices lower, and the result was a credit crunch and high unemployment.”<span class="zh-full" lang="zh-Hant">「經濟上吊著四個重物：權益很少的屋主、槓桿 44 倍的雷曼等銀行、比評等更危險的房貸證券，以及靠沒有保險的短期借款支撐的影子銀行。2007 年房價下跌，放款人從影子銀行撤資，賤價拋售讓價格更低，結果是信用緊縮和高失業。」</span></p></div>
+<div class="method"><b>Your money<span class="zh-full" lang="zh-Hant">個人理財</span></b><p>“Prices already reflect public information and past winners rarely repeat, so do not pick stocks. Buy a diversified, low-fee index fund, including international stocks, and avoid holding your employer's stock.”<span class="zh-full" lang="zh-Hant">「價格已經反映公開資訊，過去的贏家很少再贏，所以不要挑股。買分散、低費用的指數基金，包括海外股票，並避免持有自己公司的股票。」</span></p></div>
+<p class="note-small endnote">Sources: professor's Session 8 slides; Marginal Revolution University, Principles of Macroeconomics (Savings, Investment and the Financial System; Personal Finance, including the Econ Duel <i>Rent or Buy?</i>); Cowen and Tabarrok, <i>Modern Principles: Macroeconomics</i>; Edelman, Luca and Svirsky (2016), <a href="https://www.hbs.edu/faculty/Publication%20Files/16-069_5c3b2b36-d9f8-4b38-9639-2175aaf9ebc9.pdf">Racial Discrimination in the Sharing Economy</a>; ThaiBMA, <a href="https://www.thaibma.or.th/EN/Education/ThaiBondMarket.aspx">About Thai Bond Market</a>. Figures are as reported in those sources, not current data.<span class="zh-full" lang="zh-Hant">資料來源：教授第 8 堂投影片；Marginal Revolution University 總體經濟學原理（儲蓄、投資與金融體系；個人理財，包括經濟對決《租還是買？》）；Cowen 與 Tabarrok《Modern Principles: Macroeconomics》；Edelman、Luca 與 Svirsky（2016）；ThaiBMA《About Thai Bond Market》。數字依各來源所述，並非最新資料。</span></p>
+<p class="note-small">Continue from <a href="economics-s7.html">Session 7: GDP and economic growth</a>, or return to <a href="economics.html">Economics sessions</a>.<span class="zh-full" lang="zh-Hant">從<a href="economics-s7.html">第 7 堂：GDP 與經濟成長</a>接續，或回到<a href="economics.html">經濟學課程頁</a>。</span></p>
+</article></main></div>
+
+<script>/* Reusable economics widgets. Shared Plot and controls are embedded for offline use. */
+(() => {
+  'use strict';
+  const NS='http://www.w3.org/2000/svg'; let uid=0;
+  const money=n=>{const value=Math.round(Math.abs(n)*100)/100;return (n<0?'−$':'$')+value.toLocaleString('en-US',{minimumFractionDigits:Number.isInteger(value)?0:2,maximumFractionDigits:2});};
+  const num=n=>n.toLocaleString('en-US',{maximumFractionDigits:2});
+  const colors={d:'var(--demand)',mr:'var(--ext)',mc:'var(--supply)',atc:'var(--world)',cs:'var(--cs)',ps:'var(--ps)'};
+  function el(tag,attrs={},parent){const e=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));if(parent)parent.append(e);return e;}
+  function Plot(svg,qMax,pMax,pMin=0){
+    const W=Math.max(280,svg.getBoundingClientRect().width||500),H=document.body.classList.contains('show-zh')?370:340,L=48,R=18,T=document.body.classList.contains('show-zh')?44:28,B=document.body.classList.contains('show-zh')?64:51;
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.replaceChildren();
+    const sx=q=>L+q/qMax*(W-L-R),sy=p=>H-B-(p-pMin)/(pMax-pMin)*(H-T-B);
+    const defs=el('defs',{},svg),clip=el('clipPath',{id:'plot-clip-'+(++uid)},defs);
+    el('rect',{x:L,y:T,width:W-L-R,height:H-T-B},clip);
+    const grid=el('g',{},svg),area=el('g',{'clip-path':'url(#'+clip.id+')'},svg),lines=el('g',{'clip-path':'url(#'+clip.id+')'},svg),top=el('g',{},svg);
+    const text=(x,y,s,attrs={})=>{const t=el('text',{x,y,class:'tk',...attrs},top);t.textContent=s;return t;};
+    return {sx,sy,W,H,
+      axes(xl,yl){el('line',{x1:L,y1:T,x2:L,y2:H-B,class:'ax'},grid);el('line',{x1:L,y1:H-B,x2:W-R,y2:H-B,class:'ax'},grid);text(L,T-(document.body.classList.contains('show-zh')?25:12),yl,{class:'axl'});text((L+W-R)/2,H-(document.body.classList.contains('show-zh')?23:8),xl,{'text-anchor':'middle',class:'axl'});},
+      xticks(values,fmt=num){values.forEach(q=>text(sx(q),H-B+19,fmt(q),{'text-anchor':'middle'}));},
+      yticks(values,fmt=num){values.forEach(p=>{el('line',{x1:L,y1:sy(p),x2:W-R,y2:sy(p),class:'grid'},grid);text(L-7,sy(p)+4,fmt(p),{'text-anchor':'end'});});},
+      path(points,color,dash=false){el('polyline',{points:points.map(([q,p])=>sx(q)+','+sy(p)).join(' '),fill:'none',stroke:color,'stroke-width':2.5,'stroke-dasharray':dash?'6 5':'none'},lines);},
+      line(a,b,color){this.path([[0,a],[qMax,a+b*qMax]],color);},
+      hline(p,color,dash=false){this.path([[0,p],[qMax,p]],color,dash);},
+      poly(points,cls){el('polygon',{points:points.map(([q,p])=>sx(q)+','+sy(p)).join(' '),class:cls},area);},
+      rect(q0,q1,p0,p1,cls){this.poly([[q0,p0],[q1,p0],[q1,p1],[q0,p1]],cls);},
+      guide(q,p){el('line',{x1:sx(q),y1:sy(p),x2:sx(q),y2:sy(pMin),class:'gd'},lines);el('line',{x1:L,y1:sy(p),x2:sx(q),y2:sy(p),class:'gd'},lines);},
+      point(q,p,color){el('circle',{cx:sx(q),cy:sy(p),r:4,fill:color,stroke:'var(--paper)','stroke-width':1.3},lines);},
+      tag(q,p,s,anchor='middle',dy=-7){return text(sx(q),sy(p)+dy,s,{'text-anchor':anchor});},
+      bar(q,value,color){el('rect',{x:sx(q-.28),y:sy(value),width:sx(q+.28)-sx(q-.28),height:Math.max(0,sy(0)-sy(value)),fill:color},area);text(sx(q),sy(value)-8,num(value),{'text-anchor':'middle'});}
+    };
+  }
+  function shell(host,title,sub,legend,twinTitles){
+    host.classList.add('graph','wide');const id='econ-'+(++uid);
+    host.innerHTML='<div class="g-head"><span class="g-kicker">Interactive graph</span><h4></h4><p></p></div><div class="plot-legend"></div><div class="g-body"><div class="g-plot"></div><div class="g-side"><div class="g-ctrl"></div><dl class="g-stats" aria-live="off"></dl></div></div><p class="g-note" aria-live="polite"></p>';
+    host.querySelector('h4').textContent=title;host.querySelector('.g-head p').textContent=sub;
+    const leg=host.querySelector('.plot-legend');legend.forEach(([s,c])=>{const item=document.createElement('span'),sw=document.createElement('i');sw.style.background=c;sw.className='sw ln';item.append(sw,document.createTextNode(s));leg.append(item);});
+    if(host.dataset.readout==='optional'){
+      const side=host.querySelector('.g-side'),stats=host.querySelector('.g-stats'),note=host.querySelector('.g-note');
+      const reading=document.createElement('div'),details=document.createElement('details'),summary=document.createElement('summary');
+      reading.className='g-reading';details.className='number-readout';summary.textContent='View numerical readout';details.append(summary,stats);reading.append(note,details);side.append(reading);
+    }
+    const plot=host.querySelector('.g-plot'),svgs=[];
+    if(twinTitles){plot.classList.add('twin');twinTitles.forEach(name=>{const div=document.createElement('div'),t=document.createElement('p');t.className='tw-t';t.textContent=name;div.append(t);const svg=el('svg',{role:'img','aria-label':title+': '+name},div);plot.append(div);svgs.push(svg);});}
+    else svgs.push(el('svg',{role:'img','aria-label':title},plot));
+    const ctrl=host.querySelector('.g-ctrl');
+    return {svgs,host,
+      slider(key,label,min,max,step,value,format,on){const row=document.createElement('div');row.className='sl';const lab=document.createElement('label'),span=document.createElement('span'),output=document.createElement('output'),input=document.createElement('input');input.type='range';input.setAttribute('aria-label',label);Object.assign(input,{id:id+'-'+key,min,max,step,value});lab.htmlFor=input.id;span.textContent=label;lab.append(span,output);output.htmlFor=input.id;row.append(lab,input);ctrl.append(row);const sync=()=>output.textContent=format(+input.value);input.addEventListener('input',()=>{sync();on(+input.value);});sync();return {set(v){input.value=v;sync();},input};},
+      button(label,on){const b=document.createElement('button');b.type='button';b.className='g-btn';b.textContent=label;b.addEventListener('click',on);ctrl.append(b);return b;},
+      seg(label,options,value,on){const group=document.createElement('div');group.className='seg';group.setAttribute('role','group');group.setAttribute('aria-label',label);options.forEach(([v,t])=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.dataset.value=v;b.setAttribute('aria-pressed',String(v===value));b.addEventListener('click',()=>{[...group.children].forEach(x=>x.setAttribute('aria-pressed',String(x===b)));on(v);});group.append(b);});ctrl.append(group);},
+      show(rows,note){const stats=host.querySelector('.g-stats');stats.replaceChildren();rows.forEach(([key,value,big=false])=>{const row=document.createElement('div');row.className='st'+(big?' big':'');row.dataset.stat=key;const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=key;dd.textContent=value;row.append(dt,dd);stats.append(row);});host.querySelector('.g-note').textContent=note;},
+      redrawOnResize(draw){let last='';const obs=new ResizeObserver(()=>{const widths=svgs.map(svg=>Math.round(svg.getBoundingClientRect().width)).join('|');if(widths!==last){last=widths;draw();}});obs.observe(plot);svgs.forEach(svg=>obs.observe(svg.parentElement));window.addEventListener('econ-language-change',draw);}
+    };
+  }
+  const W_={};
+  const kb=n=>'฿'+num(n)+'k';
+  const baht=n=>(n<0?'−฿':'฿')+Math.round(Math.abs(n)).toLocaleString('en-US');
+  const pct=n=>Math.round(n*100)+'%';
+  const signed=n=>(n<0?'−':'')+num(Math.abs(n));
+  
+  const ZHD=window.ZH_DYN||(window.ZH_DYN={});
+  const tr=(en,zh)=>{if(zh)ZHD[en.replace(/\s+/g,' ').trim()]=zh;return en;};
+  const L=(en,zh)=>[en,zh];
+  const zhOn=()=>document.body.classList.contains('show-zh');
+  const T=p=>tr(p[0],p[1]);
+  const pc1=n=>(Math.abs(n)<0.05?'0.0':(n<0?'−':'')+Math.abs(n).toFixed(1))+'%';
+  const times=n=>n>=100?Math.round(n).toLocaleString('en-US')+'×':n>=10?n.toFixed(0)+'×':n.toFixed(1)+'×';
+  function live(s,draw){draw();s.redrawOnResize(draw);window.addEventListener('econ-language-change',draw);}
+  function niceStep(span,count){const raw=span/count,p=Math.pow(10,Math.floor(Math.log10(raw))),m=raw/p;return (m<=1?1:m<=2?2:m<=5?5:10)*p;}
+  function make(tag,cls,text,parent){const n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;if(parent)parent.append(n);return n;}
+
+
+  /* 1. Loanable funds: shift saving supply or borrowing demand, predict first. */
+  W_.loanable=host=>{
+    const s=shell(host,tr('Shift the market for loanable funds','移動可貸資金市場'),tr('Pick an event. Before revealing, decide: does it change saving or borrowing, and which way does the interest rate go?','選一個事件。揭曉前先判斷：它改變的是儲蓄還是借款？利率往哪裡走？'),[[tr('Supply of savings S','儲蓄供給 S'),colors.mc],[tr('Demand to borrow D','借款需求 D'),colors.d]]);
+    const ev={none:[0,0,L('Choose an event, or drag the sliders yourself.','選一個事件，或自己拖動滑桿。')],save:[50,0,L('Households save more, so the supply of savings shifts right. The interest rate falls and lending rises.','家庭多存錢，儲蓄供給右移。利率下降，放款增加。')],gloom:[0,-50,L('Firms expect lower returns, so the demand to borrow shifts left. The interest rate falls and lending falls too.','企業預期報酬下降，借款需求左移。利率下降，放款也減少。')],credit:[0,50,L('An investment tax credit raises the after-tax return on projects, so the demand to borrow shifts right. The interest rate and lending both rise.','投資抵減提高專案的稅後報酬，借款需求右移。利率和放款都上升。')]};
+    let dS=0,dD=0,cur='none',shown=true;
+    const eq=(a,b)=>{const q=(400+a+b)/2;return [q,(q-a-25)/25];};
+    const draw=()=>{
+      const sS=shown?dS:0,sD=shown?dD:0,moved=sS!==0||sD!==0,[q1,r1]=eq(0,0),[q2,r2]=eq(sS,sD);
+      const P=Plot(s.svgs[0],400,14);P.axes(tr('Loanable funds (billion baht)','可貸資金（十億泰銖）'),tr('Interest rate, %','利率（%）'));P.xticks([0,100,200,300,400]);P.yticks([0,2,4,6,8,10,12,14],v=>v+'%');
+      if(sS)P.path([[0,-1],[400,15]],colors.mc,true);
+      if(sD)P.path([[0,15],[400,-1]],colors.d,true);
+      P.path([[0,-1-sS*.04],[400,15-sS*.04]],colors.mc);
+      P.path([[0,15+sD*.04],[400,-1+sD*.04]],colors.d);
+      const qs=Math.min(390,320+sS);P.tag(qs,(qs-sS-25)/25,sS?'S2':'S','start',14);if(sS)P.tag(320,(320-25)/25,'S1','end',-6);
+      const qd=Math.min(390,320+sD);P.tag(qd,(375+sD-qd)/25,sD?'D2':'D','start',-6);if(sD)P.tag(320,(375-320)/25,'D1','end',14);
+      P.guide(q1,r1);P.point(q1,r1,'var(--fg)');P.tag(q1,r1,moved?'E1':'E','start',-9);
+      if(moved){P.guide(q2,r2);P.point(q2,r2,'var(--fg)');P.tag(q2,r2,'E2','end',-9);}
+      const rows=[[moved?'r1, Q1':'r, Q',r1.toFixed(1)+'%, '+num(q1)]];
+      if(moved)rows.push(['r2, Q2',r2.toFixed(1)+'%, '+num(q2),true],[tr('Change in the interest rate','利率變化'),(r2>=r1?'+':'−')+Math.abs(r2-r1).toFixed(1)+tr(' points',' 個百分點')]);
+      let note;
+      if(!shown)note=tr('Predict first: which curve moves, and does the interest rate rise or fall? Then reveal.','先預測：哪條線移動？利率上升還是下降？再揭曉。');
+      else if(cur!=='none'&&dS===ev[cur][0]&&dD===ev[cur][1])note=T(ev[cur][2]);
+      else if(!moved)note=T(ev.none[2]);
+      else note=sS&&sD?tr('Both curves moved. The interest rate depends on which shift is larger; check the readout.','兩條線都動了。利率看哪邊移得多，請看數值。'):tr('Read the new equilibrium off the axes.','從兩軸讀出新的均衡。');
+      s.show(rows,note);
+    };
+    const a=s.slider('dS',tr('Shift in saving supply','儲蓄供給移動量'),-100,100,10,dS,v=>(v>0?'+':v<0?'−':'')+Math.abs(v),v=>{dS=v;cur='none';shown=true;draw();});
+    const b=s.slider('dD',tr('Shift in borrowing demand','借款需求移動量'),-100,100,10,dD,v=>(v>0?'+':v<0?'−':'')+Math.abs(v),v=>{dD=v;cur='none';shown=true;draw();});
+    s.seg(tr('Event','事件'),[['save',tr('Households save more','家庭多存錢')],['gloom',tr('Firms turn pessimistic','企業轉為悲觀')],['credit',tr('Investment tax credit','投資抵減')]],null,v=>{cur=v;dS=ev[v][0];dD=ev[v][1];a.set(dS);b.set(dD);shown=false;draw();});
+    s.button(tr('Reveal the shift','揭曉移動'),()=>{shown=true;draw();});
+    s.button(tr('Reset','重設'),()=>{dS=0;dD=0;cur='none';shown=true;a.set(0);b.set(0);draw();});
+    live(s,draw);
+  };
+
+  /* 2. Pooling: lend to one borrower or spread the same money across many. */
+  W_.pool=host=>{
+    const s=shell(host,tr('Spread the same money across more loans','把同一筆錢分給更多筆貸款'),tr('Each borrower defaults with the same chance and repays nothing if it does. Add borrowers and watch the chance of a big loss.','每位借款人違約機率相同，違約就一毛都不還。增加借款人數，看看大損失的機率怎麼變。'),[[tr('Chance of each outcome','各種結果的機率'),'var(--ps)']]);
+    const NS_=[1,2,5,10,50,100,1000];let ni=0,p=5;
+    const buckets=[[L('0%','0%'),-1,0],[L('0 to 5%','0 到 5%'),0,.05],[L('5 to 10%','5 到 10%'),.05,.10],[L('10 to 20%','10 到 20%'),.10,.20],[L('20 to 50%','20 到 50%'),.20,.50],[L('Over 50%','超過 50%'),.50,1]];
+    const draw=()=>{
+      const n=NS_[ni],q=p/100,pmf=[];let v=Math.pow(1-q,n);for(let k=0;k<=n;k++){pmf.push(v);v=v*(n-k)/(k+1)*q/(1-q);}
+      const share=buckets.map(([,lo,hi])=>pmf.reduce((acc,x,k)=>{const f=k/n;return acc+((lo<0?f===0:(f>lo+1e-12&&f<=hi+1e-12))?x:0);},0)*100);
+      const P=Plot(s.svgs[0],6.6,100);P.axes(tr('Share of your money lost','你的錢損失的比例'),tr('Chance, %','機率（%）'));P.yticks([0,25,50,75,100],v=>v+'%');
+      P.xticks([1,2,3,4,5,6],x=>T(buckets[x-1][0]));
+      share.forEach((v,i)=>{P.rect(i+.66,i+1.34,0,v,'a-ps');P.tag(i+1,v,v<0.05?'0':v<1?v.toFixed(1)+'%':Math.round(v)+'%');});
+      const big=pmf.reduce((acc,x,k)=>acc+(k/n>.10+1e-12?x:0),0)*100,all=Math.pow(q,n)*100;
+      s.show([[tr('Number of borrowers','借款人數'),num(n)],[tr('Expected loss','預期損失'),p+'%'],[tr('Chance of losing more than 10%','損失超過 10% 的機率'),big<0.01?'≈ 0%':big.toFixed(big<1?2:1)+'%',true],[tr('Chance of losing everything','全部賠光的機率'),all<0.01?'≈ 0%':all.toFixed(1)+'%']],
+        n===1?tr('One borrower: you either lose nothing or lose everything. The average loss is small, but the risk is all or nothing.','只借給一個人：不是完全沒損失，就是全部賠光。平均損失不大，但風險是全有或全無。'):n>=100?tr('With many borrowers the expected loss is unchanged, but a large loss becomes very unlikely. This is what pooling buys a saver.','借款人很多時，預期損失不變，但大額損失變得非常不可能。這就是匯集資金帶給儲蓄者的好處。'):tr('The expected loss stays the same; what shrinks is the chance of a painful loss.','預期損失不變；縮小的是慘重損失的機率。'));
+    };
+    s.slider('n',tr('Number of borrowers','借款人數'),0,NS_.length-1,1,ni,i=>num(NS_[i]),v=>{ni=v;draw();});
+    s.slider('p',tr('Chance each borrower defaults','每位借款人的違約機率'),1,20,1,p,v=>v+'%',v=>{p=v;draw();});
+    live(s,draw);
+  };
+
+  /* 3. Bond price and yield. */
+  W_.bond=host=>{
+    const s=shell(host,tr('Price and yield of a one-year bond','一年期債券的價格與殖利率'),tr('The bond repays 1,000 in one year and pays no coupon. Lower the price and see what happens to the yield.','債券一年後償還 1,000，不付票息。調低價格，看殖利率怎麼變。'),[[tr('Yield at each price','各價格的殖利率'),colors.d]]);
+    let price=963;
+    const draw=()=>{
+      const y=(1000-price)/price*100;
+      const P=Plot(s.svgs[0],200,25);P.axes(tr('Price today','今天的價格'),tr('Yield, %','殖利率（%）'));
+      P.xticks([0,50,100,150,200],v=>String(800+v));P.yticks([0,5,10,15,20,25],v=>v+'%');
+      const pts=[];for(let x=0;x<=200;x+=2)pts.push([x,(1000-(800+x))/(800+x)*100]);P.path(pts,colors.d);
+      [[963,'A'],[871,'B'],[985,'C']].forEach(([pp,l])=>{P.point(pp-800,(1000-pp)/pp*100,'var(--muted)');P.tag(pp-800,(1000-pp)/pp*100,l,'start',14);});
+      P.guide(price-800,y);P.point(price-800,y,'var(--fg)');
+      const read=y>10?tr('A yield this high is a warning: lenders see a real chance of default.','這麼高的殖利率是警訊：放款人認為違約機率不低。'):y<2.5?tr('A low yield means investors see this borrower as very safe.','殖利率低，代表投資人認為這個借款人非常安全。'):tr('A moderate yield: some risk, priced in.','中等殖利率：有一些風險，已經反映在價格裡。');
+      s.show([[tr('Price','價格'),num(price)],[tr('Gain at maturity','到期收益'),num(1000-price)],[tr('Yield = gain ÷ price','殖利率 = 收益 ÷ 價格'),y.toFixed(1)+'%',true]],read+' '+tr('The face value is fixed, so a higher yield can only come from a lower price.','面額固定，所以殖利率要高，只能靠價格低。'));
+    };
+    const sl=s.slider('p',tr('Price today','今天的價格'),800,1000,1,price,v=>num(v),v=>{price=v;draw();});
+    const set=v=>{price=v;sl.set(v);draw();};
+    s.button(tr('MRU company A: 963','MRU 公司 A：963'),()=>set(963));
+    s.button(tr('MRU company B: 871','MRU 公司 B：871'),()=>set(871));
+    s.button(tr('MRU company C: 985','MRU 公司 C：985'),()=>set(985));
+    s.button(tr('Market rate 2%: price 980','市場利率 2%：價格 980'),()=>set(980));
+    s.button(tr('Market rate 5%: price 952','市場利率 5%：價格 952'),()=>set(952));
+    live(s,draw);
+  };
+
+  /* 4. Crowding out and interest rate ceilings on MRU's lines. */
+  W_.crowd=host=>{
+    const s=shell(host,tr('Government borrowing and interest rate caps','政府借款與利率上限'),tr('Lines pass through MRU\'s numbers. Let the government borrow, or switch to a legal cap on the interest rate.','直線通過 MRU 的數字。讓政府借錢，或切換成法定利率上限。'),[[tr('Supply of savings S','儲蓄供給 S'),colors.mc],[tr('Private demand D','民間需求 D'),colors.d],[tr('Private + government demand','民間加政府需求'),colors.mr]]);
+    let mode='gov',G=100,cap=5;
+    const draw=()=>{
+      const P=Plot(s.svgs[0],400,12);P.axes(tr('Loanable funds ($ billion)','可貸資金（十億美元）'),tr('Interest rate, %','利率（%）'));P.xticks([0,100,200,300,400]);P.yticks([0,2,4,6,8,10,12],v=>v+'%');
+      P.line(-1,.04,colors.mc);P.line(15,-.04,colors.d);P.tag(300,(300-25)/25,'S','start',14);P.tag(340,(375-340)/25,'D','start',-6);
+      let rows,note;
+      if(mode==='gov'){
+        const r=(350+G)/50,Q=25*r+25,priv=375-25*r;
+        if(G>0){P.line(15+G*.04,-.04,colors.mr);const qq=340;P.tag(qq,(375+G-qq)/25,'D + G','start',-6);}
+        P.guide(200,7);P.point(200,7,'var(--fg)');P.tag(200,7,G?'E1':'E','end',-9);
+        if(G>0){P.guide(Q,r);P.point(Q,r,'var(--fg)');P.tag(Q,r,'E2','start',-9);P.point(priv,r,'var(--muted)');P.tag(priv,r,tr('private','民間'),'end',-8);P.path([[priv,r],[Q,r]],'var(--muted)',true);}
+        rows=[[tr('Interest rate','利率'),r.toFixed(1)+'%',true],[tr('Total saving and lending','總儲蓄與放款'),num(Q)],[tr('Private borrowing (investment)','民間借款（投資）'),num(priv)+' ('+(priv>=200?'+':'−')+num(Math.abs(200-priv))+')'],[tr('Consumption change (= − extra saving)','消費變化（= −新增儲蓄）'),(Q>200?'−':'+')+num(Math.abs(Q-200))],[tr('Government borrowing','政府借款'),num(G)]];
+        note=G===0?tr('No government borrowing: 7% and 200. Now let the government borrow.','政府沒借錢：7%、200。現在讓政府借錢。'):tr(`Government borrowing of ${G} raises the rate to ${r.toFixed(1)}%. Private investment falls by ${num(200-priv)} and consumption falls by ${num(Q-200)}: crowding out.`,`政府借 ${G}，利率升到 ${r.toFixed(1)}%。民間投資減少 ${num(200-priv)}，消費減少 ${num(Q-200)}：排擠效果。`);
+      }else{
+        const qs=25*cap+25,qd=375-25*cap,bind=cap<7;
+        P.hline(cap,'var(--fg)',true);P.tag(392,cap,tr('Legal cap','法定上限'),'end',-6);
+        P.guide(200,7);P.point(200,7,'var(--muted)');P.tag(200,7,'E','end',-9);
+        if(bind){P.guide(qs,cap);P.guide(qd,cap);P.tag(qs,0,'Qs','middle',-5);P.tag(qd,0,'Qd','middle',-5);P.rect(qs,qd,cap-.12,cap+.12,'a-dwl');}
+        rows=bind?[[tr('Quantity demanded','需求量'),num(qd)],[tr('Quantity supplied','供給量'),num(qs)],[tr('Shortage','短缺'),num(qd-qs),true],[tr('Actual lending (was 200)','實際放款（原為 200）'),num(qs),true]]:[[tr('Cap','上限'),cap+'%'],[tr('Lending','放款'),'200']];
+        note=bind?tr(`At a ${cap}% cap borrowers want ${num(qd)} but savers offer only ${num(qs)}. Lending falls to ${num(qs)} and the riskiest borrowers are shut out.`,`上限 ${cap}% 時，借款人想借 ${num(qd)}，儲蓄者只願提供 ${num(qs)}。放款降到 ${num(qs)}，風險最高的借款人被擋在外面。`):tr('A cap at or above 7% does not bind: the market clears at 7% and 200.','上限在 7% 以上不會生效：市場在 7%、200 結清。');
+      }
+      s.show(rows,note);
+    };
+    const gs=s.slider('G',tr('Government borrowing ($ billion)','政府借款（十億美元）'),0,150,10,G,v=>num(v),v=>{G=v;mode='gov';draw();});
+    const cs=s.slider('cap',tr('Legal interest rate cap','法定利率上限'),3,9,.5,cap,v=>v+'%',v=>{cap=v;mode='cap';draw();});
+    s.seg(tr('Policy','政策'),[['gov',tr('Government borrows','政府借款')],['cap',tr('Interest rate cap','利率上限')]],mode,v=>{mode=v;draw();});
+    s.button(tr('MRU example: borrow 100','MRU 例子：借 100'),()=>{G=100;gs.set(100);mode='gov';host.querySelector('.seg button[data-value="gov"]').click();});
+    live(s,draw);
+  };
+
+  /* 5. Leverage: a balance sheet that can go underwater. */
+  W_.leverage=host=>{
+    const s=shell(host,tr('Equity is the cushion','權益是緩衝墊'),tr('Set the down payment, then let the asset price fall. The slides use a $100,000 house; the same arithmetic applies to a bank such as Lehman.','設定頭期款，再讓資產價格下跌。投影片用的是 10 萬美元的房子；同樣的算術也適用於雷曼這樣的銀行。'),[[tr('Asset value','資產價值'),'var(--rev)'],[tr('Debt (mortgage)','負債（房貸）'),'var(--ps)'],[tr('Owner\'s equity','屋主權益'),'var(--cs)'],[tr('Underwater','溺水（資不抵債）'),'var(--dwl)']]);
+    let dp=20,chg=0;
+    const draw=()=>{
+      const debt=100*(1-dp/100),val=100*(1+chg/100),eqv=val-debt,lev=dp>0?debt/(100-debt):Infinity;
+      const P=Plot(s.svgs[0],3,130);P.axes('',tr('Thousand dollars','千美元'));P.yticks([0,20,40,60,80,100,120]);
+      P.xticks([1,2],x=>x===1?tr('Asset value','資產價值'):tr('Debt + equity','負債 + 權益'));
+      P.rect(.62,1.38,0,val,'a-rev');P.tag(1,val,'$'+num(Math.round(val*10)/10)+'k');
+      P.rect(1.62,2.38,0,debt,'a-ps');if(debt>=12)P.tag(2,debt/2+3,tr('Debt','負債')+' '+num(Math.round(debt*10)/10));
+      if(eqv>0){P.rect(1.62,2.38,debt,val,'a-cs');P.tag(2.42,(debt+val)/2+3,tr('Equity','權益')+' '+num(Math.round(eqv*10)/10),'start');}
+      else{P.rect(1.62,2.38,val,debt,'a-dwl');P.hline(val,'var(--dwl)',true);P.tag(2.42,debt,tr('Underwater','溺水'),'start',-4);}
+      P.path([[.4,100],[2.38,100]],'var(--muted)',true);
+      const roe=dp>0?(10/dp*100):Infinity;
+      s.show([[tr('Down payment (equity at the start)','頭期款（初始權益）'),dp.toFixed(dp%1?2:0)+'%'],[tr('Leverage ratio = debt ÷ equity','槓桿比率 = 負債 ÷ 權益'),dp>0?(Math.round(lev*100)/100).toString():'∞',true],[tr('Fall that wipes out equity','權益歸零所需跌幅'),dp.toFixed(dp%1?2:0)+'%'],[tr('Equity after the price change','價格變動後的權益'),(eqv<0?'−$':'$')+num(Math.abs(Math.round(eqv*10)/10))+'k'],[tr('Return on equity if prices rise 10%','價格上漲 10% 時的權益報酬'),dp>0?Math.round(roe)+'%':'∞']],
+        eqv<=0?tr('The asset is now worth less than the debt. The owner has lost everything put in, and the lender holds a loan bigger than the collateral.','資產價值已低於負債。屋主投入的全部賠光，放款人手上的貸款比擔保品還大。'):dp<=5?tr('Thin equity: a small fall in prices wipes it out, while a small rise multiplies the owner\'s return. Large upside, fragile downside.','權益很薄：價格小跌就歸零，小漲卻讓報酬倍增。上漲空間大，下跌很脆弱。'):tr('A thicker cushion: prices can fall a good deal before the owner is underwater.','緩衝較厚：價格可以跌不少，屋主才會溺水。'));
+    };
+    const ds=s.slider('dp',tr('Down payment, % of the price','頭期款（占價格 %）'),0,40,.01,dp,v=>v.toFixed(v%1?2:0)+'%',v=>{dp=v;draw();});
+    const pc=s.slider('chg',tr('Change in asset price','資產價格變化'),-30,20,1,chg,v=>(v>0?'+':v<0?'−':'')+Math.abs(v)+'%',v=>{chg=v;draw();});
+    const set=(d,c)=>{dp=d;chg=c;ds.set(d);pc.set(c);draw();};
+    s.button(tr('Typical: 20% down','一般：頭期 20%'),()=>set(20,0));
+    s.button(tr('5% down: leverage 19','頭期 5%：槓桿 19'),()=>set(5,0));
+    s.button(tr('5% down, house falls to $90,000','頭期 5%，房價跌到 9 萬'),()=>set(5,-10));
+    s.button(tr('Lehman 2007: leverage 44','雷曼 2007：槓桿 44'),()=>set(100/45,0));
+    s.button(tr('After regulation: leverage 16.66','監理之後：槓桿 16.66'),()=>set(100/17.66,0));
+    live(s,draw);
+  };
+
+  /* 6. Fees compound against you. */
+  W_.fees=host=>{
+    const s=shell(host,tr('What a fee costs over time','費用長期下來的代價'),tr('Invest 10,000 at an 8% market return. Compare a high-fee fund with a low-fee index fund.','以 8% 的市場報酬投資 10,000。比較高費用基金和低費用指數基金。'),[[tr('Fund A (higher fee)','基金 A（費用較高）'),colors.d],[tr('Fund B (lower fee)','基金 B（費用較低）'),colors.mc]]);
+    let fa=1,fb=.2,Y=25;
+    const grow=(f,t)=>10000*Math.pow(1.08-f/100,t);
+    const draw=()=>{
+      const ea=grow(fa,Y),eb=grow(fb,Y),top=Math.max(ea,eb),st=niceStep(top,5),hi=Math.ceil(top/st)*st;
+      const P=Plot(s.svgs[0],Y,hi);P.axes(tr('Years','年'),tr('Value','價值'));
+      const xs=niceStep(Y,5),xt=[];for(let t=0;t<=Y+1e-9;t+=xs)xt.push(t);P.xticks(xt);
+      const yt=[];for(let v=0;v<=hi+1e-9;v+=st)yt.push(v);P.yticks(yt,v=>num(v/1000)+'k');
+      [[fa,colors.d],[fb,colors.mc]].forEach(([f,c])=>{const pts=[];for(let i=0;i<=60;i++){const t=Y*i/60;pts.push([t,grow(f,t)]);}P.path(pts,c);});
+      P.tag(Y,ea,'A','end',ea>eb?-8:14);P.tag(Y,eb,'B','end',eb>=ea?-8:14);
+      const gap=Math.abs(eb-ea),share=gap/Math.max(ea,eb)*100;
+      s.show([[tr('Fund A after','基金 A 最終')+' '+Y+tr(' years',' 年'),num(Math.round(ea))],[tr('Fund B after','基金 B 最終')+' '+Y+tr(' years',' 年'),num(Math.round(eb))],[tr('Gap','差距'),num(Math.round(gap)),true],[tr('Share of the larger amount lost to fees','被費用吃掉的比例'),share.toFixed(0)+'%']],
+        tr(`A fee gap of ${Math.abs(fa-fb).toFixed(1)} points a year costs about ${share.toFixed(0)}% of the final amount after ${Y} years, and buys nothing, since most active funds do not beat the index.`,`每年 ${Math.abs(fa-fb).toFixed(1)} 個百分點的費用差，${Y} 年後吃掉最終金額約 ${share.toFixed(0)}%，卻換不到任何東西，因為大多數主動基金打不敗指數。`));
+    };
+    s.slider('fa',tr('Fee of fund A','基金 A 費用'),0,3,.1,fa,v=>v.toFixed(1)+'%',v=>{fa=v;draw();});
+    s.slider('fb',tr('Fee of fund B','基金 B 費用'),0,3,.1,fb,v=>v.toFixed(1)+'%',v=>{fb=v;draw();});
+    s.slider('Y',tr('Years','年數'),5,40,1,Y,v=>String(v),v=>{Y=v;draw();});
+    live(s,draw);
+  };
+
+  window.EconWidgets={mount(root){root.querySelectorAll('[data-widget]').forEach(host=>{const init=W_[host.dataset.widget];if(init&&!host.dataset.ready){host.dataset.ready='1';init(host);}});}};
+})();
+</script>
+<script>
+(() => {
+ const toc=document.getElementById('toc'),rail=document.getElementById('rail'),button=document.getElementById('tocBtn');
+ const headings=[...document.querySelectorAll('.doc > h2,.doc > h3')];
+ headings.forEach(h=>{const li=document.createElement('li'),a=document.createElement('a');li.className=h.tagName.toLowerCase();li.dataset.id=h.id;a.href='#'+h.id;a.textContent=h.childNodes[0].textContent.trim();const z=h.querySelector(':scope > .zh-full');if(z){const s=document.createElement('span');s.className='zh-full';s.lang='zh-Hant';s.textContent=z.textContent;a.append(s);}li.append(a);toc.append(li);});
+ const spy=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;toc.querySelectorAll('.on').forEach(a=>a.classList.remove('on'));const a=toc.querySelector('[data-id="'+e.target.id+'"] a');if(a)a.classList.add('on');}),{rootMargin:'-100px 0px -65% 0px'});headings.forEach(h=>spy.observe(h));
+ function close(){rail.classList.remove('open');button.setAttribute('aria-expanded','false');}
+ button.addEventListener('click',()=>{const open=rail.classList.toggle('open');button.setAttribute('aria-expanded',String(open));});
+ toc.addEventListener('click',e=>{if(e.target.closest('a'))close();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&rail.classList.contains('open')){close();button.focus();}});
+ const all=document.getElementById('qaAll');all.addEventListener('click',()=>{const ds=[...document.querySelectorAll('.qa details')],open=!ds.every(d=>d.open);ds.forEach(d=>d.open=open);all.textContent=open?'Hide all answers':'Show all answers';});
+ window.EconWidgets.mount(document);
+})();
+</script>
+<script>(() => {
+ 'use strict';
+ const dict={
+  "Interactive graph":"互動圖表","Classification":"分類練習","Contents":"目錄","Show all answers":"展開全部答案","Hide all answers":"收合全部答案","View numerical readout":"查看數值結果","Yes":"是","No":"否","Reset":"重設"
+ };
+ const patterns=[];
+ const norm=s=>s.replace(/\s+/g,' ').trim();
+ function enText(el){const copy=el.cloneNode(true);copy.querySelectorAll('.zh-full,.zh-svg,.zh').forEach(n=>n.remove());return norm(copy.textContent);}
+ function translate(en){if(dict[en])return dict[en];const dyn=window.ZH_DYN||{};if(dyn[en])return dyn[en];for(const [re,f] of patterns){const m=en.match(re);if(m)return f(m);}return '';}
+ const observer=new MutationObserver(()=>schedule());let pending=false;
+ const selector='.doc h4,.doc p,.doc th,.doc td,.doc summary,.doc .formula,.doc .plot-legend>span,.doc .tw-t,.doc .g-stats dt,.doc .g-stats dd,.doc .g-ctrl button,.doc .g-btn,.doc .rc-t,.doc .rc-tag,.doc .sl label>span,.doc .sl output,.g-kicker,.rail a,#tocBtn,#qaAll';
+ function apply(){
+  pending=false;observer.disconnect();
+  document.querySelectorAll(selector).forEach(el=>{
+   if(el.closest('.zh-full,.hint,.practice-prompt')||el.querySelector(':scope > .zh-full'))return;
+   const chinese=translate(enText(el));if(!chinese)return;
+   const span=document.createElement('span');span.className='zh-full';span.lang='zh-Hant';span.textContent=chinese;el.append(span);
+  });
+  document.querySelectorAll('.g-plot svg text.axl,.g-plot svg text.tk').forEach(el=>{
+   if(el.querySelector('.zh-svg'))return;const chinese=translate(enText(el));if(!chinese)return;
+   const t=document.createElementNS('http://www.w3.org/2000/svg','tspan');t.setAttribute('class','zh-svg');t.setAttribute('lang','zh-Hant');t.setAttribute('x',el.getAttribute('x')||'0');t.setAttribute('dy','13');t.textContent=chinese;el.append(t);
+  });
+  observer.observe(document.body,{subtree:true,childList:true,characterData:true});
+ }
+ function schedule(){if(!pending){pending=true;requestAnimationFrame(apply);}}
+ const toggle=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+ function setZh(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';try{localStorage.setItem('study-notes-show-zh',on?'1':'0')}catch(e){}window.dispatchEvent(new Event('econ-language-change'));apply();}
+ let initial=false;try{initial=localStorage.getItem('study-notes-show-zh')==='1'}catch(e){}
+ toggle.addEventListener('change',()=>setZh(toggle.checked));
+ const practice=document.getElementById('practiceToggle'),state=document.getElementById('practiceState');
+ practice.addEventListener('click',()=>{const on=practice.getAttribute('aria-pressed')!=='true';practice.setAttribute('aria-pressed',String(on));state.textContent=on?'On':'Off';practice.querySelector(':scope > .zh-full').textContent='練習模式：'+(on?'開啟':'關閉');document.querySelectorAll('.practice-prompt').forEach(p=>p.hidden=!on);});
+ const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px');}
+ if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();setZh(initial);
+ window.refreshChineseSupport=apply;
+})();
+</script></body></html>
