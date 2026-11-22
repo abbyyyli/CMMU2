@@ -201,6 +201,7 @@ table.oil th, table.oil td { text-align: right; padding: 6px 8px; white-space: n
 table.oil th:first-child, table.oil td:first-child { text-align: left; font-weight: 700; }
 table.oil td.hi { background: var(--tint); color: var(--accent-ink); font-weight: 700; }
 
+.g-assume{margin:4px 2px 0;font-size:.74rem;line-height:1.5;color:var(--muted)}
 </style>
 <style id="system-theme">
 /* System appearance only changes colors. Print retains the light palette. */
@@ -310,8 +311,8 @@ svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
 .rung{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--paper)}
 .rung-1{margin-left:14px}.rung-2{margin-left:28px;background:var(--tint)}.rung-3{margin-left:42px;background:var(--tint);border-color:var(--accent)}
 .rung-n{width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--paper);display:grid;place-items:center;font-weight:700;font-size:.85rem}
-.rung-b p{margin:0}.rung-q{font-size:.85rem;color:var(--muted)}.rung-a{font-family:var(--serif);font-weight:700;font-size:1.06rem;margin:2px 0 4px!important}.rung-ex{font-size:.92rem;line-height:1.6}
 @media (max-width:560px){.rung-1{margin-left:6px}.rung-2{margin-left:12px}.rung-3{margin-left:18px}}
+.rung-b p{margin:0}.rung-q{font-size:.85rem;color:var(--muted)}.rung-a{font-family:var(--serif);font-weight:700;font-size:1.06rem;margin:2px 0 4px!important}.rung-ex{font-size:.92rem;line-height:1.6}
 .timeline{list-style:none;margin:12px 0 12px 8px;padding:0 0 0 18px!important;border-left:2px solid var(--line)}
 .timeline li{position:relative;display:grid;grid-template-columns:64px minmax(0,1fr);gap:10px;padding:6px 0;margin:0}
 .timeline li::before{content:"";position:absolute;left:-25px;top:12px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
@@ -444,7 +445,7 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 <tr><td><b>NX</b> Net exports</td><td>Exports minus imports.<span class="zh-full" lang="zh-Hant">出口減進口。</span></td><td>Tourists paying Phuket hotels is an export; imported fuel is an import.<span class="zh-full" lang="zh-Hant">遊客付普吉島旅館費是出口；進口燃料是進口。</span></td><td>A sign that imports are bad.<span class="zh-full" lang="zh-Hant">「進口是壞事」的訊號。</span></td></tr>
 </tbody></table></div>
 <p>Why split GDP at all? Households, firms and governments respond to different forces. When GDP falls, it matters whether consumption, investment or government purchases fell, because the policy response is different.<span class="zh-full" lang="zh-Hant">為什麼要拆 GDP？家庭、企業和政府受不同力量影響。GDP 下降時，要知道是消費、投資還是政府購買下降，因為對策不同。</span></p>
-<div data-widget="ringup"></div>
+<div data-widget="ringup" data-assume="GDP = C + I + G + NX" data-assume-zh="GDP = 消費 + 投資 + 政府購買 + 淨出口"></div>
 <p class="note-small">Amounts are a made-up economy in million baht. The income-side split is illustrative.<span class="zh-full" lang="zh-Hant">金額是虛構的經濟體，單位為百萬泰銖。所得面的拆分僅供說明。</span></p>
 <p>The second bar is the point of the income side. Every baht spent on final output ends up as someone's wages, rent, interest or profit, so adding up incomes (gross domestic income, GDI) should give the same total. In practice the two are measured separately and differ slightly, and in a recession economists watch both.<span class="zh-full" lang="zh-Hant">第二條長條就是所得面的重點：花在最終產出上的每一泰銖，最後都成為某人的工資、租金、利息或利潤，所以把所得加總（國內所得毛額，GDI）應該得到同樣的總數。實務上兩者分開計算，會略有差異；經濟衰退時，經濟學家兩個都看。</span></p>
 <p>A third cut is by sector: who produces the output. Thailand's economy has been shifting toward services.<span class="zh-full" lang="zh-Hant">第三種拆法是按產業：產出由誰生產。泰國經濟一直在往服務業移動。</span></p>
@@ -472,7 +473,7 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 <tr><td><b>GDP deflator</b><span class="zh">平減指數</span></td><td>Nominal ÷ real × 100.<span class="zh-full" lang="zh-Hant">名目 ÷ 實質 × 100。</span></td><td>How much did prices rise overall?<span class="zh-full" lang="zh-Hant">整體物價漲了多少？</span></td></tr>
 <tr><td><b>Real GDP per capita</b></td><td>Real GDP ÷ population.<span class="zh-full" lang="zh-Hant">實質 GDP ÷ 人口。</span></td><td>Is the average person better off?<span class="zh-full" lang="zh-Hant">平均每個人有沒有過得更好？</span></td></tr>
 </tbody></table></div>
-<div data-widget="waterfall"></div>
+<div data-widget="waterfall" data-assume="Take prices out of headline GDP, then divide by population, to see the real change per person." data-assume-zh="GDP 標題扣掉物價，再除以人口，才看得出平均每個人的實質變化。"></div>
 <p class="note-small">US figures come from FRED, in 2009 dollars. The per-person rise is 3.6 times on these rounded numbers, often quoted as "about four times".<span class="zh-full" lang="zh-Hant">美國數字來自 FRED，以 2009 年美元計。依這些四捨五入的數字，每人成長是 3.6 倍，常被說成「大約四倍」。</span></p>
 <p>A fall in real GDP is part of what defines a <b>recession</b>. In 2009 US real GDP shrank 3.6% and unemployment jumped.<span class="zh-full" lang="zh-Hant">實質 GDP 下降是「經濟衰退」定義的一部分。2009 年美國實質 GDP 縮減 3.6%，失業率大幅上升。</span></p>
 <details class="extra"><summary>Optional: the small Thai economy, worked out<span class="zh-full" lang="zh-Hant">可展開補充：泰國小經濟體的計算</span></summary>
@@ -512,33 +513,23 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 </ol>
 <p>In a poor country the chain runs the other way: low productivity in factories, low wages everywhere, cheap services. Add up all those cheap services and the whole <b>price level</b><span class="zh">物價水準</span> is lower.<span class="zh-full" lang="zh-Hant">在窮國，這串連鎖反過來運作：工廠生產力低，到處工資都低，服務便宜。把這些便宜的服務加總，整體物價水準就比較低。</span></p>
 <div class="flow"><span>High productivity in tradables<span class="zh-full" lang="zh-Hant">可貿易部門生產力高</span></span><i>→</i><span>High wages economy-wide<span class="zh-full" lang="zh-Hant">全經濟工資高</span></span><i>→</i><span>Barber's opportunity cost up<span class="zh-full" lang="zh-Hant">理髮師機會成本上升</span></span><i>→</i><span>Haircut supply shifts left<span class="zh-full" lang="zh-Hant">理髮供給左移</span></span><i>→</i><span>Services and price level higher<span class="zh-full" lang="zh-Hant">服務價格與物價水準較高</span></span></div>
-
+<div data-widget="haircut" data-readout="optional" data-assume="Labor cost of one haircut = outside wage per hour × 0.5 hour" data-assume-zh="每次理髮的人工成本 = 外部時薪 × 0.5 小時"></div>
+<details class="graph-guide"><summary>How to build this graph<span class="zh-full" lang="zh-Hant">如何畫這張圖</span></summary>
+<ol class="steps"><li><span>Haircuts per day on the horizontal axis, baht per haircut on the vertical axis. Draw D sloping down and S1 sloping up; mark E1, P1, Q1.<span class="zh-full" lang="zh-Hant">橫軸是每日理髮次數，縱軸是每次理髮的泰銖。畫向下的 D 和向上的 S1，標出 E1、P1、Q1。</span></span></li><li><span>A better-paid job elsewhere raises the cost of each haircut, so supply shifts left (up) to S2.<span class="zh-full" lang="zh-Hant">別處有更高薪的工作，每次理髮的成本上升，所以供給左移（上移）到 S2。</span></span></li><li><span>Mark E2: P2 is above P1, Q2 below Q1. If local incomes rise too, shift D right and P climbs further.<span class="zh-full" lang="zh-Hant">標出 E2：P2 高於 P1，Q2 低於 Q1。如果當地所得也提高，D 右移，P 再上升。</span></span></li></ol></details>
 <h3 id="ppp-how">What purchasing power parity actually does<span class="zh-full" lang="zh-Hant">購買力平價實際上在做什麼</span></h3>
 <p><b>Purchasing power parity</b><span class="zh">購買力平價</span> (PPP) asks a simple question: how many baht does it take to buy the same basket of goods and services that one dollar buys in the US? That number is the PPP exchange rate. It is usually very different from the market rate you see at the bank.<span class="zh-full" lang="zh-Hant">購買力平價（PPP）問一個簡單的問題：在泰國要多少泰銖，才能買到一美元在美國能買到的同一籃商品與服務？這個數字就是 PPP 匯率。它通常和你在銀行看到的市場匯率差很多。</span></p>
-<div class="formula">Basket in the US: $100<br>Same basket in Thailand: ฿1,200<br>PPP rate = 1,200 ÷ 100 = ฿12 per $<br>Market rate (say) = ฿35 per $<br>Income ฿420,000 at market rate = $12,000<br>Income ฿420,000 at PPP = $35,000</div>
+<div class="formula">Basket in the US: $100<br/>Same basket in Thailand: ฿1,200<br/>PPP rate = 1,200 ÷ 100 = ฿12 per $<br/>Market rate (say) = ฿35 per $<br/>Income ฿420,000 at market rate = $12,000<br/>Income ฿420,000 at PPP = $35,000</div>
 <p class="note-small">Round numbers for illustration, not official data.<span class="zh-full" lang="zh-Hant">為了說明而用的整數，不是官方數據。</span></p>
 <p>Same income, same goods, but the PPP figure is almost three times bigger, because ฿420,000 really does buy almost three times as much in Thailand as $12,000 buys in the US. The class slide shows nearly the same gap with real data: Thailand's 2026 GDP is about $0.6 trillion at market rates and $1.9 trillion at PPP, about 3.2 times bigger.<span class="zh-full" lang="zh-Hant">同樣的所得、同樣的商品，PPP 數字卻大了將近三倍，因為 42 萬泰銖在泰國能買到的，真的幾乎是 1.2 萬美元在美國能買到的三倍。課堂投影片用實際數據也顯示幾乎一樣的差距：泰國 2026 年 GDP 以市場匯率計約 0.6 兆美元，以 PPP 計約 1.9 兆美元，約大了 3.2 倍。</span></p>
-<p>The world economy shows how much this matters. At market exchange rates the world produces about $128 trillion; at PPP the same output is worth about $219 trillion, because so much of it happens in countries where prices are low.<span class="zh-full" lang="zh-Hant">世界經濟顯示了這有多重要。以市場匯率計，全球產出約 128 兆美元；以 PPP 計，同樣的產出約值 219 兆美元，因為大量產出發生在物價低的國家。</span></p>
-<div data-widget="pppflip"></div>
+<div data-widget="pppflip" data-assume="PPP rate = cost of a basket in local money ÷ cost of the same basket in dollars" data-assume-zh="PPP 匯率 = 一籃商品的本國貨幣價格 ÷ 同一籃的美元價格"></div>
 <p class="note-small">IMF estimates for 2026, compiled by Visual Capitalist, as shown in class.<span class="zh-full" lang="zh-Hant">IMF 2026 年估計，由 Visual Capitalist 整理，課堂投影片。</span></p>
-
-<div class="tbl"><table><thead><tr><th>Your question<span class="zh-full" lang="zh-Hant">你的問題</span></th><th>Use<span class="zh-full" lang="zh-Hant">用哪個</span></th><th>Why<span class="zh-full" lang="zh-Hant">為什麼</span></th></tr></thead><tbody>
+<div class="tbl"><table><thead><tr><th>Your question<span class="zh-full" lang="zh-Hant">你的問題</span></th><th>Use<span class="zh-full" lang="zh-Hant">用哪個</span></th><th>Why<span class="zh-full" lang="zh-Hant">理由</span></th></tr></thead><tbody>
 <tr><td>How well do people live? Compare living standards across countries.<span class="zh-full" lang="zh-Hant">人民生活得如何？比較各國生活水準。</span></td><td><b>PPP</b>, per person<span class="zh-full" lang="zh-Hant">PPP，每人</span></td><td>People spend most of their income on local goods and services, at local prices.<span class="zh-full" lang="zh-Hant">人們大部分所得花在本地商品與服務上，用的是本地價格。</span></td></tr>
 <tr><td>How much can a country buy abroad: oil, chips, aircraft, paying foreign debt?<span class="zh-full" lang="zh-Hant">一國能在國外買多少：石油、晶片、飛機、償還外債？</span></td><td><b>Market rate</b><span class="zh-full" lang="zh-Hant">市場匯率</span></td><td>Those are paid at world prices, in dollars.<span class="zh-full" lang="zh-Hant">這些都用世界價格、用美元支付。</span></td></tr>
 <tr><td>Which is the biggest economy?<span class="zh-full" lang="zh-Hant">哪個是最大的經濟體？</span></td><td>Say which measure<span class="zh-full" lang="zh-Hant">說明用哪個指標</span></td><td>The US is bigger at market rates; China passed it at PPP in 2014.<span class="zh-full" lang="zh-Hant">以市場匯率計美國較大；以 PPP 計，中國在 2014 年已超過美國。</span></td></tr>
 <tr><td>Did Thailand grow this year?<span class="zh-full" lang="zh-Hant">泰國今年有成長嗎？</span></td><td>Real GDP in baht<span class="zh-full" lang="zh-Hant">以泰銖計的實質 GDP</span></td><td>No exchange rate needed at all.<span class="zh-full" lang="zh-Hant">完全不需要匯率。</span></td></tr>
 </tbody></table></div>
-
-<p>Why do poorer countries gain the most from the adjustment? Because they have the most cheap services, so their price level is furthest below the US. The haircut market shows the mechanism.<span class="zh-full" lang="zh-Hant">為什麼較窮的國家調整後增加最多？因為它們便宜的服務最多，物價水準離美國最遠。理髮市場說明了機制。</span></p>
-<div data-widget="haircut" data-readout="optional"></div>
-<details class="graph-guide"><summary>How to build this graph<span class="zh-full" lang="zh-Hant">如何畫這張圖</span></summary>
-<ol class="steps"><li><span>Haircuts per day on the horizontal axis, baht per haircut on the vertical axis. Draw D sloping down and S1 sloping up; mark E1, P1, Q1.<span class="zh-full" lang="zh-Hant">橫軸是每日理髮次數，縱軸是每次理髮的泰銖。畫向下的 D 和向上的 S1，標出 E1、P1、Q1。</span></span></li><li><span>A better-paid job elsewhere raises the cost of each haircut, so supply shifts left (up) to S2.<span class="zh-full" lang="zh-Hant">別處有更高薪的工作，每次理髮的成本上升，所以供給左移（上移）到 S2。</span></span></li><li><span>Mark E2: P2 is above P1, Q2 below Q1. If local incomes rise too, shift D right and P climbs further.<span class="zh-full" lang="zh-Hant">標出 E2：P2 高於 P1，Q2 低於 Q1。如果當地所得也提高，D 右移，P 再上升。</span></span></li></ol></details>
-
-<div class="tbl"><table><thead><tr><th>The simple story says<span class="zh-full" lang="zh-Hant">簡單版本說</span></th><th>A careful answer adds<span class="zh-full" lang="zh-Hant">嚴謹的回答會補充</span></th></tr></thead><tbody>
-<tr><td>Services are cheap in poor countries because wages are low and workers cannot move.<span class="zh-full" lang="zh-Hant">服務在窮國便宜，是因為工資低、勞工無法移動。</span></td><td>True, and it is the core of Balassa-Samuelson. But tradable goods prices also differ somewhat, because firms charge different prices in different markets, so nontradables are not the only reason.<span class="zh-full" lang="zh-Hant">沒錯，這是巴拉薩－薩繆爾森的核心。但可貿易品價格也有一些差異，因為企業在不同市場訂不同價格，所以非貿易品不是唯一原因。</span></td></tr>
-<tr><td>Use PPP to compare living standards.<span class="zh-full" lang="zh-Hant">用 PPP 比較生活水準。</span></td><td>Agreed. But PPP depends on which basket is priced, and new price surveys can move the rankings. Treat PPP figures as good estimates, not exact facts.<span class="zh-full" lang="zh-Hant">同意。但 PPP 取決於選了哪一籃商品，新的價格調查可能改變排名。PPP 數字是好的估計，不是精確事實。</span></td></tr>
-<tr><td>PPP shows a country's true size.<span class="zh-full" lang="zh-Hant">PPP 顯示一國的真實規模。</span></td><td>Only for what its people can consume at home. For buying from the world, the market rate is still the right one.<span class="zh-full" lang="zh-Hant">只適用於人民在國內能消費多少。要向世界購買東西時，市場匯率才是對的。</span></td></tr>
-</tbody></table></div>
+<p class="note-small">Limits: tradable goods prices also differ somewhat, because firms charge different prices in different markets. PPP also depends on which basket is priced, and new price surveys can move the rankings. Treat PPP figures as good estimates.<span class="zh-full" lang="zh-Hant">限制：可貿易品的價格其實也有些差異，因為企業在不同市場訂不同價格。PPP 也取決於選了哪一籃商品，新的價格調查可能改變排名。PPP 數字應視為不錯的估計值。</span></p>
 <p class="hint"><b>中文邏輯</b><span>理髮便宜不是因為理髮師比較差，而是整個國家的工資低。可貿易品被套利拉平，服務拉不平，所以窮國物價水準低。PPP 把各國產出用同一套價格計算；比生活水準用 PPP，比國際購買力用市場匯率。</span></p>
 <aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Thailand's factories become much more productive. Without any change in barbers' skills, what happens to the price of a haircut in Bangkok, and why?<span class="zh-full" lang="zh-Hant">泰國工廠的生產力大幅提高。理髮師的手藝沒有改變，曼谷的理髮價格會怎樣？為什麼？</span></p></aside>
 <aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A basket costs $50 in the US and ฿900 in Thailand, and the market rate is ฿36 per dollar. What is the PPP rate, and is the baht "cheap" or "expensive" at the market rate?<span class="zh-full" lang="zh-Hant">一籃商品在美國 50 美元、在泰國 900 泰銖，市場匯率是 1 美元兌 36 泰銖。PPP 匯率是多少？以市場匯率來看，泰銖是「便宜」還是「貴」？</span></p></aside>
@@ -557,7 +548,7 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 <tr><td><b>Ratio scale</b></td><td>Each step on the axis is a doubling, so steady growth is a straight line.<span class="zh-full" lang="zh-Hant">軸上每一格都是翻倍，所以穩定成長是一條直線。</span></td><td>On an ordinary scale, steady growth looks like it is speeding up.<span class="zh-full" lang="zh-Hant">在一般刻度上，穩定成長看起來像越長越快。</span></td></tr>
 </tbody></table></div>
 <p>Run the numbers on the US and the stakes are clear. Had it grown only 1% a year since 1800, it would be about as rich today as it was in 1940. Had it grown 3%, it would have reached today's living standard back in 1917, and real GDP per person today would be about $893,000. At current growth rates, it will not get there until 2159.<span class="zh-full" lang="zh-Hant">用美國算一下就很清楚。如果它從 1800 年起每年只成長 1%，今天大約只有 1940 年的水準。如果是 3%，1917 年就達到今天的生活水準，今天的每人實質 GDP 會約 893,000 美元。照目前的成長率，要到 2159 年才會到那裡。</span></p>
-<div data-widget="compound" data-readout="optional"></div>
+<div data-widget="compound" data-readout="optional" data-assume="Years to double ≈ 70 ÷ growth rate in %" data-assume-zh="倍增年數 ≈ 70 ÷ 成長率（%）"></div>
 <p>Another way to feel the gap is to place today's countries in American history:<span class="zh-full" lang="zh-Hant">另一種感受差距的方式，是把今天的國家放進美國歷史：</span></p>
 <ol class="timeline">
 <li><b>1800</b><span>Bangladesh and Uganda today<span class="zh-full" lang="zh-Hant">今天的孟加拉和烏干達</span></span></li>
@@ -583,10 +574,8 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 <aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Use doubling times to explain how Japan went from half of Argentina's living standard in 1950 to twice it by 2015. Why is "poor countries naturally catch up" too strong a claim?<span class="zh-full" lang="zh-Hant">用倍增時間解釋，日本如何從 1950 年只有阿根廷的一半，變成 2015 年的兩倍。為什麼「窮國自然會追上」說得太強？</span></p></aside>
 
 <h2 id="puzzle">8. Why some countries grow: keep asking why<span class="zh-full" lang="zh-Hant">8. 為什麼有些國家會成長：一直問為什麼</span></h2>
-<p class="sub">"Rich countries have more capital" is true but too easy. The useful answer comes from asking why, again and again.<span class="zh-full" lang="zh-Hant">「富國有更多資本」是對的，但太簡單。有用的答案來自一次又一次地問為什麼。</span></p>
-<p>The answer comes in layers. The most immediate one is that workers in rich countries have more physical capital, more human capital and better technology, organized by entrepreneurs. But that only moves the question back: why did those countries build so much capital? Because people had incentives to work, save and invest. And why the incentives? Because institutions protected the rewards. Why the institutions? That is the least settled part, a mix of history, ideas, culture, geography and luck.<span class="zh-full" lang="zh-Hant">答案分好幾層。最直接的一層是：富國的勞工擁有更多實體資本、人力資本和更好的技術，並由企業家組織起來。但這只是把問題往後推：為什麼這些國家累積了這麼多資本？因為人們有工作、儲蓄和投資的誘因。為什麼有誘因？因為制度保護了成果。為什麼有這些制度？這是最沒有定論的部分，混合了歷史、思想、文化、地理和運氣。</span></p>
+<p class="sub">"Rich countries have more capital" is true but too easy. The useful answer comes from asking why, again and again. Each answer raises a deeper question.<span class="zh-full" lang="zh-Hant">「富國有更多資本」是對的，但太簡單。有用的答案來自一次又一次地問為什麼。每個答案都會引出更深一層的問題。</span></p>
 <div data-widget="ladder"></div>
-
 <h3 id="layer1">Layer 1: what makes a worker productive<span class="zh-full" lang="zh-Hant">第一層：什麼讓勞工有生產力</span></h3>
 <p>Picture one farmer in a rich country and one in a poor country. The rich-country farmer is not working harder. She is working with more.<span class="zh-full" lang="zh-Hant">想像一個富國的農民和一個窮國的農民。富國的農民並沒有比較努力，而是她手上有更多東西可用。</span></p>
 <div class="four">
@@ -595,61 +584,33 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 <div><b>Technological knowledge<span class="zh-full" lang="zh-Hant">技術知識</span></b><p>Know-how about the world: seed genetics, soil chemistry, better ways to do the job.<span class="zh-full" lang="zh-Hant">對世界運作的理解：種子遺傳學、土壤化學、更好的做事方法。</span></p></div>
 <div><b>Entrepreneurs<span class="zh-full" lang="zh-Hant">企業家</span></b><p>The people who bring ideas, workers and capital together and organize them into something that sells.<span class="zh-full" lang="zh-Hant">把點子、勞工和資本組合起來，組織成能賣出去的東西的人。</span></p></div>
 </div>
-<p class="key">This is the immediate cause of wealth, and it is correct. It just does not explain anything yet, because it leaves the real question open: why did some countries build these factors and others did not?<span class="zh-full" lang="zh-Hant">這是財富的直接原因，而且是對的。只是它還沒解釋任何事，因為真正的問題還沒回答：為什麼有些國家建立了這些生產要素，有些沒有？</span></p>
-
+<p class="key">This is the immediate cause of wealth, and it is correct. It just leaves the real question open: why did some countries build these factors and others did not?<span class="zh-full" lang="zh-Hant">這是財富的直接原因，而且是對的。只是真正的問題還沒回答：為什麼有些國家建立了這些要素，有些沒有？</span></p>
 <h3 id="layer2">Layer 2: incentives, the potato test<span class="zh-full" lang="zh-Hant">第二層：誘因，馬鈴薯測試</span></h3>
 <p>In China's Great Leap Forward, from the late 1950s to the early 1960s, private farms were merged into big collectives. Do the math from one farmer's point of view.<span class="zh-full" lang="zh-Hant">中國大躍進時期（1950 年代末到 1960 年代初），私人農場被併成大型集體農場。從一個農民的角度算算看。</span></p>
-<div class="formula">Own farm: grow 1 more bag → keep 1 bag<br>100-person collective: grow 1 more bag → keep 1/100 bag<br>Slack off: group loses 1 bag → you lose 1/100 bag</div>
-<p>Effort and reward came apart, so everyone had a reason to <b>free ride</b><span class="zh">搭便車</span> on everyone else. Same land, same people, same tools, but output collapsed. Together with other leadership mistakes, some 20 to 40 million people starved. China only took off once farmers were allowed to keep what they grew above their quota.<span class="zh-full" lang="zh-Hant">努力和報酬脫鉤，所以每個人都有理由搭別人的便車。同樣的土地、同樣的人、同樣的工具，產出卻崩潰。加上其他領導錯誤，約有 2,000 萬到 4,000 萬人餓死。直到農民可以保有超出配額的收成，中國才起飛。</span></p>
+<div class="formula">Own farm: grow 1 more bag → keep 1 bag<br/>100-person collective: grow 1 more bag → keep 1/100 bag<br/>Slack off: group loses 1 bag → you lose 1/100 bag</div>
+<p>Effort and reward came apart, so everyone had a reason to <b>free ride</b><span class="zh">搭便車</span> on everyone else. Same land, people and tools, yet output collapsed. With other leadership mistakes, some 20 to 40 million people starved. China took off only once farmers could keep what they grew above their quota.<span class="zh-full" lang="zh-Hant">努力和報酬脫鉤，所以每個人都有理由搭別人的便車。同樣的土地、人和工具，產出卻崩跌。加上其他領導決策錯誤，約 2,000 萬到 4,000 萬人餓死。直到農民可以保有超過配額的收成，中國才開始起飛。</span></p>
 <div class="flow"><span>Farms collectivized<span class="zh-full" lang="zh-Hant">農場集體化</span></span><i>→</i><span>Pay cut off from effort<span class="zh-full" lang="zh-Hant">報酬與努力脫鉤</span></span><i>→</i><span>Everyone free rides<span class="zh-full" lang="zh-Hant">人人搭便車</span></span><i>→</i><span>Food supply shifts left<span class="zh-full" lang="zh-Hant">糧食供給左移</span></span><i>→</i><span>Famine<span class="zh-full" lang="zh-Hant">饑荒</span></span></div>
 <p class="key">Capital, skills and ideas do not pile up by themselves. People build them only when they expect to keep a fair share of what they produce.<span class="zh-full" lang="zh-Hant">資本、技能和點子不會自己累積。只有人們預期能保有自己產出的合理份額時，才會去建立它們。</span></p>
-
 <h3 id="five">Layer 3: the five key institutions<span class="zh-full" lang="zh-Hant">第三層：五大關鍵制度</span></h3>
 <p><b>Institutions</b><span class="zh">制度</span> are the rules of the game. They include formal rules, such as laws, courts and regulations, and informal ones, such as norms of honesty, trust and cooperation. Their job in growth is simple: they decide whether the reward for working, saving, studying and investing stays with the person who earned it. That is where incentives come from.<span class="zh-full" lang="zh-Hant">制度是遊戲規則。包括正式規則（法律、法院、法規）和非正式規則（誠實、信任、合作的規範）。它們在成長中的作用很簡單：決定工作、儲蓄、學習和投資的報酬，是否留在賺到它的人手上。誘因就是從這裡來的。</span></p>
 <div class="flow"><span>Rules protect rewards<span class="zh-full" lang="zh-Hant">規則保護報酬</span></span><i>→</i><span>Expected payoff from effort up<span class="zh-full" lang="zh-Hant">努力的預期報酬上升</span></span><i>→</i><span>People save, study, invest, start firms<span class="zh-full" lang="zh-Hant">人們儲蓄、學習、投資、創業</span></span><i>→</i><span>More capital, skills, ideas<span class="zh-full" lang="zh-Hant">更多資本、技能、點子</span></span><i>→</i><span>Higher GDP per person<span class="zh-full" lang="zh-Hant">每人 GDP 提高</span></span></div>
-<p>Each of the five institutions blocks a different way the reward can be taken away. Learn each one as a pair: what it protects, and what goes wrong without it.<span class="zh-full" lang="zh-Hant">五大制度各自擋住一種報酬被拿走的方式。每一項都要成對記：它保護什麼，沒有它會出什麼問題。</span></p>
-
-<div class="method"><b>1. Property rights<span class="zh-full" lang="zh-Hant">1. 財產權</span></b>
-<p><i>What it means:</i> what you build, grow or buy is yours, and you can prove it, for example with a deed that stands up in court.<span class="zh-full" lang="zh-Hant">意思：你建造、種植或購買的東西屬於你，而且你能證明，例如一張在法庭上站得住腳的地契。</span></p>
-<p><i>How it drives growth:</i> you collect the payoff from draining a field or opening a shop, so you are willing to put money and years into it.<span class="zh-full" lang="zh-Hant">如何推動成長：你能收到排水整地或開店的成果，所以你願意投入金錢和時間。</span></p>
-<p><i>Without it:</i> why improve land if the harvest goes to a collective or someone else can build on your farm? You invest only in what you can hide or carry.<span class="zh-full" lang="zh-Hant">沒有它：如果收成歸集體，或別人能在你的農場上蓋房子，你為什麼要改良土地？你只會投資在藏得住、帶得走的東西上。</span></p>
-<p><i>Where we saw it:</i> China's collective farms; North Korean farmers.<span class="zh-full" lang="zh-Hant">案例：中國集體農場；北韓農民。</span></p></div>
-
-<div class="method"><b>2. Honest government<span class="zh-full" lang="zh-Hant">2. 誠實的政府</span></b>
-<p><i>What it means:</i> officials do their jobs without bribes, and the state does not grab successful businesses.<span class="zh-full" lang="zh-Hant">意思：官員不收賄賂就會辦事，國家也不會奪走成功的企業。</span></p>
-<p><i>How it drives growth:</i> the cost of starting and running a business is known in advance, and talent goes into making better products rather than buying favors.<span class="zh-full" lang="zh-Hant">如何推動成長：開業和經營的成本事先可知，人才投入做出更好的產品，而不是買通關係。</span></p>
-<p><i>Without it:</i> a bribe works like a secret, unpredictable tax. Worse, officials now gain from creating delays, because delay is what people pay to skip.<span class="zh-full" lang="zh-Hant">沒有它：賄賂就像一種秘密、不可預測的稅。更糟的是，官員會因為製造延誤而得利，因為人們付錢就是為了跳過延誤。</span></p>
-<p><i>Where we saw it:</i> the Mumbai licensing firm with a "100% record" that would not work without "considerations".<span class="zh-full" lang="zh-Hant">案例：孟買那家有「100% 成功紀錄」、沒有「好處」就不辦事的代辦公司。</span></p></div>
-
-<div class="method"><b>3. Political stability<span class="zh-full" lang="zh-Hant">3. 政治穩定</span></b>
-<p><i>What it means:</i> no civil war or coups, and power changes hands peacefully, so the rules do not flip overnight.<span class="zh-full" lang="zh-Hant">意思：沒有內戰或政變，權力和平轉移，規則不會一夜翻轉。</span></p>
-<p><i>How it drives growth:</i> factories, schools and ports pay off over decades. People only start them if they expect the country to still work in twenty years.<span class="zh-full" lang="zh-Hant">如何推動成長：工廠、學校和港口要幾十年才回本。只有人們預期國家二十年後仍正常運作，才會開始投資。</span></p>
-<p><i>Without it:</i> a war can wash away years of investment, so people keep plans short and wealth abroad.<span class="zh-full" lang="zh-Hant">沒有它：一場戰爭可能沖走多年的投資，所以人們只做短期計畫，把財富放在國外。</span></p>
-<p><i>Where we saw it:</i> George Washington stepping down after two terms set a habit of peaceful handover in the US.<span class="zh-full" lang="zh-Hant">案例：華盛頓在兩任後卸任，為美國建立了和平交接的慣例。</span></p></div>
-
-<div class="method"><b>4. Dependable legal system<span class="zh-full" lang="zh-Hant">4. 可靠的法律制度</span></b>
-<p><i>What it means:</i> courts enforce contracts fairly and fast enough to matter, so you can collect a debt or prove who owns what.<span class="zh-full" lang="zh-Hant">意思：法院公正且夠快地執行合約，讓你能收回債務、證明誰擁有什麼。</span></p>
-<p><i>How it drives growth:</i> you can sell on credit, borrow, lend and deal with strangers. Markets get bigger, which allows more specialization.<span class="zh-full" lang="zh-Hant">如何推動成長：你可以賒銷、借錢、放款、和陌生人做生意。市場變大，分工就能更細。</span></p>
-<p><i>Without it:</i> people only trade with family and friends they can trust, so businesses stay small.<span class="zh-full" lang="zh-Hant">沒有它：人們只和信得過的家人朋友交易，所以企業一直很小。</span></p>
-<p><i>Where we saw it:</i> it is the quiet base under every loan and contract; when it fails, credit and long supply chains are the first things to go.<span class="zh-full" lang="zh-Hant">案例：它是每筆貸款和合約底下默默的基礎；一旦失靈，信用和長供應鏈最先消失。</span></p></div>
-
-<div class="method"><b>5. Competitive and open markets<span class="zh-full" lang="zh-Hant">5. 競爭開放的市場</span></b>
-<p><i>What it means:</i> anyone can enter, compete and import, and firms that fail are allowed to close.<span class="zh-full" lang="zh-Hant">意思：任何人都能進入市場、競爭和進口，失敗的公司可以倒閉。</span></p>
-<p><i>How it drives growth:</i> competition pushes prices down and quality up, and bankruptcy frees capital and workers for better uses.<span class="zh-full" lang="zh-Hant">如何推動成長：競爭壓低價格、提高品質；破產讓資本和勞工釋出到更好的用途。</span></p>
-<p><i>Without it:</i> needless licenses and import duties shield existing firms, which then act like monopolies: higher prices, less output, fewer new ideas.<span class="zh-full" lang="zh-Hant">沒有它：不必要的執照和進口關稅保護既有企業，讓它們像獨占者一樣：價格更高、產出更少、新點子更少。</span></p>
-<p><i>Where we saw it:</i> South Korea letting failing firms go bankrupt; the 10 to 12 licenses and the import license for one espresso machine in Mumbai.<span class="zh-full" lang="zh-Hant">案例：南韓讓失敗的企業破產；孟買一家咖啡館要 10 到 12 張執照，連一台義式咖啡機都要進口執照。</span></p></div>
-
+<p>Each institution blocks a different way the reward can be taken away.<span class="zh-full" lang="zh-Hant">每項制度各自擋住一種報酬被拿走的方式。</span></p>
+<div class="tbl"><table><thead><tr><th>Institution<span class="zh-full" lang="zh-Hant">制度</span></th><th>What it protects, and how that drives growth<span class="zh-full" lang="zh-Hant">它保護什麼，以及如何推動成長</span></th><th>Without it<span class="zh-full" lang="zh-Hant">沒有它會怎樣</span></th><th>Example<span class="zh-full" lang="zh-Hant">例子</span></th></tr></thead><tbody>
+<tr><td><b>1. Property rights</b><span class="zh-full" lang="zh-Hant">1. 財產權</span></td><td>What you build, grow or buy is yours, and you can prove it with a deed that holds up in court. You collect the payoff from draining a field or opening a shop, so you are willing to put money and years into it.<span class="zh-full" lang="zh-Hant">你建造、種植或購買的東西屬於你，而且你能用一張在法庭上站得住腳的地契證明。排水整地或開店的成果歸你，所以你願意投入金錢和時間。</span></td><td>Why improve land if the harvest goes to a collective or someone else can build on your farm? You invest only in what you can hide or carry.<span class="zh-full" lang="zh-Hant">如果收成歸集體，或別人能在你的農場上蓋房子，你為什麼要改良土地？你只會投資藏得住或帶得走的東西。</span></td><td>China's collective farms; North Korean farmers<span class="zh-full" lang="zh-Hant">中國集體農場；北韓農民</span></td></tr>
+<tr><td><b>2. Honest government</b><span class="zh-full" lang="zh-Hant">2. 誠實的政府</span></td><td>Officials do their jobs without bribes, and the state does not grab successful businesses. The cost of starting a business is known in advance, and talent goes into better products rather than buying favors.<span class="zh-full" lang="zh-Hant">官員不收賄賂就會辦事，國家也不會奪走成功的企業。開業成本事先可知，人才投入做出更好的產品，而不是去買通關係。</span></td><td>A bribe works like a secret, unpredictable tax. Worse, officials now gain from creating delays, because delay is what people pay to skip.<span class="zh-full" lang="zh-Hant">賄賂就像一種秘密、不可預測的稅。更糟的是，官員會因為製造延誤而得利，因為大家付錢就是為了跳過延誤。</span></td><td>The Mumbai licensing firm that would not work without "considerations"<span class="zh-full" lang="zh-Hant">孟買那家沒有「好處」就不辦事的代辦公司</span></td></tr>
+<tr><td><b>3. Political stability</b><span class="zh-full" lang="zh-Hant">3. 政治穩定</span></td><td>No civil war or coups, and power changes hands peacefully. Factories, schools and ports pay off over decades, and people start them only if they expect the country to still work in twenty years.<span class="zh-full" lang="zh-Hant">沒有內戰或政變，權力和平轉移。工廠、學校和港口要幾十年才回本，只有人們預期國家二十年後還能正常運作，才會去興建。</span></td><td>A war can wash away years of investment, so people keep plans short and wealth abroad.<span class="zh-full" lang="zh-Hant">一場戰爭可能沖走多年的投資，所以人們只做短期計畫，把財富放在國外。</span></td><td>George Washington stepping down after two terms<span class="zh-full" lang="zh-Hant">華盛頓在兩任後卸任</span></td></tr>
+<tr><td><b>4. Dependable legal system</b><span class="zh-full" lang="zh-Hant">4. 可靠的法律制度</span></td><td>Courts enforce contracts fairly and fast enough to matter. You can sell on credit, borrow, lend and deal with strangers, so markets get bigger and allow more specialization.<span class="zh-full" lang="zh-Hant">法院公正且夠快地執行合約。你可以賒銷、借錢、放款、和陌生人做生意，所以市場變大，分工也能更細。</span></td><td>People only trade with family and friends they can trust, so businesses stay small.<span class="zh-full" lang="zh-Hant">人們只和信得過的家人朋友交易，所以企業一直很小。</span></td><td>The quiet base under every loan and long supply chain<span class="zh-full" lang="zh-Hant">每筆貸款和長供應鏈底下默默的基礎</span></td></tr>
+<tr><td><b>5. Competitive and open markets</b><span class="zh-full" lang="zh-Hant">5. 競爭開放的市場</span></td><td>Anyone can enter, compete and import, and failing firms can close. Competition pushes prices down and quality up, and bankruptcy frees capital and workers for better uses.<span class="zh-full" lang="zh-Hant">任何人都能進入市場、競爭和進口，失敗的公司可以倒閉。競爭壓低價格、提高品質；破產讓資本和勞工釋出到更好的用途。</span></td><td>Needless licenses and import duties shield existing firms, which then act like monopolies: higher prices, less output, fewer new ideas.<span class="zh-full" lang="zh-Hant">不必要的執照和進口關稅保護既有企業，讓它們像獨占者一樣：價格更高、產出更少、新點子更少。</span></td><td>South Korea letting failing firms go bankrupt; 10 to 12 licenses in Mumbai<span class="zh-full" lang="zh-Hant">南韓讓失敗的企業破產；孟買要 10 到 12 張執照</span></td></tr>
+</tbody></table></div>
 <div data-widget="instquiz"></div>
-
 <h3 id="layer4">Layer 4: where good institutions come from<span class="zh-full" lang="zh-Hant">第四層：好制度從哪裡來</span></h3>
-<p>This is the most debated question in development economics, and nobody has a single answer. The usual suspects are history, ideas, culture, geography and luck. The US shows how they mix: its Constitution was written when the ideas of John Locke and Adam Smith were popular, it inherited British legal traditions, it had an open frontier, and George Washington chose to stop at two terms. Take away one piece and the story might have gone differently. Geography, one of these deep roots, gets its own section next.<span class="zh-full" lang="zh-Hant">這是發展經濟學中最有爭議的問題，沒有人有單一答案。常見的候選答案是歷史、思想、文化、地理和運氣。美國展示了它們如何混合：憲法寫於洛克和亞當斯密思想盛行的時代，繼承了英國的法律傳統，有開放的邊疆，華盛頓也選擇在兩任後卸任。拿掉任何一塊，故事可能就不同。地理是這些深層根源之一，下一節專門討論。</span></p>
-
+<p>This is the least settled question in development economics. The US shows how the roots mix: its Constitution was written when the ideas of John Locke and Adam Smith were popular, it inherited British legal traditions, it had an open frontier, and George Washington chose to stop at two terms. Geography, one of these deep roots, gets its own section next.<span class="zh-full" lang="zh-Hant">這是發展經濟學中最沒有定論的問題。美國說明了這些根源如何交織：它的憲法寫於洛克和亞當斯密的思想盛行時，繼承了英國的法律傳統，有開放的邊疆，而華盛頓選擇在兩任後卸任。地理是這些深層根源之一，下一節單獨討論。</span></p>
 <h3 id="causes">Immediate and ultimate causes, side by side<span class="zh-full" lang="zh-Hant">直接原因與根本原因對照</span></h3>
-<div class="tbl"><table><thead><tr><th>Layer<span class="zh-full" lang="zh-Hant">層次</span></th><th>Type of cause<span class="zh-full" lang="zh-Hant">原因類型</span></th><th>Case in this session<span class="zh-full" lang="zh-Hant">本堂案例</span></th></tr></thead><tbody>
-<tr><td>Factors of production<span class="zh-full" lang="zh-Hant">生產要素</span></td><td>Immediate<span class="zh-full" lang="zh-Hant">直接</span></td><td>Japan, South Korea and China catching up by building capital (section 7)<span class="zh-full" lang="zh-Hant">日本、南韓、中國靠累積資本追趕（第 7 節）</span></td></tr>
-<tr><td>Incentives<span class="zh-full" lang="zh-Hant">誘因</span></td><td>In between<span class="zh-full" lang="zh-Hant">中間</span></td><td>Collective farms in China; North Korean farmers<span class="zh-full" lang="zh-Hant">中國集體農場；北韓農民</span></td></tr>
-<tr><td>Institutions<span class="zh-full" lang="zh-Hant">制度</span></td><td>Deep<span class="zh-full" lang="zh-Hant">深層</span></td><td>The Korean split; the Mumbai café (section 9)<span class="zh-full" lang="zh-Hant">南北韓分裂；孟買咖啡館（第 9 節）</span></td></tr>
-<tr><td>History, ideas, culture, geography, luck<span class="zh-full" lang="zh-Hant">歷史、思想、文化、地理、運氣</span></td><td>Ultimate<span class="zh-full" lang="zh-Hant">根本</span></td><td>The US founding; coasts and rivers (section 10)<span class="zh-full" lang="zh-Hant">美國建國；海岸與河流（第 10 節）</span></td></tr>
+<div class="tbl"><table><thead><tr><th>Layer<span class="zh-full" lang="zh-Hant">層次</span></th><th>Question it answers<span class="zh-full" lang="zh-Hant">回答的問題</span></th><th>Answer<span class="zh-full" lang="zh-Hant">答案</span></th><th>Type of cause<span class="zh-full" lang="zh-Hant">原因類型</span></th><th>Case<span class="zh-full" lang="zh-Hant">案例</span></th></tr></thead><tbody>
+<tr><td>1</td><td>Why is a worker in a rich country so productive?<span class="zh-full" lang="zh-Hant">為什麼富國的勞工這麼有生產力？</span></td><td>Factors of production: physical capital, human capital, technology, entrepreneurs<span class="zh-full" lang="zh-Hant">生產要素：實體資本、人力資本、技術、企業家</span></td><td>Immediate<span class="zh-full" lang="zh-Hant">直接</span></td><td>Japan, South Korea and China catching up (section 7)<span class="zh-full" lang="zh-Hant">日本、南韓、中國的追趕（第 7 節）</span></td></tr>
+<tr><td>2</td><td>Why did people build those factors?<span class="zh-full" lang="zh-Hant">人們為什麼會去累積這些要素？</span></td><td>Incentives: people keep the reward from their effort<span class="zh-full" lang="zh-Hant">誘因：人們能保有努力的成果</span></td><td>In between<span class="zh-full" lang="zh-Hant">中間</span></td><td>China's collective farms<span class="zh-full" lang="zh-Hant">中國集體農場</span></td></tr>
+<tr><td>3</td><td>Where do the incentives come from?<span class="zh-full" lang="zh-Hant">誘因從哪裡來？</span></td><td>Institutions: five rules that protect the reward<span class="zh-full" lang="zh-Hant">制度：保護成果的五項規則</span></td><td>Deep<span class="zh-full" lang="zh-Hant">深層</span></td><td>The Korean split; the Mumbai café (section 9)<span class="zh-full" lang="zh-Hant">南北韓分裂；孟買咖啡館（第 9 節）</span></td></tr>
+<tr><td>4</td><td>Where do good institutions come from?<span class="zh-full" lang="zh-Hant">好制度從哪裡來？</span></td><td>History, ideas, culture, geography, luck<span class="zh-full" lang="zh-Hant">歷史、思想、文化、地理、運氣</span></td><td>Ultimate, and the least settled<span class="zh-full" lang="zh-Hant">根本原因，也最沒有定論</span></td><td>The US founding; coasts and rivers (section 10)<span class="zh-full" lang="zh-Hant">美國建國；海岸與河流（第 10 節）</span></td></tr>
 </tbody></table></div>
 <p>One warning about cause and effect. Rich countries tend to have more capital, better institutions and better coastlines all at once, so a simple correlation cannot tell you which one matters. You need a comparison that holds the others fixed. That is exactly why the Korean peninsula gets used so often.<span class="zh-full" lang="zh-Hant">關於因果有一個提醒。富國往往同時擁有更多資本、更好的制度和更好的海岸線，所以單純的相關性無法告訴你哪個重要。你需要一個把其他因素固定住的比較。這正是朝鮮半島常被拿來用的原因。</span></p>
 <p class="key">Exam move: answer in layers. "The immediate reason is ... . But that depends on incentives, which come from institutions such as ... . And those institutions were shaped by ... ."<span class="zh-full" lang="zh-Hant">考試技巧：分層回答。「直接原因是……。但這取決於誘因，誘因來自……等制度。而這些制度又是由……形塑的。」</span></p>
@@ -679,17 +640,13 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 <p class="note-small">The 2024 Nobel prize in economics went to Daron Acemoglu, Simon Johnson and James Robinson for research on how institutions form and shape prosperity.<span class="zh-full" lang="zh-Hant">2024 年諾貝爾經濟學獎頒給 Acemoglu、Johnson 和 Robinson，表彰他們對制度如何形成並影響繁榮的研究。</span></p>
 
 <h3 id="mumbai">The road to opening a café in Mumbai<span class="zh-full" lang="zh-Hant">在孟買開一家咖啡館的路</span></h3>
-<p>Koinonia Coffee Roasters roasts beans from the owner's family estate in Chikmagalur and already ships 20 to 30 tons a year to Melbourne. So these are capable business people. The hard part was opening a small café at home.<span class="zh-full" lang="zh-Hant">Koinonia Coffee Roasters 烘焙老闆家族在 Chikmagalur 莊園的咖啡豆，每年已經出口 20 到 30 噸到墨爾本。所以他們是有能力的生意人。難的是在自己國家開一家小咖啡館。</span></p>
+<p>Koinonia Coffee Roasters already ships 20 to 30 tons of coffee a year to Melbourne, so these are capable business people. The hard part was opening a small café at home.<span class="zh-full" lang="zh-Hant">Koinonia Coffee Roasters 每年已經出口 20 到 30 噸咖啡到墨爾本，所以他們是有能力的生意人。難的是在國內開一家小咖啡館。</span></p>
 <div class="pair"><div><b>On paper<span class="zh-full" lang="zh-Hant">紙上</span></b><p>The World Bank once ranked India 130th of 190 for ease of doing business (New Zealand was first) and estimated 14 procedures and 26 days for a simple Mumbai license.<span class="zh-full" lang="zh-Hant">世界銀行曾把印度的經商便利度排在 190 國中第 130 名（紐西蘭第一），並估計在孟買申請簡單執照要 14 道程序、26 天。</span></p></div><div><b>In practice<span class="zh-full" lang="zh-Hant">實際上</span></b><p>The owner, Shannon D'Souza, said that if it had taken 26 days, "it would be a dream".<span class="zh-full" lang="zh-Hant">老闆 Shannon D'Souza 說，如果只要 26 天，「那簡直是夢想」。</span></p></div></div>
 <ol class="steps">
-<li><span>Lease commercial space before the company even exists, just to have an address to register. Their first "office" was a 60-square-foot board with the company name on it.<span class="zh-full" lang="zh-Hant">公司還沒成立，就得先租商業空間，只為了有地址可以登記。他們的第一個「辦公室」是一塊 60 平方英尺、寫著公司名稱的板子。</span></span></li>
-<li><span>Collect identity papers: a director number, a professional tax number and a tax card, with addresses that must match across tax, bank and national ID records.<span class="zh-full" lang="zh-Hant">準備身分文件：董事編號、職業稅號和稅務卡，而且稅務、銀行和國民身分紀錄上的地址必須一致。</span></span></li>
-<li><span>List in advance everything the business might ever do, from exporting green coffee to making coffee face cream. Adding anything later means amending the papers.<span class="zh-full" lang="zh-Hant">事先列出公司將來可能做的所有事，從出口生豆到做咖啡面霜。之後要新增任何業務都得修改文件。</span></span></li>
-<li><span>Work through 10 to 12 licenses with three consultants. Some licenses disappeared or were replaced while they were waiting.<span class="zh-full" lang="zh-Hant">在三位顧問協助下申請 10 到 12 張執照。有些執照在等待期間消失或被取代。</span></span></li>
-<li><span>Get a pollution permit for a roaster that runs on gas "like a kitchen stove": maps, process diagrams, chimney details, distance from the ocean, and 8 to 12 trips to an office an hour away. Files sat in a pile for weeks, with no clear yes or no.<span class="zh-full" lang="zh-Hant">為一台「像廚房爐子一樣」用瓦斯的烘豆機申請污染許可：地圖、流程圖、煙囪資料、離海的距離，跑一小時車程外的辦公室 8 到 12 趟。文件堆在那裡好幾週，沒有明確的准或不准。</span></span></li>
-<li><span>Refuse to pay any bribes, not even a hundred rupees. One licensing firm with a "100% record" would not even prepare the documents once told there would be no "considerations". The likely reason: it could not keep its record without them.<span class="zh-full" lang="zh-Hant">拒絕付任何賄賂，連一百盧比都不付。一家有「100% 成功紀錄」的代辦公司，一聽說不會有「好處」，連文件都不肯準備。可能的原因是：沒有好處，它就保不住那個紀錄。</span></span></li>
-<li><span>Import an espresso machine: that needs an import-export license, and duties protect local manufacturers. They kept receipts for everything.<span class="zh-full" lang="zh-Hant">進口一台義式咖啡機：需要進出口執照，關稅保護本地製造商。他們每一筆都留收據。</span></span></li>
-<li><span>Sit closed for three months, paying staff and rent, ready to open but waiting for paper. In the end they chose a tiny, hidden location in a village to survive.<span class="zh-full" lang="zh-Hant">停業三個月，照付員工薪水和房租，一切準備好了，只等文件。最後他們選了村子裡一個隱蔽的小地點才撐下來。</span></span></li>
+<li><span>Lease commercial space before the company even exists, just to have an address to register. List in advance everything the business might ever do.<span class="zh-full" lang="zh-Hant">公司還沒成立就得先租商業空間，只為了有個地址可以登記。還要事先列出公司未來可能做的所有業務。</span></span></li>
+<li><span>Work through 10 to 12 licenses with three consultants. A pollution permit for a gas roaster took 8 to 12 trips and weeks with no clear yes or no. Importing one espresso machine needed its own license.<span class="zh-full" lang="zh-Hant">請三位顧問處理 10 到 12 張執照。一台燒瓦斯的烘豆機申請污染許可，跑了 8 到 12 趟、等了好幾週都沒有明確答覆。進口一台義式咖啡機還要另外申請執照。</span></span></li>
+<li><span>Refuse to pay any bribes, not even a hundred rupees. One licensing firm with a "100% record" would not take the job without "considerations".<span class="zh-full" lang="zh-Hant">拒絕付任何賄賂，連一百盧比都不付。一家號稱「100% 成功」的代辦公司，沒有「好處」就不接案。</span></span></li>
+<li><span>Sit closed for three months, paying staff and rent. In the end they opened in a tiny, hidden location in a village.<span class="zh-full" lang="zh-Hant">關門等了三個月，照付員工薪水和房租。最後他們在一個村子裡很小、很隱密的地點開店。</span></span></li>
 </ol>
 <div class="flow"><span>More licenses and delays<span class="zh-full" lang="zh-Hant">執照更多、拖更久</span></span><i>→</i><span>Costlier, slower entry<span class="zh-full" lang="zh-Hant">進入更貴、更慢</span></span><i>→</i><span>Fewer cafés open<span class="zh-full" lang="zh-Hant">開業的咖啡館變少</span></span><i>→</i><span>Supply shifts left<span class="zh-full" lang="zh-Hant">供給左移</span></span><i>→</i><span>Higher prices, less output, idle capital<span class="zh-full" lang="zh-Hant">價格更高、產出更少、資本閒置</span></span></div>
 <div class="tbl"><table><thead><tr><th>Institution<span class="zh-full" lang="zh-Hant">制度</span></th><th>Touched by the café story?<span class="zh-full" lang="zh-Hant">咖啡館故事有碰到嗎？</span></th></tr></thead><tbody>
@@ -711,7 +668,7 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 <p class="sub">Think of the most prosperous cities you know. Most sit on a coast or a major river.<span class="zh-full" lang="zh-Hant">想想你知道最繁榮的城市，多半位於海岸或大河旁。</span></p>
 <div class="flow"><span>Cheap shipping by water<span class="zh-full" lang="zh-Hant">水運便宜</span></span><i>→</i><span>Lower trade costs<span class="zh-full" lang="zh-Hant">貿易成本降低</span></span><i>→</i><span>Bigger markets<span class="zh-full" lang="zh-Hant">市場變大</span></span><i>→</i><span>More specialization and new ideas<span class="zh-full" lang="zh-Hant">更多分工與新點子</span></span><i>→</i><span>Growth<span class="zh-full" lang="zh-Hant">成長</span></span></div>
 <p>That chain goes back to Adam Smith, and a map of output per square kilometer bears it out: GDP piles up along the US coasts and the Great Lakes, in Western Europe, Japan, coastal China and coastal Australia. Landlocked countries are, on average, poorer. Africa is huge, big enough to hold most of the US, China, India and much of Europe, yet Europe has two to three times more coastline. Africa is the most landlocked continent and has the most poor countries.<span class="zh-full" lang="zh-Hant">這條推理可以追溯到亞當斯密。每平方公里產出的地圖也證實了它：GDP 集中在美國沿海與五大湖區、西歐、日本、中國沿海和澳洲沿海。內陸國平均比較窮。非洲非常大，裝得下大部分的美國、中國、印度和大半個歐洲，但歐洲的海岸線是非洲的兩到三倍。非洲是最內陸的大陸，也是窮國最多的大陸。</span></p>
-<div data-widget="tariff" data-readout="optional"></div>
+<div data-widget="tariff" data-readout="optional" data-assume="Inland price = world price at the port + cost of getting goods inland" data-assume-zh="內陸價格 = 港口的世界價格 + 運到內陸的成本"></div>
 <div class="pair"><div><b>The lesson<span class="zh-full" lang="zh-Hant">結論</span></b><p>Being landlocked works like a <b>natural tariff</b><span class="zh">天然關稅</span>, a tax on every import and export. If a natural tariff slows growth, a tariff chosen by government is unlikely to help it.<span class="zh-full" lang="zh-Hant">內陸就像天然關稅，對每筆進出口課稅。如果天然關稅拖慢成長，政府自己設的關稅也不太可能有幫助。</span></p></div><div><b>The limit<span class="zh-full" lang="zh-Hant">限制</span></b><p>Geography is not destiny. Landlocked Switzerland is rich, and railways and roads can cut the natural tariff. Growth depends on natural advantages and on policy.<span class="zh-full" lang="zh-Hant">地理不是命運。內陸的瑞士很富有，鐵路和公路也能降低天然關稅。成長同時取決於天然條件和政策。</span></p></div></div>
 
 <h2 id="data">11. When the numbers themselves are weak<span class="zh-full" lang="zh-Hant">11. 當數字本身就不可靠</span></h2>
@@ -970,34 +927,6 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
   };
 
   /* 5. Guess the gap: one square is one basket of goods a year. */
-  W_.guess=host=>{
-    const s=shell(host,tr('Guess the gap','猜猜差距'),tr('One square is one basket: $100 of buying power a year, adjusted for prices. The average person in the Central African Republic gets 6. Guess Mexico and the United States, then reveal.','一格代表一籃：每年 100 美元的購買力（已調整物價）。中非共和國的平均每人有 6 籃。先猜墨西哥和美國，再揭曉。'),[[tr('Actual baskets','實際籃數'),'var(--ps)'],[tr('Your guess','你的猜測'),'var(--fg)']]);
-    let gm=40,gu=120,shown=false;
-    const C=[[L('CAR','中非'),6],[L('Mexico','墨西哥'),178],[L('United States','美國'),540]];
-    const draw=()=>{
-      const svg=s.svgs[0],W=Math.max(280,svg.getBoundingClientRect().width||500),colW=W/3,per=20,cell=Math.min(9,(colW-14)/per),gap=cell*.18;
-      const rows=Math.ceil(Math.max(540,gu)/per),H=40+rows*cell+30;
-      svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.replaceChildren();
-      C.forEach(([name,actual],i)=>{
-        const guess=i===0?6:i===1?gm:gu,x0=i*colW+(colW-per*cell)/2,y0=40;
-        const lab=el('text',{x:i*colW+colW/2,y:16,'text-anchor':'middle',class:'axl'},svg);lab.textContent=T(name);
-        if(zhOn()&&name[1]){const z=el('text',{x:i*colW+colW/2,y:30,'text-anchor':'middle',class:'tk'},svg);z.textContent=name[1];}
-        const n=Math.max(shown?actual:0,guess);
-        for(let k=0;k<n;k++){const x=x0+(k%per)*cell,y=y0+Math.floor(k/per)*cell;
-          const inA=shown&&k<actual,inG=k<guess;
-          el('rect',{x:x+gap/2,y:y+gap/2,width:cell-gap,height:cell-gap,rx:1,fill:inA||i===0?'var(--ps)':'none',stroke:inG&&i>0?'var(--fg)':'none','stroke-width':inG&&i>0?.9:0},svg);}
-        const cap=el('text',{x:i*colW+colW/2,y:y0+Math.ceil(n/per)*cell+16,'text-anchor':'middle',class:'tk'},svg);
-        cap.textContent=i===0?'6':shown?(i===2?'≈'+actual:String(actual))+' · '+tr('guess','猜')+' '+guess:tr('guess','猜')+' '+guess;
-      });
-      const rr=shown?[[tr('Mexico vs CAR','墨西哥 vs 中非'),'29×',true],[tr('United States vs Mexico','美國 vs 墨西哥'),'3×',true],[tr('United States vs CAR','美國 vs 中非'),'90×',true],[tr('Actual US compared with your guess','美國實際值 ÷ 你的猜測'),times(540/gu)]]:[[tr('Your Mexico guess','你猜墨西哥'),String(gm)],[tr('Your US guess','你猜美國'),String(gu)]];
-      s.show(rr,shown?tr('Most people put Mexico near the CAR. It is about 29 times richer, and much closer to the United States than to the poorest countries.','大多數人以為墨西哥和中非差不多。其實墨西哥約是中非的 29 倍，離美國比離最窮的國家近得多。'):tr('Set your two guesses, then reveal.','設定兩個猜測，再揭曉。'));
-    };
-    s.slider('gm',tr('Your guess: Mexico','你的猜測：墨西哥'),1,600,1,gm,v=>String(v),v=>{gm=v;draw();});
-    s.slider('gu',tr('Your guess: United States','你的猜測：美國'),1,900,1,gu,v=>String(v),v=>{gu=v;draw();});
-    s.button(tr('Reveal or hide the answer','揭曉／隱藏答案'),()=>{shown=!shown;draw();});
-    live(s,draw);
-  };
-
   /* 6. Compound growth and the rule of 70. */
   W_.compound=host=>{
     const s=shell(host,tr('Small growth gaps, huge level gaps','成長率差一點，水準差很多'),tr('Two economies start at the same income. Predict how far apart they end up, then check the doubling times against the rule of 70.','兩個經濟體從同樣的所得出發。先預測最後差多遠，再用 70 法則核對倍增時間。'),[[tr('Economy A','經濟體 A'),colors.d],[tr('Economy B','經濟體 B'),colors.mc]]);
@@ -1028,24 +957,6 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
   };
 
   /* 8. Keep asking why: from factors of production down to deep roots. */
-  W_.ladder=host=>{
-    host.classList.add('graph','wide');
-    const steps=[
-      [L('Why is a farmer in a rich country so productive?','為什麼富國的農民生產力這麼高？'),L('Factors of production','生產要素'),L('She works with physical capital (tractors, roads), human capital (skills in her head) and technological knowledge (soil science, genetics), brought together by entrepreneurs.','她擁有實體資本（曳引機、道路）、人力資本（腦中的技能）和技術知識（土壤學、遺傳學），由企業家組織起來。')],
-      [L('Why does her country have so much of these?','為什麼她的國家有這麼多生產要素？'),L('Incentives','誘因'),L('People build and learn when they keep the rewards. On China\'s collective farms, an extra bag of potatoes earned a worker 1/100 of a bag. Some 20 to 40 million people starved; growth came only after farmers could keep what they grew.','人們能保有成果時，才會建設和學習。在中國的集體農場，多種一袋馬鈴薯只能分到 1/100 袋。約 2,000 萬到 4,000 萬人餓死；直到農民能保有收成，成長才出現。')],
-      [L('Why do some countries have good incentives?','為什麼有些國家的誘因比較好？'),L('Institutions','制度'),L('Rules that protect rewards: property rights, honest government, political stability, a dependable legal system, and competitive, open markets.','保護成果的規則：財產權、誠實的政府、政治穩定、可靠的法律制度，以及競爭開放的市場。')],
-      [L('Why do some countries have good institutions?','為什麼有些國家有好制度？'),L('History, ideas, culture, geography, luck','歷史、思想、文化、地理、運氣'),L('The least settled part of the puzzle. The US Constitution was written when the ideas of Locke and Smith were popular, and George Washington chose to stop at two terms.','這是謎題中最沒有定論的部分。美國憲法寫於洛克和亞當斯密的思想盛行時，華盛頓也選擇在兩任後卸任。')]
-    ];
-    const head=make('div','g-head',null,host);make('span','g-kicker',tr('Dig deeper','往下挖'),head);make('h4',null,tr('Keep asking why','一直問為什麼'),head);make('p',null,tr('Each answer raises a deeper question. Move from the immediate cause of wealth to the ultimate one.','每個答案都帶出更深的問題。從財富的直接原因，一路挖到根本原因。'),head);
-    const wrap=make('div','ladder',null,host);let d=0;
-    const tools=make('div','g-ctrl sort-tools',null,host);
-    const next=make('button','g-btn',tr('Ask why again','再問一次為什麼'),tools);next.type='button';
-    const reset=make('button','g-btn',tr('Start over','重新開始'),tools);reset.type='button';
-    const render=()=>{wrap.replaceChildren();steps.slice(0,d+1).forEach(([q,a,ex],i)=>{const card=make('div','rung rung-'+i,null,wrap);make('span','rung-n',String(i+1),card);const body=make('div','rung-b',null,card);make('p','rung-q',T(q),body);make('p','rung-a',T(a),body);make('p','rung-ex',T(ex),body);});next.disabled=d>=steps.length-1;};
-    next.addEventListener('click',()=>{if(d<steps.length-1){d++;render();}});reset.addEventListener('click',()=>{d=0;render();});
-    render();
-  };
-
   /* 8b. Which institution is missing? Match each situation to one of the five key institutions. */
   W_.instquiz=host=>{
     host.classList.add('graph','wide');
@@ -1109,7 +1020,56 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
   };
 
   
-  window.EconWidgets={mount(root){root.querySelectorAll('[data-widget]').forEach(host=>{const init=W_[host.dataset.widget];if(init&&!host.dataset.ready){host.dataset.ready='1';init(host);}});}};
+    /* 5. Guess the gap: one square is one basket of goods a year. */
+  W_.guess=host=>{
+    const s=shell(host,tr('Guess the gap','猜猜差距'),tr('One square is one basket: $100 of buying power a year, adjusted for prices. The average person in the Central African Republic gets 6. Guess Mexico and the United States, then reveal.','一格代表一籃：每年 100 美元的購買力（已調整物價）。中非共和國的平均每人有 6 籃。先猜墨西哥和美國，再揭曉。'),[[tr('Actual baskets','實際籃數'),'var(--ps)'],[tr('Your guess','你的猜測'),'var(--fg)']]);
+    let gm=40,gu=120,shown=false;
+    const C=[[L('CAR','中非'),6],[L('Mexico','墨西哥'),178],[L('United States','美國'),540]];
+    const draw=()=>{
+      const svg=s.svgs[0],W=Math.max(280,svg.getBoundingClientRect().width||500),colW=W/3,per=20,cell=Math.min(9,(colW-14)/per),gap=cell*.18;
+      const rows=Math.ceil(Math.max(540,gu)/per),H=40+rows*cell+30;
+      svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.replaceChildren();
+      C.forEach(([name,actual],i)=>{
+        const guess=i===0?6:i===1?gm:gu,x0=i*colW+(colW-per*cell)/2,y0=40;
+        const lab=el('text',{x:i*colW+colW/2,y:16,'text-anchor':'middle',class:'axl'},svg);lab.textContent=T(name);
+        if(zhOn()&&name[1]){const z=el('text',{x:i*colW+colW/2,y:30,'text-anchor':'middle',class:'tk'},svg);z.textContent=name[1];}
+        const n=Math.max(shown?actual:0,guess);
+        for(let k=0;k<n;k++){const x=x0+(k%per)*cell,y=y0+Math.floor(k/per)*cell;
+          const inA=shown&&k<actual,inG=k<guess;
+          el('rect',{x:x+gap/2,y:y+gap/2,width:cell-gap,height:cell-gap,rx:1,fill:inA||i===0?'var(--ps)':'none',stroke:inG&&i>0?'var(--fg)':'none','stroke-width':inG&&i>0?.9:0},svg);}
+        const cap=el('text',{x:i*colW+colW/2,y:y0+Math.ceil(n/per)*cell+16,'text-anchor':'middle',class:'tk'},svg);
+        cap.textContent=i===0?'6':shown?(i===2?'≈'+actual:String(actual))+' · '+tr('guess','猜')+' '+guess:tr('guess','猜')+' '+guess;
+      });
+      const rr=shown?[[tr('Mexico vs CAR','墨西哥 vs 中非'),'29×',true],[tr('United States vs Mexico','美國 vs 墨西哥'),'3×',true],[tr('United States vs CAR','美國 vs 中非'),'90×',true],[tr('Actual US compared with your guess','美國實際值 ÷ 你的猜測'),times(540/gu)]]:[[tr('Your Mexico guess','你猜墨西哥'),String(gm)],[tr('Your US guess','你猜美國'),String(gu)]];
+      s.show(rr,shown?tr('Most people put Mexico near the CAR. It is about 29 times richer, and much closer to the United States than to the poorest countries.','大多數人以為墨西哥和中非差不多。其實墨西哥約是中非的 29 倍，離美國比離最窮的國家近得多。'):tr('Set your two guesses, then reveal.','設定兩個猜測，再揭曉。'));
+    };
+    s.slider('gm',tr('Your guess: Mexico','你的猜測：墨西哥'),1,600,1,gm,v=>String(v),v=>{gm=v;draw();});
+    s.slider('gu',tr('Your guess: United States','你的猜測：美國'),1,900,1,gu,v=>String(v),v=>{gu=v;draw();});
+    s.button(tr('Reveal or hide the answer','揭曉／隱藏答案'),()=>{shown=!shown;draw();});
+    live(s,draw);
+  };
+
+  /* 8. Keep asking why: from factors of production down to deep roots. */
+  W_.ladder=host=>{
+    host.classList.add('graph','wide');
+    const steps=[
+      [L('Why is a farmer in a rich country so productive?','為什麼富國的農民生產力這麼高？'),L('Factors of production','生產要素'),L('She works with physical capital (tractors, roads), human capital (skills in her head) and technological knowledge (soil science, genetics), brought together by entrepreneurs.','她擁有實體資本（曳引機、道路）、人力資本（腦中的技能）和技術知識（土壤學、遺傳學），由企業家組織起來。')],
+      [L('Why does her country have so much of these?','為什麼她的國家有這麼多生產要素？'),L('Incentives','誘因'),L('People build and learn when they keep the rewards. On China\'s collective farms, an extra bag of potatoes earned a worker 1/100 of a bag. Some 20 to 40 million people starved; growth came only after farmers could keep what they grew.','人們能保有成果時，才會建設和學習。在中國的集體農場，多種一袋馬鈴薯只能分到 1/100 袋。約 2,000 萬到 4,000 萬人餓死；直到農民能保有收成，成長才出現。')],
+      [L('Why do some countries have good incentives?','為什麼有些國家的誘因比較好？'),L('Institutions','制度'),L('Rules that protect rewards: property rights, honest government, political stability, a dependable legal system, and competitive, open markets.','保護成果的規則：財產權、誠實的政府、政治穩定、可靠的法律制度，以及競爭開放的市場。')],
+      [L('Why do some countries have good institutions?','為什麼有些國家有好制度？'),L('History, ideas, culture, geography, luck','歷史、思想、文化、地理、運氣'),L('The least settled part of the puzzle. The US Constitution was written when the ideas of Locke and Smith were popular, and George Washington chose to stop at two terms.','這是謎題中最沒有定論的部分。美國憲法寫於洛克和亞當斯密的思想盛行時，華盛頓也選擇在兩任後卸任。')]
+    ];
+    const head=make('div','g-head',null,host);make('span','g-kicker',tr('Dig deeper','往下挖'),head);make('h4',null,tr('Keep asking why','一直問為什麼'),head);make('p',null,tr('Each answer raises a deeper question. Move from the immediate cause of wealth to the ultimate one.','每個答案都帶出更深的問題。從財富的直接原因，一路挖到根本原因。'),head);
+    const wrap=make('div','ladder',null,host);let d=0;
+    const tools=make('div','g-ctrl sort-tools',null,host);
+    const next=make('button','g-btn',tr('Ask why again','再問一次為什麼'),tools);next.type='button';
+    const reset=make('button','g-btn',tr('Start over','重新開始'),tools);reset.type='button';
+    const render=()=>{wrap.replaceChildren();steps.slice(0,d+1).forEach(([q,a,ex],i)=>{const card=make('div','rung rung-'+i,null,wrap);make('span','rung-n',String(i+1),card);const body=make('div','rung-b',null,card);make('p','rung-q',T(q),body);make('p','rung-a',T(a),body);make('p','rung-ex',T(ex),body);});next.disabled=d>=steps.length-1;};
+    next.addEventListener('click',()=>{if(d<steps.length-1){d++;render();}});reset.addEventListener('click',()=>{d=0;render();});
+    render();
+  };
+
+  function assume(host){const a=host.dataset.assume;if(!a)return;const p=make('p','g-assume',a,host.querySelector('.g-plot')||host);if(host.dataset.assumeZh){const s=make('span','zh-full',host.dataset.assumeZh,p);s.lang='zh-Hant';}}
+  window.EconWidgets={mount(root){root.querySelectorAll('[data-widget]').forEach(host=>{const init=W_[host.dataset.widget];if(init&&!host.dataset.ready){host.dataset.ready='1';init(host);assume(host);}});}};
 })();
 </script>
 <script>

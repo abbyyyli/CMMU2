@@ -201,6 +201,7 @@ table.oil th, table.oil td { text-align: right; padding: 6px 8px; white-space: n
 table.oil th:first-child, table.oil td:first-child { text-align: left; font-weight: 700; }
 table.oil td.hi { background: var(--tint); color: var(--accent-ink); font-weight: 700; }
 
+.g-assume{margin:4px 2px 0;font-size:.74rem;line-height:1.5;color:var(--muted)}
 </style>
 <style id="system-theme">
 /* System appearance only changes colors. Print retains the light palette. */
@@ -505,7 +506,7 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 </tbody></table></div>
 <p>Riskier borrowers pay more. Rating agencies such as Standard &amp; Poor's grade bonds from <b>AAA</b> down to <b>D</b>; anything below <b>BBB-</b> is called a junk bond. In the video Starbucks is rated A-, and Illinois (A-) pays more to borrow than Virginia (AAA). <b>Collateral</b> lowers the rate too: if you default on a mortgage the bank takes the house, but "once you've been to Maui, the bank can't repossess your vacation."<span class="zh-full" lang="zh-Hant">風險越高的借款人付越多利息。標準普爾等評等機構從 <b>AAA</b> 評到 <b>D</b>；低於 <b>BBB-</b> 的叫垃圾債。影片中 Starbucks 是 A-，伊利諾州（A-）借錢的成本比維吉尼亞州（AAA）高。<b>擔保品</b>也會降低利率：房貸違約，銀行可以收走房子；但「去過茂宜島之後，銀行收不回你的假期」。</span></p>
 <p>A bond's <b>yield</b><span class="zh">殖利率</span> is the gain from holding it divided by the price paid. The face value is fixed, so the only way a bond can offer a higher yield is to sell for less.<span class="zh-full" lang="zh-Hant">債券的<b>殖利率</b>是持有的收益除以買價。面額固定，所以債券要提供更高的殖利率，唯一的方法就是賣得更便宜。</span></p>
-<div data-widget="bond" data-readout="optional"></div>
+<div data-widget="bond" data-readout="optional" data-assume="Yield = (1,000 − price) ÷ price" data-assume-zh="殖利率 = (1,000 − 價格) ÷ 價格"></div>
 <p>MRU's lesson from the three bonds: the 14.8% bond is not a free lunch. <b>Equally risky assets must pay the same return</b>, or everyone would buy the higher-yield one until its price rose. A high yield is a signal of high risk. Which bond to buy depends on how much risk you can live with.<span class="zh-full" lang="zh-Hant">MRU 從三張債券得出的結論：14.8% 那張不是免費午餐。<b>風險相同的資產報酬必須相同</b>，否則大家都會去買高殖利率的那張，直到它的價格上升。高殖利率代表高風險。要買哪一張，取決於你能承受多少風險。</span></p>
 <aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A Thai firm's rating is cut from A to BBB. What happens to the interest rate on its new bonds, and to the price of the bonds it already sold?<span class="zh-full" lang="zh-Hant">一家泰國公司的評等從 A 降到 BBB。它新發債券的利率會怎樣？已經賣出的舊債券價格又會怎樣？</span></p></aside>
 
@@ -541,7 +542,7 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 <p>A $100,000 house bought with a typical 20% down payment carries an $80,000 mortgage and $20,000 of <b>owner's equity</b>: what the owner would keep after selling and repaying the loan. Equity is the cushion. The <b>leverage ratio</b><span class="zh">槓桿比率</span> divides the mortgage by the owner's equity.<span class="zh-full" lang="zh-Hant">一棟 10 萬美元的房子，頭期款照一般的 20%，就有 8 萬美元房貸和 2 萬美元<b>屋主權益</b>：賣掉房子、還完貸款後屋主留下的錢。權益就是緩衝墊。<b>槓桿比率</b>是房貸除以屋主權益。</span></p>
 <div class="formula">Leverage ratio = mortgage ÷ owner's equity<br>20% down: 80,000 ÷ 20,000 = 4<br>5% down: 95,000 ÷ 5,000 = 19<span class="zh-full" lang="zh-Hant">槓桿比率 = 房貸 ÷ 屋主權益；頭期 20%：4；頭期 5%：19</span></div>
 <p>Before the crisis many homes were bought with 10%, 5% or even zero down. With 5% down, a fall to $90,000 leaves the house worth less than the $95,000 still owed: the owner is <b>underwater</b>, and equity is gone. That hurts the bank too, because in a foreclosure it gets a house worth less than the loan.<span class="zh-full" lang="zh-Hant">危機前很多房子是用 10%、5%，甚至零頭期款買的。頭期 5% 時，房價跌到 9 萬美元，房子的價值就低於還欠的 9.5 萬：屋主<b>溺水</b>（資不抵債），權益歸零。銀行也受傷，因為法拍時拿到的房子價值低於貸款。</span></p>
-<div data-widget="leverage" data-readout="optional"></div>
+<div data-widget="leverage" data-readout="optional" data-assume="Fall that wipes out equity = 1 ÷ (1 + leverage ratio)" data-assume-zh="吃光權益的跌幅 = 1 ÷ (1 + 槓桿比率)"></div>
 <h3 id="banklev">Weight 2: bank leverage<span class="zh-full" lang="zh-Hant">重物 2：銀行槓桿</span></h3>
 <p>Banks did the same thing with their own balance sheets. Lehman Brothers' leverage ratio rose from about 20 in 2004 to 44 by 2007. At 44, a fall of about 2.2% in the value of its assets wipes out its equity; when the fall came, Lehman was underwater and went bankrupt on September 15, 2008. Why would experienced managers do this? Cowen gives two reasons: <b>overconfidence</b> that house prices could not fall much, and <b>incentives</b>, since bonuses rose with profits while the managers did not personally go bankrupt when the bank did.<span class="zh-full" lang="zh-Hant">銀行在自己的資產負債表上也這樣做。雷曼兄弟的槓桿比率從 2004 年約 20 升到 2007 年的 44。44 倍時，資產價值只要跌約 2.2%，權益就歸零；跌勢一來，雷曼就資不抵債，在 2008 年 9 月 15 日破產。有經驗的經理人為什麼這樣做？Cowen 給了兩個理由：<b>過度自信</b>，認為房價不會大跌；以及<b>誘因</b>，獎金隨利潤上升，銀行倒了經理人自己卻不會破產。</span></p>
 <h3 id="securitization">Weight 3: securitization<span class="zh-full" lang="zh-Hant">重物 3：證券化</span></h3>
@@ -555,14 +556,8 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 <p class="note-small">The slide labels the third mortgage's equity $8,000; house value minus mortgage gives $10,000.<span class="zh-full" lang="zh-Hant">投影片把第三筆的權益標成 8,000 美元；房價減房貸是 10,000 美元。</span></p>
 <p>Standard &amp; Poor's, Moody's and Fitch rated such packages, often AA- or even AAA. Many turned out to be riskier than advertised, through outright fraud, rating failures, and above all complacency about house prices. Securitization itself is a useful tool: it frees cash for banks and spreads risk to investors who want it. The failure was in quality, transparency and ratings.<span class="zh-full" lang="zh-Hant">標準普爾、穆迪和惠譽替這些包裹評等，常常是 AA-，甚至 AAA。結果很多比宣傳的更危險，原因包括詐欺、評等失靈，最主要是對房價過度安心。證券化本身是有用的工具：讓銀行拿回現金，把風險分給願意承擔的投資人。失敗出在品質、透明度和評等。</span></p>
 <h3 id="shadow">Weight 4: the shadow banking system<span class="zh-full" lang="zh-Hant">重物 4：影子銀行體系</span></h3>
-<div class="tbl"><table><thead><tr><th>Part of the shadow banking system<span class="zh-full" lang="zh-Hant">影子銀行的組成</span></th><th>Names on the slide<span class="zh-full" lang="zh-Hant">投影片上的名字</span></th></tr></thead><tbody>
-<tr><td>Investment banks<span class="zh-full" lang="zh-Hant">投資銀行</span></td><td>Lehman Brothers, Bear Stearns</td></tr>
-<tr><td>Parts of commercial banks<span class="zh-full" lang="zh-Hant">商業銀行的部分業務</span></td><td>Citibank, Bank of America</td></tr>
-<tr><td>Money market funds<span class="zh-full" lang="zh-Hant">貨幣市場基金</span></td><td>Vanguard, PIMCO</td></tr>
-<tr><td>Issuers of asset-backed securities<span class="zh-full" lang="zh-Hant">資產擔保證券發行機構</span></td><td>BNP Paribas</td></tr>
-<tr><td>Hedge funds<span class="zh-full" lang="zh-Hant">避險基金</span></td><td>Bridgewater, Man, Brevan Howard</td></tr>
-</tbody></table></div>
 <p>A commercial bank is funded by insured deposits. An investment bank such as Lehman is funded by investors, mostly through short-term loans, with no comparable guarantee: "use at your own risk." These lenders are watchful and quick to flee. Shadow banks borrow short to lend long like a bank, but without deposit insurance, and by 2008 they lent more than traditional commercial banks.<span class="zh-full" lang="zh-Hant">商業銀行的資金來自有保險的存款。雷曼這類投資銀行的資金來自投資人，大多是短期借款，沒有類似的保障：「風險自負」。這些放款人非常警覺，一有風吹草動就跑。影子銀行<b>像銀行一樣借短放長，卻沒有存款保險</b>，到 2008 年它們的放款已超過傳統商業銀行。</span></p>
+<p class="note-small">Names on the slide: investment banks (Lehman Brothers, Bear Stearns), uninsured parts of commercial banks (Citibank, Bank of America), money market funds (Vanguard, PIMCO), issuers of asset-backed securities (BNP Paribas) and hedge funds (Bridgewater, Man, Brevan Howard).<span class="zh-full" lang="zh-Hant">投影片上的名字：投資銀行（雷曼兄弟、貝爾斯登）、商業銀行沒有存款保險的部分（花旗、美國銀行）、貨幣市場基金（Vanguard、PIMCO）、資產擔保證券發行機構（法國巴黎銀行）、避險基金（Bridgewater、Man、Brevan Howard）。</span></p>
 <h3 id="collapse">The nudge: house prices fall<span class="zh-full" lang="zh-Hant">最後一推：房價下跌</span></h3>
 <div class="flow"><span>2007: house prices fall<span class="zh-full" lang="zh-Hant">2007：房價下跌</span></span><i>→</i><span>Homeowners underwater, defaults rise<span class="zh-full" lang="zh-Hant">屋主溺水、違約增加</span></span><i>→</i><span>Mortgage securities, even AAA, lose value<span class="zh-full" lang="zh-Hant">房貸證券（連 AAA）貶值</span></span><i>→</i><span>Leveraged banks near insolvency<span class="zh-full" lang="zh-Hant">高槓桿銀行瀕臨資不抵債</span></span><i>→</i><span>Short-term lenders run from shadow banks<span class="zh-full" lang="zh-Hant">短期放款人從影子銀行撤資</span></span><i>→</i><span>Fire sales push prices lower<span class="zh-full" lang="zh-Hant">賤價拋售讓價格更低</span></span><i>→</i><span>Credit crunch, layoffs, store closings<span class="zh-full" lang="zh-Hant">信用緊縮、裁員、商店關門</span></span></div>
 <p>The last slide shows the response: a bank leverage ratio of 16.66, meaning more equity behind each dollar of assets. Cowen thinks requiring <b>more equity and less leverage</b> makes sense; it has been enacted, and "it remains to be seen" how well it works. A government guarantee for shadow banks would be the radical alternative, but it could expose taxpayers to trillions and would give leveraged managers even more reason to take risk.<span class="zh-full" lang="zh-Hant">最後一張投影片呈現的回應：銀行槓桿比率 16.66，也就是每一元資產背後有更多權益。Cowen 認為要求<b>更多權益、更少槓桿</b>是合理的；這已經立法實施，效果「還有待觀察」。激進的替代方案是政府為影子銀行提供擔保，但這可能讓納稅人承擔數兆美元，還會讓高槓桿的經理人更有理由冒險。</span></p>
@@ -595,7 +590,11 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 <tr><td><b>3. Diversify, keep fees low</b></td><td><b>Diversification</b><span class="zh">分散投資</span> lowers risk without lowering expected return.<span class="zh-full" lang="zh-Hant"><b>分散投資</b>降低風險而不降低預期報酬。</span></td><td>Enron employees held about 60% of their retirement savings in Enron stock and lost both job and savings.<span class="zh-full" lang="zh-Hant">Enron 員工把約 60% 的退休儲蓄放在 Enron 股票，結果工作和存款一起沒了。</span></td></tr>
 <tr><td><b>4. Even an imperfect market is more rational than you</b></td><td>Investors are overconfident and herd; anomalies exist but are small and fade once known.<span class="zh-full" lang="zh-Hant">投資人過度自信、從眾；異常現象存在，但很小，一被知道就消失。</span></td><td>Shiller's Nobel work; Monday, January and momentum effects; Buffett tells his heirs to buy index funds.<span class="zh-full" lang="zh-Hant">Shiller 獲諾貝爾獎的研究；週一、一月和動能效應；巴菲特叫繼承人買指數基金。</span></td></tr>
 </tbody></table></div>
-<p>The coin-flip experiment shows why rule 1 holds. Give 1,000 "experts" a coin to predict whether the market rises. After one year 500 are right, after two 250, and after five about 31 have never been wrong (MRU says 32). They will be called geniuses and write books, yet they were certain to exist whatever the market did.<span class="zh-full" lang="zh-Hant">擲銅板實驗說明規則 1。讓 1,000 位「專家」擲銅板預測市場漲跌。一年後 500 人猜對，兩年後 250 人，五年後約 31 人從沒錯過（MRU 說 32）。他們會被稱為天才、出書，但不管市場怎麼走，這些人一定會出現。</span></p>
+<p>The coin-flip experiment shows why rule 1 holds. Give 1,000 "experts" a coin to predict each year whether the market rises.<span class="zh-full" lang="zh-Hant">擲銅板實驗說明了規則一為什麼成立。給 1,000 位「專家」每人一枚銅板，每年預測市場會不會上漲。</span></p>
+<div class="tbl"><table><thead><tr><th>Year<span class="zh-full" lang="zh-Hant">年</span></th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead><tbody>
+<tr><td>Still never wrong<span class="zh-full" lang="zh-Hant">仍然從未猜錯</span></td><td>1,000</td><td>500</td><td>250</td><td>125</td><td>about 63<span class="zh-full" lang="zh-Hant">約 63</span></td><td>about 31<span class="zh-full" lang="zh-Hant">約 31</span></td></tr>
+</tbody></table></div>
+<p>Those 31 will be called geniuses and write books, yet pure chance guarantees they exist. MRU rounds the last number to 32.<span class="zh-full" lang="zh-Hant">這 31 人會被稱為天才、出書，但純粹靠機率就保證會有這些人。MRU 把最後一個數字寫成 32。</span></p>
 <div data-widget="fees" data-readout="optional"></div>
 <p class="note-small">MRU quotes about $57,000 and $70,000; those cannot be reproduced with a plain 8% return. The graph uses 10,000 × (1.08 − fee)^25, which gives $54,274 and $65,384. The lesson is the same.<span class="zh-full" lang="zh-Hant">MRU 說約 57,000 和 70,000 美元，用單純的 8% 報酬算不出來。圖表用 10,000 × (1.08 − 費用)^25，得到 54,274 和 65,384 美元。結論相同。</span></p>
 <p>Diversification removes the risk specific to one firm, not the risk of the whole market falling, as it did in 2008. It also argues against <b>home market bias</b>: a Thai investor with her savings in her employer's shares and a condo in the same city has job, shares and property all exposed to one local shock.<span class="zh-full" lang="zh-Hant">分散投資消除的是單一公司的風險，不是整個市場下跌的風險（像 2008 年）。它也反對<b>本國偏誤</b>：一位泰國投資人如果把儲蓄放在自己公司的股票，又在同一個城市買了公寓，工作、股票和房產就全部暴露在同一個地方性衝擊下。</span></p>
@@ -611,6 +610,7 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
 <tr><td><b>Diversification</b><span class="zh-full" lang="zh-Hant">分散</span></td><td>Better for the wealthier.<span class="zh-full" lang="zh-Hant">比較適合較富裕的人。</span></td><td>A house puts a big share of wealth in one asset in one place.<span class="zh-full" lang="zh-Hant">房子把大部分財富放在同一個地方的同一項資產。</span></td></tr>
 </tbody></table></div>
 <div class="flow"><span>Tax break for buyers<span class="zh-full" lang="zh-Hant">買方稅惠</span></span><i>→</i><span>Housing demand shifts right<span class="zh-full" lang="zh-Hant">住房需求右移</span></span><i>→</i><span>Fixed supply: price up a lot, seller gains<span class="zh-full" lang="zh-Hant">供給固定：價格大漲，賣方得利</span></span><i>/</i><span>Elastic supply: more homes, buyer gains<span class="zh-full" lang="zh-Hant">供給有彈性：房子變多，買方得利</span></span></div>
+<div data-widget="rentbuy" data-readout="optional" data-assume="Share to sellers = price rise ÷ size of the tax break" data-assume-zh="賣方拿到的比例 = 價格上漲 ÷ 稅惠大小"></div>
 <p>Where they agree: it is a <b>marginal</b> question. The price already reflects the average buyer's tax benefit, taste for stability and repair costs, so you gain from buying only where you differ from the average buyer. A low down payment is also high leverage (5% down is a ratio of 19), and one house is the opposite of diversification.<span class="zh-full" lang="zh-Hant">兩人的共識：這是<b>邊際</b>問題。房價已經反映一般買家的稅惠、對穩定的偏好和修繕成本，所以只有在你跟一般買家不同的地方，買房才有好處。低頭期款也就是高槓桿（頭期 5% 等於槓桿 19），而一棟房子正是分散投資的反面。</span></p>
 <p class="note-small">The duel assumes US tax rules; Thai taxes, mortgage terms and condo markets differ.<span class="zh-full" lang="zh-Hant">這場對決以美國稅制為前提；泰國的稅制、房貸條件和公寓市場不同。</span></p>
 
@@ -895,7 +895,36 @@ html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
     live(s,draw);
   };
 
-  window.EconWidgets={mount(root){root.querySelectorAll('[data-widget]').forEach(host=>{const init=W_[host.dataset.widget];if(init&&!host.dataset.ready){host.dataset.ready='1';init(host);}});}};
+    /* 7. Rent or buy: who gets a tax break for home buyers? */
+  W_.rentbuy=host=>{
+    const s=shell(host,tr('Who gets the tax break for home buyers?','購屋稅惠最後落到誰手上？'),tr('The tax break shifts demand up by 20. Change how easily builders can add homes and watch where the 20 goes.','稅惠讓需求上移 20。改變蓋房子的難易度，看這 20 跑去哪裡。'),[[tr('Demand D','需求 D'),colors.d],[tr('Supply of homes S','房屋供給 S'),colors.mc]]);
+    let v=85,on=true;
+    const kOf=v=>v<=0?0:.2*Math.pow(25,v/100);
+    const draw=()=>{
+      const k=kOf(v),sub=on?20:0,q2=50+sub/(1+k),p2=50+k*sub/(1+k),rise=p2-50,share=sub?rise/sub:0;
+      const P=Plot(s.svgs[0],100,100);P.axes(tr('Number of homes','房屋數量'),tr('House price','房價'));P.xticks([0,25,50,75,100]);P.yticks([0,25,50,75,100]);
+      P.line(50-50*k,k,colors.mc);
+      const qs=k>0?Math.min(92,50+42/k):92;P.tag(qs,50+k*(qs-50),'S','start',k>1?16:-8);
+      if(on){P.path([[0,100],[100,0]],colors.d,true);P.tag(88,12,'D1','start',-6);P.line(120,-1,colors.d);P.tag(88,32,'D2','start',-6);}
+      else{P.line(100,-1,colors.d);P.tag(88,12,'D','start',-6);}
+      P.guide(50,50);P.point(50,50,'var(--fg)');P.tag(50,50,on?'E1':'E','end',-9);
+      if(on){P.guide(q2,p2);P.point(q2,p2,'var(--fg)');P.tag(q2,p2,'E2','start',-9);}
+      const rows=[[tr('Size of the tax break','稅惠大小'),String(sub)],[tr('Price rise','價格上漲'),'+'+rise.toFixed(1)],[tr('Extra homes','增加的房屋'),'+'+(q2-50).toFixed(1)],[tr('Share of the break in the price (to sellers)','變成房價的比例（歸賣方）'),(share*100).toFixed(0)+'%',true],[tr('Share kept by buyers','買方保有的比例'),((1-share)*100).toFixed(0)+'%']];
+      let note;
+      if(!on)note=tr('No tax break yet. Switch it on.','還沒有稅惠，請打開。');
+      else if(share>=.6)note=tr('Supply is steep: builders cannot add many homes, so most of the tax break shows up as a higher price. Sellers and landowners get it, as Alex argues for San Francisco or New York.','供給很陡：建商蓋不出多少房子，所以大部分稅惠變成更高的房價，被賣方和地主拿走，就像 Alex 說的舊金山或紐約。');
+      else if(share<=.4)note=tr('Supply is flat: builders add homes, so the price barely moves and buyers keep most of the tax break, as Tyler argues for Texas or Florida.','供給很平：建商會蓋更多房子，所以價格幾乎不動，買方保有大部分稅惠，就像 Tyler 說的德州或佛州。');
+      else note=tr('Price and the number of homes both rise, so buyers and sellers split the tax break.','價格和房屋數量都上升，所以買賣雙方分享稅惠。');
+      s.show(rows,note);
+    };
+    const sl=s.slider('v',tr('How hard it is to add homes','蓋房子有多難'),0,100,1,v,v=>v<=0?tr('Very easy (flat supply)','非常容易（供給平坦）'):v<35?tr('Easy (elastic)','容易（有彈性）'):v>65?tr('Hard (inelastic)','困難（缺乏彈性）'):tr('Moderate','中等'),x=>{v=x;draw();});
+    s.seg(tr('Market','市場'),[['tx',tr('Builders can add homes','建商能蓋房子')],['sf',tr('Land is fixed','土地固定')]],null,x=>{v=x==='tx'?10:95;sl.set(v);draw();});
+    s.button(tr('Tax break on / off','稅惠 開／關'),()=>{on=!on;draw();});
+    live(s,draw);
+  };
+
+  function assume(host){const a=host.dataset.assume;if(!a)return;const p=make('p','g-assume',a,host.querySelector('.g-plot')||host);if(host.dataset.assumeZh){const s=make('span','zh-full',host.dataset.assumeZh,p);s.lang='zh-Hant';}}
+  window.EconWidgets={mount(root){root.querySelectorAll('[data-widget]').forEach(host=>{const init=W_[host.dataset.widget];if(init&&!host.dataset.ready){host.dataset.ready='1';init(host);assume(host);}});}};
 })();
 </script>
 <script>
