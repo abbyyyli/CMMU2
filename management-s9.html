@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/><title>Leadership · Management</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Noto+Serif+TC:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+/* Layout: one reading column with a sticky chapter rail; colors follow system appearance. */
+:root {
+  color-scheme: light;
+  --bg: var(--tone-fdf9f9); --panel: var(--tone-f8eef0); --paper: var(--tone-ffffff); --tint: var(--tone-fae9ed); --line: var(--tone-efdde2);
+  --fg: var(--tone-2f282b); --muted: var(--tone-7e6f74); --accent: var(--tone-c06c84); --accent-ink: var(--tone-9c4862);
+  --demand: var(--tone-3f5675); --supply: var(--tone-c06c84); --ext: var(--tone-6e3f55); --world: var(--tone-8a7a5c); --policy: var(--tone-3f7f7a);
+  --cs: var(--tone-a7cdb6); --ps: var(--tone-b2c4e3); --dwl: var(--tone-d9674f); --rev: var(--tone-e5c171); --rev2: var(--tone-f1dca8); --time: var(--tone-ddb3cb); --ts: var(--tone-bfdcc9);
+  --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; background: var(--bg); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.75; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(var(--header-rgb), .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
+.top-in { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 14px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.02rem; white-space: nowrap; }
+.brand small { font-family: var(--sans); font-weight: 500; color: var(--muted); font-size: .76rem; margin-left: 6px; letter-spacing: .06em; }
+.sessions { display: flex; gap: 4px; margin-left: auto; }
+.crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
+.sessions a.pill { text-decoration: none; transition: border-color .15s, color .15s; }
+.sessions a.pill:hover, .sessions a.pill:focus-visible { border-color: var(--accent); color: var(--accent-ink); background: var(--tint); }
+.sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
+.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--tone-ffffff); }
+.sessions .pill.off { opacity: .5; cursor: not-allowed; }
+.toc-btn { display: none; font: 500 .85rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--fg); border-radius: 8px; padding: 5px 12px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 52px; }
+.rail { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow: auto; padding-block: 34px 40px; font-size: .86rem; line-height: 1.5; }
+.rail .lbl { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.rail ol { list-style: none; margin: 0; padding: 0; }
+.rail li a { display: block; padding: 4px 10px; color: var(--muted); text-decoration: none; border-radius: 6px; }
+.rail li a:hover { color: var(--fg); background: var(--tint); }
+.rail li.h3 a { padding-left: 22px; font-size: .8rem; }
+.rail li a.on { color: var(--accent-ink); background: var(--tint); font-weight: 500; }
+
+main { min-width: 0; padding-block: 30px 120px; }
+.doc { max-width: 780px; }
+.hero { padding-block: 8px 26px; border-bottom: 1px solid var(--line); }
+.kick { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px; font-weight: 500; }
+.hero h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.25; margin: 0 0 12px; text-wrap: balance; }
+.lead { margin: 0; font-size: 1.04rem; max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.doc h2 { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 3.4rem 0 .3rem; text-wrap: balance; }
+.doc h3 { font-size: 1.1rem; line-height: 1.45; margin: 2.2rem 0 .5rem; color: var(--accent-ink); text-wrap: balance; }
+.sub { margin: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
+.doc p, .doc li { max-width: none; }
+.doc ul, .doc ol { padding-left: 1.25em; }
+.doc li { margin: .25rem 0; }
+.zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
+.hint { font-size: .9rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.hint b { flex: none; font-size: .72rem; color: var(--tone-ffffff); background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
+.key { background: var(--tint); padding: 12px 16px; border-radius: 8px; font-weight: 500; }
+.note-small { font-size: .8rem; color: var(--muted); }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.pair > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.pair b { color: var(--accent-ink); }
+.pair p { margin: 4px 0 0; font-size: .92rem; }
+
+.matrix { display: grid; grid-template-columns: minmax(90px, .7fr) repeat(2, minmax(0, 1fr)); gap: 6px; margin: 1rem 0 1.2rem; font-size: .9rem; max-width: 620px; }
+.matrix .mh { font-weight: 700; font-size: .8rem; color: var(--muted); align-self: end; padding: 0 4px 2px; }
+.matrix .mh.side { align-self: center; }
+.matrix .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-weight: 500; }
+.matrix .cell.hi { background: var(--tint); border-color: var(--accent); }
+.matrix small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; margin-top: 2px; line-height: 1.45; }
+
+.map { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 1rem 0; }
+.mcol { display: flex; flex-direction: column; gap: 8px; }
+.mbox { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; display: flex; flex-direction: column; gap: 2px; }
+.mbox b { font-size: .9rem; } .mbox span { color: var(--muted); } .mbox em { font-style: normal; color: var(--accent-ink); font-size: .78rem; font-weight: 500; }
+.mbox.good { border-color: var(--cs); } .mbox.ask { background: var(--tint); border-color: var(--accent); }
+.marrow { color: var(--accent); font-weight: 700; }
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.flow span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; line-height: 1.45; }
+.flow i { font-style: normal; color: var(--accent); font-weight: 700; }
+.formula { font-family: var(--mono); font-size: .9rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; line-height: 1.9; overflow-x: auto; }
+.steps { counter-reset: s; list-style: none; padding-left: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 10px; }
+.steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .75rem/22px var(--sans); text-align: center; margin-top: 3px; }
+.assign { margin: 1.6rem 0; border: 1px dashed var(--accent); border-radius: 10px; padding: 14px 16px; background: var(--paper); }
+.assign p { margin: 6px 0 0; font-size: .92rem; }
+
+.tbl { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.doc table { border-collapse: collapse; width: 100%; font-size: .88rem; line-height: 1.55; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.doc th { background: var(--panel); font-weight: 700; }
+.doc tr:last-child td { border-bottom: 0; }
+.drill .ans { filter: blur(5px); cursor: pointer; user-select: none; transition: filter .2s; }
+.drill .ans.shown { filter: none; user-select: auto; }
+
+.traps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 1rem; }
+.traps > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: .88rem; line-height: 1.55; }
+.traps s { color: var(--muted); text-decoration-color: var(--dwl); }
+.traps p { margin: 6px 0 0; font-weight: 500; }
+
+.qa-tools { margin: .4rem 0 .8rem; }
+.qa-tools button { font: 500 .82rem var(--sans); border: 1px solid var(--accent); background: var(--paper); color: var(--accent-ink); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+.qa { display: flex; flex-direction: column; gap: 6px; }
+.qa details { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.qa summary { cursor: pointer; padding: 10px 14px; font-weight: 500; font-size: .93rem; list-style: none; display: flex; gap: 10px; }
+.qa summary::before { content: "Q"; color: var(--accent); font-weight: 700; }
+.qa details[open] summary { border-bottom: 1px dashed var(--line); }
+.qa details p { margin: 0; padding: 10px 14px 12px 36px; font-size: .9rem; }
+
+/* graphs */
+.graph { max-width: 900px; margin: 1.8rem 0 2.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; }
+.g-head h4 { font-family: var(--serif); font-size: 1.12rem; margin: 2px 0 2px; line-height: 1.45; }
+.g-head p { margin: 0 0 10px; color: var(--muted); font-size: .86rem; }
+.g-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+.g-body { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.g-plot svg { width: 100%; height: auto; display: block; }
+.g-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.g-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.sl label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); line-height: 1.3; }
+.sl output { font-family: var(--mono); color: var(--fg); font-size: .8rem; }
+.sl input { width: 100%; accent-color: var(--accent); margin: 4px 0 0; }
+.g-btn { align-self: flex-start; font: 500 .8rem var(--sans); border: 1px solid var(--accent); color: var(--accent-ink); background: transparent; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.g-btn:hover { background: var(--tint); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; align-self: flex-start; }
+.seg button { font: 500 .8rem var(--sans); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--paper); }
+.chk { display: flex; gap: 8px; align-items: center; font-size: .8rem; color: var(--muted); }
+.chk input { accent-color: var(--accent); }
+.g-stats { margin: 0; border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+.st { display: flex; justify-content: space-between; gap: 10px; font-size: .8rem; line-height: 1.45; }
+.st dt { color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.st dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.st.big dd { font-weight: 500; color: var(--accent-ink); font-size: .92rem; }
+.g-note { margin: 12px 0 0; padding: 9px 12px; background: var(--tint); border-radius: 6px; font-size: .85rem; line-height: 1.6; }
+
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; flex: none; }
+.sw.none { background: transparent; }
+.sw.a-cs { background: var(--cs); } .sw.a-ps { background: var(--ps); } .sw.a-ps2 { background: var(--ps); outline: 1px solid var(--demand); }
+.sw.a-dwl { background: repeating-linear-gradient(45deg, var(--dwl) 0 2px, transparent 2px 4px); outline: 1px solid var(--dwl); }
+.sw.a-rev { background: var(--rev); } .sw.a-rev2 { background: var(--rev2); } .sw.a-time { background: var(--time); } .sw.a-ts { background: var(--ts); }
+.sw.ln { height: 3px; border-radius: 2px; width: 16px; }
+
+svg .ax { stroke: var(--muted); stroke-width: 1.2; }
+svg .axl { fill: var(--muted); font: 500 11px var(--sans); }
+svg .tk { fill: var(--muted); font: 500 10.5px var(--mono); }
+svg .gd { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+svg .cv { stroke-width: 2.6; fill: none; stroke-linecap: round; }
+svg .cv.dash { stroke-dasharray: 7 5; stroke-width: 2; }
+svg .cvl { font: 700 11.5px var(--sans); }
+svg .c-d { stroke: var(--demand); fill: var(--demand); } svg .c-s { stroke: var(--supply); fill: var(--supply); }
+svg .c-x { stroke: var(--ext); fill: var(--ext); } svg .c-w { stroke: var(--world); fill: var(--world); } svg .c-t { stroke: var(--policy); fill: var(--policy); }
+svg text.cvl { stroke: none; }
+svg .pt { fill: var(--paper); stroke: var(--fg); stroke-width: 2; }
+svg .ptl { fill: var(--fg); font: 700 11px var(--sans); }
+svg .atag { fill: var(--fg); font: 700 11px var(--sans); opacity: .8; }
+svg .a-cs { fill: var(--cs); fill-opacity: .6; } svg .a-ps { fill: var(--ps); fill-opacity: .6; }
+svg .a-ps2 { fill: var(--ps); fill-opacity: .95; } svg .a-ts { fill: var(--ts); fill-opacity: .6; }
+svg .a-dwl { fill: url(#dwlHatch); stroke: var(--dwl); stroke-width: 1.2; }
+svg .a-rev { fill: var(--rev); fill-opacity: .75; } svg .a-rev2 { fill: var(--rev2); fill-opacity: .8; } svg .a-time { fill: var(--time); fill-opacity: .65; }
+
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .a-prof { fill: var(--cs); fill-opacity: .75; } svg .a-loss { fill: var(--dwl); fill-opacity: .35; }
+.sw.a-prof { background: var(--cs); } .sw.a-loss { background: var(--dwl); opacity: .5; }
+.twin { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tw-t { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.g-ctrl .g-btn + .g-btn { margin-top: -4px; }
+.graph.wide .g-body { grid-template-columns: minmax(0, 1fr); }
+.graph.wide .g-side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 700px) { .twin, .graph.wide .g-side { grid-template-columns: minmax(0, 1fr); } }
+svg polyline.cv { fill: none !important; }
+
+.graph { background: var(--paper); }
+.g-note { background: var(--tint); }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail { display: none; position: fixed; inset: 64px 0 0 0; max-height: none; background: var(--bg); z-index: 15; padding: 20px 16px 60px; }
+  .rail.open { display: block; }
+  .toc-btn { display: inline-block; }
+  .g-body { grid-template-columns: minmax(0, 1fr); }
+  .map { grid-template-columns: minmax(0, 1fr); }
+  .marrow { transform: rotate(90deg); justify-self: center; }
+}
+@media (max-width: 560px) { .pair, .traps { grid-template-columns: minmax(0, 1fr); } }
+/* Management components */
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.tcard { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.tcard .tnum { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: var(--tone-ffffff); font: 700 .78rem/24px var(--sans); text-align: center; }
+.tcard p { margin: 0; color: var(--muted); font-size: .88rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.tags span { font-size: .74rem; background: var(--tint); color: var(--accent-ink); padding: 1px 8px; border-radius: 999px; font-weight: 500; }
+.method, .loop, .cascade { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.method span, .loop span, .cascade span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 5px 11px; line-height: 1.4; }
+.method span.hi { background: var(--tint); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+.method i, .loop i, .cascade i { font-style: normal; color: var(--accent); font-weight: 700; }
+.loop i.back { font-size: 1.1rem; }
+.cascade { flex-direction: column; align-items: flex-start; gap: 2px; }
+.cascade span:nth-of-type(2) { margin-left: 18px; } .cascade span:nth-of-type(3) { margin-left: 36px; } .cascade span:nth-of-type(4) { margin-left: 54px; }
+.cascade i:nth-of-type(1) { margin-left: 14px; } .cascade i:nth-of-type(2) { margin-left: 32px; } .cascade i:nth-of-type(3) { margin-left: 50px; }
+.four { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.four > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+.four b { font-size: .9rem; color: var(--accent-ink); } .four p { margin: 4px 0 0; font-size: .84rem; color: var(--muted); line-height: 1.5; }
+
+.ladder { display: grid; grid-template-columns: minmax(0, 1fr) 118px 118px; grid-template-rows: repeat(5, auto); gap: 5px 8px; margin: 1rem 0 .3rem; max-width: 640px; }
+.lv { grid-column: 1; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; font-weight: 700; font-size: .9rem; line-height: 1.35; }
+.lv small { display: block; font-weight: 400; color: var(--muted); font-size: .78rem; }
+.lv.l5 { grid-row: 1; margin-inline: 22%; } .lv.l4 { grid-row: 2; margin-inline: 16%; } .lv.l3 { grid-row: 3; margin-inline: 10%; } .lv.l2 { grid-row: 4; margin-inline: 5%; } .lv.l1 { grid-row: 5; }
+.lv.l5, .lv.l4 { background: var(--tone-f6e9f4); } .lv.l3 { background: var(--tint); } .lv.l2, .lv.l1 { background: var(--tone-eaf2ee); }
+.erg { border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .84rem; text-align: center; padding: 6px; }
+.erg.g { grid-column: 2; grid-row: 1 / span 2; background: var(--tone-ebd7ea); color: var(--tone-6e3f6a); }
+.erg.r { grid-column: 3; grid-row: 2 / span 2; background: var(--tint); color: var(--accent-ink); }
+.erg.e { grid-column: 2; grid-row: 4 / span 2; background: var(--tone-d9ebe1); color: var(--tone-2f6b4f); }
+
+.mw { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 1.6rem 0 2rem; }
+.mw-body { margin-top: 10px; }
+.hz-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.hz-t { margin: 0 0 6px; font-weight: 700; font-size: .88rem; } .hz-t small { font-weight: 400; color: var(--muted); }
+.chips { display: flex; flex-direction: column; gap: 5px; }
+.chip { display: flex; justify-content: space-between; gap: 10px; font: 500 .84rem var(--sans); text-align: left; background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 7px; padding: 6px 10px; cursor: pointer; }
+.chip em { font-style: normal; font-size: .74rem; color: var(--muted); }
+.hz-cols > div:first-child .chip[aria-pressed="true"] { border-color: var(--dwl); background: var(--tone-fcedea); }
+.hz-cols > div:first-child .chip[aria-pressed="true"] em { color: var(--tone-a8432f); }
+.hz-cols > div:last-child .chip[aria-pressed="true"] { border-color: var(--tone-6fae8b); background: var(--tone-eaf5ee); }
+.hz-cols > div:last-child .chip[aria-pressed="true"] em { color: var(--tone-2f6b4f); }
+.scale { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 6px; margin-top: 18px; }
+.half { height: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 7px; position: relative; overflow: hidden; }
+.half i { position: absolute; top: 0; bottom: 0; transition: width .25s; }
+.half.left i { right: 0; background: var(--dwl); } .half.right i { left: 0; background: var(--tone-6fae8b); }
+@media (prefers-reduced-motion: reduce) { .half i { transition: none; } }
+.zero { font: 700 .8rem var(--mono); color: var(--muted); }
+.scale-l { display: flex; justify-content: space-between; font-size: .74rem; color: var(--muted); margin-top: 4px; }
+
+.kpi-flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, .8fr) auto minmax(0, 1fr); gap: 8px; align-items: stretch; margin-top: 12px; font-size: .84rem; }
+.kpi-flow > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; line-height: 1.45; }
+.kpi-flow > i { font-style: normal; color: var(--accent); font-weight: 700; align-self: center; }
+.kpi-flow b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.kpi-flow p { margin: 3px 0 0; } .kpi-flow ul { margin: 3px 0 0; padding-left: 1.1em; }
+.kpi-flow .bad { border-color: var(--dwl); background: var(--tone-fcedea); } .kpi-flow .good { border-color: var(--tone-6fae8b); background: var(--tone-eaf5ee); }
+
+.cmp-sel { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; font-size: .84rem; color: var(--muted); }
+.cmp-sel select { font: 500 .88rem var(--sans); padding: 5px 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); color: var(--fg); }
+table.cmp td:first-child { font-weight: 700; color: var(--muted); width: 22%; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); }
+.tabs button { font: 500 .86rem var(--sans); background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); padding: 6px 12px; cursor: pointer; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--accent-ink); border-bottom-color: var(--accent); }
+.ev { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+.ev > div { display: grid; grid-template-columns: 190px auto minmax(0, 1fr); gap: 10px; align-items: baseline; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: .86rem; line-height: 1.5; }
+.ev p { margin: 0; }
+.tag { font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.tag.gap { background: var(--tone-fce3dd); color: var(--tone-a8432f); } .tag.ok { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); }
+.tag.maybe { background: var(--tone-fbf0d9); color: var(--tone-8a6216); } .tag.na { background: var(--tone-eee9eb); color: var(--muted); }
+.issue { margin-top: 12px; background: var(--tint); border-radius: 8px; padding: 10px 14px; font-size: .9rem; }
+.issue p { margin: 4px 0 0; }
+
+.xgrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.xgrid > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 5px; font-size: .84rem; line-height: 1.4; }
+.xgrid small { color: var(--muted); font-size: .76rem; }
+.xgrid .ok, .xgrid .gap { align-self: flex-start; font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; }
+.xgrid .ok { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); } .xgrid .gap { background: var(--tone-fce3dd); color: var(--tone-a8432f); }
+
+@media (max-width: 760px) {
+  .three, .four { grid-template-columns: minmax(0, 1fr); }
+  .xgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hz-cols { grid-template-columns: minmax(0, 1fr); }
+  .kpi-flow { grid-template-columns: minmax(0, 1fr); } .kpi-flow > i { transform: rotate(90deg); justify-self: center; }
+  .ev > div { grid-template-columns: minmax(0, 1fr); gap: 3px; } .ev .tag { justify-self: start; }
+  .ladder { grid-template-columns: minmax(0, 1fr) 84px 84px; }
+}
+
+/* Session 4 + case page */
+.tcard small.dont { color: var(--muted); font-size: .78rem; border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 4px; }
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: .6rem 0 1rem; }
+.quotes q { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-style: italic; color: var(--muted); font-size: .9rem; }
+.six { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.six > div { display: flex; gap: 10px; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .88rem; line-height: 1.5; }
+.six span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .76rem/24px var(--sans); text-align: center; }
+a.cta { display: inline-block; background: var(--accent); color: var(--tone-ffffff); text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: 8px; }
+a.cta:hover { background: var(--accent-ink); }
+blockquote.say { margin: .6rem 0; padding: 12px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; font-size: .92rem; line-height: 1.7; }
+.timeline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 1rem 0; }
+.timeline > div { background: var(--paper); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 10px; padding: 10px 14px; font-size: .88rem; line-height: 1.5; }
+.timeline time { font: 500 .76rem var(--mono); color: var(--accent-ink); display: block; }
+.timeline p { margin: 4px 0 0; color: var(--muted); }
+.score { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 1rem 0; }
+.score > div { border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; border: 1px solid var(--line); }
+.score .up { background: var(--tone-eaf5ee); border-color: var(--tone-a9d3ba); } .score .down { background: var(--tone-fcedea); border-color: var(--tone-edc2b8); }
+.score b::after { margin-left: 6px; font-size: .78rem; } .score .up b::after { content: "improved"; color: var(--tone-2f6b4f); } .score .down b::after { content: "worse"; color: var(--tone-a8432f); }
+.score ul { margin: 6px 0 0; padding-left: 1.1em; }
+
+.jcm { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, .9fr); gap: 16px; }
+.jdims { display: flex; flex-direction: column; gap: 8px; }
+.jd.g0 label span { color: var(--tone-6e3f6a); } .jd.g1 label span { color: var(--accent-ink); } .jd.g2 label span { color: var(--tone-2f6b4f); }
+.jstates { display: flex; flex-direction: column; gap: 12px; padding-top: 4px; }
+.jst span { font-size: .8rem; font-weight: 500; }
+.jbar { height: 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); overflow: hidden; margin-top: 3px; }
+.jbar i { display: block; height: 100%; transition: width .25s; }
+.jst.g0 .jbar i { background: var(--tone-b98ab5); } .jst.g1 .jbar i { background: var(--accent); } .jst.g2 .jbar i { background: var(--tone-6fae8b); }
+@media (prefers-reduced-motion: reduce) { .jbar i { transition: none; } }
+.jout ul { margin: 8px 0 0; padding-left: 1.1em; font-size: .82rem; color: var(--muted); }
+.jlvl { display: inline-block; font-weight: 700; padding: 3px 12px; border-radius: 999px; font-size: .86rem; }
+.jlvl.strong { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); } .jlvl.moderate { background: var(--tone-fbf0d9); color: var(--tone-8a6216); } .jlvl.weak { background: var(--tone-fce3dd); color: var(--tone-a8432f); }
+.jgns { margin-top: 14px; }
+
+.qz-item { font-size: 1rem; font-weight: 500; margin: 4px 0 12px; }
+.qz-opts { display: grid; gap: 8px; }
+.qz-opts.grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 520px; }
+.qz-opts.row5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.qz-o { font: 500 .88rem var(--sans); background: var(--bg); border: 1px solid var(--line); color: var(--fg); border-radius: 8px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; text-align: center; }
+.qz-o small { color: var(--muted); font-size: .74rem; font-weight: 400; }
+.qz-o:hover { border-color: var(--accent); }
+.qz-o.right { background: var(--tone-e3f2e9); border-color: var(--tone-6fae8b); } .qz-o.wrong { background: var(--tone-fce3dd); border-color: var(--dwl); }
+.qz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: .8rem; color: var(--muted); }
+
+.rsteps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.rsteps > div { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: .85rem; line-height: 1.5; }
+.rsteps > div.g { background: var(--tint); border-color: var(--accent); }
+.rsteps b { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.rsteps p { margin: 4px 0 0; }
+.risk { font-size: .88rem; } .risk b { font-size: .72rem; color: var(--tone-ffffff); background: var(--tone-b98a2e); padding: 1px 7px; border-radius: 4px; margin-right: 6px; }
+.sayd summary { cursor: pointer; font-weight: 500; color: var(--accent-ink); font-size: .9rem; }
+
+@media (max-width: 760px) {
+  .quotes, .six, .timeline, .rsteps { grid-template-columns: minmax(0, 1fr); }
+  .score { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jcm { grid-template-columns: minmax(0, 1fr); }
+  .qz-opts.row5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+
+.eq-controls{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}.eq-controls button,.eq-controls select{font:500 .86rem var(--sans);color:var(--accent-ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 12px;max-width:100%;cursor:pointer}.eq-controls button[aria-pressed="true"]{background:var(--tint);border-color:var(--accent)}.eq-result{background:var(--tint);border-radius:8px;padding:14px;min-height:100px}.eq-result p{margin:5px 0}.eq-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.eq-grid>div{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--paper)}.eq-grid b{color:var(--accent-ink)}.eq-num{font:500 1.8rem var(--mono);display:block;color:var(--accent-ink)}.eq-map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.eq-map>div{padding:16px;background:var(--paper);border:1px solid var(--line);border-radius:10px}.eq-map p{margin:6px 0}body{margin:0}.hint span{min-width:0} @media(max-width:600px){.eq-grid,.eq-map{grid-template-columns:minmax(0,1fr)}.hint{flex-wrap:wrap}.mw{padding:14px}.doc{overflow-wrap:break-word}}
+
+html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}@media(max-width:900px){.rail.open{top:var(--header-height,64px);max-height:calc(100vh - var(--header-height,64px));bottom:0}}
+.culture-rows{display:grid;gap:18px;margin:18px 0}.culture-row{border-bottom:1px solid var(--line);padding-bottom:12px}.culture-row:last-child{border:0}.culture-dimension{font-weight:700;font-size:.88rem;margin-bottom:6px;color:var(--accent-ink)}.culture-bar{display:grid;grid-template-columns:100px minmax(0,1fr) 30px;gap:9px;align-items:center;margin:5px 0;font-size:.8rem}.culture-track{height:11px;background:var(--bg);border-radius:99px;overflow:hidden}.culture-track i{display:block;height:100%;background:var(--accent);border-radius:99px}.culture-bar.comparison .culture-track i{background:var(--demand)}.culture-bar output{font-family:var(--mono);text-align:right}.culture-cue{font:500 .8rem var(--mono);color:var(--accent-ink);margin-top:5px}.culture-compact p{margin:.4rem 0}.culture-answer{padding:14px;background:var(--tint);border-radius:8px;min-height:84px}.culture-answer p{margin:4px 0}.culture-count{font-size:.78rem;color:var(--muted)}.culture-roles{display:flex;flex-wrap:wrap;gap:6px}.culture-roles button{font-size:.8rem}.eq-controls label{min-width:0;max-width:100%}.eq-controls select{display:block;width:100%;max-width:100%;margin-top:5px}.source{margin-top:1rem}@media(max-width:560px){.culture-bar{grid-template-columns:82px minmax(0,1fr) 25px;gap:7px}.eq-controls button{padding:7px 9px}.hint{flex-wrap:wrap}.doc td,.doc th{padding:8px}}
+
+.context-diagram .flow{align-items:center;gap:5px;font-size:.8rem;margin:.8rem 0}.context-diagram .flow span{padding:4px 7px}.context-diagram small{display:block;color:var(--muted);font-size:.8rem;margin-top:7px}
+.message-chain{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:9px;margin:1rem 0}.message-chain>div{border:1px solid var(--line);background:var(--paper);border-radius:9px;padding:13px}.message-chain>div.hi{background:var(--tint);border-color:var(--accent)}.message-chain b{font-size:.83rem;color:var(--accent-ink)}.message-chain p{margin:5px 0 0;font-size:.9rem}.message-chain>i{font-style:normal;color:var(--accent)}
+.culture-map{margin:1.2rem 0 1.7rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px}.chart-axis-label,.culture-map figcaption{font:500 .8rem/1.6 var(--sans);color:var(--muted)}.pd-ua-chart{width:100%;max-width:560px;height:auto;display:block;margin:5px auto}.chart-grid{stroke:var(--line);stroke-width:1;fill:none}.chart-axis{stroke:var(--muted);stroke-width:1.3;fill:none}.chart-tick{fill:var(--muted);font:400 14px var(--mono)}.chart-country{font:500 16px var(--sans)}
+.culture-cue{font-family:var(--sans)}
+@media(max-width:560px){.message-chain{grid-template-columns:minmax(0,1fr);gap:6px}.message-chain>i{text-align:center;transform:rotate(90deg)}.culture-map{padding:10px}.chart-country{font-size:18px}}
+
+#map + .sub + .three > .tcard > .zh, .three > .tcard > .zh { align-self: flex-start; }
+
+.qz-o:focus-visible,.qz-nav .g-btn:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px}
+.qz-o[aria-disabled="true"]{cursor:default}
+
+
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid var(--tone-d5c6ca);border-radius:999px;background:var(--tone-eee6e8);position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:var(--tone-ffffff);border-radius:50%;box-shadow:0 1px 2px var(--tone-77777755)}
+.topswitch input:checked{background:var(--accent)}
+.topswitch input:checked:after{left:14px}
+.topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+
+/* Shared reading rhythm, with room for each chapter's own teaching tools. */
+.doc select{font-family:var(--sans);font-size:.88rem}
+html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
+@media(max-width:900px){.rail.open{top:var(--header-height,64px);bottom:0;inset-inline:0;max-height:calc(100vh - var(--header-height,64px))}}
+body.show-zh .legend>span,body.show-zh .steps li,body.show-zh .six>div,body.show-zh .qa summary,body.show-zh .chk{flex-wrap:wrap}
+body.show-zh .legend>span>.zh-full,body.show-zh .steps li>.zh-full,body.show-zh .six>div>.zh-full,body.show-zh .qa summary>.zh-full,body.show-zh .chk>.zh-full{flex:0 0 100%;min-width:0}
+body.show-zh .steps li{display:list-item;list-style:none}
+body.show-zh .steps li:before{display:inline-block;margin-right:10px;vertical-align:middle}
+body.show-zh .six>div>.zh-full{margin-left:34px;flex-basis:calc(100% - 34px)}
+body.show-zh .seg{flex-wrap:wrap;max-width:100%}
+body.show-zh .seg button{min-width:0;white-space:normal}
+body.show-zh .spectrum{min-width:0}
+body.show-zh .spectrum>span{min-width:0;overflow-wrap:anywhere}
+body.show-zh .formula>.zh-full{white-space:normal;font-family:var(--sans)}
+body.show-zh .mw .tabs button,body.show-zh .mw .qz-o,body.show-zh .graph .g-btn{overflow-wrap:anywhere}
+body.show-zh .funnel-level{height:auto;min-height:68px;flex-direction:column;gap:1px;white-space:normal;line-height:1.3}
+body.show-zh .funnel-level .zh-full{color:inherit;margin-top:0;font-size:.75em}
+body.show-zh .decision-step{height:auto;min-height:100px}
+body.show-zh .m-control label{flex-wrap:wrap}
+body.show-zh .m-control label .zh-full{flex-basis:100%;text-align:left}
+body.show-zh .decision-step>.zh-full{font-size:.8em;line-height:1.45}
+body.show-zh .score .up b:after{content:'改善'}
+body.show-zh .score .down b:after{content:'惡化'}
+@media(max-width:560px){body.show-zh .spectrum{grid-template-columns:minmax(0,1fr)}body.show-zh .m-choices button{min-height:65px}}
+
+/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
+
+.page-tools{display:flex;align-items:center;gap:14px;margin-left:8px;flex-shrink:0}
+.page-tools .topswitch{margin-left:0}
+.page-tools .practice-toggle{font-size:.72rem;padding:5px 10px}
+.page-tools .practice-toggle>.zh-full{display:none!important}
+body.show-zh .page-tools .practice-toggle{white-space:normal}
+.eq-controls label{min-width:0;max-width:100%}
+.eq-controls select{display:block;max-width:100%;margin-top:5px}
+body.show-zh .eq-controls button .zh-full{color:inherit}
+@media(max-width:560px){.top-in .sessions{order:2}.top-in .page-tools{order:3;flex-basis:100%;margin-left:0;justify-content:flex-end;padding-bottom:3px;gap:14px}.top-in .page-tools .topswitch{margin-left:0}.top-in{row-gap:6px}}
+@media print{.page-tools{display:none}}
+
+
+body.show-zh .culture-roles button{min-width:0;white-space:normal}
+body.show-zh .culture-cue .zh-full{font-family:var(--sans)}
+.chart-zh-key{font-size:.78rem;line-height:1.7;margin-top:8px}
+
+/* Expanded activity uses the existing colors, typography and bilingual switch. */
+.boss-controls[hidden],.boss-panel[hidden]{display:none!important}
+.boss-controls{position:relative;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+.boss-controls>span{flex-basis:100%;font-size:.85rem;font-weight:700;color:var(--accent-ink)}
+.boss-panel{margin-top:24px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.boss-panel h3{margin-top:1rem}.boss-panel h4{font-size:1.03rem;color:var(--accent-ink);margin:2rem 0 .65rem}
+.boss-panel blockquote{margin:1rem 0;padding:10px 18px;border-left:3px solid var(--accent);background:var(--paper);border-radius:0 8px 8px 0}
+
+.boss-panel .tbl th[scope="row"]{background:transparent;font-weight:600;width:23%}
+.boss-matrix table{min-width:650px}.boss-matrix td{width:38%}.supplement{margin:1.3rem 0;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+.supplement>summary{cursor:pointer;font-weight:600;color:var(--accent-ink)}.supplement .culture-map{border:0;padding-inline:0}
+@media(max-width:560px){.culture-bar{grid-template-columns:80px minmax(0,1fr) 28px}.boss-controls button{flex:1 1 120px}.boss-panel .tbl{font-size:.85rem}}
+@media print{.boss-controls{display:none!important}.boss-panel[hidden]{display:block!important}.boss-panel{break-before:page}.boss-panel h3,.boss-panel h4{break-after:avoid}.tbl{overflow:visible}.boss-matrix table{min-width:0}tr{break-inside:avoid}.supplement{display:none}.top,.rail{display:none!important}.wrap{display:block}.doc{max-width:none}main{padding:0}.boss-panel .qa details:not([open])>p{display:block}}
+
+.boss-panel .boss-analysis table{min-width:820px;table-layout:fixed}.boss-panel .boss-analysis th[scope="row"],.boss-panel .boss-analysis td{width:auto}.boss-analysis th,.boss-analysis td{overflow-wrap:break-word}
+@media print{.boss-panel .boss-analysis table{min-width:0}}
+</style>
+<style id="system-theme">
+/* System appearance only changes colors. Print retains the light palette. */
+:root {
+  --header-rgb: 253, 249, 249;
+  --tone-2f282b: #2f282b;
+  --tone-2f6b4f: #2f6b4f;
+  --tone-3f5675: #3f5675;
+  --tone-3f7f7a: #3f7f7a;
+  --tone-6e3f55: #6e3f55;
+  --tone-6e3f6a: #6e3f6a;
+  --tone-6fae8b: #6fae8b;
+  --tone-77777755: #77777755;
+  --tone-7e6f74: #7e6f74;
+  --tone-8a6216: #8a6216;
+  --tone-8a7a5c: #8a7a5c;
+  --tone-9c4862: #9c4862;
+  --tone-a7cdb6: #a7cdb6;
+  --tone-a8432f: #a8432f;
+  --tone-a9d3ba: #a9d3ba;
+  --tone-b2c4e3: #b2c4e3;
+  --tone-b98a2e: #b98a2e;
+  --tone-b98ab5: #b98ab5;
+  --tone-bfdcc9: #bfdcc9;
+  --tone-c06c84: #c06c84;
+  --tone-d5c6ca: #d5c6ca;
+  --tone-d9674f: #d9674f;
+  --tone-d9ebe1: #d9ebe1;
+  --tone-ddb3cb: #ddb3cb;
+  --tone-e3f2e9: #e3f2e9;
+  --tone-e5c171: #e5c171;
+  --tone-eaf2ee: #eaf2ee;
+  --tone-eaf5ee: #eaf5ee;
+  --tone-ebd7ea: #ebd7ea;
+  --tone-edc2b8: #edc2b8;
+  --tone-eee6e8: #eee6e8;
+  --tone-eee9eb: #eee9eb;
+  --tone-efdde2: #efdde2;
+  --tone-f1dca8: #f1dca8;
+  --tone-f6e9f4: #f6e9f4;
+  --tone-f8eef0: #f8eef0;
+  --tone-fae9ed: #fae9ed;
+  --tone-fbf0d9: #fbf0d9;
+  --tone-fce3dd: #fce3dd;
+  --tone-fcedea: #fcedea;
+  --tone-fdf9f9: #fdf9f9;
+  --tone-ffffff: #ffffff;
+}
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --header-rgb: 29, 24, 26;
+    --tone-2f282b: #EEE4E6;
+    --tone-2f6b4f: #A0D2B2;
+    --tone-3f5675: #93AECB;
+    --tone-3f7f7a: #8CC4BE;
+    --tone-6e3f55: #C9A3D6;
+    --tone-6e3f6a: #DAB3D6;
+    --tone-6fae8b: #8CC3A0;
+    --tone-77777755: #00000066;
+    --tone-7e6f74: #BEACB2;
+    --tone-8a6216: #E3C480;
+    --tone-8a7a5c: #C9B68C;
+    --tone-9c4862: #E6B3BE;
+    --tone-a7cdb6: #6E8C6B;
+    --tone-a8432f: #F0A48D;
+    --tone-a9d3ba: #669C7D;
+    --tone-b2c4e3: #667C96;
+    --tone-b98a2e: #D8B66B;
+    --tone-b98ab5: #BD99C1;
+    --tone-bfdcc9: #5F7A5C;
+    --tone-c06c84: #D79AA7;
+    --tone-d5c6ca: #8B737F;
+    --tone-d9674f: #E08A6F;
+    --tone-d9ebe1: #2C4135;
+    --tone-ddb3cb: #8C6680;
+    --tone-e3f2e9: #23372D;
+    --tone-e5c171: #C9A250;
+    --tone-eaf2ee: #29362F;
+    --tone-eaf5ee: #25372D;
+    --tone-ebd7ea: #413047;
+    --tone-edc2b8: #B77F70;
+    --tone-eee6e8: #4B3E45;
+    --tone-eee9eb: #30282D;
+    --tone-efdde2: #55424A;
+    --tone-f1dca8: #8F7A4A;
+    --tone-f6e9f4: #342938;
+    --tone-f8eef0: #2B2226;
+    --tone-fae9ed: #35272D;
+    --tone-fbf0d9: #3C3223;
+    --tone-fce3dd: #412B28;
+    --tone-fcedea: #382724;
+    --tone-fdf9f9: #1D181A;
+    --tone-ffffff: #241E21;
+  }
+  .topswitch input:after { background: var(--fg); }
+  .topswitch input:checked:after { background: var(--paper); }
+  .m-action.primary .zh-full, .m-pillrow button[aria-pressed="true"] .zh-full,
+  a.cta .zh-full, .risk b .zh-full, .hint b .zh-full, .tcard .tnum .zh-full { color: inherit; }
+}
+</style>
+<style>
+/* Session 8 culture components */
+svg.org{font-family:var(--sans);width:100%;height:auto;display:block;max-width:640px;margin:0 auto}
+svg.org text{fill:var(--fg);font-size:12.5px;font-weight:500}
+svg.org text.sm{font-size:10.5px;fill:var(--muted);font-weight:400}
+svg.org .bx{fill:var(--paper);stroke:var(--muted);stroke-width:1.2}
+svg.org .bx.hi{fill:var(--tint);stroke:var(--accent);stroke-width:1.6}
+svg.org .bx.cu{fill:var(--tone-eaf5ee);stroke:var(--tone-6fae8b)}
+svg.org .ln{stroke:var(--muted);stroke-width:1.5;fill:none}
+svg.org .ar{stroke:var(--accent-ink);stroke-width:1.6}
+svg .arw{fill:var(--accent)}
+.figbox{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px;margin:1rem 0}
+.figbox figcaption{font-size:.8rem;color:var(--muted);margin-top:6px}
+.checks{list-style:none;padding-left:0!important;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:1rem 0}
+.checks li{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:.86rem;line-height:1.45;margin:0}
+.checks li b{display:block;color:var(--accent-ink);font-size:.78rem;margin-bottom:2px}
+.pyr{display:flex;flex-direction:column;align-items:center;gap:4px;margin:1rem 0}
+.pyr>div{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 12px;text-align:center;font-size:.86rem;line-height:1.45}
+.pyr>div b{display:block;color:var(--accent-ink)}
+.pyr>div span{color:var(--muted);font-size:.8rem}
+.pyr .l4{width:46%}.pyr .l3{width:60%}.pyr .l2{width:76%}.pyr .l1{width:92%;background:var(--tint);border-color:var(--accent)}
+.ev-tabs [role=tabpanel]{padding-top:12px}
+.ev-tabs h4{font-family:var(--serif);font-size:1.08rem;margin:2px 0 6px}
+.ev-meta{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+.ev-meta span{font-size:.74rem;background:var(--tint);color:var(--accent-ink);padding:2px 9px;border-radius:999px;font-weight:500}
+.mw-label{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 4px}
+@media(max-width:760px){.checks{grid-template-columns:minmax(0,1fr)}.pyr .l4,.pyr .l3,.pyr .l2,.pyr .l1{width:100%}}
+@media print{.ev-tabs [role=tabpanel][hidden]{display:block!important}.ev-tabs .tabs{display:none}}
+</style><style>.rp-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:8px 0}.rp-lbl{min-width:6.5rem;font-weight:600;font-size:.86rem}.rp-opts{display:flex;flex-wrap:wrap;gap:6px}.rp-b{font:500 .86rem var(--sans);border:1px solid var(--line);background:var(--paper);color:var(--fg);padding:6px 14px;border-radius:999px;cursor:pointer}.rp-b:hover{border-color:var(--accent)}.rp-b[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--tone-ffffff)}.rp-b[aria-pressed=true] .zh-full{color:inherit}.rp-out{margin-top:12px;background:var(--tint);border-radius:10px;padding:12px 14px}.rp-out p{margin:.25rem 0}.rp-r{font-weight:700;color:var(--accent-ink)}.rp-style{font-weight:600}.rp-wait{color:var(--muted)}</style></head><body><svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arw"/></marker><marker id="arw2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arw"/></marker></defs></svg><header class="top"><div class="top-in"><nav aria-label="Breadcrumb" class="crumbs"><a href="index.html">Study Notes<span class="zh-full" lang="zh-Hant">學習筆記</span></a><span>/</span><a href="management.html">Management<span class="zh-full" lang="zh-Hant">管理學</span></a><span>/</span><b>Session 9<span class="zh-full" lang="zh-Hant">第 9 堂</span></b></nav><button aria-expanded="false" class="toc-btn" id="tocBtn" type="button">Contents<span class="zh-full" lang="zh-Hant">目錄</span></button><nav aria-label="Sessions" class="sessions"><span aria-current="page" class="pill">S9</span><span class="pill off">S10</span><span class="pill off">S11</span><span class="pill off">S12</span></nav><div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input aria-label="顯示完整繁體中文對照" id="zhToggle" role="switch" type="checkbox"/>中文 <span id="zhModeLabel">OFF</span></label><button aria-pressed="false" class="practice-toggle" id="practiceToggle" title="Show or hide short questions within chapters" type="button">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" id="practiceChinese" lang="zh-Hant">練習模式：關閉</span></button></div></div></header><div class="wrap"><aside class="rail" id="rail"><p class="lbl">Contents<span class="zh-full" lang="zh-Hant">目錄</span></p><ol id="toc"></ol></aside><main><article class="doc"><div class="hero"><p class="kick">Managing People in Organizations · Session 9<span class="zh-full" lang="zh-Hant">組織中的人員管理・第 9 堂</span></p><h1>Leadership<span class="zh-full" lang="zh-Hant">領導</span></h1><p class="lead">Read the follower first. Then decide how much to direct and how much to support. The session also compares leading through rewards with leading through growth and vision.<span class="zh-full" lang="zh-Hant">先看部屬，再決定要指導多少、支持多少。本堂也比較「用獎勵帶人」和「用成長與願景帶人」。</span></p></div><h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2><p class="sub">Three questions to ask about any leader.<span class="zh-full" lang="zh-Hant">分析任何領導者，都問這三個問題。</span></p><div class="three"><div class="tcard"><span class="tnum">1</span><b>Who and what<span class="zh-full" lang="zh-Hant">是誰、做什麼</span></b><p>What kind of person is the leader, and what do they actually do?<span class="zh-full" lang="zh-Hant">領導者是什麼樣的人？實際上做了什麼？</span></p><div class="tags"><span>Traits</span><span>Consideration</span><span>Initiating structure</span></div></div><div class="tcard"><span class="tnum">2</span><b>Which style, when<span class="zh-full" lang="zh-Hant">什麼時候用哪種風格</span></b><p>Does the style fit this follower on this task?<span class="zh-full" lang="zh-Hant">這個風格適合這位部屬做這項任務嗎？</span></p><div class="tags"><span>Readiness</span><span>S1 to S4</span></div></div><div class="tcard"><span class="tnum">3</span><b>How deep<span class="zh-full" lang="zh-Hant">關係有多深</span></b><p>Does the leader trade rewards for work, or grow people?<span class="zh-full" lang="zh-Hant">領導者是用獎勵換工作，還是在培養人？</span></p><div class="tags"><span>Transactional</span><span>Transformational</span><span>Vision</span></div></div></div><div class="method"><span>Read the follower<span class="zh-full" lang="zh-Hant">看部屬</span></span><i>→</i><span>Pick the style<span class="zh-full" lang="zh-Hant">選風格</span></span><i>→</i><span>Check the fit<span class="zh-full" lang="zh-Hant">檢查是否配合</span></span><i>→</i><span class="hi">Adjust as they grow<span class="zh-full" lang="zh-Hant">隨部屬成長調整</span></span></div><h2 id="lead-mgmt">1. Leadership and management<span class="zh-full" lang="zh-Hant">1. 領導與管理</span></h2><p class="sub">The lecture calls them “distinct, yet complementary.” They are two different jobs.<span class="zh-full" lang="zh-Hant">課程說兩者「不同但互補」，是兩份不同的工作。</span></p><div class="pair"><div><b>Management</b><p>Controls complexity. Keeps things running with plans, budgets and checks.<span class="zh-full" lang="zh-Hant">控制複雜度，用計畫、預算和檢查讓事情順利運作。</span></p></div><div><b>Leadership</b><p>Produces useful change. Gives people a direction and gets them to commit to it.<span class="zh-full" lang="zh-Hant">帶來有用的改變，給大家方向，並讓大家願意投入。</span></p></div></div><p class="key">Healthy organizations need both.<span class="zh-full" lang="zh-Hant">健康的組織兩者都需要。</span></p><h2 id="traits">2. Trait theory<span class="zh-full" lang="zh-Hant">2. 特質理論</span></h2><p class="sub">Traits are personal qualities that set leaders apart from followers. This theory asks what kind of person becomes a leader.<span class="zh-full" lang="zh-Hant">特質是讓領導者和追隨者不同的個人特徵。這個理論問的是：什麼樣的人會成為領導者。</span></p><div class="tbl"><table><thead><tr><th scope="col">Trait<span class="zh-full" lang="zh-Hant">特質</span></th><th scope="col">In plain words<span class="zh-full" lang="zh-Hant">白話說</span></th></tr></thead><tbody><tr><th scope="row">Intelligence (EQ and IQ)</th><td>Thinking ability and emotional skill<span class="zh-full" lang="zh-Hant">思考能力與情緒能力</span></td></tr><tr><th scope="row">Dominance or assertiveness</th><td>Willing to take charge and speak up<span class="zh-full" lang="zh-Hant">願意主導、敢說話</span></td></tr><tr><th scope="row">Self-confidence</th><td>Trusts their own judgment<span class="zh-full" lang="zh-Hant">相信自己的判斷</span></td></tr><tr><th scope="row">Energy and activity</th><td>Has drive and stamina<span class="zh-full" lang="zh-Hant">有衝勁、有耐力</span></td></tr><tr><th scope="row">Task-relevant knowledge</th><td>Knows the work they lead<span class="zh-full" lang="zh-Hant">懂自己帶領的工作</span></td></tr></tbody></table></div><p class="key">Traits describe the leader. They do not say what to do in a given situation. The next theories fill that gap.<span class="zh-full" lang="zh-Hant">特質只描述領導者，沒有告訴你在某個情境該怎麼做。後面的理論補上了這一塊。</span></p><p class="hint"><b>連到前面</b><span>S5 的 EQ 在這裡是領導特質之一。</span></p><h2 id="behavior">3. Behavioral theories<span class="zh-full" lang="zh-Hant">3. 行為理論</span></h2><p class="sub">The Ohio State studies looked at what leaders do. They found two kinds of behavior.<span class="zh-full" lang="zh-Hant">Ohio State 研究看的是領導者做了什麼，找出兩種行為。</span></p><div class="tbl"><table><thead><tr><th scope="col">Behavior<span class="zh-full" lang="zh-Hant">行為</span></th><th scope="col">What it is<span class="zh-full" lang="zh-Hant">它是什麼</span></th><th scope="col">Ask yourself<span class="zh-full" lang="zh-Hant">問自己</span></th><th scope="col">Do not confuse with<span class="zh-full" lang="zh-Hant">不要混淆成</span></th></tr></thead><tbody><tr><th scope="row">Consideration <span class="zh">關懷</span></th><td>Building mutual trust, respect and relationships<span class="zh-full" lang="zh-Hant">建立互信、尊重和關係</span></td><td>Does the leader build trust?<span class="zh-full" lang="zh-Hant">領導者有在建立信任嗎？</span></td><td>Lowering standards to keep people happy<span class="zh-full" lang="zh-Hant">為了讓大家開心而降低標準</span></td></tr><tr><th scope="row">Initiating structure <span class="zh">定結構</span></th><td>Setting goals, defining tasks and checking the work<span class="zh-full" lang="zh-Hant">設定目標、界定任務、檢查工作</span></td><td>Does the leader organize the work?<span class="zh-full" lang="zh-Hant">領導者有在安排工作嗎？</span></td><td>Watching every step all day<span class="zh-full" lang="zh-Hant">整天盯著每一個步驟</span></td></tr></tbody></table></div><p class="key">Leaders tend to lean toward one. Effective leadership combines both.<span class="zh-full" lang="zh-Hant">領導者通常偏向其中一種，但有效的領導兩者結合。</span></p><p class="hint"><b>中文邏輯</b><span>關懷看「人」，定結構看「事」。到情境領導時，這兩個就是 support 和 task。</span></p><aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A supervisor knows the work very well and is confident, but his staff avoid him and never share problems. Which theory explains this better, trait or behavioral? What is he probably missing?<span class="zh-full" lang="zh-Hant">一位主管很懂工作也很有自信，但部屬都躲著他，從不跟他說問題。用特質理論還是行為理論比較能解釋？他大概缺了什麼？</span></p></aside><h2 id="situational">4. Situational leadership<span class="zh-full" lang="zh-Hant">4. 情境領導</span></h2><p class="sub">There is no single best style. The right style depends on the situation, and above all on the follower.<span class="zh-full" lang="zh-Hant">沒有唯一最好的風格。適合的風格看情境，最重要的是看部屬。</span></p><h3 id="contingency">What shapes the situation<span class="zh-full" lang="zh-Hant">情境由什麼構成</span></h3><div class="tbl"><table><thead><tr><th scope="col">Area<span class="zh-full" lang="zh-Hant">面向</span></th><th scope="col">Factors the lecture lists<span class="zh-full" lang="zh-Hant">課程列出的因素</span></th></tr></thead><tbody><tr><th scope="row">People<span class="zh-full" lang="zh-Hant">人</span></th><td>The leader, the followers, the leader’s boss, key colleagues<span class="zh-full" lang="zh-Hant">領導者、部屬、上司、重要同事</span></td></tr><tr><th scope="row">Organization<span class="zh-full" lang="zh-Hant">組織</span></th><td>Power of the role, company policies, norms and traditions (culture), constraints<span class="zh-full" lang="zh-Hant">職位權力、公司政策、規範與傳統（文化）、限制</span></td></tr><tr><th scope="row">The work<span class="zh-full" lang="zh-Hant">工作</span></th><td>Job demands, the nature of the task, time to decide<span class="zh-full" lang="zh-Hant">工作要求、任務性質、決策時間</span></td></tr></tbody></table></div><h3 id="readiness">Readiness<span class="zh-full" lang="zh-Hant">準備度</span></h3><p class="key">Readiness = ability + willingness, for one specific task.<span class="zh-full" lang="zh-Hant">準備度 = 能力 + 意願，針對某一項特定任務。</span></p><div class="pair"><div><b>Ability <span class="zh">能力</span></b><p>Can they do it? Look at skill, knowledge, experience with the task, past results and deadlines met.<span class="zh-full" lang="zh-Hant">他做得到嗎？看技能、知識、做過這項任務的經驗、過去成果、有沒有準時。</span></p></div><div><b>Willingness <span class="zh">意願</span></b><p>Do they want to, and do they feel sure? Look at confidence, commitment, interest, initiative and persistence.<span class="zh-full" lang="zh-Hant">他想做、有把握嗎？看自信、投入、興趣、主動和堅持。</span></p></div></div><p>The same person can be R4 on one task and R1 on a new one.<span class="zh-full" lang="zh-Hant">同一個人在一項任務是 R4，換了新任務可能是 R1。</span></p><h3 id="styles">Four levels, four styles<span class="zh-full" lang="zh-Hant">四個等級，四種風格</span></h3><figure class="figbox"><svg class="org" viewBox="0 0 640 340" role="img" aria-label="Situational leadership: task behavior on the horizontal axis, support behavior on the vertical axis. Top left S3 Supporting, top right S2 Coaching, bottom left S4 Delegating, bottom right S1 Directing. Below, follower readiness from R4 on the left to R1 on the right."><rect class="bx hi" x="110" y="20" width="238" height="108" rx="8"/><rect class="bx hi" x="352" y="20" width="238" height="108" rx="8"/><rect class="bx" x="110" y="132" width="238" height="108" rx="8"/><rect class="bx" x="352" y="132" width="238" height="108" rx="8"/><text x="229" y="68" text-anchor="middle">S3 Supporting</text><text class="sm" x="229" y="88" text-anchor="middle">Low task, high support</text><text x="471" y="68" text-anchor="middle">S2 Coaching</text><text class="sm" x="471" y="88" text-anchor="middle">High task, high support</text><text x="229" y="180" text-anchor="middle">S4 Delegating</text><text class="sm" x="229" y="200" text-anchor="middle">Low task, low support</text><text x="471" y="180" text-anchor="middle">S1 Directing</text><text class="sm" x="471" y="200" text-anchor="middle">High task, low support</text><line class="ln" x1="96" y1="240" x2="96" y2="24" marker-end="url(#arw)"/><text class="sm" x="70" y="134" text-anchor="middle" transform="rotate(-90 70 134)">Support behavior</text><text class="sm" x="84" y="236" text-anchor="end">Low</text><text class="sm" x="84" y="30" text-anchor="end">High</text><line class="ln" x1="110" y1="254" x2="588" y2="254" marker-end="url(#arw)"/><text class="sm" x="350" y="249" text-anchor="middle">Task behavior: low to high</text><rect class="bx cu" x="110" y="266" width="118" height="44" rx="6"/><text x="169" y="284" text-anchor="middle">R4</text><text class="sm" x="169" y="301" text-anchor="middle">Able, willing</text><rect class="bx" x="231" y="266" width="118" height="44" rx="6"/><text x="290" y="284" text-anchor="middle">R3</text><text class="sm" x="290" y="301" text-anchor="middle">Able, unwilling</text><rect class="bx" x="352" y="266" width="118" height="44" rx="6"/><text x="411" y="284" text-anchor="middle">R2</text><text class="sm" x="411" y="301" text-anchor="middle">Unable, willing</text><rect class="bx" x="473" y="266" width="118" height="44" rx="6"/><text x="532" y="284" text-anchor="middle">R1</text><text class="sm" x="532" y="301" text-anchor="middle">Unable, unwilling</text><text class="sm" x="110" y="328">High readiness</text><text class="sm" x="590" y="328" text-anchor="end">Low readiness</text></svg><figcaption>Each style sits above the readiness level it fits.<span class="zh-full" lang="zh-Hant">每種風格都在它對應的準備度上方。</span></figcaption></figure><div class="tbl"><table><thead><tr><th scope="col">Follower<span class="zh-full" lang="zh-Hant">部屬</span></th><th scope="col">Style<span class="zh-full" lang="zh-Hant">風格</span></th><th scope="col">What the leader does<span class="zh-full" lang="zh-Hant">領導者怎麼做</span></th></tr></thead><tbody><tr><th scope="row">R1: unable, and unwilling or insecure<span class="zh-full" lang="zh-Hant">R1：不會做，也不想做或沒信心</span></th><td>S1 Directing <span class="zh">指導</span></td><td>Says what to do, how and when. Checks that they understand. Gives regular feedback. Talk is mostly one-way.<span class="zh-full" lang="zh-Hant">說清楚做什麼、怎麼做、何時完成，確認聽懂，定期回饋。以單向溝通為主。</span></td></tr><tr><th scope="row">R2: unable, but willing or confident<span class="zh-full" lang="zh-Hant">R2：不會做，但想做或有信心</span></th><td>S2 Coaching <span class="zh">教練</span></td><td>Still teaches the task and sets deadlines. Also explains why it matters, shows confidence in them and solves some problems together.<span class="zh-full" lang="zh-Hant">仍然教任務、定期限；同時說明為什麼重要、表達信心、一起解決部分問題。</span></td></tr><tr><th scope="row">R3: able, but unwilling or insecure<span class="zh-full" lang="zh-Hant">R3：會做，但不想做或沒信心</span></th><td>S3 Supporting <span class="zh">支持</span></td><td>Outlines the task only. Talks through how and when with them. Solves problems together. Gives credit.<span class="zh-full" lang="zh-Hant">只概述任務，和他一起討論怎麼做、何時做，一起解決問題，給予肯定。</span></td></tr><tr><th scope="row">R4: able, and willing or confident<span class="zh-full" lang="zh-Hant">R4：會做，也想做</span></th><td>S4 Delegating <span class="zh">授權</span></td><td>Agrees on goals and a follow-up plan. Steps in only when they cannot solve a problem. Gives credit.<span class="zh-full" lang="zh-Hant">講好目標和追蹤計畫，只在他解決不了時介入，給予肯定。</span></td></tr></tbody></table></div><p class="key">Task behavior follows ability: the less able, the more direction. Support is highest in the middle, for R2 and R3.<span class="zh-full" lang="zh-Hant">任務指導跟著能力走：越不會做，指導越多。支持在中間最高，也就是 R2 和 R3。</span></p><p class="hint"><b>中文邏輯</b><span>能力決定要不要教，意願決定要不要鼓勵。</span></p><div data-mw="readiness-pick"></div><h3 id="slt-pairs">Pairs people mix up<span class="zh-full" lang="zh-Hant">容易混淆的組合</span></h3><div class="tbl"><table><thead><tr><th scope="col">Pair<span class="zh-full" lang="zh-Hant">組合</span></th><th scope="col">How to tell them apart<span class="zh-full" lang="zh-Hant">怎麼分</span></th></tr></thead><tbody><tr><th scope="row">R2 / R3</th><td>Both need high support. R2 cannot do the task yet, so the leader still teaches. R3 already can, so the leader stops teaching and encourages instead.<span class="zh-full" lang="zh-Hant">兩者都要高支持。R2 還不會，所以要教；R3 已經會了，所以不用教，改成鼓勵。</span></td></tr><tr><th scope="row">S4 / leaving people alone<span class="zh-full" lang="zh-Hant">S4／放著不管</span></th><td>S4 still sets goals, follows up and gives credit. Leaving people alone with no follow-up is laissez-faire.<span class="zh-full" lang="zh-Hant">S4 仍然定目標、追蹤、給肯定。完全放著不追蹤，是放任型。</span></td></tr></tbody></table></div><h3 id="slt-how">How to answer a situational leadership question<span class="zh-full" lang="zh-Hant">情境領導題怎麼答</span></h3><ol><li>Name the task.<span class="zh-full" lang="zh-Hant">說出是哪一項任務。</span></li><li>Judge ability with evidence.<span class="zh-full" lang="zh-Hant">用證據判斷能力。</span></li><li>Judge willingness with evidence.<span class="zh-full" lang="zh-Hant">用證據判斷意願。</span></li><li>Name the R level and the matching style.<span class="zh-full" lang="zh-Hant">說出 R 等級和對應風格。</span></li><li>Say what the leader should do.<span class="zh-full" lang="zh-Hant">說領導者該怎麼做。</span></li><li>Say what comes next. As readiness rises, move one step toward S4. If it drops, move one step back.<span class="zh-full" lang="zh-Hant">說下一步：準備度上升就往 S4 走一步，下降就退一步。</span></li></ol><h3 id="scenarios">Practice: six scenarios from the lecture<span class="zh-full" lang="zh-Hant">練習：課堂的六個情境</span></h3><div data-mw="scenario-sort"></div><p class="note-small">There is no official answer key. These answers follow the model. Scenarios 3, 4 and 6 have other reasonable answers, shown in the explanations.<span class="zh-full" lang="zh-Hant">沒有官方答案，這裡依模型判斷。第 3、4、6 題有其他合理答法，寫在解說裡。</span></p><aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Your best engineer misses two deadlines after a reorganization. Her skills have not changed. What is her readiness on this task now, and which style would you move to?<span class="zh-full" lang="zh-Hant">你最強的工程師在組織調整後連續兩次延誤，她的能力沒變。她在這項任務上現在是哪個準備度？你會改用哪種風格？</span></p></aside><h2 id="transactional">5. Transactional leadership<span class="zh-full" lang="zh-Hant">5. 交易型領導</span></h2><p class="sub">Leadership as a trade: “what I give you in return for what you’ll do for me.” The leader directs and controls to reach the organization’s goals.<span class="zh-full" lang="zh-Hant">把領導當成交換：「你為我做事，我給你回報。」領導者透過指揮和控制來達成組織目標。</span></p><div class="tbl"><table><thead><tr><th scope="col">Form<span class="zh-full" lang="zh-Hant">形式</span></th><th scope="col">What it looks like<span class="zh-full" lang="zh-Hant">看起來像什麼</span></th><th scope="col">Example<span class="zh-full" lang="zh-Hant">例子</span></th></tr></thead><tbody><tr><th scope="row">Contingent reward <span class="zh">依績效給獎勵</span></th><td>Rewards are tied to performance<span class="zh-full" lang="zh-Hant">獎勵跟績效掛鉤</span></td><td>A bonus for hitting the monthly target<span class="zh-full" lang="zh-Hant">達成月目標就發獎金</span></td></tr><tr><th scope="row">Management by exception, active</th><td>Watches closely and tracks mistakes<span class="zh-full" lang="zh-Hant">密切監看、記錄錯誤</span></td><td>Checking every report for errors<span class="zh-full" lang="zh-Hant">每份報告都檢查錯誤</span></td></tr><tr><th scope="row">Management by exception, passive</th><td>Waits until a problem is reported, then steps in<span class="zh-full" lang="zh-Hant">等問題被報上來才介入</span></td><td>Acting only after a customer complains<span class="zh-full" lang="zh-Hant">客戶抱怨了才處理</span></td></tr></tbody></table></div><h2 id="transformational">6. Transformational leadership<span class="zh-full" lang="zh-Hant">6. 轉換型領導</span></h2><p class="sub">Leaders who grow their people, help them see old problems in new ways, and inspire them to give more than expected.<span class="zh-full" lang="zh-Hant">培養部屬、幫他們用新方式看舊問題，並激勵他們付出超出預期的領導者。</span></p><div class="tbl"><table><thead><tr><th scope="col">Dimension<span class="zh-full" lang="zh-Hant">構面</span></th><th scope="col">What it is<span class="zh-full" lang="zh-Hant">它是什麼</span></th><th scope="col">Example<span class="zh-full" lang="zh-Hant">例子</span></th><th scope="col">Do not confuse with<span class="zh-full" lang="zh-Hant">不要混淆成</span></th></tr></thead><tbody><tr><th scope="row">Inspirational motivation <span class="zh">激勵鼓舞</span></th><td>Gives people an attractive vision of the future<span class="zh-full" lang="zh-Hant">給大家一個吸引人的未來願景</span></td><td>“We make the parts no one else can make.”<span class="zh-full" lang="zh-Hant">「我們做別人做不出來的零件。」</span></td><td>A sales target with no larger purpose<span class="zh-full" lang="zh-Hant">沒有更大目的的業績目標</span></td></tr><tr><th scope="row">Idealized influence <span class="zh">理想化影響</span></th><td>Acts the way they want others to act, and earns respect<span class="zh-full" lang="zh-Hant">以身作則，因此贏得尊敬</span></td><td>Follows the safety rules even when it costs time<span class="zh-full" lang="zh-Hant">就算花時間也照安全規定做</span></td><td>Being famous or popular<span class="zh-full" lang="zh-Hant">有名或受歡迎</span></td></tr><tr><th scope="row">Intellectual stimulation <span class="zh">智力啟發</span></th><td>Gets people to rethink problems and build their own skills<span class="zh-full" lang="zh-Hant">讓人重新思考問題、培養自己的能力</span></td><td>“How would you fix this old delivery problem?”<span class="zh-full" lang="zh-Hant">「這個老問題你會怎麼解決？」</span></td><td>Asking for ideas, then ignoring them<span class="zh-full" lang="zh-Hant">問了意見卻不採用</span></td></tr><tr><th scope="row">Individualized consideration <span class="zh">個別關懷</span></th><td>Coaches each person based on their own needs<span class="zh-full" lang="zh-Hant">依每個人的需要個別帶</span></td><td>A monthly growth talk with each person<span class="zh-full" lang="zh-Hant">每月和每個人談成長</span></td><td>Ohio State consideration, which builds trust with the whole group<span class="zh-full" lang="zh-Hant">Ohio State 的關懷，那是和整個團隊建立信任</span></td></tr></tbody></table></div><p class="note-small">The lecture groups the first two under “charisma.” Together the four are often called the four I’s.<span class="zh-full" lang="zh-Hant">課程把前兩個歸在「魅力」底下。四個合起來常稱為「四個 I」。</span></p><div class="tbl"><table><thead><tr><th scope="col"></th><th scope="col">Transactional<span class="zh-full" lang="zh-Hant">交易型</span></th><th scope="col">Transformational<span class="zh-full" lang="zh-Hant">轉換型</span></th></tr></thead><tbody><tr><th scope="row">The deal<span class="zh-full" lang="zh-Hant">關係</span></th><td>Work in exchange for rewards<span class="zh-full" lang="zh-Hant">用工作換獎勵</span></td><td>Growth in exchange for commitment<span class="zh-full" lang="zh-Hant">用成長換投入</span></td></tr><tr><th scope="row">Effort<span class="zh-full" lang="zh-Hant">付出</span></th><td>What was agreed<span class="zh-full" lang="zh-Hant">約定好的</span></td><td>More than expected, often more than they thought possible<span class="zh-full" lang="zh-Hant">超出預期，常常超出自己以為做得到的</span></td></tr><tr><th scope="row">Main tools<span class="zh-full" lang="zh-Hant">主要工具</span></th><td>Rewards and monitoring<span class="zh-full" lang="zh-Hant">獎勵與監控</span></td><td>Vision, role modeling, new ideas, coaching<span class="zh-full" lang="zh-Hant">願景、以身作則、新想法、教練</span></td></tr></tbody></table></div><p class="key">Long-term success may need both.<span class="zh-full" lang="zh-Hant">長期成功可能兩者都需要。</span></p><div data-mw="tf-sort"></div><aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A team gets a bonus for hitting targets and nothing else. Morale is fine, but nobody suggests new ideas. Which of the four I’s would you add first, and why?<span class="zh-full" lang="zh-Hant">一個團隊達標就有獎金，除此之外什麼都沒有。士氣還可以，但沒人提新點子。四個 I 你會先加哪一個？為什麼？</span></p></aside><h2 id="full-range">7. The full-range leadership model<span class="zh-full" lang="zh-Hant">7. 全範圍領導模型</span></h2><p class="sub">All the styles on one chart. The more active the leader, and the more they develop people, the more effective they are.<span class="zh-full" lang="zh-Hant">所有風格放在一張圖上。越主動、越培養人，就越有效。</span></p><figure class="figbox"><svg class="org" viewBox="0 0 640 330" role="img" aria-label="Full-range of leadership model: from passive and ineffective at the bottom left to active and effective at the top right: laissez-faire, management by exception, contingent reward, individualized consideration, intellectual stimulation, inspirational motivation, idealized influence."><line class="ln" x1="80" y1="300" x2="80" y2="16" marker-end="url(#arw)"/><line class="ln" x1="80" y1="300" x2="624" y2="300" marker-end="url(#arw)"/><text class="sm" x="72" y="24" text-anchor="end">Effective</text><text class="sm" x="72" y="296" text-anchor="end">Ineffective</text><text class="sm" x="84" y="318">Passive</text><text class="sm" x="620" y="318" text-anchor="end">Active</text><rect class="bx" x="90" y="258" width="165" height="30" rx="6"/><text x="172" y="277" text-anchor="middle" style="font-size:11.5px">Laissez-faire</text><rect class="bx cu" x="152" y="222" width="165" height="30" rx="6"/><text x="234" y="241" text-anchor="middle" style="font-size:11.5px">Management by exception</text><rect class="bx cu" x="214" y="186" width="165" height="30" rx="6"/><text x="296" y="205" text-anchor="middle" style="font-size:11.5px">Contingent reward</text><rect class="bx hi" x="276" y="150" width="165" height="30" rx="6"/><text x="358" y="169" text-anchor="middle" style="font-size:11.5px">Individualized consideration</text><rect class="bx hi" x="338" y="114" width="165" height="30" rx="6"/><text x="420" y="133" text-anchor="middle" style="font-size:11.5px">Intellectual stimulation</text><rect class="bx hi" x="400" y="78" width="165" height="30" rx="6"/><text x="482" y="97" text-anchor="middle" style="font-size:11.5px">Inspirational motivation</text><rect class="bx hi" x="462" y="42" width="165" height="30" rx="6"/><text x="544" y="61" text-anchor="middle" style="font-size:11.5px">Idealized influence</text><rect class="bx cu" x="450" y="236" width="14" height="14" rx="3"/><text class="sm" x="470" y="248">Transactional</text><rect class="bx hi" x="450" y="258" width="14" height="14" rx="3"/><text class="sm" x="470" y="270">Transformational</text></svg><figcaption>Source: Robbins and Judge (2009).<span class="zh-full" lang="zh-Hant">來源：Robbins and Judge（2009）。</span></figcaption></figure><p class="note-small">Laissez-faire means avoiding decisions and not leading at all. The slides show it but do not define it. The chart has one box for management by exception, covering both the active and passive forms.<span class="zh-full" lang="zh-Hant">放任型是迴避決策、完全不領導。投影片有畫但沒定義。圖上例外管理只畫一格，主動和被動都包含在內。</span></p><h2 id="vision">8. What makes a vision work<span class="zh-full" lang="zh-Hant">8. 怎樣的願景才有用</span></h2><p class="sub">Kantabutra’s research: people commit only when they know where the organization is going. A clear vision also gets different groups pulling in the same direction.<span class="zh-full" lang="zh-Hant">Kantabutra 的研究：大家要先知道組織往哪裡走，才會投入。清楚的願景也能讓不同群體往同一個方向努力。</span></p><div class="tbl"><table><thead><tr><th scope="col">Attribute<span class="zh-full" lang="zh-Hant">屬性</span></th><th scope="col">In plain words<span class="zh-full" lang="zh-Hant">白話說</span></th><th scope="col">Ask yourself<span class="zh-full" lang="zh-Hant">問自己</span></th></tr></thead><tbody><tr><th scope="row">Conciseness</th><td>Short<span class="zh-full" lang="zh-Hant">短</span></td><td>Can people remember it?<span class="zh-full" lang="zh-Hant">大家記得住嗎？</span></td></tr><tr><th scope="row">Clarity</th><td>Easy to understand<span class="zh-full" lang="zh-Hant">容易懂</span></td><td>Does everyone read it the same way?<span class="zh-full" lang="zh-Hant">每個人理解都一樣嗎？</span></td></tr><tr><th scope="row">Future orientation</th><td>About the long-term future<span class="zh-full" lang="zh-Hant">講長期的未來</span></td><td>Does it say where we want to be?<span class="zh-full" lang="zh-Hant">有說我們想去哪裡嗎？</span></td></tr><tr><th scope="row">Stability</th><td>Does not change often<span class="zh-full" lang="zh-Hant">不常改</span></td><td>Will it still hold in five years?<span class="zh-full" lang="zh-Hant">五年後還適用嗎？</span></td></tr><tr><th scope="row">Challenge</th><td>Hard to reach<span class="zh-full" lang="zh-Hant">不容易達到</span></td><td>Does it make people stretch?<span class="zh-full" lang="zh-Hant">會讓人想突破嗎？</span></td></tr><tr><th scope="row">Abstractness</th><td>A broad direction, not one target<span class="zh-full" lang="zh-Hant">是大方向，不是單一目標</span></td><td>Is it bigger than one number?<span class="zh-full" lang="zh-Hant">比一個數字更大嗎？</span></td></tr><tr><th scope="row">Ability to inspire</th><td>Makes people want to work for it<span class="zh-full" lang="zh-Hant">讓人想為它努力</span></td><td>Does it give people a reason to care?<span class="zh-full" lang="zh-Hant">有給大家在乎的理由嗎？</span></td></tr></tbody></table></div><p class="note-small">Source: Kantabutra and Avery (2010).<span class="zh-full" lang="zh-Hant">來源：Kantabutra and Avery（2010）。</span></p><div class="pair"><div><b>Weak<span class="zh-full" lang="zh-Hant">弱</span></b><p>“Increase sales by 8% next year.” A one-year number. It is not about the long-term future, not a broad direction, and not inspiring.<span class="zh-full" lang="zh-Hant">「明年營收成長 8%。」這是一年期的數字：沒有長期、不是大方向、也不激勵人。</span></p></div><div><b>Stronger<span class="zh-full" lang="zh-Hant">較好</span></b><p>“Make the parts no one else can make.” Short, clear, long-term, hard to reach and broad. The 8% can sit under it as a goal.<span class="zh-full" lang="zh-Hant">「做出別人做不出來的零件。」短、清楚、長期、有挑戰、是大方向。8% 可以當它底下的目標。</span></p></div></div><aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A vision says “Be number one in Asia.” Which of the seven attributes does it meet, and which might it miss?<span class="zh-full" lang="zh-Hant">某個願景寫「成為亞洲第一」。它符合七個屬性中的哪些？可能缺了哪些？</span></p></aside><h2 id="case">9. Precision Plastics: Session 9 task<span class="zh-full" lang="zh-Hant">9. Precision Plastics：第 9 堂任務</span></h2><div class="assign"><b>Team activity: situational leadership<span class="zh-full" lang="zh-Hant">小組活動：情境領導</span></b><p>Find the R level of the <b>tool and die workers</b> and of the <b>molding machine workers</b>. Find the S levels of <b>Joe</b> and <b>Bill</b>. Recommend the leadership style and actions that would improve the situation. Present to class.<span class="zh-full" lang="zh-Hant">找出模具工和成型機操作員的 R 等級，以及 Joe 和 Bill 的 S 風格。建議能改善情況的領導風格與做法，並在課堂報告。</span></p></div><div class="assign"><b>Group activity: transformational leadership (30 minutes)<span class="zh-full" lang="zh-Hant">小組活動：轉換型領導（30 分鐘）</span></b><p>Use the transformational framework to say what is wrong with the current leadership style, and recommend improvements. Present to class.<span class="zh-full" lang="zh-Hant">用轉換型架構說明目前的領導風格哪裡有問題，並提出改善建議，在課堂報告。</span></p></div><p class="note-small">The second activity does not name a case. This page applies it to Precision Plastics.<span class="zh-full" lang="zh-Hant">第二個活動沒有指定個案，本頁套用在 Precision Plastics。</span></p><h3 id="case-facts">The case in brief<span class="zh-full" lang="zh-Hant">個案重點</span></h3><div class="tbl"><table><thead><tr><th scope="col">Who<span class="zh-full" lang="zh-Hant">誰</span></th><th scope="col">What the case says<span class="zh-full" lang="zh-Hant">個案怎麼說</span></th></tr></thead><tbody><tr><th scope="row">The company<span class="zh-full" lang="zh-Hant">公司</span></th><td>Makes small, precise plastic parts for medical and photo equipment. Its molds are hard to design, so it has few competitors. Known for quality.<span class="zh-full" lang="zh-Hant">為醫療和攝影器材做精密的小塑膠零件。模具很難設計，競爭者少，以品質聞名。</span></td></tr><tr><th scope="row">Tool and die workers<span class="zh-full" lang="zh-Hant">模具工</span></th><td>Make the molds. Every mold is different. Highly skilled, experienced, proud of their work and well paid.<span class="zh-full" lang="zh-Hant">負責做模具，每個模具都不一樣。技術高、經驗多、以工作為榮、待遇好。</span></td></tr><tr><th scope="row">Joe Casey</th><td>Ran tool and die. Focused on quality and let workers decide how to do their work.<span class="zh-full" lang="zh-Hant">原本管模具部門。重視品質，讓工人自己決定做法。</span></td></tr><tr><th scope="row">Molding machine workers<span class="zh-full" lang="zh-Hant">成型機操作員</span></th><td>Routine, low-skill, low-pay work. They ignore safety rules and turnover is high. Bill says they have little interest in the job.<span class="zh-full" lang="zh-Hant">例行、低技術、低薪的工作。不守安全規定，流動率高。Bill 說他們對工作沒興趣。</span></td></tr><tr><th scope="row">Bill Smith</th><td>Runs molding. Believes in close supervision and enjoys it. His department is productive and on schedule.<span class="zh-full" lang="zh-Hant">管成型部門。相信要緊盯，也喜歡這樣管。部門產量高、準時。</span></td></tr><tr><th scope="row">What changed<span class="zh-full" lang="zh-Hant">發生什麼事</span></th><td>Joe retires. Bill takes over tool and die too. He adds rules, pushes for speed, tries to make everyone work the same way, and tells experts how to work though he knows little about the craft.<span class="zh-full" lang="zh-Hant">Joe 退休，Bill 也接手模具部門。他加規定、催速度、想讓大家用同一種做法，還教專家怎麼做，但他自己不太懂這門手藝。</span></td></tr><tr><th scope="row">The result<span class="zh-full" lang="zh-Hant">結果</span></th><td>Workers complain. Work falls behind. One long-time worker quits. Workers tell Jim Hunt, the production manager, that Bill is a poor supervisor.<span class="zh-full" lang="zh-Hant">工人抱怨、進度落後，一位資深工人離職。工人告訴生產經理 Jim Hunt：Bill 是很差的主管。</span></td></tr></tbody></table></div><h3 id="case-diagnosis">Diagnosis: R levels and S styles<span class="zh-full" lang="zh-Hant">診斷：R 等級與 S 風格</span></h3><div class="tbl"><table><thead><tr><th scope="col">Who<span class="zh-full" lang="zh-Hant">誰</span></th><th scope="col">Evidence<span class="zh-full" lang="zh-Hant">證據</span></th><th scope="col">Verdict<span class="zh-full" lang="zh-Hant">判斷</span></th></tr></thead><tbody><tr><th scope="row">Tool and die workers<span class="zh-full" lang="zh-Hant">模具工</span></th><td>Skilled, experienced, proud, high quality<span class="zh-full" lang="zh-Hant">技術好、經驗多、有榮譽感、品質高</span></td><td><span class="tag maybe">R4 → R3</span> R4 under Joe. Under Bill their skill is the same, but their willingness has dropped.<span class="zh-full" lang="zh-Hant">在 Joe 底下是 R4。到了 Bill 底下，能力沒變，意願下降。</span></td></tr><tr><th scope="row">Molding machine workers<span class="zh-full" lang="zh-Hant">成型機操作員</span></th><td>Ignore safety rules, high turnover, low interest (Bill’s view)<span class="zh-full" lang="zh-Hant">不守安全規定、流動率高、沒興趣（Bill 的說法）</span></td><td><span class="tag gap">R1</span> On following safety rules. High turnover means many are new. A few experienced workers may be R3.<span class="zh-full" lang="zh-Hant">在遵守安全規定上是 R1。流動率高代表很多是新手，少數資深的可能是 R3。</span></td></tr><tr><th scope="row">Joe Casey</th><td>Quality focus, lets workers decide<span class="zh-full" lang="zh-Hant">重視品質、讓工人自己決定</span></td><td><span class="tag ok">S4: fits</span> Matches R4 workers. Result: high quality and happy workers.<span class="zh-full" lang="zh-Hant">配合 R4 的工人，結果是高品質、工人滿意。</span></td></tr><tr><th scope="row">Bill Smith</th><td>Close supervision, new rules, tells people how to work<span class="zh-full" lang="zh-Hant">緊盯、新規定、教人怎麼做</span></td><td><span class="tag gap">S1: fits molding only</span> Works for R1 molding workers. Wrong for R4 tool and die workers.<span class="zh-full" lang="zh-Hant">對 R1 的成型機操作員有效，對 R4 的模具工不對。</span></td></tr></tbody></table></div><p class="key">The core problem: Bill used S1 on R4 experts. They needed S4. Directing able people tells them they are not trusted.<span class="zh-full" lang="zh-Hant">核心問題：Bill 對 R4 的專家用了 S1，他們需要的是 S4。對有能力的人下指令，等於告訴他們「我不信任你」。</span></p><div class="tbl"><table><thead><tr><th scope="col">Other theory<span class="zh-full" lang="zh-Hant">其他理論</span></th><th scope="col">What it adds<span class="zh-full" lang="zh-Hant">補充了什麼</span></th></tr></thead><tbody><tr><th scope="row">Trait<span class="zh-full" lang="zh-Hant">特質</span></th><td>Bill lacks task-relevant knowledge of tool and die work.<span class="zh-full" lang="zh-Hant">Bill 缺乏模具工作的相關知識。</span></td></tr><tr><th scope="row">Behavioral<span class="zh-full" lang="zh-Hant">行為</span></th><td>High on structure, low on consideration.<span class="zh-full" lang="zh-Hant">定結構高、關懷低。</span></td></tr><tr><th scope="row">Situation<span class="zh-full" lang="zh-Hant">情境</span></th><td>He ignored the nature of the task (custom, skilled work) and the existing culture (informal, autonomous).<span class="zh-full" lang="zh-Hant">他忽略了任務性質（客製、高技術）和原本的文化（非正式、自主）。</span></td></tr></tbody></table></div><h3 id="case-tf">Transformational view of Bill<span class="zh-full" lang="zh-Hant">用轉換型看 Bill</span></h3><div class="tbl"><table><thead><tr><th scope="col">Dimension<span class="zh-full" lang="zh-Hant">構面</span></th><th scope="col">What Bill does<span class="zh-full" lang="zh-Hant">Bill 怎麼做</span></th><th scope="col">What is missing<span class="zh-full" lang="zh-Hant">缺了什麼</span></th></tr></thead><tbody><tr><th scope="row">Idealized influence<span class="zh-full" lang="zh-Hant">理想化影響</span></th><td>Tells experts how to work without knowing the craft<span class="zh-full" lang="zh-Hant">不懂手藝卻教專家怎麼做</span></td><td>Respect. Workers do not see him as a role model.<span class="zh-full" lang="zh-Hant">尊敬。工人不把他當榜樣。</span></td></tr><tr><th scope="row">Inspirational motivation<span class="zh-full" lang="zh-Hant">激勵鼓舞</span></th><td>Talks only about speed<span class="zh-full" lang="zh-Hant">只談速度</span></td><td>A vision. The company wins on quality, and he never mentions it.<span class="zh-full" lang="zh-Hant">願景。公司靠品質贏，他卻從沒提過。</span></td></tr><tr><th scope="row">Intellectual stimulation<span class="zh-full" lang="zh-Hant">智力啟發</span></th><td>Picks one method himself and imposes it<span class="zh-full" lang="zh-Hant">自己挑一種做法，再強制推行</span></td><td>Using the workers’ expertise to solve problems<span class="zh-full" lang="zh-Hant">借重工人的專業來解決問題</span></td></tr><tr><th scope="row">Individualized consideration<span class="zh-full" lang="zh-Hant">個別關懷</span></th><td>Controls everyone the same way<span class="zh-full" lang="zh-Hant">用同一種方式管每個人</span></td><td>Attention to each worker’s skill and pride<span class="zh-full" lang="zh-Hant">注意每個工人的技術和榮譽感</span></td></tr></tbody></table></div><p>Bill is transactional, mainly management by exception, active: he checks constantly and catches problems. That sits near the bottom of the full-range model. For routine molding work, clear rules plus rewards still make sense.<span class="zh-full" lang="zh-Hant">Bill 是交易型，主要是主動式例外管理：一直檢查、抓問題，在全範圍模型裡接近底部。對例行的成型工作，清楚規則加獎勵仍然合理。</span></p><h3 id="case-evidence">What we know, infer and cannot conclude<span class="zh-full" lang="zh-Hant">知道、推論、不能下結論</span></h3><div class="tbl"><table><thead><tr><th scope="col">Know<span class="zh-full" lang="zh-Hant">知道</span></th><th scope="col">Infer<span class="zh-full" lang="zh-Hant">推論</span></th><th scope="col">Cannot conclude<span class="zh-full" lang="zh-Hant">不能下結論</span></th></tr></thead><tbody><tr><th scope="row">Complaints started after Bill arrived<span class="zh-full" lang="zh-Hant">抱怨是在 Bill 來了之後才開始</span></th><td>His style caused the drop in willingness<span class="zh-full" lang="zh-Hant">意願下降是他的風格造成的</span></td><td>That the workers are unwilling by nature<span class="zh-full" lang="zh-Hant">工人天生就沒意願</span></td></tr><tr><th scope="row">One long-time worker quit<span class="zh-full" lang="zh-Hant">一位資深工人離職</span></th><td>More may leave if nothing changes<span class="zh-full" lang="zh-Hant">不改變的話可能還有人走</span></td><td>How many will leave<span class="zh-full" lang="zh-Hant">會走多少人</span></td></tr><tr><th scope="row">Molding workers ignore safety rules<span class="zh-full" lang="zh-Hant">成型機操作員不守安全規定</span></th><td>Many are new to the job<span class="zh-full" lang="zh-Hant">很多人是新手</span></td><td>That they do not care. Only Bill says so.<span class="zh-full" lang="zh-Hant">他們不在乎。這只是 Bill 的說法。</span></td></tr></tbody></table></div><div class="issue"><b>Issue statement<span class="zh-full" lang="zh-Hant">問題陳述</span></b><p>Precision Plastics put a directing, transactional supervisor in charge of R4 experts. His close control works for routine molding, but it tells skilled tool and die workers they are not trusted. Their willingness is falling, work is late and one expert has quit. That puts the company’s core skill at risk. The molding department still has a safety and turnover problem that close control alone has not fixed.<span class="zh-full" lang="zh-Hant">Precision Plastics 讓一位指導型、交易型的主管去管 R4 的專家。他的緊盯對例行的成型工作有效，卻讓技術純熟的模具工覺得不被信任。他們的意願下降、進度落後，已有一位專家離職，公司最核心的技術因此受到威脅。成型部門的安全和流動率問題，光靠緊盯也還沒解決。</span></p></div><h2 id="recommend">10. Worked recommendations<span class="zh-full" lang="zh-Hant">10. 示範建議</span></h2><div class="method"><span>Read the task<span class="zh-full" lang="zh-Hant">讀任務</span></span><i>→</i><span>Judge R levels<span class="zh-full" lang="zh-Hant">判斷 R</span></span><i>→</i><span>Match S styles<span class="zh-full" lang="zh-Hant">配 S</span></span><i>→</i><span>Find the mismatch<span class="zh-full" lang="zh-Hant">找錯配</span></span><i>→</i><span class="hi">Act, explain, check<span class="zh-full" lang="zh-Hant">行動、理由、檢查</span></span></div><p>Owner: Jim Hunt, the production manager. He assigned the supervisors and has heard the complaints.<span class="zh-full" lang="zh-Hant">負責人：生產經理 Jim Hunt。主管是他派的，抱怨也是他聽到的。</span></p><h3 id="rec-tool">Tool and die department<span class="zh-full" lang="zh-Hant">模具部門</span></h3><div class="tbl"><table><thead><tr><th scope="col">Action<span class="zh-full" lang="zh-Hant">行動</span></th><th scope="col">Why it works<span class="zh-full" lang="zh-Hant">為什麼有用</span></th><th scope="col">Timing and check<span class="zh-full" lang="zh-Hant">時程與檢查</span></th></tr></thead><tbody><tr><th scope="row"><b>1. Change the leader.</b> Make a respected senior tool and die maker the lead, or hire an experienced supervisor. Bill goes back to molding.<span class="zh-full" lang="zh-Hant"><b>1. 換人帶。</b>讓一位受尊敬的資深模具師傅當組長，或外聘有經驗的主管；Bill 回去管成型部門。</span></th><td>Bill enjoys close control, so he is unlikely to change fast. The new lead knows the craft.<span class="zh-full" lang="zh-Hant">Bill 喜歡緊盯，不太可能很快改變。新組長懂這門手藝。</span></td><td>Within a month. Check: the lead is in place.<span class="zh-full" lang="zh-Hant">一個月內。檢查：組長到位。</span></td></tr><tr><th scope="row"><b>2. Start with S3, then go back to S4.</b> The new lead listens to complaints, drops rules that do not help quality, and agrees goals and deadlines with the workers.<span class="zh-full" lang="zh-Hant"><b>2. 先用 S3，再回到 S4。</b>新組長先聽抱怨，拿掉對品質沒幫助的規定，和工人一起訂目標和期限。</span></th><td>The workers are able but unhappy, so they are R3 for now. Once trust returns, delegate again.<span class="zh-full" lang="zh-Hant">工人有能力但不滿，暫時是 R3。信任恢復後再授權。</span></td><td>First three months. Check: work back on schedule, complaints stop.<span class="zh-full" lang="zh-Hant">頭三個月。檢查：進度回到正軌、抱怨停止。</span></td></tr><tr><th scope="row"><b>3. Let the workers lead any standardization.</b> They compare methods, choose what to share, and keep room for custom work.<span class="zh-full" lang="zh-Hant"><b>3. 標準化由工人主導。</b>他們互相比較做法，自己決定要共享什麼，並保留客製空間。</span></th><td>Every mold is different. The experts know which steps can be shared.<span class="zh-full" lang="zh-Hant">每個模具都不同，專家知道哪些步驟可以共用。</span></td><td>Three to six months. Check: quality stays high, speed improves.<span class="zh-full" lang="zh-Hant">三到六個月。檢查：品質維持、速度提升。</span></td></tr><tr><th scope="row"><b>4. Hold stay interviews,</b> including with the worker who left.<span class="zh-full" lang="zh-Hant"><b>4. 做留任面談，</b>也和離職的那位談。</span></th><td>Keeps rare skills and shows the company is listening.<span class="zh-full" lang="zh-Hant">留住稀有技術，也讓大家知道公司有在聽。</span></td><td>Within a month. Check: no more quits.<span class="zh-full" lang="zh-Hant">一個月內。檢查：沒有人再離職。</span></td></tr><tr><th scope="row"><b>5. Start an apprentice program</b> where senior workers train young hires.<span class="zh-full" lang="zh-Hant"><b>5. 設學徒制，</b>由資深工人帶年輕新人。</span></th><td>The workers already worry that young people are not entering the trade. This gives them a purpose and keeps the skill alive.<span class="zh-full" lang="zh-Hant">工人本來就擔心年輕人不入行。這給他們一個目的，也讓技術傳下去。</span></td><td>Plan within six months. Check: apprentices hired and staying.<span class="zh-full" lang="zh-Hant">六個月內規劃。檢查：學徒人數與留任。</span></td></tr></tbody></table></div><h3 id="rec-molding">Molding department<span class="zh-full" lang="zh-Hant">成型部門</span></h3><div class="tbl"><table><thead><tr><th scope="col">Action<span class="zh-full" lang="zh-Hant">行動</span></th><th scope="col">Why it works<span class="zh-full" lang="zh-Hant">為什麼有用</span></th><th scope="col">Timing and check<span class="zh-full" lang="zh-Hant">時程與檢查</span></th></tr></thead><tbody><tr><th scope="row"><b>6. Keep S1 for safety, then move toward S2.</b> Bill keeps clear rules and checks, but also explains why each rule matters and praises safe work.<span class="zh-full" lang="zh-Hant"><b>6. 安全先用 S1，再往 S2 走。</b>Bill 維持清楚的規定和檢查，同時說明每條規定的理由、稱讚安全的做法。</span></th><td>The workers are R1 on safety. As they improve, add explanation and support.<span class="zh-full" lang="zh-Hant">工人在安全上是 R1。他們進步後，加上說明和支持。</span></td><td>Monthly. Check: safety violations and accidents.<span class="zh-full" lang="zh-Hant">每月。檢查：違規與事故。</span></td></tr><tr><th scope="row"><b>7. Reward safety and attendance.</b><span class="zh-full" lang="zh-Hant"><b>7. 獎勵安全與出勤。</b></span></th><td>Rewards for results work better than only catching mistakes, and suit routine jobs.<span class="zh-full" lang="zh-Hant">獎勵成果比只抓錯誤有效，也適合例行工作。</span></td><td>Quarterly. Check: turnover and violations.<span class="zh-full" lang="zh-Hant">每季。檢查：流動率與違規。</span></td></tr><tr><th scope="row"><b>8. Coach Bill</b> to read each group’s readiness.<span class="zh-full" lang="zh-Hant"><b>8. 教 Bill</b>判斷每個群體的準備度。</span></th><td>He uses one style for everyone.<span class="zh-full" lang="zh-Hant">他對每個人都用同一種風格。</span></td><td>Three months. Check: Bill can explain each group’s R level and his plan.<span class="zh-full" lang="zh-Hant">三個月。檢查：Bill 說得出每個群體的 R 等級和他的做法。</span></td></tr></tbody></table></div><p>For the whole plant, Jim and the new lead share one simple vision about quality, such as “Make the parts no one else can make.” It gives both departments a better reason than “faster.”<span class="zh-full" lang="zh-Hant">整個工廠：Jim 和新組長提出一個關於品質的簡單願景，例如「做出別人做不出來的零件」，讓兩個部門有比「更快」更好的理由。</span></p><div class="pair"><div><b>Risks<span class="zh-full" lang="zh-Hant">風險</span></b><p>There may be no suitable internal lead, and an outside hire needs time to earn trust. Bill may feel demoted, so present the move as using his strength. Delegating fully again before trust is rebuilt.<span class="zh-full" lang="zh-Hant">內部可能找不到合適的人，外聘者需要時間建立信任。Bill 可能覺得被降級，要說成是發揮他的強項。信任還沒恢復就太早完全授權。</span></p></div><div><b>What to track<span class="zh-full" lang="zh-Hant">追蹤什麼</span></b><p>Tool and die: on-time delivery, quality and rework, quits. Molding: safety violations, accidents, turnover and output.<span class="zh-full" lang="zh-Hant">模具部門：準時交付、品質與重工、離職。成型部門：安全違規、事故、流動率與產量。</span></p></div></div><details class="sayd"><summary>60 to 90 second presentation answer<span class="zh-full" lang="zh-Hant">60 到 90 秒報告稿</span></summary><blockquote class="say">“The tool and die workers are skilled, experienced and proud of their work. Under Joe they were R4, and Joe used S4, delegating. He gave them freedom and focused on quality, so it worked. The molding workers do routine work, ignore safety rules and leave often. They are R1, so Bill’s S1 directing style fits them, and their output is high. The trouble started when Bill took over tool and die. He used S1 on R4 experts. He checked them constantly and told them how to work, though he knew little about it. Their skill did not change, but their willingness dropped. Work fell behind and one long-time worker quit. We recommend that Jim Hunt move Bill back to molding and make a respected senior tool and die maker the lead. The new lead starts with S3, listening and solving problems together, then goes back to S4 once trust returns. Any standardization should come from the workers. In molding, Bill keeps clear safety rules but moves toward S2, explaining the rules and rewarding safe work. We would track delivery, quality, quits and safety incidents.”<span class="zh-full" lang="zh-Hant">「模具工技術好、經驗多、以工作為榮。在 Joe 底下他們是 R4，Joe 用 S4 授權，給自由、重視品質，所以運作得很好。成型機操作員做例行工作、不守安全規定、常離職，是 R1，所以 Bill 的 S1 指導型適合他們，產量也高。問題出在 Bill 接手模具部門後，對 R4 的專家用了 S1：一直盯，還教他們怎麼做，但他自己不太懂。他們的能力沒變，意願卻下降，進度落後，一位資深工人離職。我們建議 Jim Hunt 讓 Bill 回去管成型部門，由一位受尊敬的資深模具師傅當組長。新組長先用 S3，傾聽、一起解決問題，信任恢復後回到 S4。任何標準化都由工人提出。成型部門方面，Bill 維持清楚的安全規定，但往 S2 走，說明規定的理由、獎勵安全的做法。我們會追蹤交付、品質、離職和安全事故。」</span></blockquote></details><h3 id="follow-ups">Questions the professor may ask<span class="zh-full" lang="zh-Hant">老師可能追問</span></h3><div class="qa-tools"><button id="qaAll" type="button">Show all answers</button></div><div class="qa"><details><summary>Why not just train Bill to delegate?<span class="zh-full" lang="zh-Hant">為什麼不直接訓練 Bill 授權？</span></summary><p>He enjoys close control and does not know the craft. Training takes time, and skilled workers are already leaving. A new lead is faster. Coaching Bill still helps in molding.<span class="zh-full" lang="zh-Hant">他喜歡緊盯，又不懂這門手藝。訓練要時間，而技術工人已經在流失，換人比較快。教練 Bill 對成型部門仍然有幫助。</span></p></details><details><summary>Are the molding workers R1 or R3?<span class="zh-full" lang="zh-Hant">成型機操作員是 R1 還是 R3？</span></summary><p>Mostly R1 on safety. Their willingness is low, and high turnover means many are new. A few experienced ones may be R3.<span class="zh-full" lang="zh-Hant">在安全上大多是 R1：意願低，流動率高代表很多是新手。少數資深的可能是 R3。</span></p></details><details><summary>Is standardization wrong?<span class="zh-full" lang="zh-Hant">標準化錯了嗎？</span></summary><p>Not in itself. Forcing it without knowing the craft is the problem. The workers should lead it.<span class="zh-full" lang="zh-Hant">標準化本身沒錯，錯在不懂手藝就硬推。應該由工人主導。</span></p></details></div><aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>If Bill stayed in charge of tool and die, what would he need to change first, and why might that be hard for him?<span class="zh-full" lang="zh-Hant">如果 Bill 繼續管模具部門，他最先要改什麼？為什麼這對他來說可能很難？</span></p></aside><h2 id="traps">11. Do not mix these up<span class="zh-full" lang="zh-Hant">11. 常見錯誤</span></h2><div class="traps"><div><s>Leadership is better than management.<span class="zh-full" lang="zh-Hant">領導比管理好。</span></s><p>They are different jobs. Organizations need both.<span class="zh-full" lang="zh-Hant">兩者是不同的工作，組織兩個都需要。</span></p></div><div><s>Traits tell you what a leader should do.<span class="zh-full" lang="zh-Hant">特質告訴你領導者該怎麼做。</span></s><p>Traits describe the person. Situational theory says what to do.<span class="zh-full" lang="zh-Hant">特質只描述人，情境理論才告訴你怎麼做。</span></p></div><div><s>R1 followers need lots of support.<span class="zh-full" lang="zh-Hant">R1 的部屬需要很多支持。</span></s><p>They first need clear direction. Support rises at R2.<span class="zh-full" lang="zh-Hant">他們先需要清楚的指導，到 R2 支持才提高。</span></p></div><div><s>Transactional leadership is bad.<span class="zh-full" lang="zh-Hant">交易型領導不好。</span></s><p>It works for routine tasks. Long-term success may need both types.<span class="zh-full" lang="zh-Hant">它適合例行工作。長期成功可能兩種都需要。</span></p></div><div><s>An abstract vision is a vague one.<span class="zh-full" lang="zh-Hant">抽象的願景就是模糊的願景。</span></s><p>Abstract means a broad direction. It should still be clear.<span class="zh-full" lang="zh-Hant">抽象是指大方向，仍然要清楚。</span></p></div><div><s>Bill is a bad leader.<span class="zh-full" lang="zh-Hant">Bill 是很差的領導者。</span></s><p>His style fits one group and not the other. The problem is the match.<span class="zh-full" lang="zh-Hant">他的風格適合一群人、不適合另一群人。問題在配合。</span></p></div><div><s>The molding workers are lazy.<span class="zh-full" lang="zh-Hant">成型機操作員很懶。</span></s><p>Only Bill says they lack interest. Use the evidence: safety violations and turnover.<span class="zh-full" lang="zh-Hant">說他們沒興趣的只有 Bill。要用證據：違反安全規定、流動率高。</span></p></div></div><h2 id="coldcall">12. Cold call practice<span class="zh-full" lang="zh-Hant">12. 課堂問答練習</span></h2><div class="qa-tools"><button id="qaAll" type="button">Show all answers</button></div><div class="qa"><details><summary>Leadership versus management?<span class="zh-full" lang="zh-Hant">領導和管理有什麼不同？</span></summary><p>Management controls complexity. Leadership produces useful change. Organizations need both.<span class="zh-full" lang="zh-Hant">管理控制複雜度，領導帶來有用的改變。組織兩者都需要。</span></p></details><details><summary>What is trait theory?<span class="zh-full" lang="zh-Hant">什麼是特質理論？</span></summary><p>Leaders differ from followers in traits such as intelligence, confidence and task knowledge.<span class="zh-full" lang="zh-Hant">領導者在特質上和追隨者不同，例如智力、自信和任務知識。</span></p></details><details><summary>What are the two Ohio State behaviors?<span class="zh-full" lang="zh-Hant">Ohio State 的兩種行為是什麼？</span></summary><p>Consideration builds trust. Initiating structure organizes the work. Effective leaders combine both.<span class="zh-full" lang="zh-Hant">關懷建立信任，定結構安排工作。有效的領導兩者結合。</span></p></details><details><summary>What is readiness?<span class="zh-full" lang="zh-Hant">什麼是準備度？</span></summary><p>A follower’s ability and willingness to do one specific task.<span class="zh-full" lang="zh-Hant">部屬對某一項任務的能力和意願。</span></p></details><details><summary>Match R1 to R4 with the styles.<span class="zh-full" lang="zh-Hant">把 R1 到 R4 配上風格。</span></summary><p>R1 Directing, R2 Coaching, R3 Supporting, R4 Delegating.<span class="zh-full" lang="zh-Hant">R1 指導、R2 教練、R3 支持、R4 授權。</span></p></details><details><summary>What is transactional leadership?<span class="zh-full" lang="zh-Hant">什麼是交易型領導？</span></summary><p>Leading through exchange: rewards for performance, and stepping in when things go wrong.<span class="zh-full" lang="zh-Hant">用交換帶人：依績效給獎勵，出問題時介入。</span></p></details><details><summary>Name the four I’s.<span class="zh-full" lang="zh-Hant">說出四個 I。</span></summary><p>Idealized influence, inspirational motivation, intellectual stimulation, individualized consideration.<span class="zh-full" lang="zh-Hant">理想化影響、激勵鼓舞、智力啟發、個別關懷。</span></p></details><details><summary>What does the full-range model show?<span class="zh-full" lang="zh-Hant">全範圍模型說明什麼？</span></summary><p>Styles from least to most effective: laissez-faire at the bottom, the four I’s at the top.<span class="zh-full" lang="zh-Hant">風格從最無效到最有效：放任在最底，四個 I 在最上。</span></p></details><details><summary>Name the seven vision attributes.<span class="zh-full" lang="zh-Hant">說出願景的七個屬性。</span></summary><p>Conciseness, clarity, future orientation, stability, challenge, abstractness, ability to inspire.<span class="zh-full" lang="zh-Hant">簡潔、清楚、未來導向、穩定、挑戰、抽象、激勵人心。</span></p></details><details><summary>What went wrong at Precision Plastics?<span class="zh-full" lang="zh-Hant">Precision Plastics 出了什麼問題？</span></summary><p>Bill used S1 on R4 experts. They felt distrusted, slowed down, and one quit.<span class="zh-full" lang="zh-Hant">Bill 對 R4 的專家用了 S1。他們覺得不被信任、放慢速度，一人離職。</span></p></details></div><h2 id="templates">13. Answer templates<span class="zh-full" lang="zh-Hant">13. 答題模板</span></h2><div class="pair"><div><b>Situational leadership<span class="zh-full" lang="zh-Hant">情境領導</span></b><p>“On [task], the [followers] are R[_]: their ability is [high/low] because [evidence], and their willingness is [high/low] because [evidence]. They need S[_]. The leader uses S[_], which [fits / does not fit]. I recommend [owner] [action]. As readiness rises, move toward S4.”<span class="zh-full" lang="zh-Hant">「在［任務］上，［部屬］是 R［_］：能力［高／低］，因為［證據］；意願［高／低］，因為［證據］。他們需要 S［_］，領導者用的是 S［_］，［適合／不適合］。我建議［負責人］［行動］。準備度上升時往 S4 走。」</span></p></div><div><b>Transformational<span class="zh-full" lang="zh-Hant">轉換型</span></b><p>“The leader is mainly transactional, using [form]. Of the four I’s, [dimension] is missing because [evidence]. I recommend [action] to build it. Transactional tools can stay for [routine work].”<span class="zh-full" lang="zh-Hant">「這位領導者主要是交易型，用［形式］。四個 I 裡缺了［構面］，因為［證據］。我建議［行動］來補上。例行工作可以保留交易型工具。」</span></p></div></div><p class="note-small source">Source: Session 9 lecture slides; Precision Plastics case.<span class="zh-full" lang="zh-Hant">來源：第 9 堂投影片；Precision Plastics 個案。</span></p></article></main></div><script>
+window.MgmtZh = {"Classify": "分類", "Next": "下一題", "Which element is this?": "這是哪一個要素？", "Read the example, then choose the culture element it shows.": "閱讀例子，選出它呈現的文化要素。", "Which responsibility layer?": "屬於哪一層責任？", "Place each action in the p.29 pyramid.": "把每個行動放進第 29 頁的金字塔。", "Values": "價值", "Heroes": "英雄", "Traditions and symbols": "傳統與象徵", "Rites and rituals": "儀式與例行儀式", "Ceremonies": "典禮", "Stories": "故事", "Economic": "經濟責任", "Legal": "法律責任", "Ethical": "倫理責任", "Discretionary": "自發性責任", "A framed list in the lobby says “Customer First, Integrity, Teamwork.”": "大廳掛著一份清單：「顧客優先、誠信、團隊合作」。", "These are stated core values; whether they are real depends on the p.10 checks.": "這是明列的核心價值；是否真實要看第 10 頁的檢查。", "A story needs a person, a problem and a result; this is a list.": "故事需要人物、問題與結果；這只是一份清單。", "A tradition or symbol is a lasting item like a song; this is a value statement.": "傳統或象徵是像歌曲一樣長久的事物；這是價值聲明。", "Every new hire spends day one with a buddy and hears how the company started.": "每位新人第一天由夥伴帶領，並聽公司創立的經過。", "A ceremony honors people; this marks one person's entry.": "典禮是表揚人；這是標記某個人的加入。", "Induction is a rite of passage: it turns an outsider into an insider.": "入職是通過儀式：讓外人變成自己人。", "The buddy may become a role model, but the event itself is a rite.": "夥伴可能成為榜樣，但這個活動本身是通過儀式。", "Staff keep retelling how the founder drove all night to deliver an urgent order.": "員工一再轉述創辦人連夜開車送急件的事。", "A narrative passed between staff that carries a value: a story.": "在員工之間流傳、承載價值的敘事：故事。", "The story carries a value, but the retelling itself is a story.": "故事承載價值，但轉述本身就是故事。", "Nobody is being honored at an event.": "沒有人在活動中被表揚。", "Each Monday every team starts with ten minutes on customer complaints.": "每週一各團隊先花十分鐘討論客訴。", "A regular way of working is a ritual.": "固定的工作方式就是例行儀式。", "A ceremony is a major event that honors people.": "典禮是表揚人的重大活動。", "A tradition like a song lasts; a weekly meeting habit is a ritual.": "像歌曲一樣的傳統會長久存在；每週開會的習慣是例行儀式。", "An annual night honors the team of the year in front of the whole company.": "每年一晚在全公司面前表揚年度團隊。", "Rites mark one person's moment; this honors people publicly.": "通過儀式標記個人時刻；這是公開表揚。", "A major event honoring people is a ceremony or celebration.": "表揚人的重大活動就是典禮或慶祝活動。", "The award reflects values, but the event is a ceremony.": "獎項反映價值，但這個活動是典禮。", "Everyone points to a senior engineer as “the way we should work.”": "大家都把一位資深工程師當成「我們該有的工作方式」。", "A person who models the values and sets the standard is a hero.": "示範價值、設定標準的人就是英雄。", "People may tell stories about her, but she is a hero.": "大家可能會講她的故事，但她本身是英雄。", "She embodies values; she is not a value statement.": "她體現價值，但不是價值聲明。", "The company song is sung at every anniversary.": "每次週年慶都會唱公司歌。", "A company song is the slide's example of a tradition and symbol.": "公司歌曲是投影片中傳統與象徵的例子。", "A rite marks one person's moment, not a lasting song.": "通過儀式標記個人時刻，不是長久的歌曲。", "The anniversary may be a ceremony, but the song is a tradition.": "週年慶可能是典禮，但歌曲是傳統。", "Keeping the company profitable so it can pay staff and invest.": "讓公司保持獲利，才能支付員工並投資。", "Being profitable is the foundation layer.": "獲利是基礎層。", "Profit is not mainly a moral duty here; it is the base.": "這裡的獲利主要不是道德義務，而是基礎。", "Discretionary means voluntary giving to the community.": "自發性責任是自願回饋社區。", "Following medical-device regulations on labeling.": "遵守醫療器材的標示法規。", "Obeying the law is the legal layer.": "遵守法律屬於法律層。", "It may also be right, but it is required by law.": "這也許也是對的事，但它是法律要求。", "It is a rule to follow, not a profit goal.": "這是要遵守的規定，不是獲利目標。", "Refusing to sell a legal product known to harm patients.": "拒絕販售合法但已知會傷害病人的產品。", "The law allows the sale, so this goes beyond legal.": "法律允許販售，所以這超出法律層。", "Doing what is right and avoiding harm beyond the law is ethical.": "在法律之外做對的事、避免傷害，屬於倫理層。", "It is about avoiding harm, not voluntary giving.": "重點是避免傷害，不是自願回饋。", "Funding a free health clinic in the local community.": "在在地社區資助免費診所。", "Avoiding harm is ethical; this is voluntary giving.": "避免傷害屬於倫理；這是自願回饋。", "Contributing resources to the community is discretionary.": "提供資源給社區屬於自發性責任。", "It costs money rather than earning it.": "這是花錢而不是賺錢。", "Try it": "試試看", "Read the follower, then pick the style": "先看部屬，再選風格", "Choose the follower's ability and willingness for one specific task.": "選出部屬在某項特定任務上的能力和意願。", "Ability": "能力", "Willingness": "意願", "Low": "低", "High": "高", "Low or insecure": "低或沒信心", "High or confident": "高或有信心", "Pick one option in each row.": "每一列各選一個。", "R1: unable and unwilling, or insecure": "R1：沒能力也沒意願，或沒信心", "Use S1 Directing: high task, low support": "用 S1 指導型：高任務、低支持", "Tell them what to do, how and when. Check that they understand. Give regular feedback.": "告訴他做什麼、怎麼做、何時完成。確認他聽懂，定期回饋。", "R2: unable but willing, or confident": "R2：沒能力但有意願，或有信心", "Use S2 Coaching: high task, high support": "用 S2 教練型：高任務、高支持", "Teach the task and explain why it matters. Set standards and deadlines. Show confidence in them.": "教他任務並說明為什麼重要。訂標準和期限，表達對他的信心。", "R3: able but unwilling, or insecure": "R3：有能力但沒意願，或沒信心", "Use S3 Supporting: low task, high support": "用 S3 支持型：低任務、高支持", "Do not re-teach the task. Share ideas, solve problems together and help them feel responsible.": "不用再教任務。交換想法、一起解決問題，讓他覺得自己負責。", "R4: able and willing, or confident": "R4：有能力也有意願，或有信心", "Use S4 Delegating: low task, low support": "用 S4 授權型：低任務、低支持", "Agree on goals and a follow-up plan. Step in only if they cannot solve a problem.": "講好目標和追蹤計畫。只在他解決不了問題時介入。", "Which style fits?": "哪種風格適合？", "Read each scenario, then choose the style.": "讀每個情境，選出風格。", "Which leadership behavior?": "這是哪種領導行為？", "Choose the transactional or transformational behavior shown.": "選出它呈現的交易型或轉換型行為。", "1. A new secretary makes many personal calls, is always late with reports and complains of being overloaded.": "1. 新秘書常打私人電話、報告總是遲交，被問時還抱怨工作太多。", "S1 Directing": "S1 指導型", "S2 Coaching": "S2 教練型", "S3 Supporting": "S3 支持型", "R1: late reports show low ability on this job, and the calls and complaints show low willingness. Set clear tasks, deadlines and checks.": "R1：遲交報告代表這份工作的能力低，私人電話和抱怨代表意願低。給清楚的任務、期限和檢查。", "Coaching fits someone willing but not yet able. She shows little willingness.": "教練型適合有意願但還不會的人，她看起來沒什麼意願。", "Supporting assumes she can already do the work. Her late reports say otherwise.": "支持型假設她已經會做，但遲交的報告說明不是這樣。", "2. Your assistant always finishes on time and solves problems well. His current deadline is near.": "2. 你的助理總是準時完成、很會解決問題。目前的期限快到了。", "S4 Delegating": "S4 授權型", "He does not need teaching. He is able and willing.": "他不需要教，他有能力也有意願。", "He is not insecure or unwilling, so extra support is not needed.": "他沒有不安或沒意願，不需要額外支持。", "R4: proven and reliable. Let him finish. Do not step in just because the deadline is close.": "R4：可靠又有能力。讓他完成，不要因為期限快到就插手。", "3. A new employee is excited about learning Dreamweaver, but you are unsure of his computer skills.": "3. 新員工很興奮要學 Dreamweaver，但你不確定他的電腦能力。", "He is excited, so he is willing. On the slide scale that is R2. (Blanchard’s later SLII model would call him D1 and use S1.)": "他很興奮，代表有意願，在投影片的尺度上是 R2。（Blanchard 後來的 SLII 模型會說他是 D1、用 S1。）", "R2: willing, but skills are unknown. Teach the steps and keep up his enthusiasm.": "R2：有意願但能力未知。教他步驟，維持他的熱情。", "You are unsure of his skills, so he is not yet able.": "你不確定他的能力，所以他還不算有能力。", "4. An assistant who uses a database well says a project may be a little late. He is working on a new design to make the report more useful.": "4. 一位很會用資料庫的助理說專案可能會稍微延遲，因為他在做新的設計，讓報告更有用。", "Taking control would punish useful initiative from a proven performer.": "接手掌控等於懲罰一位可靠員工的好主動。", "Some answer keys say S3: talk with him about the delay. Either way, do not take over the task.": "有些答案寫 S3：和他談延遲的事。無論哪種，都不要接手這項任務。", "R4: proven skill and initiative. Let him continue and agree on a new date.": "R4：能力已證明、又主動。讓他繼續，約一個新日期。", "5. A slow customer service team has improved over the past month under close monitoring and strict deadlines. What next?": "5. 表現一直很慢的客服團隊，在緊盯和嚴格期限下，過去一個月有進步。下一步？", "Stay with S1": "維持 S1", "Move to S2": "改用 S2", "Jump to S4": "直接跳到 S4", "Close monitoring worked, but staying there ignores their progress.": "緊盯有效，但一直維持就忽略了他們的進步。", "Readiness is rising from R1 toward R2. Keep the deadlines, and add praise, reasons and two-way talk.": "準備度正從 R1 往 R2 上升。期限照舊，加上稱讚、說明理由和雙向溝通。", "One good month is not enough. Move one step at a time.": "好一個月還不夠，一次只走一步。", "6. Your excellent copy editor, a friend, is much slower than usual on a project with a key deadline. Friendly support has not helped.": "6. 你那位很優秀、交情也好的編輯，這次專案比平常慢很多，關鍵期限快到了。友善的支持沒用。", "Keep S3": "維持 S3", "Step back to S2": "退回 S2", "Move to S4": "改用 S4", "Friendly support alone has not worked.": "光靠友善支持已經沒用。", "She is able, but performance has dropped. Add task behavior: set the deadline, agree on steps and check progress, while keeping the relationship.": "她有能力，但表現下滑。加上任務行為：定期限、講好步驟、檢查進度，同時維持關係。", "Less involvement would leave a late project unmanaged.": "更少介入會讓這個落後的專案沒人管。", "A sales manager pays a bonus to everyone who hits the monthly target.": "業務經理發獎金給每位達成月目標的人。", "Contingent reward": "依績效給獎勵", "Individualized consideration": "個別關懷", "Management by exception, active": "主動式例外管理", "A reward for an agreed result.": "為約定的成果給獎勵。", "Individualized consideration develops each person. This is the same deal for everyone.": "個別關懷是培養每個人；這是對所有人一樣的交換。", "Nothing here is about watching for mistakes.": "這裡沒有在盯錯誤。", "A supervisor checks every report for errors and corrects them right away.": "主管檢查每份報告的錯誤，並馬上更正。", "Management by exception, passive": "被動式例外管理", "Intellectual stimulation": "智力啟發", "Watching closely and tracking mistakes.": "密切監看、追蹤錯誤。", "Passive means waiting until someone reports a problem. This supervisor goes looking for it.": "被動是等人來報告問題；這位主管是主動去找。", "Correcting errors is not helping people think in new ways.": "更正錯誤不是在幫人用新方式思考。", "A manager steps in only after a customer complains.": "經理只在客戶抱怨後才介入。", "Laissez-faire": "放任", "Active means watching for problems before anyone complains.": "主動是在有人抱怨前就盯著問題。", "Waits to be told, then intervenes.": "等人通報，再介入。", "Laissez-faire avoids acting at all. This manager does act, but only after a problem.": "放任是完全不採取行動；這位經理有行動，只是等問題出現後。", "A director asks the team to find a new way to fix an old delivery problem, and lets them test it.": "主管請團隊想新辦法解決一個老的交貨問題，並讓他們試。", "Inspirational motivation": "激勵鼓舞", "Helping people look at old problems in new ways.": "幫人用新方式看舊問題。", "Inspirational motivation is about a vision of the future.": "激勵鼓舞是關於未來的願景。", "No reward is offered here.": "這裡沒有提供獎勵。", "A CEO describes a future where every hospital trusts the company first.": "執行長描繪一個每家醫院都最信任公司的未來。", "Idealized influence": "理想化影響", "Creating an attractive vision.": "提出吸引人的願景。", "Idealized influence is about modeling behavior, not describing the future.": "理想化影響是以身作則，不是描繪未來。", "This is a message to everyone, not attention to one person’s needs.": "這是對所有人的訊息，不是關注某個人的需要。", "A leader follows the same safety rules she asks of everyone, even when it costs her time.": "領導者遵守她要求大家遵守的安全規定，即使要多花時間。", "Modeling the behavior she wants from others.": "做出她希望別人做的行為。", "She is not checking others for mistakes. She is setting the example.": "她不是在檢查別人的錯，而是在做示範。", "No vision is described. The point is her own behavior.": "這裡沒有談願景，重點是她自己的行為。", "A manager meets each team member monthly to plan their growth.": "經理每月和每位成員談他們的成長計畫。", "Focus on each person’s needs, with a coaching approach.": "關注每個人的需要，用教練方式帶。", "No reward is tied to a result.": "沒有和成果掛鉤的獎勵。", "The focus is each person’s development, not a problem to solve.": "重點是每個人的發展，不是要解決的問題。", "Hide all answers": "隱藏所有答案", "Show all answers": "顯示所有答案"};
+window.MgmtSetText = function(el, en, zh) {
+  el.textContent = en;
+  if (zh === undefined) zh = window.MgmtZh[en.trim()];
+  if (!zh) { const m = en.match(/^Item (\d+) of (\d+)(?: · (\d+) \/ (\d+) correct)?$/); if (m) zh = '第 '+m[1]+'／'+m[2]+' 題'+(m[3] ? '・'+m[3]+'／'+m[4]+' 題答對' : ''); }
+  if (zh) { const z=document.createElement('span'); z.className='zh-full'; z.lang='zh-Hant'; z.textContent=zh; el.append(z); }
+};
+window.MgmtQuizExplain = function(panel, labels, reasons, correct, chosen) {
+  const ok = chosen === correct;
+  const english = ok ? 'Correct. '+reasons[chosen] : 'Not quite. Best answer: '+labels[correct]+'. '+reasons[chosen];
+  const chinese = ok ? '答對了。'+window.MgmtZh[reasons[chosen]] : '答錯了。正確答案：'+window.MgmtZh[labels[correct]]+'。'+window.MgmtZh[reasons[chosen]];
+  window.MgmtSetText(panel, english, chinese); panel.hidden=false;
+};
+</script><script>
+/* Shared Management classification cards, adapted from the Session 4 quiz. */
+window.MgmtQuiz = function(host, title, instruction, items) {
+  const make = (tag, text, cls) => { const e = document.createElement(tag); if (text) window.MgmtSetText(e, text); if (cls) e.className = cls; return e; };
+  host.classList.add('mw');
+  const head = make('div', null, 'g-head');
+  head.append(make('span', 'Classify', 'g-kicker'), make('h4', title), make('p', instruction));
+  const body = make('div', null, 'mw-body'), question = make('p', null, 'qz-item'), options = make('div', null, 'qz-opts grid2'), note = make('div', null, 'g-note'), nav = make('div', null, 'qz-nav'), count = make('span'), next = make('button', 'Next', 'g-btn');
+  note.setAttribute('aria-live', 'polite'); next.type = 'button';
+  nav.append(count, next); body.append(question, options, note, nav); host.append(head, body);
+  let index = 0, score = 0, done = 0, answered = false;
+  function show() {
+    const item = items[index]; answered = false; window.MgmtSetText(question, item.q); options.replaceChildren(); note.textContent = ''; note.hidden = true;
+    window.MgmtSetText(count, 'Item ' + (index + 1) + ' of ' + items.length + (done ? ' · ' + score + ' / ' + done + ' correct' : ''));
+    item.options.forEach((option, choice) => {
+      const button = make('button', null, 'qz-o'); button.type = 'button'; button.append(make('b', option));
+      button.addEventListener('click', () => {
+        if (answered) return; answered = true; done++; const correct = choice === item.answer; if (correct) score++;
+        options.querySelectorAll('button').forEach((b, i) => { b.classList.toggle('right', i === item.answer); b.setAttribute('aria-disabled', 'true'); });
+        if (!correct) button.classList.add('wrong');
+        window.MgmtQuizExplain(note, item.explanationLabels || item.options, item.explanations, item.answer, choice);
+        window.MgmtSetText(count, 'Item ' + (index + 1) + ' of ' + items.length + ' · ' + score + ' / ' + done + ' correct');
+      });
+      options.append(button);
+    });
+  }
+  next.addEventListener('click', () => { index = (index + 1) % items.length; show(); }); show();
+};
+</script><script>
+(function(){
+ const W={};
+ W['scenario-sort']=host=>window.MgmtQuiz(host,'Which style fits?','Read each scenario, then choose the style.',[{"q": "1. A new secretary makes many personal calls, is always late with reports and complains of being overloaded.", "options": ["S1 Directing", "S2 Coaching", "S3 Supporting"], "answer": 0, "explanations": ["R1: late reports show low ability on this job, and the calls and complaints show low willingness. Set clear tasks, deadlines and checks.", "Coaching fits someone willing but not yet able. She shows little willingness.", "Supporting assumes she can already do the work. Her late reports say otherwise."]}, {"q": "2. Your assistant always finishes on time and solves problems well. His current deadline is near.", "options": ["S2 Coaching", "S3 Supporting", "S4 Delegating"], "answer": 2, "explanations": ["He does not need teaching. He is able and willing.", "He is not insecure or unwilling, so extra support is not needed.", "R4: proven and reliable. Let him finish. Do not step in just because the deadline is close."]}, {"q": "3. A new employee is excited about learning Dreamweaver, but you are unsure of his computer skills.", "options": ["S1 Directing", "S2 Coaching", "S4 Delegating"], "answer": 1, "explanations": ["He is excited, so he is willing. On the slide scale that is R2. (Blanchard’s later SLII model would call him D1 and use S1.)", "R2: willing, but skills are unknown. Teach the steps and keep up his enthusiasm.", "You are unsure of his skills, so he is not yet able."]}, {"q": "4. An assistant who uses a database well says a project may be a little late. He is working on a new design to make the report more useful.", "options": ["S1 Directing", "S3 Supporting", "S4 Delegating"], "answer": 2, "explanations": ["Taking control would punish useful initiative from a proven performer.", "Some answer keys say S3: talk with him about the delay. Either way, do not take over the task.", "R4: proven skill and initiative. Let him continue and agree on a new date."]}, {"q": "5. A slow customer service team has improved over the past month under close monitoring and strict deadlines. What next?", "options": ["Stay with S1", "Move to S2", "Jump to S4"], "answer": 1, "explanations": ["Close monitoring worked, but staying there ignores their progress.", "Readiness is rising from R1 toward R2. Keep the deadlines, and add praise, reasons and two-way talk.", "One good month is not enough. Move one step at a time."]}, {"q": "6. Your excellent copy editor, a friend, is much slower than usual on a project with a key deadline. Friendly support has not helped.", "options": ["Keep S3", "Step back to S2", "Move to S4"], "answer": 1, "explanations": ["Friendly support alone has not worked.", "She is able, but performance has dropped. Add task behavior: set the deadline, agree on steps and check progress, while keeping the relationship.", "Less involvement would leave a late project unmanaged."]}]);
+ W['tf-sort']=host=>window.MgmtQuiz(host,'Which leadership behavior?','Choose the transactional or transformational behavior shown.',[{"q": "A sales manager pays a bonus to everyone who hits the monthly target.", "options": ["Contingent reward", "Individualized consideration", "Management by exception, active"], "answer": 0, "explanations": ["A reward for an agreed result.", "Individualized consideration develops each person. This is the same deal for everyone.", "Nothing here is about watching for mistakes."]}, {"q": "A supervisor checks every report for errors and corrects them right away.", "options": ["Management by exception, active", "Management by exception, passive", "Intellectual stimulation"], "answer": 0, "explanations": ["Watching closely and tracking mistakes.", "Passive means waiting until someone reports a problem. This supervisor goes looking for it.", "Correcting errors is not helping people think in new ways."]}, {"q": "A manager steps in only after a customer complains.", "options": ["Management by exception, active", "Management by exception, passive", "Laissez-faire"], "answer": 1, "explanations": ["Active means watching for problems before anyone complains.", "Waits to be told, then intervenes.", "Laissez-faire avoids acting at all. This manager does act, but only after a problem."]}, {"q": "A director asks the team to find a new way to fix an old delivery problem, and lets them test it.", "options": ["Intellectual stimulation", "Inspirational motivation", "Contingent reward"], "answer": 0, "explanations": ["Helping people look at old problems in new ways.", "Inspirational motivation is about a vision of the future.", "No reward is offered here."]}, {"q": "A CEO describes a future where every hospital trusts the company first.", "options": ["Inspirational motivation", "Idealized influence", "Individualized consideration"], "answer": 0, "explanations": ["Creating an attractive vision.", "Idealized influence is about modeling behavior, not describing the future.", "This is a message to everyone, not attention to one person’s needs."]}, {"q": "A leader follows the same safety rules she asks of everyone, even when it costs her time.", "options": ["Idealized influence", "Management by exception, active", "Inspirational motivation"], "answer": 0, "explanations": ["Modeling the behavior she wants from others.", "She is not checking others for mistakes. She is setting the example.", "No vision is described. The point is her own behavior."]}, {"q": "A manager meets each team member monthly to plan their growth.", "options": ["Individualized consideration", "Contingent reward", "Intellectual stimulation"], "answer": 0, "explanations": ["Focus on each person’s needs, with a coaching approach.", "No reward is tied to a result.", "The focus is each person’s development, not a problem to solve."]}]);
+
+ W['readiness-pick']=host=>{
+  const T=window.MgmtSetText,mk=(tag,text,cls)=>{const e=document.createElement(tag);if(text)T(e,text);if(cls)e.className=cls;return e};
+  host.classList.add('mw');
+  const head=mk('div',null,'g-head');head.append(mk('span','Try it','g-kicker'),mk('h4','Read the follower, then pick the style'),mk('p',"Choose the follower's ability and willingness for one specific task."));
+  const body=mk('div',null,'mw-body'),st={a:null,w:null};
+  [['a','Ability',['Low','High']],['w','Willingness',['Low or insecure','High or confident']]].forEach(([k,label,opts])=>{
+   const row=mk('div',null,'rp-row'),box=mk('div',null,'rp-opts');row.append(mk('span',label,'rp-lbl'));
+   opts.forEach((o,i)=>{const b=mk('button',o,'rp-b');b.type='button';b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',()=>{st[k]=i;box.querySelectorAll('button').forEach((x,j)=>x.setAttribute('aria-pressed',String(j===i)));render()});box.append(b)});
+   row.append(box);body.append(row)});
+  const out=mk('div',null,'rp-out');out.setAttribute('aria-live','polite');body.append(out);
+  const R={'00':['R1: unable and unwilling, or insecure','Use S1 Directing: high task, low support','Tell them what to do, how and when. Check that they understand. Give regular feedback.'],
+   '01':['R2: unable but willing, or confident','Use S2 Coaching: high task, high support','Teach the task and explain why it matters. Set standards and deadlines. Show confidence in them.'],
+   '10':['R3: able but unwilling, or insecure','Use S3 Supporting: low task, high support','Do not re-teach the task. Share ideas, solve problems together and help them feel responsible.'],
+   '11':['R4: able and willing, or confident','Use S4 Delegating: low task, low support','Agree on goals and a follow-up plan. Step in only if they cannot solve a problem.']};
+  function render(){out.replaceChildren();if(st.a===null||st.w===null){out.append(mk('p','Pick one option in each row.','rp-wait'));return}
+   const r=R[''+st.a+st.w];out.append(mk('p',r[0],'rp-r'),mk('p',r[1],'rp-style'),mk('p',r[2]))}
+  render();host.append(head,body);
+ };
+ const header=document.querySelector('.top');function measureHeader(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px')}if('ResizeObserver'in window)new ResizeObserver(measureHeader).observe(header);measureHeader();
+ window.MgmtWidgets={mount(root){root.querySelectorAll('[data-mw]').forEach(host=>{if(!host.dataset.ready&&W[host.dataset.mw]){host.dataset.ready='1';W[host.dataset.mw](host)}})}};
+})();
+</script><script>
+(function () {
+  const toc = document.getElementById('toc'), rail = document.getElementById('rail');
+  const hs = [...document.querySelectorAll('.doc > h2, .doc > h3')];
+  hs.forEach(h => {
+    const li = document.createElement('li'); li.className = h.tagName.toLowerCase(); li.dataset.id = h.id;
+    const a = document.createElement('a'); a.href = '#' + h.id; a.textContent = h.childNodes[0].textContent.trim(); const z=h.querySelector(':scope > .zh-full'); if(z)a.append(z.cloneNode(true));
+    li.appendChild(a); toc.appendChild(li);
+  });
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    toc.querySelectorAll('a.on').forEach(a => a.classList.remove('on'));
+    const a = toc.querySelector('li[data-id="' + e.target.id + '"] a'); if (a) a.classList.add('on');
+  }), { rootMargin: '-80px 0px -70% 0px' });
+  hs.forEach(h => spy.observe(h));
+
+  const tb = document.getElementById('tocBtn');
+  tb.addEventListener('click', () => { const o = rail.classList.toggle('open'); tb.setAttribute('aria-expanded', o); });
+  toc.addEventListener('click', e => { if (e.target.closest('a')) { rail.classList.remove('open'); tb.setAttribute('aria-expanded', false); } });
+
+  const all = document.getElementById('qaAll');
+  if (all) all.addEventListener('click', () => {
+    const ds = document.querySelectorAll('.qa details'), open = ![...ds].every(d => d.open);
+    ds.forEach(d => d.open = open); window.MgmtSetText(all, open ? 'Hide all answers' : 'Show all answers');
+  });
+  document.querySelectorAll('.drill .ans').forEach(s => s.addEventListener('click', () => s.classList.toggle('shown')));
+
+  if (window.EconWidgets) window.EconWidgets.mount(document);
+  if (window.MgmtWidgets) window.MgmtWidgets.mount(document);
+})();
+</script><script>
+(function(){
+ document.querySelectorAll('.ev-tabs').forEach(set=>{
+  const tabs=set.querySelector('[role=tablist]'),btns=[...tabs.querySelectorAll('[role=tab]')],panels=btns.map(b=>document.getElementById(b.getAttribute('aria-controls')));
+  function pick(i,f){btns.forEach((b,j)=>{const on=i===j;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;panels[j].hidden=!on});if(f)btns[i].focus()}
+  btns.forEach((b,i)=>{b.addEventListener('click',()=>pick(i));b.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();pick((i+(e.key==='ArrowRight'?1:btns.length-1))%btns.length,true)}})});
+  tabs.hidden=false;pick(0);
+ });
+})();
+</script><script>
+(function(){
+ const zh=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+ function syncOptions(){document.querySelectorAll('option[data-en]').forEach(o=>o.textContent=o.dataset.en+(zh.checked&&o.dataset.zh?'／'+o.dataset.zh:''))}
+ function setChinese(on){zh.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';syncOptions()}
+ setChinese(false);zh.addEventListener('change',()=>setChinese(zh.checked));
+ const practice=document.getElementById('practiceToggle'),state=document.getElementById('practiceState'),stateZh=document.getElementById('practiceChinese');
+ practice.addEventListener('click',()=>{const on=practice.getAttribute('aria-pressed')!=='true';practice.setAttribute('aria-pressed',String(on));state.textContent=on?'On':'Off';stateZh.textContent=on?'練習模式：開啟':'練習模式：關閉';document.querySelectorAll('.practice-prompt').forEach(p=>p.hidden=!on)});
+})();
+</script></body></html>
