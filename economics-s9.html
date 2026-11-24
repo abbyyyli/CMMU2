@@ -1,0 +1,892 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Inflation and the Quantity Theory of Money · Economics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column with a sticky chapter rail; colors follow system appearance. */
+:root {
+  color-scheme: light;
+  --bg: var(--tone-fdf9f9); --panel: var(--tone-f8eef0); --paper: var(--tone-ffffff); --tint: var(--tone-fae9ed); --line: var(--tone-efdde2);
+  --fg: var(--tone-2f282b); --muted: var(--tone-7e6f74); --accent: var(--tone-c06c84); --accent-ink: var(--tone-9c4862);
+  --demand: var(--tone-3f5675); --supply: var(--tone-c06c84); --ext: var(--tone-6e3f55); --world: var(--tone-8a7a5c); --policy: var(--tone-3f7f7a);
+  --cs: var(--tone-a7cdb6); --ps: var(--tone-b2c4e3); --dwl: var(--tone-d9674f); --rev: var(--tone-e5c171); --rev2: var(--tone-f1dca8); --time: var(--tone-ddb3cb); --ts: var(--tone-bfdcc9);
+  --serif: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; background: var(--bg); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 16px; line-height: 1.75; }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(var(--header-rgb), .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding-inline: 16px; }
+.top-in { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; gap: 14px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.02rem; white-space: nowrap; }
+.brand small { font-family: var(--sans); font-weight: 500; color: var(--muted); font-size: .76rem; margin-left: 6px; letter-spacing: .06em; }
+.sessions { display: flex; gap: 4px; margin-left: auto; }
+.crumbs { font-size: .86rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; } .crumbs a:hover { color: var(--accent-ink); } .crumbs span { color: var(--line); } .crumbs b { font-family: var(--serif); }
+.sessions a.pill { text-decoration: none; transition: border-color .15s, color .15s; }
+.sessions a.pill:hover, .sessions a.pill:focus-visible { border-color: var(--accent); color: var(--accent-ink); background: var(--tint); }
+.sessions .pill { font: 500 .82rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--muted); padding: 4px 12px; border-radius: 999px; }
+.sessions .pill[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--tone-ffffff); }
+.sessions .pill.off { opacity: .5; cursor: not-allowed; }
+.toc-btn { display: none; font: 500 .85rem var(--sans); border: 1px solid var(--line); background: var(--paper); color: var(--fg); border-radius: 8px; padding: 5px 12px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 52px; }
+.rail { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow: auto; padding-block: 34px 40px; font-size: .86rem; line-height: 1.5; }
+.rail .lbl { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.rail ol { list-style: none; margin: 0; padding: 0; }
+.rail li a { display: block; padding: 4px 10px; color: var(--muted); text-decoration: none; border-radius: 6px; }
+.rail li a:hover { color: var(--fg); background: var(--tint); }
+.rail li.h3 a { padding-left: 22px; font-size: .8rem; }
+.rail li a.on { color: var(--accent-ink); background: var(--tint); font-weight: 500; }
+
+main { min-width: 0; padding-block: 30px 120px; }
+.doc { max-width: 780px; }
+.hero { padding-block: 8px 26px; border-bottom: 1px solid var(--line); }
+.kick { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 6px; font-weight: 500; }
+.hero h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.25; margin: 0 0 12px; text-wrap: balance; }
+.lead { margin: 0; font-size: 1.04rem; max-width: 62ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.doc h2 { font-family: var(--serif); font-size: 1.55rem; line-height: 1.35; margin: 3.4rem 0 .3rem; text-wrap: balance; }
+.doc h3 { font-size: 1.1rem; line-height: 1.45; margin: 2.2rem 0 .5rem; color: var(--accent-ink); text-wrap: balance; }
+.sub { margin: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
+.doc p, .doc li { max-width: none; }
+.doc ul, .doc ol { padding-left: 1.25em; }
+.doc li { margin: .25rem 0; }
+.zh { display: inline-block; font-size: .78em; line-height: 1.3; color: var(--accent-ink); background: var(--tint); padding: 0 6px; border-radius: 4px; margin-left: 2px; vertical-align: 1px; font-weight: 500; }
+.hint { font-size: .9rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.hint b { flex: none; font-size: .72rem; color: var(--tone-ffffff); background: var(--accent); padding: 0 7px; border-radius: 4px; font-weight: 500; }
+.key { background: var(--tint); padding: 12px 16px; border-radius: 8px; font-weight: 500; }
+.note-small { font-size: .8rem; color: var(--muted); }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 1rem 0; }
+.pair > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.pair b { color: var(--accent-ink); }
+.pair p { margin: 4px 0 0; font-size: .92rem; }
+
+.matrix { display: grid; grid-template-columns: minmax(90px, .7fr) repeat(2, minmax(0, 1fr)); gap: 6px; margin: 1rem 0 1.2rem; font-size: .9rem; max-width: 620px; }
+.matrix .mh { font-weight: 700; font-size: .8rem; color: var(--muted); align-self: end; padding: 0 4px 2px; }
+.matrix .mh.side { align-self: center; }
+.matrix .cell { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-weight: 500; }
+.matrix .cell.hi { background: var(--tint); border-color: var(--accent); }
+.matrix small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; margin-top: 2px; line-height: 1.45; }
+
+.map { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.3fr) auto minmax(0, 1fr); gap: 10px; align-items: center; margin: 1rem 0; }
+.mcol { display: flex; flex-direction: column; gap: 8px; }
+.mbox { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .84rem; line-height: 1.5; display: flex; flex-direction: column; gap: 2px; }
+.mbox b { font-size: .9rem; } .mbox span { color: var(--muted); } .mbox em { font-style: normal; color: var(--accent-ink); font-size: .78rem; font-weight: 500; }
+.mbox.good { border-color: var(--cs); } .mbox.ask { background: var(--tint); border-color: var(--accent); }
+.marrow { color: var(--accent); font-weight: 700; }
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 1rem 0; font-size: .86rem; }
+.flow span { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; line-height: 1.45; }
+.flow i { font-style: normal; color: var(--accent); font-weight: 700; }
+.formula { font-family: var(--mono); font-size: .9rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; line-height: 1.9; overflow-x: auto; }
+.steps { counter-reset: s; list-style: none; padding-left: 0 !important; }
+.steps li { counter-increment: s; display: flex; gap: 10px; }
+.steps li::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tint); color: var(--accent-ink); font: 700 .75rem/22px var(--sans); text-align: center; margin-top: 3px; }
+.assign { margin: 1.6rem 0; border: 1px dashed var(--accent); border-radius: 10px; padding: 14px 16px; background: var(--paper); }
+.assign p { margin: 6px 0 0; font-size: .92rem; }
+
+.tbl { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.doc table { border-collapse: collapse; width: 100%; font-size: .88rem; line-height: 1.55; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.doc th { background: var(--panel); font-weight: 700; }
+.doc tr:last-child td { border-bottom: 0; }
+.drill .ans { filter: blur(5px); cursor: pointer; user-select: none; transition: filter .2s; }
+.drill .ans.shown { filter: none; user-select: auto; }
+
+.traps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 1rem; }
+.traps > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: .88rem; line-height: 1.55; }
+.traps s { color: var(--muted); text-decoration-color: var(--dwl); }
+.traps p { margin: 6px 0 0; font-weight: 500; }
+
+.qa-tools { margin: .4rem 0 .8rem; }
+.qa-tools button { font: 500 .82rem var(--sans); border: 1px solid var(--accent); background: var(--paper); color: var(--accent-ink); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+.qa { display: flex; flex-direction: column; gap: 6px; }
+.qa details { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.qa summary { cursor: pointer; padding: 10px 14px; font-weight: 500; font-size: .93rem; list-style: none; display: flex; gap: 10px; }
+.qa summary::before { content: "Q"; color: var(--accent); font-weight: 700; }
+.qa details[open] summary { border-bottom: 1px dashed var(--line); }
+.qa details p { margin: 0; padding: 10px 14px 12px 36px; font-size: .9rem; }
+
+/* graphs */
+.graph { max-width: 900px; margin: 1.8rem 0 2.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; }
+.g-head h4 { font-family: var(--serif); font-size: 1.12rem; margin: 2px 0 2px; line-height: 1.45; }
+.g-head p { margin: 0 0 10px; color: var(--muted); font-size: .86rem; }
+.g-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+.g-body { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.g-plot svg { width: 100%; height: auto; display: block; }
+.g-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.g-ctrl { display: flex; flex-direction: column; gap: 10px; }
+.sl label { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); line-height: 1.3; }
+.sl output { font-family: var(--mono); color: var(--fg); font-size: .8rem; }
+.sl input { width: 100%; accent-color: var(--accent); margin: 4px 0 0; }
+.g-btn { align-self: flex-start; font: 500 .8rem var(--sans); border: 1px solid var(--accent); color: var(--accent-ink); background: transparent; border-radius: 6px; padding: 4px 11px; cursor: pointer; }
+.g-btn:hover { background: var(--tint); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; align-self: flex-start; }
+.seg button { font: 500 .8rem var(--sans); border: 0; background: transparent; color: var(--muted); padding: 5px 12px; cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--accent); color: var(--paper); }
+.chk { display: flex; gap: 8px; align-items: center; font-size: .8rem; color: var(--muted); }
+.chk input { accent-color: var(--accent); }
+.g-stats { margin: 0; border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+.st { display: flex; justify-content: space-between; gap: 10px; font-size: .8rem; line-height: 1.45; }
+.st dt { color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.st dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.st.big dd { font-weight: 500; color: var(--accent-ink); font-size: .92rem; }
+.g-note { margin: 12px 0 0; padding: 9px 12px; background: var(--tint); border-radius: 6px; font-size: .85rem; line-height: 1.6; }
+
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; flex: none; }
+.sw.none { background: transparent; }
+.sw.a-cs { background: var(--cs); } .sw.a-ps { background: var(--ps); } .sw.a-ps2 { background: var(--ps); outline: 1px solid var(--demand); }
+.sw.a-dwl { background: repeating-linear-gradient(45deg, var(--dwl) 0 2px, transparent 2px 4px); outline: 1px solid var(--dwl); }
+.sw.a-rev { background: var(--rev); } .sw.a-rev2 { background: var(--rev2); } .sw.a-time { background: var(--time); } .sw.a-ts { background: var(--ts); }
+.sw.ln { height: 3px; border-radius: 2px; width: 16px; }
+
+svg .ax { stroke: var(--muted); stroke-width: 1.2; }
+svg .axl { fill: var(--muted); font: 500 11px var(--sans); }
+svg .tk { fill: var(--muted); font: 500 10.5px var(--mono); }
+svg .gd { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+svg .cv { stroke-width: 2.6; fill: none; stroke-linecap: round; }
+svg .cv.dash { stroke-dasharray: 7 5; stroke-width: 2; }
+svg .cvl { font: 700 11.5px var(--sans); }
+svg .c-d { stroke: var(--demand); fill: var(--demand); } svg .c-s { stroke: var(--supply); fill: var(--supply); }
+svg .c-x { stroke: var(--ext); fill: var(--ext); } svg .c-w { stroke: var(--world); fill: var(--world); } svg .c-t { stroke: var(--policy); fill: var(--policy); }
+svg text.cvl { stroke: none; }
+svg .pt { fill: var(--paper); stroke: var(--fg); stroke-width: 2; }
+svg .ptl { fill: var(--fg); font: 700 11px var(--sans); }
+svg .atag { fill: var(--fg); font: 700 11px var(--sans); opacity: .8; }
+svg .a-cs { fill: var(--cs); fill-opacity: .6; } svg .a-ps { fill: var(--ps); fill-opacity: .6; }
+svg .a-ps2 { fill: var(--ps); fill-opacity: .95; } svg .a-ts { fill: var(--ts); fill-opacity: .6; }
+svg .a-dwl { fill: url(#dwlHatch); stroke: var(--dwl); stroke-width: 1.2; }
+svg .a-rev { fill: var(--rev); fill-opacity: .75; } svg .a-rev2 { fill: var(--rev2); fill-opacity: .8; } svg .a-time { fill: var(--time); fill-opacity: .65; }
+
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .a-prof { fill: var(--cs); fill-opacity: .75; } svg .a-loss { fill: var(--dwl); fill-opacity: .35; }
+.sw.a-prof { background: var(--cs); } .sw.a-loss { background: var(--dwl); opacity: .5; }
+.twin { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tw-t { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--muted); }
+.g-ctrl .g-btn + .g-btn { margin-top: -4px; }
+.graph.wide .g-body { grid-template-columns: minmax(0, 1fr); }
+.graph.wide .g-side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 700px) { .twin, .graph.wide .g-side { grid-template-columns: minmax(0, 1fr); } }
+svg polyline.cv { fill: none !important; }
+
+.graph { background: var(--paper); }
+.g-note { background: var(--tint); }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail { display: none; position: fixed; inset: 64px 0 0 0; max-height: none; background: var(--bg); z-index: 15; padding: 20px 16px 60px; }
+  .rail.open { display: block; }
+  .toc-btn { display: inline-block; }
+  .g-body { grid-template-columns: minmax(0, 1fr); }
+  .map { grid-template-columns: minmax(0, 1fr); }
+  .marrow { transform: rotate(90deg); justify-self: center; }
+}
+@media (max-width: 560px) { .pair, .traps { grid-template-columns: minmax(0, 1fr); } }
+.spectrum { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; margin: 1rem 0 .2rem; font-weight: 700; font-size: .9rem; }
+.spectrum .bar { height: 12px; border-radius: 6px; background: linear-gradient(90deg, var(--tone-d9674f), var(--tone-e5c171), var(--tone-a7cdb6)); }
+.spec-l { display: flex; justify-content: space-between; font-size: .78rem; color: var(--muted); margin-bottom: 1rem; }
+.no, .yes { font-size: .74rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; }
+.no { background: var(--tone-fce3dd); color: var(--tone-a8432f); } .yes { background: var(--tone-e3f2e9); color: var(--tone-2f6b4f); }
+table.oil { font-variant-numeric: tabular-nums; }
+table.oil th, table.oil td { text-align: right; padding: 6px 8px; white-space: nowrap; }
+table.oil th:first-child, table.oil td:first-child { text-align: left; font-weight: 700; }
+table.oil td.hi { background: var(--tint); color: var(--accent-ink); font-weight: 700; }
+
+.g-assume{margin:4px 2px 0;font-size:.74rem;line-height:1.5;color:var(--muted)}
+</style>
+<style id="system-theme">
+/* System appearance only changes colors. Print retains the light palette. */
+:root {
+  --header-rgb: 253, 249, 249;
+  --tone-2f282b: #2f282b;
+  --tone-2f6b4f: #2f6b4f;
+  --tone-3f5675: #3f5675;
+  --tone-3f7f7a: #3f7f7a;
+  --tone-6e3f55: #6e3f55;
+  --tone-7e6f74: #7e6f74;
+  --tone-8a7a5c: #8a7a5c;
+  --tone-9c4862: #9c4862;
+  --tone-a7cdb6: #a7cdb6;
+  --tone-a8432f: #a8432f;
+  --tone-b2c4e3: #b2c4e3;
+  --tone-bfdcc9: #bfdcc9;
+  --tone-c06c84: #c06c84;
+  --tone-d9674f: #d9674f;
+  --tone-ddb3cb: #ddb3cb;
+  --tone-e3f2e9: #e3f2e9;
+  --tone-e5c171: #e5c171;
+  --tone-efdde2: #efdde2;
+  --tone-f1dca8: #f1dca8;
+  --tone-f8eef0: #f8eef0;
+  --tone-fae9ed: #fae9ed;
+  --tone-fce3dd: #fce3dd;
+  --tone-fdf9f9: #fdf9f9;
+  --tone-ffffff: #ffffff;
+}
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --header-rgb: 29, 24, 26;
+    --tone-2f282b: #EEE4E6;
+    --tone-2f6b4f: #A0D2B2;
+    --tone-3f5675: #93AECB;
+    --tone-3f7f7a: #8CC4BE;
+    --tone-6e3f55: #C9A3D6;
+    --tone-7e6f74: #BEACB2;
+    --tone-8a7a5c: #C9B68C;
+    --tone-9c4862: #E6B3BE;
+    --tone-a7cdb6: #6E8C6B;
+    --tone-a8432f: #F0A48D;
+    --tone-b2c4e3: #667C96;
+    --tone-bfdcc9: #5F7A5C;
+    --tone-c06c84: #D79AA7;
+    --tone-d9674f: #E08A6F;
+    --tone-ddb3cb: #8C6680;
+    --tone-e3f2e9: #23372D;
+    --tone-e5c171: #C9A250;
+    --tone-efdde2: #55424A;
+    --tone-f1dca8: #8F7A4A;
+    --tone-f8eef0: #2B2226;
+    --tone-fae9ed: #35272D;
+    --tone-fce3dd: #412B28;
+    --tone-fdf9f9: #1D181A;
+    --tone-ffffff: #241E21;
+  }
+}
+</style>
+
+<style>
+body{margin:0}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:1rem 0}
+.three>div,.method{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+.three b,.method>b{color:var(--accent-ink)}.three p,.method p{margin:4px 0 0;font-size:.92rem}
+.method{margin:12px 0}.endnote{margin-top:32px}
+.plot-legend{display:flex;flex-wrap:wrap;gap:7px 16px;margin:4px 0 14px;font-size:.78rem;color:var(--muted)}
+.plot-legend span{display:inline-flex;gap:6px;align-items:center}
+svg .tk{font-size:11.5px}svg .axl{font-size:12px}.g-plot svg{overflow:visible}
+.seg{display:flex;flex-wrap:wrap;gap:2px;max-width:100%}.seg button{flex:1 1 auto;white-space:normal}
+.seg button[aria-pressed=true]{background:var(--accent);color:var(--paper)}
+.best-row{background:var(--tint);font-weight:700;color:var(--accent-ink)}
+.g-ctrl [hidden]{display:none!important}.sl label{gap:12px}.sl label span{min-width:0}
+.sl output{flex-shrink:0}.g-note:empty{display:none}.doc p,.doc li{overflow-wrap:break-word}
+@media(max-width:700px){.three{grid-template-columns:minmax(0,1fr)}.graph{padding:14px 12px}.st dd{white-space:normal;text-align:right;max-width:60%}.top-in{gap:8px 12px}}
+@media(max-width:420px){.top-in{align-items:center}.sessions{margin-left:0}.crumbs{flex:1 1 100%;font-size:.8rem}.toc-btn{order:2;margin-left:auto}.sessions{order:1}.rail{inset:108px 0 0}.graph.wide .g-side{gap:14px}.doc h2{font-size:1.4rem}}
+@media print{.top,.rail,.g-ctrl,.qa-tools{display:none}.wrap{display:block}.qa details p{display:block}.graph{break-inside:avoid}body{background:#fff}.doc{max-width:none}}
+</style>
+
+<style>
+.extra,.graph-guide,.number-readout{background:var(--paper);border:1px solid var(--line);border-radius:9px;margin:1rem 0;padding:0 14px}
+.extra>summary,.graph-guide>summary,.number-readout>summary{cursor:pointer;padding:11px 0;color:var(--accent-ink);font-size:.87rem;font-weight:500}
+.extra[open]>summary,.graph-guide[open]>summary,.number-readout[open]>summary{border-bottom:1px dashed var(--line)}
+.extra>p,.graph-guide>p{font-size:.9rem}.graph-guide .steps{font-size:.91rem;line-height:1.65}.graph-guide .steps li{margin:12px 0}
+.g-reading{min-width:0}.g-reading .g-note{margin:0}.number-readout{margin:12px 0 0;padding:0 10px}.number-readout .g-stats{border-top:0;padding-bottom:10px}
+</style>
+<style>
+.four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:1rem 0}
+.four>div{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.four b{color:var(--accent-ink)}.four p{margin:4px 0 0;font-size:.9rem;line-height:1.55}
+@media (max-width:980px){.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.four{grid-template-columns:minmax(0,1fr)}}
+.ring-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin:14px 0 4px}
+.ring-card{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;font:inherit;font-size:.86rem;line-height:1.45;color:var(--fg);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px 11px;cursor:pointer}
+.ring-card:hover{border-color:var(--accent)}
+.ring-card.done{background:var(--tint);border-color:var(--accent)}
+.ring-card.off-reg{border-style:dashed}.ring-card.off-reg .rc-t{text-decoration:line-through;color:var(--muted)}
+.rc-amt{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.78rem;color:var(--muted)}
+.rc-tag{font-size:.74rem;font-weight:700;letter-spacing:.04em;color:var(--accent-ink)}.rc-tag:empty{display:none}
+.sort-tools{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px;margin-top:6px}.sort-tools .g-btn+.g-btn{margin-top:0}
+.g-btn:disabled{opacity:.45;cursor:default}
+.ladder{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.rung{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--paper)}
+.rung-1{margin-left:14px}.rung-2{margin-left:28px;background:var(--tint)}.rung-3{margin-left:42px;background:var(--tint);border-color:var(--accent)}
+.rung-n{width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--paper);display:grid;place-items:center;font-weight:700;font-size:.85rem}
+.rung-b p{margin:0}.rung-q{font-size:.85rem;color:var(--muted)}.rung-a{font-family:var(--serif);font-weight:700;font-size:1.06rem;margin:2px 0 4px!important}.rung-ex{font-size:.92rem;line-height:1.6}
+@media (max-width:560px){.rung-1{margin-left:6px}.rung-2{margin-left:12px}.rung-3{margin-left:18px}}
+.timeline{list-style:none;margin:12px 0 12px 8px;padding:0 0 0 18px!important;border-left:2px solid var(--line)}
+.timeline li{position:relative;display:grid;grid-template-columns:64px minmax(0,1fr);gap:10px;padding:6px 0;margin:0}
+.timeline li::before{content:"";position:absolute;left:-25px;top:12px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.timeline li.what-if::before{background:var(--paper);border:2px dashed var(--accent);width:8px;height:8px}
+.timeline li.what-if>span{color:var(--muted);font-style:italic}
+.timeline b{font-family:"JetBrains Mono",ui-monospace,monospace;color:var(--accent-ink);font-weight:500}
+</style>
+<style id="bilingual-support">/* Optional, distraction-free thinking prompts; hidden unless Practice mode is on. */
+.practice-toolbar{display:flex;justify-content:flex-end;margin-top:11px}
+.practice-toggle{font:500 .78rem var(--sans);padding:5px 11px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;cursor:pointer;transition:background-color .15s,border-color .15s}
+.practice-toggle:hover,.practice-toggle:focus-visible{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle[aria-pressed="true"]{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+.practice-toggle .mode-state{font-weight:700}
+.practice-prompt[hidden]{display:none!important}
+.practice-prompt{border-left:3px solid var(--accent);border-radius:0 8px 8px 0;background:var(--paper);padding:11px 15px;margin:1rem 0 1.7rem;font-size:.91rem;line-height:1.65}
+.practice-prompt strong{display:block;color:var(--accent-ink);font-size:.81rem;margin-bottom:2px}
+.practice-prompt p{margin:0}
+@media(prefers-reduced-motion:reduce){.practice-toggle{transition:none}}
+
+
+
+/* Full Chinese support is additive; existing short Chinese aides remain. */
+body:not(.show-zh) .zh-full,body:not(.show-zh) .zh-svg{display:none!important}
+.zh-full{display:none;border:0!important;background:transparent!important;padding:0!important;border-radius:0!important;box-shadow:none!important;letter-spacing:normal;text-transform:none;min-width:0;min-height:0;width:auto;height:auto;color:var(--accent-ink);font-family:var(--sans);font-size:.88em;font-weight:400;line-height:1.7;margin-top:5px;overflow-wrap:anywhere;white-space:normal}
+body.show-zh .zh-full{display:block}
+.zh-svg{display:none;font-size:9px;font-family:var(--sans);font-weight:400}
+body.show-zh .zh-svg{display:inline}
+.doc h1>.zh-full,.doc h2>.zh-full,.doc h3>.zh-full{font-size:.65em;line-height:1.5;font-weight:500}
+.doc h4>.zh-full{font-size:.78em}
+.top .zh-full{color:var(--accent-ink)}
+.top .zh-full,.rail .zh-full{font-size:.78em;line-height:1.4;margin-top:2px}
+button .zh-full,label .zh-full,.pb .zh-full{font-size:.78em;line-height:1.5;margin-top:2px}
+body.show-zh .pb{grid-template-columns:minmax(84px,112px) minmax(0,1fr) 76px}
+body.show-zh .g-stats dt{display:block}
+body.show-zh .g-stats dd{overflow-wrap:anywhere;white-space:normal}
+body.show-zh .g-stats dd .zh-full{font-size:.68em}
+body.show-zh .sl label{align-items:flex-start}
+body.show-zh .sl output{white-space:normal;text-align:right}
+body.show-zh .flow>span,body.show-zh .chapterline>span{white-space:normal;height:auto}
+body.show-zh .g-kicker .zh-full,body.show-zh .tag .zh-full{font-size:.9em}
+body.show-zh .chip{height:auto}
+body.show-zh .chip em .zh-full{color:inherit}
+body.show-zh .cmp-sel select{max-width:100%}
+.seg button[aria-checked="true"] .zh-full,.tabs button[aria-selected="true"] .zh-full{color:inherit}
+.topswitch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;color:var(--muted);font:500 .72rem var(--sans)}
+.topswitch input{appearance:none;width:28px;height:16px;border:1px solid var(--tone-d5c6ca);border-radius:999px;background:var(--tone-eee6e8);position:relative;cursor:pointer;flex:none}
+.topswitch input:after{content:"";position:absolute;width:10px;height:10px;left:2px;top:2px;background:var(--tone-ffffff);border-radius:50%;box-shadow:0 1px 2px var(--tone-77777755)}
+.topswitch input:checked{background:var(--accent)}
+.topswitch input:checked:after{left:14px}
+.topswitch input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){.top-in .crumbs{flex-basis:100%}.top-in .toc-btn{order:1}.top-in .topswitch{order:2;margin-left:0}.top-in .sessions{order:3;margin-left:auto}.top-in .sessions .pill{padding:3px 9px}body.show-zh .pb{grid-template-columns:85px minmax(0,1fr) 65px;gap:5px}.topswitch{font-size:.68rem}.top-in{gap:8px}}
+@media print{.topswitch{display:none}.zh-full{break-inside:avoid}}
+
+/* Shared reading rhythm, with room for each chapter's own teaching tools. */
+.doc select{font-family:var(--sans);font-size:.88rem}
+html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
+@media(max-width:900px){.rail.open{top:var(--header-height,64px);bottom:0;inset-inline:0;max-height:calc(100vh - var(--header-height,64px))}}
+body.show-zh .legend>span,body.show-zh .steps li,body.show-zh .six>div,body.show-zh .qa summary,body.show-zh .chk{flex-wrap:wrap}
+body.show-zh .legend>span>.zh-full,body.show-zh .steps li>.zh-full,body.show-zh .six>div>.zh-full,body.show-zh .qa summary>.zh-full,body.show-zh .chk>.zh-full{flex:0 0 100%;min-width:0}
+body.show-zh .steps li{display:list-item;list-style:none}
+body.show-zh .steps li:before{display:inline-block;margin-right:10px;vertical-align:middle}
+body.show-zh .six>div>.zh-full{margin-left:34px;flex-basis:calc(100% - 34px)}
+body.show-zh .seg{flex-wrap:wrap;max-width:100%}
+body.show-zh .seg button{min-width:0;white-space:normal}
+body.show-zh .spectrum{min-width:0}
+body.show-zh .spectrum>span{min-width:0;overflow-wrap:anywhere}
+body.show-zh .formula>.zh-full{white-space:normal;font-family:var(--sans)}
+body.show-zh .mw .tabs button,body.show-zh .mw .qz-o,body.show-zh .graph .g-btn{overflow-wrap:anywhere}
+body.show-zh .funnel-level{height:auto;min-height:68px;flex-direction:column;gap:1px;white-space:normal;line-height:1.3}
+body.show-zh .funnel-level .zh-full{color:inherit;margin-top:0;font-size:.75em}
+body.show-zh .decision-step{height:auto;min-height:100px}
+body.show-zh .m-control label{flex-wrap:wrap}
+body.show-zh .m-control label .zh-full{flex-basis:100%;text-align:left}
+body.show-zh .decision-step>.zh-full{font-size:.8em;line-height:1.45}
+body.show-zh .score .up b:after{content:'改善'}
+body.show-zh .score .down b:after{content:'惡化'}
+@media(max-width:560px){body.show-zh .spectrum{grid-template-columns:minmax(0,1fr)}body.show-zh .m-choices button{min-height:65px}}
+
+.page-tools{display:flex;align-items:center;gap:14px;margin-left:8px;flex-shrink:0}
+.page-tools .topswitch{margin-left:0}.page-tools .practice-toggle{font-size:.72rem;padding:5px 10px}
+.page-tools .practice-toggle>.zh-full{display:none!important}
+body.show-zh .page-tools .practice-toggle{white-space:normal}
+body.show-zh .seg button[aria-pressed=true] .zh-full{color:inherit}
+body.show-zh .steps li>span{min-width:0;flex:1}.formula>.zh-full{font-family:var(--sans)}
+body.show-zh .sl output{max-width:50%;white-space:normal;text-align:right}
+.plot-legend>span{align-items:flex-start;flex-wrap:wrap}.plot-legend .zh-full{flex-basis:100%;margin-top:1px}
+svg .zh-svg{fill:currentColor;font-size:10px}.g-plot svg text{color:var(--muted)}
+html{scroll-padding-top:calc(var(--header-height,64px) + 12px)}
+@media(max-width:900px){.rail.open{top:var(--header-height,64px);bottom:0;inset-inline:0;max-height:calc(100vh - var(--header-height,64px))}}
+@media(max-width:560px){.top-in .page-tools{order:3;flex-basis:100%;margin-left:0;justify-content:flex-end;padding-bottom:3px;gap:14px}.top-in{row-gap:6px}}
+@media(prefers-color-scheme:dark){.topswitch input{background:var(--panel);border-color:var(--line)}.topswitch input:after{background:var(--fg)}}
+@media print{.page-tools{display:none}}
+</style><style>:root{--tone-d5c6ca:#d5c6ca;--tone-eee6e8:#eee6e8;--tone-77777755:#77777755}</style><style>svg .a-faded{opacity:.28}.map .mbox{min-width:0}</style><style>.is-ok{border-color:var(--accent);background:var(--tint);opacity:1;font-weight:700}.is-no{text-decoration:line-through;opacity:.7}</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><pattern id="dwlHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" style="fill:var(--dwl);fill-opacity:.12"/><rect width="2.2" height="6" style="fill:var(--dwl);fill-opacity:.75"/></pattern></defs></svg>
+<header class="top"><div class="top-in">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Study Notes</a><span>/</span><a href="economics.html">Economics</a><span>/</span><b>Session 9</b></nav>
+<button class="toc-btn" type="button" id="tocBtn" aria-expanded="false" aria-controls="rail">Contents</button>
+<nav aria-label="Sessions 9–12" class="sessions"><span aria-current="page" class="pill">S9</span><span class="pill off">S10</span><span class="pill off">S11</span><span class="pill off">S12</span></nav>
+<div aria-label="Reading tools" class="page-tools" role="group"><label class="topswitch" for="zhToggle" title="完整中文對照；英文與原有短註解保留"><input aria-label="顯示完整繁體中文對照" id="zhToggle" role="switch" type="checkbox"/>中文 <span id="zhModeLabel">OFF</span></label><button aria-pressed="false" class="practice-toggle" id="practiceToggle" title="Show or hide short questions within chapters" type="button">Practice mode <span class="mode-state" id="practiceState">Off</span><span class="zh-full" lang="zh-Hant">練習模式：關閉</span></button></div></div></header>
+<div class="wrap"><aside class="rail" id="rail"><p class="lbl">Contents</p><ol id="toc"></ol></aside>
+<main><article class="doc"><div class="hero"><p class="kick">MGMG515 · Session 9<span class="zh-full" lang="zh-Hant">MGMG515 · 第 9 堂</span></p><h1>Inflation and the Quantity Theory of Money<span class="zh-full" lang="zh-Hant">通貨膨脹與貨幣數量學說</span></h1><p class="lead">Prices in general rise when more money chases the same goods. This chapter shows how inflation is measured, why money growth drives it, why unpredictable inflation hurts even when wages keep up, who wins and who loses, and why governments create it anyway.<span class="zh-full" lang="zh-Hant">當更多的錢追逐同樣多的商品，物價就會普遍上漲。本章說明通膨怎麼衡量、為什麼貨幣成長是主因、為什麼就算薪水跟得上，難以預測的通膨還是有害、誰得利誰受害，以及政府為什麼還是會製造通膨。</span></p></div>
+
+<h2 id="map">Chapter map<span class="zh-full" lang="zh-Hant">章節地圖</span></h2>
+<div class="map">
+<div class="mcol"><div class="mbox ask"><b>Measure<span class="zh-full" lang="zh-Hant">衡量</span></b><span>The CPI tracks the average price of a basket. Inflation is its percentage change.<span class="zh-full" lang="zh-Hant">CPI 追蹤一籃子商品的平均價格，通膨率就是它的變動百分比。</span></span></div></div>
+<div class="marrow">→</div>
+<div class="mcol">
+<div class="mbox"><b>Cause<span class="zh-full" lang="zh-Hant">原因</span></b><span>M × V = P × Y. Output and velocity move slowly, so lasting inflation comes from money growth.<span class="zh-full" lang="zh-Hant">M × V = P × Y。產出和流通速度變化很慢，所以持續的通膨來自貨幣成長。</span></span></div>
+<div class="mbox"><b>Cost<span class="zh-full" lang="zh-Hant">代價</span></b><span>Noisy prices, surprise transfers between borrowers and lenders, broken long-term lending.<span class="zh-full" lang="zh-Hant">價格訊號變吵、借貸雙方之間意外的財富移轉、長期放款崩壞。</span></span></div>
+</div>
+<div class="marrow">→</div>
+<div class="mcol"><div class="mbox good"><b>Temptation<span class="zh-full" lang="zh-Hant">誘惑</span></b><span>Governments print money for revenue or a short boost. The boost fades and stopping inflation costs a recession.<span class="zh-full" lang="zh-Hant">政府印鈔是為了收入或短期刺激。刺激會消退，而要停止通膨得付出一場衰退。</span></span></div></div>
+</div>
+<p class="hint"><b>中文邏輯</b><span>錢變多、東西沒變多，每張鈔票能買的就變少。通膨可怕的不是「漲」，而是「漲多少猜不到」。</span></p>
+
+<h2 id="zimbabwe">1. What runaway inflation looks like: Zimbabwe<span class="zh-full" lang="zh-Hant">1. 失控的通膨長什麼樣子：辛巴威</span></h2>
+<p class="sub">Around 2000, President Robert Mugabe needed money to reward allies and buy off rivals. He had already taxed almost everything, and investors had left. So he printed money.<span class="zh-full" lang="zh-Hant">2000 年前後，總統穆加比需要錢來酬庸盟友、收買對手。他幾乎已經把能課的稅都課了，投資人也都跑了，所以他印鈔票。</span></p>
+<div class="flow"><span>Print money to pay for spending<span class="zh-full" lang="zh-Hant">印鈔來付支出</span></span><i>→</i><span>No new factories or productivity, so the same goods<span class="zh-full" lang="zh-Hant">沒有新工廠或生產力，商品還是一樣多</span></span><i>→</i><span>More money chases the same goods<span class="zh-full" lang="zh-Hant">更多錢追逐同樣的商品</span></span><i>→</i><span>Prices rise<span class="zh-full" lang="zh-Hant">物價上漲</span></span><i>→</i><span>The government needs even more money<span class="zh-full" lang="zh-Hant">政府需要更多錢</span></span><i>→</i><span>Print more<span class="zh-full" lang="zh-Hant">再印更多</span></span></div>
+<p>That loop is why it got out of control. The faster prices rose, the more the government printed, and the faster prices rose again.<span class="zh-full" lang="zh-Hant">這個循環就是失控的原因。物價漲得越快，政府印得越多，物價又漲得更快。</span></p>
+<ol class="timeline">
+<li><b>~2000</b><span>Prices rising about 50% a year<span class="zh-full" lang="zh-Hant">物價每年上漲約 50%</span></span></li>
+<li><b>2001</b><span>100% a year<span class="zh-full" lang="zh-Hant">每年 100%</span></span></li>
+<li><b>2002</b><span>200% a year<span class="zh-full" lang="zh-Hant">每年 200%</span></span></li>
+<li><b>2003</b><span>600% a year<span class="zh-full" lang="zh-Hant">每年 600%</span></span></li>
+<li><b>2006</b><span>Over 1,000% a year. Z$417 for one sheet of toilet paper, not one roll<span class="zh-full" lang="zh-Hant">每年超過 1,000%。一張衛生紙（不是一捲）要 417 辛巴威元</span></span></li>
+<li><b>2008</b><span>Thousands of percent a month, then a peak of 7.6 billion percent a month and Z$100 trillion notes. By the end of the year the Zimbabwe dollar is effectively dead and foreign currencies are made legal<span class="zh-full" lang="zh-Hant">每月漲幾千 %，高峰時每月 76 億 %，印出 100 兆元面額的鈔票。年底辛巴威元等於死亡，外幣交易合法化</span></span></li>
+</ol>
+<p>People spent cash the moment they got it, because money held in the morning bought less by evening. A million Zimbabwe dollars might buy a chicken, if you were lucky. Germany in 1923, China in 1949 and Yugoslavia in 1994 went through the same thing, each time because a government desperate for cash had little to fall back on except the printing press.<span class="zh-full" lang="zh-Hant">人們一拿到現金就馬上花掉，因為早上的錢到晚上就買得更少。一百萬辛巴威元運氣好的話能買一隻雞。1923 年的德國、1949 年的中國、1994 年的南斯拉夫都經歷過同樣的事，每一次都是政府急需現金，除了印鈔機之外幾乎沒有別的辦法。</span></p>
+<p class="note-small">Hyperinflation<span class="zh">惡性通膨</span> has no single official line. A common textbook threshold is 50% or more per month.<span class="zh-full" lang="zh-Hant">惡性通膨沒有單一的官方標準。教科書常用的門檻是每月 50% 以上。</span></p>
+
+<h2 id="measure">2. Measuring inflation<span class="zh-full" lang="zh-Hant">2. 衡量通膨</span></h2>
+<p class="sub">Supply and demand push single prices up and down all the time. Think of each price as a ping pong ball bouncing inside an elevator. Inflation is the elevator going up.<span class="zh-full" lang="zh-Hant">供需一直在把個別價格推上推下。把每個價格想成電梯裡彈跳的乒乓球，通膨就是整台電梯往上走。</span></p>
+<div class="tbl"><table><thead><tr><th>Term<span class="zh-full" lang="zh-Hant">名詞</span></th><th>What it is<span class="zh-full" lang="zh-Hant">是什麼</span></th><th>Ask yourself<span class="zh-full" lang="zh-Hant">問自己</span></th><th>Example<span class="zh-full" lang="zh-Hant">例子</span></th></tr></thead><tbody>
+<tr><td><b>Inflation</b><span class="zh">通貨膨脹</span></td><td>A rise in the average level of prices, also called the price level.<span class="zh-full" lang="zh-Hant">物價平均水準（又稱物價水準）的上升。</span></td><td>Is the whole basket getting dearer, or only one item?<span class="zh-full" lang="zh-Hant">是整籃商品變貴，還是只有一樣？</span></td><td>The elevator goes up. One mango getting dearer after a bad harvest is one ball, not the elevator.<span class="zh-full" lang="zh-Hant">電梯往上。歉收後芒果變貴只是一顆球，不是整台電梯。</span></td></tr>
+<tr><td><b>Consumer Price Index (CPI)</b><span class="zh">消費者物價指數</span></td><td>The average price of a large basket of goods and services that consumers buy.<span class="zh-full" lang="zh-Hant">消費者購買的一大籃商品和服務的平均價格。</span></td><td>Which basket, and which base year equals 100?<span class="zh-full" lang="zh-Hant">用哪一籃？哪一年是基期 100？</span></td><td>The basket in the slides: food and beverages, housing, apparel, transportation, medical care, recreation, education and communication.<span class="zh-full" lang="zh-Hant">投影片上的籃子：食品飲料、住宅、服飾、交通、醫療、休閒、教育與通訊。</span></td></tr>
+<tr><td><b>Weighted average</b></td><td>Each item counts in proportion to how much of the budget it takes.<span class="zh-full" lang="zh-Hant">每個項目依它占預算的比例計算份量。</span></td><td>Does this item take a big share of spending?<span class="zh-full" lang="zh-Hant">這項東西占支出的比例大嗎？</span></td><td>A rise in rent moves the CPI more than a rise in the price of toothbrushes.<span class="zh-full" lang="zh-Hant">房租上漲對 CPI 的影響大過牙刷漲價。</span></td></tr>
+<tr><td><b>Inflation rate</b></td><td>The percentage change in the price index over a period, usually a year.<span class="zh-full" lang="zh-Hant">物價指數在一段期間（通常一年）內的變動百分比。</span></td><td>What was the index last year and this year?<span class="zh-full" lang="zh-Hant">去年和今年的指數各是多少？</span></td><td>US CPI 44.425 in 1973 and 49.317 in 1974.<span class="zh-full" lang="zh-Hant">美國 CPI 1973 年 44.425，1974 年 49.317。</span></td></tr>
+<tr><td><b>Deflation</b><span class="zh">通貨緊縮</span></td><td>A fall in the average price level. The inflation rate is negative.<span class="zh-full" lang="zh-Hant">平均物價水準下降，通膨率為負。</span></td><td>Is the index lower than a year ago?<span class="zh-full" lang="zh-Hant">指數比一年前低嗎？</span></td><td>Brief US deflation in the 2009 recession.<span class="zh-full" lang="zh-Hant">美國在 2009 年衰退時短暫出現通縮。</span></td></tr>
+<tr><td><b>Disinflation</b><span class="zh-full" lang="zh-Hant">通膨減緩</span></td><td>Inflation slowing down. Prices still rise, just more slowly.<span class="zh-full" lang="zh-Hant">通膨變慢。物價還是在漲，只是漲得比較慢。</span></td><td>Is the inflation rate falling but still above zero?<span class="zh-full" lang="zh-Hant">通膨率在下降，但仍高於零嗎？</span></td><td>US inflation fell from about 14% in 1980 to 3% in 1983.<span class="zh-full" lang="zh-Hant">美國通膨從 1980 年約 14% 降到 1983 年的 3%。</span></td></tr>
+</tbody></table></div>
+<div class="formula">Inflation rate = (P2 − P1) ÷ P1 × 100<br>US 1974: (49.317 − 44.425) ÷ 44.425 × 100 = 11.01%<span class="zh-full" lang="zh-Hant">通膨率 = (第二年指數 − 第一年指數) ÷ 第一年指數 × 100；美國 1974 年：11.01%</span></div>
+<p>The US CPI sets the 1982 to 1984 average at 100. By mid-2016 it was 239, so prices had more than doubled in about 33 years. That does not make Americans poorer, because wages rose too, and on average by more than prices.<span class="zh-full" lang="zh-Hant">美國 CPI 以 1982 到 1984 年的平均為 100。到 2016 年年中是 239，所以大約 33 年間物價漲了一倍多。但這不代表美國人變窮，因為薪資也上漲了，而且平均漲得比物價多。</span></p>
+<div class="pair"><div><b>United States, 1948 to 2015<span class="zh-full" lang="zh-Hant">美國，1948 到 2015 年</span></b><p>Inflation climbed through the 1960s and 1970s and peaked a little above 14% around 1980. After that it averaged about 2.5% for years, with a brief dip below zero in 2009.<span class="zh-full" lang="zh-Hant">通膨在 1960 和 1970 年代一路上升，1980 年前後達到略高於 14% 的高峰。之後多年平均約 2.5%，2009 年曾短暫跌破零。</span></p></div><div><b>Thailand, 1960 to today<span class="zh-full" lang="zh-Hant">泰國，1960 年至今</span></b><p>The IMF series in the slides shows two big spikes: about 24% in the mid-1970s and about 20% around 1980. Since then Thai inflation has mostly stayed between about −1% and 8%, with smaller peaks around 1998, 2008 and 2022.<span class="zh-full" lang="zh-Hant">投影片上的 IMF 資料有兩個大高峰：1970 年代中期約 24%，1980 年前後約 20%。之後泰國通膨大多在 −1% 到 8% 之間，1998、2008、2022 年前後有較小的高峰。</span></p></div></div>
+<p class="note-small">The Thai figures are read off the chart in the slides and are approximate.<span class="zh-full" lang="zh-Hant">泰國的數字是從投影片圖表上讀的，為約略值。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Mango prices in Bangkok double after a drought, while the CPI barely moves. Is that inflation? What would have to happen across the basket for it to become inflation?<span class="zh-full" lang="zh-Hant">乾旱後曼谷芒果價格翻倍，但 CPI 幾乎沒動。這是通膨嗎？整籃商品要發生什麼事，才會變成通膨？</span></p></aside>
+
+<h2 id="qtm">3. The quantity theory of money: M × V = P × Y<span class="zh-full" lang="zh-Hant">3. 貨幣數量學說：M × V = P × Y</span></h2>
+<p class="sub">Follow one dollar for a year. Tyler buys a pupusa from Don. Don gives the dollar to his daughter, who spends it on a pony ride. It ends up with Alex, who loses it in his couch, finds it, and buys a coffee on a road trip. One dollar, spent three times.<span class="zh-full" lang="zh-Hant">跟著一張一元鈔票走一年。Tyler 向 Don 買了一個 pupusa；Don 把錢給女兒，女兒拿去騎小馬；最後到了 Alex 手上，他把錢掉進沙發、找回來，在公路旅行時買了一杯咖啡。同一張一元，花了三次。</span></p>
+<div class="tbl"><table><thead><tr><th>Letter<span class="zh-full" lang="zh-Hant">字母</span></th><th>What it is<span class="zh-full" lang="zh-Hant">是什麼</span></th><th>In the story<span class="zh-full" lang="zh-Hant">在故事裡</span></th><th>For a whole economy<span class="zh-full" lang="zh-Hant">對整個經濟</span></th></tr></thead><tbody>
+<tr><td><b>M</b></td><td>Money<span class="zh-full" lang="zh-Hant">貨幣</span></td><td>The one dollar bill<span class="zh-full" lang="zh-Hant">那張一元鈔票</span></td><td>The money supply<span class="zh">貨幣供給</span>: all the money in the economy<span class="zh-full" lang="zh-Hant">貨幣供給：經濟中所有的錢</span></td></tr>
+<tr><td><b>V</b></td><td>Velocity<span class="zh">流通速度</span><span class="zh-full" lang="zh-Hant">流通速度</span></td><td>3, since it was spent three times<span class="zh-full" lang="zh-Hant">3，因為花了三次</span></td><td>How many times the average dollar is spent on final goods and services in a year<span class="zh-full" lang="zh-Hant">平均每一元一年內用來購買最終商品和服務的次數</span></td></tr>
+<tr><td><b>P</b></td><td>Price level<span class="zh-full" lang="zh-Hant">物價水準</span></td><td>The prices of the pupusa, pony ride and coffee<span class="zh-full" lang="zh-Hant">pupusa、騎小馬和咖啡的價格</span></td><td>The average price of all final goods and services<span class="zh-full" lang="zh-Hant">所有最終商品和服務的平均價格</span></td></tr>
+<tr><td><b>Y</b></td><td>Real output<span class="zh-full" lang="zh-Hant">實質產出</span></td><td>The pupusa, pony ride and coffee<span class="zh-full" lang="zh-Hant">pupusa、騎小馬和咖啡本身</span></td><td>Real GDP<span class="zh-full" lang="zh-Hant">實質 GDP</span></td></tr>
+</tbody></table></div>
+<div class="pair"><div><b>Left side: M × V<span class="zh-full" lang="zh-Hant">左邊：M × V</span></b><p>All the money times how often it is spent. This is what buyers paid in total, which is nominal GDP.<span class="zh-full" lang="zh-Hant">所有的錢乘上被花掉的次數，也就是買方總共付了多少錢，等於名目 GDP。</span></p></div><div><b>Right side: P × Y<span class="zh-full" lang="zh-Hant">右邊：P × Y</span></b><p>Everything sold times its price. This is what sellers received in total, which is also nominal GDP.<span class="zh-full" lang="zh-Hant">所有賣出的東西乘上價格，也就是賣方總共收了多少錢，同樣等於名目 GDP。</span></p></div></div>
+<p>Everything sold is bought by someone, so the two sides are always equal. The equation is an <b>identity</b>: true by definition. On its own it says nothing about cause. The theory comes in the next section, when we add facts about which letters move.<span class="zh-full" lang="zh-Hant">每樣賣出的東西都有人買，所以兩邊永遠相等。這條式子是<b>恆等式</b>：依定義就成立。單看它說不出因果，理論要到下一節，加上「哪些字母會動」的事實之後才出現。</span></p>
+
+<h2 id="causes">4. What causes inflation<span class="zh-full" lang="zh-Hant">4. 通膨的成因</span></h2>
+<p class="sub">Rewrite the identity as P = M × V ÷ Y. If the price level changes, only three things can be behind it.<span class="zh-full" lang="zh-Hant">把恆等式改寫成 P = M × V ÷ Y。物價水準若改變，背後只可能是三樣東西。</span></p>
+<div class="three">
+<div><b>Y: real GDP<span class="zh-full" lang="zh-Hant">Y：實質 GDP</span></b><p>A 10% rise in one year would be astonishing growth. A 10% fall would be a great depression. It moves too little.<span class="zh-full" lang="zh-Hant">一年成長 10% 已經是驚人的成長，下跌 10% 則是大蕭條。它變動太小。</span></p></div>
+<div><b>V: velocity<span class="zh-full" lang="zh-Hant">V：流通速度</span></b><p>About 7 in the US in recent years. It depends on habits like weekly or biweekly pay. It might drift to 6 or 8, usually not much more.<span class="zh-full" lang="zh-Hant">美國近年約為 7，取決於週薪或雙週薪這類習慣。可能漂到 6 或 8，通常不會更多。</span></p></div>
+<div><b>M: money<span class="zh-full" lang="zh-Hant">M：貨幣</span></b><p>Can grow very fast, as in Zimbabwe or Peru. The only candidate for large, lasting price rises.<span class="zh-full" lang="zh-Hant">可以成長得非常快，例如辛巴威或秘魯。它是大幅、持續漲價唯一可能的來源。</span></p></div>
+</div>
+<p class="key">When more money chases the same amount of goods and services, prices must rise.<span class="zh-full" lang="zh-Hant">當更多的錢追逐同樣多的商品和服務，物價一定上漲。</span></p>
+<p>In growth rates, the identity becomes a rule of thumb you can use in an answer:<span class="zh-full" lang="zh-Hant">改用成長率表示，恆等式就變成答題時可用的經驗法則：</span></p>
+<div class="formula">Inflation ≈ money growth + velocity growth − real GDP growth<span class="zh-full" lang="zh-Hant">通膨率 ≈ 貨幣成長率 + 流通速度成長率 − 實質 GDP 成長率</span></div>
+<div data-widget="qtm" data-readout="optional" data-assume="Each year: P grows by (1 + money growth)(1 + velocity growth) ÷ (1 + real GDP growth)" data-assume-zh="每年：P 的成長倍數 = (1 + 貨幣成長)(1 + 流通速度成長) ÷ (1 + 實質 GDP 成長)"></div>
+<div class="pair"><div><b>Peru<span class="zh-full" lang="zh-Hant">秘魯</span></b><p>Something costing 1 inti in 1980 cost 10 million intis by 1995. Money and prices rose together. In 1990 money grew about 6,000% a year, and inflation was about 6,000% a year.<span class="zh-full" lang="zh-Hant">1980 年值 1 印地的東西，到 1995 年要 1,000 萬印地。貨幣和物價一起上漲。1990 年貨幣每年成長約 6,000%，通膨也約每年 6,000%。</span></p><p class="note-small">Another MRU video puts Peru's 1990 inflation at about 7,500%. The point is the same either way: money and prices rose together.<span class="zh-full" lang="zh-Hant">另一支 MRU 影片說秘魯 1990 年通膨約 7,500%。不管哪個數字，重點都一樣：貨幣和物價一起上漲。</span></p></div><div><b>About 110 countries, 1960 to 1990<span class="zh-full" lang="zh-Hant">約 110 國，1960 到 1990 年</span></b><p>Plot inflation against money growth and the points lie close to a line: one extra point of money growth goes with about one extra point of inflation. The US sits near the bottom, Poland higher up, Argentina at about 80%. Indonesia sits in the middle, with inflation below its money growth.<span class="zh-full" lang="zh-Hant">把通膨對貨幣成長畫成散布圖，點幾乎落在一條線上：貨幣成長多 1 個百分點，通膨大約也多 1 個百分點。美國在最下面，波蘭較高，阿根廷約 80%。印尼在中間，通膨低於它的貨幣成長。</span></p></div></div>
+<div class="tbl"><table><thead><tr><th>Principle<span class="zh-full" lang="zh-Hant">原則</span></th><th>In plain words<span class="zh-full" lang="zh-Hant">白話說</span></th></tr></thead><tbody>
+<tr><td><b>1. Money is neutral in the long run</b><span class="zh">貨幣中立</span><span class="zh-full" lang="zh-Hant">1. 長期而言貨幣是中立的</span></td><td>Double the money supply and, in time, prices double. Real output is not changed.<span class="zh-full" lang="zh-Hant">貨幣供給加倍，一段時間後物價也加倍，實質產出不變。</span></td></tr>
+<tr><td><b>2. Inflation is a monetary phenomenon</b><span class="zh-full" lang="zh-Hant">2. 通膨是貨幣現象</span></td><td>Milton Friedman: inflation is "always and everywhere a monetary phenomenon." Large, lasting inflation always comes with fast money growth.<span class="zh-full" lang="zh-Hant">傅利曼：通膨「無論何時何地都是一種貨幣現象」。大幅、持續的通膨一定伴隨快速的貨幣成長。</span></td></tr>
+<tr><td><b>3. Central banks control inflation</b><span class="zh-full" lang="zh-Hant">3. 央行控制通膨</span></td><td>Central banks largely control the money supply, so they largely control inflation.<span class="zh-full" lang="zh-Hant">央行大致掌控貨幣供給，所以也大致掌控通膨。</span></td></tr>
+</tbody></table></div>
+<h3 id="thaim1">Reading the Thai charts together<span class="zh-full" lang="zh-Hant">把泰國的兩張圖一起看</span></h3>
+<p>The slides also show Thailand's narrow money supply, M1, from the Bank of Thailand. It rose from about 1.9 trillion baht in 2017 to about 3.6 trillion in 2026, so it nearly doubled. That is about 7% a year. Over the same years Thai inflation stayed low. The growth rule explains the gap. Real output grew, which absorbed part of the new money. Velocity fell, because people held more money relative to what they spent. So 7% money growth did not turn into 7% inflation.<span class="zh-full" lang="zh-Hant">投影片也呈現泰國央行公布的狹義貨幣 M1：從 2017 年約 1.9 兆泰銖升到 2026 年約 3.6 兆，接近翻倍，約每年 7%。同一段時間泰國通膨一直很低。成長率法則可以解釋這個落差：實質產出成長，吸收了一部分新增的錢；流通速度下降，因為人們相對於支出持有更多的錢。所以 7% 的貨幣成長沒有變成 7% 的通膨。</span></p>
+<p class="note-small">M1 values are read off the chart. The explanation is our own use of the quantity theory, not from the slides.<span class="zh-full" lang="zh-Hant">M1 數值從圖上讀出。這段解釋是我們自己套用貨幣數量學說，不是投影片的內容。</span></p>
+<p class="hint"><b>中文邏輯</b><span>P 會變只有三個來源：M、V、Y。Y 和 V 一年內動不了多少，所以「長期、大幅」的物價上漲幾乎都是印太多錢造成的。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Money grows 8% a year and real GDP 3%, but inflation is only 2%. What else in M × V = P × Y must be changing, and in which direction?<span class="zh-full" lang="zh-Hant">貨幣每年成長 8%、實質 GDP 成長 3%，但通膨只有 2%。M × V = P × Y 裡還有什麼一定在變？往哪個方向？</span></p></aside>
+
+<h2 id="costs">5. Why unpredictable inflation is costly<span class="zh-full" lang="zh-Hant">5. 為什麼難以預測的通膨代價很高</span></h2>
+<p class="sub">Inflation raises wages along with prices. If everyone knew it would be 2% or 8% every year, people could plan for it. The trouble is that nobody knows.<span class="zh-full" lang="zh-Hant">通膨會讓薪資跟著物價一起漲。如果大家都知道每年是 2% 或 8%，就能事先規劃。麻煩在於沒有人知道。</span></p>
+<div class="tbl"><table><thead><tr><th>Place<span class="zh-full" lang="zh-Hant">地方</span></th><th>How inflation moved<span class="zh-full" lang="zh-Hant">通膨怎麼變</span></th></tr></thead><tbody>
+<tr><td>United States<span class="zh-full" lang="zh-Hant">美國</span></td><td>1.3% in 1964, 5.9% in 1970, 11% in 1974, 14% in 1980, 3% in 1983. People were caught off guard each time.<span class="zh-full" lang="zh-Hant">1964 年 1.3%、1970 年 5.9%、1974 年 11%、1980 年 14%、1983 年 3%。每一次大家都措手不及。</span></td></tr>
+<tr><td>Peru<span class="zh-full" lang="zh-Hant">秘魯</span></td><td>77% in 1986, then thousands of percent in 1990, then 73% in 1992.<span class="zh-full" lang="zh-Hant">1986 年 77%，1990 年達到數千 %，1992 年 73%。</span></td></tr>
+</tbody></table></div>
+<div class="pair"><div><b>Price confusion</b><span class="zh">價格混淆</span><p>A price is a signal wrapped in an incentive. When oil gets dearer, users should economize. With inflation every price is rising, so nobody can tell whether oil is scarcer or there is simply more money around. Prices become noisy, and the economy coordinates less well.<span class="zh-full" lang="zh-Hant">價格是包著誘因的訊號。石油變貴時，使用者應該節省。但有通膨時每個價格都在漲，沒人分得出是石油變稀少，還是只是市面上的錢變多。價格變得很吵，經濟的協調就變差。</span></p></div><div><b>Money illusion</b><span class="zh">貨幣幻覺</span><p>Mistaking a change in a nominal price for a change in a real price. A movie ticket doubles while wages double too, yet movies "feel" too expensive and people go less.<span class="zh-full" lang="zh-Hant">把名目價格的變化誤當成實質價格的變化。電影票漲一倍、薪水也漲一倍，大家卻「覺得」電影太貴，就少去看了。</span></p></div></div>
+<p>A <b>nominal</b> price is the number on the tag. A <b>real</b> price is what it costs in hours of work or other goods. A bowl of noodles going from 30 to 60 baht is no dearer in real terms if wages also doubled.<span class="zh-full" lang="zh-Hant"><b>名目</b>價格是標籤上的數字。<b>實質</b>價格是它要花多少工時或其他商品。一碗麵從 30 泰銖漲到 60 泰銖，如果薪水也翻倍，實質上並沒有變貴。</span></p>
+
+<h2 id="redistribution">6. Real interest rates and arbitrary redistribution<span class="zh-full" lang="zh-Hant">6. 實質利率與任意的財富重分配</span></h2>
+<p class="sub">Loans are written in money. Inflation changes what that money is worth by the time it is repaid.<span class="zh-full" lang="zh-Hant">貸款是用錢寫的。等到還錢時，通膨已經改變了那筆錢的價值。</span></p>
+<div class="formula">Real interest rate = nominal interest rate − inflation rate<br>A bank lends $100 at 10%. Inflation is 10%. It gets back $110, which buys what $100 bought. Real return: 0.<span class="zh-full" lang="zh-Hant">實質利率 = 名目利率 − 通膨率。銀行以 10% 借出 100 元，通膨 10%，收回的 110 元只能買到原本 100 元的東西，實質報酬為 0。</span></div>
+<p>The slides show a 1978 mortgage: a 12% nominal rate is a 2% real rate plus 10% inflation. Whether that deal turns out well depends on what inflation actually does next.<span class="zh-full" lang="zh-Hant">投影片上是一筆 1978 年的房貸：12% 的名目利率 = 2% 實質利率 + 10% 通膨。這筆交易最後划不划算，要看之後通膨實際怎麼走。</span></p>
+<div class="tbl"><table><thead><tr><th>Surprise<span class="zh-full" lang="zh-Hant">意外</span></th><th>Borrowers<span class="zh-full" lang="zh-Hant">借款人</span></th><th>Lenders<span class="zh-full" lang="zh-Hant">放款人</span></th><th>MRU example<span class="zh-full" lang="zh-Hant">MRU 例子</span></th></tr></thead><tbody>
+<tr><td><b>Inflation higher than expected</b><span class="zh-full" lang="zh-Hant">通膨高於預期</span></td><td><span class="yes">Gain</span></td><td><span class="no">Lose</span></td><td>Mortgages from the 1960s were repaid in the cheap dollars of the 1970s.<span class="zh-full" lang="zh-Hant">1960 年代的房貸用 1970 年代變薄的美元還清。</span></td></tr>
+<tr><td><b>Inflation lower than expected</b><span class="zh-full" lang="zh-Hant">通膨低於預期</span></td><td><span class="no">Lose</span></td><td><span class="yes">Gain</span></td><td>A mortgage at 18% around 1981. Inflation fell from about 14% to under 5%, so the real rate became 13%.<span class="zh-full" lang="zh-Hant">1981 年前後 18% 的房貸。通膨從約 14% 降到 5% 以下，實質利率變成 13%。</span></td></tr>
+</tbody></table></div>
+<p>Lenders protect themselves against the inflation they <b>expect</b>. If they expect 10% inflation and want a 5% real return, they charge 15%. Nominal rates rise with expected inflation: the <b>Fisher effect</b><span class="zh">費雪效果</span>. The US chart in the slides shows it. Interest rates followed inflation up in the 1970s, peaked near 20% when inflation hit about 14%, and came down with it.<span class="zh-full" lang="zh-Hant">放款人會針對<b>預期</b>的通膨保護自己。預期通膨 10%、想要 5% 的實質報酬，就收 15%。名目利率隨預期通膨上升，這就是<b>費雪效果</b>。投影片上的美國圖表可以看到：1970 年代利率跟著通膨上升，通膨約 14% 時利率接近 20% 的高峰，之後又跟著一起下降。</span></p>
+<div data-widget="realrate" data-readout="optional" data-assume="Real rate = nominal rate − inflation" data-assume-zh="實質利率 = 名目利率 − 通膨率"></div>
+<p>Now make inflation high and volatile. Lenders fear a surprise rise. Borrowers fear a surprise fall. Both avoid long contracts, so 20-year mortgages and long business loans become costly and rare. Moving savings to borrowers, which is <b>financial intermediation</b>, starts to break down, and the economy builds less wealth.<span class="zh-full" lang="zh-Hant">現在讓通膨又高又不穩。放款人怕通膨意外上升，借款人怕通膨意外下降，雙方都避開長約，所以 20 年房貸和長期企業貸款變得昂貴又少見。把儲蓄送到借款人手上的<b>金融中介</b>開始崩壞，經濟累積的財富就變少。</span></p>
+<p class="hint"><b>中文邏輯</b><span>費雪效果只保護「預期到的」通膨。財富重分配來自沒預期到的那一段：通膨比預期高，借款人賺；比預期低，放款人賺。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A Thai firm borrowed at a fixed 6% expecting 2% inflation. Inflation turns out to be 8%. Who gains this year? And what will lenders do to the rates on next year's loans?<span class="zh-full" lang="zh-Hant">一家泰國公司以固定 6% 借款，當時預期通膨 2%，結果通膨是 8%。今年誰得利？明年放款人對新貸款的利率會怎麼調？</span></p></aside>
+
+<h2 id="taxes">7. Expected inflation still hurts savers<span class="zh-full" lang="zh-Hant">7. 預期得到的通膨照樣傷害存款人</span></h2>
+<p class="sub">The Fisher effect does not fix one problem: the government taxes nominal interest, including the part that only makes up for inflation.<span class="zh-full" lang="zh-Hant">費雪效果解決不了一個問題：政府對名目利息課稅，連只是補償通膨的那一部分也課。</span></p>
+<div class="tbl"><table class="oil" aria-label="Real after-tax return, MRU Office Hours"><thead><tr><th>Case<span class="zh-full" lang="zh-Hant">情況</span></th><th>Nominal rate<span class="zh-full" lang="zh-Hant">名目利率</span></th><th>Inflation<span class="zh-full" lang="zh-Hant">通膨</span></th><th>Nominal after 33% tax<span class="zh-full" lang="zh-Hant">扣 33% 稅後名目</span></th><th>Real after tax<span class="zh-full" lang="zh-Hant">稅後實質</span></th></tr></thead><tbody>
+<tr><td>Low inflation<span class="zh-full" lang="zh-Hant">低通膨</span></td><td>6%</td><td>3%</td><td>4%</td><td class="hi">+1%</td></tr>
+<tr><td>Moderate inflation<span class="zh-full" lang="zh-Hant">中度通膨</span></td><td>12%</td><td>9%</td><td>8%</td><td class="hi">−1%</td></tr>
+<tr><td>High inflation<span class="zh-full" lang="zh-Hant">高通膨</span></td><td>90%</td><td>87%</td><td>60%</td><td class="hi">−27% (shortcut)</td></tr>
+</tbody></table></div>
+<p>In every case the lender expected inflation correctly and set a 3% real rate before tax. Saving still loses money once inflation is moderate. Cash under the mattress does even worse, since it earns nothing. When inflation is very high, people spend money as fast as they get it. That raises V, and by the quantity theory prices rise faster still.<span class="zh-full" lang="zh-Hant">每種情況放款人都正確預期了通膨，稅前實質利率都定在 3%。但只要通膨到中度，存錢就開始虧。把現金藏在床墊下更糟，因為完全沒有利息。通膨很高時，人們一拿到錢就花掉，V 因此上升，依貨幣數量學說物價會漲得更快。</span></p>
+<p class="note-small">The table uses MRU's shortcut: nominal after tax minus inflation. It is close for small rates. At 87% inflation the exact loss is about −14%. Either way the saver loses.<span class="zh-full" lang="zh-Hant">表格用的是 MRU 的簡化算法：稅後名目利率減通膨。數字小時很接近，但在 87% 通膨下，精確的虧損約 −14%。不管哪種算法，存款人都虧。</span></p>
+<div data-widget="aftertax" data-readout="optional"></div>
+<details class="extra"><summary>Optional: why the shortcut breaks at high inflation<span class="zh-full" lang="zh-Hant">補充：為什麼簡化算法在高通膨時會失準</span></summary>
+<p>"Nominal after tax minus inflation" is a shortcut that only works for small rates. The exact real return is (1 + nominal after tax) ÷ (1 + inflation) − 1. MRU leaves 900% inflation as a practice question. Keeping a 3% real rate before tax, the nominal rate is 903%, so the shortcut gives 602% − 900% = −298%. Nobody can lose more than everything they saved. The exact answer is about −30%. Either way, savers lose.<span class="zh-full" lang="zh-Hant">「稅後名目減通膨」是只適用於小數字的簡化算法。精確的實質報酬是 (1 + 稅後名目) ÷ (1 + 通膨) − 1。MRU 把 900% 通膨留作練習題：維持稅前實質 3%，名目利率是 903%，簡化算法得到 602% − 900% = −298%。但沒有人能虧掉超過全部存款，精確答案約 −30%。不管哪種算法，存款人都虧。</span></p></details>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Two savers both earn a 3% real rate before tax and pay the same tax rate. One lives where inflation is 2%, the other where it is 20%. Why does the second keep less in real terms, even though both lenders priced inflation correctly?<span class="zh-full" lang="zh-Hant">兩個存款人稅前實質利率都是 3%，稅率也一樣。一個住在通膨 2% 的地方，另一個住在 20% 的地方。兩邊的放款人都正確估計了通膨，為什麼第二個人實質上留下的比較少？</span></p></aside>
+
+<h2 id="winners">8. Winners and losers through the ages<span class="zh-full" lang="zh-Hant">8. 歷代的贏家與輸家</span></h2>
+<p class="sub">MRU's time machine puts you in three moments in history. The question each time: will inflation, or deflation, make you a winner or a loser?<span class="zh-full" lang="zh-Hant">MRU 的時光機把你送到歷史上的三個時刻。每次的問題都是：通膨（或通縮）會讓你成為贏家還是輸家？</span></p>
+<div class="tbl"><table><thead><tr><th>Who<span class="zh-full" lang="zh-Hant">誰</span></th><th>The choice<span class="zh-full" lang="zh-Hant">要做的決定</span></th><th>Right call<span class="zh-full" lang="zh-Hant">正確判斷</span></th><th>What happened<span class="zh-full" lang="zh-Hant">結果</span></th></tr></thead><tbody>
+<tr><td><b>US farmer, 1893</b><span class="zh-full" lang="zh-Hant">美國農夫，1893 年</span></td><td>Inflation has been 0% for two years. Borrow $100 for a tractor?<span class="zh-full" lang="zh-Hant">過去兩年通膨是 0%。要借 100 美元買拖拉機嗎？</span></td><td><span class="no">No</span></td><td>Deflation hit (−1.1% in 1893). By 1895 the $100 owed was worth $108 in real terms, on top of interest.<span class="zh-full" lang="zh-Hant">通縮來了（1893 年 −1.1%）。到 1895 年，欠的 100 美元實質上值 108 美元，還不算利息。</span></td></tr>
+<tr><td><b>US retiree, 1946</b><span class="zh-full" lang="zh-Hant">美國退休者，1946 年</span></td><td>Living on a $25 monthly Social Security check. Lobby for automatic inflation adjustment?<span class="zh-full" lang="zh-Hant">靠每月 25 美元的社會安全金過活。要遊說自動依通膨調整嗎？</span></td><td><span class="yes">Yes</span></td><td>Inflation reached 14% in 1947. By the end of 1948 the check bought what $18.70 used to. Automatic adjustment came in 1975.<span class="zh-full" lang="zh-Hant">1947 年通膨達 14%。到 1948 年底，這張支票只能買到原本 18.70 美元的東西。自動調整直到 1975 年才實施。</span></td></tr>
+<tr><td><b>Venezuelan saver, 2013</b><span class="zh-full" lang="zh-Hant">委內瑞拉存款人，2013 年</span></td><td>Holding 1,000 bolivars after inflation of 21% in 2012. Pay high fees to move into another currency?<span class="zh-full" lang="zh-Hant">2012 年通膨 21% 之後手上有 1,000 玻利瓦。要付高額手續費換成別的貨幣嗎？</span></td><td><span class="yes">Yes</span></td><td>Prices rose about 40% in a year, so the 1,000 bolivars bought what 712 used to. By the end of 2018 they were worth 0.11 in real terms.<span class="zh-full" lang="zh-Hant">一年內物價漲約 40%，1,000 玻利瓦只能買到原本 712 的東西。到 2018 年底，實質上只值 0.11。</span></td></tr>
+</tbody></table></div>
+<p>The pattern: anyone holding a <b>fixed amount of money</b>, as savings, a loan they made or a fixed income, is hurt by surprise inflation. Anyone <b>owing</b> a fixed amount is hurt by surprise deflation. <b>Indexation</b><span class="zh">物價連動</span>, which ties a payment to the price level, protects against both.<span class="zh-full" lang="zh-Hant">規律是：手上拿著<b>固定金額的錢</b>的人（存款、借給別人的錢、固定收入），會被意外通膨傷害；<b>欠</b>固定金額的人，會被意外通縮傷害。<b>物價連動</b>把給付和物價水準綁在一起，兩種情況都能保護。</span></p>
+<div data-widget="winners"></div>
+
+<h2 id="governments">9. Why governments create inflation<span class="zh-full" lang="zh-Hant">9. 政府為什麼製造通膨</span></h2>
+<p class="sub">If inflation is this costly, why does any government create it? MRU gives two reasons and one warning.<span class="zh-full" lang="zh-Hant">通膨代價這麼高，為什麼還有政府要製造它？MRU 給了兩個理由和一個警告。</span></p>
+<div class="pair"><div><b>Reason 1: an inflation tax</b><span class="zh">通膨稅</span><p>Printing money and spending it moves wealth from everyone holding money to the government. It is a poor tax, used when a government cannot raise money any other way, as in Zimbabwe.<span class="zh-full" lang="zh-Hant">印鈔來花，等於把財富從所有持有貨幣的人移到政府手上。這是很差的稅，只在政府沒有其他方法籌錢時才用，例如辛巴威。</span></p></div><div><b>Reason 2: a short-run boost<span class="zh-full" lang="zh-Hant">理由 2：短期刺激</span></b><p>An unexpected increase in money can raise real output for a while. That can help in a recession. It can also be abused, for example to win an election.<span class="zh-full" lang="zh-Hant">未預期的貨幣增加可以暫時提高實質產出。在衰退時可能有幫助，但也可能被濫用，例如拿來贏選舉。</span></p></div></div>
+<h3 id="parable">The parable of inflation<span class="zh-full" lang="zh-Hant">通膨寓言</span></h3>
+<ol class="steps">
+<li><span>A government pays its soldiers with newly printed money. They buy bread. The baker thinks demand is up, works longer, hires help, bakes more and raises his price.<span class="zh-full" lang="zh-Hant">政府用新印的鈔票付軍餉，士兵去買麵包。麵包師傅以為需求增加，延長工時、請幫手、多烤一些，也調高價格。</span></span></li>
+<li><span>The tailor and the carpenter feel the same, because soldiers buy from them too.<span class="zh-full" lang="zh-Hant">裁縫和木匠也有同樣的感覺，因為士兵也向他們買東西。</span></span></li>
+<li><span>The baker goes to buy shirts and finds their price has risen. All three earned more dollars, but those dollars buy less. Their real wages fell.<span class="zh-full" lang="zh-Hant">麵包師傅去買襯衫，發現襯衫也漲價了。三個人賺到更多錢，但這些錢買得更少，實質工資其實下降了。</span></span></li>
+<li><span>Next time the government must print more to buy the same goods. Everyone rushes to spend before prices rise, so V goes up and prices rise faster.<span class="zh-full" lang="zh-Hant">下一次政府得印更多錢才能買到同樣的東西。大家趕著在漲價前把錢花掉，V 上升，物價漲得更快。</span></span></li>
+<li><span>They catch on. They expect inflation, stop working extra hours, and the boost is gone.<span class="zh-full" lang="zh-Hant">他們學乖了，開始預期通膨，不再加班，刺激效果就消失了。</span></span></li>
+</ol>
+<div data-widget="parable" data-readout="optional" data-assume="V fixed, so Y = M × V ÷ P. Prices close a share of the gap each period." data-assume-zh="V 固定，所以 Y = M × V ÷ P。物價每期補上一部分差距。"></div>
+<p>The warning: stopping inflation is costly. Cutting money growth works the same story in reverse. Output falls until prices adjust, which is a recession. MRU compares inflation to a drug: it lifts you at first, then you need more for the same effect, then you need it just to feel normal, and quitting brings withdrawal. The US lived this. By the late 1970s inflation no longer lowered unemployment, and the country had <b>stagflation</b><span class="zh">停滯性通膨</span>: high inflation and high unemployment together. Inflation came down in the early 1980s, under Ronald Reagan, at the price of a severe recession in 1981 and 1982.<span class="zh-full" lang="zh-Hant">警告是：停止通膨的代價很高。減少貨幣成長會讓同一個故事倒著演：物價調整之前產出先下降，也就是衰退。MRU 把通膨比作毒品：一開始讓人振奮，接著要更多才有同樣效果，然後要用才覺得正常，戒掉時還有戒斷症狀。美國親身經歷過：到 1970 年代末，通膨已經無法再降低失業，出現<b>停滯性通膨</b>，高通膨和高失業同時發生。1980 年代初雷根任內通膨降下來了，代價是 1981 到 1982 年的嚴重衰退。</span></p>
+<p class="hint"><b>中文邏輯</b><span>短期印錢會讓大家「以為」生意變好；等發現什麼都漲了，就只剩物價上漲。要把通膨降回來，得先挨一段衰退。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>A government expands the money supply before every election. Why does the boost to output get weaker each time? What happens when a new government decides to stop?<span class="zh-full" lang="zh-Hant">某政府每次選舉前都擴張貨幣供給。為什麼對產出的刺激一次比一次弱？新政府決定停手時會發生什麼事？</span></p></aside>
+
+<h2 id="india">10. India 2016: when 86% of the cash disappeared<span class="zh-full" lang="zh-Hant">10. 印度 2016：86% 的現金一夜消失</span></h2>
+<p class="sub">An MRU "Economists in the Wild" video. Zimbabwe printed too much money. India did the opposite, suddenly and on purpose.<span class="zh-full" lang="zh-Hant">MRU「Economists in the Wild」系列影片。辛巴威是印太多錢，印度則是刻意、突然地反其道而行。</span></p>
+<div class="flow"><span>November 2016: target "black money"<span class="zh-full" lang="zh-Hant">2016 年 11 月：打擊「黑錢」</span></span><i>→</i><span>Large notes can no longer be spent, only deposited<span class="zh-full" lang="zh-Hant">大面額鈔票不能再花，只能存入銀行</span></span><i>→</i><span>86% of the currency gone overnight<span class="zh-full" lang="zh-Hant">86% 的通貨一夜消失</span></span><i>→</i><span>About 8 months to print enough new notes<span class="zh-full" lang="zh-Hant">約 8 個月才印足新鈔</span></span></div>
+<p>Black money meant cash from ill-gotten sources, such as a corrupt official's hoard of bribes or counterfeit notes used to fund terrorism. People could deposit old notes at a bank if they could show the money was clean. Predictions differed widely. The government did not expect much harm. Some private economists predicted a recession of 7% or 8% of the economy.<span class="zh-full" lang="zh-Hant">黑錢指來路不正的現金，例如貪官囤積的賄款，或用來資助恐怖活動的偽鈔。人們只要能證明錢是乾淨的，就能把舊鈔存進銀行。各方預測差很多：政府認為影響不大，有些民間經濟學家則預測經濟會衰退 7% 或 8%。</span></p>
+<div class="pair"><div><b>A natural experiment</b><span class="zh">自然實驗</span><p>Some districts got new notes quickly, so their cash shortage was short. Others waited much longer. Comparing them shows the effect of losing cash.<span class="zh-full" lang="zh-Hant">有些地區很快拿到新鈔，現金短缺時間很短；有些地區等了很久。比較兩者就能看出失去現金的影響。</span></p></div><div><b>Measuring it without good data<span class="zh-full" lang="zh-Hant">沒有好資料時怎麼衡量</span></b><p>Regional data in India are weak, so the researchers used an employment survey and satellite images of night lights, down to about one square kilometer. Human-made light tracks economic activity.<span class="zh-full" lang="zh-Hant">印度的地區資料很弱，所以研究者用就業調查和夜間燈光的衛星影像，精細到大約一平方公里。人造燈光會跟著經濟活動變化。</span></p></div></div>
+<p>The published study found that districts hit harder lost more jobs and night-time light, had slower bank lending and moved faster to e-wallets and cards. Nationally, activity fell about 3 percentage points in December 2016, and the effects faded over the following months. More than 99% of the old notes eventually came back into banks.<span class="zh-full" lang="zh-Hant">發表的研究發現：受衝擊較大的地區，工作和夜間燈光減少較多、銀行放款成長較慢，也更快轉向電子錢包和卡片。全國經濟活動在 2016 年 12 月下降約 3 個百分點，之後幾個月效果逐漸消退。最後超過 99% 的舊鈔都回到了銀行。</span></p>
+<p>In the language of this chapter, usable M fell suddenly. Output fell in the short run before cash returned, which fits section 9: money is not neutral in the short run. It does not contradict long-run neutrality, since the effects faded.<span class="zh-full" lang="zh-Hant">用本章的語言來說，可用的 M 突然下降。現金回來之前，短期產出下降，這符合第 9 節：貨幣在短期不是中立的。因為效果後來消退，所以這和長期中立並不矛盾。</span></p>
+<p class="note-small">Findings: Chodorow-Reich, Gopinath, Mishra and Narayanan, "Cash and the Economy: Evidence from India's Demonetization."<span class="zh-full" lang="zh-Hant">研究結果：Chodorow-Reich、Gopinath、Mishra 與 Narayanan，〈Cash and the Economy: Evidence from India's Demonetization〉。</span></p>
+<aside class="practice-prompt" hidden=""><strong>Pause &amp; think<span class="zh-full" lang="zh-Hant">暫停，想一想</span></strong><p>Districts that waited longer for new notes lost more output. What does that tell you about the role of cash in the short run, and why did the effect fade?<span class="zh-full" lang="zh-Hant">等新鈔等得越久的地區，產出損失越大。這告訴你現金在短期扮演什麼角色？效果為什麼會消退？</span></p></aside>
+
+<h2 id="traps">11. Do not mix these up<span class="zh-full" lang="zh-Hant">11. 別搞混</span></h2>
+<div class="traps">
+<div><s>Prices doubled since 1984, so people are poorer.<span class="zh-full" lang="zh-Hant">物價從 1984 年至今翻倍，所以大家變窮了。</span></s><p>Compare real values. Wages rose more than prices on average.<span class="zh-full" lang="zh-Hant">要比實質值。平均而言薪資漲得比物價多。</span></p></div>
+<div><s>M × V = P × Y proves money causes inflation.<span class="zh-full" lang="zh-Hant">M × V = P × Y 證明了貨幣造成通膨。</span></s><p>The identity proves nothing by itself. The theory adds that V and Y are fairly stable.<span class="zh-full" lang="zh-Hant">恆等式本身什麼都證明不了，理論還加上了 V 和 Y 相當穩定這個事實。</span></p></div>
+<div><s>Money is never neutral.<span class="zh-full" lang="zh-Hant">貨幣從來不是中立的。</span></s><p>It is neutral in the long run. In the short run an unexpected change can move output.<span class="zh-full" lang="zh-Hant">長期是中立的。短期內，未預期的變化可以影響產出。</span></p></div>
+<div><s>Inflation is costly because prices go up.<span class="zh-full" lang="zh-Hant">通膨的代價就是東西變貴。</span></s><p>Wages go up too. The costs come from unpredictability, transfers and broken long-term lending.<span class="zh-full" lang="zh-Hant">薪資也會漲。代價來自難以預測、財富移轉和長期借貸崩壞。</span></p></div>
+<div><s>Inflation always hurts borrowers.<span class="zh-full" lang="zh-Hant">通膨總是傷害借款人。</span></s><p>Unexpected inflation helps borrowers. Unexpected deflation hurts them.<span class="zh-full" lang="zh-Hant">未預期的通膨對借款人有利，未預期的通縮才傷害他們。</span></p></div>
+<div><s>If inflation is fully expected, savers are fine.<span class="zh-full" lang="zh-Hant">只要通膨完全被預期到，存款人就沒事。</span></s><p>Not when tax falls on nominal interest: 12% nominal with 9% inflation gives −1% real after tax.<span class="zh-full" lang="zh-Hant">對名目利息課稅時就不是：名目 12%、通膨 9%，稅後實質是 −1%。</span></p></div>
+<div><s>Disinflation means prices are falling.<span class="zh-full" lang="zh-Hant">通膨減緩就是物價在下跌。</span></s><p>Disinflation means inflation is slowing. Prices still rise. Deflation is when they fall.<span class="zh-full" lang="zh-Hant">通膨減緩是通膨變慢，物價仍在漲。物價下跌才是通縮。</span></p></div>
+<div><s>India's demonetization was too much money, like Zimbabwe.<span class="zh-full" lang="zh-Hant">印度廢鈔和辛巴威一樣是錢太多。</span></s><p>It was a sudden cut in usable cash, the reverse case.<span class="zh-full" lang="zh-Hant">那是可用現金突然減少，是相反的情況。</span></p></div>
+</div>
+
+<h2 id="coldcall">12. Cold call practice<span class="zh-full" lang="zh-Hant">12. 課堂點名練習</span></h2>
+<div class="qa-tools"><button id="qaAll" type="button">Show all answers</button></div>
+<div class="qa">
+<details><summary>What is inflation? Give an example.<span class="zh-full" lang="zh-Hant">什麼是通膨？舉個例子。</span></summary><p>Inflation is a rise in the average level of prices. If the CPI goes from 100 to 103 in a year, inflation is 3%. One good getting dearer is not inflation by itself.<span class="zh-full" lang="zh-Hant">通膨是物價平均水準上升。CPI 一年從 100 變 103，通膨就是 3%。單一商品變貴本身不是通膨。</span></p></details>
+<details><summary>What is the CPI, and why is it weighted?<span class="zh-full" lang="zh-Hant">CPI 是什麼？為什麼要加權？</span></summary><p>The average price of a basket of goods and services that consumers buy. Items count by their share of spending, so housing moves it more than toothbrushes.<span class="zh-full" lang="zh-Hant">消費者購買的一籃商品和服務的平均價格。各項目依占支出的比例計算，所以住宅對它的影響大過牙刷。</span></p></details>
+<details><summary>A price index rises from 120 to 126. What is the inflation rate?<span class="zh-full" lang="zh-Hant">物價指數從 120 升到 126，通膨率是多少？</span></summary><p>(126 − 120) ÷ 120 × 100 = 5%.<span class="zh-full" lang="zh-Hant">(126 − 120) ÷ 120 × 100 = 5%。</span></p></details>
+<details><summary>What are M, V, P and Y?<span class="zh-full" lang="zh-Hant">M、V、P、Y 分別是什麼？</span></summary><p>The money supply, the velocity of money, the price level and real GDP. M × V is total spending and P × Y is total sales, so both equal nominal GDP.<span class="zh-full" lang="zh-Hant">貨幣供給、貨幣流通速度、物價水準和實質 GDP。M × V 是總支出，P × Y 是總銷售，兩者都等於名目 GDP。</span></p></details>
+<details><summary>What causes large, lasting inflation?<span class="zh-full" lang="zh-Hant">大幅、持續的通膨是什麼造成的？</span></summary><p>Fast growth in the money supply. Real GDP and velocity move too little to explain it. Zimbabwe printed money to pay for spending and prices rose billions of percent a month.<span class="zh-full" lang="zh-Hant">貨幣供給快速成長。實質 GDP 和流通速度變動太小，解釋不了。辛巴威印鈔來支付開銷，物價每月上漲幾十億 %。</span></p></details>
+<details><summary>Money grows 8% a year, velocity is steady and real GDP grows 3%. Roughly what is inflation?<span class="zh-full" lang="zh-Hant">貨幣每年成長 8%、流通速度不變、實質 GDP 成長 3%，通膨大約多少？</span></summary><p>About 5%: 8 + 0 − 3.<span class="zh-full" lang="zh-Hant">約 5%：8 + 0 − 3。</span></p></details>
+<details><summary>What does "money is neutral in the long run" mean?<span class="zh-full" lang="zh-Hant">「長期而言貨幣是中立的」是什麼意思？</span></summary><p>A change in the money supply eventually changes prices only, not real output. Double the money and prices double.<span class="zh-full" lang="zh-Hant">貨幣供給的變化最終只改變物價，不改變實質產出。錢加倍，物價就加倍。</span></p></details>
+<details><summary>What is price confusion?<span class="zh-full" lang="zh-Hant">什麼是價格混淆？</span></summary><p>When all prices are rising, people cannot tell whether a price rose because a good is scarcer or because of inflation, so price signals become noisy.<span class="zh-full" lang="zh-Hant">所有價格都在漲時，人們分不出某個價格上漲是因為商品變稀少還是因為通膨，價格訊號就變得很吵。</span></p></details>
+<details><summary>What is money illusion?<span class="zh-full" lang="zh-Hant">什麼是貨幣幻覺？</span></summary><p>Mistaking a nominal price change for a real one, such as feeling movies are too expensive after ticket prices and wages both doubled.<span class="zh-full" lang="zh-Hant">把名目價格變化誤當成實質變化，例如票價和薪水都翻倍後，還覺得電影太貴。</span></p></details>
+<details><summary>What is the real interest rate on a 12% mortgage with 10% inflation?<span class="zh-full" lang="zh-Hant">房貸利率 12%、通膨 10%，實質利率是多少？</span></summary><p>2%: the nominal rate minus inflation, as in the 1978 example from the slides.<span class="zh-full" lang="zh-Hant">2%：名目利率減通膨，和投影片上 1978 年的例子一樣。</span></p></details>
+<details><summary>Who gains from unexpected inflation?<span class="zh-full" lang="zh-Hant">未預期的通膨讓誰得利？</span></summary><p>Borrowers, because they repay with money worth less. Lenders, cash savers and people on fixed incomes lose.<span class="zh-full" lang="zh-Hant">借款人，因為他們用變薄的錢還債。放款人、持有現金的存款人和固定收入者受害。</span></p></details>
+<details><summary>What is the Fisher effect?<span class="zh-full" lang="zh-Hant">什麼是費雪效果？</span></summary><p>Nominal interest rates rise with expected inflation. Expecting 10% inflation and wanting a 5% real return, a lender charges 15%.<span class="zh-full" lang="zh-Hant">名目利率隨預期通膨上升。預期通膨 10%、想要 5% 實質報酬，放款人就收 15%。</span></p></details>
+<details><summary>Why does volatile inflation reduce long-term lending?<span class="zh-full" lang="zh-Hant">為什麼不穩定的通膨會減少長期放款？</span></summary><p>Lenders fear a surprise rise and borrowers fear a surprise fall, so both avoid long contracts and financial intermediation breaks down.<span class="zh-full" lang="zh-Hant">放款人怕通膨意外上升，借款人怕意外下降，雙方都避開長約，金融中介就崩壞了。</span></p></details>
+<details><summary>Why can expected inflation still hurt savers?<span class="zh-full" lang="zh-Hant">為什麼預期得到的通膨仍會傷害存款人？</span></summary><p>Tax is charged on nominal interest, including the part that only offsets inflation. At 12% nominal, 9% inflation and a 33% tax, the real return is −1%.<span class="zh-full" lang="zh-Hant">稅是對名目利息課的，連只是抵銷通膨的部分也課。名目 12%、通膨 9%、稅率 33% 時，實質報酬是 −1%。</span></p></details>
+<details><summary>Why do governments create inflation?<span class="zh-full" lang="zh-Hant">政府為什麼要製造通膨？</span></summary><p>As a tax when they cannot raise money any other way, and for a short-run boost to output. The boost fades once people expect inflation.<span class="zh-full" lang="zh-Hant">在沒有其他方法籌錢時當作一種稅，以及為了短期提高產出。一旦大家預期到通膨，刺激就消失。</span></p></details>
+<details><summary>Why is stopping inflation costly?<span class="zh-full" lang="zh-Hant">為什麼停止通膨代價很高？</span></summary><p>Cutting money growth lowers output before prices adjust, causing a recession, as in the US in 1981 and 1982.<span class="zh-full" lang="zh-Hant">減少貨幣成長會在物價調整前先壓低產出，造成衰退，例如美國 1981 到 1982 年。</span></p></details>
+<details><summary>What is stagflation?<span class="zh-full" lang="zh-Hant">什麼是停滯性通膨？</span></summary><p>High inflation and high unemployment at the same time, as in the US in the late 1970s.<span class="zh-full" lang="zh-Hant">高通膨和高失業同時出現，例如 1970 年代末的美國。</span></p></details>
+<details><summary>Why is India's demonetization called a natural experiment?<span class="zh-full" lang="zh-Hant">為什麼印度廢鈔被稱為自然實驗？</span></summary><p>Districts got new notes at different speeds by chance, so researchers could compare places with short and long cash shortages.<span class="zh-full" lang="zh-Hant">各地區拿到新鈔的速度不同，而且出於偶然，研究者因此能比較現金短缺時間長短不同的地方。</span></p></details>
+</div>
+
+<h2 id="templates">13. Answer templates<span class="zh-full" lang="zh-Hant">13. 答題模板</span></h2>
+<div class="method"><b>Define and give an example<span class="zh-full" lang="zh-Hant">下定義並舉例</span></b><p>"Inflation is a rise in the average price level, measured by the percentage change in a price index such as the CPI. If the CPI goes from 100 to 103, inflation is 3%. One price rising on its own is a relative price change."<span class="zh-full" lang="zh-Hant">「通膨是平均物價水準的上升，用 CPI 這類物價指數的變動百分比衡量。CPI 從 100 變 103，通膨就是 3%。單一價格上漲只是相對價格變化。」</span></p></div>
+<div class="method"><b>What causes inflation<span class="zh-full" lang="zh-Hant">通膨的成因</span></b><p>"By the quantity theory, M times V equals P times Y. Real output and velocity change slowly, so large and lasting inflation comes from growth in the money supply. Zimbabwe printed money to pay for spending, and prices rose billions of percent a month."<span class="zh-full" lang="zh-Hant">「依貨幣數量學說，M 乘 V 等於 P 乘 Y。實質產出和流通速度變化很慢，所以大幅、持續的通膨來自貨幣供給成長。辛巴威印鈔支付開銷，物價每月上漲幾十億 %。」</span></p></div>
+<div class="method"><b>Why inflation is costly<span class="zh-full" lang="zh-Hant">通膨為什麼有代價</span></b><p>"Wages rise with prices, so the main problem is unpredictability. High, volatile inflation blurs price signals, moves wealth between borrowers and lenders, and makes long-term lending too risky."<span class="zh-full" lang="zh-Hant">「薪資會跟著物價漲，所以主要問題是難以預測。又高又不穩的通膨會模糊價格訊號、在借貸雙方之間移轉財富，並讓長期放款風險太高。」</span></p></div>
+<div class="method"><b>Who wins and who loses<span class="zh-full" lang="zh-Hant">誰贏誰輸</span></b><p>"When inflation is higher than expected, borrowers gain because they repay in cheaper money. Lenders, cash savers and people on fixed incomes lose. When inflation is lower than expected, it is the reverse."<span class="zh-full" lang="zh-Hant">「通膨高於預期時，借款人用變薄的錢還債而得利，放款人、持有現金的存款人和固定收入者受害。通膨低於預期時則相反。」</span></p></div>
+<div class="method"><b>Why governments do it<span class="zh-full" lang="zh-Hant">政府為什麼這樣做</span></b><p>"Governments use inflation as a tax when they cannot raise money any other way, or to boost output in the short run. The boost fades once people expect inflation, and bringing inflation down again usually causes a recession."<span class="zh-full" lang="zh-Hant">「政府在沒有其他方法籌錢時把通膨當成稅，或用它在短期提高產出。一旦大家預期到通膨，刺激就消退，而要再把通膨降下來通常會造成衰退。」</span></p></div>
+<p class="note-small endnote">Sources: professor's Session 9 slides; Marginal Revolution University, Principles of Macroeconomics (Inflation and Quantity Theory of Money, including Office Hours: Costs of Inflation); MRU Economists in the Wild, Demonetization; McCandless and Weber (1995), "Some Monetary Facts"; Chodorow-Reich, Gopinath, Mishra and Narayanan, <a href="https://www.ideasforindia.in/topics/macroeconomics/cash-and-the-economy-evidence-from-india-s-demonetisation.html">Cash and the Economy</a>. Figures are as reported in those sources, not current data.<span class="zh-full" lang="zh-Hant">資料來源：教授第 9 堂投影片；Marginal Revolution University 總體經濟學原理（通膨與貨幣數量學說，包括 Office Hours: Costs of Inflation）；MRU Economists in the Wild〈廢鈔〉；McCandless 與 Weber（1995）〈Some Monetary Facts〉；Chodorow-Reich、Gopinath、Mishra 與 Narayanan〈Cash and the Economy〉。數字依各來源所述，並非最新資料。</span></p>
+<p class="note-small">Continue from <a href="economics-s8.html">Session 8: The financial system</a>, or return to <a href="economics.html">Economics sessions</a>.<span class="zh-full" lang="zh-Hant">從<a href="economics-s8.html">第 8 堂：金融體系</a>接續，或回到<a href="economics.html">經濟學課程頁</a>。</span></p>
+</article></main></div>
+
+<script>/* Reusable economics widgets. Shared Plot and controls are embedded for offline use. */
+(() => {
+  'use strict';
+  const NS='http://www.w3.org/2000/svg'; let uid=0;
+  const money=n=>{const value=Math.round(Math.abs(n)*100)/100;return (n<0?'−$':'$')+value.toLocaleString('en-US',{minimumFractionDigits:Number.isInteger(value)?0:2,maximumFractionDigits:2});};
+  const num=n=>n.toLocaleString('en-US',{maximumFractionDigits:2});
+  const colors={d:'var(--demand)',mr:'var(--ext)',mc:'var(--supply)',atc:'var(--world)',cs:'var(--cs)',ps:'var(--ps)'};
+  function el(tag,attrs={},parent){const e=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));if(parent)parent.append(e);return e;}
+  function Plot(svg,qMax,pMax,pMin=0){
+    const W=Math.max(280,svg.getBoundingClientRect().width||500),H=document.body.classList.contains('show-zh')?370:340,L=48,R=18,T=document.body.classList.contains('show-zh')?44:28,B=document.body.classList.contains('show-zh')?64:51;
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.replaceChildren();
+    const sx=q=>L+q/qMax*(W-L-R),sy=p=>H-B-(p-pMin)/(pMax-pMin)*(H-T-B);
+    const defs=el('defs',{},svg),clip=el('clipPath',{id:'plot-clip-'+(++uid)},defs);
+    el('rect',{x:L,y:T,width:W-L-R,height:H-T-B},clip);
+    const grid=el('g',{},svg),area=el('g',{'clip-path':'url(#'+clip.id+')'},svg),lines=el('g',{'clip-path':'url(#'+clip.id+')'},svg),top=el('g',{},svg);
+    const text=(x,y,s,attrs={})=>{const t=el('text',{x,y,class:'tk',...attrs},top);t.textContent=s;return t;};
+    return {sx,sy,W,H,
+      axes(xl,yl){el('line',{x1:L,y1:T,x2:L,y2:H-B,class:'ax'},grid);el('line',{x1:L,y1:H-B,x2:W-R,y2:H-B,class:'ax'},grid);text(L,T-(document.body.classList.contains('show-zh')?25:12),yl,{class:'axl'});text((L+W-R)/2,H-(document.body.classList.contains('show-zh')?23:8),xl,{'text-anchor':'middle',class:'axl'});},
+      xticks(values,fmt=num){values.forEach(q=>text(sx(q),H-B+19,fmt(q),{'text-anchor':'middle'}));},
+      yticks(values,fmt=num){values.forEach(p=>{el('line',{x1:L,y1:sy(p),x2:W-R,y2:sy(p),class:'grid'},grid);text(L-7,sy(p)+4,fmt(p),{'text-anchor':'end'});});},
+      path(points,color,dash=false){el('polyline',{points:points.map(([q,p])=>sx(q)+','+sy(p)).join(' '),fill:'none',stroke:color,'stroke-width':2.5,'stroke-dasharray':dash?'6 5':'none'},lines);},
+      line(a,b,color){this.path([[0,a],[qMax,a+b*qMax]],color);},
+      hline(p,color,dash=false){this.path([[0,p],[qMax,p]],color,dash);},
+      poly(points,cls){el('polygon',{points:points.map(([q,p])=>sx(q)+','+sy(p)).join(' '),class:cls},area);},
+      rect(q0,q1,p0,p1,cls){this.poly([[q0,p0],[q1,p0],[q1,p1],[q0,p1]],cls);},
+      guide(q,p){el('line',{x1:sx(q),y1:sy(p),x2:sx(q),y2:sy(pMin),class:'gd'},lines);el('line',{x1:L,y1:sy(p),x2:sx(q),y2:sy(p),class:'gd'},lines);},
+      point(q,p,color){el('circle',{cx:sx(q),cy:sy(p),r:4,fill:color,stroke:'var(--paper)','stroke-width':1.3},lines);},
+      tag(q,p,s,anchor='middle',dy=-7){return text(sx(q),sy(p)+dy,s,{'text-anchor':anchor});},
+      bar(q,value,color){el('rect',{x:sx(q-.28),y:sy(value),width:sx(q+.28)-sx(q-.28),height:Math.max(0,sy(0)-sy(value)),fill:color},area);text(sx(q),sy(value)-8,num(value),{'text-anchor':'middle'});}
+    };
+  }
+  function shell(host,title,sub,legend,twinTitles){
+    host.classList.add('graph','wide');const id='econ-'+(++uid);
+    host.innerHTML='<div class="g-head"><span class="g-kicker">Interactive graph</span><h4></h4><p></p></div><div class="plot-legend"></div><div class="g-body"><div class="g-plot"></div><div class="g-side"><div class="g-ctrl"></div><dl class="g-stats" aria-live="off"></dl></div></div><p class="g-note" aria-live="polite"></p>';
+    host.querySelector('h4').textContent=title;host.querySelector('.g-head p').textContent=sub;
+    const leg=host.querySelector('.plot-legend');legend.forEach(([s,c])=>{const item=document.createElement('span'),sw=document.createElement('i');sw.style.background=c;sw.className='sw ln';item.append(sw,document.createTextNode(s));leg.append(item);});
+    if(host.dataset.readout==='optional'){
+      const side=host.querySelector('.g-side'),stats=host.querySelector('.g-stats'),note=host.querySelector('.g-note');
+      const reading=document.createElement('div'),details=document.createElement('details'),summary=document.createElement('summary');
+      reading.className='g-reading';details.className='number-readout';summary.textContent='View numerical readout';details.append(summary,stats);reading.append(note,details);side.append(reading);
+    }
+    const plot=host.querySelector('.g-plot'),svgs=[];
+    if(twinTitles){plot.classList.add('twin');twinTitles.forEach(name=>{const div=document.createElement('div'),t=document.createElement('p');t.className='tw-t';t.textContent=name;div.append(t);const svg=el('svg',{role:'img','aria-label':title+': '+name},div);plot.append(div);svgs.push(svg);});}
+    else svgs.push(el('svg',{role:'img','aria-label':title},plot));
+    const ctrl=host.querySelector('.g-ctrl');
+    return {svgs,host,
+      slider(key,label,min,max,step,value,format,on){const row=document.createElement('div');row.className='sl';const lab=document.createElement('label'),span=document.createElement('span'),output=document.createElement('output'),input=document.createElement('input');input.type='range';input.setAttribute('aria-label',label);Object.assign(input,{id:id+'-'+key,min,max,step,value});lab.htmlFor=input.id;span.textContent=label;lab.append(span,output);output.htmlFor=input.id;row.append(lab,input);ctrl.append(row);const sync=()=>output.textContent=format(+input.value);input.addEventListener('input',()=>{sync();on(+input.value);});sync();return {set(v){input.value=v;sync();},input};},
+      button(label,on){const b=document.createElement('button');b.type='button';b.className='g-btn';b.textContent=label;b.addEventListener('click',on);ctrl.append(b);return b;},
+      seg(label,options,value,on){const group=document.createElement('div');group.className='seg';group.setAttribute('role','group');group.setAttribute('aria-label',label);options.forEach(([v,t])=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.dataset.value=v;b.setAttribute('aria-pressed',String(v===value));b.addEventListener('click',()=>{[...group.children].forEach(x=>x.setAttribute('aria-pressed',String(x===b)));on(v);});group.append(b);});ctrl.append(group);},
+      show(rows,note){const stats=host.querySelector('.g-stats');stats.replaceChildren();rows.forEach(([key,value,big=false])=>{const row=document.createElement('div');row.className='st'+(big?' big':'');row.dataset.stat=key;const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=key;dd.textContent=value;row.append(dt,dd);stats.append(row);});host.querySelector('.g-note').textContent=note;},
+      redrawOnResize(draw){let last='';const obs=new ResizeObserver(()=>{const widths=svgs.map(svg=>Math.round(svg.getBoundingClientRect().width)).join('|');if(widths!==last){last=widths;draw();}});obs.observe(plot);svgs.forEach(svg=>obs.observe(svg.parentElement));window.addEventListener('econ-language-change',draw);}
+    };
+  }
+  const W_={};
+  const kb=n=>'฿'+num(n)+'k';
+  const baht=n=>(n<0?'−฿':'฿')+Math.round(Math.abs(n)).toLocaleString('en-US');
+  const pct=n=>Math.round(n*100)+'%';
+  const signed=n=>(n<0?'−':'')+num(Math.abs(n));
+  
+  const ZHD=window.ZH_DYN||(window.ZH_DYN={});
+  const tr=(en,zh)=>{if(zh)ZHD[en.replace(/\s+/g,' ').trim()]=zh;return en;};
+  const L=(en,zh)=>[en,zh];
+  const zhOn=()=>document.body.classList.contains('show-zh');
+  const T=p=>tr(p[0],p[1]);
+  const pc1=n=>(Math.abs(n)<0.05?'0.0':(n<0?'−':'')+Math.abs(n).toFixed(1))+'%';
+  const times=n=>n>=100?Math.round(n).toLocaleString('en-US')+'×':n>=10?n.toFixed(0)+'×':n.toFixed(1)+'×';
+  function live(s,draw){draw();s.redrawOnResize(draw);window.addEventListener('econ-language-change',draw);}
+  function niceStep(span,count){const raw=span/count,p=Math.pow(10,Math.floor(Math.log10(raw))),m=raw/p;return (m<=1?1:m<=2?2:m<=5?5:10)*p;}
+  function make(tag,cls,text,parent){const n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;if(parent)parent.append(n);return n;}
+
+  /* 1. Quantity theory in growth rates, drawn on a ratio scale. */
+  W_.qtm=host=>{
+    const s=shell(host,tr('Money growth and the price level','貨幣成長與物價水準'),tr('Set how fast money, velocity and real output grow. Predict the inflation rate, then read it off the graph.','設定貨幣、流通速度和實質產出的成長速度。先預測通膨率，再從圖上讀出來。'),[[tr('Money M','貨幣 M'),colors.d],[tr('Price level P','物價水準 P'),colors.mc],[tr('Real GDP Y','實質 GDP Y'),'var(--policy)']]);
+    let gM=10,gV=0,gY=3;const N=10;
+    const ticks=[50,100,200,500,1000,2000,5000,10000];
+    const draw=()=>{
+      const step=(1+gM/100)*(1+gV/100)/(1+gY/100),pi=(step-1)*100,approx=gM+gV-gY;
+      const lg=v=>Math.log10(v);
+      const P=Plot(s.svgs[0],N,lg(10000),lg(30));P.axes(tr('Years','年'),tr('Index, year 0 = 100 (ratio scale)','指數，第 0 年 = 100（比例刻度）'));
+      P.xticks([0,2,4,6,8,10]);P.yticks(ticks.map(lg),v=>num(Math.round(Math.pow(10,v))));
+      const series=(g,c,dash)=>{const pts=[];for(let t=0;t<=N;t++)pts.push([t,lg(100*Math.pow(g,t))]);P.path(pts,c,dash);return pts[N][1];};
+      const yM=series(1+gM/100,colors.d,true),yP=series(step,colors.mc),yY=series(1+gY/100,'var(--policy)');
+      const lab=[['M',yM],['P',yP],['Y',yY]].sort((a,b)=>b[1]-a[1]);
+      let last=99;lab.forEach(([n,y])=>{const yy=Math.min(y,last-.09);P.tag(N,yy,n,'start',4).setAttribute('dx','6');last=yy;});
+      const end=100*Math.pow(step,N);
+      s.show([[tr('Rule of thumb: M + V − Y','經驗法則：M + V − Y'),pc1(approx)],[tr('Inflation each year (exact)','每年通膨率（精確）'),pc1(pi),true],[tr('Price level after 10 years','10 年後的物價水準'),times(end/100)]],
+        pi>=30?tr('Money grows far faster than output, so prices take off. This is the road to Zimbabwe and Peru.','貨幣成長遠快於產出，物價起飛。這就是通往辛巴威和秘魯的路。'):pi<0?tr('Output grows faster than money and velocity, so prices fall: deflation.','產出成長快於貨幣和流通速度，物價下跌：通縮。'):Math.abs(gM-pi)<1.5&&gV===0?tr('With velocity steady, inflation is about money growth minus output growth. Part of the new money is absorbed by extra goods.','流通速度不變時，通膨約等於貨幣成長減產出成長。新增的錢有一部分被多出來的商品吸收。'):tr('Inflation is roughly money growth plus velocity growth minus output growth.','通膨大約等於貨幣成長加流通速度成長，再減去產出成長。'));
+    };
+    const a=s.slider('gM',tr('Money growth per year','每年貨幣成長'),0,50,1,gM,v=>v+'%',v=>{gM=v;draw();});
+    const b=s.slider('gV',tr('Velocity growth per year','每年流通速度成長'),-5,5,1,gV,v=>(v>0?'+':v<0?'−':'')+Math.abs(v)+'%',v=>{gV=v;draw();});
+    const c=s.slider('gY',tr('Real GDP growth per year','每年實質 GDP 成長'),-5,10,1,gY,v=>(v>0?'+':v<0?'−':'')+Math.abs(v)+'%',v=>{gY=v;draw();});
+    const set=(x,y,z)=>{gM=x;gV=y;gY=z;a.set(x);b.set(y);c.set(z);draw();};
+    s.button(tr('Steady: money 5%, output 3%','穩定：貨幣 5%，產出 3%'),()=>set(5,0,3));
+    s.button(tr('Printing press: money 40%, output 0%','印鈔機：貨幣 40%，產出 0%'),()=>set(40,0,0));
+    s.button(tr('People spend faster: velocity +5%','大家花得更快：流通速度 +5%'),()=>set(40,5,0));
+    s.button(tr('Output outgrows money','產出成長超過貨幣'),()=>set(2,0,5));
+    live(s,draw);
+  };
+
+  /* 2. Real rate at signing vs real rate realized: who gains from a surprise? */
+  W_.realrate=host=>{
+    const s=shell(host,tr('Who gains when inflation surprises?','通膨出乎意料時誰得利？'),tr('A loan is signed at a nominal rate with some inflation expected. Pick a case, predict who gains, then reveal what inflation actually did.','簽約時定下名目利率，並預期某個通膨率。選一個情境，先預測誰得利，再揭曉通膨實際怎麼走。'),[[tr('Inflation','通膨'),'var(--dwl)'],[tr('Real interest rate','實質利率'),'var(--ps)'],[tr('Nominal rate','名目利率'),'var(--fg)']]);
+    let i=12,pe=10,pa=10,shown=true,cur=null;
+    const cases={
+      slide:[12,10,10,L('The 1978 mortgage from the slides: 12% nominal is 2% real plus 10% inflation. Inflation came in as expected, so nobody gains at the other\'s expense.','投影片上的 1978 年房貸：名目 12% = 實質 2% + 通膨 10%。通膨如預期，所以沒有一方犧牲另一方得利。')],
+      fisher:[15,10,10,L('The lender expected 10% inflation and wanted 5% real, so charged 15%. Inflation was as expected, so the lender earns the 5% it planned.','放款人預期通膨 10%、想要實質 5%，所以收 15%。通膨如預期，放款人賺到原本計畫的 5%。')],
+      y81:[18,15,5,L('Borrowed at 18% expecting 15% inflation. Inflation fell to 5%, so the real rate jumped from 3% to 13%. The lender gains and the borrower loses.','以 18% 借款、預期通膨 15%。通膨降到 5%，實質利率從 3% 跳到 13%。放款人得利，借款人受害。')],
+      surprise:[6,3,10,L('Borrowed at 6% expecting 3% inflation. Inflation hit 10%, so the real rate became −4%. The borrower repays in cheaper money and gains.','以 6% 借款、預期通膨 3%。通膨衝到 10%，實質利率變成 −4%。借款人用變薄的錢還債而得利。')]};
+    const draw=()=>{
+      const re=i-pe,ra=i-(shown?pa:pe),act=shown?pa:pe;
+      const P=Plot(s.svgs[0],3,25,-10);P.axes('',tr('Percent per year','每年百分比'));P.yticks([-10,-5,0,5,10,15,20,25],v=>v+'%');
+      P.xticks([1,2],x=>x===1?tr('Expected','預期'):(shown?tr('Actual','實際'):tr('Actual: ?','實際：?')));
+      const bar=(x,inf)=>{const lo=Math.min(0,inf),top=Math.max(0,inf);P.rect(x-.3,x+.3,lo,top,'a-loss');
+        if(i>=inf)P.rect(x-.3,x+.3,Math.max(inf,0),i,'a-ps');else P.rect(x-.3,x+.3,i,inf,'a-dwl');
+        P.path([[x-.38,i],[x+.38,i]],'var(--fg)');};
+      P.path([[0,0],[3,0]],'var(--muted)');
+      bar(1,pe);bar(2,act);
+      const labels=(x,inf)=>{
+        const lo=Math.min(0,inf),infTop=inf>0?Math.min(inf,i):0;
+        if(inf>0&&infTop>=1.5)P.tag(x,infTop/2,inf+'%','middle',4);
+        if(inf<0)P.tag(x,inf/2,inf+'%','middle',4);
+        const real=i-inf,a=Math.max(Math.min(inf,i),0),b=Math.max(inf,i);
+        if(Math.abs(b-a)>=1.5)P.tag(x,(a+b)/2,(real>0?'+':'')+real+'%','middle',4);
+      };
+      P.tag(1,i,tr('nominal ')+i+'%','middle',-6);labels(1,pe);
+      if(shown){P.tag(2,Math.max(i,pa),tr('nominal ')+i+'%','middle',-6);labels(2,pa);}
+      const gap=shown?pa-pe:0;
+      const who=gap>0?tr('Borrower gains, lender loses','借款人得利，放款人受害'):gap<0?tr('Lender gains, borrower loses','放款人得利，借款人受害'):tr('No transfer','沒有移轉');
+      s.show([[tr('Nominal rate','名目利率'),i+'%'],[tr('Real rate expected','預期實質利率'),re+'%'],[tr('Real rate realized','實際實質利率'),shown?ra+'%':'?',true],[tr('Surprise in inflation','通膨的意外幅度'),shown?(gap>0?'+':gap<0?'−':'')+Math.abs(gap)+tr(' points'):'?'],[tr('Result','結果'),shown?who:'?',true],[tr('Transfer on a 1,000,000 baht loan, per year','100 萬泰銖貸款每年的移轉金額'),shown?baht(Math.abs(gap)*10000):'?']],
+        !shown?tr('Predict first: if inflation turns out higher than expected, who gains? Then reveal.','先預測：如果通膨高於預期，誰得利？再揭曉。'):cur&&i===cases[cur][0]&&pe===cases[cur][1]&&pa===cases[cur][2]?T(cases[cur][3]):gap>0?tr('Inflation beat expectations, so the real rate fell. Wealth moves from lender to borrower.','通膨高於預期，實質利率下降，財富從放款人移到借款人。'):gap<0?tr('Inflation fell short of expectations, so the real rate rose. Wealth moves from borrower to lender.','通膨低於預期，實質利率上升，財富從借款人移到放款人。'):tr('Inflation matched expectations. The real rate is what both sides agreed to.','通膨符合預期，實質利率就是雙方當初談定的水準。'));
+    };
+    const a=s.slider('i',tr('Nominal rate on the loan','貸款名目利率'),0,20,1,i,v=>v+'%',v=>{i=v;cur=null;shown=true;draw();});
+    const b=s.slider('pe',tr('Inflation expected at signing','簽約時預期的通膨'),-5,20,1,pe,v=>v+'%',v=>{pe=v;cur=null;shown=true;draw();});
+    const c=s.slider('pa',tr('Inflation that actually happens','實際發生的通膨'),-5,20,1,pa,v=>v+'%',v=>{pa=v;cur=null;shown=true;draw();});
+    s.seg(tr('Case','情境'),[['slide',tr('1978 mortgage','1978 年房貸')],['fisher',tr('Fisher: 15%','費雪：15%')],['y81',tr('1981 mortgage','1981 年房貸')],['surprise',tr('Surprise inflation','意外通膨')]],null,v=>{cur=v;[i,pe,pa]=cases[v];a.set(i);b.set(pe);c.set(pa);shown=false;draw();});
+    s.button(tr('Reveal what happened','揭曉結果'),()=>{shown=true;draw();});
+    live(s,draw);
+  };
+
+  /* 3. Real after-tax return when inflation is fully expected. */
+  W_.aftertax=host=>{
+    const s=shell(host,tr('Taxed on nominal interest','對名目利息課稅'),tr('The lender always adds expected inflation to the rate, so the real rate before tax is fixed. Raise inflation and watch the real return after tax.','放款人總是把預期通膨加進利率，所以稅前實質利率固定。提高通膨，看稅後實質報酬怎麼變。'),[[tr('Shortcut: after-tax nominal − inflation','簡化：稅後名目 − 通膨'),colors.d],[tr('Exact real return','精確實質報酬'),colors.mc]]);
+    let tax=33,r=3,pi=9;
+    const f=(p)=>{const nom=p+r,at=nom*(1-tax/100);return [nom,at,at-p,((1+at/100)/(1+p/100)-1)*100];};
+    const draw=()=>{
+      const P=Plot(s.svgs[0],100,10,-50);P.axes(tr('Expected inflation, %','預期通膨，%'),tr('Real return after tax, %','稅後實質報酬，%'));P.xticks([0,20,40,60,80,100],v=>v+'%');P.yticks([-50,-40,-30,-20,-10,0,10],v=>v+'%');
+      P.path([[0,0],[100,0]],'var(--muted)');
+      const sc=[],ex=[];for(let p=0;p<=100;p+=1){const v=f(p);sc.push([p,v[2]]);ex.push([p,v[3]]);}
+      P.path(sc,colors.d,true);P.path(ex,colors.mc);
+      const [nom,at,short,exact]=f(pi);
+      P.guide(pi,short);P.point(pi,short,'var(--fg)');P.point(pi,exact,'var(--fg)');
+      const be=tax>0?r*(1-tax/100)/(tax/100):Infinity;
+      if(be<=100){P.point(be,0,'var(--muted)');P.tag(be,0,tr('break-even','損益兩平'),'start',-8);}
+      s.show([[tr('Nominal rate','名目利率'),pc1(nom)],[tr('After tax','稅後'),pc1(at)],[tr('Real after tax, shortcut','稅後實質（簡化）'),pc1(short),true],[tr('Real after tax, exact','稅後實質（精確）'),pc1(exact)],[tr('Inflation where saving stops paying','存錢開始不划算的通膨率'),be<=100?pc1(be):tr('none','無')]],
+        short<0?tr('Saving loses money in real terms, even though inflation was fully expected. The tax falls on the part of interest that only replaces lost buying power.','即使通膨完全被預期到，存錢在實質上還是虧。稅課在只是補回購買力的那部分利息上。'):tr('Still positive, but the tax already takes a bigger bite of the real return than the headline rate suggests.','還是正的，但稅吃掉的實質報酬已經比表面利率看起來多。'));
+    };
+    const ps=s.slider('pi',tr('Expected inflation','預期通膨'),0,100,1,pi,v=>v+'%',v=>{pi=v;draw();});
+    s.slider('tax',tr('Tax on nominal interest','名目利息稅率'),0,50,1,tax,v=>v+'%',v=>{tax=v;draw();});
+    s.slider('r',tr('Real rate before tax','稅前實質利率'),0,6,.5,r,v=>v+'%',v=>{r=v;draw();});
+    s.button(tr('MRU: 6% nominal, 3% inflation','MRU：名目 6%，通膨 3%'),()=>{pi=3;ps.set(3);draw();});
+    s.button(tr('MRU: 12% nominal, 9% inflation','MRU：名目 12%，通膨 9%'),()=>{pi=9;ps.set(9);draw();});
+    s.button(tr('MRU: 90% nominal, 87% inflation','MRU：名目 90%，通膨 87%'),()=>{pi=87;ps.set(87);draw();});
+    live(s,draw);
+  };
+
+  /* 4. The parable: money changes once, prices catch up over time, V fixed so Y = MV/P. */
+  W_.parable=host=>{
+    const s=shell(host,tr('Short run and long run of a money change','貨幣變動的短期與長期'),tr('Money changes once in period 2. Choose whether people saw it coming, then watch prices and real output.','貨幣在第 2 期變動一次。選擇大家是否預期到，再看物價和實質產出怎麼走。'),[[tr('Money M','貨幣 M'),colors.d],[tr('Price level P','物價水準 P'),colors.mc],[tr('Real output Y','實質產出 Y'),'var(--policy)'],[tr('Lost output','損失的產出'),'var(--dwl)']]);
+    let mode='surprise',m=15,lam=.6;
+    const draw=()=>{
+      const lg=host.querySelectorAll('.plot-legend span');if(lg[3])lg[3].style.display=mode==='cut'?'':'none';
+      const sign=mode==='cut'?-1:1,mm=sign*m/100,l=mode==='expected'?0:lam,N=12;
+      const Mf=t=>t<2?100:100*(1+mm),Pf=t=>t<2?100:100*Math.pow(1+mm,1-Math.pow(l,(t-2)+(l===0?1:0))),Yf=t=>Mf(t)/Pf(t)*100;
+      const fine=f=>{const a=[];for(let k=0;k<=N*4;k++){const t=k/4;if(t===2)a.push([2,100]);a.push([t,t<2?100:f(t)]);}return a;};
+      const P=Plot(s.svgs[0],N,130,70);P.axes(tr('Period','期'),tr('Index, period 0 = 100','指數，第 0 期 = 100'));P.xticks([0,2,4,6,8,10,12]);P.yticks([70,80,90,100,110,120,130]);
+      if(sign<0){const poly=fine(Yf).filter(([t])=>t>=2);P.poly([[2,100],...poly,[N,100]],'a-loss');}
+      P.path([[0,100],[2,100],[2,Mf(2)],[N,Mf(N)]],colors.d,true);
+      P.path(fine(Pf),colors.mc);P.path(fine(Yf),'var(--policy)');
+      P.tag(N,Mf(N),'M','end',sign>0?-8:16);if(mode!=='expected')P.tag(6,Pf(6),'P','middle',sign>0?16:-8);P.tag(N,Yf(N),'Y','end',-8);
+      const peak=sign>0?Math.max(...fine(Yf).map(x=>x[1])):Math.min(...fine(Yf).map(x=>x[1]));
+      const half=l>0?Math.log(.5)/Math.log(l):0;
+      s.show([[tr('Biggest change in real output','實質產出最大變動'),pc1(peak-100),true],[tr('Long-run change in prices','物價的長期變動'),pc1(mm*100)],[tr('Long-run change in real output','實質產出的長期變動'),pc1(Yf(N)-100)],[tr('Periods for prices to close half the gap','物價補上一半差距所需期數'),l>0?half.toFixed(1):'0']],
+        mode==='expected'?tr('People expect the new money, so prices jump at once and real output does not move. Money is neutral even in the short run.','大家預期到新增的貨幣，物價立刻跳升，實質產出不動。這時連短期貨幣都是中立的。'):mode==='cut'?tr('Money falls but prices are slow to come down, so real output drops: a recession. In the long run prices are lower and output is back. This is the cost of stopping inflation.','貨幣減少但物價降得慢，所以實質產出下降，也就是衰退。長期物價變低、產出恢復。這就是停止通膨的代價。'):tr('Prices are slow to catch up, so the new money first buys more goods and output rises. As prices adjust, output returns to normal and only prices stay higher.','物價追得慢，新的錢一開始買到更多東西，產出上升。等物價調整完，產出回到正常，只剩物價變高。'));
+    };
+    s.seg(tr('Case','情境'),[['surprise',tr('Surprise money boost','意外的貨幣刺激')],['expected',tr('Boost people expect','大家預期到的刺激')],['cut',tr('Cut money to stop inflation','減少貨幣以停止通膨')]],mode,v=>{mode=v;draw();});
+    s.slider('m',tr('Size of the money change','貨幣變動幅度'),5,25,1,m,v=>v+'%',v=>{m=v;draw();});
+    s.slider('lam',tr('How slowly prices adjust','物價調整有多慢'),.2,.85,.05,lam,v=>v<.4?tr('Fast','快'):v>.65?tr('Slow','慢'):tr('Medium','中等'),v=>{lam=v;draw();});
+    live(s,draw);
+  };
+
+  /* 5. Who gains, who loses: sort each situation. */
+  W_.winners=host=>{
+    host.classList.add('graph','wide');
+    const O=[L('Gains','得利'),L('Loses','受害'),L('Protected','受保護')];
+    const Q=[
+      [L('A Thai shop owner took a five-year fixed-rate loan in baht. Prices then fall when everyone expected them to rise.','一位泰國店老闆借了五年期、固定利率的泰銖貸款。結果物價下跌，而大家原本預期會上漲。'),1,L('Deflation makes each baht owed worth more. The real burden of the debt grows.','通縮讓欠下的每一泰銖變得更值錢，債務的實質負擔變重。')],
+      [L('A graduate has a fixed-rate student loan. Inflation turns out much higher than expected.','一位畢業生背著固定利率的學貸，結果通膨遠高於預期。'),0,L('The loan is repaid with money worth less than planned. Surprise inflation moves wealth to borrowers.','還款用的錢比原本預期的更不值錢。意外通膨把財富移給借款人。')],
+      [L('A bank holds many fixed-rate mortgages it made last year. Inflation turns out much higher than expected.','一家銀行手上有很多去年承作的固定利率房貸，結果通膨遠高於預期。'),1,L('The bank is the lender. It gets back money worth less than it planned for.','銀行是放款人，收回的錢比它原本打算的更不值錢。')],
+      [L('A lender expected 5% inflation and charged 8%. Inflation turns out to be exactly 5%.','一位放款人預期通膨 5%，收 8% 利息，結果通膨剛好是 5%。'),2,L('The Fisher effect at work. The lender built expected inflation into the rate and earns the planned 3% real return.','這就是費雪效果：放款人把預期通膨算進利率，拿到原本計畫的 3% 實質報酬。')],
+      [L('A household keeps its savings in cash at home. Prices fall 2% when people expected them to stay flat.','一個家庭把存款以現金放在家裡。大家預期物價持平，結果下跌 2%。'),0,L('Cash buys more when prices fall. Unexpected deflation helps anyone holding money.','物價下跌時現金買得更多。意外通縮對持有貨幣的人有利。')],
+      [L('A pensioner whose payment is adjusted every year for the change in the CPI.','一位退休金每年依 CPI 變動調整的領取者。'),2,L('Indexation ties the payment to the price level, so its real value holds whatever inflation does.','物價連動把給付和物價水準綁在一起，不管通膨怎麼走，實質價值都能維持。')],
+      [L('A government pays its bills by printing new money.','政府靠印新鈔來付帳。'),0,L('This is the inflation tax: buying power moves from everyone holding money to the government.','這就是通膨稅：購買力從所有持有貨幣的人移到政府手上。')],
+      [L('A Thai worker on a salary fixed for three years. Inflation turns out much higher than expected.','一位泰國員工的薪水三年固定不變，結果通膨遠高於預期。'),1,L('The baht amount is fixed, so its real value falls as prices rise faster than planned.','泰銖金額固定，物價漲得比預期快，實質價值就下降。')]
+    ];
+    const head=make('div','g-head',null,host);make('span','g-kicker',tr('Check yourself','自我檢查'),head);make('h4',null,tr('Winner or loser?','贏家還是輸家？'),head);make('p',null,tr('New cases, not the ones in the table. Decide whether each person gains, loses or is protected.','新的情境，不是表格裡的例子。判斷每個人是得利、受害，還是受到保護。'),head);
+    const count=make('p','rung-q',null,host),box=make('p','key',null,host);
+    const opts=make('div','g-ctrl sort-tools',null,host);
+    const verdict=make('p','rung-a',null,host),fb=make('p','g-note',null,host);
+    const nav=make('div','g-ctrl sort-tools',null,host);
+    const next=make('button','g-btn',tr('Next situation','下一題'),nav);next.type='button';
+    const again=make('button','g-btn',tr('Start over','重新開始'),nav);again.type='button';
+    let i=0,pick=null,score=0;
+    const render=()=>{
+      const [q,ans,ex]=Q[i];
+      count.textContent=tr(`Situation ${i+1} of ${Q.length} · score ${score}`,`第 ${i+1} 題，共 ${Q.length} 題 · 得分 ${score}`);
+      box.textContent=T(q);opts.replaceChildren();
+      O.forEach((p,k)=>{const b=make('button','g-btn',T(p),opts);b.type='button';
+        if(pick!==null){b.disabled=true;if(k===ans)b.classList.add('is-ok');else if(k===pick)b.classList.add('is-no');}
+        b.addEventListener('click',()=>{if(pick!==null)return;pick=k;if(k===ans)score++;render();});});
+      if(pick===null){verdict.textContent='';fb.textContent='';}
+      else{verdict.textContent=pick===ans?tr('Right.','答對了。'):tr(`Not quite. Best answer: ${O[ans][0]}.`,`不太對。最佳答案：${O[ans][1]}。`);fb.textContent=T(ex);}
+      next.disabled=pick===null||i>=Q.length-1;
+    };
+    next.addEventListener('click',()=>{if(i<Q.length-1){i++;pick=null;render();}});
+    again.addEventListener('click',()=>{i=0;pick=null;score=0;render();});
+    render();
+  };
+
+  function assume(host){const a=host.dataset.assume;if(!a)return;const p=make('p','g-assume',a,host.querySelector('.g-plot')||host);if(host.dataset.assumeZh){const s=make('span','zh-full',host.dataset.assumeZh,p);s.lang='zh-Hant';}}
+  window.EconWidgets={mount(root){root.querySelectorAll('[data-widget]').forEach(host=>{const init=W_[host.dataset.widget];if(init&&!host.dataset.ready){host.dataset.ready='1';init(host);assume(host);}});}};
+})();
+</script>
+<script>
+(() => {
+ const toc=document.getElementById('toc'),rail=document.getElementById('rail'),button=document.getElementById('tocBtn');
+ const headings=[...document.querySelectorAll('.doc > h2,.doc > h3')];
+ headings.forEach(h=>{const li=document.createElement('li'),a=document.createElement('a');li.className=h.tagName.toLowerCase();li.dataset.id=h.id;a.href='#'+h.id;a.textContent=h.childNodes[0].textContent.trim();const z=h.querySelector(':scope > .zh-full');if(z){const s=document.createElement('span');s.className='zh-full';s.lang='zh-Hant';s.textContent=z.textContent;a.append(s);}li.append(a);toc.append(li);});
+ const spy=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;toc.querySelectorAll('.on').forEach(a=>a.classList.remove('on'));const a=toc.querySelector('[data-id="'+e.target.id+'"] a');if(a)a.classList.add('on');}),{rootMargin:'-100px 0px -65% 0px'});headings.forEach(h=>spy.observe(h));
+ function close(){rail.classList.remove('open');button.setAttribute('aria-expanded','false');}
+ button.addEventListener('click',()=>{const open=rail.classList.toggle('open');button.setAttribute('aria-expanded',String(open));});
+ toc.addEventListener('click',e=>{if(e.target.closest('a'))close();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&rail.classList.contains('open')){close();button.focus();}});
+ const all=document.getElementById('qaAll');all.addEventListener('click',()=>{const ds=[...document.querySelectorAll('.qa details')],open=!ds.every(d=>d.open);ds.forEach(d=>d.open=open);all.textContent=open?'Hide all answers':'Show all answers';});
+ window.EconWidgets.mount(document);
+})();
+</script>
+<script>(() => {
+ 'use strict';
+ const dict={
+  "Interactive graph":"互動圖表","Classification":"分類練習","Contents":"目錄","Show all answers":"展開全部答案","Hide all answers":"收合全部答案","View numerical readout":"查看數值結果","Yes":"是","No":"否","Reset":"重設"
+ };
+ const patterns=[];
+ const norm=s=>s.replace(/\s+/g,' ').trim();
+ function enText(el){const copy=el.cloneNode(true);copy.querySelectorAll('.zh-full,.zh-svg,.zh').forEach(n=>n.remove());return norm(copy.textContent);}
+ function translate(en){if(dict[en])return dict[en];const dyn=window.ZH_DYN||{};if(dyn[en])return dyn[en];for(const [re,f] of patterns){const m=en.match(re);if(m)return f(m);}return '';}
+ const observer=new MutationObserver(()=>schedule());let pending=false;
+ const selector='.doc h4,.doc p,.doc th,.doc td,.doc summary,.doc .formula,.doc .plot-legend>span,.doc .tw-t,.doc .g-stats dt,.doc .g-stats dd,.doc .g-ctrl button,.doc .g-btn,.doc .rc-t,.doc .rc-tag,.doc .sl label>span,.doc .sl output,.g-kicker,.rail a,#tocBtn,#qaAll';
+ function apply(){
+  pending=false;observer.disconnect();
+  document.querySelectorAll(selector).forEach(el=>{
+   if(el.closest('.zh-full,.hint,.practice-prompt')||el.querySelector(':scope > .zh-full'))return;
+   const chinese=translate(enText(el));if(!chinese)return;
+   const span=document.createElement('span');span.className='zh-full';span.lang='zh-Hant';span.textContent=chinese;el.append(span);
+  });
+  document.querySelectorAll('.g-plot svg text.axl,.g-plot svg text.tk').forEach(el=>{
+   if(el.querySelector('.zh-svg'))return;const chinese=translate(enText(el));if(!chinese)return;
+   const t=document.createElementNS('http://www.w3.org/2000/svg','tspan');t.setAttribute('class','zh-svg');t.setAttribute('lang','zh-Hant');t.setAttribute('x',el.getAttribute('x')||'0');t.setAttribute('dy','13');t.textContent=chinese;el.append(t);
+  });
+  observer.observe(document.body,{subtree:true,childList:true,characterData:true});
+ }
+ function schedule(){if(!pending){pending=true;requestAnimationFrame(apply);}}
+ const toggle=document.getElementById('zhToggle'),label=document.getElementById('zhModeLabel');
+ function setZh(on){toggle.checked=on;document.body.classList.toggle('show-zh',on);label.textContent=on?'ON':'OFF';try{localStorage.setItem('study-notes-show-zh',on?'1':'0')}catch(e){}window.dispatchEvent(new Event('econ-language-change'));apply();}
+ let initial=false;try{initial=localStorage.getItem('study-notes-show-zh')==='1'}catch(e){}
+ toggle.addEventListener('change',()=>setZh(toggle.checked));
+ const practice=document.getElementById('practiceToggle'),state=document.getElementById('practiceState');
+ practice.addEventListener('click',()=>{const on=practice.getAttribute('aria-pressed')!=='true';practice.setAttribute('aria-pressed',String(on));state.textContent=on?'On':'Off';practice.querySelector(':scope > .zh-full').textContent='練習模式：'+(on?'開啟':'關閉');document.querySelectorAll('.practice-prompt').forEach(p=>p.hidden=!on);});
+ const header=document.querySelector('.top');function measure(){document.documentElement.style.setProperty('--header-height',Math.ceil(header.getBoundingClientRect().height)+'px');}
+ if('ResizeObserver'in window)new ResizeObserver(measure).observe(header);measure();setZh(initial);
+ window.refreshChineseSupport=apply;
+})();
+</script></body></html>
